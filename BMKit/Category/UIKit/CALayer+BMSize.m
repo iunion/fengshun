@@ -1,162 +1,162 @@
 //
-//  CALayer+Size.m
+//  CALayer+BMSize.m
 //  DJTableFreshViewSample
 //
 //  Created by jiang deng on 2018/8/8.
 //Copyright © 2018年 DJ. All rights reserved.
 //
 
-#import "CALayer+Size.h"
+#import "CALayer+BMSize.h"
 
-@implementation CALayer (Size)
+@implementation CALayer (BMSize)
 
-- (CGSize)frameSize
+- (CGSize)bm_frameSize
 {
     return self.frame.size;
 }
 
-- (void)setFrameSize:(CGSize)value
+- (void)setBm_frameSize:(CGSize)value
 {
     CGRect rect = self.frame;
     rect.size = value;
     self.frame = rect;
 }
 
-- (CGFloat)frameWidth
+- (CGFloat)bm_frameWidth
 {
     return self.frame.size.width;
 }
 
-- (void)setFrameWidth:(CGFloat)value
+- (void)setBm_frameWidth:(CGFloat)value
 {
     CGRect rect = self.frame;
     rect.size.width = value;
     self.frame = rect;
 }
 
-- (CGFloat)frameHeight
+- (CGFloat)bm_frameHeight
 {
     return self.frame.size.height;
 }
 
-- (void)setFrameHeight:(CGFloat)value
+- (void)setBm_frameHeight:(CGFloat)value
 {
     CGRect rect = self.frame;
     rect.size.height = value;
     self.frame = rect;
 }
 
-- (CGSize)frameHalfSize
+- (CGSize)bm_frameHalfSize
 {
-    return CGSizeMake(self.frameHalfWidth, self.frameHalfHeight);
+    return CGSizeMake(self.bm_frameHalfWidth, self.bm_frameHalfHeight);
 }
 
-- (CGFloat)frameHalfHeight
+- (CGFloat)bm_frameHalfHeight
 {
-    return self.frameHeight * 0.5;
+    return self.bm_frameHeight * 0.5;
 }
 
-- (CGFloat)frameHalfWidth
+- (CGFloat)bm_frameHalfWidth
 {
-    return self.frameWidth * 0.5;
+    return self.bm_frameWidth * 0.5;
 }
 
-- (CGPoint)frameOrigin
+- (CGPoint)bm_frameOrigin
 {
     return self.frame.origin;
 }
 
-- (void)setFrameOrigin:(CGPoint)value
+- (void)setBm_frameOrigin:(CGPoint)value
 {
     CGRect rect = self.frame;
     rect.origin = value;
     self.frame = rect;
 }
 
-- (CGFloat)frameLetf
+- (CGFloat)bm_frameLetf
 {
     return CGRectGetMinX(self.frame);
 }
 
-- (void)setFrameLetf:(CGFloat)value
+- (void)setBm_frameLetf:(CGFloat)value
 {
     CGRect rect = self.frame;
     rect.origin.x = value;
     self.frame = rect;
 }
 
-- (CGFloat)frameTop
+- (CGFloat)bm_frameTop
 {
     return CGRectGetMinY(self.frame);
 }
 
-- (void)setFrameTop:(CGFloat)value
+- (void)setBm_frameTop:(CGFloat)value
 {
     CGRect rect = self.frame;
     rect.origin.y = value;
     self.frame = rect;
 }
 
-- (CGFloat)frameRight
+- (CGFloat)bm_frameRight
 {
     return CGRectGetMaxX(self.frame);
 }
 
-- (void)setFrameRight:(CGFloat)value
+- (void)setBm_frameRight:(CGFloat)value
 {
     CGRect rect = self.frame;
     rect.origin.x = value - rect.size.width;
     self.frame = rect;
 }
 
-- (CGFloat)frameBottom
+- (CGFloat)bm_frameBottom
 {
     return CGRectGetMaxY(self.frame);
 }
 
-- (void)setFrameBottom:(CGFloat)value
+- (void)setBm_frameBottom:(CGFloat)value
 {
     CGRect rect = self.frame;
     rect.origin.y = value - rect.size.height;
     self.frame = rect;
 }
 
-- (CGPoint)frameCenter
+- (CGPoint)bm_frameCenter
 {
-    return CGPointMake(self.frameCenterX, self.frameCenterY);
+    return CGPointMake(self.bm_frameCenterX, self.bm_frameCenterY);
 }
 
-- (void)setFrameCenter:(CGPoint)value
+- (void)setBm_frameCenter:(CGPoint)value
 {
-    self.frameCenterX = value.x;
-    self.frameCenterY = value.y;
+    self.bm_frameCenterX = value.x;
+    self.bm_frameCenterY = value.y;
 }
 
-- (CGFloat)frameCenterX
+- (CGFloat)bm_frameCenterX
 {
     return CGRectGetMidX(self.frame);
 }
 
-- (void)setFrameCenterX:(CGFloat)value
+- (void)setBm_frameCenterX:(CGFloat)value
 {
     CGRect rect = self.frame;
     rect.origin.x = value - (rect.size.width * 0.5);
     self.frame = rect;
 }
 
-- (CGFloat)frameCenterY
+- (CGFloat)bm_frameCenterY
 {
     return CGRectGetMidY(self.frame);
 }
 
-- (void)setFrameCenterY:(CGFloat)value
+- (void)setBm_frameCenterY:(CGFloat)value
 {
     CGRect rect = self.frame;
     rect.origin.y = value - (rect.size.height * 0.5);
     self.frame = rect;
 }
 
-- (CGRect)frameAsIfNoTransformIsApplied
+- (CGRect)bm_frameAsIfNoTransformIsApplied
 {
     return CGRectMake(self.position.x - (self.bounds.size.width * self.anchorPoint.x),
                       self.position.y - (self.bounds.size.height * self.anchorPoint.y),
@@ -164,110 +164,110 @@
                       self.bounds.size.height);
 }
 
-- (CGPoint)boundsOrigin
+- (CGPoint)bm_boundsOrigin
 {
     return self.bounds.origin;
 }
 
-- (void)setBoundsOrigin:(CGPoint)value
+- (void)setBm_boundsOrigin:(CGPoint)value
 {
     CGRect rect = self.bounds;
     rect.origin = value;
     self.bounds = rect;
 }
 
-- (CGSize)boundsSize
+- (CGSize)bm_boundsSize
 {
     return self.bounds.size;
 }
 
-- (void)setBoundsSize:(CGSize)value
+- (void)setBm_boundsSize:(CGSize)value
 {
     CGRect rect = self.bounds;
     rect.size = value;
     self.bounds = rect;
 }
 
-- (CGFloat)boundsWidth
+- (CGFloat)bm_boundsWidth
 {
     return self.bounds.size.width;
 }
 
-- (void)setBoundsWidth:(CGFloat)value
+- (void)setBm_boundsWidth:(CGFloat)value
 {
     CGRect rect = self.bounds;
     rect.size.width = value;
     self.bounds = rect;
 }
 
-- (CGFloat)boundsHeight
+- (CGFloat)bm_boundsHeight
 {
     return self.bounds.size.height;
 }
 
-- (void)setBoundsHeight:(CGFloat)value
+- (void)setBm_boundsHeight:(CGFloat)value
 {
     CGRect rect = self.bounds;
     rect.size.height = value;
     self.bounds = rect;
 }
 
-- (CGFloat)boundsHalfHeight
+- (CGFloat)bm_boundsHalfHeight
 {
-    return self.boundsHeight * 0.5;
+    return self.bm_boundsHeight * 0.5;
 }
 
-- (CGFloat)boundsHalfWidth
+- (CGFloat)bm_boundsHalfWidth
 {
-    return self.boundsWidth * 0.5;
+    return self.bm_boundsWidth * 0.5;
 }
 
-- (CGSize)boundsHalfSize
+- (CGSize)bm_boundsHalfSize
 {
-    return CGSizeMake(self.boundsHalfWidth, self.boundsHalfHeight);
+    return CGSizeMake(self.bm_boundsHalfWidth, self.bm_boundsHalfHeight);
 }
 
-- (CGPoint)boundsCenter
+- (CGPoint)bm_boundsCenter
 {
-    return CGPointMake(self.boundsHalfWidth, self.boundsHalfHeight);
+    return CGPointMake(self.bm_boundsHalfWidth, self.bm_boundsHalfHeight);
 }
 
-- (CGFloat)positionX
+- (CGFloat)bm_positionX
 {
     return self.position.x;
 }
 
-- (void)setPositionX:(CGFloat)value
+- (void)setBm_positionX:(CGFloat)value
 {
     self.position = CGPointMake(value, self.position.y);
 }
 
-- (CGFloat)positionY
+- (CGFloat)bm_positionY
 {
     return self.position.y;
 }
 
-- (void)setPositionY:(CGFloat)value
+- (void)setBm_positionY:(CGFloat)value
 {
     self.position = CGPointMake(self.position.x, value);
 }
 
-- (CGFloat)anchorPointX
+- (CGFloat)bm_anchorPointX
 {
     return self.anchorPoint.x;
 }
 
-- (void)setAnchorPointX:(CGFloat)value
+- (void)setBm_anchorPointX:(CGFloat)value
 {
     self.anchorPoint = CGPointMake(value, self.anchorPoint.y);
 }
 
-- (CGFloat)anchorPointY
+- (CGFloat)bm_anchorPointY
 {
     return self.anchorPoint.y;
 }
 
-- (void)setAnchorPointY:(CGFloat)value
+- (void)setBm_anchorPointY:(CGFloat)value
 {
     self.anchorPoint = CGPointMake(self.anchorPoint.x, value);
 }

@@ -11,7 +11,7 @@
 
 @interface UIView (BMBadge)
 
-@property (nonatomic, strong) UILabel *badgeLabel;
+@property (nonnull, nonatomic, strong) UILabel *badgeLabel;
 
 // badge类型
 @property (nonatomic, assign) BMBadgeStyle badgeStyle;
@@ -25,9 +25,9 @@
 
 #pragma mark - UI
 
-@property (nonatomic, strong) UIFont *badgeFont;
-@property (nonatomic, strong) UIColor *badgeBgColor;
-@property (nonatomic, strong) UIColor *badgeTextColor;
+@property (nullable, nonatomic, strong) UIFont *badgeFont;
+@property (nullable, nonatomic, strong) UIColor *badgeBgColor;
+@property (nullable, nonatomic, strong) UIColor *badgeTextColor;
 
 @property (nonatomic, assign) BMBadgeHorizontallyAlignment badgeHorizontallyAlignment;
 @property (nonatomic, assign) BMBadgeVerticallyAlignment badgeVerticallyAlignment;
@@ -37,7 +37,7 @@
 
 //@property (nonatomic, assign) CGFloat badgeCornerRadius;
 @property (nonatomic, assign) CGFloat badgeBorderWidth;
-@property (nonatomic, strong) UIColor *badgeBorderColor;
+@property (nullable, nonatomic, strong) UIColor *badgeBorderColor;
 
 
 - (void)showBadgeWithStyle:(BMBadgeStyle)style

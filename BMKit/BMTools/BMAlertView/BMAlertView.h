@@ -13,7 +13,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSInteger, BMAlertViewShowAnimation)
+typedef NS_ENUM(NSUInteger, BMAlertViewShowAnimation)
 {
     BMAlertViewShowAnimationNone,
     BMAlertViewShowAnimationFadeIn,
@@ -23,7 +23,7 @@ typedef NS_ENUM(NSInteger, BMAlertViewShowAnimation)
     BMAlertViewShowAnimationSlideInFromRight
 };
 
-typedef NS_ENUM(NSInteger, BMAlertViewHideAnimation)
+typedef NS_ENUM(NSUInteger, BMAlertViewHideAnimation)
 {
     BMAlertViewHideAnimationNone,
     BMAlertViewHideAnimationFadeOut,
