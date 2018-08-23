@@ -1,0 +1,26 @@
+//
+//  fengshun-Prefix.pch
+//  fengshun
+//
+//  Created by jiang deng on 2018/8/23.
+//  Copyright © 2018年 FS. All rights reserved.
+//
+
+#ifndef fengshun_Prefix_h
+#define fengshun_Prefix_h
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import <Availability.h>
+
+#ifdef __OBJC__
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+#import "BMkit.h"
+
+#endif
+
+#endif /* fengshun_Prefix_h */

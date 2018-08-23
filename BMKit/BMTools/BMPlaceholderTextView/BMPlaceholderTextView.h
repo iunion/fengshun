@@ -1,0 +1,34 @@
+//
+//  BMPlaceholderTextView.h
+//  BMTableViewManagerSample
+//
+//  Created by DennisDeng on 2018/4/19.
+//  Copyright © 2018年 DennisDeng. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface BMPlaceholderTextView : UITextView
+
+@property (nonatomic, strong, readonly) UILabel *placeholderLabel;
+
+@property (nonatomic, copy) NSString *placeholder;
+@property (nonatomic, strong) NSAttributedString *attributePlaceholder;
+
+@property (nonatomic, strong) UIColor *placeholderColor;
+
+@property (nonatomic, assign) NSLineBreakMode placeholderLineBreakMode;
+
+@property (nonatomic, assign) BOOL autoHeight;
+@property (nonatomic, assign) CGFloat maxAutoHeight;
+@property (nonatomic, assign) CGFloat minAutoHeight;
+
+
+- (void)textChanged:(NSNotification *)notification;
+
+@end
+
+NS_ASSUME_NONNULL_END
+

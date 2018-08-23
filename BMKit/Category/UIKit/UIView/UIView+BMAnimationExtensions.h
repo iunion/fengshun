@@ -1,0 +1,122 @@
+//
+//  Created by Rafal Sroka
+//
+//  License CC0.
+//  This is free and unencumbered software released into the public domain.
+//
+//  Anyone is free to copy, modify, publish, use, compile, sell, or
+//  distribute this software, either in source code form or as a compiled
+//  binary, for any purpose, commercial or non-commercial, and by any means.
+//
+
+#import <UIKit/UIKit.h>
+
+/**
+ @brief Direction of flip animation.
+ */
+typedef NS_ENUM(NSUInteger, UIViewAnimationFlipDirection)
+{
+    UIViewAnimationFlipDirectionFromTop,
+    UIViewAnimationFlipDirectionFromLeft,
+    UIViewAnimationFlipDirectionFromRight,
+    UIViewAnimationFlipDirectionFromBottom,
+};
+
+
+/**
+ @brief Direction of rotation animation.
+ */
+typedef NS_ENUM(NSUInteger, UIViewAnimationRotationDirection)
+{
+    UIViewAnimationRotationDirectionRight,
+    UIViewAnimationRotationDirectionLeft
+};
+
+
+@interface UIView (BMAnimationExtensions)
+
+// 心跳动画
+- (void)bm_heartbeatDuration:(NSTimeInterval)fDuration;
+- (void)bm_heartbeatDuration:(NSTimeInterval)fDuration maxSize:(CGFloat)fMaxSize durationPerBeat:(NSTimeInterval)fDurationPerBeat;
+
+// 抖动动画
+- (void)bm_shakeDuration:(NSTimeInterval)fDuration;
+
+
+/**
+ @brief Shakes the view horizontally for a short period of time.
+ */
+- (void)bm_shakeHorizontally;
+
+
+/**
+ @brief Shakes the view vertically for a short period of time.
+ */
+- (void)bm_shakeVertically;
+
+
+/**
+ @brief Adds a motion effect to the view. Similar effect can be seen in the 
+ background of the Home Screen on iOS 7.
+ @note Motion effects are available starting from iOS 7. Calling this method on 
+ older iOS will be ignored.
+ */
+- (void)bm_applyMotionEffects;
+
+
+/**
+ @brief Performs a pulsing scale animation on a view.
+ @param duration - duration of the animation
+ @param repeat - pass YES for the animation to repeat.
+ */
+- (void)bm_pulseToSize:(CGFloat)scale
+              duration:(NSTimeInterval)duration
+                repeat:(BOOL)repeat;
+
+
+/**
+ @brief Performs a 3D-like flip animation of the view around center X or Y axis.
+ @param duration - total time of the animation.
+ @param direction - direction of the flip movement.
+ @param repeatCount - number of repetitions of the animation. Pass HUGE_VALF to repeat forever.
+ @param shouldAutoreverse - pass YES to make the animation reverse when it reaches the end.
+ */
+- (void)bm_flipWithDuration:(NSTimeInterval)duration
+                  direction:(UIViewAnimationFlipDirection)direction
+                repeatCount:(NSUInteger)repeatCount
+                autoreverse:(BOOL)shouldAutoreverse;
+
+
+/**
+ @brief Performs a rotation animation of the view around its anchor point.
+ @param angle - end angle of the rotation. Pass M_PI * 2.0 for full circle rotation.
+ @param duration - total time of the animation.
+ @param direction - left or right direction of the rotation.
+ @param repeatCount - number of repetitions of the animation. Pass HUGE_VALF to repeat forever.
+ @param shouldAutoreverse - pass YES to make the animation reverse when it reaches the end.
+ */
+- (void)bm_rotateToAngle:(CGFloat)angle
+                duration:(NSTimeInterval)duration
+               direction:(UIViewAnimationRotationDirection)direction
+             repeatCount:(NSUInteger)repeatCount
+             autoreverse:(BOOL)shouldAutoreverse;
+
+- (void)bm_rotateFromAngle:(CGFloat)angle
+                  duration:(NSTimeInterval)duration
+                 direction:(UIViewAnimationRotationDirection)direction
+               repeatCount:(NSUInteger)repeatCount
+               autoreverse:(BOOL)shouldAutoreverse;
+
+/**
+ @brief Stops current animations.
+ */
+- (void)bm_stopAnimation;
+
+
+/**
+ @brief Checks if the view is being animated.
+ */
+- (BOOL)bm_isBeingAnimated;
+
+
+@end
