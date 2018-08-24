@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "BMSearchViewController.h"
 
 @interface AppDelegate ()
 
@@ -19,7 +20,10 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     // TODO: Substitute UIViewController with your own subclass.
-    self.window.rootViewController = [[UIViewController alloc] init];
+    
+    BMNavigationController *nav = [[BMNavigationController alloc] initWithRootViewController:[[BMSearchViewController alloc] init]];
+    
+    self.window.rootViewController = nav;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
