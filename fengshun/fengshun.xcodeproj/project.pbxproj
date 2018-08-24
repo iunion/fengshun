@@ -178,6 +178,7 @@
 		87C01353212E7A5300D0AAC3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C01352212E7A5300D0AAC3 /* main.m */; };
 		87C0135D212E7A5300D0AAC3 /* fengshunTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0135C212E7A5300D0AAC3 /* fengshunTests.m */; };
 		87C01368212E7A5300D0AAC3 /* fengshunUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C01367212E7A5300D0AAC3 /* fengshunUITests.m */; };
+		AD9CAAE4212EA0F40071B941 /* UIScrollView+BMEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9CAAE3212EA0F40071B941 /* UIScrollView+BMEmpty.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -521,6 +522,8 @@
 		87C01363212E7A5300D0AAC3 /* fengshunUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fengshunUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		87C01367212E7A5300D0AAC3 /* fengshunUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = fengshunUITests.m; sourceTree = "<group>"; };
 		87C01369212E7A5300D0AAC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD9CAAE2212EA0F40071B941 /* UIScrollView+BMEmpty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+BMEmpty.h"; sourceTree = "<group>"; };
+		AD9CAAE3212EA0F40071B941 /* UIScrollView+BMEmpty.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+BMEmpty.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1189,6 +1192,8 @@
 			children = (
 				874269CC212E9BB6003C52F6 /* BMEmptyView.h */,
 				874269CB212E9BB6003C52F6 /* BMEmptyView.m */,
+				AD9CAAE2212EA0F40071B941 /* UIScrollView+BMEmpty.h */,
+				AD9CAAE3212EA0F40071B941 /* UIScrollView+BMEmpty.m */,
 			);
 			path = BMEmptyView;
 			sourceTree = "<group>";
@@ -1544,6 +1549,7 @@
 				874268BE212E7E36003C52F6 /* BMTableViewManager.m in Sources */,
 				874268D8212E7E36003C52F6 /* BMAlertView.m in Sources */,
 				8742694A212E8255003C52F6 /* UIView+WebCacheOperation.m in Sources */,
+				AD9CAAE4212EA0F40071B941 /* UIScrollView+BMEmpty.m in Sources */,
 				874269C3212E9B78003C52F6 /* BMFreshHeaderView.m in Sources */,
 				874268B1212E7E36003C52F6 /* BMTableViewCheckBoxGroupCell.m in Sources */,
 				874268F7212E7E36003C52F6 /* UIButton+BMCategory.m in Sources */,

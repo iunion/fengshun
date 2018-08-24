@@ -129,7 +129,7 @@
     
     [self updateViewFrame];
     
-    self.emptyViewStatus = status;
+    _emptyViewStatus = status;
 }
 
 - (void)setImageView:(BOOL)hidden0 messageView:(BOOL)hidden1 customView:(BOOL)hidden2
