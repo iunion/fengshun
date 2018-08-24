@@ -11,11 +11,10 @@
 
 @interface UIScrollView (BMEmpty)
 
-@property(nonatomic,strong)BMEmptyView *bm_emptyView;
+@property (nonatomic, strong) BMEmptyView *bm_emptyView;
 
+- (void)showNoDataViewWithState:(BMEmptyViewStatus)status action:(BMEmptyViewActionBlock)action;
 
-- (void)showNoDataView:(BOOL )isShow state:(BMEmptyViewStatus )status action:(BMEmptyViewActionBlock)action;
-
-
+- (void)hideNoDataView;
 
 @end

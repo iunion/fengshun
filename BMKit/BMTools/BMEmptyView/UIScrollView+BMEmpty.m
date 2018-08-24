@@ -11,25 +11,32 @@
 
 @implementation UIScrollView (BMEmpty)
 
-static void * bm_emptyViewKey = "key";
-
-- (BMEmptyView *)bm_emptyView{
-    BMEmptyView *emptyView = objc_getAssociatedObject(self, bm_emptyViewKey);
+- (BMEmptyView *)bm_emptyView
+{
+    BMEmptyView *emptyView = objc_getAssociatedObject(self, _cmd);
     return emptyView;
 }
 
-- (void)setBm_emptyView:(BMEmptyView *)bm_emptyView{
-    objc_setAssociatedObject(self, bm_emptyViewKey , bm_emptyView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setBm_emptyView:(BMEmptyView *)emptyView
+{
+    objc_setAssociatedObject(self, @selector(bm_emptyView), emptyView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (void)showNoDataView:(BOOL)isShow state:(BMEmptyViewStatus)status  action:(BMEmptyViewActionBlock)action{
-    if (!self.bm_emptyView) {
-        self.bm_emptyView = [BMEmptyView EmptyViewWith:self frame:self.bounds refreshBlock:^(BMEmptyView *emptyView, BMEmptyViewStatus state) {
-            action(emptyView,status);
-        }];
+- (void)showNoDataViewWithState:(BMEmptyViewStatus)status action:(BMEmptyViewActionBlock)action
+{
+    if (!self.bm_emptyView)
+    {
+        self.bm_emptyView = [BMEmptyView EmptyViewWith:self frame:self.bounds refreshBlock:action];
     }
-    [self.bm_emptyView setEmptyViewStatus:status];
-    self.bm_emptyView.hidden = !isShow;
+    
+    self.bm_emptyView.emptyViewStatus = status;
+    
+    self.bm_emptyView.hidden = NO;
+}
+
+- (void)hideNoDataView
+{
+    self.bm_emptyView.hidden = YES;
 }
 
 @end
