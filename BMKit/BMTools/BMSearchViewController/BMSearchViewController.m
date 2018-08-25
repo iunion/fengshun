@@ -66,17 +66,13 @@
     // Do any additional setup after loading the view.
     
     self.showSearchHistory = YES;
+    self.addHotTagSearchHistory = YES;
     
     [self makeSearchBar];
 
     [self makeSearchHistoriesView];
 
     [self makeHeaderTagView];
-    
-//    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(20, 100, 80, 40)];
-//    [btn addTarget:self action:@selector(next:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:btn];
-//    btn.backgroundColor = [UIColor blueColor];
     
     [self freshItems];
 }
@@ -89,23 +85,6 @@
         
         [self.navigationController popViewControllerAnimated:YES];
     }
-}
-
-- (void)next:(id)sender
-{
-    [self.navigationController pushViewController:[[UIViewController alloc] init] animated:YES];
-
-    /*
-    {
-        DJTableViewItem *item0 = [DJTableViewItem itemWithTitle:@"姓名:" subTitle:@"XXX" imageName:@"icon2" underLineDrawType:DJTableViewCell_UnderLineDrawType_SeparatorInset accessoryView:nil selectionHandler:^(DJTableViewItem * _Nonnull item) {
-            
-        }];
-        [section addItem:item0];
-        item0.cellStyle = UITableViewCellStyleDefault;
-        item0.cellHeight = 80;
-        item0.underLineColor = [UIColor redColor];
-    }
-     */
 }
 
 - (void)setSearchBarPplaceholder:(NSString *)searchBarPplaceholder
@@ -179,8 +158,8 @@
 {
     self.tagViewArray = [NSMutableArray arrayWithCapacity:0];
 
-    NSArray *tags = @[@"热门", @"热门搜索", @"热门搜", @"热门搜1", @"热门134索", @"热门", @"热门搜索", @"热门搜", @"热门搜1", @"热门134索"];
-    self.hotTagArray = [NSMutableArray arrayWithArray:tags];
+//    NSArray *tags = @[@"热门", @"热门搜索", @"热门搜", @"热门搜1", @"热门134索", @"热门", @"热门搜索", @"热门搜", @"热门搜1", @"热门134索"];
+//    self.hotTagArray = [NSMutableArray arrayWithArray:tags];
     for (NSString *tag in self.hotTagArray)
     {
         CGFloat width = [tag bm_widthToFitHeight:20 withFont:[UIFont systemFontOfSize:10.0f]] + 12.0f;
@@ -198,6 +177,11 @@
 - (void)makeHeaderTagView
 {
     [self makeTagViewArray];
+    
+    if (![self.tagViewArray bm_isNotEmpty])
+    {
+        return;
+    }
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 100)];
     view.backgroundColor = [UIColor clearColor];
@@ -344,7 +328,10 @@
     NSLog(@"Tap tag: %@, at: %ld", tagView.class, (long)index);
     
     UILabel *label = (UILabel *)tagView;
-    [self addSearchHistory:label.text];
+    if (self.addHotTagSearchHistory)
+    {
+        [self addSearchHistory:label.text];
+    }
     
     if (self.searchHandler)
     {

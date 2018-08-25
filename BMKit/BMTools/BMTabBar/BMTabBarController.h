@@ -12,9 +12,10 @@
 
 typedef NS_ENUM(NSUInteger, BMTabIndex)
 {
-    BMTabIndex_BMBaseKit,
-    BMTabIndex_Foundation,
-    BMTabIndex_UIKit
+    BMTabIndex_Main,
+    BMTabIndex_Class,
+    BMTabIndex_Forum,
+    BMTabIndex_User
 };
 
 @interface BMTabBarController : UITabBarController
@@ -31,6 +32,9 @@ typedef NS_ENUM(NSUInteger, BMTabIndex)
 
 // 选中某个Tab
 - (void)selectedTabWithIndex:(BMTabIndex)index;
+
+- (void)beforeSelectedIndexChangedFrom:(BMTabIndex)findex to:(BMTabIndex)tindex;
+- (void)endSelectedIndexChangedFrom:(BMTabIndex)findex to:(BMTabIndex)tindex;
 
 // 某个Tab上可能push了很多层，回到初始页面
 - (void)backTopLeverView:(BMTabIndex)index animated:(BOOL)animated;

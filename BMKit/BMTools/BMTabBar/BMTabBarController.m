@@ -14,7 +14,7 @@
 #import "UIImage+BMTint.h"
 
 
-#define BMTabBar_ItemCount  3
+#define BMTabBar_ItemCount  4
 
 #define ITEM_TAG_START 100000
 
@@ -42,7 +42,7 @@
     
     if (self)
     {
-        NSAssert(itemArray.count>=BMTabBar_ItemCount, @"check define 'BMTabBar_ItemCount'!");
+        NSAssert(itemArray.count >= BMTabBar_ItemCount, @"check define 'BMTabBar_ItemCount'!");
 
         self.tab_ItemArray = itemArray;
         
@@ -178,34 +178,47 @@
         return;
     }
 
+    [self beforeSelectedIndexChangedFrom:self.selectedIndex to:index];
+    
     [self unselectedTab:self.selectedIndex];
     
     BMTabItemButton *item = self.tabButtonArray[index];
     item.selected = YES;
     
-    switch (index)
+    NSUInteger oldIndex = self.selectedIndex;
+    self.selectedIndex = index;
+    
+    [self endSelectedIndexChangedFrom:oldIndex to:index];
+
+    [self.tabBarBgView bm_bringToFront];
+}
+
+- (void)beforeSelectedIndexChangedFrom:(BMTabIndex)findex to:(BMTabIndex)tindex
+{
+    switch (tindex)
     {
-        case BMTabIndex_BMBaseKit:
+        case BMTabIndex_Main:
             break;
-        case BMTabIndex_Foundation:
+        case BMTabIndex_Class:
             break;
-        case BMTabIndex_UIKit:
+        case BMTabIndex_Forum:
+            break;
+        case BMTabIndex_User:
             break;
         default:
             break;
     }
-    
-    NSUInteger oldIndex = self.selectedIndex;
-    self.selectedIndex = index;
-    
-    BMNavigationController *nav = [self.viewControllers objectAtIndex:oldIndex];
+}
+
+- (void)endSelectedIndexChangedFrom:(BMTabIndex)findex to:(BMTabIndex)tindex
+{
+    BMNavigationController *nav = [self.viewControllers objectAtIndex:findex];
     if (nav.viewControllers.count > 1)
     {
         [nav popToRootViewControllerAnimated:NO];
     }
-    
-    [self.tabBarBgView bm_bringToFront];
 }
+
 
 - (void)backTopLeverView:(BMTabIndex)index animated:(BOOL)animated
 {

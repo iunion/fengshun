@@ -13,6 +13,7 @@ typedef void (^searchViewSearchHandler)(NSString *search);
 @interface BMSearchViewController : UIViewController
 
 @property (nonatomic, assign) BOOL showSearchHistory;
+@property (nonatomic, assign) BOOL addHotTagSearchHistory;
 
 //@property (nonatomic, strong) NSMutableArray *searchSuggestArray;
 
