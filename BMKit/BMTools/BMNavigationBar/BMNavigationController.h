@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef BOOL (^shouldPopOnBackButtonHandler)(UIViewController *vc);
+
 @interface BMNavigationController : UINavigationController
+
+@property (nonatomic, copy) shouldPopOnBackButtonHandler popOnBackButtonHandler;
 
 // 刷新bar
 - (void)updateNavigationBarForController:(UIViewController *)vc;

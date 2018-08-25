@@ -49,13 +49,34 @@
     return [self initWithArray:@[tab1, tab2, tab3, tab4]];
 }
 
+- (shouldPopOnBackButtonHandler)getPopOnBackButtonHandler
+{
+    shouldPopOnBackButtonHandler handler = ^BOOL(UIViewController *vc) {
+        if ([vc isKindOfClass:[FSSuperVC class]])
+        {
+            FSSuperVC *superVC = (FSSuperVC *)vc;
+            return [superVC shouldPopOnBackButton];
+        }
+        return YES;
+    };
+    
+    return handler;
+}
+
 - (void)addViewControllers
 {
     BMNavigationController *nav1 = [[BMNavigationController alloc] initWithRootViewController:[[FSMainVC alloc] init]];
-    BMNavigationController *nav2 = [[BMNavigationController alloc] initWithRootViewController:[[UIViewController alloc] init]];
-    BMNavigationController *nav3 = [[BMNavigationController alloc] initWithRootViewController:[[UIViewController alloc] init]];
-    BMNavigationController *nav4 = [[BMNavigationController alloc] initWithRootViewController:[[UIViewController alloc] init]];
-
+    nav1.popOnBackButtonHandler = [self getPopOnBackButtonHandler];
+    
+    BMNavigationController *nav2 = [[BMNavigationController alloc] initWithRootViewController:[[FSSuperVC alloc] init]];
+    nav2.popOnBackButtonHandler = [self getPopOnBackButtonHandler];
+    
+    BMNavigationController *nav3 = [[BMNavigationController alloc] initWithRootViewController:[[FSSuperVC alloc] init]];
+    nav3.popOnBackButtonHandler = [self getPopOnBackButtonHandler];
+    
+    BMNavigationController *nav4 = [[BMNavigationController alloc] initWithRootViewController:[[FSSuperVC alloc] init]];
+    nav4.popOnBackButtonHandler = [self getPopOnBackButtonHandler];
+    
     [self setViewControllers:@[nav1, nav2, nav3, nav4]];
 }
 

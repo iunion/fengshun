@@ -1,5 +1,5 @@
 //
-//  BMSearchViewController.h
+//  FSSearchViewController.h
 //  fengshun
 //
 //  Created by jiang deng on 2018/8/23.
@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FSSuperVC.h"
 
 typedef void (^searchViewSearchHandler)(NSString * _Nonnull search);
 
-@interface BMSearchViewController : UIViewController
+@interface FSSearchViewController : FSSuperVC
 
 @property (nonatomic, assign) BOOL showSearchHistory;
 @property (nonatomic, assign) BOOL addHotTagSearchHistory;

@@ -498,6 +498,11 @@
         // 2) when user swipes quickly a couple of times and animations don't have time to be performed
         // 3) 页面VC 支持返回手势
         BOOL canGesture = self.topViewController.bm_CanBackInteractive;
+        if (self.popOnBackButtonHandler)
+        {
+            UIViewController *vc = [self.viewControllers lastObject];
+            canGesture = canGesture && self.popOnBackButtonHandler(vc);
+        }
         if (canGesture && !self.isDuringPushAnimation && !self.isDuringPopAnimation)
         {
             return YES;

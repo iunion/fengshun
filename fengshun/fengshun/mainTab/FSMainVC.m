@@ -7,7 +7,7 @@
 //
 
 #import "FSMainVC.h"
-#import "BMSearchViewController.h"
+#import "FSSearchViewController.h"
 
 @interface FSMainVC ()
 
@@ -33,7 +33,7 @@
 
 - (void)next:(id)sender
 {
-    BMSearchViewController *searchViewController = [[BMSearchViewController alloc] initWithSearchKey:@"test" hotSearchTags:@[@"1", @"2"] searchHandler:^(NSString *search) {
+    FSSearchViewController *searchViewController = [[FSSearchViewController alloc] initWithSearchKey:@"test" hotSearchTags:@[@"1", @"2"] searchHandler:^(NSString *search) {
         NSLog(@"search");
     }];
     [self.navigationController pushViewController:searchViewController animated:YES];
