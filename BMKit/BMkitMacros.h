@@ -71,9 +71,9 @@
 
 // 字体
 #define UI_BMFONT_MAKE(FontName, FontSize)  [UIFont bm_fontForFontName:FontName size:FontSize]
-#define UI_NUMBER_FONT(fontSize)            UI_BMFONT_MAKE(FontNameHelveticaNeueBold, fontSize)
+#define UI_BMNUMBER_FONT(fontSize)          UI_BMFONT_MAKE(FontNameHelveticaNeueBold, fontSize)
 #define UI_BM_FONT(fontSize)                [UIFont systemFontOfSize:fontSize]
-#define UI_BM_BFONT(fontSize)               [UIFont boldSystemFontOfSize:fontSize]
+#define UI_BM_BOLDFONT(fontSize)            [UIFont boldSystemFontOfSize:fontSize]
 
 // 颜色
 #define RGBColor(r,g,b,a)   [UIColor colorWithRed:r/255. green:g/255. blue:b/255. alpha:a]
@@ -171,8 +171,12 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 // UIView *view = [[UIView alloc] initWithFrame:CGrect(x - SINGLE_LINE_ADJUST_OFFSET, 0, SINGLE_LINE_WIDTH, 100)];
 
 
-// 弱引用 weakSelf
+// 弱引用/强引用 weakSelf
 #define BMWeakSelf __weak typeof(self) weakSelf = self;
 #define BMStrongSelf __strong typeof(self) strongSelf = weakSelf;
+
+// 弱引用/强引用 weakType
+#define BMWeakType(type)     __weak typeof(type) weak##type = type;
+#define BMStrongType(type)   __strong typeof(type) strong##type = weak##type;
 
 #endif

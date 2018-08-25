@@ -1,5 +1,5 @@
 //
-//  FASuperVC.h
+//  FSSuperVC.h
 //  fengshun
 //
 //  Created by jiang deng on 2018/8/25.
@@ -10,7 +10,7 @@
 
 #import "FSVCProtocol.h"
 
-@interface FASuperVC : UIViewController
+@interface FSSuperVC : UIViewController
 <
     FSSuperVCProtocol
 >

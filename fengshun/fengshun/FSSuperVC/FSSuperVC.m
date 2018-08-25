@@ -1,18 +1,18 @@
 //
-//  FASuperVC.m
+//  FSSuperVC.m
 //  fengshun
 //
 //  Created by jiang deng on 2018/8/25.
 //  Copyright © 2018年 FS. All rights reserved.
 //
 
-#import "FASuperVC.h"
+#import "FSSuperVC.h"
 
-@interface FASuperVC ()
+@interface FSSuperVC ()
 
 @end
 
-@implementation FASuperVC
+@implementation FSSuperVC
 
 - (void)viewDidLoad
 {

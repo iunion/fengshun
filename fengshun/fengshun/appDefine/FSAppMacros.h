@@ -1,13 +1,13 @@
 //
-//  FSMainVC.h
+//  FSAppMacros.h
 //  fengshun
 //
 //  Created by jiang deng on 2018/8/25.
 //  Copyright © 2018年 FS. All rights reserved.
 //
 
-#import "FSSuperVC.h"
+#ifndef FSAppMacros_h
+#define FSAppMacros_h
 
-@interface FSMainVC : FSSuperVC
 
-@end
+#endif /* FSAppMacros_h */

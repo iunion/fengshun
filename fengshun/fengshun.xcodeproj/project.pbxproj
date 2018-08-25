@@ -218,7 +218,7 @@
 		87426A5A213135F0003C52F6 /* fstab_btn1_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87426A4A213135F0003C52F6 /* fstab_btn1_icon@2x.png */; };
 		87426A5F21313940003C52F6 /* FSMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426A5D21313940003C52F6 /* FSMainVC.m */; };
 		87426A6021313940003C52F6 /* FSMainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87426A5E21313940003C52F6 /* FSMainVC.xib */; };
-		87426A6821313C1D003C52F6 /* FASuperVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426A6621313C1C003C52F6 /* FASuperVC.m */; };
+		87426A6821313C1D003C52F6 /* FSSuperVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426A6621313C1C003C52F6 /* FSSuperVC.m */; };
 		87C0134B212E7A5200D0AAC3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0134A212E7A5200D0AAC3 /* AppDelegate.m */; };
 		87C0134D212E7A5300D0AAC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87C0134C212E7A5300D0AAC3 /* Assets.xcassets */; };
 		87C01353212E7A5300D0AAC3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C01352212E7A5300D0AAC3 /* main.m */; };
@@ -606,9 +606,12 @@
 		87426A5C21313940003C52F6 /* FSMainVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMainVC.h; sourceTree = "<group>"; };
 		87426A5D21313940003C52F6 /* FSMainVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMainVC.m; sourceTree = "<group>"; };
 		87426A5E21313940003C52F6 /* FSMainVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSMainVC.xib; sourceTree = "<group>"; };
-		87426A6621313C1C003C52F6 /* FASuperVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FASuperVC.m; sourceTree = "<group>"; };
-		87426A6721313C1C003C52F6 /* FASuperVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FASuperVC.h; sourceTree = "<group>"; };
+		87426A6621313C1C003C52F6 /* FSSuperVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSuperVC.m; sourceTree = "<group>"; };
+		87426A6721313C1C003C52F6 /* FSSuperVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSuperVC.h; sourceTree = "<group>"; };
 		87426A6921313C54003C52F6 /* FSVCProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVCProtocol.h; sourceTree = "<group>"; };
+		87426A6C21314055003C52F6 /* FSAppConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSAppConfig.h; sourceTree = "<group>"; };
+		87426A6D21314169003C52F6 /* FSAppMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSAppMacros.h; sourceTree = "<group>"; };
+		87426A6E213141CD003C52F6 /* FSAppUIDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSAppUIDef.h; sourceTree = "<group>"; };
 		87C01346212E7A5200D0AAC3 /* fengshun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fengshun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87C01349212E7A5200D0AAC3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		87C0134A212E7A5200D0AAC3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -1414,10 +1417,20 @@
 			isa = PBXGroup;
 			children = (
 				87426A6921313C54003C52F6 /* FSVCProtocol.h */,
-				87426A6721313C1C003C52F6 /* FASuperVC.h */,
-				87426A6621313C1C003C52F6 /* FASuperVC.m */,
+				87426A6721313C1C003C52F6 /* FSSuperVC.h */,
+				87426A6621313C1C003C52F6 /* FSSuperVC.m */,
 			);
 			path = FSSuperVC;
+			sourceTree = "<group>";
+		};
+		87426A6B21314039003C52F6 /* appDefine */ = {
+			isa = PBXGroup;
+			children = (
+				87426A6C21314055003C52F6 /* FSAppConfig.h */,
+				87426A6D21314169003C52F6 /* FSAppMacros.h */,
+				87426A6E213141CD003C52F6 /* FSAppUIDef.h */,
+			);
+			path = appDefine;
 			sourceTree = "<group>";
 		};
 		87C0133D212E7A5200D0AAC3 = {
@@ -1445,6 +1458,7 @@
 		87C01348212E7A5200D0AAC3 /* fengshun */ = {
 			isa = PBXGroup;
 			children = (
+				87426A6B21314039003C52F6 /* appDefine */,
 				87C01349212E7A5200D0AAC3 /* AppDelegate.h */,
 				87C0134A212E7A5200D0AAC3 /* AppDelegate.m */,
 				87426A6521313C1C003C52F6 /* FSSuperVC */,
@@ -1720,7 +1734,7 @@
 				874269BE212E9B78003C52F6 /* BMFreshTriangleDotHeader.m in Sources */,
 				874268BC212E7E36003C52F6 /* BMTableViewCell.m in Sources */,
 				874268F9212E7E36003C52F6 /* CALayer+BMSize.m in Sources */,
-				87426A6821313C1D003C52F6 /* FASuperVC.m in Sources */,
+				87426A6821313C1D003C52F6 /* FSSuperVC.m in Sources */,
 				8742690A212E7E36003C52F6 /* NSDictionary+BMCategory.m in Sources */,
 				8742690E212E7E36003C52F6 /* NSMutableArray+BMCategory.m in Sources */,
 				87426900212E7E36003C52F6 /* NSDate+BMCategory.m in Sources */,
