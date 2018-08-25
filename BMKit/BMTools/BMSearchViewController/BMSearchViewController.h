@@ -8,10 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^searchViewSearchHandler)(NSString *search);
+
 @interface BMSearchViewController : UIViewController
 
-@property (nonatomic, strong) NSString *searchBarPplaceholder;
-@property (nonatomic, strong) UIColor *searchBarBackgroundColor;
-@property (nonatomic, assign) CGFloat searchBarCornerRadius;
+@property (nonatomic, assign) BOOL showSearchHistory;
+
+//@property (nonatomic, strong) NSMutableArray *searchSuggestArray;
+
+@property (nonatomic, copy) searchViewSearchHandler searchHandler;
+
+- (instancetype)initWithSearchKey:(NSString *)searchKey hotSearchTags:(NSArray *)hotSearchTags searchHandler:(searchViewSearchHandler)searchHandler;
+
+- (void)setSearchBarPplaceholder:(NSString *)searchBarPplaceholder;
+- (void)setSearchBarBackgroundColor:(UIColor *)searchBarBackgroundColor;
+- (void)setSearchBarCornerRadius:(CGFloat)searchBarCornerRadius;
 
 @end
