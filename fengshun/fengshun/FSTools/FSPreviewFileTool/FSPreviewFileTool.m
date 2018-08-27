@@ -71,21 +71,8 @@
     NSURL *docUrl = [NSURL fileURLWithPath:self.fileModel.bm_localPath];
     self.docController = [UIDocumentInteractionController interactionControllerWithURL:docUrl];
     self.docController.delegate = self;
-    _docController.delegate = self;
-    _docController.name = self.fileModel.bm_fileName ?:@"";
-    BOOL flag = [_docController presentPreviewAnimated:YES];
-    if (!flag)
-    {
-        
-    }
-    else
-    {
-        if (IOS_VERSION >= 11.0)
-        {
-//            QLPreviewController *vc = [_docController performSelector:@selector(previewController)];
-//            [vc performSelector:@selector(setNavigationBarTintColor:) withObject:kBlueColor];
-        }
-    }
+    self.docController.name = self.fileModel.bm_fileName ?:@"";
+    [self.docController presentPreviewAnimated:YES];
 }
 
 

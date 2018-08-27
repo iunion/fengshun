@@ -28,4 +28,5 @@
 + (void)previewFileWithLocalPath:(FSFileModel *)fileModel inViewController:(UIViewController *)controller;
 
 
+
 @end
