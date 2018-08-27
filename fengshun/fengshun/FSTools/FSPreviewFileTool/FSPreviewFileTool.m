@@ -8,6 +8,7 @@
 
 #import "FSPreviewFileTool.h"
 #import <QuickLook/QuickLook.h>
+#import "XMRequestManager.h"
 
 @implementation FSFileModel
 
@@ -33,7 +34,7 @@
 + (void)previewFileWithLocalPath:(FSFileModel *)fileModel inViewController:(UIViewController *)controller
 {
     NSFileManager *fm = [NSFileManager defaultManager];
-    if ([fm fileExistsAtPath:fileModel.bm_localPath])
+    if ([fm fileExistsAtPath:fileModel.m_LocalPath])
     {
         FSPreviewFileTool *manager = [[FSPreviewFileTool alloc]initWithFileURL:fileModel previewViewController:controller];
         [manager initDocController];
@@ -62,72 +63,53 @@
 
 - (void)initDocController
 {
-    if (!self.fileModel || !self.fileModel.bm_localPath)
+    if (![self.fileModel.m_LocalPath bm_isNotEmpty])
     {
         NSLog(@"date error");
         return;
     }
-    NSURL *docUrl = [NSURL fileURLWithPath:self.fileModel.bm_localPath];
+    NSURL *docUrl = [NSURL fileURLWithPath:self.fileModel.m_LocalPath];
     self.docController = [UIDocumentInteractionController interactionControllerWithURL:docUrl];
     self.docController.delegate = self;
-    _docController.delegate = self;
-    _docController.name = self.fileModel.bm_fileName ?:@"";
-    BOOL flag = [_docController presentPreviewAnimated:YES];
-    if (!flag)
-    {
-        
-    }
-    else
-    {
-        if (IOS_VERSION >= 11.0)
-        {
-//            QLPreviewController *vc = [_docController performSelector:@selector(previewController)];
-//            [vc performSelector:@selector(setNavigationBarTintColor:) withObject:kBlueColor];
-        }
-    }
+    self.docController.name = self.fileModel.m_FileName ?:@"";
+    [self.docController presentPreviewAnimated:YES];
 }
 
 
 - (void)downloadFile
 {
     // 下载
-    if (![self.fileModel.bm_fileUrl bm_isNotEmpty]) return;
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^
+    if (![self.fileModel.m_FileUrl bm_isNotEmpty])
     {
-        [self saveFileWithData:[NSData new]];
-    });
-}
-
--(void)saveFileWithData:(NSData *)data
-{
-    //获取文件路径
-    NSString *filePath = [self getFilePath];
-    NSError *error;
-    if ([data writeToFile:filePath options:NSDataWritingFileProtectionNone error:&error])
-    {
-        self.fileModel.bm_localPath = filePath;
-        [self initDocController];
+        NSLog(@"url error");
+        return;
     }
-    else
+    NSString *savePath = [self getFilePath];
+    [XMRequestManager rm_downloadWithURL:self.fileModel.m_FileUrl savePath:savePath success:^(id  _Nullable responseObject)
     {
-        NSLog(@"文件错误");
-    }
+        if (responseObject)
+        {
+            self.fileModel.m_LocalPath = savePath;
+            [self initDocController];
+        }
+    } failure:^(NSError * _Nullable error) {
+        NSLog(@"download failed");
+    }];
 }
 
 - (NSString *)getFilePath
 {
     // 获取文件路径
     NSString *tmpDirectory = NSTemporaryDirectory();
-    NSArray *arr = [self.fileModel.bm_fileUrl componentsSeparatedByString:@"/"];
+    NSArray *arr = [self.fileModel.m_FileUrl componentsSeparatedByString:@"/"];
     NSString *name = arr.lastObject;
     if (![name bm_isNotEmpty])
     {
         name = @"aaaaa.png";
     }
-    if (![self.fileModel.bm_fileName bm_isNotEmpty])
+    if (![self.fileModel.m_FileName bm_isNotEmpty])
     {
-        self.fileModel.bm_fileName = name;
+        self.fileModel.m_FileName = name;
     }
     NSString *fileName = [NSString stringWithFormat:@"tmp_%@", name];
     NSString *filePath= [tmpDirectory stringByAppendingPathComponent:fileName];
