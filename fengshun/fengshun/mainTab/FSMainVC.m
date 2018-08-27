@@ -7,6 +7,7 @@
 //
 
 #import "FSMainVC.h"
+#import "AppDelegate.h"
 #import "FSSearchViewController.h"
 
 @interface FSMainVC ()
@@ -19,6 +20,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.title = @"test";
+    [GetAppDelegate.tabBarController hideOriginTabBar];
     
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(20, 100, 80, 40)];
     [btn addTarget:self action:@selector(next:) forControlEvents:UIControlEventTouchUpInside];
