@@ -16,34 +16,34 @@
 
 #define UI_COLOR_R1_VALU        0xE8373D
 
-#define UI_COLOR_Y1             [UIColor colorWithHex:0xFBD973]
-#define UI_COLOR_Y2             [UIColor colorWithHex:0xECC85A]
-#define UI_COLOR_Y3             [UIColor colorWithHex:0xF9DF4D]
-#define UI_COLOR_Y4             [UIColor colorWithHex:0xF39025]
-#define UI_COLOR_Y5             [UIColor colorWithHex:0xF4830B]
-#define UI_COLOR_Y6             [UIColor colorWithHex:0xFFF6DB]
+#define UI_COLOR_Y1             [UIColor bm_colorWithHex:0xFBD973]
+#define UI_COLOR_Y2             [UIColor bm_colorWithHex:0xECC85A]
+#define UI_COLOR_Y3             [UIColor bm_colorWithHex:0xF9DF4D]
+#define UI_COLOR_Y4             [UIColor bm_colorWithHex:0xF39025]
+#define UI_COLOR_Y5             [UIColor bm_colorWithHex:0xF4830B]
+#define UI_COLOR_Y6             [UIColor bm_colorWithHex:0xFFF6DB]
 
-#define UI_COLOR_R1             [UIColor colorWithHex:UI_COLOR_R1_VALU]
-#define UI_COLOR_R1_1           [UIColor colorWithHex:UI_COLOR_R1_VALU alpha:0.5]
-#define UI_COLOR_R2             [UIColor colorWithHex:0xDA2626]
+#define UI_COLOR_R1             [UIColor bm_colorWithHex:UI_COLOR_R1_VALU]
+#define UI_COLOR_R1_1           [UIColor bm_colorWithHex:UI_COLOR_R1_VALU alpha:0.5]
+#define UI_COLOR_R2             [UIColor bm_colorWithHex:0xDA2626]
 
-#define UI_COLOR_B1             [UIColor colorWithHex:0x333333]
-#define UI_COLOR_B2             [UIColor colorWithHex:0x666666]
-#define UI_COLOR_B3             [UIColor colorWithHex:0x888888]
-#define UI_COLOR_B4             [UIColor colorWithHex:0x999999]
-#define UI_COLOR_B5             [UIColor colorWithHex:0xCCCCCC]
-#define UI_COLOR_B6             [UIColor colorWithHex:0xE6E6E6]
-#define UI_COLOR_B7             [UIColor colorWithHex:0xF8F8F8]
-#define UI_COLOR_B8             [UIColor colorWithHex:0xFFFFFF]
+#define UI_COLOR_B1             [UIColor bm_colorWithHex:0x333333]
+#define UI_COLOR_B2             [UIColor bm_colorWithHex:0x666666]
+#define UI_COLOR_B3             [UIColor bm_colorWithHex:0x888888]
+#define UI_COLOR_B4             [UIColor bm_colorWithHex:0x999999]
+#define UI_COLOR_B5             [UIColor bm_colorWithHex:0xCCCCCC]
+#define UI_COLOR_B6             [UIColor bm_colorWithHex:0xE6E6E6]
+#define UI_COLOR_B7             [UIColor bm_colorWithHex:0xF8F8F8]
+#define UI_COLOR_B8             [UIColor bm_colorWithHex:0xFFFFFF]
 
-#define UI_COLOR_BL1            [UIColor colorWithHex:0x0099CC]
-#define UI_COLOR_BL2            [UIColor colorWithHex:0x8DC8FE]
-#define UI_COLOR_BL3            [UIColor colorWithHex:0x77CDEA]
-#define UI_COLOR_BL4            [UIColor colorWithHex:0x54C2E7]
+#define UI_COLOR_BL1            [UIColor bm_colorWithHex:0x0099CC]
+#define UI_COLOR_BL2            [UIColor bm_colorWithHex:0x8DC8FE]
+#define UI_COLOR_BL3            [UIColor bm_colorWithHex:0x77CDEA]
+#define UI_COLOR_BL4            [UIColor bm_colorWithHex:0x54C2E7]
 
-#define UI_COLOR_G1             [UIColor colorWithHex:0x8ADA30]
+#define UI_COLOR_G1             [UIColor bm_colorWithHex:0x8ADA30]
 
-#define UI_COLOR_P1             [UIColor colorWithHex:0xDE9BFD]
+#define UI_COLOR_P1             [UIColor bm_colorWithHex:0xDE9BFD]
 
 
 #pragma mark - Font
