@@ -8,6 +8,7 @@
 
 #import "FSPreviewFileTool.h"
 #import <QuickLook/QuickLook.h>
+#import "XMRequestManager.h"
 
 @implementation FSFileModel
 
@@ -90,30 +91,20 @@
 
 - (void)downloadFile
 {
-    // 下载
     if (![self.fileModel.bm_fileUrl bm_isNotEmpty]) return;
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^
+    NSString *savePath = [self getFilePath];
+    [XMRequestManager rm_downloadWithURL:self.fileModel.bm_fileUrl savePath:savePath success:^(id  _Nullable responseObject)
     {
-        [self saveFileWithData:[NSData new]];
-    });
+        if (responseObject)
+        {
+            self.fileModel.bm_localPath = savePath;
+            [self initDocController];
+        }
+    } failure:^(NSError * _Nullable error) {
+        
+    }];
 }
 
--(void)saveFileWithData:(NSData *)data
-{
-    //获取文件路径
-    NSString *filePath = [self getFilePath];
-    NSError *error;
-    if ([data writeToFile:filePath options:NSDataWritingFileProtectionNone error:&error])
-    {
-        self.fileModel.bm_localPath = filePath;
-        [self initDocController];
-    }
-    else
-    {
-        NSLog(@"文件错误");
-    }
-}
 
 - (NSString *)getFilePath
 {
