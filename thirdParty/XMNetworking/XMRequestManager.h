@@ -50,8 +50,15 @@
 +(XMRequest *)rm_uploadFiles:(NSArray<XMUploadFile *>*)files withServer:(NSString *)server api:(NSString *)api dataKey:(NSString *)dataKey parameters:(NSDictionary *)parameters
                      success:(nullable XMSuccessBlock)successBlock
                      failure:(nullable XMFailureBlock)failureBlock;
+// 下载的一般方法
++(XMRequest *)rm_downloadWithURL:(NSString *)url savePath:(NSString *)savePath
+                            success:(nullable XMSuccessBlock)successBlock
+                            failure:(nullable XMFailureBlock)failureBlock;
 
-
+// 下载的全能方法
++(XMRequest *)rm_downloadWithURL:(NSString *)url savePath:(NSString *)savePath onProgress:(nullable XMProgressBlock)progressBlock
+                         success:(nullable XMSuccessBlock)successBlock
+                         failure:(nullable XMFailureBlock)failureBlock;
 
 
 // 取消一个request,被取消的请求对象（如果存在）会以参数的形式传给 cancel block
