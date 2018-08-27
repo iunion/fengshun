@@ -240,6 +240,7 @@
 		87C0135D212E7A5300D0AAC3 /* fengshunTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0135C212E7A5300D0AAC3 /* fengshunTests.m */; };
 		87C01368212E7A5300D0AAC3 /* fengshunUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C01367212E7A5300D0AAC3 /* fengshunUITests.m */; };
 		AD9CAAE4212EA0F40071B941 /* UIScrollView+BMEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9CAAE3212EA0F40071B941 /* UIScrollView+BMEmpty.m */; };
+		DB57222F21338B6E0065DC30 /* XMRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB57222D21338B6E0065DC30 /* XMRequestManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -675,6 +676,8 @@
 		87C01369212E7A5300D0AAC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD9CAAE2212EA0F40071B941 /* UIScrollView+BMEmpty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+BMEmpty.h"; sourceTree = "<group>"; };
 		AD9CAAE3212EA0F40071B941 /* UIScrollView+BMEmpty.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+BMEmpty.m"; sourceTree = "<group>"; };
+		DB57222D21338B6E0065DC30 /* XMRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMRequestManager.m; sourceTree = "<group>"; };
+		DB57222E21338B6E0065DC30 /* XMRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMRequestManager.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1509,6 +1512,8 @@
 		87426A84213146A6003C52F6 /* XMNetworking */ = {
 			isa = PBXGroup;
 			children = (
+				DB57222E21338B6E0065DC30 /* XMRequestManager.h */,
+				DB57222D21338B6E0065DC30 /* XMRequestManager.m */,
 				87426A85213146A6003C52F6 /* XMConst.h */,
 				87426A8F213146A6003C52F6 /* XMCenter.h */,
 				87426A87213146A6003C52F6 /* XMCenter.m */,
@@ -1912,6 +1917,7 @@
 				874268CC212E7E36003C52F6 /* BMTableViewActionBar.m in Sources */,
 				874269DE212EB7C2003C52F6 /* TTGTextTagCollectionView.m in Sources */,
 				8742694B212E8255003C52F6 /* UIView+WebCache.m in Sources */,
+				DB57222F21338B6E0065DC30 /* XMRequestManager.m in Sources */,
 				87426941212E8255003C52F6 /* UIImage+MultiFormat.m in Sources */,
 				874268C7212E7E36003C52F6 /* BMNumberTextItem.m in Sources */,
 				874269C8212E9B78003C52F6 /* BMFreshFooterView.m in Sources */,

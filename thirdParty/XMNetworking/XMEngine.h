@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class XMRequest;
+@class XMRequest, AFURLSessionManager, AFHTTPRequestSerializer, AFJSONRequestSerializer, AFPropertyListRequestSerializer;
 
 /**
  The completion handler block for a network request.
@@ -28,6 +28,12 @@ typedef void (^XMCompletionHandler) (id _Nullable responseObject, NSError * _Nul
 ///---------------------
 /// @name Initialization
 ///---------------------
+
+@property (nonatomic, strong) AFURLSessionManager *securitySessionManager;
+
+@property (nonatomic, strong) AFHTTPRequestSerializer *afHTTPRequestSerializer;
+@property (nonatomic, strong) AFJSONRequestSerializer *afJSONRequestSerializer;
+@property (nonatomic, strong) AFPropertyListRequestSerializer *afPListRequestSerializer;
 
 /**
  Creates and returns a new `XMEngine` object.

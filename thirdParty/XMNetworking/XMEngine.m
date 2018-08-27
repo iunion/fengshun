@@ -91,11 +91,7 @@ static OSStatus XMExtractIdentityAndTrustFromPKCS12(CFDataRef inPKCS12Data, CFSt
 }
 
 @property (nonatomic, strong) AFURLSessionManager *sessionManager;
-@property (nonatomic, strong) AFURLSessionManager *securitySessionManager;
 
-@property (nonatomic, strong) AFHTTPRequestSerializer *afHTTPRequestSerializer;
-@property (nonatomic, strong) AFJSONRequestSerializer *afJSONRequestSerializer;
-@property (nonatomic, strong) AFPropertyListRequestSerializer *afPListRequestSerializer;
 
 @property (nonatomic, strong) AFHTTPResponseSerializer *afHTTPResponseSerializer;
 @property (nonatomic, strong) AFJSONResponseSerializer *afJSONResponseSerializer;
