@@ -241,6 +241,10 @@
 		87C01368212E7A5300D0AAC3 /* fengshunUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C01367212E7A5300D0AAC3 /* fengshunUITests.m */; };
 		AD9CAAE4212EA0F40071B941 /* UIScrollView+BMEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9CAAE3212EA0F40071B941 /* UIScrollView+BMEmpty.m */; };
 		DB57222F21338B6E0065DC30 /* XMRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB57222D21338B6E0065DC30 /* XMRequestManager.m */; };
+		DB5722352133A0FC0065DC30 /* MQScrollPageSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5722312133A0FC0065DC30 /* MQScrollPageSegment.m */; };
+		DB5722362133A0FC0065DC30 /* MQScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5722332133A0FC0065DC30 /* MQScrollPageView.m */; };
+		DB57223B2133A1D90065DC30 /* FSCommunityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5722392133A1D90065DC30 /* FSCommunityVC.m */; };
+		DB57223C2133A1D90065DC30 /* FSCommunityVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB57223A2133A1D90065DC30 /* FSCommunityVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -678,6 +682,13 @@
 		AD9CAAE3212EA0F40071B941 /* UIScrollView+BMEmpty.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+BMEmpty.m"; sourceTree = "<group>"; };
 		DB57222D21338B6E0065DC30 /* XMRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMRequestManager.m; sourceTree = "<group>"; };
 		DB57222E21338B6E0065DC30 /* XMRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMRequestManager.h; sourceTree = "<group>"; };
+		DB5722312133A0FC0065DC30 /* MQScrollPageSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQScrollPageSegment.m; sourceTree = "<group>"; };
+		DB5722322133A0FC0065DC30 /* MQScrollPageSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQScrollPageSegment.h; sourceTree = "<group>"; };
+		DB5722332133A0FC0065DC30 /* MQScrollPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQScrollPageView.m; sourceTree = "<group>"; };
+		DB5722342133A0FC0065DC30 /* MQScrollPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQScrollPageView.h; sourceTree = "<group>"; };
+		DB5722382133A1D90065DC30 /* FSCommunityVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCommunityVC.h; sourceTree = "<group>"; };
+		DB5722392133A1D90065DC30 /* FSCommunityVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCommunityVC.m; sourceTree = "<group>"; };
+		DB57223A2133A1D90065DC30 /* FSCommunityVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSCommunityVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1169,6 +1180,7 @@
 				87426911212E8254003C52F6 /* SDWebImage */,
 				874269D8212EB7C2003C52F6 /* TTGTagCollectionView */,
 				87426A84213146A6003C52F6 /* XMNetworking */,
+				DB5722302133A0BF0065DC30 /* MQScrollPageView */,
 			);
 			name = thirdParty;
 			path = ../thirdParty;
@@ -1601,6 +1613,7 @@
 		87C01348212E7A5200D0AAC3 /* fengshun */ = {
 			isa = PBXGroup;
 			children = (
+				DB5722372133A1830065DC30 /* communityTab */,
 				87426A6B21314039003C52F6 /* appDefine */,
 				87C01349212E7A5200D0AAC3 /* AppDelegate.h */,
 				87C0134A212E7A5200D0AAC3 /* AppDelegate.m */,
@@ -1640,6 +1653,27 @@
 				87C01352212E7A5300D0AAC3 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DB5722302133A0BF0065DC30 /* MQScrollPageView */ = {
+			isa = PBXGroup;
+			children = (
+				DB5722322133A0FC0065DC30 /* MQScrollPageSegment.h */,
+				DB5722312133A0FC0065DC30 /* MQScrollPageSegment.m */,
+				DB5722342133A0FC0065DC30 /* MQScrollPageView.h */,
+				DB5722332133A0FC0065DC30 /* MQScrollPageView.m */,
+			);
+			path = MQScrollPageView;
+			sourceTree = "<group>";
+		};
+		DB5722372133A1830065DC30 /* communityTab */ = {
+			isa = PBXGroup;
+			children = (
+				DB5722382133A1D90065DC30 /* FSCommunityVC.h */,
+				DB5722392133A1D90065DC30 /* FSCommunityVC.m */,
+				DB57223A2133A1D90065DC30 /* FSCommunityVC.xib */,
+			);
+			path = communityTab;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1775,6 +1809,7 @@
 				87426A4B213135F0003C52F6 /* fstab_btn3_icon@3x.png in Resources */,
 				87426A4F213135F0003C52F6 /* fstab_btn4_icon@3x.png in Resources */,
 				87426898212E7E36003C52F6 /* increase_taobao@2x.png in Resources */,
+				DB57223C2133A1D90065DC30 /* FSCommunityVC.xib in Resources */,
 				874268B6212E7E36003C52F6 /* BMTableView_UIButtonBarArrowRight@2x.png in Resources */,
 				87426896212E7E36003C52F6 /* decrease_eleme@3x.png in Resources */,
 				874268D7212E7E36003C52F6 /* BMDatePicker.xib in Resources */,
@@ -1957,6 +1992,7 @@
 				87426A832131461F003C52F6 /* AFSecurityPolicy.m in Sources */,
 				874268DB212E7E36003C52F6 /* UIViewController+BMNavigationBar.m in Sources */,
 				8742694C212E8255003C52F6 /* UIButton+WebCache.m in Sources */,
+				DB5722362133A0FC0065DC30 /* MQScrollPageView.m in Sources */,
 				87426A822131461F003C52F6 /* AFNetworkReachabilityManager.m in Sources */,
 				874269C9212E9B78003C52F6 /* UIScrollView+BMFresh.m in Sources */,
 				874269C5212E9B78003C52F6 /* BMFreshAutoFooterView.m in Sources */,
@@ -1978,6 +2014,7 @@
 				874268DC212E7E36003C52F6 /* BMNavigationController.m in Sources */,
 				87426A7F2131461F003C52F6 /* AFHTTPSessionManager.m in Sources */,
 				87426944212E8255003C52F6 /* SDImageCache.m in Sources */,
+				DB57223B2133A1D90065DC30 /* FSCommunityVC.m in Sources */,
 				87426908212E7E36003C52F6 /* NSString+BMFormat.m in Sources */,
 				874268BE212E7E36003C52F6 /* BMTableViewManager.m in Sources */,
 				874268D8212E7E36003C52F6 /* BMAlertView.m in Sources */,
@@ -1986,6 +2023,7 @@
 				874269C3212E9B78003C52F6 /* BMFreshHeaderView.m in Sources */,
 				874269E2212EB8A4003C52F6 /* BMSearchViewController.m in Sources */,
 				874268B1212E7E36003C52F6 /* BMTableViewCheckBoxGroupCell.m in Sources */,
+				DB5722352133A0FC0065DC30 /* MQScrollPageSegment.m in Sources */,
 				874268F7212E7E36003C52F6 /* UIButton+BMCategory.m in Sources */,
 				8742693B212E8255003C52F6 /* MKAnnotationView+WebCache.m in Sources */,
 				87426903212E7E36003C52F6 /* NSString+BMEncrypt.m in Sources */,
@@ -2152,6 +2190,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K9SAQ4FSAH;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fengshun/fengshun-Prefix.pch";
@@ -2177,6 +2216,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K9SAQ4FSAH;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fengshun/fengshun-Prefix.pch";
