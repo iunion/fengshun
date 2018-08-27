@@ -9,6 +9,5 @@
 #ifndef FSAppMacros_h
 #define FSAppMacros_h
 
-#define FSAPP_APPNAME       @"fs"
 
 #endif /* FSAppMacros_h */
