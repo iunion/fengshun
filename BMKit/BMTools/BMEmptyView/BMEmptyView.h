@@ -30,6 +30,7 @@ typedef void (^BMEmptyViewActionBlock)(BMEmptyView *emptyView, BMEmptyViewStatus
                  refreshBlock:(BMEmptyViewActionBlock)block;
 
 - (void)setEmptyViewStatus:(BMEmptyViewStatus)status;
+- (void)setEmptyViewActionBlock:(BMEmptyViewActionBlock)actionBlock;
 
 - (void)setFullViewTapEnable:(BOOL)enable;
 
