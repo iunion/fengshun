@@ -14,6 +14,56 @@
 
 @implementation FSApiRequest
 
++ (NSString *)publicErrorMessageWithCode:(NSInteger)code
+{
+    NSString *errorMessage;
+    switch (code)
+    {
+        case 9999:
+            errorMessage = @"服务器内部异常";
+            break;
+        case 1001:
+            errorMessage = @"用户未登录";
+            break;
+        case 1002:
+            errorMessage = @"认证令牌失效";
+            break;
+        case 1003:
+            errorMessage = @"非法参数";
+            break;
+        case 1004:
+            errorMessage = @"权限不足";
+            break;
+        case 1005:
+            errorMessage = @"结果为空";
+            break;
+        case 1006:
+            errorMessage = @"操作数据库失败";
+            break;
+
+        case FSAPI_NET_ERRORCODE:
+            if ([FSCoreStatus currentNetWorkStatus] == FSCoreNetWorkStatusNone)
+            {
+                errorMessage = @"网络错误，请稍后再试";
+            }
+            else
+            {
+                errorMessage = @"服务器繁忙，请稍后再试";
+            }
+            break;
+            
+        case FSAPI_DATA_ERRORCODE:
+        case FSAPI_JSON_ERRORCODE:
+            errorMessage = @"数据错误，请稍后再试";
+            break;
+
+        default:
+            errorMessage = @"其他错误";
+            break;
+    }
+    return errorMessage;
+}
+
 + (AFHTTPRequestSerializer *)requestSerializer
 {
     static AFHTTPRequestSerializer *FSRequestSerializer;

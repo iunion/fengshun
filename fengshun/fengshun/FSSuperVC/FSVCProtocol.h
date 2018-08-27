@@ -21,4 +21,34 @@
 
 @end
 
+
+@protocol FSSuperNetVCProtocol <NSObject>
+
+@required
+
+// 刷新数据
+- (BOOL)canLoadApiData;
+- (void)loadApiData;
+
+// 设置具体的API请求
+- (NSMutableURLRequest *)setLoadDataRequest;
+// API请求成功的代理方法
+- (void)loadDataResponseFinished:(NSURLResponse *)response responseDic:(NSDictionary *)responseDic;
+// API请求失败的代理方法，一般不需要重写
+- (void)loadDataResponseFailed:(NSURLResponse *)response error:(NSError *)error;
+
+// 处理成功的数据使用succeedLoadedRequestWithDic:
+- (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)requestDic;
+- (BOOL)succeedLoadedRequestWithArray:(NSArray *)requestArray;
+
+// 全部失败情况适用
+- (void)failLoadedResponse:(NSURLResponse *)response responseDic:(NSDictionary *)responseDic withErrorCode:(NSInteger)errorCode;
+
+// 将等待和错误提示等上移
+- (void)bringSomeViewToFront;
+
+@optional
+
+@end
+
 #endif /* FSVCProtocol_h */

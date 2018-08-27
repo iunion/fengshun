@@ -145,7 +145,7 @@
     return obj ? [obj boolValue] : YES;
 }
 
--(void)setBm_CanBackInteractive:(BOOL)interactive
+- (void)setBm_CanBackInteractive:(BOOL)interactive
 {
     objc_setAssociatedObject(self, @selector(bm_CanBackInteractive), @(interactive), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }

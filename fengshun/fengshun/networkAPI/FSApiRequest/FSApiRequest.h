@@ -12,4 +12,9 @@
 
 @interface FSApiRequest : NSObject
 
++ (NSString *)publicErrorMessageWithCode:(NSInteger)code;
+
++ (NSMutableURLRequest *)makeRequestWithURL:(NSString *)URLString parameters:(NSDictionary *)parameters;
++ (NSMutableURLRequest *)makeRequestWithURL:(NSString *)URLString parameters:(NSDictionary *)parameters isPost:(BOOL)isPost;
+
 @end

@@ -19,11 +19,9 @@
 @property (nonatomic, weak) id <FSTableViewDelegate> tableViewDelegate;
 
 // 上拉下拉类型
-@property (nonatomic, assign, readonly) BMFreshViewType m_RefreshType;
-// 显示无数据页面
-@property (nonatomic, assign) BOOL m_ShowEmptyView;
+@property (nonatomic, assign, readonly) BMFreshViewType m_FreshViewType;
 
-- (instancetype)initWithFrame:(CGRect)frame refreshType:(BMFreshViewType)refreshType tableViewStyle:(UITableViewStyle)style;
+- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style freshViewType:(BMFreshViewType)freshViewType;
 - (void)bringSomeViewToFront;
 
 @end

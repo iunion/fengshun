@@ -11,10 +11,15 @@
 
 @interface UIScrollView (BMEmpty)
 
+// 显示无数据页面, 默认: YES
+@property (nonatomic, assign) BOOL bm_showEmptyView;
 @property (nonatomic, strong) BMEmptyView *bm_emptyView;
 
-- (void)showEmptyViewWithStatus:(BMEmptyViewStatus)status action:(BMEmptyViewActionBlock)action;
+- (void)showEmptyViewWithStatus:(BMEmptyViewStatus)status;
+// 清空action使用setEmptyViewActionBlock
+- (void)showEmptyViewWithStatus:(BMEmptyViewStatus)status action:(BMEmptyViewActionBlock)actionBlock;
+- (void)setEmptyViewActionBlock:(BMEmptyViewActionBlock)actionBlock;
 
-- (void)hideNoDataView;
+- (void)hideEmptyView;
 
 @end
