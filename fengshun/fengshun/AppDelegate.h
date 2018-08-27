@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FSTabBarController.h"
+
+#define GetAppDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property (nonatomic, strong) FSTabBarController *tabBarController;
 
 @end
 

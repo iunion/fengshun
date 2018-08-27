@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "FSTabBarController.h"
 
 @interface AppDelegate ()
 
@@ -20,9 +19,10 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     // TODO: Substitute UIViewController with your own subclass.
-    
+
     FSTabBarController *tabBarController = [[FSTabBarController alloc] initWithDefaultItems];
     [tabBarController addViewControllers];
+    self.tabBarController = tabBarController;
     
     self.window.rootViewController = tabBarController;
     self.window.backgroundColor = [UIColor whiteColor];
