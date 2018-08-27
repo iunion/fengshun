@@ -234,18 +234,11 @@
 		87426AA8213156D5003C52F6 /* FSPageBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AA3213156D5003C52F6 /* FSPageBannerView.m */; };
 		87426AA9213156D5003C52F6 /* FSManualBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AA4213156D5003C52F6 /* FSManualBannerView.m */; };
 		87426AAA213156D5003C52F6 /* FSBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AA5213156D5003C52F6 /* FSBannerView.m */; };
-		87426AB42133A32E003C52F6 /* FSAppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AB32133A32E003C52F6 /* FSAppInfo.m */; };
-		87426AB82133A504003C52F6 /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AB62133A504003C52F6 /* OpenUDID.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		87426AC32133AA9D003C52F6 /* FSApiRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426ABD2133AA9D003C52F6 /* FSApiRequest.m */; };
-		87426AC42133AA9D003C52F6 /* FSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AC12133AA9D003C52F6 /* FSLocation.m */; };
-		87426AC52133AA9D003C52F6 /* FSCoreStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AC22133AA9D003C52F6 /* FSCoreStatus.m */; };
-		87426AC92133AC44003C52F6 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AC72133AC44003C52F6 /* Reachability.m */; };
 		87C0134B212E7A5200D0AAC3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0134A212E7A5200D0AAC3 /* AppDelegate.m */; };
 		87C0134D212E7A5300D0AAC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87C0134C212E7A5300D0AAC3 /* Assets.xcassets */; };
 		87C01353212E7A5300D0AAC3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C01352212E7A5300D0AAC3 /* main.m */; };
 		87C0135D212E7A5300D0AAC3 /* fengshunTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0135C212E7A5300D0AAC3 /* fengshunTests.m */; };
 		87C01368212E7A5300D0AAC3 /* fengshunUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C01367212E7A5300D0AAC3 /* fengshunUITests.m */; };
-		AD8B63FE21338E0C006DDC22 /* FSPreviewFileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */; };
 		AD9CAAE4212EA0F40071B941 /* UIScrollView+BMEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9CAAE3212EA0F40071B941 /* UIScrollView+BMEmpty.m */; };
 		DB57222F21338B6E0065DC30 /* XMRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB57222D21338B6E0065DC30 /* XMRequestManager.m */; };
 		DB5722352133A0FC0065DC30 /* MQScrollPageSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5722312133A0FC0065DC30 /* MQScrollPageSegment.m */; };
@@ -673,19 +666,6 @@
 		87426AA4213156D5003C52F6 /* FSManualBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSManualBannerView.m; sourceTree = "<group>"; };
 		87426AA5213156D5003C52F6 /* FSBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSBannerView.m; sourceTree = "<group>"; };
 		87426AA6213156D5003C52F6 /* FSBannerViewDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSBannerViewDefine.h; sourceTree = "<group>"; };
-		87426AB22133A32E003C52F6 /* FSAppInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSAppInfo.h; sourceTree = "<group>"; };
-		87426AB32133A32E003C52F6 /* FSAppInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSAppInfo.m; sourceTree = "<group>"; };
-		87426AB62133A504003C52F6 /* OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDID.m; sourceTree = "<group>"; };
-		87426AB72133A504003C52F6 /* OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDID.h; sourceTree = "<group>"; };
-		87426ABB2133AA9D003C52F6 /* FSLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSLocation.h; sourceTree = "<group>"; };
-		87426ABD2133AA9D003C52F6 /* FSApiRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSApiRequest.m; sourceTree = "<group>"; };
-		87426ABE2133AA9D003C52F6 /* FSApiRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSApiRequest.h; sourceTree = "<group>"; };
-		87426ABF2133AA9D003C52F6 /* FSCoreStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCoreStatus.h; sourceTree = "<group>"; };
-		87426AC02133AA9D003C52F6 /* FSAPIMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSAPIMacros.h; sourceTree = "<group>"; };
-		87426AC12133AA9D003C52F6 /* FSLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSLocation.m; sourceTree = "<group>"; };
-		87426AC22133AA9D003C52F6 /* FSCoreStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCoreStatus.m; sourceTree = "<group>"; };
-		87426AC72133AC44003C52F6 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		87426AC82133AC44003C52F6 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		87C01346212E7A5200D0AAC3 /* fengshun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fengshun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87C01349212E7A5200D0AAC3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		87C0134A212E7A5200D0AAC3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -698,8 +678,6 @@
 		87C01363212E7A5300D0AAC3 /* fengshunUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fengshunUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		87C01367212E7A5300D0AAC3 /* fengshunUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = fengshunUITests.m; sourceTree = "<group>"; };
 		87C01369212E7A5300D0AAC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AD8B63FC21338E0C006DDC22 /* FSPreviewFileTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSPreviewFileTool.h; sourceTree = "<group>"; };
-		AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSPreviewFileTool.m; sourceTree = "<group>"; };
 		AD9CAAE2212EA0F40071B941 /* UIScrollView+BMEmpty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+BMEmpty.h"; sourceTree = "<group>"; };
 		AD9CAAE3212EA0F40071B941 /* UIScrollView+BMEmpty.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+BMEmpty.m"; sourceTree = "<group>"; };
 		DB57222D21338B6E0065DC30 /* XMRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMRequestManager.m; sourceTree = "<group>"; };
@@ -1199,8 +1177,6 @@
 			isa = PBXGroup;
 			children = (
 				87426A6F2131461F003C52F6 /* AFNetworking */,
-				87426AB52133A504003C52F6 /* OpenUDID */,
-				87426AC62133AC44003C52F6 /* Reachability */,
 				87426911212E8254003C52F6 /* SDWebImage */,
 				874269D8212EB7C2003C52F6 /* TTGTagCollectionView */,
 				87426A84213146A6003C52F6 /* XMNetworking */,
@@ -1519,8 +1495,6 @@
 				87426A6C21314055003C52F6 /* FSAppConfig.h */,
 				87426A6D21314169003C52F6 /* FSAppMacros.h */,
 				87426A6E213141CD003C52F6 /* FSAppUIDef.h */,
-				87426AB22133A32E003C52F6 /* FSAppInfo.h */,
-				87426AB32133A32E003C52F6 /* FSAppInfo.m */,
 			);
 			path = appDefine;
 			sourceTree = "<group>";
@@ -1576,7 +1550,6 @@
 		87426A9821314996003C52F6 /* FSTools */ = {
 			isa = PBXGroup;
 			children = (
-				AD8B63FA21338DC3006DDC22 /* FSPreviewFileTool */,
 				87426A9D213156D5003C52F6 /* FSBannerView */,
 				87426A9921314996003C52F6 /* FSSearchViewController */,
 			);
@@ -1615,46 +1588,6 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
-		87426AB52133A504003C52F6 /* OpenUDID */ = {
-			isa = PBXGroup;
-			children = (
-				87426AB62133A504003C52F6 /* OpenUDID.m */,
-				87426AB72133A504003C52F6 /* OpenUDID.h */,
-			);
-			path = OpenUDID;
-			sourceTree = "<group>";
-		};
-		87426ABA2133AA9D003C52F6 /* networkAPI */ = {
-			isa = PBXGroup;
-			children = (
-				87426ABC2133AA9D003C52F6 /* FSApiRequest */,
-				87426AC02133AA9D003C52F6 /* FSAPIMacros.h */,
-				87426ABB2133AA9D003C52F6 /* FSLocation.h */,
-				87426AC12133AA9D003C52F6 /* FSLocation.m */,
-				87426ABF2133AA9D003C52F6 /* FSCoreStatus.h */,
-				87426AC22133AA9D003C52F6 /* FSCoreStatus.m */,
-			);
-			path = networkAPI;
-			sourceTree = "<group>";
-		};
-		87426ABC2133AA9D003C52F6 /* FSApiRequest */ = {
-			isa = PBXGroup;
-			children = (
-				87426ABE2133AA9D003C52F6 /* FSApiRequest.h */,
-				87426ABD2133AA9D003C52F6 /* FSApiRequest.m */,
-			);
-			path = FSApiRequest;
-			sourceTree = "<group>";
-		};
-		87426AC62133AC44003C52F6 /* Reachability */ = {
-			isa = PBXGroup;
-			children = (
-				87426AC72133AC44003C52F6 /* Reachability.m */,
-				87426AC82133AC44003C52F6 /* Reachability.h */,
-			);
-			path = Reachability;
-			sourceTree = "<group>";
-		};
 		87C0133D212E7A5200D0AAC3 = {
 			isa = PBXGroup;
 			children = (
@@ -1687,7 +1620,6 @@
 				87426A6521313C1C003C52F6 /* FSSuperVC */,
 				87426A362131313E003C52F6 /* FSTabBar */,
 				87426A5B21313915003C52F6 /* mainTab */,
-				87426ABA2133AA9D003C52F6 /* networkAPI */,
 				87426A9821314996003C52F6 /* FSTools */,
 				87C0134C212E7A5300D0AAC3 /* Assets.xcassets */,
 				87C01375212E7A9200D0AAC3 /* Supporting Files */,
@@ -1723,7 +1655,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
 		DB5722302133A0BF0065DC30 /* MQScrollPageView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1743,15 +1674,6 @@
 				DB57223A2133A1D90065DC30 /* FSCommunityVC.xib */,
 			);
 			path = communityTab;
-=======
-		AD8B63FA21338DC3006DDC22 /* FSPreviewFileTool */ = {
-			isa = PBXGroup;
-			children = (
-				AD8B63FC21338E0C006DDC22 /* FSPreviewFileTool.h */,
-				AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */,
-			);
-			path = FSPreviewFileTool;
->>>>>>> master
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1967,7 +1889,6 @@
 				874268FE212E7E36003C52F6 /* NSBundle+BMCategory.m in Sources */,
 				874268C0212E7E36003C52F6 /* BMSegmentItem.m in Sources */,
 				874268C8212E7E36003C52F6 /* BMStepperInputItem.m in Sources */,
-				87426AB42133A32E003C52F6 /* FSAppInfo.m in Sources */,
 				87426946212E8255003C52F6 /* NSData+ImageContentType.m in Sources */,
 				87426A92213146A6003C52F6 /* XMRequest.m in Sources */,
 				874268EE212E7E36003C52F6 /* UIColor+BMCategory.m in Sources */,
@@ -2007,13 +1928,11 @@
 				87426A802131461F003C52F6 /* AFURLSessionManager.m in Sources */,
 				8742690B212E7E36003C52F6 /* NSArray+BMCategory.m in Sources */,
 				8742690D212E7E36003C52F6 /* NSNumber+BMCategory.m in Sources */,
-				87426AB82133A504003C52F6 /* OpenUDID.m in Sources */,
 				874268B3212E7E36003C52F6 /* BMTableViewCellStyle.m in Sources */,
 				87426AA8213156D5003C52F6 /* FSPageBannerView.m in Sources */,
 				87426A7E2131461F003C52F6 /* AFURLResponseSerialization.m in Sources */,
 				874268F5212E7E36003C52F6 /* UIImage+BMAssets.m in Sources */,
 				874269D6212E9E21003C52F6 /* BMFreshBackFooterView.m in Sources */,
-				AD8B63FE21338E0C006DDC22 /* FSPreviewFileTool.m in Sources */,
 				874268E4212E7E36003C52F6 /* UIView+BMAnimation.m in Sources */,
 				874268F1212E7E36003C52F6 /* UIButton+BMContentRect.m in Sources */,
 				87426901212E7E36003C52F6 /* NSData+BMEncrypt.m in Sources */,
@@ -2087,13 +2006,11 @@
 				87426AAA213156D5003C52F6 /* FSBannerView.m in Sources */,
 				874268A9212E7E36003C52F6 /* BMTableViewSegmentCell.m in Sources */,
 				874268F4212E7E36003C52F6 /* UITextField+BMCategory.m in Sources */,
-				87426AC52133AA9D003C52F6 /* FSCoreStatus.m in Sources */,
 				874269B9212E9B78003C52F6 /* BMFreshBaseView.m in Sources */,
 				874268E9212E7E36003C52F6 /* UIView+BMAnimationExtensions.m in Sources */,
 				874269C2212E9B78003C52F6 /* BMFreshDotCircleHeader.m in Sources */,
 				874268C2212E7E36003C52F6 /* BMSliderItem.m in Sources */,
 				874269BD212E9B78003C52F6 /* BMFreshDotHeader.m in Sources */,
-				87426AC42133AA9D003C52F6 /* FSLocation.m in Sources */,
 				874268DC212E7E36003C52F6 /* BMNavigationController.m in Sources */,
 				87426A7F2131461F003C52F6 /* AFHTTPSessionManager.m in Sources */,
 				87426944212E8255003C52F6 /* SDImageCache.m in Sources */,
@@ -2114,7 +2031,6 @@
 				874268C5212E7E36003C52F6 /* BMImageDetailItem.m in Sources */,
 				874268BF212E7E36003C52F6 /* BMMaskTextItem.m in Sources */,
 				87426A812131461F003C52F6 /* AFURLRequestSerialization.m in Sources */,
-				87426AC32133AA9D003C52F6 /* FSApiRequest.m in Sources */,
 				87426904212E7E36003C52F6 /* NSString+BMMandarinLatin.m in Sources */,
 				874268A8212E7E36003C52F6 /* BMTableViewTextCell.m in Sources */,
 				87426902212E7E36003C52F6 /* NSData+BMCategory.m in Sources */,
@@ -2122,7 +2038,6 @@
 				8742690C212E7E36003C52F6 /* NSObject+BMCategory.m in Sources */,
 				874268EB212E7E36003C52F6 /* UIView+BMSize.m in Sources */,
 				87426942212E8255003C52F6 /* SDWebImageCompat.m in Sources */,
-				87426AC92133AC44003C52F6 /* Reachability.m in Sources */,
 				874269C1212E9B78003C52F6 /* BMFreshArcHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
