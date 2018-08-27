@@ -15,7 +15,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (nonatomic, strong) FSTabBarController *tabBarController;
+@property (nonatomic, strong) FSTabBarController *m_TabBarController;
 
 // GPS状态
 - (BOOL)checkCLAuthorizationStatus;

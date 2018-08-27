@@ -28,7 +28,7 @@
     [super viewDidLoad];
     
     self.title = @"ScrollPageView";
-    [GetAppDelegate.tabBarController hideOriginTabBar];
+    [GetAppDelegate.m_TabBarController hideOriginTabBar];
     
     [self setupUI];
 }
