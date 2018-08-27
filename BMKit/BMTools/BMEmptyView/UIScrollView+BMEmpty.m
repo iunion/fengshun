@@ -22,7 +22,7 @@
     objc_setAssociatedObject(self, @selector(bm_emptyView), emptyView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (void)showNoDataViewWithState:(BMEmptyViewStatus)status action:(BMEmptyViewActionBlock)action
+- (void)showEmptyViewWithStatus:(BMEmptyViewStatus)status action:(BMEmptyViewActionBlock)action
 {
     if (!self.bm_emptyView)
     {

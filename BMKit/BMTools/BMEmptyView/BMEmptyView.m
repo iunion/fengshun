@@ -95,6 +95,11 @@
     }
 }
 
+- (void)setEmptyViewActionBlock:(BMEmptyViewActionBlock)actionBlock
+{
+    self.actionBlock = actionBlock;
+}
+
 - (void)setEmptyViewStatus:(BMEmptyViewStatus)status
 {
     self.hidden = (status == BMEmptyViewStatus_Hidden)? YES:NO;
@@ -108,19 +113,19 @@
     {
         case BMEmptyViewStatus_Loading:
             [_indecator startAnimating];
-            [self setImageView:YES messageView:YES customView:YES];
+            [self showImageView:NO messageView:NO customView:NO];
             break;
         case BMEmptyViewStatus_NoData:
         case BMEmptyViewStatus_NetworkError:
         case BMEmptyViewStatus_DataError:
         case BMEmptyViewStatus_UnknownError:
-            [self setImageView:NO messageView:NO customView:YES];
+            [self showImageView:YES messageView:YES customView:NO];
             break;
         case BMEmptyViewStatus_Custom:
-            [self setImageView:YES messageView:YES customView:NO];
+            [self showImageView:NO messageView:NO customView:YES];
             break;
         default:
-            [self setImageView:YES messageView:YES customView:YES];
+            [self showImageView:NO messageView:NO customView:NO];
             break;
     }
     
@@ -132,11 +137,11 @@
     _emptyViewStatus = status;
 }
 
-- (void)setImageView:(BOOL)hidden0 messageView:(BOOL)hidden1 customView:(BOOL)hidden2
+- (void)showImageView:(BOOL)showImage messageView:(BOOL)showMessage customView:(BOOL)showCustom
 {
-    _imageView.hidden = hidden0;
-    _messageLabel.hidden = hidden1;
-    _customView.hidden = hidden2;
+    _imageView.hidden = !showImage;
+    _messageLabel.hidden = !showMessage;
+    _customView.hidden = !showCustom;
 }
 
 - (void)updateViewFrame

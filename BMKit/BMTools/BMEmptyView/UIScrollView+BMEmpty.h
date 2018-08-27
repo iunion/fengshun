@@ -13,7 +13,7 @@
 
 @property (nonatomic, strong) BMEmptyView *bm_emptyView;
 
-- (void)showNoDataViewWithState:(BMEmptyViewStatus)status action:(BMEmptyViewActionBlock)action;
+- (void)showEmptyViewWithStatus:(BMEmptyViewStatus)status action:(BMEmptyViewActionBlock)action;
 
 - (void)hideNoDataView;
 

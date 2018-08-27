@@ -8,7 +8,13 @@
 
 #import "AppDelegate.h"
 
+#import "FSLocation.h"
+#import "FSCoreStatus.h"
+
 @interface AppDelegate ()
+
+// 位置信息
+@property (strong, nonatomic) CLLocationManager *m_LocationManager;
 
 @end
 

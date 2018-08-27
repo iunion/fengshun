@@ -11,67 +11,84 @@
 
 @implementation UIScrollView (BMFresh)
 
-- (BMFreshHeaderView *)dj_freshHeaderView
+- (BMFreshHeaderView *)bm_freshHeaderView
 {
     BMFreshHeaderView *freshHeaderView = objc_getAssociatedObject(self, _cmd);
     return freshHeaderView;
 }
 
-- (void)setDj_freshHeaderView:(BMFreshHeaderView *)freshHeaderView
+- (void)setBm_freshHeaderView:(BMFreshHeaderView *)freshHeaderView
 {
-    if (freshHeaderView != self.dj_freshHeaderView)
+    if (freshHeaderView != self.bm_freshHeaderView)
     {
-        if (self.dj_freshHeaderView.superview)
+        if (self.bm_freshHeaderView.superview)
         {
-            [self.dj_freshHeaderView removeFromSuperview];
+            [self.bm_freshHeaderView removeFromSuperview];
         }
 
         [self insertSubview:freshHeaderView atIndex:0];
         
         // KVO
         [self willChangeValueForKey:@"dj_freshHeaderView"];
-        objc_setAssociatedObject(self, @selector(dj_freshHeaderView), freshHeaderView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self, @selector(bm_freshHeaderView), freshHeaderView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         [self didChangeValueForKey:@"dj_freshHeaderView"];
     }
 }
 
-- (BMFreshFooterView *)dj_freshFooterView
+- (BMFreshFooterView *)bm_freshFooterView
 {
     BMFreshFooterView *freshFooterView = objc_getAssociatedObject(self, _cmd);
     return freshFooterView;
 }
 
-- (void)setDj_freshFooterView:(BMFreshFooterView *)freshFooterView
+- (void)setBm_freshFooterView:(BMFreshFooterView *)freshFooterView
 {
-    if (freshFooterView != self.dj_freshFooterView)
+    if (freshFooterView != self.bm_freshFooterView)
     {
-        if (self.dj_freshFooterView.superview)
+        if (self.bm_freshFooterView.superview)
         {
-            [self.dj_freshFooterView removeFromSuperview];
+            [self.bm_freshFooterView removeFromSuperview];
         }
         
         [self insertSubview:freshFooterView atIndex:0];
         
         // KVO
         [self willChangeValueForKey:@"dj_freshFooterView"];
-        objc_setAssociatedObject(self, @selector(dj_freshFooterView), freshFooterView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self, @selector(bm_freshFooterView), freshFooterView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         [self didChangeValueForKey:@"dj_freshFooterView"];
     }
 }
 
 - (void)resetFreshHeaderState
 {
-    [self.dj_freshHeaderView endReFreshing];
+    [self.bm_freshHeaderView endReFreshing];
 }
 
 - (void)resetFreshFooterState
 {
-    [self.dj_freshFooterView endReFreshing];
+    [self.bm_freshFooterView endReFreshing];
 }
 
 - (void)resetFreshFooterStateWithNoMoreData
 {
-    [self.dj_freshFooterView endReFreshingWithNoMoreData];
+    [self.bm_freshFooterView endReFreshingWithNoMoreData];
 }
+
+- (void)setFreshTitles:(NSDictionary *)titles
+{
+    [self.bm_freshHeaderView setFreshTitles:titles];
+    [self.bm_freshFooterView setFreshTitles:titles];
+}
+
+- (void)setHeaderFreshTitles:(NSDictionary *)titles
+{
+    [self.bm_freshHeaderView setFreshTitles:titles];
+}
+
+- (void)setFooterFreshTitles:(NSDictionary *)titles
+{
+    [self.bm_freshFooterView setFreshTitles:titles];
+}
+
 
 @end

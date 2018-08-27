@@ -19,4 +19,25 @@
 
 
 
+#pragma mark -
+#pragma mark 登录/注册
+
+// 弹出登录/注册
+- (BOOL)showRegist;
+- (BOOL)showLogin;
+
+// 隐藏登录
+- (void)hideLoginRegist;
+
+// 登录注册成功后操作
+- (void)afterLoginFinished;
+
+
+#pragma mark -
+#pragma mark API状态校验
+
+// RequestStatus
+// 校验一些特殊全局状态码,比如:token失效,强制升级
+- (BOOL)checkRequestStatus:(NSInteger)statusCode message:(NSString *)message responseDic:(NSDictionary *)responseDic;
+
 @end
