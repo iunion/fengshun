@@ -67,7 +67,7 @@
 
     FSTabBarController *tabBarController = [[FSTabBarController alloc] initWithDefaultItems];
     [tabBarController addViewControllers];
-    self.tabBarController = tabBarController;
+    self.m_TabBarController = tabBarController;
     
     self.window.rootViewController = tabBarController;
     self.window.backgroundColor = [UIColor whiteColor];
