@@ -215,6 +215,24 @@
     } onProgress:nil onSuccess:successBlock onFailure:failureBlock onFinished:nil];
     return r;
 }
+
++(XMRequest *)rm_downloadWithURL:(NSString *)url savePath:(NSString *)savePath success:(nullable XMSuccessBlock)successBlock failure:(nullable XMFailureBlock)failureBlock
+{
+    return [self rm_downloadWithURL:url savePath:savePath onProgress:nil success:successBlock failure:failureBlock];
+}
+
++(XMRequest *)rm_downloadWithURL:(NSString *)url savePath:(NSString *)savePath onProgress:(XMProgressBlock)progressBlock success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
+{
+    __block XMRequest *r = nil;
+    [[XMCenter defaultCenter] sendRequest:^(XMRequest * _Nonnull request) {
+        request.url = url;
+        request.downloadSavePath = savePath;
+        request.requestType = kXMRequestDownload;
+        r = request;
+    } onProgress:progressBlock onSuccess:successBlock onFailure:failureBlock];
+    
+    return r;
+}
 +(void)rm_cancelRequest:(XMRequest *)request onCancel:(XMCancelBlock)cancelBlock
 {
     XMRequest *r = [[XMCenter defaultCenter].engine cancelRequestByIdentifier:request.identifier];
