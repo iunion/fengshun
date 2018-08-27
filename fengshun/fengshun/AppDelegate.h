@@ -17,5 +17,8 @@
 
 @property (nonatomic, strong) FSTabBarController *tabBarController;
 
+// GPS状态
+- (BOOL)checkCLAuthorizationStatus;
+
 @end
 
