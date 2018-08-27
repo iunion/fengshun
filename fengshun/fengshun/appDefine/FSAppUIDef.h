@@ -16,6 +16,8 @@
 
 #define UI_COLOR_R1_VALU        0xE8373D
 
+#define colorWithHex bm_colorWithHex
+
 #define UI_COLOR_Y1             [UIColor colorWithHex:0xFBD973]
 #define UI_COLOR_Y2             [UIColor colorWithHex:0xECC85A]
 #define UI_COLOR_Y3             [UIColor colorWithHex:0xF9DF4D]
