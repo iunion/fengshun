@@ -7,17 +7,17 @@
 //
 
 #import "FSCommunityVC.h"
-#import "MQScrollPageView.h"
+#import "FSScrollPageView.h"
 #import "AppDelegate.h"
 
 @interface FSCommunityVC ()
 <
-    MQScrollPageViewDelegate,
-    MQScrollPageViewDataSource
+    FSScrollPageViewDelegate,
+    FSScrollPageViewDataSource
 >
 
-@property (nonatomic, strong) MQScrollPageSegment *m_SegmentBar;
-@property (nonatomic, strong) MQScrollPageView *m_ScrollPageView;
+@property (nonatomic, strong) FSScrollPageSegment *m_SegmentBar;
+@property (nonatomic, strong) FSScrollPageView *m_ScrollPageView;
 
 @end
 
@@ -35,10 +35,10 @@
 
 - (void)setupUI
 {
-    self.m_SegmentBar = [[MQScrollPageSegment alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 44) titles:nil titleColor:nil selectTitleColor:nil showUnderLine:NO moveLineFrame:CGRectZero isEqualDivide:YES fresh:YES];
+    self.m_SegmentBar = [[FSScrollPageSegment alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 44) titles:nil titleColor:nil selectTitleColor:nil showUnderLine:NO moveLineFrame:CGRectZero isEqualDivide:YES fresh:YES];
     [self.view addSubview:_m_SegmentBar];
     
-    self.m_ScrollPageView = [[MQScrollPageView alloc] initWithFrame:CGRectMake(0, 44, UI_SCREEN_WIDTH, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT-UI_TAB_BAR_HEIGHT-44) titleColor:[UIColor blackColor] selectTitleColor:[UIColor redColor] scrollPageSegment:_m_SegmentBar isSubViewPageSegment:NO];
+    self.m_ScrollPageView = [[FSScrollPageView alloc] initWithFrame:CGRectMake(0, 44, UI_SCREEN_WIDTH, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT-UI_TAB_BAR_HEIGHT-44) titleColor:[UIColor blackColor] selectTitleColor:[UIColor redColor] scrollPageSegment:_m_SegmentBar isSubViewPageSegment:NO];
     [self.view addSubview:self.m_ScrollPageView];
     self.m_ScrollPageView.datasource = self;
     self.m_ScrollPageView.delegate = self;
@@ -53,14 +53,14 @@
 }
 
 
-#pragma mark - MQScrollPageView Delegate & DataSource
+#pragma mark - FSScrollPageView Delegate & DataSource
 
-- (NSUInteger)scrollPageViewNumberOfPages:(MQScrollPageView *)scrollPageView
+- (NSUInteger)scrollPageViewNumberOfPages:(FSScrollPageView *)scrollPageView
 {
     return 3;
 }
 
-- (NSString *)scrollPageView:(MQScrollPageView *)scrollPageView titleAtIndex:(NSUInteger)index
+- (NSString *)scrollPageView:(FSScrollPageView *)scrollPageView titleAtIndex:(NSUInteger)index
 {
     switch (index)
     {
@@ -80,7 +80,7 @@
     }
 }
 
-- (id)scrollPageView:(MQScrollPageView *)scrollPageView pageAtIndex:(NSUInteger)index
+- (id)scrollPageView:(FSScrollPageView *)scrollPageView pageAtIndex:(NSUInteger)index
 {
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT-UI_TAB_BAR_HEIGHT)];
     switch (index)

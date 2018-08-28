@@ -1,5 +1,5 @@
 //
-//  MQScrollPageSegment.h
+//  FSScrollPageSegment.h
 //  match
 //
 //  Created by dengjiang on 15/9/22.
@@ -9,15 +9,15 @@
 #import <UIKit/UIKit.h>
 
 
-#define MQScrollPageSegment_Height 44
+#define FSScrollPageSegment_Height 44
 
 
-@protocol MQScrollPageSegmentDelegate;
+@protocol FSScrollPageSegmentDelegate;
 
-@interface MQScrollPageSegment : UIView
+@interface FSScrollPageSegment : UIView
 
 // 点击Button代理
-@property (nonatomic, weak) id <MQScrollPageSegmentDelegate> delegate;
+@property (nonatomic, weak) id <FSScrollPageSegmentDelegate> delegate;
 
 // 未选中时的Title颜色
 @property (nonatomic, strong) UIColor *m_TextColor;
@@ -54,9 +54,9 @@
 @end
 
 
-@protocol MQScrollPageSegmentDelegate <NSObject>
+@protocol FSScrollPageSegmentDelegate <NSObject>
 
 
-- (void)scrollSegment:(MQScrollPageSegment *)scrollSegment selectedButtonAtIndex:(NSUInteger)index;
+- (void)scrollSegment:(FSScrollPageSegment *)scrollSegment selectedButtonAtIndex:(NSUInteger)index;
 
 @end

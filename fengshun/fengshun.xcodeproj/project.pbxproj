@@ -252,8 +252,8 @@
 		AD8B63FE21338E0C006DDC22 /* FSPreviewFileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */; };
 		AD9CAAE4212EA0F40071B941 /* UIScrollView+BMEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9CAAE3212EA0F40071B941 /* UIScrollView+BMEmpty.m */; };
 		DB57222F21338B6E0065DC30 /* XMRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB57222D21338B6E0065DC30 /* XMRequestManager.m */; };
-		DB5722352133A0FC0065DC30 /* MQScrollPageSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5722312133A0FC0065DC30 /* MQScrollPageSegment.m */; };
-		DB5722362133A0FC0065DC30 /* MQScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5722332133A0FC0065DC30 /* MQScrollPageView.m */; };
+		DB5722352133A0FC0065DC30 /* FSScrollPageSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5722312133A0FC0065DC30 /* FSScrollPageSegment.m */; };
+		DB5722362133A0FC0065DC30 /* FSScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5722332133A0FC0065DC30 /* FSScrollPageView.m */; };
 		DB57223B2133A1D90065DC30 /* FSCommunityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5722392133A1D90065DC30 /* FSCommunityVC.m */; };
 		DB57223C2133A1D90065DC30 /* FSCommunityVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB57223A2133A1D90065DC30 /* FSCommunityVC.xib */; };
 /* End PBXBuildFile section */
@@ -716,10 +716,10 @@
 		AD9CAAE3212EA0F40071B941 /* UIScrollView+BMEmpty.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+BMEmpty.m"; sourceTree = "<group>"; };
 		DB57222D21338B6E0065DC30 /* XMRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMRequestManager.m; sourceTree = "<group>"; };
 		DB57222E21338B6E0065DC30 /* XMRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMRequestManager.h; sourceTree = "<group>"; };
-		DB5722312133A0FC0065DC30 /* MQScrollPageSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQScrollPageSegment.m; sourceTree = "<group>"; };
-		DB5722322133A0FC0065DC30 /* MQScrollPageSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQScrollPageSegment.h; sourceTree = "<group>"; };
-		DB5722332133A0FC0065DC30 /* MQScrollPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQScrollPageView.m; sourceTree = "<group>"; };
-		DB5722342133A0FC0065DC30 /* MQScrollPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQScrollPageView.h; sourceTree = "<group>"; };
+		DB5722312133A0FC0065DC30 /* FSScrollPageSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSScrollPageSegment.m; sourceTree = "<group>"; };
+		DB5722322133A0FC0065DC30 /* FSScrollPageSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSScrollPageSegment.h; sourceTree = "<group>"; };
+		DB5722332133A0FC0065DC30 /* FSScrollPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSScrollPageView.m; sourceTree = "<group>"; };
+		DB5722342133A0FC0065DC30 /* FSScrollPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSScrollPageView.h; sourceTree = "<group>"; };
 		DB5722382133A1D90065DC30 /* FSCommunityVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCommunityVC.h; sourceTree = "<group>"; };
 		DB5722392133A1D90065DC30 /* FSCommunityVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCommunityVC.m; sourceTree = "<group>"; };
 		DB57223A2133A1D90065DC30 /* FSCommunityVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSCommunityVC.xib; sourceTree = "<group>"; };
@@ -1217,7 +1217,6 @@
 				87426911212E8254003C52F6 /* SDWebImage */,
 				874269D8212EB7C2003C52F6 /* TTGTagCollectionView */,
 				87426A84213146A6003C52F6 /* XMNetworking */,
-				DB5722302133A0BF0065DC30 /* MQScrollPageView */,
 			);
 			name = thirdParty;
 			path = ../thirdParty;
@@ -1592,6 +1591,7 @@
 		87426A9821314996003C52F6 /* FSTools */ = {
 			isa = PBXGroup;
 			children = (
+				DB5722302133A0BF0065DC30 /* FSScrollPageView */,
 				AD8B63FA21338DC3006DDC22 /* FSPreviewFileTool */,
 				87426A9D213156D5003C52F6 /* FSBannerView */,
 				87426A9921314996003C52F6 /* FSSearchViewController */,
@@ -1768,15 +1768,15 @@
 			path = FSPreviewFileTool;
 			sourceTree = "<group>";
 		};
-		DB5722302133A0BF0065DC30 /* MQScrollPageView */ = {
+		DB5722302133A0BF0065DC30 /* FSScrollPageView */ = {
 			isa = PBXGroup;
 			children = (
-				DB5722322133A0FC0065DC30 /* MQScrollPageSegment.h */,
-				DB5722312133A0FC0065DC30 /* MQScrollPageSegment.m */,
-				DB5722342133A0FC0065DC30 /* MQScrollPageView.h */,
-				DB5722332133A0FC0065DC30 /* MQScrollPageView.m */,
+				DB5722322133A0FC0065DC30 /* FSScrollPageSegment.h */,
+				DB5722312133A0FC0065DC30 /* FSScrollPageSegment.m */,
+				DB5722342133A0FC0065DC30 /* FSScrollPageView.h */,
+				DB5722332133A0FC0065DC30 /* FSScrollPageView.m */,
 			);
-			path = MQScrollPageView;
+			path = FSScrollPageView;
 			sourceTree = "<group>";
 		};
 		DB5722372133A1830065DC30 /* communityTab */ = {
@@ -2110,7 +2110,7 @@
 				87426A832131461F003C52F6 /* AFSecurityPolicy.m in Sources */,
 				874268DB212E7E36003C52F6 /* UIViewController+BMNavigationBar.m in Sources */,
 				8742694C212E8255003C52F6 /* UIButton+WebCache.m in Sources */,
-				DB5722362133A0FC0065DC30 /* MQScrollPageView.m in Sources */,
+				DB5722362133A0FC0065DC30 /* FSScrollPageView.m in Sources */,
 				87426A822131461F003C52F6 /* AFNetworkReachabilityManager.m in Sources */,
 				874269C9212E9B78003C52F6 /* UIScrollView+BMFresh.m in Sources */,
 				874269C5212E9B78003C52F6 /* BMFreshAutoFooterView.m in Sources */,
@@ -2145,7 +2145,7 @@
 				874269C3212E9B78003C52F6 /* BMFreshHeaderView.m in Sources */,
 				874269E2212EB8A4003C52F6 /* BMSearchViewController.m in Sources */,
 				874268B1212E7E36003C52F6 /* BMTableViewCheckBoxGroupCell.m in Sources */,
-				DB5722352133A0FC0065DC30 /* MQScrollPageSegment.m in Sources */,
+				DB5722352133A0FC0065DC30 /* FSScrollPageSegment.m in Sources */,
 				874268F7212E7E36003C52F6 /* UIButton+BMCategory.m in Sources */,
 				8742693B212E8255003C52F6 /* MKAnnotationView+WebCache.m in Sources */,
 				87426903212E7E36003C52F6 /* NSString+BMEncrypt.m in Sources */,
