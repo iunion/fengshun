@@ -171,6 +171,16 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 // UIView *view = [[UIView alloc] initWithFrame:CGrect(x - SINGLE_LINE_ADJUST_OFFSET, 0, SINGLE_LINE_WIDTH, 100)];
 
 
+#pragma mark -
+#pragma mark - Default define
+
+// 动画默认时长
+#define DEFAULT_DELAY_TIME              (0.25f)
+// 等待默认时长
+#define PROGRESSBOX_DEFAULT_HIDE_DELAY  (2.0f)
+
+
+
 // 弱引用/强引用 weakSelf
 #define BMWeakSelf __weak typeof(self) weakSelf = self;
 #define BMStrongSelf __strong typeof(self) strongSelf = weakSelf;

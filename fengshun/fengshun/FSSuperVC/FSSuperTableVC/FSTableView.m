@@ -10,23 +10,20 @@
 
 @interface FSTableView ()
 
-// 上拉下拉类型
-@property (nonatomic, assign) BMFreshViewType m_RefreshType;
-
 @end
 
 @implementation FSTableView
 
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style
 {
-    return [self initWithFrame:frame refreshType:BMFreshViewType_Head | BMFreshViewType_Bottom tableViewStyle:style];
+    return [self initWithFrame:frame style:style freshViewType:BMFreshViewType_Head | BMFreshViewType_Bottom];
 }
 
-- (instancetype)initWithFrame:(CGRect)frame refreshType:(BMFreshViewType)refreshType tableViewStyle:(UITableViewStyle)style
+- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style freshViewType:(BMFreshViewType)freshViewType
 {
     if (self = [super initWithFrame:frame style:style])
     {
-        _m_RefreshType = refreshType;
+        _m_FreshViewType = freshViewType;
         [self setupTableView];
     }
     
@@ -43,7 +40,7 @@
     
     BMWeakSelf
     // 初始化下拉刷新
-    if (_m_RefreshType & BMFreshViewType_Head)
+    if (_m_FreshViewType & BMFreshViewType_Head)
     {
         BMFreshFiveStarHeader *refreshHeaderView = [[BMFreshFiveStarHeader alloc] init];
         self.bm_freshHeaderView = refreshHeaderView;
@@ -54,7 +51,7 @@
     }
     
     // 初始化上拉刷新
-    if (_m_RefreshType & BMFreshViewType_Bottom)
+    if (_m_FreshViewType & BMFreshViewType_Bottom)
     {
         BMFreshAutoNormalFooter *refreshFooterView = [[BMFreshAutoNormalFooter alloc] init];
         refreshFooterView.containerSize = CGSizeMake(28.0f, 28.0f);
@@ -67,8 +64,8 @@
     [self bringSomeViewToFront];
     
     // 初始化无数据
-    self.m_ShowEmptyView = YES;
-    
+    self.bm_showEmptyView = YES;
+
 #ifdef __IPHONE_11_0
     if (@available(iOS 11.0, *))
     {

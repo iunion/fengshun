@@ -25,4 +25,16 @@
 #define FSAPI_GPS_LONGITUDE_KEY             (@"longitude")
 
 
+#define FSAPI_NET_ERRORCODE                 -100
+#define FSAPI_DATA_ERRORCODE                -101
+#define FSAPI_JSON_ERRORCODE                -102
+
+// 每次加载数据的方式 按页取/按个数取, 默认: FSAPILoadDataType_Count
+typedef NS_ENUM(NSUInteger, FSAPILoadDataType)
+{
+    FSAPILoadDataType_Count,
+    FSAPILoadDataType_Page = 1,
+};
+
+
 #endif /* FSAPIMacros_h */

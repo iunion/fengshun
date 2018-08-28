@@ -11,11 +11,11 @@
 
 @interface FSFileModel : NSObject
 // 文件名
-@property(nonatomic, copy)NSString *bm_fileName;
-// 本地路径
-@property(nonatomic, copy)NSString *bm_localPath;
-// 网络地址
-@property(nonatomic, copy)NSString *bm_fileUrl;
+@property(nonatomic, copy)NSString *m_FileName;
+// 本地文件路径
+@property(nonatomic, copy)NSString *m_LocalPath;
+// 网络资源地址
+@property(nonatomic, copy)NSString *m_FileUrl;
 
 @end
 

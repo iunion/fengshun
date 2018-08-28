@@ -242,6 +242,8 @@
 		87426AC92133AC44003C52F6 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AC72133AC44003C52F6 /* Reachability.m */; };
 		87426ACD2133D5E9003C52F6 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426ACB2133D5E9003C52F6 /* MBProgressHUD.m */; };
 		87426AD12133D6CF003C52F6 /* FSTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AD02133D6CF003C52F6 /* FSTableView.m */; };
+		87426AD42133F3C8003C52F6 /* FSTableViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AD32133F3C8003C52F6 /* FSTableViewVC.m */; };
+		87426AD72133F446003C52F6 /* FSSuperNetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AD62133F446003C52F6 /* FSSuperNetVC.m */; };
 		87C0134B212E7A5200D0AAC3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0134A212E7A5200D0AAC3 /* AppDelegate.m */; };
 		87C0134D212E7A5300D0AAC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87C0134C212E7A5300D0AAC3 /* Assets.xcassets */; };
 		87C01353212E7A5300D0AAC3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C01352212E7A5300D0AAC3 /* main.m */; };
@@ -692,6 +694,10 @@
 		87426ACC2133D5E9003C52F6 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		87426ACF2133D6CF003C52F6 /* FSTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTableView.h; sourceTree = "<group>"; };
 		87426AD02133D6CF003C52F6 /* FSTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTableView.m; sourceTree = "<group>"; };
+		87426AD22133F3C8003C52F6 /* FSTableViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTableViewVC.h; sourceTree = "<group>"; };
+		87426AD32133F3C8003C52F6 /* FSTableViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTableViewVC.m; sourceTree = "<group>"; };
+		87426AD52133F446003C52F6 /* FSSuperNetVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSuperNetVC.h; sourceTree = "<group>"; };
+		87426AD62133F446003C52F6 /* FSSuperNetVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSSuperNetVC.m; sourceTree = "<group>"; };
 		87C01346212E7A5200D0AAC3 /* fengshun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fengshun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87C01349212E7A5200D0AAC3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		87C0134A212E7A5200D0AAC3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -1517,6 +1523,8 @@
 				87426A6921313C54003C52F6 /* FSVCProtocol.h */,
 				87426A6721313C1C003C52F6 /* FSSuperVC.h */,
 				87426A6621313C1C003C52F6 /* FSSuperVC.m */,
+				87426AD52133F446003C52F6 /* FSSuperNetVC.h */,
+				87426AD62133F446003C52F6 /* FSSuperNetVC.m */,
 			);
 			path = FSSuperVC;
 			sourceTree = "<group>";
@@ -1677,6 +1685,8 @@
 			children = (
 				87426ACF2133D6CF003C52F6 /* FSTableView.h */,
 				87426AD02133D6CF003C52F6 /* FSTableView.m */,
+				87426AD22133F3C8003C52F6 /* FSTableViewVC.h */,
+				87426AD32133F3C8003C52F6 /* FSTableViewVC.m */,
 			);
 			path = FSSuperTableVC;
 			sourceTree = "<group>";
@@ -2015,6 +2025,7 @@
 				874268DA212E7E36003C52F6 /* BMNavigationBar.m in Sources */,
 				874268E5212E7E36003C52F6 /* UIView+BMCorner.m in Sources */,
 				874268E3212E7E36003C52F6 /* UIWindow+BMCategory.m in Sources */,
+				87426AD42133F3C8003C52F6 /* FSTableViewVC.m in Sources */,
 				874268F0212E7E36003C52F6 /* UILabel+BMCategory.m in Sources */,
 				874268E7212E7E36003C52F6 /* UIView+BMPositioning.m in Sources */,
 				87426940212E8255003C52F6 /* UIImage+GIF.m in Sources */,
@@ -2125,6 +2136,7 @@
 				87426A7F2131461F003C52F6 /* AFHTTPSessionManager.m in Sources */,
 				87426944212E8255003C52F6 /* SDImageCache.m in Sources */,
 				DB57223B2133A1D90065DC30 /* FSCommunityVC.m in Sources */,
+				87426AD72133F446003C52F6 /* FSSuperNetVC.m in Sources */,
 				87426908212E7E36003C52F6 /* NSString+BMFormat.m in Sources */,
 				874268BE212E7E36003C52F6 /* BMTableViewManager.m in Sources */,
 				874268D8212E7E36003C52F6 /* BMAlertView.m in Sources */,
