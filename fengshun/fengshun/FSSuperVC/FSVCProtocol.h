@@ -32,6 +32,7 @@
 
 // 设置具体的API请求
 - (NSMutableURLRequest *)setLoadDataRequest;
+- (NSMutableURLRequest *)setLoadDataRequestWithFresh:(BOOL)isLoadNew;
 // API请求成功的代理方法
 - (void)loadDataResponseFinished:(NSURLResponse *)response responseDic:(NSDictionary *)responseDic;
 // API请求失败的代理方法，一般不需要重写
@@ -48,6 +49,14 @@
 - (void)bringSomeViewToFront;
 
 @optional
+
+// 获取下一页
+- (void)loadNextApiData;
+
+// 全部获取数据判断
+- (BOOL)checkLoadFinish:(NSDictionary *)requestDic;
+
+- (void)loadDateFinished:(BOOL)isNoMoreData;
 
 @end
 

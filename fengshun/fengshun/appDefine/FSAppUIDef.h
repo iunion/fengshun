@@ -130,4 +130,34 @@
 #define UI_NUMFONT_50       UI_NUMBER_FONT(50.0f)
 #define UI_NUMFONT_70       UI_NUMBER_FONT(70.0f)
 
+
+// View背景颜色
+#define FS_VIEW_BGCOLOR                     UI_COLOR_B7
+
+// 导航条背景颜色
+#define FS_NAVIGATION_BGCOLOR_VALUE         UI_COLOR_R1_VALU
+#define FS_NAVIGATION_BGCOLOR               [UIColor bm_colorWithHex:UI_NAVIGATION_BGCOLOR_VALUE]
+
+// 工具条背景颜色
+#define FS_BAR_BGCOLOR                      UI_COLOR_B6
+#define FS_BAR_TEXTNORMALCOLOR              UI_COLOR_B2
+#define FS_BAR_TEXTSELECTCOLOR              UI_COLOR_R1
+
+// 文本颜色
+#define FS_TITLE_TEXTCOLOR                  UI_COLOR_B1
+#define FS_CONTENT_TEXTCOLOR                UI_COLOR_B2
+#define FS_DETAIL_TEXTCOLOR                 UI_COLOR_B2
+#define FS_COUNT_TEXTCOLOR                  UI_COLOR_R1
+#define FS_OTHER_TEXTCOLOR                  UI_COLOR_B2
+
+// Cell背景颜色
+#define FS_TABLECELL_BGCOLOR                UI_COLOR_B8
+// Cell选中状态背景颜色
+#define UI_TABLECELL_SELECTBGCOLOR          UI_COLOR_B5
+#define UI_TABLECELL_HIGHLIGHTBGCOLOR       UI_COLOR_R1
+
+// 分割线颜色
+#define FS_LINECOLOR                        UI_COLOR_B6
+
+
 #endif /* FSAppUIDef_h */

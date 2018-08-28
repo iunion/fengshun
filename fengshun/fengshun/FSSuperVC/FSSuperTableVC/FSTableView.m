@@ -44,9 +44,16 @@
     {
         BMFreshFiveStarHeader *refreshHeaderView = [[BMFreshFiveStarHeader alloc] init];
         self.bm_freshHeaderView = refreshHeaderView;
+
         refreshHeaderView.starWidth = 40;
         refreshHeaderView.beginFreshingBlock = ^(BMFreshBaseView *freshView) {
             [weakSelf.tableViewDelegate freshDataWithTableView:self];
+        };
+        refreshHeaderView.endFreshingBlock = ^(BMFreshBaseView *freshView) {
+            if ([weakSelf.tableViewDelegate respondsToSelector:@selector(resetTableViewFreshState:)])
+            {
+                [weakSelf.tableViewDelegate resetTableViewFreshState:weakSelf.bm_freshHeaderView];
+            }
         };
     }
     
@@ -54,11 +61,18 @@
     if (_m_FreshViewType & BMFreshViewType_Bottom)
     {
         BMFreshAutoNormalFooter *refreshFooterView = [[BMFreshAutoNormalFooter alloc] init];
+        self.bm_freshFooterView = refreshFooterView;
+
         refreshFooterView.containerSize = CGSizeMake(28.0f, 28.0f);
         refreshFooterView.beginFreshingBlock = ^(BMFreshBaseView *freshView) {
             [weakSelf.tableViewDelegate loadNextDataWithTableView:self];
         };
-        self.bm_freshFooterView = refreshFooterView;
+        refreshFooterView.endFreshingBlock = ^(BMFreshBaseView *freshView) {
+            if ([weakSelf.tableViewDelegate respondsToSelector:@selector(resetTableViewFreshState:)])
+            {
+                [weakSelf.tableViewDelegate resetTableViewFreshState:weakSelf.bm_freshFooterView];
+            }
+        };
     }
     
     [self bringSomeViewToFront];
@@ -79,5 +93,9 @@
     [self.bm_emptyView bm_bringToFront];
 }
 
+- (void)freshView:(BMFreshBaseView *)freshView changeState:(BMFreshState)state
+{
+    
+}
 
 @end
