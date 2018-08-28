@@ -15,16 +15,15 @@
 
 @interface XMUploadFile : NSObject
 
-@property(nonatomic,copy)NSString *fileName;
-@property(nonatomic,strong)NSData *fileData;
+@property (nonatomic, copy) NSString *fileName;
+@property (nonatomic, strong) NSData *fileData;
 
 // text/xml, image/png等
-@property(nonatomic,copy)NSString *mimeType;
+@property (nonatomic, copy) NSString *mimeType;
 
-+(instancetype)uploadFileWithName:(NSString *)fileName mimeType:(NSString *)mimeType andData:(NSData *)fileData;
++ (instancetype)uploadFileWithName:(NSString *)fileName mimeType:(NSString *)mimeType andData:(NSData *)fileData;
 
 @end
-
 
 
 @interface XMRequestManager : NSObject
@@ -33,32 +32,32 @@
 
 
 // 发送网络请求的一般方法
-+(XMRequest *)rm_requestWithApi:(NSString *)api parameters:(NSDictionary *)parameters
-                        success:(nullable XMSuccessBlock)successBlock
-                        failure:(nullable XMFailureBlock)failureBlock;
-
-// 发送网络请求的全能方法
-+(XMRequest *)rm_requestWithServer:(NSString *)server api:(NSString *)api method:(XMHTTPMethodType)methodType parameters:(NSDictionary *)parameters timeoutInterval:(NSTimeInterval)timeoutInterval
-                           success:(nullable XMSuccessBlock)successBlock
-                           failure:(nullable XMFailureBlock)failureBlock;
-// 上传请求的一般方法
-+(XMRequest *)rm_uploadFiles:(NSArray<XMUploadFile *>*)files forAPI:(NSString *)api dataKey:(NSString *)dataKey parameters:(NSDictionary *)parameters
-                     success:(nullable XMSuccessBlock)successBlock
-                     failure:(nullable XMFailureBlock)failureBlock;
-
-// 上传请求的全能方法
-+(XMRequest *)rm_uploadFiles:(NSArray<XMUploadFile *>*)files withServer:(NSString *)server api:(NSString *)api dataKey:(NSString *)dataKey parameters:(NSDictionary *)parameters
-                     success:(nullable XMSuccessBlock)successBlock
-                     failure:(nullable XMFailureBlock)failureBlock;
-// 下载的一般方法
-+(XMRequest *)rm_downloadWithURL:(NSString *)url savePath:(NSString *)savePath
-                            success:(nullable XMSuccessBlock)successBlock
-                            failure:(nullable XMFailureBlock)failureBlock;
-
-// 下载的全能方法
-+(XMRequest *)rm_downloadWithURL:(NSString *)url savePath:(NSString *)savePath onProgress:(nullable XMProgressBlock)progressBlock
++ (XMRequest *)rm_requestWithApi:(NSString *)api parameters:(NSDictionary *)parameters
                          success:(nullable XMSuccessBlock)successBlock
                          failure:(nullable XMFailureBlock)failureBlock;
+
+// 发送网络请求的全能方法
++ (XMRequest *)rm_requestWithServer:(NSString *)server api:(NSString *)api method:(XMHTTPMethodType)methodType parameters:(NSDictionary *)parameters timeoutInterval:(NSTimeInterval)timeoutInterval
+                            success:(nullable XMSuccessBlock)successBlock
+                            failure:(nullable XMFailureBlock)failureBlock;
+// 上传请求的一般方法
++ (XMRequest *)rm_uploadFiles:(NSArray<XMUploadFile *> *)files forAPI:(NSString *)api dataKey:(NSString *)dataKey parameters:(NSDictionary *)parameters
+                      success:(nullable XMSuccessBlock)successBlock
+                      failure:(nullable XMFailureBlock)failureBlock;
+
+// 上传请求的全能方法
++ (XMRequest *)rm_uploadFiles:(NSArray<XMUploadFile *> *)files withServer:(NSString *)server api:(NSString *)api dataKey:(NSString *)dataKey parameters:(NSDictionary *)parameters
+                      success:(nullable XMSuccessBlock)successBlock
+                      failure:(nullable XMFailureBlock)failureBlock;
+// 下载的一般方法
++ (XMRequest *)rm_downloadWithURL:(NSString *)url savePath:(NSString *)savePath
+                          success:(nullable XMSuccessBlock)successBlock
+                          failure:(nullable XMFailureBlock)failureBlock;
+
+// 下载的全能方法
++ (XMRequest *)rm_downloadWithURL:(NSString *)url savePath:(NSString *)savePath onProgress:(nullable XMProgressBlock)progressBlock
+                          success:(nullable XMSuccessBlock)successBlock
+                          failure:(nullable XMFailureBlock)failureBlock;
 
 
 // 取消一个request,被取消的请求对象（如果存在）会以参数的形式传给 cancel block
