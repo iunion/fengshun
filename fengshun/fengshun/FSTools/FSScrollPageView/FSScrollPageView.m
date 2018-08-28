@@ -1,25 +1,25 @@
 //
-//  MQScrollPageView.m
+//  FSScrollPageView.m
 //  miaoqian
 //
 //  Created by dengjiang on 16/5/10.
 //  Copyright © 2016年 MiaoQian. All rights reserved.
 //
 
-#import "MQScrollPageView.h"
+#import "FSScrollPageView.h"
 //#import "MQTableView.h"
 
 
 
-@interface MQScrollPageView ()
+@interface FSScrollPageView ()
 <
     UIScrollViewDelegate,
-    MQScrollPageSegmentDelegate
+    FSScrollPageSegmentDelegate
 >
 
 @property (nonatomic, assign) BOOL m_IsEqualDivideSegment;
 
-@property (nonatomic, strong) MQScrollPageSegment *m_SegmentBar;
+@property (nonatomic, strong) FSScrollPageSegment *m_SegmentBar;
 @property (nonatomic, strong) UIScrollView *m_ScrollView;
 
 @property (nonatomic, strong) NSMutableArray *m_TitleArray;
@@ -33,7 +33,7 @@
 @end
 
 
-@implementation MQScrollPageView
+@implementation FSScrollPageView
 
 - (instancetype)initWithFrame:(CGRect)frame titleColor:(UIColor *)titleColor selectTitleColor:(UIColor *)selectTitleColor
 {
@@ -59,7 +59,7 @@
     return self;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame titleColor:(UIColor *)titleColor selectTitleColor:(UIColor *)selectTitleColor scrollPageSegment:(MQScrollPageSegment *)scrollPageSegment isSubViewPageSegment:(BOOL)isSubViewPageSegment
+- (instancetype)initWithFrame:(CGRect)frame titleColor:(UIColor *)titleColor selectTitleColor:(UIColor *)selectTitleColor scrollPageSegment:(FSScrollPageSegment *)scrollPageSegment isSubViewPageSegment:(BOOL)isSubViewPageSegment
 {
     self = [super initWithFrame:frame];
     if (self)
@@ -107,7 +107,7 @@
 
 - (void)creatPageSegment
 {
-    self.m_SegmentBar = [[MQScrollPageSegment alloc] initWithTitles:nil titleColor:self.m_TitleColor selectTitleColor:self.m_TitleSelectColor isEqualDivide:self.m_IsEqualDivideSegment];
+    self.m_SegmentBar = [[FSScrollPageSegment alloc] initWithTitles:nil titleColor:self.m_TitleColor selectTitleColor:self.m_TitleSelectColor isEqualDivide:self.m_IsEqualDivideSegment];
     self.m_SegmentBar.bm_width = self.bounds.size.width;
     self.m_SegmentBar.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.m_SegmentBar.delegate = self;
@@ -260,9 +260,9 @@
 
 
 #pragma mark -
-#pragma mark MQScrollPageSegmentDelegate
+#pragma mark FSScrollPageSegmentDelegate
 
-- (void)scrollSegment:(MQScrollPageSegment *)scrollSegment selectedButtonAtIndex:(NSUInteger)index
+- (void)scrollSegment:(FSScrollPageSegment *)scrollSegment selectedButtonAtIndex:(NSUInteger)index
 {
     if (self.m_CurrentIndex != index)
     {

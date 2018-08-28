@@ -1,12 +1,12 @@
 //
-//  MQScrollPageSegment.m
+//  FSScrollPageSegment.m
 //  match
 //
 //  Created by dengjiang on 15/9/22.
 //  Copyright (c) 2015年 SCD. All rights reserved.
 //
 
-#import "MQScrollPageSegment.h"
+#import "FSScrollPageSegment.h"
 #import "BMSingleLineView.h"
 
 
@@ -19,7 +19,7 @@
 #define CIRCLE_RADIUS       10.0f
 
 
-@interface MQScrollPageSegment ()
+@interface FSScrollPageSegment ()
 {
     NSUInteger s_CurrentIndex;
     
@@ -43,7 +43,7 @@
 @end
 
 
-@implementation MQScrollPageSegment
+@implementation FSScrollPageSegment
 
 
 
@@ -57,7 +57,7 @@
 
 - (instancetype)initWithTitles:(NSArray *)titles titleColor:(UIColor *)titleColor selectTitleColor:(UIColor *)selectTitleColor isEqualDivide:(BOOL)isEqualDivide
 {
-    CGRect frame = CGRectMake(0, 0, UI_SCREEN_WIDTH, MQScrollPageSegment_Height);
+    CGRect frame = CGRectMake(0, 0, UI_SCREEN_WIDTH, FSScrollPageSegment_Height);
     
     return [self initWithFrame:frame titles:titles titleColor:titleColor selectTitleColor:selectTitleColor showUnderLine:YES moveLineFrame:CGRectZero isEqualDivide:isEqualDivide fresh:YES];
 }
