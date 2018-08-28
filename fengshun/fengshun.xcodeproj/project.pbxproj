@@ -244,6 +244,7 @@
 		87426AD12133D6CF003C52F6 /* FSTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AD02133D6CF003C52F6 /* FSTableView.m */; };
 		87426AD42133F3C8003C52F6 /* FSTableViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AD32133F3C8003C52F6 /* FSTableViewVC.m */; };
 		87426AD72133F446003C52F6 /* FSSuperNetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AD62133F446003C52F6 /* FSSuperNetVC.m */; };
+		87426ADE213527AC003C52F6 /* FSUserInfoModle.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426ADD213527AC003C52F6 /* FSUserInfoModle.m */; };
 		87C0134B212E7A5200D0AAC3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0134A212E7A5200D0AAC3 /* AppDelegate.m */; };
 		87C0134D212E7A5300D0AAC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87C0134C212E7A5300D0AAC3 /* Assets.xcassets */; };
 		87C01353212E7A5300D0AAC3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C01352212E7A5300D0AAC3 /* main.m */; };
@@ -698,6 +699,8 @@
 		87426AD32133F3C8003C52F6 /* FSTableViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTableViewVC.m; sourceTree = "<group>"; };
 		87426AD52133F446003C52F6 /* FSSuperNetVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSuperNetVC.h; sourceTree = "<group>"; };
 		87426AD62133F446003C52F6 /* FSSuperNetVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSSuperNetVC.m; sourceTree = "<group>"; };
+		87426ADC213527AC003C52F6 /* FSUserInfoModle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSUserInfoModle.h; sourceTree = "<group>"; };
+		87426ADD213527AC003C52F6 /* FSUserInfoModle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSUserInfoModle.m; sourceTree = "<group>"; };
 		87C01346212E7A5200D0AAC3 /* fengshun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fengshun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87C01349212E7A5200D0AAC3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		87C0134A212E7A5200D0AAC3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -1691,6 +1694,23 @@
 			path = FSSuperTableVC;
 			sourceTree = "<group>";
 		};
+		87426ADA2135272B003C52F6 /* FSClassModel */ = {
+			isa = PBXGroup;
+			children = (
+				87426ADB2135272B003C52F6 /* FSUserInfo */,
+			);
+			path = FSClassModel;
+			sourceTree = "<group>";
+		};
+		87426ADB2135272B003C52F6 /* FSUserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				87426ADC213527AC003C52F6 /* FSUserInfoModle.h */,
+				87426ADD213527AC003C52F6 /* FSUserInfoModle.m */,
+			);
+			path = FSUserInfo;
+			sourceTree = "<group>";
+		};
 		87C0133D212E7A5200D0AAC3 = {
 			isa = PBXGroup;
 			children = (
@@ -1721,6 +1741,7 @@
 				87C0134A212E7A5200D0AAC3 /* AppDelegate.m */,
 				87426A6521313C1C003C52F6 /* FSSuperVC */,
 				87426A362131313E003C52F6 /* FSTabBar */,
+				87426ADA2135272B003C52F6 /* FSClassModel */,
 				87426A5B21313915003C52F6 /* mainTab */,
 				DB5722372133A1830065DC30 /* communityTab */,
 				87426ABA2133AA9D003C52F6 /* networkAPI */,
@@ -1996,6 +2017,7 @@
 				874268DF212E7E36003C52F6 /* BMAlignedImageView.m in Sources */,
 				874268B0212E7E36003C52F6 /* BMTableViewImageDetailCell.m in Sources */,
 				874269D7212E9E21003C52F6 /* BMFreshBackNormalFooter.m in Sources */,
+				87426ADE213527AC003C52F6 /* FSUserInfoModle.m in Sources */,
 				87426943212E8255003C52F6 /* SDWebImagePrefetcher.m in Sources */,
 				8742693D212E8255003C52F6 /* SDWebImageDecoder.m in Sources */,
 				8742693F212E8255003C52F6 /* SDWebImageDownloader.m in Sources */,
