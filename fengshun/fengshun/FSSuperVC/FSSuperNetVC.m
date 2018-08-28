@@ -122,6 +122,12 @@
     return nil;
 }
 
+- (NSMutableURLRequest *)setLoadDataRequestWithFresh:(BOOL)isLoadNew
+{
+    // 无用
+    return nil;
+}
+
 - (void)loadDataResponseFinished:(NSURLResponse *)response responseDic:(NSDictionary *)responseDic
 {
     if (!self.m_ShowResultHUD)

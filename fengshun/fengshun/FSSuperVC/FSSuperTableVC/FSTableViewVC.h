@@ -10,6 +10,19 @@
 #import "FSTableView.h"
 
 @interface FSTableViewVC : FSSuperNetVC
+{
+    // 当前页
+    NSUInteger s_LoadedPage;
+    // 备份当前页，用于发请求
+    NSUInteger s_BakLoadedPage;
+    // 总页数
+    NSUInteger s_TotalPage;
+    // 读取完全
+    BOOL s_IsNoMorePage;
+}
+
+// 每页项数/每次读取个数，默认: 20
+@property (nonatomic, assign) NSUInteger m_CountPerPage;
 
 // 用于初始化
 @property (nonatomic, assign) UITableViewStyle m_TableViewStyle;
@@ -22,12 +35,24 @@
 // 内容数据
 @property (nonatomic, strong, readonly) NSMutableArray *m_DataArray;
 
-// 是否下拉刷新
+// 是否刷新数据
 @property (nonatomic, assign, readonly) BOOL m_IsLoadNew;
-
-// 加载数据模式：按页加载/按个数
-@property (nonatomic, assign) FSAPILoadDataType m_LoadDataType;
+// 显示空数据页
+@property (nonatomic, assign) BOOL m_showEmptyView;
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil freshViewType:(BMFreshViewType)freshViewType;
+
+- (void)setFreshTitles:(NSDictionary *)titles;
+- (void)setHeaderFreshTitles:(NSDictionary *)titles;
+- (void)setFooterFreshTitles:(NSDictionary *)titles;
+
+- (void)showEmptyViewWithStatus:(BMEmptyViewStatus)status;
+- (void)showEmptyViewWithStatus:(BMEmptyViewStatus)status action:(BMEmptyViewActionBlock)actionBlock;
+- (void)setEmptyViewActionBlock:(BMEmptyViewActionBlock)actionBlock;
+
+- (void)hideEmptyView;
+
+// 获取api成功时无数据类型
+- (BMEmptyViewStatus)getNoDataEmptyViewStatus;
 
 @end

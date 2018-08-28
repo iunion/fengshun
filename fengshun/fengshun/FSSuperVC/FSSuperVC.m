@@ -31,7 +31,7 @@
     temporaryBarButtonItem.title = @"";
     self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = FS_VIEW_BGCOLOR;
 
 }
 
@@ -57,6 +57,24 @@
         
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+
+
+#pragma mark -
+#pragma mark checkRequestStatus
+
+- (BOOL)checkRequestStatus:(NSInteger)statusCode message:(NSString *)message responseDic:(NSDictionary *)responseDic
+{
+    switch (statusCode)
+    {
+        case 1000:
+            break;
+            
+        default:
+            break;
+    }
+    
+    return YES;
 }
 
 @end

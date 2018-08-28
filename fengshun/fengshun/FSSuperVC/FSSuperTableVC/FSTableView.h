@@ -34,7 +34,7 @@
 
 @optional
 
-//- (void)resetTableViewFreshState:(BMFreshState)state;
+- (void)resetTableViewFreshState:(BMFreshBaseView *)freshView;
 
 - (void)tableViewFreshFromNoDataView:(FSTableView *)tableView;
 

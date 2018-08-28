@@ -244,11 +244,21 @@
 		87426AD12133D6CF003C52F6 /* FSTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AD02133D6CF003C52F6 /* FSTableView.m */; };
 		87426AD42133F3C8003C52F6 /* FSTableViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AD32133F3C8003C52F6 /* FSTableViewVC.m */; };
 		87426AD72133F446003C52F6 /* FSSuperNetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AD62133F446003C52F6 /* FSSuperNetVC.m */; };
+		87426ADE213527AC003C52F6 /* FSUserInfoModle.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426ADD213527AC003C52F6 /* FSUserInfoModle.m */; };
+		87426AEB2135348D003C52F6 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AE12135348D003C52F6 /* FMDatabaseQueue.m */; };
+		87426AEC2135348D003C52F6 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AE42135348D003C52F6 /* FMDatabaseAdditions.m */; };
+		87426AED2135348D003C52F6 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AE52135348D003C52F6 /* FMDatabase.m */; };
+		87426AEE2135348D003C52F6 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AE92135348D003C52F6 /* FMDatabasePool.m */; };
+		87426AEF2135348D003C52F6 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AEA2135348D003C52F6 /* FMResultSet.m */; };
+		87426AF521353510003C52F6 /* FSDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AF321353510003C52F6 /* FSDB.m */; };
+		87426AF621353510003C52F6 /* FSDBVersionCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AF421353510003C52F6 /* FSDBVersionCheck.m */; };
+		87426AF9213536AC003C52F6 /* FSUserInfoDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AF8213536AC003C52F6 /* FSUserInfoDB.m */; };
 		87C0134B212E7A5200D0AAC3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0134A212E7A5200D0AAC3 /* AppDelegate.m */; };
 		87C0134D212E7A5300D0AAC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87C0134C212E7A5300D0AAC3 /* Assets.xcassets */; };
 		87C01353212E7A5300D0AAC3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C01352212E7A5300D0AAC3 /* main.m */; };
 		87C0135D212E7A5300D0AAC3 /* fengshunTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0135C212E7A5300D0AAC3 /* fengshunTests.m */; };
 		87C01368212E7A5300D0AAC3 /* fengshunUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C01367212E7A5300D0AAC3 /* fengshunUITests.m */; };
+		87D1867921353C9000037DDF /* libFSEncodeAPI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87D1867421353A8800037DDF /* libFSEncodeAPI.a */; };
 		AD8B63FE21338E0C006DDC22 /* FSPreviewFileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */; };
 		AD9CAAE4212EA0F40071B941 /* UIScrollView+BMEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9CAAE3212EA0F40071B941 /* UIScrollView+BMEmpty.m */; };
 		DB57222F21338B6E0065DC30 /* XMRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB57222D21338B6E0065DC30 /* XMRequestManager.m */; };
@@ -272,6 +282,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 87C01345212E7A5200D0AAC3;
 			remoteInfo = fengshun;
+		};
+		87D1867321353A8800037DDF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87D1866F21353A8700037DDF /* FSEncodeAPI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 87D1866321353A8700037DDF;
+			remoteInfo = FSEncodeAPI;
+		};
+		87D1867521353C3D00037DDF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87D1866F21353A8700037DDF /* FSEncodeAPI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 87D1866221353A8700037DDF;
+			remoteInfo = FSEncodeAPI;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -698,6 +722,25 @@
 		87426AD32133F3C8003C52F6 /* FSTableViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTableViewVC.m; sourceTree = "<group>"; };
 		87426AD52133F446003C52F6 /* FSSuperNetVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSuperNetVC.h; sourceTree = "<group>"; };
 		87426AD62133F446003C52F6 /* FSSuperNetVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSSuperNetVC.m; sourceTree = "<group>"; };
+		87426ADC213527AC003C52F6 /* FSUserInfoModle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSUserInfoModle.h; sourceTree = "<group>"; };
+		87426ADD213527AC003C52F6 /* FSUserInfoModle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSUserInfoModle.m; sourceTree = "<group>"; };
+		87426AE02135348D003C52F6 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		87426AE12135348D003C52F6 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		87426AE22135348D003C52F6 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		87426AE32135348D003C52F6 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		87426AE42135348D003C52F6 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		87426AE52135348D003C52F6 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		87426AE62135348D003C52F6 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		87426AE72135348D003C52F6 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		87426AE82135348D003C52F6 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		87426AE92135348D003C52F6 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		87426AEA2135348D003C52F6 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		87426AF121353510003C52F6 /* FSDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSDB.h; sourceTree = "<group>"; };
+		87426AF221353510003C52F6 /* FSDBVersionCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSDBVersionCheck.h; sourceTree = "<group>"; };
+		87426AF321353510003C52F6 /* FSDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSDB.m; sourceTree = "<group>"; };
+		87426AF421353510003C52F6 /* FSDBVersionCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSDBVersionCheck.m; sourceTree = "<group>"; };
+		87426AF7213536AC003C52F6 /* FSUserInfoDB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSUserInfoDB.h; sourceTree = "<group>"; };
+		87426AF8213536AC003C52F6 /* FSUserInfoDB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSUserInfoDB.m; sourceTree = "<group>"; };
 		87C01346212E7A5200D0AAC3 /* fengshun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fengshun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87C01349212E7A5200D0AAC3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		87C0134A212E7A5200D0AAC3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -710,6 +753,8 @@
 		87C01363212E7A5300D0AAC3 /* fengshunUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fengshunUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		87C01367212E7A5300D0AAC3 /* fengshunUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = fengshunUITests.m; sourceTree = "<group>"; };
 		87C01369212E7A5300D0AAC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		87D1866F21353A8700037DDF /* FSEncodeAPI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FSEncodeAPI.xcodeproj; path = FSEncodeAPI/FSEncodeAPI.xcodeproj; sourceTree = "<group>"; };
+		87D1867A213541BE00037DDF /* FSUserInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSUserInfo.h; sourceTree = "<group>"; };
 		AD8B63FC21338E0C006DDC22 /* FSPreviewFileTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSPreviewFileTool.h; sourceTree = "<group>"; };
 		AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSPreviewFileTool.m; sourceTree = "<group>"; };
 		AD9CAAE2212EA0F40071B941 /* UIScrollView+BMEmpty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+BMEmpty.h"; sourceTree = "<group>"; };
@@ -730,6 +775,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87D1867921353C9000037DDF /* libFSEncodeAPI.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1211,6 +1257,7 @@
 			isa = PBXGroup;
 			children = (
 				87426A6F2131461F003C52F6 /* AFNetworking */,
+				87426ADF2135348D003C52F6 /* fmdb */,
 				87426ACA2133D5E9003C52F6 /* MBProgressHUD */,
 				87426AB52133A504003C52F6 /* OpenUDID */,
 				87426AC62133AC44003C52F6 /* Reachability */,
@@ -1591,9 +1638,10 @@
 		87426A9821314996003C52F6 /* FSTools */ = {
 			isa = PBXGroup;
 			children = (
-				DB5722302133A0BF0065DC30 /* FSScrollPageView */,
-				AD8B63FA21338DC3006DDC22 /* FSPreviewFileTool */,
 				87426A9D213156D5003C52F6 /* FSBannerView */,
+				87426AF021353510003C52F6 /* FSDB */,
+				AD8B63FA21338DC3006DDC22 /* FSPreviewFileTool */,
+				DB5722302133A0BF0065DC30 /* FSScrollPageView */,
 				87426A9921314996003C52F6 /* FSSearchViewController */,
 			);
 			path = FSTools;
@@ -1691,6 +1739,55 @@
 			path = FSSuperTableVC;
 			sourceTree = "<group>";
 		};
+		87426ADA2135272B003C52F6 /* FSClassModel */ = {
+			isa = PBXGroup;
+			children = (
+				87426ADB2135272B003C52F6 /* FSUserInfo */,
+			);
+			path = FSClassModel;
+			sourceTree = "<group>";
+		};
+		87426ADB2135272B003C52F6 /* FSUserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				87D1867A213541BE00037DDF /* FSUserInfo.h */,
+				87426ADC213527AC003C52F6 /* FSUserInfoModle.h */,
+				87426ADD213527AC003C52F6 /* FSUserInfoModle.m */,
+				87426AF7213536AC003C52F6 /* FSUserInfoDB.h */,
+				87426AF8213536AC003C52F6 /* FSUserInfoDB.m */,
+			);
+			path = FSUserInfo;
+			sourceTree = "<group>";
+		};
+		87426ADF2135348D003C52F6 /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				87426AE72135348D003C52F6 /* FMDB.h */,
+				87426AE02135348D003C52F6 /* FMDatabase.h */,
+				87426AE52135348D003C52F6 /* FMDatabase.m */,
+				87426AE82135348D003C52F6 /* FMDatabaseAdditions.h */,
+				87426AE42135348D003C52F6 /* FMDatabaseAdditions.m */,
+				87426AE32135348D003C52F6 /* FMDatabasePool.h */,
+				87426AE92135348D003C52F6 /* FMDatabasePool.m */,
+				87426AE62135348D003C52F6 /* FMDatabaseQueue.h */,
+				87426AE12135348D003C52F6 /* FMDatabaseQueue.m */,
+				87426AE22135348D003C52F6 /* FMResultSet.h */,
+				87426AEA2135348D003C52F6 /* FMResultSet.m */,
+			);
+			path = fmdb;
+			sourceTree = "<group>";
+		};
+		87426AF021353510003C52F6 /* FSDB */ = {
+			isa = PBXGroup;
+			children = (
+				87426AF121353510003C52F6 /* FSDB.h */,
+				87426AF321353510003C52F6 /* FSDB.m */,
+				87426AF221353510003C52F6 /* FSDBVersionCheck.h */,
+				87426AF421353510003C52F6 /* FSDBVersionCheck.m */,
+			);
+			path = FSDB;
+			sourceTree = "<group>";
+		};
 		87C0133D212E7A5200D0AAC3 = {
 			isa = PBXGroup;
 			children = (
@@ -1699,6 +1796,7 @@
 				87C01348212E7A5200D0AAC3 /* fengshun */,
 				87C0135B212E7A5300D0AAC3 /* fengshunTests */,
 				87C01366212E7A5300D0AAC3 /* fengshunUITests */,
+				87D18659213539EE00037DDF /* Frameworks */,
 				87C01347212E7A5200D0AAC3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -1721,6 +1819,7 @@
 				87C0134A212E7A5200D0AAC3 /* AppDelegate.m */,
 				87426A6521313C1C003C52F6 /* FSSuperVC */,
 				87426A362131313E003C52F6 /* FSTabBar */,
+				87426ADA2135272B003C52F6 /* FSClassModel */,
 				87426A5B21313915003C52F6 /* mainTab */,
 				DB5722372133A1830065DC30 /* communityTab */,
 				87426ABA2133AA9D003C52F6 /* networkAPI */,
@@ -1757,6 +1856,22 @@
 				87C01352212E7A5300D0AAC3 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		87D18659213539EE00037DDF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				87D1866F21353A8700037DDF /* FSEncodeAPI.xcodeproj */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		87D1867021353A8700037DDF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				87D1867421353A8800037DDF /* libFSEncodeAPI.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		AD8B63FA21338DC3006DDC22 /* FSPreviewFileTool */ = {
@@ -1803,6 +1918,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				87D1867621353C3D00037DDF /* PBXTargetDependency */,
 			);
 			name = fengshun;
 			productName = fengshun;
@@ -1878,6 +1994,12 @@
 			mainGroup = 87C0133D212E7A5200D0AAC3;
 			productRefGroup = 87C01347212E7A5200D0AAC3 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 87D1867021353A8700037DDF /* Products */;
+					ProjectRef = 87D1866F21353A8700037DDF /* FSEncodeAPI.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				87C01345212E7A5200D0AAC3 /* fengshun */,
@@ -1886,6 +2008,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		87D1867421353A8800037DDF /* libFSEncodeAPI.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFSEncodeAPI.a;
+			remoteRef = 87D1867321353A8800037DDF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		87C01344212E7A5200D0AAC3 /* Resources */ = {
@@ -1996,6 +2128,7 @@
 				874268DF212E7E36003C52F6 /* BMAlignedImageView.m in Sources */,
 				874268B0212E7E36003C52F6 /* BMTableViewImageDetailCell.m in Sources */,
 				874269D7212E9E21003C52F6 /* BMFreshBackNormalFooter.m in Sources */,
+				87426ADE213527AC003C52F6 /* FSUserInfoModle.m in Sources */,
 				87426943212E8255003C52F6 /* SDWebImagePrefetcher.m in Sources */,
 				8742693D212E8255003C52F6 /* SDWebImageDecoder.m in Sources */,
 				8742693F212E8255003C52F6 /* SDWebImageDownloader.m in Sources */,
@@ -2021,6 +2154,7 @@
 				87426A5F21313940003C52F6 /* FSMainVC.m in Sources */,
 				87426A9721314747003C52F6 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				874268C9212E7E36003C52F6 /* BMCheckBoxGroupItem.m in Sources */,
+				87426AED2135348D003C52F6 /* FMDatabase.m in Sources */,
 				8742693C212E8255003C52F6 /* SDWebImageManager.m in Sources */,
 				874268DA212E7E36003C52F6 /* BMNavigationBar.m in Sources */,
 				874268E5212E7E36003C52F6 /* UIView+BMCorner.m in Sources */,
@@ -2044,6 +2178,8 @@
 				8742690B212E7E36003C52F6 /* NSArray+BMCategory.m in Sources */,
 				8742690D212E7E36003C52F6 /* NSNumber+BMCategory.m in Sources */,
 				87426AB82133A504003C52F6 /* OpenUDID.m in Sources */,
+				87426AEE2135348D003C52F6 /* FMDatabasePool.m in Sources */,
+				87426AEC2135348D003C52F6 /* FMDatabaseAdditions.m in Sources */,
 				874268B3212E7E36003C52F6 /* BMTableViewCellStyle.m in Sources */,
 				87426AA8213156D5003C52F6 /* FSPageBannerView.m in Sources */,
 				87426A7E2131461F003C52F6 /* AFURLResponseSerialization.m in Sources */,
@@ -2087,6 +2223,7 @@
 				874269BB212E9B78003C52F6 /* BMFreshNormalHeader.m in Sources */,
 				874268A6212E7E36003C52F6 /* BMStepperInputView.m in Sources */,
 				87C0134B212E7A5200D0AAC3 /* AppDelegate.m in Sources */,
+				87426AF521353510003C52F6 /* FSDB.m in Sources */,
 				874268D3212E7E36003C52F6 /* BMCheckBoxLabel.m in Sources */,
 				874268BD212E7E36003C52F6 /* BMTableViewItem.m in Sources */,
 				874269C7212E9B78003C52F6 /* BMFreshAutoNormalFooter.m in Sources */,
@@ -2138,7 +2275,9 @@
 				DB57223B2133A1D90065DC30 /* FSCommunityVC.m in Sources */,
 				87426AD72133F446003C52F6 /* FSSuperNetVC.m in Sources */,
 				87426908212E7E36003C52F6 /* NSString+BMFormat.m in Sources */,
+				87426AF9213536AC003C52F6 /* FSUserInfoDB.m in Sources */,
 				874268BE212E7E36003C52F6 /* BMTableViewManager.m in Sources */,
+				87426AEF2135348D003C52F6 /* FMResultSet.m in Sources */,
 				874268D8212E7E36003C52F6 /* BMAlertView.m in Sources */,
 				8742694A212E8255003C52F6 /* UIView+WebCacheOperation.m in Sources */,
 				AD9CAAE4212EA0F40071B941 /* UIScrollView+BMEmpty.m in Sources */,
@@ -2154,6 +2293,7 @@
 				874268BF212E7E36003C52F6 /* BMMaskTextItem.m in Sources */,
 				87426A812131461F003C52F6 /* AFURLRequestSerialization.m in Sources */,
 				87426AC32133AA9D003C52F6 /* FSApiRequest.m in Sources */,
+				87426AF621353510003C52F6 /* FSDBVersionCheck.m in Sources */,
 				87426904212E7E36003C52F6 /* NSString+BMMandarinLatin.m in Sources */,
 				874268A8212E7E36003C52F6 /* BMTableViewTextCell.m in Sources */,
 				87426902212E7E36003C52F6 /* NSData+BMCategory.m in Sources */,
@@ -2163,6 +2303,7 @@
 				87426942212E8255003C52F6 /* SDWebImageCompat.m in Sources */,
 				87426AC92133AC44003C52F6 /* Reachability.m in Sources */,
 				874269C1212E9B78003C52F6 /* BMFreshArcHeader.m in Sources */,
+				87426AEB2135348D003C52F6 /* FMDatabaseQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2194,6 +2335,11 @@
 			isa = PBXTargetDependency;
 			target = 87C01345212E7A5200D0AAC3 /* fengshun */;
 			targetProxy = 87C01364212E7A5300D0AAC3 /* PBXContainerItemProxy */;
+		};
+		87D1867621353C3D00037DDF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FSEncodeAPI;
+			targetProxy = 87D1867521353C3D00037DDF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2318,6 +2464,10 @@
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fengshun/fengshun-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					/usr/include/libxml2,
+					"$(PROJECT_DIR)/FSEncodeAPI/FSEncodeAPI",
+				);
 				INFOPLIST_FILE = fengshun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2344,6 +2494,10 @@
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fengshun/fengshun-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					/usr/include/libxml2,
+					"$(PROJECT_DIR)/FSEncodeAPI/FSEncodeAPI",
+				);
 				INFOPLIST_FILE = fengshun/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (

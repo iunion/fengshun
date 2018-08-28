@@ -11,6 +11,8 @@
 #import "FSLocation.h"
 #import "FSCoreStatus.h"
 
+#import "FSUserInfo.h"
+
 @interface AppDelegate ()
 <
     CLLocationManagerDelegate,
@@ -24,8 +26,16 @@
 
 @implementation AppDelegate
 
+- (void)dealloc
+{
+    [FSCoreStatus endMonitorNetwork:self];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceBatteryStateDidChangeNotification object:nil];
+    
+    [self removeObserver:self forKeyPath:@"m_UserInfo"];
+}
 
-- (void)dfdddd
+- (void)setUpApp
 {
     // Flush all cached data
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
@@ -60,10 +70,21 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(batteryChangedForLocationManager) name:UIDeviceBatteryStateDidChangeNotification object:nil];
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     // TODO: Substitute UIViewController with your own subclass.
+
+    [self setUpApp];
+    
+    // 添加观察者，监听用户信息的改变
+    [self addObserver:self forKeyPath:@"m_UserInfo" options:NSKeyValueObservingOptionNew context:nil];
+    self.m_UserInfo = [FSUserInfoDB getUserInfoWithUserId:[FSUserInfoModle getCurrentUserId]];
+    if (!self.m_UserInfo)
+    {
+        self.m_UserInfo = [[FSUserInfoModle alloc] init];
+    }
 
     FSTabBarController *tabBarController = [[FSTabBarController alloc] initWithDefaultItems];
     [tabBarController addViewControllers];
@@ -72,7 +93,18 @@
     self.window.rootViewController = tabBarController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
     return YES;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"m_UserInfo"])
+    {
+#warning 刷新web用户数据
+        // 刷新web用户数据
+        //[[NSNotificationCenter defaultCenter] postNotificationName:freshWebViewNotification object:nil userInfo:nil];
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
