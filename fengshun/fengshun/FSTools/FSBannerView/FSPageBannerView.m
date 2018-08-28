@@ -33,6 +33,9 @@
 @property (nonatomic, weak) UIPageControl *pageControl;
 @property (nonatomic, weak) UIButton *closeButton;
 
+// 是否开启滚动缩放
+@property (nonatomic, assign) BOOL rollingScale;
+
 // 存放所有需要滚动的图片URL NSString
 @property (nonatomic, strong) NSArray *imageArray;
 
@@ -57,7 +60,7 @@
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(rollingScrollAction) object:nil];
 }
 
-- (instancetype)initWithFrame:(CGRect)frame scrollDirection:(FSBannerViewScrollDirection)direction images:(NSArray *)images pageWidth:(CGFloat)pageWidth padding:(CGFloat)padding
+- (instancetype)initWithFrame:(CGRect)frame scrollDirection:(FSBannerViewScrollDirection)direction images:(NSArray *)images pageWidth:(CGFloat)pageWidth padding:(CGFloat)padding rollingScale:(BOOL)rollingScale
 {
     self = [super initWithFrame:frame];
 
@@ -72,6 +75,8 @@
         _imageArray = [[NSArray alloc] initWithArray:images];
         
         _scrollDirection = direction;
+        
+        _rollingScale = rollingScale;
         
         // 第一张图片在图片数组的位置
         startPageIndex = _cacheSize/2;
@@ -328,6 +333,69 @@
 
 #pragma mark - Custom Method
 
+- (void)scaleWhenRolling
+{
+    UIImageView *centerImageView = (UIImageView *)[self.scrollView viewWithTag:FSBanner_StartTag + startPageIndex];
+    UIImageView *leftImageView   = (UIImageView *)[self.scrollView viewWithTag:FSBanner_StartTag + startPageIndex - 1];
+    UIImageView *rightImageView  = (UIImageView *)[self.scrollView viewWithTag:FSBanner_StartTag + startPageIndex + 1];
+    UIImageView *left2ImageView  = (UIImageView *)[self.scrollView viewWithTag:FSBanner_StartTag + startPageIndex - 2];
+    UIImageView *right2ImageView = (UIImageView *)[self.scrollView viewWithTag:FSBanner_StartTag + startPageIndex + 2];
+    CGRect       centerframe     = [_scrollView convertRect:centerImageView.superview.frame toView:self];
+    CGRect       leftframe       = [_scrollView convertRect:leftImageView.superview.frame toView:self];
+    CGRect       rightframe      = [_scrollView convertRect:rightImageView.superview.frame toView:self];
+    CGRect       left2frame      = [_scrollView convertRect:left2ImageView.superview.frame toView:self];
+    CGRect       right2frame     = [_scrollView convertRect:right2ImageView.superview.frame toView:self];
+
+    CGFloat normalOffset = _pageWidth + _pagePadding;
+    CGFloat unitScale    = (1.0 - FSMinScale) / normalOffset;
+    if (self.scrollDirection == FSBannerViewScrollDirectionLandscape)
+    {
+        //横向,根据x的偏移计算
+
+        CGFloat centerPoint = self.bounds.size.width / 2;
+
+        CGFloat centerOffsetX = ABS(CGRectGetMidX(centerframe) - centerPoint);
+        CGFloat leftOffsetX   = ABS(CGRectGetMidX(leftframe) - centerPoint);
+        CGFloat rightOffsetX  = ABS(CGRectGetMidX(rightframe) - centerPoint);
+        CGFloat left2OffsetX  = ABS(CGRectGetMidX(left2frame) - centerPoint);
+        CGFloat right2OffsetX = ABS(CGRectGetMidX(right2frame) - centerPoint);
+
+        CGFloat centerScale = 1.0 - (centerOffsetX * unitScale);
+        CGFloat leftScale   = 1.0 - (leftOffsetX * unitScale);
+        CGFloat rightScale  = 1.0 - (rightOffsetX * unitScale);
+        CGFloat left2Scale  = 1.0 - (left2OffsetX * unitScale);
+        CGFloat right2Scale = 1.0 - (right2OffsetX * unitScale);
+
+        centerImageView.layer.transform = CATransform3DMakeScale(centerScale, centerScale, centerScale);
+        leftImageView.layer.transform   = CATransform3DMakeScale(leftScale, leftScale, leftScale);
+        rightImageView.layer.transform  = CATransform3DMakeScale(rightScale, rightScale, rightScale);
+        left2ImageView.layer.transform  = CATransform3DMakeScale(left2Scale, left2Scale, left2Scale);
+        right2ImageView.layer.transform = CATransform3DMakeScale(right2Scale, right2Scale, right2Scale);
+    }
+    else if (_scrollDirection == FSBannerViewScrollDirectionPortait)
+    {
+        CGFloat centerPoint = self.bounds.size.height / 2;
+
+        CGFloat centerOffsetY = ABS(CGRectGetMidY(centerframe) - centerPoint);
+        CGFloat leftOffsetY   = ABS(CGRectGetMidY(leftframe) - centerPoint);
+        CGFloat rightOffsetY  = ABS(CGRectGetMidY(rightframe) - centerPoint);
+        CGFloat left2OffsetY  = ABS(CGRectGetMidY(left2frame) - centerPoint);
+        CGFloat right2OffsetY = ABS(CGRectGetMidY(right2frame) - centerPoint);
+
+        CGFloat centerScale = 1.0 - (centerOffsetY * unitScale);
+        CGFloat leftScale   = 1.0 - (leftOffsetY * unitScale);
+        CGFloat rightScale  = 1.0 - (rightOffsetY * unitScale);
+        CGFloat left2Scale  = 1.0 - (left2OffsetY * unitScale);
+        CGFloat right2Scale = 1.0 - (right2OffsetY * unitScale);
+
+        centerImageView.layer.transform = CATransform3DMakeScale(centerScale, centerScale, centerScale);
+        leftImageView.layer.transform   = CATransform3DMakeScale(leftScale, leftScale, leftScale);
+        rightImageView.layer.transform  = CATransform3DMakeScale(rightScale, rightScale, rightScale);
+        left2ImageView.layer.transform  = CATransform3DMakeScale(left2Scale, left2Scale, left2Scale);
+        right2ImageView.layer.transform = CATransform3DMakeScale(right2Scale, right2Scale, right2Scale);
+    }
+}
+
 - (void)refreshScrollView
 {
     NSArray *curimageClass = [self getDisplayImagesWithPageIndex:self.currentPage];
@@ -335,12 +403,15 @@
     for (NSInteger i = 0; i < self.cacheSize; i++)
     {
         UIImageView *imageView = (UIImageView *)[self.scrollView viewWithTag:FSBanner_StartTag+i];
-        if (i == startPageIndex-1 || i == startPageIndex+1) {
-            imageView.layer.transform = CATransform3DMakeScale(FSMinScale, FSMinScale, FSMinScale);
-        }
-        else if (i == startPageIndex-2 || i == startPageIndex+2)
-        {
-            imageView.layer.transform = CATransform3DMakeScale(2*FSMinScale-1, 2*FSMinScale-1, 2*FSMinScale-1);
+        if (_rollingScale) {
+            // 缩放复位
+            if (i == startPageIndex-1 || i == startPageIndex+1) {
+                imageView.layer.transform = CATransform3DMakeScale(FSMinScale, FSMinScale, FSMinScale);
+            }
+            else if (i == startPageIndex-2 || i == startPageIndex+2)
+            {
+                imageView.layer.transform = CATransform3DMakeScale(2*FSMinScale-1, 2*FSMinScale-1, 2*FSMinScale-1);
+            }
         }
         NSString *url = curimageClass[i];
         if (imageView && [imageView isKindOfClass:[UIImageView class]])
@@ -415,41 +486,7 @@
     NSInteger y = aScrollView.contentOffset.y;
 //    NSLog(@"did  x=%d  y=%d", x, y);
 
-    UIImageView *centerImageView = (UIImageView *)[self.scrollView viewWithTag:FSBanner_StartTag + startPageIndex];
-    UIImageView *leftImageView   = (UIImageView *)[self.scrollView viewWithTag:FSBanner_StartTag + startPageIndex - 1];
-    UIImageView *rightImageView  = (UIImageView *)[self.scrollView viewWithTag:FSBanner_StartTag + startPageIndex + 1];
-    UIImageView *left2ImageView   = (UIImageView *)[self.scrollView viewWithTag:FSBanner_StartTag + startPageIndex - 2];
-    UIImageView *right2ImageView  = (UIImageView *)[self.scrollView viewWithTag:FSBanner_StartTag + startPageIndex + 2];
-    if (self.scrollDirection == FSBannerViewScrollDirectionLandscape) {
-        //横向,根据x的偏移计算
-        CGRect centerframe = [_scrollView convertRect:centerImageView.superview.frame toView:self];
-        CGRect leftframe = [_scrollView convertRect:leftImageView.superview.frame toView:self];
-        CGRect rightframe = [_scrollView convertRect:rightImageView.superview.frame toView:self];
-        CGRect left2frame = [_scrollView convertRect:left2ImageView.superview.frame toView:self];
-        CGRect right2frame = [_scrollView convertRect:right2ImageView.superview.frame toView:self];
-        
-        CGFloat normalOffsetX = _pageWidth + _pagePadding;
-        CGFloat unitScale = (1.0 - FSMinScale)/normalOffsetX;
-        CGFloat centerPoint = self.bounds.size.width/2;
-        
-        CGFloat centerOffsetX = ABS(CGRectGetMidX(centerframe) - centerPoint);
-        CGFloat leftOffsetX = ABS(CGRectGetMidX(leftframe) - centerPoint);
-        CGFloat rightOffsetX = ABS(CGRectGetMidX(rightframe) - centerPoint);
-        CGFloat left2OffsetX = ABS(CGRectGetMidX(left2frame) - centerPoint);
-        CGFloat right2OffsetX = ABS(CGRectGetMidX(right2frame) - centerPoint);
-        
-        CGFloat centerScale = 1.0 - (centerOffsetX * unitScale);
-        CGFloat leftScale = 1.0 - (leftOffsetX * unitScale);
-        CGFloat rightScale = 1.0 - (rightOffsetX * unitScale);
-        CGFloat left2Scale = 1.0 - (left2OffsetX * unitScale);
-        CGFloat right2Scale = 1.0 - (right2OffsetX * unitScale);
-        
-        centerImageView.layer.transform = CATransform3DMakeScale(centerScale, centerScale, centerScale);
-        leftImageView.layer.transform = CATransform3DMakeScale(leftScale, leftScale, leftScale);
-        rightImageView.layer.transform = CATransform3DMakeScale(rightScale, rightScale, rightScale);
-        left2ImageView.layer.transform = CATransform3DMakeScale(left2Scale, left2Scale, left2Scale);
-        right2ImageView.layer.transform = CATransform3DMakeScale(right2Scale, right2Scale, right2Scale);
-    }
+    if(_rollingScale)[self scaleWhenRolling];
     
     if (isRolling)
     {
