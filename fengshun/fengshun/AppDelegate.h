@@ -11,11 +11,14 @@
 
 #define GetAppDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
+@class FSUserInfoModle;
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
 @property (nonatomic, strong) FSTabBarController *m_TabBarController;
+
+@property (nonatomic, strong) FSUserInfoModle *m_UserInfo;
 
 // GPS状态
 - (BOOL)checkCLAuthorizationStatus;

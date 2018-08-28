@@ -35,6 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 用户等级: custLevel
 @property (nonatomic, strong) NSString *m_UserLevel;
 
++ (FSUserInfoModle *)userInfo;
 
 // 用户登录ID
 + (NSString *)getCurrentUserId;
@@ -49,6 +50,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)userInfoWithServerDic:(NSDictionary *)dic isUpDateByUserInfoApi:(BOOL)userInfoAp;
 
 - (void)updateWithServerDic:(NSDictionary *)dic isUpDateByUserInfoApi:(BOOL)userInfoApi;
+
++ (BOOL)isLogin;
++ (void)logOut;
 
 @end
 

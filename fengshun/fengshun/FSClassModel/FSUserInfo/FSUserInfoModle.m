@@ -11,8 +11,15 @@
 #define USERINFO_MOBILE_KEY                 @"userinfo_mobile_key"
 
 #import "FSUserInfoModle.h"
+#import "AppDelegate.h"
+#import "FSUserInfoDB.h"
 
 @implementation FSUserInfoModle
+
++ (FSUserInfoModle *)userInfo
+{
+    return GetAppDelegate.m_UserInfo;
+}
 
 // 用户登录ID
 + (NSString *)getCurrentUserId
@@ -70,7 +77,7 @@
     }
 
     // 数据库读取
-    FSUserInfoModle *userInfo = nil;//[MQUserInfoDB getUserInfoWithUserId:userId];
+    FSUserInfoModle *userInfo = [FSUserInfoDB getUserInfoWithUserId:userId];
     if (!userInfo)
     {
         userInfo = [[FSUserInfoModle alloc] init];
@@ -149,6 +156,24 @@
     
 }
 
++ (BOOL)isLogin
+{
+    FSUserInfoModle *currentUser = GetAppDelegate.m_UserInfo;
+    if ([currentUser.m_UserId bm_isNotEmpty] && [currentUser.m_Token bm_isNotEmpty])
+    {
+        return YES;
+    }
+    
+    return NO;
+}
+
++ (void)logOut
+{
+    [FSUserInfoModle setCurrentUserID:nil];
+    [FSUserInfoModle setCurrentUserToken:nil];
+    
+    GetAppDelegate.m_UserInfo = nil;
+}
 
 
 
