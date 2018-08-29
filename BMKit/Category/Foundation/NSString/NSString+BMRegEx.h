@@ -15,7 +15,8 @@
 #define BMIP_PATTERN                            @"^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
 #define BMMD5_32_PATTERN                        @"^[0-9A-Za-z]{32}$"
 #define BMCHINESE_ID_NUMBER_PATTERN             @"^(^[1-9]\\d{7}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}$)|(^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])((\\d{4})|\\d{3}[Xx])$)$"
-#define BMPASSWORD_PATTERN                      @"^[0-9A-Za-z_\\.\\*\\&\\[\\]\\(\\)\%\\$#@]{6,16}$"
+//#define BMPASSWORD_PATTERN                      @"^[0-9A-Za-z_\\.\\*\\&\\[\\]\\(\\)\%\\$#@]{6,16}$"
+#define BMPASSWORD_PATTERN                      @"^[0-9A-Za-z]{8,16}$"
 #define BMNICKNAME_PATTERN                      @"^(\\s*\\S+\\s*)+$"
 
 

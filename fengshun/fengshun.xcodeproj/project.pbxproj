@@ -260,6 +260,9 @@
 		87C01368212E7A5300D0AAC3 /* fengshunUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C01367212E7A5300D0AAC3 /* fengshunUITests.m */; };
 		87D1867921353C9000037DDF /* libFSEncodeAPI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87D1867421353A8800037DDF /* libFSEncodeAPI.a */; };
 		87D1867E213549B700037DDF /* BMVerifyField.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D1867D213549B600037DDF /* BMVerifyField.m */; };
+		87D1868321364E7D00037DDF /* FSSetTableViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D1868221364E7D00037DDF /* FSSetTableViewVC.m */; };
+		87D1868721365BBB00037DDF /* FSLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D1868521365BBB00037DDF /* FSLoginVC.m */; };
+		87D1868821365BBB00037DDF /* FSLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87D1868621365BBB00037DDF /* FSLoginVC.xib */; };
 		AD8B63FE21338E0C006DDC22 /* FSPreviewFileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */; };
 		AD9CAAE4212EA0F40071B941 /* UIScrollView+BMEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9CAAE3212EA0F40071B941 /* UIScrollView+BMEmpty.m */; };
 		DB57222F21338B6E0065DC30 /* XMRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB57222D21338B6E0065DC30 /* XMRequestManager.m */; };
@@ -758,6 +761,12 @@
 		87D1867A213541BE00037DDF /* FSUserInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSUserInfo.h; sourceTree = "<group>"; };
 		87D1867C213549B600037DDF /* BMVerifyField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMVerifyField.h; sourceTree = "<group>"; };
 		87D1867D213549B600037DDF /* BMVerifyField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMVerifyField.m; sourceTree = "<group>"; };
+		87D1868121364E7D00037DDF /* FSSetTableViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSetTableViewVC.h; sourceTree = "<group>"; };
+		87D1868221364E7D00037DDF /* FSSetTableViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSSetTableViewVC.m; sourceTree = "<group>"; };
+		87D1868421365BBB00037DDF /* FSLoginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSLoginVC.h; sourceTree = "<group>"; };
+		87D1868521365BBB00037DDF /* FSLoginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSLoginVC.m; sourceTree = "<group>"; };
+		87D1868621365BBB00037DDF /* FSLoginVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSLoginVC.xib; sourceTree = "<group>"; };
+		87D1868921365C2A00037DDF /* FSLoginProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSLoginProtocol.h; sourceTree = "<group>"; };
 		AD8B63FC21338E0C006DDC22 /* FSPreviewFileTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSPreviewFileTool.h; sourceTree = "<group>"; };
 		AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSPreviewFileTool.m; sourceTree = "<group>"; };
 		AD9CAAE2212EA0F40071B941 /* UIScrollView+BMEmpty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+BMEmpty.h"; sourceTree = "<group>"; };
@@ -1739,6 +1748,8 @@
 				87426AD02133D6CF003C52F6 /* FSTableView.m */,
 				87426AD22133F3C8003C52F6 /* FSTableViewVC.h */,
 				87426AD32133F3C8003C52F6 /* FSTableViewVC.m */,
+				87D1868121364E7D00037DDF /* FSSetTableViewVC.h */,
+				87D1868221364E7D00037DDF /* FSSetTableViewVC.m */,
 			);
 			path = FSSuperTableVC;
 			sourceTree = "<group>";
@@ -1824,6 +1835,7 @@
 				87426A6521313C1C003C52F6 /* FSSuperVC */,
 				87426A362131313E003C52F6 /* FSTabBar */,
 				87426ADA2135272B003C52F6 /* FSClassModel */,
+				87D1868021364D9600037DDF /* FSLogin */,
 				87426A5B21313915003C52F6 /* mainTab */,
 				DB5722372133A1830065DC30 /* communityTab */,
 				87426ABA2133AA9D003C52F6 /* networkAPI */,
@@ -1885,6 +1897,17 @@
 				87D1867D213549B600037DDF /* BMVerifyField.m */,
 			);
 			path = BMVerifyField;
+			sourceTree = "<group>";
+		};
+		87D1868021364D9600037DDF /* FSLogin */ = {
+			isa = PBXGroup;
+			children = (
+				87D1868921365C2A00037DDF /* FSLoginProtocol.h */,
+				87D1868421365BBB00037DDF /* FSLoginVC.h */,
+				87D1868521365BBB00037DDF /* FSLoginVC.m */,
+				87D1868621365BBB00037DDF /* FSLoginVC.xib */,
+			);
+			path = FSLogin;
 			sourceTree = "<group>";
 		};
 		AD8B63FA21338DC3006DDC22 /* FSPreviewFileTool */ = {
@@ -2078,6 +2101,7 @@
 				87426A22213100BB003C52F6 /* bmsearch_history@2x.png in Resources */,
 				87426893212E7E36003C52F6 /* steppersinput_plusicon@2x.png in Resources */,
 				87426A0C212F9657003C52F6 /* navigationbar_message_icon@3x.png in Resources */,
+				87D1868821365BBB00037DDF /* FSLoginVC.xib in Resources */,
 				874268CF212E7E36003C52F6 /* bmtab_bg@3x.png in Resources */,
 				87426A51213135F0003C52F6 /* fstab_btn2_highIcon@2x.png in Resources */,
 				87426A24213100BB003C52F6 /* bmsearch_searchicon@3x.png in Resources */,
@@ -2137,6 +2161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8742693E212E8255003C52F6 /* UIImageView+HighlightedWebCache.m in Sources */,
+				87D1868721365BBB00037DDF /* FSLoginVC.m in Sources */,
 				874268FC212E7E36003C52F6 /* NSDecimalNumber+BMCategory.m in Sources */,
 				874268DF212E7E36003C52F6 /* BMAlignedImageView.m in Sources */,
 				874268B0212E7E36003C52F6 /* BMTableViewImageDetailCell.m in Sources */,
@@ -2249,6 +2274,7 @@
 				87426906212E7E36003C52F6 /* NSString+BMCategory.m in Sources */,
 				874268F2212E7E36003C52F6 /* UIImage+BMCategory.m in Sources */,
 				874268E0212E7E36003C52F6 /* BMPlaceholderTextView.m in Sources */,
+				87D1868321364E7D00037DDF /* FSSetTableViewVC.m in Sources */,
 				874269BC212E9B78003C52F6 /* BMFreshFiveStarHeader.m in Sources */,
 				874269BF212E9B78003C52F6 /* BMFreshContainerHeaderView.m in Sources */,
 				874268A7212E7E36003C52F6 /* BMTableViewDateTimeCell.m in Sources */,

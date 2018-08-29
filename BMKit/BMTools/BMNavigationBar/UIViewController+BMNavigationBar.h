@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIViewController (BMNavigationBar)
 
 // UIBarStyle
+// 'View controller-based status bar appearance' set YES
+
 @property (nonatomic, assign) UIBarStyle bm_NavigationBarStyle;
 
 // NavigationBar透明度

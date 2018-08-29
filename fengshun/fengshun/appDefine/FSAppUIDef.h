@@ -14,7 +14,7 @@
 
 #pragma mark - Color
 
-#define UI_COLOR_R1_VALU        0xE8373D
+#define UI_NAVIGATION_BGCOLOR_VALU  0x577EEE
 
 #define UI_COLOR_Y1             [UIColor bm_colorWithHex:0xFBD973]
 #define UI_COLOR_Y2             [UIColor bm_colorWithHex:0xECC85A]
@@ -23,8 +23,7 @@
 #define UI_COLOR_Y5             [UIColor bm_colorWithHex:0xF4830B]
 #define UI_COLOR_Y6             [UIColor bm_colorWithHex:0xFFF6DB]
 
-#define UI_COLOR_R1             [UIColor bm_colorWithHex:UI_COLOR_R1_VALU]
-#define UI_COLOR_R1_1           [UIColor bm_colorWithHex:UI_COLOR_R1_VALU alpha:0.5]
+#define UI_COLOR_R1             [UIColor bm_colorWithHex:0xDE3E3E]
 #define UI_COLOR_R2             [UIColor bm_colorWithHex:0xDA2626]
 
 #define UI_COLOR_B1             [UIColor bm_colorWithHex:0x333333]
@@ -32,14 +31,16 @@
 #define UI_COLOR_B3             [UIColor bm_colorWithHex:0x888888]
 #define UI_COLOR_B4             [UIColor bm_colorWithHex:0x999999]
 #define UI_COLOR_B5             [UIColor bm_colorWithHex:0xCCCCCC]
-#define UI_COLOR_B6             [UIColor bm_colorWithHex:0xE6E6E6]
-#define UI_COLOR_B7             [UIColor bm_colorWithHex:0xF8F8F8]
-#define UI_COLOR_B8             [UIColor bm_colorWithHex:0xFFFFFF]
+#define UI_COLOR_B6             [UIColor bm_colorWithHex:0xD8D8D8]
+#define UI_COLOR_B7             [UIColor bm_colorWithHex:0xE6E6E6]
+#define UI_COLOR_B8             [UIColor bm_colorWithHex:0xF5F6F7]
+#define UI_COLOR_B9             [UIColor bm_colorWithHex:0xF8F8F8]
 
-#define UI_COLOR_BL1            [UIColor bm_colorWithHex:0x0099CC]
-#define UI_COLOR_BL2            [UIColor bm_colorWithHex:0x8DC8FE]
-#define UI_COLOR_BL3            [UIColor bm_colorWithHex:0x77CDEA]
-#define UI_COLOR_BL4            [UIColor bm_colorWithHex:0x54C2E7]
+#define UI_COLOR_BL1            [UIColor bm_colorWithHex:0x577EEE]
+#define UI_COLOR_BL2            [UIColor bm_colorWithHex:0x0099CC]
+#define UI_COLOR_BL3            [UIColor bm_colorWithHex:0x8DC8FE]
+#define UI_COLOR_BL4            [UIColor bm_colorWithHex:0x77CDEA]
+#define UI_COLOR_BL5            [UIColor bm_colorWithHex:0x54C2E7]
 
 #define UI_COLOR_G1             [UIColor bm_colorWithHex:0x8ADA30]
 
@@ -132,29 +133,30 @@
 
 
 // View背景颜色
-#define FS_VIEW_BGCOLOR                     UI_COLOR_B7
+#define FS_VIEW_BGCOLOR                     UI_COLOR_B8
 
 // 导航条背景颜色
-#define FS_NAVIGATION_BGCOLOR_VALUE         UI_COLOR_R1_VALU
-#define FS_NAVIGATION_BGCOLOR               [UIColor bm_colorWithHex:UI_NAVIGATION_BGCOLOR_VALUE]
+#define FS_NAVIGATION_BGCOLOR_VALUE         UI_NAVIGATION_BGCOLOR_VALU
+#define FS_NAVIGATION_BGCOLOR               [UIColor bm_colorWithHex:FS_NAVIGATION_BGCOLOR_VALUE]
+#define FS_NAVIGATION_ITEMCOLOR             [UIColor whiteColor]
 
 // 工具条背景颜色
 #define FS_BAR_BGCOLOR                      UI_COLOR_B6
 #define FS_BAR_TEXTNORMALCOLOR              UI_COLOR_B2
-#define FS_BAR_TEXTSELECTCOLOR              UI_COLOR_R1
+#define FS_BAR_TEXTSELECTCOLOR              UI_COLOR_BL1
 
 // 文本颜色
 #define FS_TITLE_TEXTCOLOR                  UI_COLOR_B1
 #define FS_CONTENT_TEXTCOLOR                UI_COLOR_B2
 #define FS_DETAIL_TEXTCOLOR                 UI_COLOR_B2
-#define FS_COUNT_TEXTCOLOR                  UI_COLOR_R1
+#define FS_COUNT_TEXTCOLOR                  UI_COLOR_BL1
 #define FS_OTHER_TEXTCOLOR                  UI_COLOR_B2
 
 // Cell背景颜色
 #define FS_TABLECELL_BGCOLOR                UI_COLOR_B8
 // Cell选中状态背景颜色
 #define UI_TABLECELL_SELECTBGCOLOR          UI_COLOR_B5
-#define UI_TABLECELL_HIGHLIGHTBGCOLOR       UI_COLOR_R1
+#define UI_TABLECELL_HIGHLIGHTBGCOLOR       UI_COLOR_BL1
 
 // 分割线颜色
 #define FS_LINECOLOR                        UI_COLOR_B6

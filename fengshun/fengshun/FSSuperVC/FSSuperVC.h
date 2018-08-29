@@ -10,6 +10,8 @@
 
 #import "FSVCProtocol.h"
 
+#import "FSUserInfo.h"
+
 @interface FSSuperVC : UIViewController
 <
     FSSuperVCProtocol
@@ -22,15 +24,10 @@
 #pragma mark -
 #pragma mark 登录/注册
 
-// 弹出登录/注册
-- (BOOL)showRegist;
+// 弹出登录
 - (BOOL)showLogin;
-
 // 隐藏登录
-- (void)hideLoginRegist;
-
-// 登录注册成功后操作
-- (void)afterLoginFinished;
+- (void)hideLogin;
 
 
 #pragma mark -

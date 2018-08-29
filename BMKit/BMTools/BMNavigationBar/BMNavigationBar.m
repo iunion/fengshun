@@ -101,7 +101,7 @@
 - (void)setBarTintColor:(UIColor *)barTintColor
 {
     [super setBarTintColor:barTintColor];
-    self.effectView.contentView.backgroundColor =  barTintColor;
+    self.effectView.contentView.backgroundColor = barTintColor;
 }
 
 - (void)setShadowImage:(UIImage *)shadowImage

@@ -11,4 +11,12 @@
 
 #define FSAPP_APPNAME       @"fs"
 
+#define FSTABLE_EACHLOAD_COUNT          20
+
+#define FSPHONENUMBER_LENGTH            11
+
+#define FSPASSWORD_MINLENGTH            8
+#define FSPASSWORD_MAXLENGTH            16
+
+
 #endif /* FSAppMacros_h */

@@ -108,9 +108,6 @@
 
 - (void)makeSearchBar
 {
-    self.bm_NavigationShadowHidden = YES;
-    
-    self.bm_NavigationItemTintColor = [UIColor whiteColor];
     UIView *searchBarBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_NAVIGATION_BAR_HEIGHT)];
     searchBarBgView.backgroundColor = [UIColor clearColor];
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(10.0f, SearchBarGap, UI_SCREEN_WIDTH-20.0f, UI_NAVIGATION_BAR_HEIGHT-SearchBarGap*2)];
@@ -120,7 +117,9 @@
     searchBar.backgroundImage = [UIImage imageNamed:@"navigationbar_clearImage"];
     searchBar.delegate = self;
     searchBar.placeholder = @"查找";
-    [self bm_setNavigationWithTitleView:searchBarBgView barTintColor:[UIColor redColor] leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
+    
+    [self bm_setNavigationWithTitleView:searchBarBgView barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
+    
     self.searchTextField = (UITextField *)[searchBar bm_viewOfClass:[UITextField class]];
     self.searchTextField.font = SearchBarFont;
     self.searchTextField.backgroundColor = [UIColor whiteColor];
