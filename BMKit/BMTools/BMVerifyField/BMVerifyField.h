@@ -27,6 +27,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - UI
 
+// 正方形边框
+@property (nonatomic, assign) BOOL squareBorder;
+
 // 输入框间距
 @property (nonatomic, assign) CGFloat itemSpace;
 
