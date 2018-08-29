@@ -67,12 +67,14 @@
 
 - (void)next:(id)sender
 {
-    FSSearchViewController *searchViewController = [[FSSearchViewController alloc] initWithSearchKey:@"test"
-                                                                                       hotSearchTags:@[ @"1", @"2" ]
-                                                                                       searchHandler:^(NSString *search) {
-                                                                                           NSLog(@"search");
-                                                                                       }];
-    [self.navigationController pushViewController:searchViewController animated:YES];
+//    FSSearchViewController *searchViewController = [[FSSearchViewController alloc] initWithSearchKey:@"test"
+//                                                                                       hotSearchTags:@[ @"1", @"2" ]
+//                                                                                       searchHandler:^(NSString *search) {
+//                                                                                           NSLog(@"search");
+//                                                                                       }];
+//    [self.navigationController pushViewController:searchViewController animated:YES];
+    
+    [self showLogin];    
 }
 
 

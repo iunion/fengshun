@@ -66,6 +66,8 @@
 
     _characterArray = [NSMutableArray array];
     
+    _squareBorder = YES;
+    
     _itemSpace = 12.0f;
     _borderRadius = 4.0f;
     _borderWidth = 1.0f;
@@ -161,6 +163,14 @@
     }
     
     _inputMaxCount = inputMaxCount;
+    
+    [self setNeedsDisplay];
+    [self resetCursorLayerIfNeeded];
+}
+
+- (void)setSquareBorder:(BOOL)squareBorder
+{
+    _squareBorder = squareBorder;
     
     [self setNeedsDisplay];
     [self resetCursorLayerIfNeeded];
@@ -274,8 +284,8 @@
 {
     CGSize size = self.bounds.size;
     size.width = MAX(size.width, DEFAULT_CONTENT_SIZE_WITH_UNIT_COUNT(self.inputMaxCount).width);
-    CGFloat unitWidth = (size.width + self.itemSpace) / self.inputMaxCount - self.itemSpace;
-    size.height = unitWidth;
+    CGFloat itemWidth = (size.width + self.itemSpace) / self.inputMaxCount - self.itemSpace;
+    size.height = itemWidth;
     
     return size;
 }
@@ -324,6 +334,23 @@
 
 #pragma mark - drawUI
 
+- (CGSize)getItemSize
+{
+    CGFloat width;
+    CGFloat height;
+    
+    width = (self.bounds.size.width + self.itemSpace) / self.inputMaxCount - self.itemSpace;
+    height = self.bounds.size.height;
+    
+    if (self.squareBorder)
+    {
+        CGFloat side = MIN(width, height);
+        return CGSizeMake(side, side);
+    }
+    
+    return CGSizeMake(width, height);
+}
+
 - (void)resetCursorLayerIfNeeded
 {
     self.cursorLayer.hidden = !self.isFirstResponder || self.cursorColor == nil || self.inputMaxCount == self.characterArray.count;
@@ -333,16 +360,17 @@
         return;
     }
     
-    CGSize itemSize = CGSizeMake((self.bounds.size.width + self.itemSpace) / self.inputMaxCount - self.itemSpace, self.bounds.size.height);
+    CGSize itemSize = [self getItemSize];
+    CGFloat startX = (self.bounds.size.width - self.inputMaxCount * (itemSize.width + self.itemSpace)) * 0.5;
     
-    CGRect itemRect = CGRectMake(self.characterArray.count * (itemSize.width + self.itemSpace),
+    CGRect itemRect = CGRectMake(startX + self.characterArray.count * (itemSize.width + self.itemSpace),
                                  0,
                                  itemSize.width,
                                  itemSize.height);
     itemRect = CGRectInset(itemRect,
                            itemRect.size.width * 0.5 - 1,
                            (itemRect.size.height - self.textFont.pointSize) * 0.5);
-    
+
     [CATransaction begin];
     [CATransaction setDisableActions:NO];
     [CATransaction setAnimationDuration:0];
@@ -353,7 +381,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    CGSize itemSize = CGSizeMake((rect.size.width + self.itemSpace) / self.inputMaxCount - self.itemSpace, rect.size.height);
+    CGSize itemSize = [self getItemSize];
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     
@@ -371,6 +399,8 @@
     CGContextSetLineCap(ctx, kCGLineCapRound);
     CGRect bounds = CGRectInset(rect, self.borderWidth * 0.5, self.borderWidth * 0.5);
     
+    CGFloat startX = (self.bounds.size.width - self.inputMaxCount * (itemSize.width + self.itemSpace)) * 0.5;
+
     if (self.itemSpace < 2)
     {
         UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:bounds cornerRadius:self.borderRadius];
@@ -378,15 +408,15 @@
         
         for (NSUInteger i = 1; i < self.inputMaxCount; ++i)
         {
-            CGContextMoveToPoint(ctx, (i * itemSize.width), 0);
-            CGContextAddLineToPoint(ctx, (i * itemSize.width), (itemSize.height));
+            CGContextMoveToPoint(ctx, (startX + i * itemSize.width), 0);
+            CGContextAddLineToPoint(ctx, (startX + i * itemSize.width), (itemSize.height));
         }
     }
     else
     {
         for (NSUInteger i = self.characterArray.count; i < self.inputMaxCount; i++)
         {
-            CGRect itemRect = CGRectMake(i * (itemSize.width + self.itemSpace),
+            CGRect itemRect = CGRectMake(startX + i * (itemSize.width + self.itemSpace),
                                          0,
                                          itemSize.width,
                                          itemSize.height);
@@ -411,7 +441,9 @@
                            NSFontAttributeName: self.textFont};
     for (NSUInteger i = 0; i < self.characterArray.count; i++)
     {
-        CGRect itemRect = CGRectMake(i * (itemSize.width + self.itemSpace),
+        CGFloat startX = (self.bounds.size.width - self.inputMaxCount * (itemSize.width + self.itemSpace)) * 0.5;
+        
+        CGRect itemRect = CGRectMake(startX + i * (itemSize.width + self.itemSpace),
                                      0,
                                      itemSize.width,
                                      itemSize.height);
@@ -450,9 +482,11 @@
     CGContextSetLineWidth(ctx, self.borderWidth);
     CGContextSetLineCap(ctx, kCGLineCapRound);
     
+    CGFloat startX = (self.bounds.size.width - self.inputMaxCount * (itemSize.width + self.itemSpace)) * 0.5;
+    
     for (NSUInteger i = 0; i < self.characterArray.count; i++)
     {
-        CGRect itemRect = CGRectMake(i * (itemSize.width + self.itemSpace),
+        CGRect itemRect = CGRectMake(startX + i * (itemSize.width + self.itemSpace),
                                      0,
                                      itemSize.width,
                                      itemSize.height);

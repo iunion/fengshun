@@ -7,8 +7,12 @@
 //
 
 #import "FSSuperVC.h"
+#import "FSLoginVC.h"
 
 @interface FSSuperVC ()
+<
+    FSLoginDelegate
+>
 
 @end
 
@@ -31,6 +35,11 @@
     temporaryBarButtonItem.title = @"";
     self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
     
+    self.bm_NavigationBarStyle = UIBarStyleBlack;
+    self.bm_NavigationBarBgTintColor = FS_NAVIGATION_BGCOLOR;
+    self.bm_NavigationItemTintColor = FS_NAVIGATION_ITEMCOLOR;
+    self.bm_NavigationShadowHidden = YES;
+
     self.view.backgroundColor = FS_VIEW_BGCOLOR;
 
 }
@@ -75,6 +84,45 @@
     }
     
     return YES;
+}
+
+
+
+#pragma mark -
+#pragma mark Login
+
+// 弹出登录
+- (BOOL)showLogin
+{
+    if ([FSUserInfoModle isLogin])
+    {
+        return NO;
+    }
+    
+    FSLoginVC *loginVC = [[FSLoginVC alloc] initWithNibName:@"FSLoginVC" bundle:nil];
+    loginVC.delegate = self;
+    
+    BMNavigationController *nav = [[BMNavigationController alloc] initWithRootViewController:loginVC];
+    //nav.modalPresentationStyle = UIModalPresentationPopover;
+    //nav.modalTransitionStyle = UIModalTransitionStylePartialCurl;
+    [self presentViewController:nav animated:YES completion:^{
+    }];
+    
+    return YES;
+}
+
+// 隐藏登录
+- (void)hideLogin
+{
+    if (self.presentedViewController)
+    {
+        UIViewController *vc = ((BMNavigationController *)self.presentedViewController).topViewController;
+        if ([vc isKindOfClass:[FSLoginVC class]])
+        {
+            FSLoginVC *loginVC = (FSLoginVC *)vc;
+            [loginVC backAction:nil];
+        }
+    }
 }
 
 @end
