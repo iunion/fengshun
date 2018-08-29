@@ -62,6 +62,7 @@
 #define UI_FONT_14          [UIFont systemFontOfSize:14.0f]
 #define UI_FONT_15          [UIFont systemFontOfSize:15.0f]
 #define UI_FONT_16          [UIFont systemFontOfSize:16.0f]
+#define UI_FONT_17          [UIFont systemFontOfSize:17.0f]
 #define UI_FONT_18          [UIFont systemFontOfSize:18.0f]
 
 #define UI_FONT_20          [UIFont systemFontOfSize:20.0f]
@@ -88,6 +89,7 @@
 #define UI_BOLDFONT_14      [UIFont boldSystemFontOfSize:14.0f]
 #define UI_BOLDFONT_15      [UIFont boldSystemFontOfSize:15.0f]
 #define UI_BOLDFONT_16      [UIFont boldSystemFontOfSize:16.0f]
+#define UI_BOLDFONT_17      [UIFont boldSystemFontOfSize:17.0f]
 #define UI_BOLDFONT_18      [UIFont boldSystemFontOfSize:18.0f]
 
 #define UI_BOLDFONT_20      [UIFont boldSystemFontOfSize:20.0f]
@@ -117,6 +119,7 @@
 #define UI_NUMFONT_14       UI_NUMBER_FONT(14.0f)
 #define UI_NUMFONT_15       UI_NUMBER_FONT(15.0f)
 #define UI_NUMFONT_16       UI_NUMBER_FONT(16.0f)
+#define UI_NUMFONT_17       UI_NUMBER_FONT(17.0f)
 #define UI_NUMFONT_18       UI_NUMBER_FONT(18.0f)
 
 #define UI_NUMFONT_20       UI_NUMBER_FONT(20.0f)

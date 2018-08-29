@@ -66,8 +66,6 @@
     
     self.m_showEmptyView = NO;
     self.m_AllowEmptyJson = YES;
-    
-    [self interfaceSettings];
 }
 
 - (void)didReceiveMemoryWarning
@@ -167,15 +165,26 @@
 // 手机号
 - (BOOL)verifyPhoneNum:(NSString *)phoneNum
 {
+    return [self verifyPhoneNum:phoneNum showMessage:YES];
+}
+
+- (BOOL)verifyPhoneNum:(NSString *)phoneNum showMessage:(BOOL)showMessage
+{
     if (![phoneNum bm_isNotEmpty])
     {
-        [self.m_ProgressHUD showAnimated:YES withDetailText:@"请输入11位手机号码" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        if (showMessage)
+        {
+            [self.m_ProgressHUD showAnimated:YES withDetailText:@"请输入手机号码" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        }
         
         return NO;
     }
-    else if (![phoneNum bm_isValidPhoneNumber])
+    else if (![phoneNum bm_isValidChinesePhoneNumber])
     {
-        [self.m_ProgressHUD showAnimated:YES withDetailText:@"手机号码格式错误" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        if (showMessage)
+        {
+            [self.m_ProgressHUD showAnimated:YES withDetailText:@"请输入正确的手机号码" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        }
         
         return NO;
     }
@@ -186,15 +195,26 @@
 // 密码
 - (BOOL)verifyPassword:(NSString *)password
 {
+    return [self verifyPassword:password showMessage:YES];
+}
+
+- (BOOL)verifyPassword:(NSString *)password showMessage:(BOOL)showMessage
+{
     if (![password bm_isNotEmpty])
     {
-        [self.m_ProgressHUD showAnimated:YES withDetailText:@"请输入登录密码" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        if (showMessage)
+        {
+            [self.m_ProgressHUD showAnimated:YES withDetailText:@"请输入账户密码(8~16位)" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        }
         
         return NO;
     }
     else if (![password bm_isValidPassword])
     {
-        [self.m_ProgressHUD showAnimated:YES withDetailText:[NSString stringWithFormat:@"请输入%@-%@位字母+数字，字母区分大小写", @(FSPASSWORD_MINLENGTH), @(FSPASSWORD_MAXLENGTH)] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        if (showMessage)
+        {
+            [self.m_ProgressHUD showAnimated:YES withDetailText:[NSString stringWithFormat:@"请输入%@-%@位字母+数字，字母区分大小写", @(FSPASSWORD_MINLENGTH), @(FSPASSWORD_MAXLENGTH)] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        }
         
         return NO;
     }

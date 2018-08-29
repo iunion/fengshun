@@ -73,6 +73,8 @@
         self.accessoryType = UITableViewCellAccessoryNone;
         self.editingStyle = UITableViewCellEditingStyleNone;
         
+        self.cellBgColor = [UIColor whiteColor];
+        
         self.textColor = [UIColor darkGrayColor];
         self.detailTextColor = [UIColor grayColor];
         self.textFont = [UIFont systemFontOfSize:16.0f];

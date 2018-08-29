@@ -24,7 +24,9 @@
 
 // 手机号
 - (BOOL)verifyPhoneNum:(NSString *)phoneNum;
+- (BOOL)verifyPhoneNum:(NSString *)phoneNum showMessage:(BOOL)showMessage;
 // 密码
 - (BOOL)verifyPassword:(NSString *)password;
+- (BOOL)verifyPassword:(NSString *)password showMessage:(BOOL)showMessage;
 
 @end
