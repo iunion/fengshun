@@ -10,6 +10,8 @@
 #import "AppDelegate.h"
 #import "FSSearchViewController.h"
 
+#import "BMVerifyField.h"
+
 @interface FSMainVC ()
 
 @end
@@ -27,6 +29,9 @@
     [btn addTarget:self action:@selector(next:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
     btn.backgroundColor = [UIColor blueColor];
+    
+    BMVerifyField *verifyField = [[BMVerifyField alloc] initWithFrame:CGRectMake(40, 200, UI_SCREEN_WIDTH-80, 40)];
+    [self.view addSubview:verifyField];
 }
 
 - (void)didReceiveMemoryWarning {
