@@ -11,8 +11,9 @@
 #import "FSSearchViewController.h"
 #import "FSPageBannerView.h"
 
-@interface
-FSMainVC ()
+#import "BMVerifyField.h"
+
+@interface FSMainVC ()
 <
     FSBannerViewDelegate
 >
@@ -34,8 +35,13 @@ FSMainVC ()
     [btn addTarget:self action:@selector(next:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
     btn.backgroundColor = [UIColor blueColor];
+    
+    BMVerifyField *verifyField = [[BMVerifyField alloc] initWithFrame:CGRectMake(40, 200, UI_SCREEN_WIDTH-80, 40)];
+    [self.view addSubview:verifyField];
+
     [self configBanner];
 }
+
 - (void)configBanner
 {
     NSArray *dataArray = @[
@@ -52,6 +58,7 @@ FSMainVC ()
     [self.view addSubview:_m_bannerView];
     [_m_bannerView startRolling];
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

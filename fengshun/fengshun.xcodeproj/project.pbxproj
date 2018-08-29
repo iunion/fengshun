@@ -259,6 +259,7 @@
 		87C0135D212E7A5300D0AAC3 /* fengshunTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0135C212E7A5300D0AAC3 /* fengshunTests.m */; };
 		87C01368212E7A5300D0AAC3 /* fengshunUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C01367212E7A5300D0AAC3 /* fengshunUITests.m */; };
 		87D1867921353C9000037DDF /* libFSEncodeAPI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87D1867421353A8800037DDF /* libFSEncodeAPI.a */; };
+		87D1867E213549B700037DDF /* BMVerifyField.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D1867D213549B600037DDF /* BMVerifyField.m */; };
 		AD8B63FE21338E0C006DDC22 /* FSPreviewFileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */; };
 		AD9CAAE4212EA0F40071B941 /* UIScrollView+BMEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9CAAE3212EA0F40071B941 /* UIScrollView+BMEmpty.m */; };
 		DB57222F21338B6E0065DC30 /* XMRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB57222D21338B6E0065DC30 /* XMRequestManager.m */; };
@@ -755,6 +756,8 @@
 		87C01369212E7A5300D0AAC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87D1866F21353A8700037DDF /* FSEncodeAPI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FSEncodeAPI.xcodeproj; path = FSEncodeAPI/FSEncodeAPI.xcodeproj; sourceTree = "<group>"; };
 		87D1867A213541BE00037DDF /* FSUserInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSUserInfo.h; sourceTree = "<group>"; };
+		87D1867C213549B600037DDF /* BMVerifyField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMVerifyField.h; sourceTree = "<group>"; };
+		87D1867D213549B600037DDF /* BMVerifyField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMVerifyField.m; sourceTree = "<group>"; };
 		AD8B63FC21338E0C006DDC22 /* FSPreviewFileTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSPreviewFileTool.h; sourceTree = "<group>"; };
 		AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSPreviewFileTool.m; sourceTree = "<group>"; };
 		AD9CAAE2212EA0F40071B941 /* UIScrollView+BMEmpty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+BMEmpty.h"; sourceTree = "<group>"; };
@@ -828,6 +831,7 @@
 				87426793212E7E35003C52F6 /* BMStepperInputView */,
 				874267F7212E7E35003C52F6 /* BMTabBar */,
 				874267AB212E7E35003C52F6 /* BMTableViewManager */,
+				87D1867B213549A000037DDF /* BMVerifyField */,
 				87426807212E7E35003C52F6 /* BMVeryifiTimeManager */,
 				87426823212E7E35003C52F6 /* BMTools.h */,
 			);
@@ -1874,6 +1878,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		87D1867B213549A000037DDF /* BMVerifyField */ = {
+			isa = PBXGroup;
+			children = (
+				87D1867C213549B600037DDF /* BMVerifyField.h */,
+				87D1867D213549B600037DDF /* BMVerifyField.m */,
+			);
+			path = BMVerifyField;
+			sourceTree = "<group>";
+		};
 		AD8B63FA21338DC3006DDC22 /* FSPreviewFileTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -2257,6 +2270,7 @@
 				874268AD212E7E36003C52F6 /* BMTableViewMaskTextCell.m in Sources */,
 				87426947212E8255003C52F6 /* UIImageView+WebCache.m in Sources */,
 				874268D4212E7E36003C52F6 /* BMCheckBox.m in Sources */,
+				87D1867E213549B700037DDF /* BMVerifyField.m in Sources */,
 				874268AC212E7E36003C52F6 /* BMTableViewStepperInputCell.m in Sources */,
 				87426AAA213156D5003C52F6 /* FSBannerView.m in Sources */,
 				874268A9212E7E36003C52F6 /* BMTableViewSegmentCell.m in Sources */,
