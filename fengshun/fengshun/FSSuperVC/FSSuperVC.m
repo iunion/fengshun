@@ -99,7 +99,7 @@
         return NO;
     }
     
-    FSLoginVC *loginVC = [[FSLoginVC alloc] initWithNibName:@"FSLoginVC" bundle:nil];
+    FSLoginVC *loginVC = [[FSLoginVC alloc] init];
     loginVC.delegate = self;
     
     BMNavigationController *nav = [[BMNavigationController alloc] initWithRootViewController:loginVC];

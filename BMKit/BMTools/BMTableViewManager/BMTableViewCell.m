@@ -173,6 +173,8 @@
     
     self.selectionStyle = self.section.style.defaultCellSelectionStyle;
     
+    self.backgroundColor = self.item.cellBgColor;
+    
     if ([self.item isKindOfClass:[NSString class]])
     {
         self.textLabel.text = (NSString *)self.item;

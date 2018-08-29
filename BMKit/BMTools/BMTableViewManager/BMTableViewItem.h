@@ -26,6 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) UITableViewCellAccessoryType accessoryType;
 @property (nonatomic, assign) UITableViewCellEditingStyle editingStyle;
 
+// cell背景颜色
+@property (nullable, nonatomic, strong) UIColor *cellBgColor;
+
 // 图标
 @property (nullable, nonatomic, strong) UIImage *image;
 @property (nullable, nonatomic, strong) NSString *imageUrl;
