@@ -28,7 +28,7 @@
 @property (nonatomic, assign) CGFloat pagePadding;
 
 
-- (nonnull instancetype)initWithFrame:(CGRect)frame scrollDirection:(FSBannerViewScrollDirection)direction images:(nullable NSArray *)images pageWidth:(CGFloat)pageWidth padding:(CGFloat)padding;
+- (nonnull instancetype)initWithFrame:(CGRect)frame scrollDirection:(FSBannerViewScrollDirection)direction images:(nullable NSArray *)images pageWidth:(CGFloat)pageWidth padding:(CGFloat)padding rollingScale:(BOOL)rollingScale;
 
 // 刷新数据
 - (void)reloadBannerWithData:(nonnull NSArray *)images;
