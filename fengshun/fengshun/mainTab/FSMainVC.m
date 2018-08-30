@@ -56,7 +56,7 @@
         @"http://pic01.babytreeimg.com/foto3/photos/2014/0127/19/9/4170109a267ca641c41ebb_b.png",
         @"http://pic02.babytreeimg.com/foto3/photos/2014/0207/59/4/4170109a17eca86465f8a4_b.jpg",
     ];
-    self.m_bannerView = [[FSPageBannerView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 140) scrollDirection:FSBannerViewScrollDirectionLandscape images:dataArray pageWidth:UI_SCREEN_WIDTH - 80.0f padding:0 rollingScale:YES];
+    self.m_bannerView = [[FSPageBannerView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 140) scrollDirection:FSBannerViewScrollDirectionLandscape images:dataArray pageWidth:UI_SCREEN_WIDTH - 80.0f padding:1.0f rollingScale:YES];
     [_m_bannerView setDelegate:self];
     [_m_bannerView setPageControlStyle:FSBannerViewPageStyle_Middle];
     _m_bannerView.showClose = NO;
