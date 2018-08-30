@@ -17,6 +17,8 @@
     BOOL s_isLogin;
 }
 
+@property (nonatomic, strong) NSString *m_PhoneNum;
+
 @property (nonatomic, strong) BMTableViewSection *m_Section;
 
 @property (nonatomic, strong) BMTextItem *m_PhoneItem;
@@ -25,8 +27,6 @@
 @property (nonatomic, strong) UILabel *m_WelcomeLabel;
 @property (nonatomic, strong) UIButton *m_ConfirmBtn;
 @property (nonatomic, strong) UIButton *m_ForgetBtn;
-
-@property (nonatomic, strong) NSString *m_PhoneNum;
 
 @end
 
@@ -61,6 +61,11 @@
         self.m_TableView.bm_width = UI_SCREEN_WIDTH-40.0f;
     }
     
+    if (self.delegate && [self.delegate respondsToSelector:@selector(loginProgressStateChanged:)])
+    {
+        [self.delegate loginProgressStateChanged:FSLoginProgress_LoginPhone];
+    }
+    
     [self interfaceSettings];
 }
 
@@ -71,6 +76,8 @@
 
 - (void)backAction:(id)sender
 {
+    [self.view endEditing:YES];
+
     [self dismissViewControllerAnimated:YES completion:^{
         if (self.delegate && [self.delegate respondsToSelector:@selector(loginClosedWithProgressState:)])
         {
@@ -179,7 +186,7 @@
 
     self.m_TableView.tableFooterView = footerView;
 
-    [weakSelf checkPhoneNum:self.m_PhoneItem.value];
+    [self checkPhoneNum:self.m_PhoneItem.value];
 
     [self.m_TableView reloadData];
 }
@@ -199,6 +206,8 @@
 
 - (void)confirmClick:(UIButton *)btn
 {
+    [self.view endEditing:YES];
+    
     FSLoginVerifyVC *loginVerifyVC = [[FSLoginVerifyVC alloc] initWithVerificationType:BMVerificationCodeType_Type1 phoneNum:@"13569768888"];
     loginVerifyVC.m_IsRegist = YES;
     [self.navigationController pushViewController:loginVerifyVC animated:YES];
@@ -237,6 +246,11 @@
         return;
     }
     
+    if (self.delegate && [self.delegate respondsToSelector:@selector(loginProgressStateChanged:)])
+    {
+        [self.delegate loginProgressStateChanged:FSLoginProgress_InputPassWord];
+    }
+
     [self.m_Section removeAllItems];
 
     self.m_WelcomeLabel.hidden = NO;

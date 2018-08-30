@@ -8,6 +8,7 @@
 
 #import "FSLoginVerifyVC.h"
 #import "BMVerifyField.h"
+#import "FSSetPassWordVC.h"
 
 @interface FSLoginVerifyVC ()
 <
@@ -87,6 +88,18 @@
         self.m_TableView.bm_width = UI_SCREEN_WIDTH-40.0f;
     }
     
+    if (self.delegate && [self.delegate respondsToSelector:@selector(loginProgressStateChanged:)])
+    {
+        if (self.m_IsRegist)
+        {
+            [self.delegate loginProgressStateChanged:FSLoginProgress_RegistVerify];
+        }
+        else
+        {
+            [self.delegate loginProgressStateChanged:FSLoginProgress_ForgetVerify];
+        }
+    }
+    
     [self interfaceSettings];
 }
 
@@ -97,6 +110,8 @@
 
 - (void)closeAction:(id)sender
 {
+    [self.view endEditing:YES];
+
     [self dismissViewControllerAnimated:YES completion:^{
         if (self.delegate && [self.delegate respondsToSelector:@selector(loginClosedWithProgressState:)])
         {
@@ -192,6 +207,9 @@
     }
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btn bm_roundedRect:4.0f];
+    btn.backgroundColor = UI_COLOR_B5;
+    btn.enabled = NO;
+
     [self.m_TableView addSubview:btn];
     [btn bm_centerHorizontallyInSuperViewWithTop:label3.bm_bottom+20.0f];
     self.m_ConfirmBtn = btn;
@@ -227,6 +245,32 @@
     }
 }
 
+
+#pragma mark -
+#pragma mark BMVerifyFieldDelegate
+
+- (BOOL)verifyField:(BMVerifyField *)verifyField shouldChangeCharacterAtIndex:(NSUInteger)index replacementString:(NSString *)string
+{
+    if (index >= 3 && ![string isEqualToString:@""])
+    {
+        self.m_ConfirmBtn.enabled = YES;
+    }
+    else
+    {
+        self.m_ConfirmBtn.enabled = NO;
+    }
+    
+    if (self.m_ConfirmBtn.enabled)
+    {
+        self.m_ConfirmBtn.backgroundColor = UI_COLOR_BL1;
+    }
+    else
+    {
+        self.m_ConfirmBtn.backgroundColor = UI_COLOR_B5;
+    }
+    
+    return YES;
+}
 
 #pragma mark -
 #pragma mark 获取verificationCode
@@ -275,7 +319,11 @@
 
 - (void)confirmClick:(UIButton *)btn
 {
+    [self.view endEditing:YES];
 
+    FSSetPassWordVC *setPassWordVC = [[FSSetPassWordVC alloc] initWithPhoneNum:@"13569768888"];
+    setPassWordVC.m_IsRegist = YES;
+    [self.navigationController pushViewController:setPassWordVC animated:YES];
 }
 
 @end

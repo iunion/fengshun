@@ -277,6 +277,7 @@
 		87D186AD213679F800037DDF /* login_closeeye@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D1869D213679F800037DDF /* login_closeeye@2x.png */; };
 		87D186AE213679F800037DDF /* login_logo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D1869E213679F800037DDF /* login_logo@3x.png */; };
 		87D186B22136998E00037DDF /* FSLoginVerifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D186B02136998D00037DDF /* FSLoginVerifyVC.m */; };
+		87D209652137B6C5001EDD60 /* FSSetPassWordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D209642137B6C5001EDD60 /* FSSetPassWordVC.m */; };
 		AD8B63FE21338E0C006DDC22 /* FSPreviewFileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */; };
 		AD9CAAE4212EA0F40071B941 /* UIScrollView+BMEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9CAAE3212EA0F40071B941 /* UIScrollView+BMEmpty.m */; };
 		DB57222F21338B6E0065DC30 /* XMRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB57222D21338B6E0065DC30 /* XMRequestManager.m */; };
@@ -796,6 +797,8 @@
 		87D1869E213679F800037DDF /* login_logo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_logo@3x.png"; sourceTree = "<group>"; };
 		87D186AF2136998D00037DDF /* FSLoginVerifyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSLoginVerifyVC.h; sourceTree = "<group>"; };
 		87D186B02136998D00037DDF /* FSLoginVerifyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSLoginVerifyVC.m; sourceTree = "<group>"; };
+		87D209632137B6C5001EDD60 /* FSSetPassWordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSetPassWordVC.h; sourceTree = "<group>"; };
+		87D209642137B6C5001EDD60 /* FSSetPassWordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSSetPassWordVC.m; sourceTree = "<group>"; };
 		AD8B63FC21338E0C006DDC22 /* FSPreviewFileTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSPreviewFileTool.h; sourceTree = "<group>"; };
 		AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSPreviewFileTool.m; sourceTree = "<group>"; };
 		AD9CAAE2212EA0F40071B941 /* UIScrollView+BMEmpty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+BMEmpty.h"; sourceTree = "<group>"; };
@@ -1935,6 +1938,8 @@
 				87D1868521365BBB00037DDF /* FSLoginVC.m */,
 				87D186AF2136998D00037DDF /* FSLoginVerifyVC.h */,
 				87D186B02136998D00037DDF /* FSLoginVerifyVC.m */,
+				87D209632137B6C5001EDD60 /* FSSetPassWordVC.h */,
+				87D209642137B6C5001EDD60 /* FSSetPassWordVC.m */,
 			);
 			path = FSLogin;
 			sourceTree = "<group>";
@@ -2248,6 +2253,7 @@
 				87426A9C21314996003C52F6 /* FSSearchViewController.m in Sources */,
 				874268E2212E7E36003C52F6 /* BMImageTextView.m in Sources */,
 				8742693A212E8255003C52F6 /* UIImage+WebP.m in Sources */,
+				87D209652137B6C5001EDD60 /* FSSetPassWordVC.m in Sources */,
 				874268CA212E7E36003C52F6 /* BMPickerItem.m in Sources */,
 				874268E1212E7E36003C52F6 /* UIView+BMBadge.m in Sources */,
 				874269C6212E9B78003C52F6 /* BMFreshAutoContainerFooterView.m in Sources */,

@@ -15,8 +15,11 @@ typedef NS_ENUM(NSUInteger, FSLoginProgressState)
     FSLoginProgress_InputPassWord,
     FSLoginProgress_RegistVerify,
     FSLoginProgress_ForgetVerify,
+    FSLoginProgress_SetPassWord,
+    FSLoginProgress_ChangePassWord,
     FSLoginProgress_FinishLogin,
-    FSLoginProgress_FinishRegist
+    FSLoginProgress_FinishRegist,
+    FSLoginProgress_FinishForget
 };
 
 @protocol FSLoginDelegate <NSObject>
