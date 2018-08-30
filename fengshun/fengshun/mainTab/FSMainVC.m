@@ -40,10 +40,12 @@ FSMainVC ()
 }
 - (void)setupUI
 {
-    [self bm_setNavigationWithTitle:@"主页" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:nil rightItemImage:[UIImage imageNamed:@"navigationbar_message_icon.png"] rightToucheEvent:nil];
+    [self bm_setNavigationWithTitle:@"主页" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:nil rightItemImage:[UIImage imageNamed:@"navigationbar_message_icon.png"] rightToucheEvent:@selector(popMessageVC:)];
+    self.bm_NavigationItemTintColor = [UIColor blackColor];
     self.edgesForExtendedLayout                   = UIRectEdgeTop;
     self.m_TableView.backgroundColor              = [UIColor whiteColor];
     self.m_TableView.showsVerticalScrollIndicator = NO;
+    self.m_TableView.frame                        = CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT-UI_TAB_BAR_HEIGHT);
     [self setBm_NavigationBarImage:[UIImage imageWithColor:[UIColor whiteColor]]];
     [self setBm_NavigationBarAlpha:0];
     self.m_headerView = [[FSMainHeaderView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 261.0 / 667 * UI_SCREEN_HEIGHT + 391) andDelegate:self];
@@ -105,6 +107,7 @@ FSMainVC ()
     }
 }
 
+
 - (void)photo:(id)sender
 {
     TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:9 columnNumber:4 delegate:self pushPhotoPickerVc:YES];
@@ -127,6 +130,11 @@ FSMainVC ()
     //    imagePickerVc.cropRect = CGRectMake(left, top, widthHeight, widthHeight);
     [self presentViewController:imagePickerVc animated:YES completion:nil];
 }
+#pragma mark - pop VC
+- (void)popMessageVC:(id)sender
+{
+    
+}
 #pragma mark - TZImagePickerControllerDelegate
 /// 用户点击了取消
 - (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker
@@ -136,7 +144,9 @@ FSMainVC ()
 
 - (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos
 {
+    
 }
+
 
 
 

@@ -17,8 +17,8 @@
 @interface FSMainHeaderView : UIView
 @property (weak, nonatomic) IBOutlet UIPageControl *m_pageControl;
 @property (weak, nonatomic) IBOutlet UIButton *m_bottomButton;
-@property (weak, nonatomic) IBOutlet UIView *   m_topView;
-@property (nonatomic, strong) FSPageBannerView *m_bannerView;
+@property (weak, nonatomic) IBOutlet UIView *                       m_topView;
+@property (nonatomic, strong) FSPageBannerView *                    m_bannerView;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *m_topimageButtons;
 
 @property (nonatomic, weak) id<FSBannerViewDelegate, FSMainHeaderDelegate> delegate;

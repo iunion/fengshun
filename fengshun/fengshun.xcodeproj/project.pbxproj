@@ -278,6 +278,7 @@
 		87D186AE213679F800037DDF /* login_logo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D1869E213679F800037DDF /* login_logo@3x.png */; };
 		87D186B22136998E00037DDF /* FSLoginVerifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D186B02136998D00037DDF /* FSLoginVerifyVC.m */; };
 		87D209652137B6C5001EDD60 /* FSSetPassWordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D209642137B6C5001EDD60 /* FSSetPassWordVC.m */; };
+		AD47EFDC2137EBF0004A345F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD47EFDB2137EBF0004A345F /* Launch Screen.storyboard */; };
 		AD8B63FE21338E0C006DDC22 /* FSPreviewFileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */; };
 		AD93559F2137D24100735C2E /* TZImageCropManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9355842137D24100735C2E /* TZImageCropManager.m */; };
 		AD9355A02137D24100735C2E /* TZAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9355862137D24100735C2E /* TZAssetCell.m */; };
@@ -816,6 +817,7 @@
 		87D186B02136998D00037DDF /* FSLoginVerifyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSLoginVerifyVC.m; sourceTree = "<group>"; };
 		87D209632137B6C5001EDD60 /* FSSetPassWordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSetPassWordVC.h; sourceTree = "<group>"; };
 		87D209642137B6C5001EDD60 /* FSSetPassWordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSSetPassWordVC.m; sourceTree = "<group>"; };
+		AD47EFDB2137EBF0004A345F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		AD8B63FC21338E0C006DDC22 /* FSPreviewFileTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSPreviewFileTool.h; sourceTree = "<group>"; };
 		AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSPreviewFileTool.m; sourceTree = "<group>"; };
 		AD9355822137D24100735C2E /* TZPhotoPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPreviewCell.h; sourceTree = "<group>"; };
@@ -1892,8 +1894,8 @@
 				87C01348212E7A5200D0AAC3 /* fengshun */,
 				87C0135B212E7A5300D0AAC3 /* fengshunTests */,
 				87C01366212E7A5300D0AAC3 /* fengshunUITests */,
-				87D18659213539EE00037DDF /* Frameworks */,
 				87C01347212E7A5200D0AAC3 /* Products */,
+				87D18659213539EE00037DDF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1951,6 +1953,7 @@
 				87426790212E7B2C003C52F6 /* fengshun-Prefix.pch */,
 				87C01351212E7A5300D0AAC3 /* Info.plist */,
 				87C01352212E7A5300D0AAC3 /* main.m */,
+				AD47EFDB2137EBF0004A345F /* Launch Screen.storyboard */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2304,6 +2307,7 @@
 				87426A0D212F9657003C52F6 /* navigationbar_select_icon@2x.png in Resources */,
 				874268A5212E7E36003C52F6 /* increase_meituan@2x.png in Resources */,
 				87426A05212F9657003C52F6 /* navigationbar_setup_icon@2x.png in Resources */,
+				AD47EFDC2137EBF0004A345F /* Launch Screen.storyboard in Resources */,
 				874268B4212E7E36003C52F6 /* BMTableView_UIButtonBarArrowRight.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
