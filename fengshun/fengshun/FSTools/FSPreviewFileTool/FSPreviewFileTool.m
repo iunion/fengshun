@@ -14,16 +14,14 @@
 
 @end
 
-
-
 @interface FSPreviewFileTool()
 <
- UIDocumentInteractionControllerDelegate
+    UIDocumentInteractionControllerDelegate
 >
 
-@property(nonatomic, strong) UIDocumentInteractionController *docController;
+@property (nonatomic, strong) UIDocumentInteractionController *docController;
 
-@property(nonatomic, strong) FSFileModel *fileModel;
+@property (nonatomic, strong) FSFileModel *fileModel;
 
 @property (nonatomic, strong) UIViewController *previewController;
 
@@ -41,7 +39,7 @@
     }
     else
     {
-        NSLog(@"file not exist");
+        BMLog(@"file not exist");
     }
 }
 
@@ -65,9 +63,10 @@
 {
     if (![self.fileModel.m_LocalPath bm_isNotEmpty])
     {
-        NSLog(@"date error");
+        BMLog(@"date error");
         return;
     }
+    
     NSURL *docUrl = [NSURL fileURLWithPath:self.fileModel.m_LocalPath];
     self.docController = [UIDocumentInteractionController interactionControllerWithURL:docUrl];
     self.docController.delegate = self;
@@ -75,17 +74,17 @@
     [self.docController presentPreviewAnimated:YES];
 }
 
-
 - (void)downloadFile
 {
     // 下载
     if (![self.fileModel.m_FileUrl bm_isNotEmpty])
     {
-        NSLog(@"url error");
+        BMLog(@"url error");
         return;
     }
+    
     NSString *savePath = [self getFilePath];
-    [XMRequestManager rm_downloadWithURL:self.fileModel.m_FileUrl savePath:savePath success:^(id  _Nullable responseObject)
+    [XMRequestManager rm_downloadWithURL:self.fileModel.m_FileUrl savePath:savePath success:^(id responseObject)
     {
         if (responseObject)
         {
@@ -93,7 +92,7 @@
             [self initDocController];
         }
     } failure:^(NSError * _Nullable error) {
-        NSLog(@"download failed");
+        BMLog(@"download failed");
     }];
 }
 
@@ -116,7 +115,9 @@
     return filePath;
 }
 
+
 #pragma mark -  UIDocumentInteractionControllerDelegate
+
 - (UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller
 {
     return self.previewController;
