@@ -598,5 +598,12 @@
     [self resetCursorLayerIfNeeded];
 }
 
+- (void)clear
+{
+    [self.characterArray removeAllObjects];
+
+    [self setNeedsDisplay];
+    [self resetCursorLayerIfNeeded];
+}
 
 @end

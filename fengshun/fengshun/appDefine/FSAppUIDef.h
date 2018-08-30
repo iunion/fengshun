@@ -37,7 +37,7 @@
 #define UI_COLOR_B9             [UIColor bm_colorWithHex:0xF8F8F8]
 
 #define UI_COLOR_BL1            [UIColor bm_colorWithHex:0x577EEE]
-#define UI_COLOR_BL2            [UIColor bm_colorWithHex:0x0099CC]
+#define UI_COLOR_BL2            [UIColor bm_colorWithHex:0xDDE6FF]
 #define UI_COLOR_BL3            [UIColor bm_colorWithHex:0x8DC8FE]
 #define UI_COLOR_BL4            [UIColor bm_colorWithHex:0x77CDEA]
 #define UI_COLOR_BL5            [UIColor bm_colorWithHex:0x54C2E7]

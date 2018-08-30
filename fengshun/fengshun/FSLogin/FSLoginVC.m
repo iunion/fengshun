@@ -10,6 +10,8 @@
 #import "FSAppInfo.h"
 #import "NSString+BMFormat.h"
 
+#import "FSLoginVerifyVC.h"
+
 @interface FSLoginVC ()
 {
     BOOL s_isLogin;
@@ -38,7 +40,7 @@
     s_isLogin = NO;
     
     self.bm_NavigationBarStyle = UIBarStyleDefault;
-    self.bm_NavigationBarBgTintColor = FS_VIEW_BGCOLOR;
+    self.bm_NavigationBarBgTintColor = [UIColor whiteColor];
     self.bm_NavigationItemTintColor = UI_COLOR_B2;
     
     [self bm_setNavigationWithTitle:@"" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_close_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
@@ -197,6 +199,12 @@
 
 - (void)confirmClick:(UIButton *)btn
 {
+    FSLoginVerifyVC *loginVerifyVC = [[FSLoginVerifyVC alloc] initWithVerificationType:BMVerificationCodeType_Type1 phoneNum:@"13569768888"];
+    loginVerifyVC.m_IsRegist = YES;
+    [self.navigationController pushViewController:loginVerifyVC animated:YES];
+    
+    return;
+    
     if (!s_isLogin)
     {
         //NSString *phoneNum = [self.m_PhoneItem.value bm_trim];

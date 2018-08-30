@@ -44,7 +44,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.view.backgroundColor = FS_VIEW_BGCOLOR;
+    self.view.backgroundColor = [UIColor whiteColor];
 
     s_IsNoMorePage = YES;
 
