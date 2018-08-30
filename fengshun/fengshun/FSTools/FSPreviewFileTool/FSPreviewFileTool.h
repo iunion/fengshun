@@ -10,12 +10,13 @@
 
 
 @interface FSFileModel : NSObject
+
 // 文件名
-@property(nonatomic, copy)NSString *m_FileName;
+@property (nonatomic, copy) NSString *m_FileName;
 // 本地文件路径
-@property(nonatomic, copy)NSString *m_LocalPath;
+@property (nonatomic, copy) NSString *m_LocalPath;
 // 网络资源地址
-@property(nonatomic, copy)NSString *m_FileUrl;
+@property (nonatomic, copy) NSString *m_FileUrl;
 
 @end
 
@@ -26,6 +27,5 @@
 
 // 本地资源
 + (void)previewFileWithLocalPath:(FSFileModel *)fileModel inViewController:(UIViewController *)controller;
-
 
 @end

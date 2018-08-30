@@ -10,10 +10,14 @@
 #import "FSAppInfo.h"
 #import "NSString+BMFormat.h"
 
+#import "FSLoginVerifyVC.h"
+
 @interface FSLoginVC ()
 {
     BOOL s_isLogin;
 }
+
+@property (nonatomic, strong) NSString *m_PhoneNum;
 
 @property (nonatomic, strong) BMTableViewSection *m_Section;
 
@@ -23,8 +27,6 @@
 @property (nonatomic, strong) UILabel *m_WelcomeLabel;
 @property (nonatomic, strong) UIButton *m_ConfirmBtn;
 @property (nonatomic, strong) UIButton *m_ForgetBtn;
-
-@property (nonatomic, strong) NSString *m_PhoneNum;
 
 @end
 
@@ -38,7 +40,7 @@
     s_isLogin = NO;
     
     self.bm_NavigationBarStyle = UIBarStyleDefault;
-    self.bm_NavigationBarBgTintColor = FS_VIEW_BGCOLOR;
+    self.bm_NavigationBarBgTintColor = [UIColor whiteColor];
     self.bm_NavigationItemTintColor = UI_COLOR_B2;
     
     [self bm_setNavigationWithTitle:@"" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_close_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
@@ -59,6 +61,11 @@
         self.m_TableView.bm_width = UI_SCREEN_WIDTH-40.0f;
     }
     
+    if (self.delegate && [self.delegate respondsToSelector:@selector(loginProgressStateChanged:)])
+    {
+        [self.delegate loginProgressStateChanged:FSLoginProgress_LoginPhone];
+    }
+    
     [self interfaceSettings];
 }
 
@@ -69,6 +76,8 @@
 
 - (void)backAction:(id)sender
 {
+    [self.view endEditing:YES];
+
     [self dismissViewControllerAnimated:YES completion:^{
         if (self.delegate && [self.delegate respondsToSelector:@selector(loginClosedWithProgressState:)])
         {
@@ -177,7 +186,7 @@
 
     self.m_TableView.tableFooterView = footerView;
 
-    [weakSelf checkPhoneNum:self.m_PhoneItem.value];
+    [self checkPhoneNum:self.m_PhoneItem.value];
 
     [self.m_TableView reloadData];
 }
@@ -197,6 +206,14 @@
 
 - (void)confirmClick:(UIButton *)btn
 {
+    [self.view endEditing:YES];
+    
+    FSLoginVerifyVC *loginVerifyVC = [[FSLoginVerifyVC alloc] initWithVerificationType:BMVerificationCodeType_Type1 phoneNum:@"13569768888"];
+    loginVerifyVC.m_IsRegist = YES;
+    [self.navigationController pushViewController:loginVerifyVC animated:YES];
+    
+    return;
+    
     if (!s_isLogin)
     {
         //NSString *phoneNum = [self.m_PhoneItem.value bm_trim];
@@ -229,6 +246,11 @@
         return;
     }
     
+    if (self.delegate && [self.delegate respondsToSelector:@selector(loginProgressStateChanged:)])
+    {
+        [self.delegate loginProgressStateChanged:FSLoginProgress_InputPassWord];
+    }
+
     [self.m_Section removeAllItems];
 
     self.m_WelcomeLabel.hidden = NO;

@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 输入最大个数限制
 @property (nonatomic, assign, readonly) NSUInteger inputMaxCount;
 
-// 当输入完成后，是否需要自动取消响应，默认: NO
+// 当输入完成后，是否需要自动取消响应，默认: YES
 @property (nonatomic, assign) BOOL autoResignFirstResponderWhenInputFinished;
 
 #pragma mark - UI
@@ -38,9 +38,9 @@ NS_ASSUME_NONNULL_BEGIN
 // 设置边框宽度，默认: 1
 @property (nonatomic, assign) CGFloat borderWidth;
 // 设置边框颜色，默认: [UIColor lightGrayColor]
-@property (nonatomic, assign) UIColor *borderColor;
+@property (nonatomic, strong) UIColor *borderColor;
 // 设置已输入边框颜色，默认: [UIColor orangeColor]
-@property (nonatomic, assign) UIColor *trackBorderColor;
+@property (nonatomic, strong) UIColor *trackBorderColor;
 
 // 设置文本字体
 @property (nonatomic, strong) UIFont *textFont;
@@ -51,6 +51,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, strong) UIColor *cursorColor;
 
 - (instancetype)initWithInputCount:(NSUInteger)count;
+
+- (void)clear;
 
 @end
 
