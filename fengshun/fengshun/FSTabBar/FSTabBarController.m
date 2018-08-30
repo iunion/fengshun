@@ -66,7 +66,7 @@
 
 - (void)addViewControllers
 {
-    BMNavigationController *nav1 = [[BMNavigationController alloc] initWithRootViewController:[[FSMainVC alloc] init]];
+    BMNavigationController *nav1 = [[BMNavigationController alloc] initWithRootViewController:[[FSMainVC alloc] initWithNibName:@"FSMainVC" bundle:nil freshViewType:BMFreshViewType_NONE]];
     nav1.popOnBackButtonHandler = [self getPopOnBackButtonHandler];
     
     BMNavigationController *nav2 = [[BMNavigationController alloc] initWithRootViewController:[[FSSuperVC alloc] init]];
