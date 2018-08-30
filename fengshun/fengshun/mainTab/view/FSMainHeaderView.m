@@ -7,6 +7,7 @@
 //
 
 #import "FSMainHeaderView.h"
+#import "UIButton+BMContentRect.h"
 
 @implementation FSMainHeaderView
 
@@ -21,6 +22,10 @@
 {
     [super awakeFromNib];
     [self configBanner];
+    for (UIButton *button in _m_topimageButtons)
+    {
+        [button bm_layoutButtonWithEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageTop imageTitleGap:13];
+    }
 }
 - (void)configBanner
 {
