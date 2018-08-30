@@ -6,8 +6,8 @@
 //  Copyright © 2018年 FS. All rights reserved.
 //
 
-#import "FSSuperVC.h"
+#import "FSTableViewVC.h"
 
-@interface FSMainVC : FSSuperVC
+@interface FSMainVC : FSTableViewVC
 
 @end
