@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *m_bottomButton;
 @property (weak, nonatomic) IBOutlet UIView *   m_topView;
 @property (nonatomic, strong) FSPageBannerView *m_bannerView;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *m_topimageButtons;
 
 @property (nonatomic, weak) id<FSBannerViewDelegate, FSMainHeaderDelegate> delegate;
 - (instancetype)initWithFrame:(CGRect)frame andDelegate:(id<FSBannerViewDelegate, FSMainHeaderDelegate>)delegate;
