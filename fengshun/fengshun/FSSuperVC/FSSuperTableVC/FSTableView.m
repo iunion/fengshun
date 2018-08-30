@@ -35,7 +35,15 @@
     self.backgroundColor = [UIColor clearColor];
     self.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.bounces = YES;
-    
+
+#ifdef __IPHONE_11_0
+    if (@available(iOS 11.0, *))
+    {
+        // 默认 UIScrollViewContentInsetAdjustmentAutomatic
+        self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+#endif
+
     //self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     BMWeakSelf
@@ -79,13 +87,6 @@
     
     // 初始化无数据
     self.bm_showEmptyView = YES;
-
-#ifdef __IPHONE_11_0
-    if (@available(iOS 11.0, *))
-    {
-        self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-    }
-#endif
 }
 
 - (void)bringSomeViewToFront

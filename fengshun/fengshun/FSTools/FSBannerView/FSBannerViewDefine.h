@@ -17,7 +17,7 @@
 #define FSBanner_PageWidth      60.0f
 #define FSBanner_PageBottomGap  3.0f
 
-#define FSMinScale              0.87
+#define FSBanner_MinScale       0.87f
 
 // scrollView滚动的方向
 typedef NS_ENUM(NSInteger, FSBannerViewScrollDirection)

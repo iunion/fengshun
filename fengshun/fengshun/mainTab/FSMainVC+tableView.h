@@ -10,7 +10,8 @@
 
 @interface FSMainVC (tableView)
 <
-    UIScrollViewDelegate
+    UIScrollViewDelegate,
+    UITableViewDelegate
 >
 
 @end

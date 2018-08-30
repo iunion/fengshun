@@ -159,6 +159,19 @@
             }
             
             [scrollView addSubview:view];
+            
+            if (self.rollingScale)
+            {
+                // 缩放复位
+                if (i == startPageIndex)
+                {
+                    imageView.layer.transform = CATransform3DIdentity;
+                }
+                else
+                {
+                    imageView.layer.transform = CATransform3DMakeScale(FSBanner_MinScale, FSBanner_MinScale, FSBanner_MinScale);
+                }
+            }
         }
 
         UIPageControl *pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(5, frame.size.height-(FSBanner_PageHeight+FSBanner_PageBottomGap), FSBanner_PageWidth, FSBanner_PageHeight)];
@@ -333,69 +346,6 @@
 
 #pragma mark - Custom Method
 
-- (void)scaleWhenRolling
-{
-    UIImageView *centerImageView = (UIImageView *)[self.scrollView viewWithTag:FSBanner_StartTag + startPageIndex];
-    UIImageView *leftImageView   = (UIImageView *)[self.scrollView viewWithTag:FSBanner_StartTag + startPageIndex - 1];
-    UIImageView *rightImageView  = (UIImageView *)[self.scrollView viewWithTag:FSBanner_StartTag + startPageIndex + 1];
-    UIImageView *left2ImageView  = (UIImageView *)[self.scrollView viewWithTag:FSBanner_StartTag + startPageIndex - 2];
-    UIImageView *right2ImageView = (UIImageView *)[self.scrollView viewWithTag:FSBanner_StartTag + startPageIndex + 2];
-    CGRect       centerframe     = [_scrollView convertRect:centerImageView.superview.frame toView:self];
-    CGRect       leftframe       = [_scrollView convertRect:leftImageView.superview.frame toView:self];
-    CGRect       rightframe      = [_scrollView convertRect:rightImageView.superview.frame toView:self];
-    CGRect       left2frame      = [_scrollView convertRect:left2ImageView.superview.frame toView:self];
-    CGRect       right2frame     = [_scrollView convertRect:right2ImageView.superview.frame toView:self];
-
-    CGFloat normalOffset = _pageWidth + _pagePadding;
-    CGFloat unitScale    = (1.0 - FSMinScale) / normalOffset;
-    if (self.scrollDirection == FSBannerViewScrollDirectionLandscape)
-    {
-        //横向,根据x的偏移计算
-
-        CGFloat centerPoint = self.bounds.size.width / 2;
-
-        CGFloat centerOffsetX = ABS(CGRectGetMidX(centerframe) - centerPoint);
-        CGFloat leftOffsetX   = ABS(CGRectGetMidX(leftframe) - centerPoint);
-        CGFloat rightOffsetX  = ABS(CGRectGetMidX(rightframe) - centerPoint);
-        CGFloat left2OffsetX  = ABS(CGRectGetMidX(left2frame) - centerPoint);
-        CGFloat right2OffsetX = ABS(CGRectGetMidX(right2frame) - centerPoint);
-
-        CGFloat centerScale = 1.0 - (centerOffsetX * unitScale);
-        CGFloat leftScale   = 1.0 - (leftOffsetX * unitScale);
-        CGFloat rightScale  = 1.0 - (rightOffsetX * unitScale);
-        CGFloat left2Scale  = 1.0 - (left2OffsetX * unitScale);
-        CGFloat right2Scale = 1.0 - (right2OffsetX * unitScale);
-
-        centerImageView.layer.transform = CATransform3DMakeScale(centerScale, centerScale, centerScale);
-        leftImageView.layer.transform   = CATransform3DMakeScale(leftScale, leftScale, leftScale);
-        rightImageView.layer.transform  = CATransform3DMakeScale(rightScale, rightScale, rightScale);
-        left2ImageView.layer.transform  = CATransform3DMakeScale(left2Scale, left2Scale, left2Scale);
-        right2ImageView.layer.transform = CATransform3DMakeScale(right2Scale, right2Scale, right2Scale);
-    }
-    else if (_scrollDirection == FSBannerViewScrollDirectionPortait)
-    {
-        CGFloat centerPoint = self.bounds.size.height / 2;
-
-        CGFloat centerOffsetY = ABS(CGRectGetMidY(centerframe) - centerPoint);
-        CGFloat leftOffsetY   = ABS(CGRectGetMidY(leftframe) - centerPoint);
-        CGFloat rightOffsetY  = ABS(CGRectGetMidY(rightframe) - centerPoint);
-        CGFloat left2OffsetY  = ABS(CGRectGetMidY(left2frame) - centerPoint);
-        CGFloat right2OffsetY = ABS(CGRectGetMidY(right2frame) - centerPoint);
-
-        CGFloat centerScale = 1.0 - (centerOffsetY * unitScale);
-        CGFloat leftScale   = 1.0 - (leftOffsetY * unitScale);
-        CGFloat rightScale  = 1.0 - (rightOffsetY * unitScale);
-        CGFloat left2Scale  = 1.0 - (left2OffsetY * unitScale);
-        CGFloat right2Scale = 1.0 - (right2OffsetY * unitScale);
-
-        centerImageView.layer.transform = CATransform3DMakeScale(centerScale, centerScale, centerScale);
-        leftImageView.layer.transform   = CATransform3DMakeScale(leftScale, leftScale, leftScale);
-        rightImageView.layer.transform  = CATransform3DMakeScale(rightScale, rightScale, rightScale);
-        left2ImageView.layer.transform  = CATransform3DMakeScale(left2Scale, left2Scale, left2Scale);
-        right2ImageView.layer.transform = CATransform3DMakeScale(right2Scale, right2Scale, right2Scale);
-    }
-}
-
 - (void)refreshScrollView
 {
     NSArray *curimageClass = [self getDisplayImagesWithPageIndex:self.currentPage];
@@ -403,16 +353,6 @@
     for (NSInteger i = 0; i < self.cacheSize; i++)
     {
         UIImageView *imageView = (UIImageView *)[self.scrollView viewWithTag:FSBanner_StartTag+i];
-        if (_rollingScale) {
-            // 缩放复位
-            if (i == startPageIndex-1 || i == startPageIndex+1) {
-                imageView.layer.transform = CATransform3DMakeScale(FSMinScale, FSMinScale, FSMinScale);
-            }
-            else if (i == startPageIndex-2 || i == startPageIndex+2)
-            {
-                imageView.layer.transform = CATransform3DMakeScale(2*FSMinScale-1, 2*FSMinScale-1, 2*FSMinScale-1);
-            }
-        }
         NSString *url = curimageClass[i];
         if (imageView && [imageView isKindOfClass:[UIImageView class]])
         {
@@ -423,6 +363,19 @@
             else if (self.placeholderImage)
             {
                 imageView.image = self.placeholderImage;
+            }
+        }
+        
+        if (self.rollingScale)
+        {
+            // 缩放复位
+            if (i == startPageIndex)
+            {
+                imageView.layer.transform = CATransform3DIdentity;
+            }
+            else
+            {
+                imageView.layer.transform = CATransform3DMakeScale(FSBanner_MinScale, FSBanner_MinScale, FSBanner_MinScale);
             }
         }
     }
@@ -480,13 +433,31 @@
 #pragma mark -
 #pragma mark UIScrollViewDelegate
 
+- (void)scaleWhenRolling:(CGFloat)progress next:(BOOL)isNext
+{
+    UIImageView *centerImageView = (UIImageView *)[self.scrollView viewWithTag:FSBanner_StartTag + startPageIndex];
+    
+    UIImageView *changeImageView = nil;
+    if (isNext)
+    {
+        changeImageView = (UIImageView *)[self.scrollView viewWithTag:FSBanner_StartTag + startPageIndex + 1];
+    }
+    else
+    {
+        changeImageView = (UIImageView *)[self.scrollView viewWithTag:FSBanner_StartTag + startPageIndex - 1];
+    }
+    
+    CGFloat scale = (1.0f-FSBanner_MinScale)*progress;
+    
+    centerImageView.layer.transform = CATransform3DMakeScale(1.0f-scale, 1.0f-scale, 1.0f-scale);
+    changeImageView.layer.transform = CATransform3DMakeScale(FSBanner_MinScale+scale, FSBanner_MinScale+scale, FSBanner_MinScale+scale);
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)aScrollView
 {
     NSInteger x = aScrollView.contentOffset.x;
     NSInteger y = aScrollView.contentOffset.y;
-//    NSLog(@"did  x=%d  y=%d", x, y);
-
-    if(_rollingScale)[self scaleWhenRolling];
+    //NSLog(@"did  x=%d  y=%d", x, y);
     
     if (isRolling)
     {
@@ -498,6 +469,20 @@
     // 水平滚动
     if (self.scrollDirection == FSBannerViewScrollDirectionLandscape)
     {
+        if (self.rollingScale)
+        {
+            CGFloat progress = (x - startPageIndex * self.scrollView.frame.size.width)/self.scrollView.frame.size.width;
+            if (progress < 0.0f)
+            {
+                progress = progress * -1.0f;
+                [self scaleWhenRolling:progress next:NO];
+            }
+            else if (progress > 0.0f)
+            {
+                [self scaleWhenRolling:progress next:YES];
+            }
+        }
+        
         // 往下翻一张
         if (x >= (startPageIndex+1) * self.scrollView.frame.size.width)
         {
@@ -514,6 +499,20 @@
     // 垂直滚动
     else if (self.scrollDirection == FSBannerViewScrollDirectionPortait)
     {
+        if (self.rollingScale)
+        {
+            CGFloat progress = (x - startPageIndex * self.scrollView.frame.size.height)/self.scrollView.frame.size.height;
+            if (progress < 0.0f)
+            {
+                progress = progress * -1.0f;
+                [self scaleWhenRolling:progress next:NO];
+            }
+            else if (progress > 0.0f)
+            {
+                [self scaleWhenRolling:progress next:YES];
+            }
+        }
+        
         // 往下翻一张
         if (y >= (startPageIndex+1) * self.scrollView.frame.size.height)
         {

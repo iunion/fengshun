@@ -28,4 +28,5 @@
         navBar.backgroundImageView.alpha = offsetY/maxOffset;
     }
 }
+
 @end
