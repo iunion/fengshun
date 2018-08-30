@@ -11,6 +11,7 @@
 #import "UIDevice+BMCategory.h"
 #import "FSLocation.h"
 #import "FSCoreStatus.h"
+#import "FSUserInfo.h"
 
 @implementation FSApiRequest
 
@@ -64,6 +65,14 @@
     return errorMessage;
 }
 
+// deviceId     设备号
+// deviceModel  设备型号
+// osVersion    系统版本号
+// cType        设备系统类型
+// appVersion   app版本
+
+// JWTToken
+// timer        当前时间戳
 + (AFHTTPRequestSerializer *)requestSerializer
 {
     static AFHTTPRequestSerializer *FSRequestSerializer;
@@ -71,13 +80,20 @@
     dispatch_once(&onceToken, ^{
         FSRequestSerializer = [AFHTTPRequestSerializer serializer];
         FSRequestSerializer.timeoutInterval = FSAPI_TIMEOUT_SECONDS;
+        // 设备号
         [FSRequestSerializer setValue:[FSAppInfo getOpenUDID] forHTTPHeaderField:@"deviceId"];
+        // 设备型号
         [FSRequestSerializer setValue:[UIDevice bm_devicePlatformString] forHTTPHeaderField:@"deviceModel"];
+        // 设备系统类型
         [FSRequestSerializer setValue:@"iOS" forHTTPHeaderField:@"cType"];
+        // 系统版本号
+        [FSRequestSerializer setValue:CURRENT_SYSTEMVERSION forHTTPHeaderField:@"osVersion"];
+        // app名称
         [FSRequestSerializer setValue:FSAPP_APPNAME forHTTPHeaderField:@"appName"];
+        // app版本
         [FSRequestSerializer setValue:APP_VERSIONNO forHTTPHeaderField:@"appVersion"];
+        // 渠道 "App Store"
         [FSRequestSerializer setValue:[FSAppInfo catchChannelName] forHTTPHeaderField:@"channelCode"];
-        [FSRequestSerializer setValue:[NSString stringWithFormat:@"%@", @(IOS_VERSION)] forHTTPHeaderField:@"osVersion"];
     });
     
     return FSRequestSerializer;
@@ -133,14 +149,27 @@
         return nil;
     }
     
+    // 时间戳
+    NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
+    NSString *tmp = [NSString stringWithFormat:@"%@", @(time)];
+    [request setValue:tmp forHTTPHeaderField:@"timer"];
+
+    // GPS定位
     [request setValue:[NSString stringWithFormat:@"%f", [FSLocation userLocationLongitude]] forHTTPHeaderField:FSAPI_GPS_LONGITUDE_KEY];
     [request setValue:[NSString stringWithFormat:@"%f", [FSLocation userLocationLatitude]] forHTTPHeaderField:FSAPI_GPS_LATITUDE_KEY];
     
+    // 网络状态
     [request setValue:[FSCoreStatus currentMQNetWorkStatusString] forHTTPHeaderField:@"netWorkStandard"];
-//    if ([[MQUserInfo userInfo].m_Token isNotEmpty])
-//    {
-//        [request setValue:[MQUserInfo userInfo].m_Token forHTTPHeaderField:@"token"];
-//    }
+    
+    // token
+    if ([FSUserInfoModle isLogin])
+    {
+        NSString *token = [FSUserInfoModle userInfo].m_Token;
+        if ([token bm_isNotEmpty])
+        {
+            [request setValue:token forHTTPHeaderField:@"token"];
+        }
+    }
     
     BMLog(@"HeaderFields: %@", [request allHTTPHeaderFields]);
     
