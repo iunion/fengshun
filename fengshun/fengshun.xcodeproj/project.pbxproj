@@ -1900,8 +1900,8 @@
 				87C01348212E7A5200D0AAC3 /* fengshun */,
 				87C0135B212E7A5300D0AAC3 /* fengshunTests */,
 				87C01366212E7A5300D0AAC3 /* fengshunUITests */,
-				87D18659213539EE00037DDF /* Frameworks */,
 				87C01347212E7A5200D0AAC3 /* Products */,
+				87D18659213539EE00037DDF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
