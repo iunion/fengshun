@@ -18,6 +18,10 @@
 @implementation FSSetTableViewVC
 @synthesize m_FreshViewType = _m_FreshViewType;
 
+- (BMFreshViewType)getFreshViewType
+{
+    return BMFreshViewType_NONE;
+}
 
 - (instancetype)init
 {
@@ -39,6 +43,8 @@
 
 - (void)viewDidLoad
 {
+    _m_FreshViewType = [self getFreshViewType];
+    
     self.m_TableViewStyle = UITableViewStyleGrouped;
     
     [super viewDidLoad];
@@ -48,21 +54,21 @@
 
     s_IsNoMorePage = YES;
 
-    if (IS_IPHONE6P)
-    {
-        self.m_TableView.bm_left = 20.0f;
-        self.m_TableView.bm_width = UI_SCREEN_WIDTH-40.0f;
-    }
-    else if (IS_IPHONE6 || IS_IPHONEX)
-    {
-        self.m_TableView.bm_left = 15.0f;
-        self.m_TableView.bm_width = UI_SCREEN_WIDTH-30.0f;
-    }
-    else
-    {
-        self.m_TableView.bm_left = 10.0f;
-        self.m_TableView.bm_width = UI_SCREEN_WIDTH-20.0f;
-    }
+//    if (IS_IPHONE6P)
+//    {
+//        self.m_TableView.bm_left = 20.0f;
+//        self.m_TableView.bm_width = UI_SCREEN_WIDTH-40.0f;
+//    }
+//    else if (IS_IPHONE6 || IS_IPHONEX)
+//    {
+//        self.m_TableView.bm_left = 15.0f;
+//        self.m_TableView.bm_width = UI_SCREEN_WIDTH-30.0f;
+//    }
+//    else
+//    {
+//        self.m_TableView.bm_left = 10.0f;
+//        self.m_TableView.bm_width = UI_SCREEN_WIDTH-20.0f;
+//    }
     
     self.m_showEmptyView = NO;
     self.m_AllowEmptyJson = YES;
@@ -153,7 +159,7 @@
     self.m_TableManager.delegate = self;
 }
 
-- (void)freshView
+- (void)freshViews
 {
     
 }

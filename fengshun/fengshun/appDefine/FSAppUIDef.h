@@ -42,7 +42,7 @@
 #define UI_COLOR_BL4            [UIColor bm_colorWithHex:0x77CDEA]
 #define UI_COLOR_BL5            [UIColor bm_colorWithHex:0x54C2E7]
 
-#define UI_COLOR_G1             [UIColor bm_colorWithHex:0x8ADA30]
+#define UI_COLOR_G1             [UIColor bm_colorWithHex:0x53CB4D]
 
 #define UI_COLOR_P1             [UIColor bm_colorWithHex:0xDE9BFD]
 
@@ -177,7 +177,7 @@
 #define FS_DETAIL_LARGETEXTFONT             UI_FONT_14
 #define FS_DETAIL_SMALLTEXTFONT             UI_FONT_12
 #define FS_BUTTON_LARGETEXTFONT             UI_FONT_17
-#define FS_BUTTON_SMALLTEXTFONT             UI_FONT_17
+#define FS_BUTTON_SMALLTEXTFONT             UI_FONT_14
 
 #define FS_CELLTITLE_TEXTFONT               UI_FONT_15
 #define FS_CELLDETAIL_LARGETEXTFONT         FS_DETAIL_LARGETEXTFONT

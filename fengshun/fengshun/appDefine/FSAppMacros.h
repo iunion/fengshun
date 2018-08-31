@@ -19,4 +19,15 @@
 #define FSPASSWORD_MAXLENGTH            16
 
 
+
+#pragma mark -
+#pragma mark 通知
+
+// 刷新网页
+#define freshWebViewNotification                @"freshWebViewNotification"
+
+#define userInfoChangedNotification             @"userInfoChangedNotification"
+
+
+
 #endif /* FSAppMacros_h */

@@ -33,15 +33,15 @@ FSMainVC ()
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
-    [GetAppDelegate.m_TabBarController hideOriginTabBar];
-
     //
     [self setupUI];
 }
 - (void)setupUI
 {
-    [self bm_setNavigationWithTitle:@"主页" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:nil rightItemImage:[UIImage imageNamed:@"navigationbar_message_icon.png"] rightToucheEvent:@selector(popMessageVC:)];
     self.bm_NavigationItemTintColor = [UIColor blackColor];
+    [self bm_setNavigationWithTitle:@"主页" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:nil rightItemImage:[UIImage imageNamed:@"navigationbar_message_icon.png"] rightToucheEvent:@selector(popMessageVC:)];
+    [GetAppDelegate.m_TabBarController hideOriginTabBar];
+
     self.edgesForExtendedLayout                   = UIRectEdgeTop;
     self.m_TableView.backgroundColor              = [UIColor whiteColor];
     self.m_TableView.showsVerticalScrollIndicator = NO;
