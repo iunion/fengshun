@@ -70,6 +70,17 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(batteryChangedForLocationManager) name:UIDeviceBatteryStateDidChangeNotification object:nil];
 }
 
+
+#pragma mark - network status
+
+- (void)coreNetworkChanged:(NSNotification *)noti
+{
+    NSDictionary *userDic = noti.userInfo;
+    
+    BMLog(@"网络环境: %@", [userDic bm_stringForKey:@"currentStatusString"]);
+    BMLog(@"网络运营商: %@", [userDic bm_stringForKey:@"currentBrandName"]);
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
