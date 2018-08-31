@@ -13,7 +13,6 @@
 #import "BMNavigationTitleLabel.h"
 #import "UIViewController+BMNavigationBar.h"
 #import "NSObject+BMCategory.h"
-#import "UIButton+BMContentRect.h"
 #import "NSDictionary+BMCategory.h"
 
 @implementation UIViewController (BMNavigationItem)
@@ -202,6 +201,37 @@
     titleLabel.textColor = self.bm_NavigationTitleTintColor;
 }
 
+- (NSDictionary *)bm_makeBarButtonDictionaryWithTitle:(NSString *)title image:(id)image toucheEvent:(NSString *)selector buttonEdgeInsetsStyle:(BMButtonEdgeInsetsStyle)edgeInsetsStyle imageTitleGap:(CGFloat)gap
+{
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    if ([selector bm_isNotEmpty])
+    {
+        [dic setObject:selector forKey:BMNAVIGATION_BTNITEM_SELECTOR_KEY];
+    }
+    else
+    {
+        return nil;
+    }
+
+    if ([title bm_isNotEmpty])
+    {
+        [dic setObject:title forKey:BMNAVIGATION_BTNITEM_TITLE_KEY];
+    }
+
+    if ([image bm_isNotEmpty])
+    {
+        [dic setObject:image forKey:BMNAVIGATION_BTNITEM_IMAGE_KEY];
+    }
+
+    [dic setObject:@(edgeInsetsStyle) forKey:BMNAVIGATION_BTNITEM_EDGESTYLE_KEY];
+    if (gap > 1.0f)
+    {
+        [dic setObject:@(gap) forKey:BMNAVIGATION_BTNITEM_GAP_KEY];
+    }
+    
+    return dic;
+}
+
 - (UIBarButtonItem *)makeBarButton:(NSString *)title image:(id)image toucheEvent:(SEL)selector buttonEdgeInsetsStyle:(BMButtonEdgeInsetsStyle)edgeInsetsStyle imageTitleGap:(CGFloat)gap
 {
 // 直接使用UIBarButtonItem
@@ -319,7 +349,7 @@
         for (NSDictionary *dic in dicArray)
         {
             NSString *title = [dic objectForKey:BMNAVIGATION_BTNITEM_TITLE_KEY];
-            NSString *imageName = [dic objectForKey:BMNAVIGATION_BTNITEM_TITLE_KEY];
+            NSString *imageName = [dic objectForKey:BMNAVIGATION_BTNITEM_IMAGE_KEY];
             SEL aSelector = NSSelectorFromString([dic objectForKey:BMNAVIGATION_BTNITEM_SELECTOR_KEY]);
             BMButtonEdgeInsetsStyle edgeInsetsStyle = [dic bm_uintForKey:BMNAVIGATION_BTNITEM_EDGESTYLE_KEY withDefault:BMButtonEdgeInsetsStyleImageRight];
             CGFloat gap = [dic bm_uintForKey:BMNAVIGATION_BTNITEM_GAP_KEY withDefault:2];

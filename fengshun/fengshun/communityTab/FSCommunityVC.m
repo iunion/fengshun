@@ -33,7 +33,22 @@ FSCommunityVC ()
     self.title = @"ScrollPageView";
     [GetAppDelegate.m_TabBarController hideOriginTabBar];
 
+    NSDictionary *btnItem1 = [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"navigationbar_collect_icon" toucheEvent:@"collect" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0];
+    NSDictionary *btnItem2 = [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"navigationbar_share_icon" toucheEvent:@"share" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageRight imageTitleGap:0];
+
+    [self bm_setNavigationWithTitle:@"" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightDicArray:@[btnItem2, btnItem1]];
+
     [self setupUI];
+}
+
+- (void)collect
+{
+    NSLog(@"collect");
+}
+
+- (void)share
+{
+    NSLog(@"share");
 }
 
 - (void)setupUI

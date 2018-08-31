@@ -10,6 +10,8 @@
 #import "FSUserInfo.h"
 #import "UIView+BMBadge.h"
 
+#import "FSSearchViewController.h"
+
 @interface FSUserMainVC ()
 
 @property (strong, nonatomic) UIView *m_TopView;
@@ -95,6 +97,13 @@
     
     BMWeakSelf
     self.m_TopicItem = [BMTableViewItem itemWithTitle:@"我的帖子" imageName:@"login_mobile" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
+        FSSearchViewController *searchViewController = [[FSSearchViewController alloc] initWithSearchKey:@"test"
+                                                                                           hotSearchTags:@[ @"1", @"2" ]
+                                                                                           searchHandler:^(NSString *search) {
+                                                                                               NSLog(@"search");
+                                                                                           }];
+        [self.navigationController pushViewController:searchViewController animated:YES];
+
         
     }];
     self.m_TopicItem.textFont = FS_CELLTITLE_TEXTFONT;
@@ -223,6 +232,8 @@
 - (void)loginAction:(id)sender
 {
     NSLog(@"loginAction");
+    
+    [self showLogin];
 }
 
 - (void)approveAction:(id)sender

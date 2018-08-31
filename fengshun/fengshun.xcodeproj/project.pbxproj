@@ -377,6 +377,10 @@
 		87D20AEB213920E2001EDD60 /* FLEXResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D20A9B213920E2001EDD60 /* FLEXResources.m */; };
 		87D20AEC213920E2001EDD60 /* FLEXMultilineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D20A9E213920E2001EDD60 /* FLEXMultilineTableViewCell.m */; };
 		87D20AEF21392FF2001EDD60 /* user_topbackgroud@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D20AEE21392FF1001EDD60 /* user_topbackgroud@2x.png */; };
+		87D20AF321393B91001EDD60 /* navigationbar_collect_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D20AF121393B90001EDD60 /* navigationbar_collect_icon@2x.png */; };
+		87D20AF421393B91001EDD60 /* navigationbar_collect_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D20AF221393B90001EDD60 /* navigationbar_collect_icon@3x.png */; };
+		87D20AF721393B9A001EDD60 /* navigationbar_share_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D20AF521393B99001EDD60 /* navigationbar_share_icon@3x.png */; };
+		87D20AF821393B9A001EDD60 /* navigationbar_share_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D20AF621393B99001EDD60 /* navigationbar_share_icon@2x.png */; };
 		AD47EFDC2137EBF0004A345F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD47EFDB2137EBF0004A345F /* Launch Screen.storyboard */; };
 		AD8B63FE21338E0C006DDC22 /* FSPreviewFileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */; };
 		AD93559F2137D24100735C2E /* TZImageCropManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9355842137D24100735C2E /* TZImageCropManager.m */; };
@@ -1117,6 +1121,10 @@
 		87D20A9D213920E2001EDD60 /* FLEXKeyboardShortcutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXKeyboardShortcutManager.h; sourceTree = "<group>"; };
 		87D20A9E213920E2001EDD60 /* FLEXMultilineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXMultilineTableViewCell.m; sourceTree = "<group>"; };
 		87D20AEE21392FF1001EDD60 /* user_topbackgroud@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_topbackgroud@2x.png"; sourceTree = "<group>"; };
+		87D20AF121393B90001EDD60 /* navigationbar_collect_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationbar_collect_icon@2x.png"; sourceTree = "<group>"; };
+		87D20AF221393B90001EDD60 /* navigationbar_collect_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationbar_collect_icon@3x.png"; sourceTree = "<group>"; };
+		87D20AF521393B99001EDD60 /* navigationbar_share_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationbar_share_icon@3x.png"; sourceTree = "<group>"; };
+		87D20AF621393B99001EDD60 /* navigationbar_share_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationbar_share_icon@2x.png"; sourceTree = "<group>"; };
 		AD47EFDB2137EBF0004A345F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		AD8B63FC21338E0C006DDC22 /* FSPreviewFileTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSPreviewFileTool.h; sourceTree = "<group>"; };
 		AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSPreviewFileTool.m; sourceTree = "<group>"; };
@@ -1848,6 +1856,8 @@
 				87D1868A213678B400037DDF /* navigationbar_popback_icon@3x.png */,
 				874269EC212F9657003C52F6 /* navigationbar_close_icon@2x.png */,
 				874269EB212F9657003C52F6 /* navigationbar_close_icon@3x.png */,
+				87D20AF121393B90001EDD60 /* navigationbar_collect_icon@2x.png */,
+				87D20AF221393B90001EDD60 /* navigationbar_collect_icon@3x.png */,
 				874269E7212F9657003C52F6 /* navigationbar_help_icon@2x.png */,
 				874269E6212F9657003C52F6 /* navigationbar_help_icon@3x.png */,
 				874269F0212F9657003C52F6 /* navigationbar_message_icon@2x.png */,
@@ -1856,6 +1866,8 @@
 				874269F1212F9657003C52F6 /* navigationbar_select_icon@3x.png */,
 				874269EF212F9657003C52F6 /* navigationbar_setup_icon@2x.png */,
 				874269F8212F9657003C52F6 /* navigationbar_setup_icon@3x.png */,
+				87D20AF621393B99001EDD60 /* navigationbar_share_icon@2x.png */,
+				87D20AF521393B99001EDD60 /* navigationbar_share_icon@3x.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -2877,6 +2889,7 @@
 				87426A4C213135F0003C52F6 /* fstab_btn3_highIcon@3x.png in Resources */,
 				874269FF212F9657003C52F6 /* navigationbar_back_icon@2x.png in Resources */,
 				87426894212E7E36003C52F6 /* increase_eleme@3x.png in Resources */,
+				87D20AF321393B91001EDD60 /* navigationbar_collect_icon@2x.png in Resources */,
 				874268A1212E7E36003C52F6 /* decrease_taobao@2x.png in Resources */,
 				87426A6021313940003C52F6 /* FSMainVC.xib in Resources */,
 				87D186A3213679F800037DDF /* login_checked@2x.png in Resources */,
@@ -2922,8 +2935,10 @@
 				87D186A7213679F800037DDF /* login_logo@2x.png in Resources */,
 				87D209F2213912ED001EDD60 /* default_avataricon@2x.png in Resources */,
 				87426A56213135F0003C52F6 /* fstab_btn2_icon@3x.png in Resources */,
+				87D20AF821393B9A001EDD60 /* navigationbar_share_icon@2x.png in Resources */,
 				87426A22213100BB003C52F6 /* bmsearch_history@2x.png in Resources */,
 				87426893212E7E36003C52F6 /* steppersinput_plusicon@2x.png in Resources */,
+				87D20AF421393B91001EDD60 /* navigationbar_collect_icon@3x.png in Resources */,
 				87426A0C212F9657003C52F6 /* navigationbar_message_icon@3x.png in Resources */,
 				874268CF212E7E36003C52F6 /* bmtab_bg@3x.png in Resources */,
 				87426A51213135F0003C52F6 /* fstab_btn2_highIcon@2x.png in Resources */,
@@ -2963,6 +2978,7 @@
 				8742689C212E7E36003C52F6 /* increase_baiduwaimai@2x.png in Resources */,
 				874268B7212E7E36003C52F6 /* BMTableView_arrows_rightBlack@3x.png in Resources */,
 				87D186A1213679F800037DDF /* login_password@3x.png in Resources */,
+				87D20AF721393B9A001EDD60 /* navigationbar_share_icon@3x.png in Resources */,
 				87D186AB213679F800037DDF /* login_error@2x.png in Resources */,
 				ADE8689821392853005359B5 /* FSCommunityListTableViewCell.xib in Resources */,
 				87426895212E7E36003C52F6 /* increase_baiduwaimai@3x.png in Resources */,
