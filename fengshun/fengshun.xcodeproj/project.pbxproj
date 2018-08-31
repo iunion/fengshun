@@ -305,8 +305,6 @@
 		DB57223C2133A1D90065DC30 /* FSCommunityVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB57223A2133A1D90065DC30 /* FSCommunityVC.xib */; };
 		DB8D16112137CC9800EB16E8 /* FSMainHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8D16102137CC9800EB16E8 /* FSMainHeaderView.m */; };
 		DB8D16132137CCAC00EB16E8 /* FSMainHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB8D16122137CCAC00EB16E8 /* FSMainHeaderView.xib */; };
-		DB8D16162137D02600EB16E8 /* FSVerticalButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8D16152137D02600EB16E8 /* FSVerticalButton.m */; };
-		DB8D16192137D7DB00EB16E8 /* FSMainVC+tableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8D16182137D7DB00EB16E8 /* FSMainVC+tableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -870,10 +868,6 @@
 		DB8D160F2137CC9800EB16E8 /* FSMainHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMainHeaderView.h; sourceTree = "<group>"; };
 		DB8D16102137CC9800EB16E8 /* FSMainHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMainHeaderView.m; sourceTree = "<group>"; };
 		DB8D16122137CCAC00EB16E8 /* FSMainHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSMainHeaderView.xib; sourceTree = "<group>"; };
-		DB8D16142137D02600EB16E8 /* FSVerticalButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSVerticalButton.h; sourceTree = "<group>"; };
-		DB8D16152137D02600EB16E8 /* FSVerticalButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSVerticalButton.m; sourceTree = "<group>"; };
-		DB8D16172137D7DB00EB16E8 /* FSMainVC+tableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FSMainVC+tableView.h"; sourceTree = "<group>"; };
-		DB8D16182137D7DB00EB16E8 /* FSMainVC+tableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "FSMainVC+tableView.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1665,8 +1659,6 @@
 				87426A5C21313940003C52F6 /* FSMainVC.h */,
 				87426A5D21313940003C52F6 /* FSMainVC.m */,
 				87426A5E21313940003C52F6 /* FSMainVC.xib */,
-				DB8D16172137D7DB00EB16E8 /* FSMainVC+tableView.h */,
-				DB8D16182137D7DB00EB16E8 /* FSMainVC+tableView.m */,
 			);
 			path = mainTab;
 			sourceTree = "<group>";
@@ -2114,8 +2106,6 @@
 		DB8D160D2137CC7100EB16E8 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				DB8D16142137D02600EB16E8 /* FSVerticalButton.h */,
-				DB8D16152137D02600EB16E8 /* FSVerticalButton.m */,
 				DB8D160F2137CC9800EB16E8 /* FSMainHeaderView.h */,
 				DB8D16102137CC9800EB16E8 /* FSMainHeaderView.m */,
 				DB8D16122137CCAC00EB16E8 /* FSMainHeaderView.xib */,
@@ -2367,7 +2357,6 @@
 				874268B0212E7E36003C52F6 /* BMTableViewImageDetailCell.m in Sources */,
 				874269D7212E9E21003C52F6 /* BMFreshBackNormalFooter.m in Sources */,
 				87426ADE213527AC003C52F6 /* FSUserInfoModle.m in Sources */,
-				DB8D16162137D02600EB16E8 /* FSVerticalButton.m in Sources */,
 				87426943212E8255003C52F6 /* SDWebImagePrefetcher.m in Sources */,
 				AD9355A12137D24100735C2E /* TZVideoPlayerController.m in Sources */,
 				8742693D212E8255003C52F6 /* SDWebImageDecoder.m in Sources */,
@@ -2540,7 +2529,6 @@
 				8742694A212E8255003C52F6 /* UIView+WebCacheOperation.m in Sources */,
 				AD9CAAE4212EA0F40071B941 /* UIScrollView+BMEmpty.m in Sources */,
 				874269C3212E9B78003C52F6 /* BMFreshHeaderView.m in Sources */,
-				DB8D16192137D7DB00EB16E8 /* FSMainVC+tableView.m in Sources */,
 				87D186B22136998E00037DDF /* FSLoginVerifyVC.m in Sources */,
 				874269E2212EB8A4003C52F6 /* BMSearchViewController.m in Sources */,
 				874268B1212E7E36003C52F6 /* BMTableViewCheckBoxGroupCell.m in Sources */,
@@ -2719,6 +2707,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K9SAQ4FSAH;
 				ENABLE_BITCODE = NO;
@@ -2740,6 +2729,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = FS.fengshun;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -2749,6 +2739,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K9SAQ4FSAH;
 				ENABLE_BITCODE = NO;
@@ -2770,6 +2761,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = FS.fengshun;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
