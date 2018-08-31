@@ -278,6 +278,8 @@
 		87D186AE213679F800037DDF /* login_logo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D1869E213679F800037DDF /* login_logo@3x.png */; };
 		87D186B22136998E00037DDF /* FSLoginVerifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D186B02136998D00037DDF /* FSLoginVerifyVC.m */; };
 		87D209652137B6C5001EDD60 /* FSSetPassWordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D209642137B6C5001EDD60 /* FSSetPassWordVC.m */; };
+		87D209722137F399001EDD60 /* FSUserMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D209702137F399001EDD60 /* FSUserMainVC.m */; };
+		87D209732137F399001EDD60 /* FSUserMainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87D209712137F399001EDD60 /* FSUserMainVC.xib */; };
 		AD47EFDC2137EBF0004A345F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD47EFDB2137EBF0004A345F /* Launch Screen.storyboard */; };
 		AD8B63FE21338E0C006DDC22 /* FSPreviewFileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */; };
 		AD93559F2137D24100735C2E /* TZImageCropManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9355842137D24100735C2E /* TZImageCropManager.m */; };
@@ -819,6 +821,9 @@
 		87D186B02136998D00037DDF /* FSLoginVerifyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSLoginVerifyVC.m; sourceTree = "<group>"; };
 		87D209632137B6C5001EDD60 /* FSSetPassWordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSetPassWordVC.h; sourceTree = "<group>"; };
 		87D209642137B6C5001EDD60 /* FSSetPassWordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSSetPassWordVC.m; sourceTree = "<group>"; };
+		87D2096F2137F399001EDD60 /* FSUserMainVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSUserMainVC.h; sourceTree = "<group>"; };
+		87D209702137F399001EDD60 /* FSUserMainVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSUserMainVC.m; sourceTree = "<group>"; };
+		87D209712137F399001EDD60 /* FSUserMainVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSUserMainVC.xib; sourceTree = "<group>"; };
 		AD47EFDB2137EBF0004A345F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		AD8B63FC21338E0C006DDC22 /* FSPreviewFileTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSPreviewFileTool.h; sourceTree = "<group>"; };
 		AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSPreviewFileTool.m; sourceTree = "<group>"; };
@@ -1929,6 +1934,7 @@
 				87D1868021364D9600037DDF /* FSLogin */,
 				87426A5B21313915003C52F6 /* mainTab */,
 				DB5722372133A1830065DC30 /* communityTab */,
+				87D2096E2137F371001EDD60 /* userTab */,
 				87426ABA2133AA9D003C52F6 /* networkAPI */,
 				87426A9821314996003C52F6 /* FSTools */,
 				87C0134C212E7A5300D0AAC3 /* Assets.xcassets */,
@@ -2027,6 +2033,16 @@
 				87D18699213679F800037DDF /* login_unchecked@3x.png */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		87D2096E2137F371001EDD60 /* userTab */ = {
+			isa = PBXGroup;
+			children = (
+				87D2096F2137F399001EDD60 /* FSUserMainVC.h */,
+				87D209702137F399001EDD60 /* FSUserMainVC.m */,
+				87D209712137F399001EDD60 /* FSUserMainVC.xib */,
+			);
+			path = userTab;
 			sourceTree = "<group>";
 		};
 		AD8B63FA21338DC3006DDC22 /* FSPreviewFileTool */ = {
@@ -2284,6 +2300,7 @@
 				87D186A9213679F800037DDF /* login_unchecked@3x.png in Resources */,
 				87426A4E213135F0003C52F6 /* fstab_btn3_icon@2x.png in Resources */,
 				87426A59213135F0003C52F6 /* fstab_btn1_highIcon@2x.png in Resources */,
+				87D209732137F399001EDD60 /* FSUserMainVC.xib in Resources */,
 				AD9355A62137D24100735C2E /* TZImagePickerController.bundle in Resources */,
 				87426A25213100BB003C52F6 /* bmsearch_searchicon@2x.png in Resources */,
 				87426A18212FCB6A003C52F6 /* navigationbar_clearImage@2x.png in Resources */,
@@ -2498,6 +2515,7 @@
 				87426AAA213156D5003C52F6 /* FSBannerView.m in Sources */,
 				874268A9212E7E36003C52F6 /* BMTableViewSegmentCell.m in Sources */,
 				874268F4212E7E36003C52F6 /* UITextField+BMCategory.m in Sources */,
+				87D209722137F399001EDD60 /* FSUserMainVC.m in Sources */,
 				87426AC52133AA9D003C52F6 /* FSCoreStatus.m in Sources */,
 				874269B9212E9B78003C52F6 /* BMFreshBaseView.m in Sources */,
 				874268E9212E7E36003C52F6 /* UIView+BMAnimationExtensions.m in Sources */,

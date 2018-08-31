@@ -69,10 +69,12 @@ typedef NS_ENUM(NSUInteger, FSCoreNetWorkStatus)
 
 @protocol FSCoreNetWorkStatusProtocol <NSObject>
 
-@optional
+@required
 
 /** 网络状态变更 */
 - (void)coreNetworkChanged:(NSNotification *)noti;
+
+@optional
 
 @end
 
