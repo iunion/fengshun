@@ -300,6 +300,8 @@
 		AD9CAAE4212EA0F40071B941 /* UIScrollView+BMEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9CAAE3212EA0F40071B941 /* UIScrollView+BMEmpty.m */; };
 		ADE8689721392853005359B5 /* FSCommunityListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8689521392853005359B5 /* FSCommunityListTableViewCell.m */; };
 		ADE8689821392853005359B5 /* FSCommunityListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADE8689621392853005359B5 /* FSCommunityListTableViewCell.xib */; };
+		ADE8689C21393469005359B5 /* FSPlateListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8689A21393469005359B5 /* FSPlateListTableViewCell.m */; };
+		ADE8689D21393469005359B5 /* FSPlateListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADE8689B21393469005359B5 /* FSPlateListTableViewCell.xib */; };
 		DB57222F21338B6E0065DC30 /* XMRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB57222D21338B6E0065DC30 /* XMRequestManager.m */; };
 		DB5722352133A0FC0065DC30 /* FSScrollPageSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5722312133A0FC0065DC30 /* FSScrollPageSegment.m */; };
 		DB5722362133A0FC0065DC30 /* FSScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5722332133A0FC0065DC30 /* FSScrollPageView.m */; };
@@ -861,6 +863,9 @@
 		ADE8689421392853005359B5 /* FSCommunityListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCommunityListTableViewCell.h; sourceTree = "<group>"; };
 		ADE8689521392853005359B5 /* FSCommunityListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCommunityListTableViewCell.m; sourceTree = "<group>"; };
 		ADE8689621392853005359B5 /* FSCommunityListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSCommunityListTableViewCell.xib; sourceTree = "<group>"; };
+		ADE8689921393469005359B5 /* FSPlateListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSPlateListTableViewCell.h; sourceTree = "<group>"; };
+		ADE8689A21393469005359B5 /* FSPlateListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSPlateListTableViewCell.m; sourceTree = "<group>"; };
+		ADE8689B21393469005359B5 /* FSPlateListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSPlateListTableViewCell.xib; sourceTree = "<group>"; };
 		DB57222D21338B6E0065DC30 /* XMRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMRequestManager.m; sourceTree = "<group>"; };
 		DB57222E21338B6E0065DC30 /* XMRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMRequestManager.h; sourceTree = "<group>"; };
 		DB5722312133A0FC0065DC30 /* FSScrollPageSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSScrollPageSegment.m; sourceTree = "<group>"; };
@@ -2093,6 +2098,9 @@
 				ADE8689421392853005359B5 /* FSCommunityListTableViewCell.h */,
 				ADE8689521392853005359B5 /* FSCommunityListTableViewCell.m */,
 				ADE8689621392853005359B5 /* FSCommunityListTableViewCell.xib */,
+				ADE8689921393469005359B5 /* FSPlateListTableViewCell.h */,
+				ADE8689A21393469005359B5 /* FSPlateListTableViewCell.m */,
+				ADE8689B21393469005359B5 /* FSPlateListTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2322,6 +2330,7 @@
 				87D186AA213679F800037DDF /* login_error@3x.png in Resources */,
 				874268B5212E7E36003C52F6 /* BMTableView_arrows_rightBlack@2x.png in Resources */,
 				8742689F212E7E36003C52F6 /* decrease_baiduwaimai@3x.png in Resources */,
+				ADE8689D21393469005359B5 /* FSPlateListTableViewCell.xib in Resources */,
 				DB8D16132137CCAC00EB16E8 /* FSMainHeaderView.xib in Resources */,
 				87426897212E7E36003C52F6 /* decrease_meituan@3x.png in Resources */,
 				87426A04212F9657003C52F6 /* navigationbar_back_icon@3x.png in Resources */,
@@ -2498,6 +2507,7 @@
 				874268A7212E7E36003C52F6 /* BMTableViewDateTimeCell.m in Sources */,
 				AD9355A22137D24100735C2E /* TZAssetModel.m in Sources */,
 				874268C1212E7E36003C52F6 /* BMBoolItem.m in Sources */,
+				ADE8689C21393469005359B5 /* FSPlateListTableViewCell.m in Sources */,
 				87426948212E8255003C52F6 /* NSImage+WebCache.m in Sources */,
 				874268D2212E7E36003C52F6 /* BMCheckBoxGroup.m in Sources */,
 				874268CB212E7E36003C52F6 /* BMInputItem.m in Sources */,
