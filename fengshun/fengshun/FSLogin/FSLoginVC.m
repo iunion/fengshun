@@ -227,7 +227,7 @@
         
         s_isLogin = YES;
         
-        [self freshView];
+        [self freshViews];
     }
     else
     {
@@ -240,7 +240,7 @@
     }
 }
 
-- (void)freshView
+- (void)freshViews
 {
     if (!s_isLogin)
     {

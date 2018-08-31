@@ -13,6 +13,9 @@
 
 #import "FSUserInfo.h"
 
+//#import "SDWebImageCodersManager.h"
+//#import "SDWebImageGIFCoder.h"
+
 @interface AppDelegate ()
 <
     CLLocationManagerDelegate,
@@ -68,6 +71,9 @@
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(batteryChangedForLocationManager) name:UIDeviceBatteryStateDidChangeNotification object:nil];
+    
+    // SDWebImage支持gif动画显示，加载GIFCoder
+    //[[SDWebImageCodersManager sharedInstance] addCoder:[SDWebImageGIFCoder sharedCoder]];
 }
 
 
@@ -112,9 +118,14 @@
 {
     if ([keyPath isEqualToString:@"m_UserInfo"])
     {
-#warning 刷新web用户数据
-        // 刷新web用户数据
-        //[[NSNotificationCenter defaultCenter] postNotificationName:freshWebViewNotification object:nil userInfo:nil];
+        //FSUserInfoModle *oldUserInfo = [change objectForKey:NSKeyValueChangeOldKey];
+        //FSUserInfoModle *newUserInfo = [change objectForKey:NSKeyValueChangeNewKey];
+        
+        //if (![oldUserInfo bm_isValided])
+        {
+            // 用户数据变更，包括登录注册，退出登录
+            [[NSNotificationCenter defaultCenter] postNotificationName:userInfoChangedNotification object:nil userInfo:nil];
+        }
     }
 }
 

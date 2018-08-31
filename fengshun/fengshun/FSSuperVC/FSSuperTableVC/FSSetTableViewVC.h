@@ -16,11 +16,13 @@
 
 @property (nonatomic, strong, readonly) BMTableViewManager *m_TableManager;
 
+- (BMFreshViewType)getFreshViewType;
+
 // 支持键盘相应
 - (BOOL)needKeyboardEvent;
 
 - (void)interfaceSettings;
-- (void)freshView;
+- (void)freshViews;
 
 // 手机号
 - (BOOL)verifyPhoneNum:(NSString *)phoneNum;
