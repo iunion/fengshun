@@ -194,7 +194,7 @@
     }
     btn.frame = frame;
     btn.backgroundColor = UI_COLOR_BL1;
-    btn.titleLabel.font = UI_FONT_17;
+    btn.titleLabel.font = FS_BUTTON_LARGETEXTFONT;
     btn.exclusiveTouch = YES;
     [btn addTarget:self action:@selector(confirmClick:) forControlEvents:UIControlEventTouchUpInside];
     if (self.m_IsRegist)

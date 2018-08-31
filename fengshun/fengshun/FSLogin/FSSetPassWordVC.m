@@ -127,6 +127,7 @@
     self.m_Section = [BMTableViewSection section];
     
     self.m_PassWordItem = [BMTextItem itemWithTitle:nil value:nil placeholder:@"请输入密码"];
+    self.m_PassWordItem.textFieldTextFont = FS_CELLTITLE_TEXTFONT;
     self.m_PassWordItem.keyboardType = UIKeyboardTypeDefault;
     self.m_PassWordItem.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.m_PassWordItem.secureTextEntry = YES;
@@ -175,7 +176,7 @@
     }
     btn.frame = frame;
     btn.backgroundColor = UI_COLOR_BL1;
-    btn.titleLabel.font = UI_FONT_17;
+    btn.titleLabel.font = FS_BUTTON_LARGETEXTFONT;
     btn.exclusiveTouch = YES;
     [btn addTarget:self action:@selector(confirmClick:) forControlEvents:UIControlEventTouchUpInside];
     [btn setTitle:@"确认密码" forState:UIControlStateNormal];
