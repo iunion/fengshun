@@ -10,16 +10,20 @@
 #import "AppDelegate.h"
 #import "FSSearchViewController.h"
 #import "FSMainHeaderView.h"
+#import "FSCourseTableCell.h"
 
 #import "BMVerifyField.h"
 #import "TZImagePickerController.h"
+
 
 @interface
 FSMainVC ()
 <
     FSBannerViewDelegate,
     FSMainHeaderDelegate,
-    TZImagePickerControllerDelegate
+    TZImagePickerControllerDelegate,
+    UITableViewDelegate,
+    UITableViewDataSource
 >
 
 @property (nonatomic, strong) FSMainHeaderView *m_headerView;
@@ -33,18 +37,18 @@ FSMainVC ()
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
-
-    //
     [self setupUI];
+    [self.m_TableView registerNib:[UINib nibWithNibName:@"FSCourseTableCell" bundle:nil] forCellReuseIdentifier:@"FSCourseTableCell"];
+    self.m_TableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    
 }
 - (void)setupUI
 {
-    self.bm_NavigationItemTintColor = [UIColor blackColor];
+    self.bm_NavigationItemTintColor = UI_COLOR_B1;
     [self bm_setNavigationWithTitle:@"主页" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:nil rightItemImage:[UIImage imageNamed:@"navigationbar_message_icon.png"] rightToucheEvent:@selector(popMessageVC:)];
     
     [GetAppDelegate.m_TabBarController hideOriginTabBar];
     self.edgesForExtendedLayout                   = UIRectEdgeTop;
-    self.m_TableView.backgroundColor              = [UIColor whiteColor];
     self.m_TableView.showsVerticalScrollIndicator = NO;
     self.m_TableView.frame                        = CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT-UI_TAB_BAR_HEIGHT);
     [self setBm_NavigationBarImage:[UIImage imageWithColor:[UIColor whiteColor]]];
@@ -107,48 +111,23 @@ FSMainVC ()
             break;
     }
 }
-
-
-- (void)photo:(id)sender
-{
-    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:9 columnNumber:4 delegate:self pushPhotoPickerVc:YES];
-    //    imagePickerVc.selectedAssets = _selectedAssets;// 目前已经选中的图片数组
-    imagePickerVc.allowTakePicture = YES;  // 在内部显示拍照按钮
-    //    imagePickerVc.allowTakeVideo = YES;   // 在内部显示拍视频按
-    //    imagePickerVc.videoMaximumDuration = 10; // 视频最大拍摄时间
-    //在这里设置imagePickerVc的外观
-    // imagePickerVc.navigationBar.barTintColor = [UIColor greenColor];
-    // imagePickerVc.oKButtonTitleColorDisabled = [UIColor lightGrayColor];
-    // imagePickerVc.oKButtonTitleColorNormal = [UIColor greenColor];
-    // 3. 设置是否可以选择视频/图片/原图
-    imagePickerVc.allowPickingVideo         = NO;
-    imagePickerVc.allowPickingImage         = YES;
-    imagePickerVc.allowPickingOriginalPhoto = YES;
-    //    imagePickerVc.allowPickingGif = NO;
-    //    imagePickerVc.allowPickingMultipleVideo = NO; // 是否可以多选视频
-    imagePickerVc.sortAscendingByModificationDate = YES;
-    // 设置竖屏下的裁剪尺寸
-    //    imagePickerVc.cropRect = CGRectMake(left, top, widthHeight, widthHeight);
-    [self presentViewController:imagePickerVc animated:YES completion:nil];
-}
-#pragma mark - pop VC
-- (void)popMessageVC:(id)sender
+-(void)popMessageVC:(id)sender
 {
     
 }
-#pragma mark - TZImagePickerControllerDelegate
-/// 用户点击了取消
-- (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker
+#pragma mark - tableViewDataSource
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"cancel");
+    return 3;
 }
-
-- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    return COURSE_CELL_HEGHT;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    FSCourseTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCourseTableCell"];
     
+    return cell;
 }
-
-
-
-
 @end
