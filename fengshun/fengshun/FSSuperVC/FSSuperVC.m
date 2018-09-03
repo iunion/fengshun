@@ -35,7 +35,7 @@
     temporaryBarButtonItem.title = @"";
     self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
     
-    self.bm_NavigationBarStyle = UIBarStyleBlack;
+    self.bm_NavigationBarStyle = UIBarStyleDefault;
     self.bm_NavigationBarBgTintColor = FS_NAVIGATION_BGCOLOR;
     self.bm_NavigationItemTintColor = FS_NAVIGATION_ITEMCOLOR;
     self.bm_NavigationShadowHidden = YES;
