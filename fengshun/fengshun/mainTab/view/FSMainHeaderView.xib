@@ -181,7 +181,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="fV2-Vb-ADS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="7P6-AT-I3G"/>
                 <constraint firstAttribute="trailing" secondItem="fV2-Vb-ADS" secondAttribute="trailing" id="DA9-jY-KbZ"/>
@@ -200,6 +200,11 @@
                 <outlet property="m_pageControl" destination="dWH-f8-7lo" id="7F8-wn-bVB"/>
                 <outlet property="m_topView" destination="fV2-Vb-ADS" id="pv1-VU-gQh"/>
                 <outletCollection property="m_topimageButtons" destination="oeZ-c8-dlb" id="cav-FD-RVf"/>
+                <outletCollection property="m_topimageButtons" destination="xDQ-Ew-MKj" id="603-Q8-IeN"/>
+                <outletCollection property="m_topimageButtons" destination="di2-bN-fny" id="bIj-fB-Yku"/>
+                <outletCollection property="m_topimageButtons" destination="OXD-LZ-UqK" id="Od7-o5-Adn"/>
+                <outletCollection property="m_topimageButtons" destination="ggN-t0-632" id="1n2-2t-yh5"/>
+                <outletCollection property="m_topimageButtons" destination="4IL-6F-dnN" id="mTG-j2-fCz"/>
             </connections>
             <point key="canvasLocation" x="25.5" y="51.5"/>
         </view>

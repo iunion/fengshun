@@ -20,7 +20,7 @@ FSCommunityVC ()
 >
 
 @property (nonatomic, strong) FSScrollPageSegment *m_SegmentBar;
-@property (nonatomic, strong) FSScrollPageView *m_ScrollPageView;
+@property (nonatomic, strong) FSScrollPageView *   m_ScrollPageView;
 
 @end
 
@@ -60,10 +60,14 @@ FSCommunityVC ()
         
     }];
 
-    self.m_ScrollPageView = [[FSScrollPageView alloc] initWithFrame:CGRectMake(0, 44, UI_SCREEN_WIDTH, UI_MAINSCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT - UI_TAB_BAR_HEIGHT - 44) titleColor:[UIColor blackColor] selectTitleColor:[UIColor redColor] scrollPageSegment:_m_SegmentBar isSubViewPageSegment:NO];
+
+    [self.view addSubview:_m_SegmentBar];
+    _m_SegmentBar.backgroundColor = [UIColor whiteColor];
+    self.m_ScrollPageView = [[FSScrollPageView alloc] initWithFrame:CGRectMake(0, 44, UI_SCREEN_WIDTH, UI_MAINSCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT - UI_TAB_BAR_HEIGHT - 44) titleColor:UI_COLOR_B1 selectTitleColor:UI_COLOR_B1 scrollPageSegment:_m_SegmentBar isSubViewPageSegment:NO];
     [self.view addSubview:self.m_ScrollPageView];
     self.m_ScrollPageView.datasource = self;
-    self.m_ScrollPageView.delegate = self;
+    self.m_ScrollPageView.delegate   = self;
+    [self.m_ScrollPageView setM_MoveLineColor:UI_COLOR_BL1];
     [self.m_ScrollPageView reloadPage];
     [self.m_ScrollPageView scrollPageWithIndex:0];
 }
@@ -107,12 +111,12 @@ FSCommunityVC ()
         case 0:
         {
             view.backgroundColor = [UIColor redColor];
-            UIButton *btn1 = [[UIButton alloc] initWithFrame:CGRectMake(120, 300, 80, 40)];
+            UIButton *btn1       = [[UIButton alloc] initWithFrame:CGRectMake(120, 300, 80, 40)];
             [btn1 addTarget:self action:@selector(photo:) forControlEvents:UIControlEventTouchUpInside];
             [view addSubview:btn1];
             btn1.backgroundColor = [UIColor whiteColor];
         }
-            break;
+        break;
 
         case 1:
             view.backgroundColor = [UIColor yellowColor];
@@ -125,17 +129,19 @@ FSCommunityVC ()
 - (void)photo:(id)sender
 {
     TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:9 columnNumber:4 delegate:self pushPhotoPickerVc:YES];
-    //imagePickerVc.selectedAssets = _selectedAssets;// 目前已经选中的图片数组
-    imagePickerVc.allowTakePicture = YES; // 在内部显示拍照按钮
-    //imagePickerVc.allowTakeVideo = YES;   // 在内部显示拍视频按
-    //imagePickerVc.videoMaximumDuration = 10; // 视频最大拍摄时间
+
+    //    imagePickerVc.selectedAssets = _selectedAssets;// 目前已经选中的图片数组
+    imagePickerVc.allowTakePicture = YES;  // 在内部显示拍照按钮
+    //    imagePickerVc.allowTakeVideo = YES;   // 在内部显示拍视频按
+    //    imagePickerVc.videoMaximumDuration = 10; // 视频最大拍摄时间
+
     //在这里设置imagePickerVc的外观
     // imagePickerVc.navigationBar.barTintColor = [UIColor greenColor];
     // imagePickerVc.oKButtonTitleColorDisabled = [UIColor lightGrayColor];
     // imagePickerVc.oKButtonTitleColorNormal = [UIColor greenColor];
     // 3. 设置是否可以选择视频/图片/原图
-    imagePickerVc.allowPickingVideo = NO;
-    imagePickerVc.allowPickingImage = YES;
+    imagePickerVc.allowPickingVideo         = NO;
+    imagePickerVc.allowPickingImage         = YES;
     imagePickerVc.allowPickingOriginalPhoto = YES;
     //imagePickerVc.allowPickingGif = NO;
     //imagePickerVc.allowPickingMultipleVideo = NO; // 是否可以多选视频
@@ -148,12 +154,13 @@ FSCommunityVC ()
 /// 用户点击了取消
 - (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker
 {
+
     BMLog(@"用户点击了取消");
+
 }
 
 - (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos
 {
-    
 }
 
 
