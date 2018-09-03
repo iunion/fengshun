@@ -25,9 +25,6 @@ NS_ASSUME_NONNULL_BEGIN
 // 是否是post请求
 @property (nonatomic, assign) BOOL m_IsPost;
 
-// 右滑退出
-@property (nonatomic, assign) BOOL m_CanPopGesutre;
-
 // 刷新title，Default value is YES.
 @property (nonatomic, assign) BOOL m_ShowPageTitles;
 

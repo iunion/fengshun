@@ -97,6 +97,8 @@
 - (void)bm_setFloat:(float)value forKey:(nonnull id)key;
 - (void)bm_setDouble:(double)value forKey:(nonnull id)key;
 - (void)bm_setString:(nullable NSString *)value forKey:(nonnull id)key;
+// 用于api
+- (void)bm_setApiString:(nullable NSString *)string forKey:(nonnull id)key;
 
 - (void)bm_setPoint:(CGPoint)value forKey:(nonnull id)key;
 - (void)bm_setSize:(CGSize)value forKey:(nonnull id)key;

@@ -13,9 +13,9 @@
 static NSString *UserInfoDBName = @"userinfo.dat";
 static NSString *UserInfoDBTableName = @"userinfo";
 
-static NSString *UserInfoDBTableContent = @"userid text NOT NULL PRIMARY KEY, mobilenum text NOT NULL, token text NOT NULL, nickname text, realname text, identitynum text, userlevel text, lastupdatets double";
+static NSString *UserInfoDBTableContent = @"userid text NOT NULL PRIMARY KEY, mobilenum text NOT NULL, token text NOT NULL, rftoken text, username text, usertype text, nickname text, idcard text, sex text, headurl text, isfacialverify bool, isrealname bool, rolename text, rolecode text, lastupdatets double";
 
-static NSString *UserInfoDBTableInsert = @"(userid, mobilenum, token, nickname, realname, identitynum, userlevel, lastupdatets) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+static NSString *UserInfoDBTableInsert = @"(userid, mobilenum, token, rftoken, username, usertype, nickname, idcard, sex, headurl, isfacialverify, isrealname, rolename, rolecode, lastupdatets) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 
 @implementation FSUserInfoDB
@@ -58,29 +58,58 @@ static NSString *UserInfoDBTableInsert = @"(userid, mobilenum, token, nickname, 
         {
             userInfo = [[FSUserInfoModle alloc] init];
             
-            // 最后更新时间
+            // 最后更新时间: lastupdatets
             userInfo.m_LastUpdateTs = [rs doubleForColumn:@"lastupdatets"];
             
+            // 🔐用户令牌token(登录注册)💡: token
+            NSString *dbToken = [rs stringForColumn:@"token"];
+            userInfo.m_Token = [FSEncodeAPI decodeDES:dbToken];
+            // 🔐用户刷新令牌💡: rftoken
+            NSString *dbRefreshToke = [rs stringForColumn:@"rftoken"];
+            userInfo.m_RefreshToken = [FSEncodeAPI decodeDES:dbRefreshToke];
+
             // Base
-            
-            // 用户令牌: token
-            userInfo.m_Token = [rs stringForColumn:@"token"];
-            // 🔐用户ID: custId
+            userInfo.m_UserBaseInfo = [[FSUserBaseInfoModle alloc] init];
+
+            // 🔐用户ID💡: userid
             NSString *dbUserId = [rs stringForColumn:@"userid"];
-            userInfo.m_UserId = [FSEncodeAPI decodeDES:dbUserId];
-            // 🔐用户手机号码: mobile
-            NSString *phoneNum = [rs stringForColumn:@"mobilenum"];
-            userInfo.m_PhoneNum = [FSEncodeAPI decodeDES:phoneNum];
-            // 🔐真实姓名: userName
-            NSString *realName = [rs stringForColumn:@"realname"];
-            userInfo.m_RealName = [FSEncodeAPI decodeDES:realName];
-            // 昵称: nickName
-            userInfo.m_NickName = [rs stringForColumn:@"nickname"];
-            // 用户等级: custLevel
-            userInfo.m_UserLevel = [rs stringForColumn:@"userlevel"];
-            // 🔐身份证号: idCard
-            NSString *idCardNo = [rs stringForColumn:@"identitynum"];
-            userInfo.m_IdCardNo = [FSEncodeAPI decodeDES:idCardNo];
+            userInfo.m_UserBaseInfo.m_UserId = [FSEncodeAPI decodeDES:dbUserId];
+            // 🔐真实姓名: username
+            NSString *dbUserName = [rs stringForColumn:@"username"];
+            userInfo.m_UserBaseInfo.m_RealName = [FSEncodeAPI decodeDES:dbUserName];
+            // 用户登录类型: usertype
+            // 普通用户:COMMON, 工作人员:STAFF, 默认设置-普通用户
+            userInfo.m_UserBaseInfo.m_UserType = [rs stringForColumn:@"usertype"];
+            
+            // 🔐用户手机号码: mobilenum
+            NSString *dbPhoneNum = [rs stringForColumn:@"mobilenum"];
+            userInfo.m_UserBaseInfo.m_PhoneNum = [FSEncodeAPI decodeDES:dbPhoneNum];
+            // 🔐身份证号: idcard
+            NSString *dbIdCardNo = [rs stringForColumn:@"idcard"];
+            userInfo.m_UserBaseInfo.m_IdCardNo = [FSEncodeAPI decodeDES:dbIdCardNo];
+            // 🔐邮箱: email
+            //NSString *dbEmail = [rs stringForColumn:@"email"];
+            //userInfo.m_UserBaseInfo.m_Email = [FSEncodeAPI decodeDES:dbEmail];
+            // 昵称: nickname
+            userInfo.m_UserBaseInfo.m_NickName = [rs stringForColumn:@"nickname"];
+            // 性别: sex
+            userInfo.m_UserBaseInfo.m_Sex = [rs stringForColumn:@"sex"];
+            // 头像地址: headurl
+            userInfo.m_UserBaseInfo.m_AvatarUrl = [rs stringForColumn:@"headurl"];
+            
+            // 人脸识别: isfacialverify
+            userInfo.m_UserBaseInfo.m_IsFacialVerify = [rs boolForColumn:@"isfacialverify"];
+            // 实名认证: isrealname
+            userInfo.m_UserBaseInfo.m_IsRealName = [rs boolForColumn:@"isrealname"];
+
+            
+            // role
+            userInfo.m_UserRole = [[FSUserRoleModle alloc] init];
+            
+            // 用户身份: rolename
+            userInfo.m_UserRole.m_Role = [rs stringForColumn:@"rolename"];
+            // 用户身份编码: rolecode
+            userInfo.m_UserRole.m_RoleCode = [rs stringForColumn:@"rolecode"];
         }
         result = ![DB hadError];
     }];
@@ -95,7 +124,7 @@ static NSString *UserInfoDBTableInsert = @"(userid, mobilenum, token, nickname, 
 
 + (BOOL)insertAndUpdateUserInfo:(FSUserInfoModle *)userInfo
 {
-    if (![userInfo.m_PhoneNum bm_isNotEmpty] || ![userInfo.m_UserId bm_isNotEmpty] || ![userInfo.m_Token bm_isNotEmpty])
+    if (![userInfo.m_UserBaseInfo.m_PhoneNum bm_isNotEmpty] || ![userInfo.m_UserBaseInfo.m_UserId bm_isNotEmpty] || ![userInfo.m_Token bm_isNotEmpty])
     {
         return NO;
     }
@@ -114,13 +143,16 @@ static NSString *UserInfoDBTableInsert = @"(userid, mobilenum, token, nickname, 
         NSString *sql = [NSString stringWithFormat:@"REPLACE INTO %@ %@", UserInfoDBTableName, UserInfoDBTableInsert];
         
         NSTimeInterval lastUpdateTs = [[NSDate date] timeIntervalSince1970];
+
+        NSString *token = [FSEncodeAPI encodeDES:userInfo.m_Token];
+        NSString *rftoken = [FSEncodeAPI encodeDES:userInfo.m_RefreshToken];
+
+        NSString *userId = [FSEncodeAPI encodeDES:userInfo.m_UserBaseInfo.m_UserId];
+        NSString *phoneNum = [FSEncodeAPI encodeDES:userInfo.m_UserBaseInfo.m_PhoneNum];
+        NSString *realName = [FSEncodeAPI encodeDES:userInfo.m_UserBaseInfo.m_RealName];
+        NSString *idCardNo = [FSEncodeAPI encodeDES:userInfo.m_UserBaseInfo.m_IdCardNo];
         
-        NSString *userId = [FSEncodeAPI encodeDES:userInfo.m_UserId];
-        NSString *phoneNum = [FSEncodeAPI encodeDES:userInfo.m_PhoneNum];
-        NSString *realName = [FSEncodeAPI encodeDES:userInfo.m_RealName];
-        NSString *idCardNo = [FSEncodeAPI encodeDES:userInfo.m_IdCardNo];
-        
-        result = [UserInfoDB executeUpdate:sql, userId, phoneNum, userInfo.m_Token, userInfo.m_NickName, realName, idCardNo, userInfo.m_UserLevel, @(lastUpdateTs)];
+        result = [UserInfoDB executeUpdate:sql, userId, phoneNum, token, rftoken, realName, userInfo.m_UserBaseInfo.m_UserType, userInfo.m_UserBaseInfo.m_NickName, idCardNo, userInfo.m_UserBaseInfo.m_Sex, userInfo.m_UserBaseInfo.m_AvatarUrl, userInfo.m_UserBaseInfo.m_IsFacialVerify, userInfo.m_UserBaseInfo.m_IsRealName, userInfo.m_UserRole.m_Role, userInfo.m_UserRole.m_RoleCode, @(lastUpdateTs)];
     }];
     
     return result;

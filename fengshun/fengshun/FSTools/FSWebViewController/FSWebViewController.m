@@ -80,20 +80,7 @@
 
 - (instancetype)initWithTitle:(NSString *)title url:(NSString *)url showLoadingBar:(BOOL)showLoadingBar loadingBarColor:(UIColor *)color delegate:(id<FSWebViewControllerDelegate>)delegate
 {
-    self = [self init];
-    
-    if (self)
-    {
-        _m_Title = title;
-        _m_UrlString = url;
-        _m_ShowLoadingBar = showLoadingBar;
-        _m_LoadingBarTintColor = color;
-        _m_ShowPageTitles = YES;
-        _delegate = delegate;
-        _m_CanPopGesutre = YES;
-    }
-    
-    return self;
+    return [self initWithTitle:title url:url requestParam:nil showLoadingBar:showLoadingBar loadingBarColor:color delegate:nil];
 }
 
 - (instancetype)initWithTitle:(NSString *)title url:(NSString *)url requestParam:(NSDictionary *)requestParam showLoadingBar:(BOOL)showLoadingBar loadingBarColor:(UIColor *)color delegate:(id<FSWebViewControllerDelegate>)delegate
@@ -109,7 +96,6 @@
         _m_LoadingBarTintColor = color;
         _m_ShowPageTitles = YES;
         _delegate = delegate;
-        _m_CanPopGesutre = YES;
     }
     
     return self;
@@ -193,11 +179,6 @@
     [self makeWebView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(makeWebView) name:freshWebViewNotification object:nil];
-}
-
-- (BOOL)canPopGesutreRecognized
-{
-    return self.m_CanPopGesutre;
 }
 
 - (void)didReceiveMemoryWarning
@@ -337,8 +318,7 @@
     [agentDic bm_setString:[FSCoreStatus currentFSNetWorkStatusString] forKey:@"netWorkStandard"];
     if ([userInfo.m_Token bm_isNotEmpty])
     {
-        [agentDic bm_setString:userInfo.m_Token forKey:@"token"];
-        [agentDic bm_setString:userInfo.m_UserId forKey:@"userid"];
+        [agentDic bm_setString:userInfo.m_Token forKey:@"JWTToken"];
     }
     
     //add my info to the new agent
