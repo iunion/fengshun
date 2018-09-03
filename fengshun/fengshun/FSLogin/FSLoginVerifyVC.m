@@ -177,6 +177,7 @@
     label3.attributedText = attrString;
     [self.m_TableView addSubview:label3];
     self.m_ErrorLabel = label3;
+    self.m_ErrorLabel.hidden = YES;
 
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     CGRect frame;

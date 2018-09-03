@@ -463,12 +463,12 @@
     {
         if ([sharedApp canOpenURL:url])
         {
-            if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0)
-            {
+            if (@available(iOS 10.0, *)) {
                 [sharedApp openURL:url options:@{} completionHandler:nil];
             }
             else
             {
+                // Fallback on earlier versions
                 [sharedApp openURL:url];
             }
             
