@@ -20,6 +20,7 @@
 #import <Foundation/Foundation.h>
 
 #import "FSAppConfig.h"
+#import "Masonry.h"
 
 #endif
 
