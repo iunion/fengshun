@@ -33,7 +33,22 @@ FSCommunityVC ()
     self.title = @"ScrollPageView";
     [GetAppDelegate.m_TabBarController hideOriginTabBar];
 
+    NSDictionary *btnItem1 = [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"navigationbar_collect_icon" toucheEvent:@"collect" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0];
+    NSDictionary *btnItem2 = [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"navigationbar_share_icon" toucheEvent:@"share" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageRight imageTitleGap:0];
+
+    [self bm_setNavigationWithTitle:@"" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightDicArray:@[btnItem2, btnItem1]];
+
     [self setupUI];
+}
+
+- (void)collect
+{
+    NSLog(@"collect");
+}
+
+- (void)share
+{
+    NSLog(@"share");
 }
 
 - (void)setupUI
@@ -115,10 +130,12 @@ FSCommunityVC ()
 - (void)photo:(id)sender
 {
     TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:9 columnNumber:4 delegate:self pushPhotoPickerVc:YES];
+
     //    imagePickerVc.selectedAssets = _selectedAssets;// 目前已经选中的图片数组
     imagePickerVc.allowTakePicture = YES;  // 在内部显示拍照按钮
     //    imagePickerVc.allowTakeVideo = YES;   // 在内部显示拍视频按
     //    imagePickerVc.videoMaximumDuration = 10; // 视频最大拍摄时间
+
     //在这里设置imagePickerVc的外观
     // imagePickerVc.navigationBar.barTintColor = [UIColor greenColor];
     // imagePickerVc.oKButtonTitleColorDisabled = [UIColor lightGrayColor];
@@ -127,18 +144,20 @@ FSCommunityVC ()
     imagePickerVc.allowPickingVideo         = NO;
     imagePickerVc.allowPickingImage         = YES;
     imagePickerVc.allowPickingOriginalPhoto = YES;
-    //    imagePickerVc.allowPickingGif = NO;
-    //    imagePickerVc.allowPickingMultipleVideo = NO; // 是否可以多选视频
+    //imagePickerVc.allowPickingGif = NO;
+    //imagePickerVc.allowPickingMultipleVideo = NO; // 是否可以多选视频
     imagePickerVc.sortAscendingByModificationDate = NO;
     // 设置竖屏下的裁剪尺寸
-    //    imagePickerVc.cropRect = CGRectMake(left, top, widthHeight, widthHeight);
+    //imagePickerVc.cropRect = CGRectMake(left, top, widthHeight, widthHeight);
     [self presentViewController:imagePickerVc animated:YES completion:nil];
 }
 #pragma mark - TZImagePickerControllerDelegate
 /// 用户点击了取消
 - (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker
 {
-    NSLog(@"cancel");
+
+    BMLog(@"用户点击了取消");
+
 }
 
 - (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos

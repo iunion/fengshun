@@ -106,6 +106,7 @@
     self.m_Section = [BMTableViewSection section];
     
     self.m_PhoneItem = [BMTextItem itemWithTitle:nil value:nil placeholder:@"请输入手机号码"];
+    self.m_PhoneItem.textFieldTextFont = FS_CELLTITLE_TEXTFONT;
     self.m_PhoneItem.keyboardType = UIKeyboardTypeNumberPad;
     self.m_PhoneItem.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.m_PhoneItem.underLineDrawType = BMTableViewCell_UnderLineDrawType_SeparatorAllLeftInset;
@@ -161,7 +162,7 @@
     }
     btn.frame = frame;
     btn.backgroundColor = UI_COLOR_BL1;
-    btn.titleLabel.font = UI_FONT_17;
+    btn.titleLabel.font = FS_BUTTON_LARGETEXTFONT;
     btn.exclusiveTouch = YES;
     [btn addTarget:self action:@selector(confirmClick:) forControlEvents:UIControlEventTouchUpInside];
     [btn setTitle:@"提交" forState:UIControlStateNormal];
@@ -175,7 +176,7 @@
     UIButton *forgetBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     forgetBtn.frame = CGRectMake(btn.bm_right-60, btn.bm_bottom+10, 60, 40);
     forgetBtn.backgroundColor = [UIColor clearColor];
-    forgetBtn.titleLabel.font = UI_FONT_14;
+    forgetBtn.titleLabel.font = FS_BUTTON_SMALLTEXTFONT;
     forgetBtn.exclusiveTouch = YES;
     [forgetBtn setTitle:@"忘记密码" forState:UIControlStateNormal];
     [forgetBtn setTitleColor:UI_COLOR_B4 forState:UIControlStateNormal];
@@ -226,7 +227,7 @@
         
         s_isLogin = YES;
         
-        [self freshView];
+        [self freshViews];
     }
     else
     {
@@ -239,7 +240,7 @@
     }
 }
 
-- (void)freshView
+- (void)freshViews
 {
     if (!s_isLogin)
     {
@@ -260,6 +261,7 @@
     self.m_ForgetBtn.hidden = NO;
 
     self.m_PassWordItem = [BMTextItem itemWithTitle:nil value:nil placeholder:@"请输入账号密码"];
+    self.m_PassWordItem.textFieldTextFont = FS_CELLTITLE_TEXTFONT;
     self.m_PassWordItem.keyboardType = UIKeyboardTypeDefault;
     self.m_PassWordItem.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.m_PassWordItem.underLineDrawType = BMTableViewCell_UnderLineDrawType_SeparatorAllLeftInset;

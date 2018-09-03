@@ -37,6 +37,7 @@ FSMainVC ()
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
+
     [self setupUI];
     [self.m_TableView registerNib:[UINib nibWithNibName:@"FSCourseTableCell" bundle:nil] forCellReuseIdentifier:@"FSCourseTableCell"];
     self.m_TableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
@@ -46,8 +47,8 @@ FSMainVC ()
 {
     self.bm_NavigationItemTintColor = UI_COLOR_B1;
     [self bm_setNavigationWithTitle:@"主页" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:nil rightItemImage:[UIImage imageNamed:@"navigationbar_message_icon.png"] rightToucheEvent:@selector(popMessageVC:)];
-    
     [GetAppDelegate.m_TabBarController hideOriginTabBar];
+
     self.edgesForExtendedLayout                   = UIRectEdgeTop;
     self.m_TableView.showsVerticalScrollIndicator = NO;
     self.m_TableView.frame                        = CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT-UI_TAB_BAR_HEIGHT);

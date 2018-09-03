@@ -58,17 +58,6 @@
 // 获取当前语言
 #define CurrentLanguage [[NSLocale preferredLanguages] objectAtIndex:0]
 
-#define TABLE_CELL_HEIGHT   44.0f
-
-#define UI_DEFAULT_LINECOLOR        [UIColor bm_colorWithHex:0xE6E6E6]
-
-// Cell背景颜色
-#define UI_CELL_BGCOLOR             [UIColor bm_colorWithHex:0xFFFFFF]
-
-// Cell选中状态背景颜色
-#define UI_CELL_SELECT_BGCOLOR      [UIColor bm_colorWithHex:0xCCCCCC]
-#define UI_CELL_HIGHLIGHT_BGCOLOR   [UIColor bm_colorWithHex:0xE8373D]
-
 // 字体
 #define UI_BMFONT_MAKE(FontName, FontSize)  [UIFont bm_fontForFontName:FontName size:FontSize]
 #define UI_BMNUMBER_FONT(fontSize)          UI_BMFONT_MAKE(FontNameHelveticaNeueBold, fontSize)
@@ -179,6 +168,16 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 // 等待默认时长
 #define PROGRESSBOX_DEFAULT_HIDE_DELAY  (2.0f)
 
+#define TABLE_CELL_HEIGHT   44.0f
+
+#define UI_DEFAULT_LINECOLOR        [UIColor bm_colorWithHex:0xE6E6E6]
+
+// Cell背景颜色
+#define UI_CELL_BGCOLOR             [UIColor bm_colorWithHex:0xFFFFFF]
+
+// Cell选中状态背景颜色
+#define UI_CELL_SELECT_BGCOLOR      [UIColor bm_colorWithHex:0xCCCCCC]
+#define UI_CELL_HIGHLIGHT_BGCOLOR   [UIColor bm_colorWithHex:0xE8373D]
 
 
 // 弱引用/强引用 weakSelf

@@ -42,7 +42,7 @@
 #define UI_COLOR_BL4            [UIColor bm_colorWithHex:0x77CDEA]
 #define UI_COLOR_BL5            [UIColor bm_colorWithHex:0x54C2E7]
 
-#define UI_COLOR_G1             [UIColor bm_colorWithHex:0x8ADA30]
+#define UI_COLOR_G1             [UIColor bm_colorWithHex:0x53CB4D]
 
 #define UI_COLOR_P1             [UIColor bm_colorWithHex:0xDE9BFD]
 
@@ -135,7 +135,15 @@
 #define UI_NUMFONT_70       UI_NUMBER_FONT(70.0f)
 
 
+
+
+#pragma mark -
+#pragma mark 默认UI设置
+
+#pragma mark 默认颜色
+
 // View背景颜色 (确定)
+
 #define FS_VIEW_BGCOLOR                     UI_COLOR_B8
 
 // 导航条背景颜色 (确定)
@@ -163,6 +171,26 @@
 
 // 分割线颜色 (确定)
 #define FS_LINECOLOR                        UI_COLOR_B6
+
+
+#pragma mark 默认字体
+
+#define FS_TITLE_TEXTFONT                   UI_FONT_17
+#define FS_DETAIL_LARGETEXTFONT             UI_FONT_14
+#define FS_DETAIL_SMALLTEXTFONT             UI_FONT_12
+#define FS_BUTTON_LARGETEXTFONT             UI_FONT_17
+#define FS_BUTTON_SMALLTEXTFONT             UI_FONT_14
+
+#define FS_CELLTITLE_TEXTFONT               UI_FONT_15
+#define FS_CELLDETAIL_LARGETEXTFONT         FS_DETAIL_LARGETEXTFONT
+#define FS_CELLDETAIL_SMALLTEXTFONT         FS_DETAIL_SMALLTEXTFONT
+
+
+#pragma mark -
+#pragma mark 默认值
+
+// CellSection 间隔
+#define UI_TABLECELL_SECTIONGAP             (18.0f)
 
 
 #endif /* FSAppUIDef_h */

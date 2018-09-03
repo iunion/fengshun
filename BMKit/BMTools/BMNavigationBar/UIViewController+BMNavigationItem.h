@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIButton+BMContentRect.h"
 
 #define BMNAVIGATION_BTNITEM_IMAGE_KEY      @"image"
 #define BMNAVIGATION_BTNITEM_TITLE_KEY      @"title"
@@ -63,6 +64,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)bm_setNavigationWithTitle:(nullable NSString *)title barTintColor:(nullable UIColor *)barTintColor leftDicArray:(nullable NSArray *)larray rightDicArray:(nullable NSArray *)rarray;
 - (void)bm_setNavigationWithTitleView:(nullable UIView *)titleView barTintColor:(nullable UIColor *)barTintColor leftDicArray:(nullable NSArray *)larray rightDicArray:(nullable NSArray *)rarray;
+
+- (NSDictionary *)bm_makeBarButtonDictionaryWithTitle:(nullable NSString *)title image:(nullable id)image toucheEvent:(NSString *)selector buttonEdgeInsetsStyle:(BMButtonEdgeInsetsStyle)edgeInsetsStyle imageTitleGap:(CGFloat)gap;
 
 - (nullable UIButton *)bm_getNavigationLeftItemAtIndex:(NSUInteger)index;
 - (nullable UIButton *)bm_getNavigationRightItemAtIndex:(NSUInteger)index;
