@@ -381,6 +381,16 @@
 		87D20AF421393B91001EDD60 /* navigationbar_collect_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D20AF221393B90001EDD60 /* navigationbar_collect_icon@3x.png */; };
 		87D20AF721393B9A001EDD60 /* navigationbar_share_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D20AF521393B99001EDD60 /* navigationbar_share_icon@3x.png */; };
 		87D20AF821393B9A001EDD60 /* navigationbar_share_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D20AF621393B99001EDD60 /* navigationbar_share_icon@2x.png */; };
+		87D20B032139492F001EDD60 /* WebViewJavascriptBridgeBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D20AFB2139492E001EDD60 /* WebViewJavascriptBridgeBase.m */; };
+		87D20B042139492F001EDD60 /* WKWebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D20AFC2139492E001EDD60 /* WKWebViewJavascriptBridge.m */; };
+		87D20B052139492F001EDD60 /* WebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D20AFD2139492E001EDD60 /* WebViewJavascriptBridge.m */; };
+		87D20B062139492F001EDD60 /* WebViewJavascriptBridge_JS.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D20B002139492E001EDD60 /* WebViewJavascriptBridge_JS.m */; };
+		87D20B1221394A5A001EDD60 /* FSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D20B0821394A59001EDD60 /* FSWebViewController.m */; };
+		87D20B1321394A5A001EDD60 /* FSWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D20B0E21394A59001EDD60 /* FSWebViewProgress.m */; };
+		87D20B1421394A5A001EDD60 /* FSWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D20B0F21394A59001EDD60 /* FSWebViewProgressView.m */; };
+		87D20B1521394A5A001EDD60 /* FSWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D20B1121394A59001EDD60 /* FSWebView.m */; };
+		87D20B18213CD80D001EDD60 /* navigationbar_webclose_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D20B16213CD80C001EDD60 /* navigationbar_webclose_icon@2x.png */; };
+		87D20B19213CD80D001EDD60 /* navigationbar_webclose_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D20B17213CD80D001EDD60 /* navigationbar_webclose_icon@3x.png */; };
 		AD47EFDC2137EBF0004A345F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD47EFDB2137EBF0004A345F /* Launch Screen.storyboard */; };
 		AD8B63FE21338E0C006DDC22 /* FSPreviewFileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */; };
 		AD93559F2137D24100735C2E /* TZImageCropManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9355842137D24100735C2E /* TZImageCropManager.m */; };
@@ -1127,6 +1137,24 @@
 		87D20AF221393B90001EDD60 /* navigationbar_collect_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationbar_collect_icon@3x.png"; sourceTree = "<group>"; };
 		87D20AF521393B99001EDD60 /* navigationbar_share_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationbar_share_icon@3x.png"; sourceTree = "<group>"; };
 		87D20AF621393B99001EDD60 /* navigationbar_share_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationbar_share_icon@2x.png"; sourceTree = "<group>"; };
+		87D20AFB2139492E001EDD60 /* WebViewJavascriptBridgeBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridgeBase.m; sourceTree = "<group>"; };
+		87D20AFC2139492E001EDD60 /* WKWebViewJavascriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKWebViewJavascriptBridge.m; sourceTree = "<group>"; };
+		87D20AFD2139492E001EDD60 /* WebViewJavascriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridge.m; sourceTree = "<group>"; };
+		87D20AFE2139492E001EDD60 /* WebViewJavascriptBridge_JS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridge_JS.h; sourceTree = "<group>"; };
+		87D20AFF2139492E001EDD60 /* WebViewJavascriptBridgeBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridgeBase.h; sourceTree = "<group>"; };
+		87D20B002139492E001EDD60 /* WebViewJavascriptBridge_JS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridge_JS.m; sourceTree = "<group>"; };
+		87D20B012139492E001EDD60 /* WebViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridge.h; sourceTree = "<group>"; };
+		87D20B022139492E001EDD60 /* WKWebViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKWebViewJavascriptBridge.h; sourceTree = "<group>"; };
+		87D20B0821394A59001EDD60 /* FSWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSWebViewController.m; sourceTree = "<group>"; };
+		87D20B0921394A59001EDD60 /* FSWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSWebViewController.h; sourceTree = "<group>"; };
+		87D20B0C21394A59001EDD60 /* FSWebViewProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSWebViewProgress.h; sourceTree = "<group>"; };
+		87D20B0D21394A59001EDD60 /* FSWebViewProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSWebViewProgressView.h; sourceTree = "<group>"; };
+		87D20B0E21394A59001EDD60 /* FSWebViewProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSWebViewProgress.m; sourceTree = "<group>"; };
+		87D20B0F21394A59001EDD60 /* FSWebViewProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSWebViewProgressView.m; sourceTree = "<group>"; };
+		87D20B1021394A59001EDD60 /* FSWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSWebView.h; sourceTree = "<group>"; };
+		87D20B1121394A59001EDD60 /* FSWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSWebView.m; sourceTree = "<group>"; };
+		87D20B16213CD80C001EDD60 /* navigationbar_webclose_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationbar_webclose_icon@2x.png"; sourceTree = "<group>"; };
+		87D20B17213CD80D001EDD60 /* navigationbar_webclose_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationbar_webclose_icon@3x.png"; sourceTree = "<group>"; };
 		AD47EFDB2137EBF0004A345F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		AD8B63FC21338E0C006DDC22 /* FSPreviewFileTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSPreviewFileTool.h; sourceTree = "<group>"; };
 		AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSPreviewFileTool.m; sourceTree = "<group>"; };
@@ -1668,7 +1696,6 @@
 		87426910212E8254003C52F6 /* thirdParty */ = {
 			isa = PBXGroup;
 			children = (
-				AD9355812137D24100735C2E /* TZImagePickerController */,
 				87426A6F2131461F003C52F6 /* AFNetworking */,
 				87D209F3213920E2001EDD60 /* FLEX */,
 				87426ADF2135348D003C52F6 /* fmdb */,
@@ -1676,8 +1703,10 @@
 				87426AB52133A504003C52F6 /* OpenUDID */,
 				87426AC62133AC44003C52F6 /* Reachability */,
 				87D209D42138FF45001EDD60 /* RSKImageCropper */,
-				874269D8212EB7C2003C52F6 /* TTGTagCollectionView */,
 				87D209762138F1E2001EDD60 /* SDWebImage */,
+				874269D8212EB7C2003C52F6 /* TTGTagCollectionView */,
+				AD9355812137D24100735C2E /* TZImagePickerController */,
+				87D20AFA2139492E001EDD60 /* WebViewJavascriptBridge */,
 				87426A84213146A6003C52F6 /* XMNetworking */,
 			);
 			name = thirdParty;
@@ -1873,6 +1902,8 @@
 				874269F8212F9657003C52F6 /* navigationbar_setup_icon@3x.png */,
 				87D20AF621393B99001EDD60 /* navigationbar_share_icon@2x.png */,
 				87D20AF521393B99001EDD60 /* navigationbar_share_icon@3x.png */,
+				87D20B16213CD80C001EDD60 /* navigationbar_webclose_icon@2x.png */,
+				87D20B17213CD80D001EDD60 /* navigationbar_webclose_icon@3x.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -2015,6 +2046,7 @@
 				AD8B63FA21338DC3006DDC22 /* FSPreviewFileTool */,
 				DB5722302133A0BF0065DC30 /* FSScrollPageView */,
 				87426A9921314996003C52F6 /* FSSearchViewController */,
+				87D20B0721394A59001EDD60 /* FSWebViewController */,
 			);
 			path = FSTools;
 			sourceTree = "<group>";
@@ -2684,6 +2716,52 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		87D20AFA2139492E001EDD60 /* WebViewJavascriptBridge */ = {
+			isa = PBXGroup;
+			children = (
+				87D20AFE2139492E001EDD60 /* WebViewJavascriptBridge_JS.h */,
+				87D20B002139492E001EDD60 /* WebViewJavascriptBridge_JS.m */,
+				87D20B012139492E001EDD60 /* WebViewJavascriptBridge.h */,
+				87D20AFD2139492E001EDD60 /* WebViewJavascriptBridge.m */,
+				87D20AFF2139492E001EDD60 /* WebViewJavascriptBridgeBase.h */,
+				87D20AFB2139492E001EDD60 /* WebViewJavascriptBridgeBase.m */,
+				87D20B022139492E001EDD60 /* WKWebViewJavascriptBridge.h */,
+				87D20AFC2139492E001EDD60 /* WKWebViewJavascriptBridge.m */,
+			);
+			path = WebViewJavascriptBridge;
+			sourceTree = "<group>";
+		};
+		87D20B0721394A59001EDD60 /* FSWebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				87D20B0A21394A59001EDD60 /* FSWebView */,
+				87D20B0921394A59001EDD60 /* FSWebViewController.h */,
+				87D20B0821394A59001EDD60 /* FSWebViewController.m */,
+			);
+			path = FSWebViewController;
+			sourceTree = "<group>";
+		};
+		87D20B0A21394A59001EDD60 /* FSWebView */ = {
+			isa = PBXGroup;
+			children = (
+				87D20B0B21394A59001EDD60 /* FSWebViewProgress */,
+				87D20B1021394A59001EDD60 /* FSWebView.h */,
+				87D20B1121394A59001EDD60 /* FSWebView.m */,
+			);
+			path = FSWebView;
+			sourceTree = "<group>";
+		};
+		87D20B0B21394A59001EDD60 /* FSWebViewProgress */ = {
+			isa = PBXGroup;
+			children = (
+				87D20B0C21394A59001EDD60 /* FSWebViewProgress.h */,
+				87D20B0E21394A59001EDD60 /* FSWebViewProgress.m */,
+				87D20B0D21394A59001EDD60 /* FSWebViewProgressView.h */,
+				87D20B0F21394A59001EDD60 /* FSWebViewProgressView.m */,
+			);
+			path = FSWebViewProgress;
+			sourceTree = "<group>";
+		};
 		AD8B63FA21338DC3006DDC22 /* FSPreviewFileTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -2922,6 +3000,7 @@
 				87426A4D213135F0003C52F6 /* fstab_btn3_highIcon@2x.png in Resources */,
 				87D186A6213679F800037DDF /* login_password@2x.png in Resources */,
 				87426A21213100BB003C52F6 /* bmsearch_close@2x.png in Resources */,
+				87D20B19213CD80D001EDD60 /* navigationbar_webclose_icon@3x.png in Resources */,
 				87D20AEF21392FF2001EDD60 /* user_topbackgroud@2x.png in Resources */,
 				874268B9212E7E36003C52F6 /* BMTableView_UIButtonBarArrowLeft@2x.png in Resources */,
 				8742689B212E7E36003C52F6 /* decrease_eleme@2x.png in Resources */,
@@ -2969,6 +3048,7 @@
 				87426892212E7E36003C52F6 /* steppersinput_plusicon@3x.png in Resources */,
 				874268A4212E7E36003C52F6 /* increase_meituan@3x.png in Resources */,
 				874268CE212E7E36003C52F6 /* bmtab_clear_line@2x.png in Resources */,
+				87D20B18213CD80D001EDD60 /* navigationbar_webclose_icon@2x.png in Resources */,
 				87426A58213135F0003C52F6 /* fstab_btn1_highIcon@3x.png in Resources */,
 				87D186AA213679F800037DDF /* login_error@3x.png in Resources */,
 				87D209EC2138FF46001EDD60 /* RSKImageCropperStrings.bundle in Resources */,
@@ -3059,6 +3139,7 @@
 				874268CA212E7E36003C52F6 /* BMPickerItem.m in Sources */,
 				87D20AE2213920E2001EDD60 /* FLEXClassesTableViewController.m in Sources */,
 				AD9355AC2137D24100735C2E /* TZLocationManager.m in Sources */,
+				87D20B062139492F001EDD60 /* WebViewJavascriptBridge_JS.m in Sources */,
 				87D20AEB213920E2001EDD60 /* FLEXResources.m in Sources */,
 				874268E1212E7E36003C52F6 /* UIView+BMBadge.m in Sources */,
 				874269C6212E9B78003C52F6 /* BMFreshAutoContainerFooterView.m in Sources */,
@@ -3070,6 +3151,7 @@
 				87D20AD1213920E2001EDD60 /* FLEXFileBrowserFileOperationController.m in Sources */,
 				874268C9212E7E36003C52F6 /* BMCheckBoxGroupItem.m in Sources */,
 				87426AED2135348D003C52F6 /* FMDatabase.m in Sources */,
+				87D20B052139492F001EDD60 /* WebViewJavascriptBridge.m in Sources */,
 				874268DA212E7E36003C52F6 /* BMNavigationBar.m in Sources */,
 				87D20AE6213920E2001EDD60 /* FLEXUtility.m in Sources */,
 				874268E5212E7E36003C52F6 /* UIView+BMCorner.m in Sources */,
@@ -3129,6 +3211,7 @@
 				87D20ACB213920E2001EDD60 /* FLEXWindow.m in Sources */,
 				87D20AAB213920E2001EDD60 /* FLEXNetworkTransaction.m in Sources */,
 				87D20AAD213920E2001EDD60 /* FLEXNetworkRecorder.m in Sources */,
+				87D20B042139492F001EDD60 /* WKWebViewJavascriptBridge.m in Sources */,
 				874268F1212E7E36003C52F6 /* UIButton+BMContentRect.m in Sources */,
 				87D20ABE213920E2001EDD60 /* FLEXArgumentInputView.m in Sources */,
 				87D20AC0213920E2001EDD60 /* FLEXArgumentInputSwitchView.m in Sources */,
@@ -3155,6 +3238,7 @@
 				87D20AA0213920E2001EDD60 /* FLEXObjectExplorerFactory.m in Sources */,
 				87D209CF2138F1E2001EDD60 /* UIView+WebCache.m in Sources */,
 				87D209C42138F1E2001EDD60 /* NSButton+WebCache.m in Sources */,
+				87D20B1421394A5A001EDD60 /* FSWebViewProgressView.m in Sources */,
 				87426ACD2133D5E9003C52F6 /* MBProgressHUD.m in Sources */,
 				87D20ABC213920E2001EDD60 /* FLEXArgumentInputStringView.m in Sources */,
 				874269C4212E9B78003C52F6 /* BMFreshGifHeader.m in Sources */,
@@ -3188,6 +3272,7 @@
 				874268D6212E7E36003C52F6 /* BMDatePicker.m in Sources */,
 				874268E6212E7E36003C52F6 /* UIView+BMOutSide.m in Sources */,
 				874269CD212E9BB6003C52F6 /* BMEmptyView.m in Sources */,
+				87D20B1521394A5A001EDD60 /* FSWebView.m in Sources */,
 				87D20AAC213920E2001EDD60 /* FLEXNetworkSettingsTableViewController.m in Sources */,
 				87D20ADD213920E2001EDD60 /* FLEXSQLiteDatabaseManager.m in Sources */,
 				874269BB212E9B78003C52F6 /* BMFreshNormalHeader.m in Sources */,
@@ -3224,7 +3309,7 @@
 				87D20AA7213920E2001EDD60 /* FLEXSetExplorerViewController.m in Sources */,
 				874268C1212E7E36003C52F6 /* BMBoolItem.m in Sources */,
 				ADE8689C21393469005359B5 /* FSPlateListTableViewCell.m in Sources */,
-				87426948212E8255003C52F6 /* NSImage+WebCache.m in Sources */,
+				87D20B1321394A5A001EDD60 /* FSWebViewProgress.m in Sources */,
 				87D20AD2213920E2001EDD60 /* FLEXSystemLogTableViewController.m in Sources */,
 				87D20ADE213920E2001EDD60 /* FLEXCookiesTableViewController.m in Sources */,
 				874268D2212E7E36003C52F6 /* BMCheckBoxGroup.m in Sources */,
@@ -3240,6 +3325,7 @@
 				874269C9212E9B78003C52F6 /* UIScrollView+BMFresh.m in Sources */,
 				874269C5212E9B78003C52F6 /* BMFreshAutoFooterView.m in Sources */,
 				874268FF212E7E36003C52F6 /* NSURL+BMParameters.m in Sources */,
+				87D20B032139492F001EDD60 /* WebViewJavascriptBridgeBase.m in Sources */,
 				874268F8212E7E36003C52F6 /* UIImage+BMTint.m in Sources */,
 				874268E8212E7E36003C52F6 /* UIView+BMInnerShadow.m in Sources */,
 				87D20AB4213920E2001EDD60 /* FLEXToolbarItem.m in Sources */,
@@ -3273,6 +3359,7 @@
 				87D20ACC213920E2001EDD60 /* FLEXFileBrowserSearchOperation.m in Sources */,
 				AD9355A92137D24100735C2E /* TZPhotoPickerController.m in Sources */,
 				87D209C22138F1E2001EDD60 /* SDWebImagePrefetcher.m in Sources */,
+				87D20B1221394A5A001EDD60 /* FSWebViewController.m in Sources */,
 				874268DC212E7E36003C52F6 /* BMNavigationController.m in Sources */,
 				87426A7F2131461F003C52F6 /* AFHTTPSessionManager.m in Sources */,
 				DB57223B2133A1D90065DC30 /* FSCommunityVC.m in Sources */,

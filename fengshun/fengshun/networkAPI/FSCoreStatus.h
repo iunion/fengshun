@@ -43,7 +43,7 @@ typedef NS_ENUM(NSUInteger, FSCoreNetWorkStatus)
 
 /** 获取当前网络状态：字符串 */
 + (NSString *)currentNetWorkStatusString;
-+ (NSString *)currentMQNetWorkStatusString;
++ (NSString *)currentFSNetWorkStatusString;
 
 /** 获取当前网络运营商：字符串 */
 + (NSString *)currentBrandName;

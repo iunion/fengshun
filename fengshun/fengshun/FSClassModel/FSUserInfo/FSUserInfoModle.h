@@ -38,12 +38,12 @@ NS_ASSUME_NONNULL_BEGIN
 + (FSUserInfoModle *)userInfo;
 
 // 用户登录ID
-+ (NSString *)getCurrentUserId;
-+ (void)setCurrentUserID:(NSString *)userID;
++ (nullable NSString *)getCurrentUserId;
++ (void)setCurrentUserID:(nullable NSString *)userID;
 
 // 用户登录token
-+ (NSString *)getCurrentUserToken;
-+ (void)setCurrentUserToken:(NSString *)userToken;
++ (nullable NSString *)getCurrentUserToken;
++ (void)setCurrentUserToken:(nullable NSString *)userToken;
 
 // 通过服务器Dic初始化
 + (instancetype)userInfoWithServerDic:(NSDictionary *)dic;
