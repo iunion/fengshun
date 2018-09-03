@@ -317,6 +317,7 @@
 #pragma mark -
 #pragma mark check request
 
+// 登录检查
 - (void)sendCheckRequestWithPhoneNum:(NSString *)phoneNum
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -346,7 +347,6 @@
     }
 }
 
-// 登录检查
 - (void)loginCheckRequestFinished:(NSURLResponse *)response responseDic:(NSDictionary *)resDic
 {
     if (![resDic bm_isNotEmptyDictionary])
@@ -363,23 +363,22 @@
     BMLog(@"登录检查返回数据是:+++++%@", resDic);
     
     NSInteger statusCode = [resDic bm_intForKey:@"code"];
-    if (statusCode == 0)
+    if (statusCode == 1000)
     {
         [self.m_ProgressHUD hideAnimated:NO];
         
-        self.m_PhoneNum = [self.m_PhoneItem.value bm_trim];
-        [FSAppInfo setCurrentPhoneNum:self.m_PhoneNum];
+        BOOL isLogin = [resDic bm_boolForKey:@"data"];
         
-        s_isLogin = YES;
-        [self freshViews];
-        
-        return;
-    }
-    else
-    {
-        if (statusCode == 9999)
+        if (isLogin)
         {
-            [self.m_ProgressHUD hideAnimated:NO];
+            self.m_PhoneNum = [self.m_PhoneItem.value bm_trim];
+            [FSAppInfo setCurrentPhoneNum:self.m_PhoneNum];
+        
+            s_isLogin = YES;
+            [self freshViews];
+        }
+        else
+        {
             [self.view endEditing:YES];
             
             self.m_PhoneNum = [self.m_PhoneItem.value bm_trim];
@@ -390,11 +389,13 @@
             loginVerifyVC.delegate = self.delegate;
             [self.navigationController pushViewController:loginVerifyVC animated:YES];
         }
-        else
-        {
-            NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
-            [self.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-        }
+        
+        return;
+    }
+    else
+    {
+        NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
+        [self.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     }
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(loginFailedWithProgressState:)])

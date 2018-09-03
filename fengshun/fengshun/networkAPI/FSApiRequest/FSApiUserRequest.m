@@ -40,7 +40,31 @@
     NSString *urlStr = [NSString stringWithFormat:@"%@/storm/user/getSMSCode", FS_URL_SERVER];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     
-    [parameters bm_setApiString:[NSString stringWithFormat:@"%@", @(verificationCodeType)] forKey:@"codeType"];
+    // 注册短信: SMS_REGISTER_USER_CODE
+    // 找回密码: SMS_RESET_PASSWORD_CODE
+    // 更新手机号码: SMS_UPDATE_MOBILEPHONE_CODE
+
+    NSString *verificationType;
+    switch (verificationCodeType)
+    {
+        case FSMVerificationCodeType_Register:
+            verificationType = @"SMS_REGISTER_USER_CODE";
+            break;
+            
+        case FSVerificationCodeType_ResetPassword:
+            verificationType = @"SMS_RESET_PASSWORD_CODE";
+            break;
+            
+        case FSVerificationCodeType_UpdatePhoneNum:
+            verificationType = @"SMS_UPDATE_MOBILEPHONE_CODE";
+            break;
+            
+        default:
+            verificationType = @"SMS_REGISTER_USER_CODE";
+            break;
+    }
+    
+    [parameters bm_setApiString:verificationType forKey:@"codeType"];
     [parameters bm_setApiString:phoneNum forKey:@"mobilePhone"];
     
     return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];

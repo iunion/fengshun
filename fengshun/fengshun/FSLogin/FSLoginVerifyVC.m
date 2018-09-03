@@ -26,7 +26,8 @@
 @property (nonatomic, strong) UIButton *m_ConfirmBtn;
 
 @property (strong, nonatomic) NSURLSessionDataTask *m_VerificationCodeTask;
-@property (strong, nonatomic) NSURLSessionDataTask *m_CheckCodeTask;
+@property (strong, nonatomic) NSURLSessionDataTask *m_RegistTask;
+@property (strong, nonatomic) NSURLSessionDataTask *m_resetPassWordTask;
 
 @end
 
@@ -37,8 +38,11 @@
     [_m_VerificationCodeTask cancel];
     _m_VerificationCodeTask = nil;
     
-    [_m_CheckCodeTask cancel];
-    _m_CheckCodeTask = nil;
+    [_m_RegistTask cancel];
+    _m_RegistTask = nil;
+
+    [_m_resetPassWordTask cancel];
+    _m_resetPassWordTask = nil;
 }
 
 - (instancetype)initWithVerificationType:(BMVerificationCodeType)verificationType phoneNum:(NSString *)phoneNum
@@ -217,6 +221,11 @@
     self.m_ConfirmBtn = btn;
 }
 
+- (void)freshViews
+{
+    self.m_VerifyField.userInteractionEnabled = NO;
+}
+
 - (void)freshClockBtn:(NSInteger)ticket
 {
     if (ticket > 0)
@@ -288,31 +297,7 @@
         [weakSelf freshClockBtn:ticket];
     }];
 
-//    [self.m_VerificationCodeTask cancel];
-//    self.m_VerificationCodeTask = nil;
-//
-//    self.m_AuthCode = nil;
-//
-//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-//    NSMutableURLRequest *request = [MQApiRequest getVerificationCodeWithType:self.m_VerificationType phoneNum:phoneNum userId:userId];
-//    if (request)
-//    {
-//        MQWeakSelf
-//        self.m_VerificationCodeTask = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-//            if (error)
-//            {
-//                LLog(@"Error: %@", error);
-//                [weakSelf verificationCodeRequestFailed:response error:error];
-//
-//            }
-//            else
-//            {
-//                LLog(@"%@ %@", response, responseObject);
-//                [weakSelf verificationCodeRequestFinished:response responseDic:responseObject];
-//            }
-//        }];
-//        [self.m_VerificationCodeTask resume];
-//    }
+    [self getVerificationCodeWithType:self.m_VerificationType phoneNum:self.m_PhoneNum];
 }
 
 
@@ -326,6 +311,108 @@
     FSSetPassWordVC *setPassWordVC = [[FSSetPassWordVC alloc] initWithPhoneNum:@"13569768888"];
     setPassWordVC.m_IsRegist = YES;
     [self.navigationController pushViewController:setPassWordVC animated:YES];
+}
+
+
+#pragma mark - verificationCode request
+
+// 获取短信验证码
+- (void)getVerificationCodeWithType:(BMVerificationCodeType)verificationCodeType phoneNum:(NSString *)phoneNum
+{
+    FSVerificationCodeType verificationType = FSVerificationCodeType_Unknown;
+    switch (verificationCodeType)
+    {
+        case BMVerificationCodeType_Type1:
+            verificationType = FSMVerificationCodeType_Register;
+            break;
+            
+        case BMVerificationCodeType_Type2:
+            verificationType = FSVerificationCodeType_ResetPassword;
+            break;
+            
+        case BMVerificationCodeType_Type3:
+            verificationType = FSVerificationCodeType_UpdatePhoneNum;
+            break;
+            
+        default:
+            verificationType = FSVerificationCodeType_Unknown;
+            break;
+    }
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSMutableURLRequest *request = [FSApiRequest getVerificationCodeWithType:verificationType phoneNum:phoneNum];
+    if (request)
+    {
+        [self.m_ProgressHUD showAnimated:YES showBackground:NO];
+        
+        [self.m_VerificationCodeTask cancel];
+        self.m_VerificationCodeTask = nil;
+        
+        BMWeakSelf
+        self.m_VerificationCodeTask = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+            if (error)
+            {
+                BMLog(@"Error: %@", error);
+                [weakSelf verificationCodeRequestFailed:response error:error];
+                
+            }
+            else
+            {
+                BMLog(@"%@ %@", response, responseObject);
+                [weakSelf verificationCodeRequestFinished:response responseDic:responseObject];
+            }
+        }];
+        [self.m_VerificationCodeTask resume];
+    }
+}
+
+- (void)verificationCodeRequestFinished:(NSURLResponse *)response responseDic:(NSDictionary *)resDic
+{
+    if (![resDic bm_isNotEmptyDictionary])
+    {
+        [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        
+        if (self.delegate && [self.delegate respondsToSelector:@selector(loginFailedWithProgressState:)])
+        {
+            [self.delegate loginFailedWithProgressState:FSLoginProgress_LoginPhone];
+        }
+        return;
+    }
+    
+    BMLog(@"获取短信验证码返回数据是:+++++%@", resDic);
+    
+    NSInteger statusCode = [resDic bm_intForKey:@"code"];
+    if (statusCode == 0)
+    {
+        [self.m_ProgressHUD hideAnimated:NO];
+
+        [self freshViews];
+        
+        return;
+    }
+    else
+    {
+        //NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
+        //[self.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        self.m_ErrorLabel.hidden = NO;
+    }
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(loginFailedWithProgressState:)])
+    {
+        [self.delegate loginFailedWithProgressState:FSLoginProgress_LoginPhone];
+    }
+}
+
+- (void)verificationCodeRequestFailed:(NSURLResponse *)response error:(NSError *)error
+{
+    BMLog(@"获取短信验证码失败的错误:++++%@", [FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE]);
+    
+    [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(loginFailedWithProgressState:)])
+    {
+        [self.delegate loginFailedWithProgressState:FSLoginProgress_LoginPhone];
+    }
 }
 
 @end
