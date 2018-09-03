@@ -9,7 +9,7 @@
 #ifndef FSAPIMacros_h
 #define FSAPIMacros_h
 
-#define FS_URL_SERVER       (@"https://api.xxx.com")
+#define FS_URL_SERVER       (@"https://devftls.odrcloud.net")
 
 #define FS_H5_SERVER        (@"https://mobile.xxx.com")
 

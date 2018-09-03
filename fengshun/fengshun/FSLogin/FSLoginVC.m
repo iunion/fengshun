@@ -10,7 +10,10 @@
 #import "FSAppInfo.h"
 #import "NSString+BMFormat.h"
 
+#import "AppDelegate.h"
+
 #import "FSLoginVerifyVC.h"
+
 
 @interface FSLoginVC ()
 {
@@ -28,9 +31,21 @@
 @property (nonatomic, strong) UIButton *m_ConfirmBtn;
 @property (nonatomic, strong) UIButton *m_ForgetBtn;
 
+@property (nonatomic, strong) NSURLSessionDataTask *m_LoginCheckTask;
+@property (nonatomic, strong) NSURLSessionDataTask *m_LoginTask;
+
 @end
 
 @implementation FSLoginVC
+
+- (void)dealloc
+{
+    [_m_LoginCheckTask cancel];
+    _m_LoginCheckTask = nil;
+    
+    [_m_LoginTask cancel];
+    _m_LoginTask = nil;
+}
 
 - (void)viewDidLoad
 {
@@ -207,27 +222,15 @@
 
 - (void)confirmClick:(UIButton *)btn
 {
-    [self.view endEditing:YES];
-    
-    FSLoginVerifyVC *loginVerifyVC = [[FSLoginVerifyVC alloc] initWithVerificationType:BMVerificationCodeType_Type1 phoneNum:@"13569768888"];
-    loginVerifyVC.m_IsRegist = YES;
-    [self.navigationController pushViewController:loginVerifyVC animated:YES];
-    
-    return;
-    
     if (!s_isLogin)
     {
-        //NSString *phoneNum = [self.m_PhoneItem.value bm_trim];
-        if (![self verifyPhoneNum:self.m_PhoneItem.value])
+        NSString *phoneNum = [self.m_PhoneItem.value bm_trim];
+        if (![self verifyPhoneNum:phoneNum])
         {
             return;
         }
         
-        self.m_PhoneNum = self.m_PhoneItem.value;
-        
-        s_isLogin = YES;
-        
-        [self freshViews];
+        [self sendCheckRequestWithPhoneNum:phoneNum];
     }
     else
     {
@@ -242,16 +245,21 @@
 
 - (void)freshViews
 {
-    if (!s_isLogin)
+    if (s_isLogin)
     {
-        return;
+        if (self.delegate && [self.delegate respondsToSelector:@selector(loginProgressStateChanged:)])
+        {
+            [self.delegate loginProgressStateChanged:FSLoginProgress_InputPassWord];
+        }
+    }
+    else
+    {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(loginProgressStateChanged:)])
+        {
+            [self.delegate loginProgressStateChanged:FSLoginProgress_LoginPhone];
+        }
     }
     
-    if (self.delegate && [self.delegate respondsToSelector:@selector(loginProgressStateChanged:)])
-    {
-        [self.delegate loginProgressStateChanged:FSLoginProgress_InputPassWord];
-    }
-
     [self.m_Section removeAllItems];
 
     self.m_WelcomeLabel.hidden = NO;
@@ -298,7 +306,137 @@
 
 - (void)forgetClick:(UIButton *)btn
 {
+    [self.view endEditing:YES];
     
+    FSLoginVerifyVC *loginVerifyVC = [[FSLoginVerifyVC alloc] initWithVerificationType:BMVerificationCodeType_Type1 phoneNum:@"13569768888"];
+    loginVerifyVC.m_IsRegist = YES;
+    [self.navigationController pushViewController:loginVerifyVC animated:YES];
 }
+
+
+#pragma mark -
+#pragma mark check request
+
+- (void)sendCheckRequestWithPhoneNum:(NSString *)phoneNum
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSMutableURLRequest *request = [FSApiRequest checkUserWithPhoneNum:phoneNum];
+    if (request)
+    {
+        BMWeakSelf
+        self.m_LoginCheckTask = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+            if (error)
+            {
+                BMLog(@"Error: %@", error);
+                [weakSelf loginCheckRequestFailed:response error:error];
+                
+            }
+            else
+            {
+                BMLog(@"%@ %@", response, responseObject);
+                [weakSelf loginCheckRequestFinished:response responseDic:responseObject];
+            }
+        }];
+        [self.m_LoginCheckTask resume];
+    }
+}
+
+// 登录检查
+- (void)loginCheckRequestFinished:(NSURLResponse *)response responseDic:(NSDictionary *)resDic
+{
+    if (![resDic bm_isNotEmptyDictionary])
+    {
+        [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        
+        if (self.delegate && [self.delegate respondsToSelector:@selector(loginFailedWithProgressState:)])
+        {
+            [self.delegate loginFailedWithProgressState:FSLoginProgress_LoginPhone];
+        }
+        return;
+    }
+    
+    BMLog(@"登录检查返回数据是:+++++%@", resDic);
+    
+    NSInteger statusCode = [resDic bm_intForKey:@"code"];
+    if (statusCode == 0)
+    {
+        [self.m_ProgressHUD hideAnimated:NO];
+        
+        self.m_PhoneNum = [self.m_PhoneItem.value bm_trim];
+        [FSAppInfo setCurrentPhoneNum:self.m_PhoneNum];
+        
+        s_isLogin = YES;
+        [self freshViews];
+        
+        return;
+    }
+    else
+    {
+        if (statusCode == 9999)
+        {
+            [self.view endEditing:YES];
+            
+            self.m_PhoneNum = [self.m_PhoneItem.value bm_trim];
+            [FSAppInfo setCurrentPhoneNum:self.m_PhoneNum];
+            
+            FSLoginVerifyVC *loginVerifyVC = [[FSLoginVerifyVC alloc] initWithVerificationType:BMVerificationCodeType_Type1 phoneNum:self.m_PhoneNum];
+            loginVerifyVC.m_IsRegist = YES;
+            loginVerifyVC.delegate = self.delegate;
+            [self.navigationController pushViewController:loginVerifyVC animated:YES];
+        }
+        else
+        {
+            NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
+            [self.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        }
+    }
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(loginFailedWithProgressState:)])
+    {
+        [self.delegate loginFailedWithProgressState:FSLoginProgress_LoginPhone];
+    }
+}
+
+- (void)loginCheckRequestFailed:(NSURLResponse *)response error:(NSError *)error
+{
+    BMLog(@"登录检查失败的错误:++++%@", [FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE]);
+
+    [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(loginFailedWithProgressState:)])
+    {
+        [self.delegate loginFailedWithProgressState:FSLoginProgress_LoginPhone];
+    }
+}
+
+#if 0
+{
+    [self.m_ProgressHUD hideAnimated:NO];
+    
+    NSDictionary *dataDic = [resDic bm_dictionaryForKey:@"data"];
+    if ([dataDic bm_isNotEmptyDictionary])
+    {
+        FSUserInfoModle *userInfo = [FSUserInfoModle userInfoWithServerDic:dataDic isUpDateByUserInfoApi:NO];
+        if (userInfo)
+        {
+            GetAppDelegate.m_UserInfo = userInfo;
+            [FSUserInfoModle setCurrentUserID:userInfo.m_UserBaseInfo.m_UserId];
+            [FSUserInfoModle setCurrentUserToken:userInfo.m_Token];
+            
+            [FSUserInfoDB insertAndUpdateUserInfo:userInfo];
+            
+            if (self.delegate && [self.delegate respondsToSelector:@selector(loginFinished)])
+            {
+                [self.delegate loginFinished];
+            }
+            
+            return;
+        }
+    }
+    
+    [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+}
+
+#endif
 
 @end

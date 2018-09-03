@@ -159,7 +159,7 @@
     [request setValue:[NSString stringWithFormat:@"%f", [FSLocation userLocationLatitude]] forHTTPHeaderField:FSAPI_GPS_LATITUDE_KEY];
     
     // 网络状态
-    [request setValue:[FSCoreStatus currentMQNetWorkStatusString] forHTTPHeaderField:@"netWorkStandard"];
+    [request setValue:[FSCoreStatus currentFSNetWorkStatusString] forHTTPHeaderField:@"netWorkStandard"];
     
     // token
     if ([FSUserInfoModle isLogin])
@@ -167,7 +167,7 @@
         NSString *token = [FSUserInfoModle userInfo].m_Token;
         if ([token bm_isNotEmpty])
         {
-            [request setValue:token forHTTPHeaderField:@"token"];
+            [request setValue:token forHTTPHeaderField:@"JWTToken"];
         }
     }
     

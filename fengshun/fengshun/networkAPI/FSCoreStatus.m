@@ -77,7 +77,7 @@ static NSString *const FSCoreStatusChangedNotify = @"FSCoreStatusChangedNotify";
     return status.coreNetworkStatusStringArray[[self currentNetWorkStatus]];
 }
 
-+ (NSString *)currentMQNetWorkStatusString
++ (NSString *)currentFSNetWorkStatusString
 {
     FSCoreStatus *status = [FSCoreStatus sharedCoreStatus];
     

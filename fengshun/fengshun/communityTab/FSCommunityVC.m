@@ -30,40 +30,50 @@ FSCommunityVC ()
 {
     [super viewDidLoad];
 
-    self.title = @"ScrollPageView";
+    self.title = @"枫调理顺";
+    self.bm_NavigationBarBgTintColor = [UIColor whiteColor];
     [GetAppDelegate.m_TabBarController hideOriginTabBar];
 
-    NSDictionary *btnItem1 = [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"navigationbar_collect_icon" toucheEvent:@"collect" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0];
-    NSDictionary *btnItem2 = [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"navigationbar_share_icon" toucheEvent:@"share" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageRight imageTitleGap:0];
-
-    [self bm_setNavigationWithTitle:@"" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightDicArray:@[btnItem2, btnItem1]];
+//    NSDictionary *btnItem1 = [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"navigationbar_collect_icon" toucheEvent:@"collect" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0];
+//    NSDictionary *btnItem2 = [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"navigationbar_share_icon" toucheEvent:@"share" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageRight imageTitleGap:0];
+//
+//    [self bm_setNavigationWithTitle:@"" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightDicArray:@[btnItem2, btnItem1]];
 
     [self setupUI];
 }
 
-- (void)collect
-{
-    NSLog(@"collect");
-}
-
-- (void)share
-{
-    NSLog(@"share");
-}
+//- (void)collect
+//{
+//    NSLog(@"collect");
+//}
+//
+//- (void)share
+//{
+//    NSLog(@"share");
+//}
 
 - (void)setupUI
 {
-    self.m_SegmentBar = [FSScrollPageSegment attachedSegmentWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 44) showUnderLine:YES showTopline:YES moveLineFrame:CGRectZero isEqualDivide:YES showGapline:YES];
-
+    self.m_SegmentBar = [[FSScrollPageSegment alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 44) titles:nil titleColor:nil selectTitleColor:nil showUnderLine:NO moveLineFrame:CGRectZero isEqualDivide:YES fresh:YES];
     [self.view addSubview:_m_SegmentBar];
+    [self.m_SegmentBar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.right.equalTo(self.view);
+        make.height.mas_equalTo(44);
+    }];
+
     _m_SegmentBar.backgroundColor = [UIColor whiteColor];
     self.m_ScrollPageView = [[FSScrollPageView alloc] initWithFrame:CGRectMake(0, 44, UI_SCREEN_WIDTH, UI_MAINSCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT - UI_TAB_BAR_HEIGHT - 44) titleColor:UI_COLOR_B1 selectTitleColor:UI_COLOR_B1 scrollPageSegment:_m_SegmentBar isSubViewPageSegment:NO];
     [self.view addSubview:self.m_ScrollPageView];
+    [self.m_ScrollPageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.view);
+        make.top.mas_equalTo(self.m_SegmentBar.bm_bottom);
+    }];
     self.m_ScrollPageView.datasource = self;
     self.m_ScrollPageView.delegate   = self;
     [self.m_ScrollPageView setM_MoveLineColor:UI_COLOR_BL1];
     [self.m_ScrollPageView reloadPage];
     [self.m_ScrollPageView scrollPageWithIndex:0];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,7 +87,7 @@ FSCommunityVC ()
 
 - (NSUInteger)scrollPageViewNumberOfPages:(FSScrollPageView *)scrollPageView
 {
-    return 3;
+    return 2;
 }
 
 - (NSString *)scrollPageView:(FSScrollPageView *)scrollPageView titleAtIndex:(NSUInteger)index
@@ -85,13 +95,10 @@ FSCommunityVC ()
     switch (index)
     {
         case 0:
-            return @"红";
+            return @"推荐";
             break;
         case 1:
-            return @"黄";
-            break;
-        case 2:
-            return @"蓝";
+            return @"板块";
             break;
 
         default:
@@ -117,10 +124,6 @@ FSCommunityVC ()
 
         case 1:
             view.backgroundColor = [UIColor yellowColor];
-            break;
-
-        case 2:
-            view.backgroundColor = [UIColor blueColor];
             break;
     }
 

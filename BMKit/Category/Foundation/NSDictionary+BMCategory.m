@@ -642,6 +642,16 @@
     [self setObject:value forKey:key];
 }
 
+- (void)bm_setApiString:(NSString *)string forKey:(id)key
+{
+    if (![string bm_isNotEmpty])
+    {
+        string = @"";
+    }
+    
+    [self setObject:string forKey:key];
+}
+
 - (void)bm_setPoint:(CGPoint)value forKey:(id)key
 {
     CFDictionaryRef dictionary = CGPointCreateDictionaryRepresentation(value);

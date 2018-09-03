@@ -14,9 +14,10 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    [_m_categoryView bm_roundedRect:_m_categoryView.bm_height/2];
-    [_m_headerImgView bm_roundedRect:_m_headerImgView.bm_height/2];
-    [_m_commentBtn bm_layoutButtonWithEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:5];
+    [_m_CategoryView bm_roundedRect:_m_CategoryView.bm_height/2];
+    [_m_HeaderImgView bm_roundedRect:_m_HeaderImgView.bm_height/2];
+    [_m_StickView bm_roundedRect:_m_StickView.bm_height/2];
+    [_m_CommentBtn bm_layoutButtonWithEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:5];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -170,7 +170,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 #define TABLE_CELL_HEIGHT   44.0f
 
-#define UI_DEFAULT_LINECOLOR        [UIColor bm_colorWithHex:0xE6E6E6]
+#define UI_DEFAULT_LINECOLOR        [UIColor bm_colorWithHex:0x4e7cf6]
 
 // Cell背景颜色
 #define UI_CELL_BGCOLOR             [UIColor bm_colorWithHex:0xFFFFFF]
