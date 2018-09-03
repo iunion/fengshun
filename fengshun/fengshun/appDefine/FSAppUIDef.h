@@ -136,15 +136,17 @@
 
 
 
+
 #pragma mark -
 #pragma mark 默认UI设置
 
 #pragma mark 默认颜色
 
-// View背景颜色
+// View背景颜色 (确定)
+
 #define FS_VIEW_BGCOLOR                     UI_COLOR_B8
 
-// 导航条背景颜色
+// 导航条背景颜色 (确定)
 #define FS_NAVIGATION_BGCOLOR_VALUE         UI_NAVIGATION_BGCOLOR_VALU
 #define FS_NAVIGATION_BGCOLOR               [UIColor bm_colorWithHex:FS_NAVIGATION_BGCOLOR_VALUE]
 #define FS_NAVIGATION_ITEMCOLOR             [UIColor whiteColor]
@@ -161,13 +163,13 @@
 #define FS_COUNT_TEXTCOLOR                  UI_COLOR_BL1
 #define FS_OTHER_TEXTCOLOR                  UI_COLOR_B2
 
-// Cell背景颜色
+// Cell背景颜色 (实为table中section header背景色)
 #define FS_TABLECELL_BGCOLOR                UI_COLOR_B8
 // Cell选中状态背景颜色
 #define UI_TABLECELL_SELECTBGCOLOR          UI_COLOR_B5
 #define UI_TABLECELL_HIGHLIGHTBGCOLOR       UI_COLOR_BL1
 
-// 分割线颜色
+// 分割线颜色 (确定)
 #define FS_LINECOLOR                        UI_COLOR_B6
 
 

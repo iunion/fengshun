@@ -12,7 +12,7 @@
 #import "FSCoreStatus.h"
 
 #import "FSUserInfo.h"
-
+#import "IQKeyboardManager.h"
 //#import "SDWebImageCodersManager.h"
 //#import "SDWebImageGIFCoder.h"
 
@@ -111,6 +111,8 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
+    [self initKeyboardManager];
+    
     return YES;
 }
 
@@ -127,6 +129,18 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:userInfoChangedNotification object:nil userInfo:nil];
         }
     }
+}
+
+- (void)initKeyboardManager
+{
+    IQKeyboardManager *keyboardManager = [IQKeyboardManager sharedManager];
+    keyboardManager.enable = YES;
+    keyboardManager.shouldResignOnTouchOutside = YES;
+    keyboardManager.shouldToolbarUsesTextFieldTintColor = YES;
+    keyboardManager.toolbarManageBehaviour = IQAutoToolbarBySubviews;
+    keyboardManager.enableAutoToolbar = YES;
+    keyboardManager.shouldShowToolbarPlaceholder = YES;
+    keyboardManager.keyboardDistanceFromTextField = 10.0f;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

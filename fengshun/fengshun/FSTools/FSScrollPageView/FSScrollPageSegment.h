@@ -27,6 +27,9 @@
 // 初始化方法
 - (instancetype)initWithTitles:(NSArray *)titles titleColor:(UIColor *)titleColor selectTitleColor:(UIColor *)selectTitleColor isEqualDivide:(BOOL)isEqualDivide;
 
+// 适用于分割线配置的初始化方法
++ (instancetype)attachedSegmentWithFrame:(CGRect)frame showUnderLine:(BOOL)showUnderLine showTopline:(BOOL)showTopline moveLineFrame:(CGRect)moveLineFrame isEqualDivide:(BOOL)isEqualDivide showGapline:(BOOL)showGapline;
+
 // 该方法只限2.0版定期,活期首页使用
 - (instancetype)initWithFrame:(CGRect)frame moveLineFrame:(CGRect)moveLineFrame isEqualDivide:(BOOL)isEqualDivide;
 
