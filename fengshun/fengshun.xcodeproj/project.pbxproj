@@ -399,6 +399,8 @@
 		AD9355AC2137D24100735C2E /* TZLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD93559C2137D24100735C2E /* TZLocationManager.m */; };
 		AD9355AD2137D24100735C2E /* TZGifPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD93559D2137D24100735C2E /* TZGifPhotoPreviewController.m */; };
 		AD9CAAE4212EA0F40071B941 /* UIScrollView+BMEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9CAAE3212EA0F40071B941 /* UIScrollView+BMEmpty.m */; };
+		DB14A7AA2139247900E88798 /* FSCourseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB14A7A82139247900E88798 /* FSCourseTableCell.m */; };
+		DB14A7AB2139247900E88798 /* FSCourseTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB14A7A92139247900E88798 /* FSCourseTableCell.xib */; };
 		ADE8689721392853005359B5 /* FSCommunityListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8689521392853005359B5 /* FSCommunityListTableViewCell.m */; };
 		ADE8689821392853005359B5 /* FSCommunityListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADE8689621392853005359B5 /* FSCommunityListTableViewCell.xib */; };
 		ADE8689C21393469005359B5 /* FSPlateListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8689A21393469005359B5 /* FSPlateListTableViewCell.m */; };
@@ -1161,6 +1163,9 @@
 		AD93559E2137D24100735C2E /* TZProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZProgressView.h; sourceTree = "<group>"; };
 		AD9CAAE2212EA0F40071B941 /* UIScrollView+BMEmpty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+BMEmpty.h"; sourceTree = "<group>"; };
 		AD9CAAE3212EA0F40071B941 /* UIScrollView+BMEmpty.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+BMEmpty.m"; sourceTree = "<group>"; };
+		DB14A7A72139247900E88798 /* FSCourseTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCourseTableCell.h; sourceTree = "<group>"; };
+		DB14A7A82139247900E88798 /* FSCourseTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCourseTableCell.m; sourceTree = "<group>"; };
+		DB14A7A92139247900E88798 /* FSCourseTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSCourseTableCell.xib; sourceTree = "<group>"; };
 		ADE8689421392853005359B5 /* FSCommunityListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCommunityListTableViewCell.h; sourceTree = "<group>"; };
 		ADE8689521392853005359B5 /* FSCommunityListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCommunityListTableViewCell.m; sourceTree = "<group>"; };
 		ADE8689621392853005359B5 /* FSCommunityListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSCommunityListTableViewCell.xib; sourceTree = "<group>"; };
@@ -2770,6 +2775,9 @@
 				DB8D160F2137CC9800EB16E8 /* FSMainHeaderView.h */,
 				DB8D16102137CC9800EB16E8 /* FSMainHeaderView.m */,
 				DB8D16122137CCAC00EB16E8 /* FSMainHeaderView.xib */,
+				DB14A7A72139247900E88798 /* FSCourseTableCell.h */,
+				DB14A7A82139247900E88798 /* FSCourseTableCell.m */,
+				DB14A7A92139247900E88798 /* FSCourseTableCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -2920,6 +2928,7 @@
 				87426A50213135F0003C52F6 /* fstab_btn4_highIcon@3x.png in Resources */,
 				87426A02212F9657003C52F6 /* navigationbar_close_icon@2x.png in Resources */,
 				87426A4D213135F0003C52F6 /* fstab_btn3_highIcon@2x.png in Resources */,
+				DB14A7AB2139247900E88798 /* FSCourseTableCell.xib in Resources */,
 				87D186A6213679F800037DDF /* login_password@2x.png in Resources */,
 				87426A21213100BB003C52F6 /* bmsearch_close@2x.png in Resources */,
 				87D20AEF21392FF2001EDD60 /* user_topbackgroud@2x.png in Resources */,
@@ -3259,6 +3268,7 @@
 				87D209722137F399001EDD60 /* FSUserMainVC.m in Sources */,
 				87426AC52133AA9D003C52F6 /* FSCoreStatus.m in Sources */,
 				874269B9212E9B78003C52F6 /* BMFreshBaseView.m in Sources */,
+				DB14A7AA2139247900E88798 /* FSCourseTableCell.m in Sources */,
 				874268E9212E7E36003C52F6 /* UIView+BMAnimationExtensions.m in Sources */,
 				87426AD12133D6CF003C52F6 /* FSTableView.m in Sources */,
 				87D20ACE213920E2001EDD60 /* FLEXWebViewController.m in Sources */,
