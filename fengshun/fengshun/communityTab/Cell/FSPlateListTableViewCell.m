@@ -13,6 +13,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [_m_ImgView bm_roundedRect:4];
+    [_m_DoBtn bm_roundedRect:_m_DoBtn.bm_height/2];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
