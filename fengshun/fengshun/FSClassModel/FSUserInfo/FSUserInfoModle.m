@@ -14,6 +14,117 @@
 #import "AppDelegate.h"
 #import "FSUserInfoDB.h"
 
+@implementation FSUserBaseInfoModle
+
++ (instancetype)userBaseInfoWithServerDic:(NSDictionary *)dic
+{
+    if (![dic bm_isNotEmptyDictionary])
+    {
+        return nil;
+    }
+    
+    NSString *userId = [dic bm_stringTrimForKey:@"userId"];
+    if (![userId bm_isNotEmpty])
+    {
+        return nil;
+    }
+    
+    FSUserBaseInfoModle *userBaseInfo = [[FSUserBaseInfoModle alloc] init];
+    [userBaseInfo updateWithServerDic:dic];
+    
+    if ([userBaseInfo.m_UserId bm_isNotEmpty])
+    {
+        return userBaseInfo;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+//- (instancetype)init
+//{
+//    self = [super init];
+//
+//    if (self)
+//    {
+//        _m_UserId = [FSUserInfoModle getCurrentUserId];
+//    }
+//
+//    return self;
+//}
+
+- (void)updateWithServerDic:(NSDictionary *)dic
+{
+    if (![dic bm_isNotEmptyDictionary])
+    {
+        return;
+    }
+    
+    // 🔐用户ID💡: userId
+    NSString *userId = [dic bm_stringTrimForKey:@"userId"];
+    if (![userId bm_isNotEmpty])
+    {
+        return;
+    }
+
+    // 🔐真实姓名: userName
+    self.m_RealName = [dic bm_stringTrimForKey:@"userName"];
+    // 用户登录类型: userType
+    // 普通用户:COMMON, 工作人员:STAFF, 默认设置-普通用户
+    self.m_UserType = [dic bm_stringTrimForKey:@"userType" withDefault:@"COMMON"];
+    
+    // 🔐用户手机号码: mobilePhone
+    self.m_PhoneNum = [dic bm_stringTrimForKey:@"mobilePhone"];
+    // 🔐身份证号: idCard
+    self.m_IdCardNo = [dic bm_stringTrimForKey:@"idCard"];
+    // 🔐邮箱: email
+    //self.m_Email = [dic bm_stringTrimForKey:@"email"];
+    // 昵称: nickName
+    self.m_NickName = [dic bm_stringTrimForKey:@"nickName"];
+    // 性别: sex
+    self.m_Sex = [dic bm_stringTrimForKey:@"sex"];
+    // 头像地址: headPortraitUrl
+    self.m_AvatarUrl = [dic bm_stringTrimForKey:@"headPortraitUrl"];
+    
+    // 人脸识别: isFacialVerify
+    self.m_IsFacialVerify = [dic bm_boolForKey:@"isFacialVerify"];
+    // 实名认证: isRealName
+    self.m_IsRealName = [dic bm_boolForKey:@"isRealName"];
+}
+
+@end
+
+@implementation FSUserRoleModle
+
++ (instancetype)userRoleWithServerDic:(NSDictionary *)dic
+{
+    if (![dic bm_isNotEmptyDictionary])
+    {
+        return nil;
+    }
+    
+    FSUserRoleModle *userRole = [[FSUserRoleModle alloc] init];
+    [userRole updateWithServerDic:dic];
+    
+    return userRole;
+}
+
+- (void)updateWithServerDic:(NSDictionary *)dic
+{
+    if (![dic bm_isNotEmptyDictionary])
+    {
+        return;
+    }
+    
+    // 用户身份: roleName
+    self.m_Role = [dic bm_stringTrimForKey:@"roleName"];
+    // 用户身份编码: roleCode
+    self.m_RoleCode = [dic bm_stringTrimForKey:@"roleCode"];
+}
+
+@end
+
 @implementation FSUserInfoModle
 
 + (FSUserInfoModle *)userInfo
@@ -58,34 +169,26 @@
     return [FSUserInfoModle userInfoWithServerDic:dic isUpDateByUserInfoApi:YES];
 }
 
-+ (instancetype)userInfoWithServerDic:(NSDictionary *)dic isUpDateByUserInfoApi:(BOOL)userInfoAp
++ (instancetype)userInfoWithServerDic:(NSDictionary *)dic isUpDateByUserInfoApi:(BOOL)userInfoApi
 {
     if (![dic bm_isNotEmptyDictionary])
     {
         return nil;
     }
     
-    NSString *userId = [dic bm_stringTrimForKey:@"custId"];
-    if (![userId bm_isNotEmpty])
+    if (!userInfoApi)
     {
-        return nil;
-    }
-    NSString *token = [dic bm_stringTrimForKey:@"token"];
-    if (![token bm_isNotEmpty])
-    {
-        return nil;
+        NSString *token = [dic bm_stringTrimForKey:@"token"];
+        if (![token bm_isNotEmpty])
+        {
+            return nil;
+        }
     }
 
-    // 数据库读取
-    FSUserInfoModle *userInfo = [FSUserInfoDB getUserInfoWithUserId:userId];
-    if (!userInfo)
-    {
-        userInfo = [[FSUserInfoModle alloc] init];
-    }
-
-    [userInfo updateWithServerDic:dic isUpDateByUserInfoApi:userInfoAp];
+    FSUserInfoModle *userInfo = [[FSUserInfoModle alloc] init];
+    [userInfo updateWithServerDic:dic isUpDateByUserInfoApi:userInfoApi];
     
-    if ([userInfo.m_UserId bm_isNotEmpty] && [userInfo.m_Token bm_isNotEmpty])
+    if ([userInfo.m_Token bm_isNotEmpty] && [userInfo.m_UserBaseInfo.m_UserId bm_isNotEmpty])
     {
         return userInfo;
     }
@@ -103,8 +206,10 @@
     {
         _m_LastUpdateTs = [[NSDate date] timeIntervalSince1970];
         
-        _m_UserId = [FSUserInfoModle getCurrentUserId];
         _m_Token = [FSUserInfoModle getCurrentUserToken];
+        
+        //_m_UserBaseInfo = [[FSUserBaseInfoModle alloc] init];
+        //_m_UserRole = [[FSUserRoleModle alloc] init];
     }
     
     return self;
@@ -117,49 +222,53 @@
         return;
     }
 
-    // 🔐用户ID: custId
-    NSString *userId = [dic bm_stringTrimForKey:@"custId"];
-    if (![userId bm_isNotEmpty])
-    {
-        return;
-    }
-    
-    // 用户令牌(登录注册)💡: token
-    NSString *token = [dic bm_stringTrimForKey:@"token"];
-    if (![token bm_isNotEmpty])
-    {
-        return;
-    }
+    NSDictionary *userBaseDic = dic;
+    NSDictionary *userRoleDic = nil;
 
-    if (userInfoApi)
+    if (!userInfoApi)
     {
-        // 判断关键key是否相同
-        if ([self.m_UserId bm_isNotEmpty] && ![self.m_UserId isEqualToString:userId])
+        // 🔐用户令牌token(登录注册)💡: token
+        NSString *token = [dic bm_stringTrimForKey:@"token"];
+        if (![token bm_isNotEmpty])
         {
             return;
         }
-        
-        if ([self.m_Token bm_isNotEmpty] && ![self.m_Token isEqualToString:token])
+    
+        // 🔐用户刷新令牌💡: refreshToken
+        NSString *refreshToken = [dic bm_stringTrimForKey:@"refreshToken"];
+//        if (![refreshToken bm_isNotEmpty])
+//        {
+//            return;
+//        }
+
+        self.m_Token = token;
+        self.m_RefreshToken = refreshToken;
+
+        userBaseDic = [dic bm_dictionaryForKey:@"loginInfo"];
+        if ([userBaseDic bm_isNotEmptyDictionary])
         {
-            return;
+            userBaseDic = [userBaseDic bm_dictionaryForKey:@"userInfo"];
+            userRoleDic = [userBaseDic bm_dictionaryForKey:@"userRoles"];
         }
     }
+    
+    if (![userBaseDic bm_isNotEmptyDictionary])
+    {
+        return;
+    }
 
-    // custId
-    self.m_UserId = userId;
-        
-    // token
-    self.m_Token = token;
+    self.m_UserBaseInfo = [FSUserBaseInfoModle userBaseInfoWithServerDic:userBaseDic];
 
+    self.m_UserRole = [FSUserRoleModle userRoleWithServerDic:userRoleDic];
     
-    
-    
+    // 最后更新时间
+    self.m_LastUpdateTs = [[NSDate date] timeIntervalSince1970];
 }
 
 + (BOOL)isLogin
 {
     FSUserInfoModle *currentUser = GetAppDelegate.m_UserInfo;
-    if ([currentUser.m_UserId bm_isNotEmpty] && [currentUser.m_Token bm_isNotEmpty])
+    if ([currentUser.m_Token bm_isNotEmpty] && [currentUser.m_UserBaseInfo.m_UserId bm_isNotEmpty])
     {
         return YES;
     }

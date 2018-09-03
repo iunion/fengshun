@@ -167,7 +167,7 @@
         NSString *token = [FSUserInfoModle userInfo].m_Token;
         if ([token bm_isNotEmpty])
         {
-            [request setValue:token forHTTPHeaderField:@"token"];
+            [request setValue:token forHTTPHeaderField:@"JWTToken"];
         }
     }
     
