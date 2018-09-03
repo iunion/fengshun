@@ -323,6 +323,11 @@
     NSMutableURLRequest *request = [FSApiRequest checkUserWithPhoneNum:phoneNum];
     if (request)
     {
+        [self.m_ProgressHUD showAnimated:YES showBackground:NO];
+        
+        [self.m_LoginCheckTask cancel];
+        self.m_LoginCheckTask = nil;
+
         BMWeakSelf
         self.m_LoginCheckTask = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
             if (error)
@@ -374,6 +379,7 @@
     {
         if (statusCode == 9999)
         {
+            [self.m_ProgressHUD hideAnimated:NO];
             [self.view endEditing:YES];
             
             self.m_PhoneNum = [self.m_PhoneItem.value bm_trim];

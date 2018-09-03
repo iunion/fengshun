@@ -160,6 +160,7 @@
     verifyField.delegate = self;
     verifyField.trackBorderColor = UI_COLOR_BL1;
     verifyField.autoResignFirstResponderWhenInputFinished = YES;
+    verifyField.userInteractionEnabled = NO;
     self.m_VerifyField = verifyField;
     
     UILabel *label3 = [UILabel bm_labelWithFrame:CGRectMake(0, verifyField.bm_bottom+10.0f, self.m_TableView.bm_width, 24.0f) text:@"" fontSize:12.0f color:UI_COLOR_R1 alignment:NSTextAlignmentLeft lines:1];
