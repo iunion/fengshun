@@ -404,6 +404,8 @@
 		AD2244A4213CD6C300F2DC47 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD224499213CD6C300F2DC47 /* Info.plist */; };
 		AD2244DB213D158800F2DC47 /* FSPlateDetailListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2244D9213D158800F2DC47 /* FSPlateDetailListTableViewCell.m */; };
 		AD2244DC213D158800F2DC47 /* FSPlateDetailListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD2244DA213D158800F2DC47 /* FSPlateDetailListTableViewCell.xib */; };
+		AD2244DF213D1FE700F2DC47 /* FSCommunityHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD2244DE213D1FE700F2DC47 /* FSCommunityHeaderView.xib */; };
+		AD2244E2213D1FF900F2DC47 /* FSCommunityHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2244E1213D1FF900F2DC47 /* FSCommunityHeaderView.m */; };
 		AD47EFDC2137EBF0004A345F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD47EFDB2137EBF0004A345F /* Launch Screen.storyboard */; };
 		AD8B63FE21338E0C006DDC22 /* FSPreviewFileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */; };
 		AD93559F2137D24100735C2E /* TZImageCropManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9355842137D24100735C2E /* TZImageCropManager.m */; };
@@ -1199,6 +1201,9 @@
 		AD2244D8213D158800F2DC47 /* FSPlateDetailListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSPlateDetailListTableViewCell.h; sourceTree = "<group>"; };
 		AD2244D9213D158800F2DC47 /* FSPlateDetailListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSPlateDetailListTableViewCell.m; sourceTree = "<group>"; };
 		AD2244DA213D158800F2DC47 /* FSPlateDetailListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSPlateDetailListTableViewCell.xib; sourceTree = "<group>"; };
+		AD2244DE213D1FE700F2DC47 /* FSCommunityHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSCommunityHeaderView.xib; sourceTree = "<group>"; };
+		AD2244E0213D1FF900F2DC47 /* FSCommunityHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCommunityHeaderView.h; sourceTree = "<group>"; };
+		AD2244E1213D1FF900F2DC47 /* FSCommunityHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCommunityHeaderView.m; sourceTree = "<group>"; };
 		AD47EFDB2137EBF0004A345F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		AD8B63FC21338E0C006DDC22 /* FSPreviewFileTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSPreviewFileTool.h; sourceTree = "<group>"; };
 		AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSPreviewFileTool.m; sourceTree = "<group>"; };
@@ -2843,6 +2848,16 @@
 			path = Masonry;
 			sourceTree = "<group>";
 		};
+		AD2244DD213D1F9B00F2DC47 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AD2244E0213D1FF900F2DC47 /* FSCommunityHeaderView.h */,
+				AD2244E1213D1FF900F2DC47 /* FSCommunityHeaderView.m */,
+				AD2244DE213D1FE700F2DC47 /* FSCommunityHeaderView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		AD8B63FA21338DC3006DDC22 /* FSPreviewFileTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -2918,6 +2933,7 @@
 		DB5722372133A1830065DC30 /* communityTab */ = {
 			isa = PBXGroup;
 			children = (
+				AD2244DD213D1F9B00F2DC47 /* View */,
 				ADE86893213927B2005359B5 /* Cell */,
 				DB5722382133A1D90065DC30 /* FSCommunityVC.h */,
 				DB5722392133A1D90065DC30 /* FSCommunityVC.m */,
@@ -3128,6 +3144,7 @@
 				87D209732137F399001EDD60 /* FSUserMainVC.xib in Resources */,
 				AD2244A4213CD6C300F2DC47 /* Info.plist in Resources */,
 				AD9355A62137D24100735C2E /* TZImagePickerController.bundle in Resources */,
+				AD2244DF213D1FE700F2DC47 /* FSCommunityHeaderView.xib in Resources */,
 				87426A25213100BB003C52F6 /* bmsearch_searchicon@2x.png in Resources */,
 				87426A18212FCB6A003C52F6 /* navigationbar_clearImage@2x.png in Resources */,
 				87D186A2213679F800037DDF /* login_mobile@2x.png in Resources */,
@@ -3217,6 +3234,7 @@
 				874268FD212E7E36003C52F6 /* NSBundle+BMResource.m in Sources */,
 				874268C3212E7E36003C52F6 /* BMTextItem.m in Sources */,
 				874268AA212E7E36003C52F6 /* BMTableViewBoolCell.m in Sources */,
+				AD2244E2213D1FF900F2DC47 /* FSCommunityHeaderView.m in Sources */,
 				87D209E62138FF46001EDD60 /* CGGeometry+RSKImageCropper.m in Sources */,
 				87D20AAE213920E2001EDD60 /* FLEXNetworkTransactionTableViewCell.m in Sources */,
 				87D209B82138F1E2001EDD60 /* UIImageView+HighlightedWebCache.m in Sources */,

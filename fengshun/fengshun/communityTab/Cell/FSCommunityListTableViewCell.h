@@ -26,5 +26,4 @@
 // 置顶标识view
 @property (weak, nonatomic) IBOutlet UIView *m_StickView;
 
-
 @end
