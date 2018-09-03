@@ -12,7 +12,6 @@
 #import "FSCoreStatus.h"
 
 #import "FSUserInfo.h"
-#import "IQKeyboardManager.h"
 //#import "SDWebImageCodersManager.h"
 //#import "SDWebImageGIFCoder.h"
 
@@ -111,7 +110,6 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    [self initKeyboardManager];
     
     return YES;
 }
@@ -131,17 +129,6 @@
     }
 }
 
-- (void)initKeyboardManager
-{
-    IQKeyboardManager *keyboardManager = [IQKeyboardManager sharedManager];
-    keyboardManager.enable = YES;
-    keyboardManager.shouldResignOnTouchOutside = YES;
-    keyboardManager.shouldToolbarUsesTextFieldTintColor = YES;
-    keyboardManager.toolbarManageBehaviour = IQAutoToolbarBySubviews;
-    keyboardManager.enableAutoToolbar = YES;
-    keyboardManager.shouldShowToolbarPlaceholder = YES;
-    keyboardManager.keyboardDistanceFromTextField = 10.0f;
-}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
