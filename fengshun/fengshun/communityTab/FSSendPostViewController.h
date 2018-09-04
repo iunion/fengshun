@@ -10,4 +10,6 @@
 
 @interface FSSendPostViewController : FSTableViewVC
 
+@property (nonatomic , copy)void (^sendPostsCallBack)(id );
+
 @end
