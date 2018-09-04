@@ -408,6 +408,8 @@
 		AD2244DF213D1FE700F2DC47 /* FSCommunityHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD2244DE213D1FE700F2DC47 /* FSCommunityHeaderView.xib */; };
 		AD2244E2213D1FF900F2DC47 /* FSCommunityHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2244E1213D1FF900F2DC47 /* FSCommunityHeaderView.m */; };
 		AD47EFDC2137EBF0004A345F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD47EFDB2137EBF0004A345F /* Launch Screen.storyboard */; };
+		AD510298213E560F008CD74D /* FSApiRequest+Community.m in Sources */ = {isa = PBXBuildFile; fileRef = AD510297213E560F008CD74D /* FSApiRequest+Community.m */; };
+		AD51029C213E6212008CD74D /* FSCommunityRecommendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD51029B213E6212008CD74D /* FSCommunityRecommendModel.m */; };
 		AD8B63FE21338E0C006DDC22 /* FSPreviewFileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */; };
 		AD93559F2137D24100735C2E /* TZImageCropManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9355842137D24100735C2E /* TZImageCropManager.m */; };
 		AD9355A02137D24100735C2E /* TZAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9355862137D24100735C2E /* TZAssetCell.m */; };
@@ -1207,6 +1209,10 @@
 		AD2244E0213D1FF900F2DC47 /* FSCommunityHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCommunityHeaderView.h; sourceTree = "<group>"; };
 		AD2244E1213D1FF900F2DC47 /* FSCommunityHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCommunityHeaderView.m; sourceTree = "<group>"; };
 		AD47EFDB2137EBF0004A345F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		AD510296213E560F008CD74D /* FSApiRequest+Community.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FSApiRequest+Community.h"; sourceTree = "<group>"; };
+		AD510297213E560F008CD74D /* FSApiRequest+Community.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "FSApiRequest+Community.m"; sourceTree = "<group>"; };
+		AD51029A213E6212008CD74D /* FSCommunityRecommendModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCommunityRecommendModel.h; sourceTree = "<group>"; };
+		AD51029B213E6212008CD74D /* FSCommunityRecommendModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCommunityRecommendModel.m; sourceTree = "<group>"; };
 		AD8B63FC21338E0C006DDC22 /* FSPreviewFileTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSPreviewFileTool.h; sourceTree = "<group>"; };
 		AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSPreviewFileTool.m; sourceTree = "<group>"; };
 		AD9355822137D24100735C2E /* TZPhotoPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPreviewCell.h; sourceTree = "<group>"; };
@@ -2166,6 +2172,8 @@
 				87426ABE2133AA9D003C52F6 /* FSApiRequest.h */,
 				87426ABD2133AA9D003C52F6 /* FSApiRequest.m */,
 				87D20B1C213CF9DD001EDD60 /* FSApiUserRequest.m */,
+				AD510296213E560F008CD74D /* FSApiRequest+Community.h */,
+				AD510297213E560F008CD74D /* FSApiRequest+Community.m */,
 			);
 			path = FSApiRequest;
 			sourceTree = "<group>";
@@ -2204,6 +2212,7 @@
 		87426ADA2135272B003C52F6 /* FSClassModel */ = {
 			isa = PBXGroup;
 			children = (
+				AD510299213E61E2008CD74D /* FSCommunity */,
 				87426ADB2135272B003C52F6 /* FSUserInfo */,
 			);
 			path = FSClassModel;
@@ -2861,6 +2870,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		AD510299213E61E2008CD74D /* FSCommunity */ = {
+			isa = PBXGroup;
+			children = (
+				AD51029A213E6212008CD74D /* FSCommunityRecommendModel.h */,
+				AD51029B213E6212008CD74D /* FSCommunityRecommendModel.m */,
+			);
+			path = FSCommunity;
+			sourceTree = "<group>";
+		};
 		AD8B63FA21338DC3006DDC22 /* FSPreviewFileTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -3466,6 +3484,7 @@
 				874269B9212E9B78003C52F6 /* BMFreshBaseView.m in Sources */,
 				DB14A7AA2139247900E88798 /* FSCourseTableCell.m in Sources */,
 				874268E9212E7E36003C52F6 /* UIView+BMAnimationExtensions.m in Sources */,
+				AD510298213E560F008CD74D /* FSApiRequest+Community.m in Sources */,
 				87426AD12133D6CF003C52F6 /* FSTableView.m in Sources */,
 				87D20ACE213920E2001EDD60 /* FLEXWebViewController.m in Sources */,
 				87D20AB6213920E2001EDD60 /* FLEXManager.m in Sources */,
@@ -3491,6 +3510,7 @@
 				87D20AE5213920E2001EDD60 /* FLEXHierarchyTableViewController.m in Sources */,
 				874268BE212E7E36003C52F6 /* BMTableViewManager.m in Sources */,
 				87426AEF2135348D003C52F6 /* FMResultSet.m in Sources */,
+				AD51029C213E6212008CD74D /* FSCommunityRecommendModel.m in Sources */,
 				87D209BA2138F1E2001EDD60 /* UIImage+ForceDecode.m in Sources */,
 				AD9355AD2137D24100735C2E /* TZGifPhotoPreviewController.m in Sources */,
 				87D20AA6213920E2001EDD60 /* FLEXViewControllerExplorerViewController.m in Sources */,
