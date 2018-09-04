@@ -410,6 +410,11 @@
 		AD47EFDC2137EBF0004A345F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD47EFDB2137EBF0004A345F /* Launch Screen.storyboard */; };
 		AD510298213E560F008CD74D /* FSApiRequest+Community.m in Sources */ = {isa = PBXBuildFile; fileRef = AD510297213E560F008CD74D /* FSApiRequest+Community.m */; };
 		AD51029C213E6212008CD74D /* FSCommunityRecommendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD51029B213E6212008CD74D /* FSCommunityRecommendModel.m */; };
+		AD51029F213E7771008CD74D /* FSPushVCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD51029E213E7771008CD74D /* FSPushVCManager.m */; };
+		AD5102A3213E77FC008CD74D /* FSCommunitySecVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5102A1213E77FC008CD74D /* FSCommunitySecVC.m */; };
+		AD5102A4213E77FC008CD74D /* FSCommunitySecVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD5102A2213E77FC008CD74D /* FSCommunitySecVC.xib */; };
+		AD5102A8213E783E008CD74D /* FSSendPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5102A6213E783E008CD74D /* FSSendPostViewController.m */; };
+		AD5102A9213E783E008CD74D /* FSSendPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD5102A7213E783E008CD74D /* FSSendPostViewController.xib */; };
 		AD8B63FE21338E0C006DDC22 /* FSPreviewFileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */; };
 		AD93559F2137D24100735C2E /* TZImageCropManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9355842137D24100735C2E /* TZImageCropManager.m */; };
 		AD9355A02137D24100735C2E /* TZAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9355862137D24100735C2E /* TZAssetCell.m */; };
@@ -1213,6 +1218,14 @@
 		AD510297213E560F008CD74D /* FSApiRequest+Community.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "FSApiRequest+Community.m"; sourceTree = "<group>"; };
 		AD51029A213E6212008CD74D /* FSCommunityRecommendModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCommunityRecommendModel.h; sourceTree = "<group>"; };
 		AD51029B213E6212008CD74D /* FSCommunityRecommendModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCommunityRecommendModel.m; sourceTree = "<group>"; };
+		AD51029D213E7771008CD74D /* FSPushVCManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSPushVCManager.h; sourceTree = "<group>"; };
+		AD51029E213E7771008CD74D /* FSPushVCManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSPushVCManager.m; sourceTree = "<group>"; };
+		AD5102A0213E77FC008CD74D /* FSCommunitySecVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCommunitySecVC.h; sourceTree = "<group>"; };
+		AD5102A1213E77FC008CD74D /* FSCommunitySecVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCommunitySecVC.m; sourceTree = "<group>"; };
+		AD5102A2213E77FC008CD74D /* FSCommunitySecVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSCommunitySecVC.xib; sourceTree = "<group>"; };
+		AD5102A5213E783E008CD74D /* FSSendPostViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSendPostViewController.h; sourceTree = "<group>"; };
+		AD5102A6213E783E008CD74D /* FSSendPostViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSSendPostViewController.m; sourceTree = "<group>"; };
+		AD5102A7213E783E008CD74D /* FSSendPostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSSendPostViewController.xib; sourceTree = "<group>"; };
 		AD8B63FC21338E0C006DDC22 /* FSPreviewFileTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSPreviewFileTool.h; sourceTree = "<group>"; };
 		AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSPreviewFileTool.m; sourceTree = "<group>"; };
 		AD9355822137D24100735C2E /* TZPhotoPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPreviewCell.h; sourceTree = "<group>"; };
@@ -2288,6 +2301,8 @@
 				87426A6B21314039003C52F6 /* appDefine */,
 				87C01349212E7A5200D0AAC3 /* AppDelegate.h */,
 				87C0134A212E7A5200D0AAC3 /* AppDelegate.m */,
+				AD51029D213E7771008CD74D /* FSPushVCManager.h */,
+				AD51029E213E7771008CD74D /* FSPushVCManager.m */,
 				87426A6521313C1C003C52F6 /* FSSuperVC */,
 				87426A362131313E003C52F6 /* FSTabBar */,
 				87426ADA2135272B003C52F6 /* FSClassModel */,
@@ -2959,6 +2974,12 @@
 				DB5722382133A1D90065DC30 /* FSCommunityVC.h */,
 				DB5722392133A1D90065DC30 /* FSCommunityVC.m */,
 				DB57223A2133A1D90065DC30 /* FSCommunityVC.xib */,
+				AD5102A0213E77FC008CD74D /* FSCommunitySecVC.h */,
+				AD5102A1213E77FC008CD74D /* FSCommunitySecVC.m */,
+				AD5102A2213E77FC008CD74D /* FSCommunitySecVC.xib */,
+				AD5102A5213E783E008CD74D /* FSSendPostViewController.h */,
+				AD5102A6213E783E008CD74D /* FSSendPostViewController.m */,
+				AD5102A7213E783E008CD74D /* FSSendPostViewController.xib */,
 			);
 			path = communityTab;
 			sourceTree = "<group>";
@@ -3119,6 +3140,7 @@
 				87D186AD213679F800037DDF /* login_closeeye@2x.png in Resources */,
 				87D186AE213679F800037DDF /* login_logo@3x.png in Resources */,
 				87D20AD6213920E2001EDD60 /* LICENSE in Resources */,
+				AD5102A4213E77FC008CD74D /* FSCommunitySecVC.xib in Resources */,
 				87426A50213135F0003C52F6 /* fstab_btn4_highIcon@3x.png in Resources */,
 				87426A02212F9657003C52F6 /* navigationbar_close_icon@2x.png in Resources */,
 				87426A4D213135F0003C52F6 /* fstab_btn3_highIcon@2x.png in Resources */,
@@ -3126,6 +3148,7 @@
 				87D186A6213679F800037DDF /* login_password@2x.png in Resources */,
 				87426A21213100BB003C52F6 /* bmsearch_close@2x.png in Resources */,
 				87D20B19213CD80D001EDD60 /* navigationbar_webclose_icon@3x.png in Resources */,
+				AD5102A9213E783E008CD74D /* FSSendPostViewController.xib in Resources */,
 				87D20AEF21392FF2001EDD60 /* user_topbackgroud@2x.png in Resources */,
 				874268B9212E7E36003C52F6 /* BMTableView_UIButtonBarArrowLeft@2x.png in Resources */,
 				8742689B212E7E36003C52F6 /* decrease_eleme@2x.png in Resources */,
@@ -3255,6 +3278,7 @@
 				874268FD212E7E36003C52F6 /* NSBundle+BMResource.m in Sources */,
 				874268C3212E7E36003C52F6 /* BMTextItem.m in Sources */,
 				874268AA212E7E36003C52F6 /* BMTableViewBoolCell.m in Sources */,
+				AD51029F213E7771008CD74D /* FSPushVCManager.m in Sources */,
 				AD2244E2213D1FF900F2DC47 /* FSCommunityHeaderView.m in Sources */,
 				87D209E62138FF46001EDD60 /* CGGeometry+RSKImageCropper.m in Sources */,
 				87D20AAE213920E2001EDD60 /* FLEXNetworkTransactionTableViewCell.m in Sources */,
@@ -3321,6 +3345,7 @@
 				87426A802131461F003C52F6 /* AFURLSessionManager.m in Sources */,
 				8742690B212E7E36003C52F6 /* NSArray+BMCategory.m in Sources */,
 				8742690D212E7E36003C52F6 /* NSNumber+BMCategory.m in Sources */,
+				AD5102A8213E783E008CD74D /* FSSendPostViewController.m in Sources */,
 				87D20AC7213920E2001EDD60 /* FLEXArgumentInputViewFactory.m in Sources */,
 				87D20ACD213920E2001EDD60 /* FLEXObjectRef.m in Sources */,
 				87D209C32138F1E2001EDD60 /* SDWebImageCoder.m in Sources */,
@@ -3413,6 +3438,7 @@
 				874269BB212E9B78003C52F6 /* BMFreshNormalHeader.m in Sources */,
 				874268A6212E7E36003C52F6 /* BMStepperInputView.m in Sources */,
 				87C0134B212E7A5200D0AAC3 /* AppDelegate.m in Sources */,
+				AD5102A3213E77FC008CD74D /* FSCommunitySecVC.m in Sources */,
 				87D20AB5213920E2001EDD60 /* FLEXExplorerToolbar.m in Sources */,
 				87D20ACA213920E2001EDD60 /* FLEXExplorerViewController.m in Sources */,
 				87426AF521353510003C52F6 /* FSDB.m in Sources */,
