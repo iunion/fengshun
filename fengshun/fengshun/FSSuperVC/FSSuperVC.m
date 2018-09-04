@@ -68,6 +68,16 @@
     }
 }
 
+- (void)backRootAction:(id)sender
+{
+    if ([self shouldPopOnBackButton])
+    {
+        [self.view endEditing:YES];
+        
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+}
+
 
 #pragma mark -
 #pragma mark checkRequestStatus
@@ -124,5 +134,43 @@
         }
     }
 }
+
+- (void)loginFinished
+{
+    
+}
+
+- (void)loginFailed
+{
+    
+}
+
+- (void)loginClosed
+{
+    
+}
+
+
+#pragma mark -
+#pragma mark FSLoginDelegate
+
+- (void)loginProgressStateChanged:(FSLoginProgressState)progressState
+{
+    if (progressState == FSLoginProgress_FinishLogin || progressState == FSLoginProgress_FinishRegist)
+    {
+        [self loginFinished];
+    }
+}
+
+- (void)loginFailedWithProgressState:(FSLoginProgressState)progressState
+{
+    [self loginFailed];
+}
+
+- (void)loginClosedWithProgressState:(FSLoginProgressState)progressState
+{
+    [self loginClosed];
+}
+
 
 @end

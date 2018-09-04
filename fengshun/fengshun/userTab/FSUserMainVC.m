@@ -83,10 +83,12 @@
 
 - (void)setUpAction:(id)sender
 {
+    NSLog(@"setUpAction");
 }
 
 - (void)messageAction:(id)sender
 {
+    NSLog(@"messageAction");
 }
 
 - (void)interfaceSettings
@@ -103,22 +105,23 @@
                                                                                                NSLog(@"search");
                                                                                            }];
         [self.navigationController pushViewController:searchViewController animated:YES];
-
-        
     }];
     self.m_TopicItem.textFont = FS_CELLTITLE_TEXTFONT;
+    self.m_TopicItem.highlightBgColor = UI_COLOR_BL1;
     self.m_TopicItem.cellHeight = 54.0f;
 
     self.m_CommentItem = [BMTableViewItem itemWithTitle:@"我的评论" imageName:@"login_mobile" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
     }];
     self.m_CommentItem.textFont = FS_CELLTITLE_TEXTFONT;
+    self.m_CommentItem.highlightBgColor = UI_COLOR_BL1;
     self.m_CommentItem.cellHeight = 54.0f;
 
     self.m_CollectItem = [BMTableViewItem itemWithTitle:@"我的收藏" imageName:@"login_mobile" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
     }];
     self.m_CollectItem.textFont = FS_CELLTITLE_TEXTFONT;
+    self.m_CollectItem.highlightBgColor = UI_COLOR_BL1;
     self.m_CollectItem.cellHeight = 54.0f;
 
     [self.m_UserSection addItem:self.m_TopicItem];
@@ -131,18 +134,21 @@
         
     }];
     self.m_HelpItem.textFont = FS_CELLTITLE_TEXTFONT;
+    self.m_HelpItem.highlightBgColor = UI_COLOR_BL1;
     self.m_HelpItem.cellHeight = 54.0f;
 
     self.m_ServiceItem = [BMTableViewItem itemWithTitle:@"联系客服" imageName:@"login_mobile" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
     }];
     self.m_ServiceItem.textFont = FS_CELLTITLE_TEXTFONT;
+    self.m_ServiceItem.highlightBgColor = UI_COLOR_BL1;
     self.m_ServiceItem.cellHeight = 54.0f;
     
     self.m_ShareItem = [BMTableViewItem itemWithTitle:@"分享APP" imageName:@"login_mobile" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
     }];
     self.m_ShareItem.textFont = FS_CELLTITLE_TEXTFONT;
+    self.m_ShareItem.highlightBgColor = UI_COLOR_BL1;
     self.m_ShareItem.cellHeight = 54.0f;
     
     [self.m_AppSection addItem:self.m_HelpItem];

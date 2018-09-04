@@ -88,6 +88,13 @@
         self.m_TableView.bm_width = UI_SCREEN_WIDTH-40.0f;
     }
     
+    [self interfaceSettings];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
     if (self.delegate && [self.delegate respondsToSelector:@selector(loginProgressStateChanged:)])
     {
         switch (self.m_VerificationType)
@@ -99,13 +106,11 @@
             case BMVerificationCodeType_Type2:
                 [self.delegate loginProgressStateChanged:FSLoginProgress_ForgetVerify];
                 break;
-
+                
             default:
                 break;
         }
     }
-    
-    [self interfaceSettings];
 }
 
 - (BOOL)needKeyboardEvent
@@ -553,7 +558,7 @@
     {
         [self.m_ProgressHUD hideAnimated:NO];
         
-        FSSetPassWordVC *setPassWordVC = [[FSSetPassWordVC alloc] initWithPhoneNum:self.m_PhoneNum];
+        FSSetPassWordVC *setPassWordVC = [[FSSetPassWordVC alloc] initWithPhoneNum:self.m_PhoneNum verificationCode:self.m_VerifyField.text];
         setPassWordVC.delegate = self.delegate;
         setPassWordVC.m_IsRegist = self.m_IsRegist;
         [self.navigationController pushViewController:setPassWordVC animated:YES];

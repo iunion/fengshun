@@ -18,6 +18,8 @@
 @interface FSLoginVC ()
 {
     BOOL s_isLogin;
+    
+    BOOL s_firstFresh;
 }
 
 @property (nonatomic, strong) NSString *m_PhoneNum;
@@ -54,6 +56,7 @@
     // Do any additional setup after loading the view from its nib.
     
     s_isLogin = NO;
+    s_firstFresh = YES;
     
     self.bm_NavigationBarStyle = UIBarStyleDefault;
     self.bm_NavigationBarBgTintColor = [UIColor whiteColor];
@@ -78,6 +81,25 @@
     }
     
     [self interfaceSettings];
+    
+    [self freshCheckViews];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(loginProgressStateChanged:)])
+    {
+        if (self->s_isLogin)
+        {
+            [self.delegate loginProgressStateChanged:FSLoginProgress_InputPassWord];
+        }
+        else
+        {
+            [self.delegate loginProgressStateChanged:FSLoginProgress_LoginPhone];
+        }
+    }
 }
 
 - (BOOL)needKeyboardEvent
@@ -227,8 +249,6 @@
     self.m_TableView.tableFooterView = footerView;
 
     [self.m_TableView reloadData];
-    
-    [self freshCheckViews];
 }
 
 - (void)checkPhoneNum:(NSString *)phoneNum
@@ -296,10 +316,15 @@
     
     [self checkPhoneNum:self.m_PhoneItem.value];
     
-    if (self.delegate && [self.delegate respondsToSelector:@selector(loginProgressStateChanged:)])
+    if (!s_firstFresh)
     {
-        [self.delegate loginProgressStateChanged:FSLoginProgress_LoginPhone];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(loginProgressStateChanged:)])
+        {
+            [self.delegate loginProgressStateChanged:FSLoginProgress_LoginPhone];
+        }
     }
+    
+    s_firstFresh = NO;
 }
 
 - (void)freshLoginViews

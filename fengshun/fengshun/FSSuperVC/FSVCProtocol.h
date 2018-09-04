@@ -16,6 +16,7 @@
 // backAction前操作, 包含手势返回(可用手势返回时)
 - (BOOL)shouldPopOnBackButton;
 - (void)backAction:(id)sender;
+- (void)backRootAction:(id)sender;
 
 @optional
 

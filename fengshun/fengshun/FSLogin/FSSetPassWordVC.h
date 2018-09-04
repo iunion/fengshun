@@ -18,6 +18,6 @@
 // 是否注册
 @property (nonatomic, assign) BOOL m_IsRegist;
 
-- (instancetype)initWithPhoneNum:(NSString *)phoneNum;
+- (instancetype)initWithPhoneNum:(NSString *)phoneNum verificationCode:(NSString *)VerificationCode;
 
 @end

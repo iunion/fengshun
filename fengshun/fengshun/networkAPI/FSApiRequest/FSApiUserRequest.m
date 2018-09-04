@@ -77,24 +77,25 @@
     return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
 }
 
-// 验证验证码
+// 验证短信验证码是否正确
 + (NSMutableURLRequest *)checkVerificationCodeWithType:(FSVerificationCodeType)verificationCodeType phoneNum:(NSString *)phoneNum verificationCode:(NSString *)verificationCode
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/user/getSMSCode", FS_URL_SERVER];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/user/checkSMSCodeFlag", FS_URL_SERVER];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     
     NSString *verificationType = [self getVerificationType:verificationCodeType];
     
     [parameters bm_setApiString:verificationType forKey:@"codeType"];
     [parameters bm_setApiString:phoneNum forKey:@"mobilePhone"];
-    
+    [parameters bm_setApiString:verificationCode forKey:@"validateCode"];
+
     return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
 }
 
 // 用户注册
-+ (NSMutableURLRequest *)registWithPhoneNum:(NSString *)phoneNum verificationCode:(NSString *)verificationCode password:(NSString *)password
++ (NSMutableURLRequest *)registWithPhoneNum:(NSString *)phoneNum password:(NSString *)password verificationCode:(NSString *)verificationCode
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@storm/user/registerUser", FS_URL_SERVER];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/user/registerUser", FS_URL_SERVER];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     
     [parameters bm_setApiString:phoneNum forKey:@"mobilePhone"];
@@ -107,7 +108,7 @@
 // 重置密码/忘记密码
 + (NSMutableURLRequest *)resetUserPasswordWithPhoneNum:(NSString *)phoneNum newPassword:(NSString *)password verificationCode:(NSString *)verificationCode
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@storm/user/resetUserPassWord", FS_URL_SERVER];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/user/resetUserPassWord", FS_URL_SERVER];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     
     [parameters bm_setApiString:phoneNum forKey:@"mobilePhone"];

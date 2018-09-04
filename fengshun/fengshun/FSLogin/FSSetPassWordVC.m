@@ -15,6 +15,7 @@
 }
 
 @property (nonatomic, strong) NSString *m_PhoneNum;
+@property (nonatomic, strong) NSString *m_VerificationCode;
 
 @property (nonatomic, strong) BMTableViewSection *m_Section;
 @property (nonatomic, strong) BMTextItem *m_PassWordItem;
@@ -24,7 +25,7 @@
 @property (nonatomic, strong) UIButton *m_ConfirmBtn;
 
 @property (strong, nonatomic) NSURLSessionDataTask *m_RegistTask;
-@property (strong, nonatomic) NSURLSessionDataTask *m_resetPassWordTask;
+@property (strong, nonatomic) NSURLSessionDataTask *m_ResetPassWordTask;
 
 @end
 
@@ -35,17 +36,18 @@
     [_m_RegistTask cancel];
     _m_RegistTask = nil;
     
-    [_m_resetPassWordTask cancel];
-    _m_resetPassWordTask = nil;
+    [_m_ResetPassWordTask cancel];
+    _m_ResetPassWordTask = nil;
 }
 
-- (instancetype)initWithPhoneNum:(NSString *)phoneNum
+- (instancetype)initWithPhoneNum:(NSString *)phoneNum verificationCode:(NSString *)VerificationCode
 {
     self = [super init];
     
     if (self)
     {
         _m_PhoneNum = phoneNum;
+        _m_VerificationCode = VerificationCode;
     }
     
     return self;
@@ -80,6 +82,13 @@
         self.m_TableView.bm_width = UI_SCREEN_WIDTH-40.0f;
     }
     
+    [self interfaceSettings];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
     if (self.delegate && [self.delegate respondsToSelector:@selector(loginProgressStateChanged:)])
     {
         if (self.m_IsRegist)
@@ -91,8 +100,6 @@
             [self.delegate loginProgressStateChanged:FSLoginProgress_ChangePassWord];
         }
     }
-    
-    [self interfaceSettings];
 }
 
 - (BOOL)needKeyboardEvent
@@ -234,9 +241,19 @@
 {
     [self.view endEditing:YES];
 
-    if (![self verifyPassword:self.m_PassWordItem.value])
+    NSString *passWord = [self.m_PassWordItem.value bm_trim];
+    if (![self verifyPassword:passWord])
     {
         return;
+    }
+    
+    if (self.m_IsRegist)
+    {
+        [self sendRegistRequestWithPhoneNum:self.m_PhoneNum passWord:passWord];
+    }
+    else
+    {
+        [self sendResetRequestWithPhoneNum:self.m_PhoneNum passWord:passWord];
     }
 }
 
@@ -248,7 +265,7 @@
 - (void)sendRegistRequestWithPhoneNum:(NSString *)phoneNum passWord:(NSString *)passWord
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSMutableURLRequest *request = [FSApiRequest registWithPhoneNum:self.m_PhoneNum verificationCode:@"" password:passWord];
+    NSMutableURLRequest *request = [FSApiRequest registWithPhoneNum:phoneNum password:passWord verificationCode:self.m_VerificationCode];
     if (request)
     {
         [self.m_ProgressHUD showAnimated:YES showBackground:NO];
@@ -308,10 +325,10 @@
                 
                 if (self.delegate && [self.delegate respondsToSelector:@selector(loginProgressStateChanged:)])
                 {
-                    [self.delegate loginProgressStateChanged:FSLoginProgress_SetPassWord];
+                    [self.delegate loginProgressStateChanged:FSLoginProgress_FinishRegist];
                 }
                 
-                [self backAction:nil];
+                [self closeAction:nil];
                 
                 return;
             }
@@ -339,6 +356,85 @@
     }
 }
 
+// 重置密码/忘记密码
+- (void)sendResetRequestWithPhoneNum:(NSString *)phoneNum passWord:(NSString *)passWord
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSMutableURLRequest *request = [FSApiRequest resetUserPasswordWithPhoneNum:phoneNum newPassword:passWord verificationCode:self.m_VerificationCode];
+    if (request)
+    {
+        [self.m_ProgressHUD showAnimated:YES showBackground:NO];
+        
+        [self.m_ResetPassWordTask cancel];
+        self.m_ResetPassWordTask = nil;
+        
+        BMWeakSelf
+        self.m_ResetPassWordTask = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+            if (error)
+            {
+                BMLog(@"Error: %@", error);
+                [weakSelf resetRequestFailed:response error:error];
+                
+            }
+            else
+            {
+                BMLog(@"%@ %@", response, responseObject);
+                [weakSelf resetRequestFinished:response responseDic:responseObject];
+            }
+        }];
+        [self.m_ResetPassWordTask resume];
+    }
+}
+
+- (void)resetRequestFinished:(NSURLResponse *)response responseDic:(NSDictionary *)resDic
+{
+    if (![resDic bm_isNotEmptyDictionary])
+    {
+        [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        
+        if (self.delegate && [self.delegate respondsToSelector:@selector(loginFailedWithProgressState:)])
+        {
+            [self.delegate loginFailedWithProgressState:FSLoginProgress_ChangePassWord];
+        }
+        return;
+    }
+    
+    BMLog(@"重设密码返回数据是:+++++%@", resDic);
+    
+    NSInteger statusCode = [resDic bm_intForKey:@"code"];
+    if (statusCode == 1000)
+    {
+        [self.m_ProgressHUD hideAnimated:NO];
+        
+        if (self.delegate && [self.delegate respondsToSelector:@selector(loginProgressStateChanged:)])
+        {
+            [self.delegate loginProgressStateChanged:FSLoginProgress_FinishForget];
+        }
+        
+        [self backRootAction:nil];
+        return;
+    }
+    
+    NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
+    [self.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(loginFailedWithProgressState:)])
+    {
+        [self.delegate loginFailedWithProgressState:FSLoginProgress_ChangePassWord];
+    }
+}
+
+- (void)resetRequestFailed:(NSURLResponse *)response error:(NSError *)error
+{
+    BMLog(@"重设密码失败的错误:++++%@", [FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE]);
+    
+    [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(loginFailedWithProgressState:)])
+    {
+        [self.delegate loginFailedWithProgressState:FSLoginProgress_ChangePassWord];
+    }
+}
 
 
 @end
