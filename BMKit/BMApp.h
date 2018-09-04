@@ -32,4 +32,19 @@ typedef void (^firstStartHandler)(BOOL isFirstStart);
 
 + (void)reset;
 
++ (void)onFirstStartApp:(nonnull firstStartAppHandler)block withKey:(nullable NSString *)key;
+
+// 用户不同应用设置key
++ (void)onFirstStartForVersion:(nonnull NSString *)version
+                         block:(nonnull firstStartHandler)block
+                       withKey:(nullable NSString *)key;
++ (void)onFirstStartForBuildVersion:(nonnull NSString *)buildVersion
+                              block:(nonnull firstStartHandler)block
+                            withKey:(nullable NSString *)key;
+
++ (void)onFirstStartForCurrentVersion:(nonnull firstStartHandler)block withKey:(nullable NSString *)key;
++ (void)onFirstStartForCurrentBuildVersion:(nonnull firstStartHandler)block withKey:(nullable NSString *)key;
+
++ (void)resetWithKey:(nullable NSString *)key;
+
 @end

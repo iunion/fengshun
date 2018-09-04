@@ -13,7 +13,7 @@
 // 判断手机号是否存在-仅限普通用户
 + (NSMutableURLRequest *)checkUserWithPhoneNum:(NSString *)phoneNum;
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/user/checkUserByMobile", FS_URL_SERVER];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/user/checkMobileFlag", FS_URL_SERVER];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     
     [parameters bm_setApiString:phoneNum forKey:@"mobilePhone"];
@@ -34,16 +34,12 @@
     return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
 }
 
-// 获取短信验证码
-+ (NSMutableURLRequest *)getVerificationCodeWithType:(FSVerificationCodeType)verificationCodeType phoneNum:(NSString *)phoneNum
++ (NSString *)getVerificationType:(FSVerificationCodeType)verificationCodeType
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/user/getSMSCode", FS_URL_SERVER];
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    
     // 注册短信: SMS_REGISTER_USER_CODE
     // 找回密码: SMS_RESET_PASSWORD_CODE
     // 更新手机号码: SMS_UPDATE_MOBILEPHONE_CODE
-
+    
     NSString *verificationType;
     switch (verificationCodeType)
     {
@@ -63,6 +59,31 @@
             verificationType = @"SMS_REGISTER_USER_CODE";
             break;
     }
+    
+    return verificationType;
+}
+
+// 获取短信验证码
++ (NSMutableURLRequest *)getVerificationCodeWithType:(FSVerificationCodeType)verificationCodeType phoneNum:(NSString *)phoneNum
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/user/getSMSCode", FS_URL_SERVER];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    
+    NSString *verificationType = [self getVerificationType:verificationCodeType];
+
+    [parameters bm_setApiString:verificationType forKey:@"codeType"];
+    [parameters bm_setApiString:phoneNum forKey:@"mobilePhone"];
+    
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
+}
+
+// 验证验证码
++ (NSMutableURLRequest *)checkVerificationCodeWithType:(FSVerificationCodeType)verificationCodeType phoneNum:(NSString *)phoneNum verificationCode:(NSString *)verificationCode
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/user/getSMSCode", FS_URL_SERVER];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    
+    NSString *verificationType = [self getVerificationType:verificationCodeType];
     
     [parameters bm_setApiString:verificationType forKey:@"codeType"];
     [parameters bm_setApiString:phoneNum forKey:@"mobilePhone"];

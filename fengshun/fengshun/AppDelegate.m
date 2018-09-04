@@ -8,8 +8,12 @@
 
 #import "AppDelegate.h"
 
+#import "BMApp.h"
+
 #import "FSLocation.h"
 #import "FSCoreStatus.h"
+
+#import "FSDBVersionCheck.h"
 
 #import "FSUserInfo.h"
 //#import "SDWebImageCodersManager.h"
@@ -20,6 +24,9 @@
     CLLocationManagerDelegate,
     FSCoreNetWorkStatusProtocol
 >
+{
+    BOOL s_IsShownFirstGuide;
+}
 
 // 位置信息
 @property (strong, nonatomic) CLLocationManager *m_LocationManager;
@@ -73,6 +80,22 @@
     
     // SDWebImage支持gif动画显示，加载GIFCoder
     //[[SDWebImageCodersManager sharedInstance] addCoder:[SDWebImageGIFCoder sharedCoder]];
+    
+    // 版本升级
+#ifdef DEBUG
+    [BMApp onFirstStartForCurrentBuildVersion:^(BOOL isFirstStart) {
+        self->s_IsShownFirstGuide = YES;
+        NSLog(@"isFirstStart");
+    } withKey:FSAPP_APPNAME];
+#else
+    [BMApp onFirstStartForCurrentVersion:^(BOOL isFirstStart) {
+        self->s_IsShownFirstGuide = YES;
+        
+    } withKey:FSAPP_APPNAME];
+#endif
+    
+    // 检查数据库版本
+    [FSDBVersionCheck checkDBVer];
 }
 
 
@@ -109,7 +132,6 @@
     self.window.rootViewController = tabBarController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    
     
     return YES;
 }

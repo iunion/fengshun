@@ -9,7 +9,7 @@
 #import "FSDBVersionCheck.h"
 
 #import "AppDelegate.h"
-#import "FSUserInfoModle.h"
+#import "FSUserInfo.h"
 
 #define DBVER_USERINFO                @"1.0"
 #define DBVER_USERINFO_KEY            @"dbver_userinfo_key"
@@ -19,34 +19,31 @@
 
 + (void)checkDBVer
 {
-//    if (![FSDBVersionCheck checkUserInfo_DBVer])
-//    {
-//        FSUserInfoModle *userInfo = GetAppDelegate.m_UserInfo;
-//        if (!userInfo.m_Token)
+    if (![FSDBVersionCheck checkUserInfo_DBVer])
+    {
+#if 0
+        FSUserInfoModle *oldUserInfo = [FSUserInfoDB getUserInfoWithUserIdFrom1_0:[FSUserInfoModle getCurrentUserId]];
+            
+//        if (!oldUserInfo)
 //        {
-//            MQUserInfo *oldUserInfo = [MQUserInfoDB getUserInfoWithUserIdFrom3_0:[MQUserInfo getCurrentUserId]];
-////            if (!oldUserInfo)
-////            {
-////                oldUserInfo = [MQUserInfoDB getUserInfoWithUserIdFrome1_1:[MQUserInfo getCurrentUserId]];
-////            }
-//            
-//            [MQUserInfoDB deleteUserInfoDB];
-//            
-//            if (oldUserInfo.m_Token)
-//            {
-//                [MQUserInfoDB createUserInfoDB];
-//                
-//                [MQUserInfoDB insertAndUpdateUserInfo:oldUserInfo];
-//                GetAppDelegate.m_UserInfo = oldUserInfo;
-//            }
+//            oldUserInfo = [FSUserInfoDB getUserInfoWithUserIdFrome1_1:[FSUserInfoModle getCurrentUserId]];
 //        }
-//        else
-//        {
-//            [MQUserInfoDB deleteUserInfoDB];
-//        }
-//    }
-//    
-//    [MQUserInfoDB createUserInfoDB];
+        
+        [FSUserInfoDB deleteUserInfoDB];
+            
+        if (oldUserInfo.m_Token)
+        {
+            [FSUserInfoDB createUserInfoDB];
+            
+            [FSUserInfoDB insertAndUpdateUserInfo:oldUserInfo];
+            GetAppDelegate.m_UserInfo = oldUserInfo;
+        }
+#else
+        [FSUserInfoDB deleteUserInfoDB];
+#endif
+    }
+    
+    [FSUserInfoDB createUserInfoDB];
 }
 
 + (BOOL)checkUserInfo_DBVer

@@ -152,7 +152,7 @@ static NSString *UserInfoDBTableInsert = @"(userid, mobilenum, token, rftoken, u
         NSString *realName = [FSEncodeAPI encodeDES:userInfo.m_UserBaseInfo.m_RealName];
         NSString *idCardNo = [FSEncodeAPI encodeDES:userInfo.m_UserBaseInfo.m_IdCardNo];
         
-        result = [UserInfoDB executeUpdate:sql, userId, phoneNum, token, rftoken, realName, userInfo.m_UserBaseInfo.m_UserType, userInfo.m_UserBaseInfo.m_NickName, idCardNo, userInfo.m_UserBaseInfo.m_Sex, userInfo.m_UserBaseInfo.m_AvatarUrl, userInfo.m_UserBaseInfo.m_IsFacialVerify, userInfo.m_UserBaseInfo.m_IsRealName, userInfo.m_UserRole.m_Role, userInfo.m_UserRole.m_RoleCode, @(lastUpdateTs)];
+        result = [UserInfoDB executeUpdate:sql, userId, phoneNum, token, rftoken, realName, userInfo.m_UserBaseInfo.m_UserType, userInfo.m_UserBaseInfo.m_NickName, idCardNo, userInfo.m_UserBaseInfo.m_Sex, userInfo.m_UserBaseInfo.m_AvatarUrl, @(userInfo.m_UserBaseInfo.m_IsFacialVerify), @(userInfo.m_UserBaseInfo.m_IsRealName), userInfo.m_UserRole.m_Role, userInfo.m_UserRole.m_RoleCode, @(lastUpdateTs)];
     }];
     
     return result;

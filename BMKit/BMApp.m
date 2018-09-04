@@ -13,18 +13,26 @@ static NSString * const BMAppHasBeenOpenedKey       = @"BMApp.hasBeenOpened";
 static NSString * const BMAppLastVersionKey         = @"BMApp.lastVersion";
 static NSString * const BMAppLastBuildVersionKey    = @"BMApp.lastBuildVersion";
 
-static NSString * const MTMigrationLastAppVersionKey = @"MTMigration.lastAppVersion";
-static NSString * const MTMigrationLastAppBuildKey  = @"MTMigration.lastAppBuild";
-
 @implementation BMApp
 
 + (void)onFirstStartApp:(firstStartAppHandler)block
 {
+    [self onFirstStartApp:block withKey:nil];
+}
+
++ (void)onFirstStartApp:(firstStartAppHandler)block withKey:(NSString *)key;
+{
+    NSString *appkey = BMAppHasBeenOpenedKey;
+    if ([appkey bm_isNotEmpty])
+    {
+        appkey = [NSString stringWithFormat:@"%@_%@", BMAppHasBeenOpenedKey, key];
+    }
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    BOOL hasBeenOpened = [defaults boolForKey:BMAppHasBeenOpenedKey];
+    BOOL hasBeenOpened = [defaults boolForKey:appkey];
     if (hasBeenOpened != true)
     {
-        [defaults setBool:YES forKey:BMAppHasBeenOpenedKey];
+        [defaults setBool:YES forKey:appkey];
         [defaults synchronize];
     }
     
@@ -34,8 +42,15 @@ static NSString * const MTMigrationLastAppBuildKey  = @"MTMigration.lastAppBuild
 + (void)onFirstStartForVersion:(NSString *)version
                          block:(firstStartHandler)block
 {
+    [self onFirstStartForVersion:version block:block withKey:nil];
+}
+
++ (void)onFirstStartForVersion:(NSString *)version
+                         block:(firstStartHandler)block
+                       withKey:(NSString *)key
+{
     // version > lastVersion && version <= appVersion
-    if ([version compare:[self lastVersion] options:NSNumericSearch] == NSOrderedDescending &&
+    if ([version compare:[self lastVersionWithKey:key] options:NSNumericSearch] == NSOrderedDescending &&
         [version compare:BMAPP_VERSION options:NSNumericSearch] != NSOrderedDescending)
     {
         block(YES);
@@ -44,7 +59,7 @@ static NSString * const MTMigrationLastAppBuildKey  = @"MTMigration.lastAppBuild
         BMLog(@"BMApp: Running migration for version %@", version);
 #endif
         
-        [self setLastVersion:version];
+        [self setLastVersion:version withKey:key];
     }
     else
     {
@@ -52,11 +67,18 @@ static NSString * const MTMigrationLastAppBuildKey  = @"MTMigration.lastAppBuild
     }
 }
 
-+ (void)onFirstStartForBuildVersion:(nonnull NSString *)buildVersion
-                              block:(nonnull firstStartHandler)block
++ (void)onFirstStartForBuildVersion:(NSString *)buildVersion
+                              block:(firstStartHandler)block
+{
+    [self onFirstStartForBuildVersion:buildVersion block:block withKey:nil];
+}
+
++ (void)onFirstStartForBuildVersion:(NSString *)buildVersion
+                              block:(firstStartHandler)block
+                            withKey:(NSString *)key
 {
     // buildVersion > lastBuildVersion && buildVersion <= appBuildVersion
-    if ([buildVersion compare:[self lastBuildVersion] options:NSNumericSearch] == NSOrderedDescending &&
+    if ([buildVersion compare:[self lastBuildVersionWithKey:key] options:NSNumericSearch] == NSOrderedDescending &&
         [buildVersion compare:BMAPP_BUILD options:NSNumericSearch] != NSOrderedDescending)
     {
         block(YES);
@@ -65,7 +87,7 @@ static NSString * const MTMigrationLastAppBuildKey  = @"MTMigration.lastAppBuild
         BMLog(@"BMApp: Running migration for buildVersion %@", buildVersion);
 #endif
         
-        [self setLastBuildVersion:buildVersion];
+        [self setLastBuildVersion:buildVersion withKey:key];
     }
     else
     {
@@ -75,7 +97,12 @@ static NSString * const MTMigrationLastAppBuildKey  = @"MTMigration.lastAppBuild
 
 + (void)onFirstStartForCurrentVersion:(firstStartHandler)block
 {
-    if (![[self lastVersion] isEqualToString:BMAPP_VERSION])
+    [self onFirstStartForCurrentVersion:block withKey:nil];
+}
+
++ (void)onFirstStartForCurrentVersion:(firstStartHandler)block withKey:(NSString *)key
+{
+    if (![[self lastVersionWithKey:key] isEqualToString:BMAPP_VERSION])
     {
         block(YES);
 
@@ -83,13 +110,18 @@ static NSString * const MTMigrationLastAppBuildKey  = @"MTMigration.lastAppBuild
         BMLog(@"BMApp: Running update Block for version %@", BMAPP_VERSION);
 #endif
         
-        [self setLastVersion:BMAPP_VERSION];
+        [self setLastVersion:BMAPP_VERSION withKey:key];
     }
 }
 
-+ (void)onFirstStartForCurrentBuildVersion:(nonnull firstStartHandler)block
++ (void)onFirstStartForCurrentBuildVersion:(firstStartHandler)block
 {
-    if (![[self lastBuildVersion] isEqualToString:BMAPP_BUILD])
+    [self onFirstStartForCurrentBuildVersion:block withKey:nil];
+}
+
++ (void)onFirstStartForCurrentBuildVersion:(nonnull firstStartHandler)block withKey:(nullable NSString *)key
+{
+    if (![[self lastBuildVersionWithKey:key] isEqualToString:BMAPP_BUILD])
     {
         block(YES);
         
@@ -97,7 +129,7 @@ static NSString * const MTMigrationLastAppBuildKey  = @"MTMigration.lastAppBuild
         BMLog(@"BMApp: Running update Block for buildVersion %@", BMAPP_BUILD);
 #endif
         
-        [self setLastBuildVersion:BMAPP_BUILD];
+        [self setLastBuildVersion:BMAPP_BUILD withKey:key];
     }
 }
 
@@ -106,33 +138,68 @@ static NSString * const MTMigrationLastAppBuildKey  = @"MTMigration.lastAppBuild
 
 + (void)reset
 {
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:BMAppHasBeenOpenedKey];
-    
-    [self setLastVersion:nil];
-    [self setLastBuildVersion:nil];
+    [self resetWithKey:nil];
 }
 
-+ (NSString *)lastVersion
++ (void)resetWithKey:(NSString *)key
 {
-    NSString *res = [[NSUserDefaults standardUserDefaults] valueForKey:BMAppLastVersionKey];
+    NSString *appkey = BMAppHasBeenOpenedKey;
+    if ([appkey bm_isNotEmpty])
+    {
+        appkey = [NSString stringWithFormat:@"%@_%@", BMAppHasBeenOpenedKey, key];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:appkey];
+    
+    [self setLastVersion:nil withKey:key];
+    [self setLastBuildVersion:nil withKey:key];
+}
+
++ (NSString *)lastVersionWithKey:(NSString *)key
+{
+    NSString *appkey = BMAppLastVersionKey;
+    if ([appkey bm_isNotEmpty])
+    {
+        appkey = [NSString stringWithFormat:@"%@_%@", BMAppLastVersionKey, key];
+    }
+    
+    NSString *res = [[NSUserDefaults standardUserDefaults] valueForKey:appkey];
     return (res ? res : @"");
 }
 
-+ (void)setLastVersion:(NSString *)version
++ (void)setLastVersion:(NSString *)version withKey:(NSString *)key
 {
-    [[NSUserDefaults standardUserDefaults] setValue:version forKey:BMAppLastVersionKey];
+    NSString *appkey = BMAppLastVersionKey;
+    if ([appkey bm_isNotEmpty])
+    {
+        appkey = [NSString stringWithFormat:@"%@_%@", BMAppLastVersionKey, key];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setValue:version forKey:appkey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+ (NSString *)lastBuildVersion
++ (NSString *)lastBuildVersionWithKey:(NSString *)key
 {
-    NSString *res = [[NSUserDefaults standardUserDefaults] valueForKey:BMAppLastBuildVersionKey];
+    NSString *appkey = BMAppLastBuildVersionKey;
+    if ([appkey bm_isNotEmpty])
+    {
+        appkey = [NSString stringWithFormat:@"%@_%@", BMAppLastBuildVersionKey, key];
+    }
+    
+    NSString *res = [[NSUserDefaults standardUserDefaults] valueForKey:appkey];
     return (res ? res : @"");
 }
 
-+ (void)setLastBuildVersion:(NSString *)version
++ (void)setLastBuildVersion:(NSString *)version withKey:(NSString *)key
 {
-    [[NSUserDefaults standardUserDefaults] setValue:version forKey:BMAppLastBuildVersionKey];
+    NSString *appkey = BMAppLastBuildVersionKey;
+    if ([appkey bm_isNotEmpty])
+    {
+        appkey = [NSString stringWithFormat:@"%@_%@", BMAppLastBuildVersionKey, key];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setValue:version forKey:appkey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

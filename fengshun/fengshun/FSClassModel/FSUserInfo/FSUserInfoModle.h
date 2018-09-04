@@ -63,7 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 最后更新时间
 @property (nonatomic, assign) NSTimeInterval m_LastUpdateTs;
 
-// 🔐用户令牌token(登录注册)💡: token
+// 🔐用户令牌token(登录注册)💡: authToken
 @property (nonatomic, strong) NSString *m_Token;
 // 🔐用户刷新令牌💡: refreshToken
 @property (nonatomic, strong) NSString *m_RefreshToken;

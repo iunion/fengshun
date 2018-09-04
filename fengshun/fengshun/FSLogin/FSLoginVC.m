@@ -30,6 +30,7 @@
 @property (nonatomic, strong) UILabel *m_WelcomeLabel;
 @property (nonatomic, strong) UIButton *m_ConfirmBtn;
 @property (nonatomic, strong) UIButton *m_ForgetBtn;
+@property (nonatomic, strong) UIButton *m_ResetBtn;
 
 @property (nonatomic, strong) NSURLSessionDataTask *m_LoginCheckTask;
 @property (nonatomic, strong) NSURLSessionDataTask *m_LoginTask;
@@ -74,11 +75,6 @@
     {
         self.m_TableView.bm_left = 20.0f;
         self.m_TableView.bm_width = UI_SCREEN_WIDTH-40.0f;
-    }
-    
-    if (self.delegate && [self.delegate respondsToSelector:@selector(loginProgressStateChanged:)])
-    {
-        [self.delegate loginProgressStateChanged:FSLoginProgress_LoginPhone];
     }
     
     [self interfaceSettings];
@@ -140,9 +136,25 @@
         [weakSelf checkPhoneNum:phoneNum];
     };
     
-    [self.m_Section addItem:self.m_PhoneItem];
-    [self.m_TableManager addSection:self.m_Section];
+    self.m_PassWordItem = [BMTextItem itemWithTitle:nil value:nil placeholder:@"请输入账号密码"];
+    self.m_PassWordItem.textFieldTextFont = FS_CELLTITLE_TEXTFONT;
+    self.m_PassWordItem.keyboardType = UIKeyboardTypeDefault;
+    self.m_PassWordItem.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.m_PassWordItem.underLineDrawType = BMTableViewCell_UnderLineDrawType_SeparatorAllLeftInset;
+    self.m_PassWordItem.underLineColor = FS_LINECOLOR;
+    self.m_PassWordItem.cellBgColor = [UIColor clearColor];
     
+    self.m_PassWordItem.image = [UIImage imageNamed:@"login_password"];
+    
+    self.m_PassWordItem.charactersLimit = FSPASSWORD_MAXLENGTH;
+    
+    self.m_PassWordItem.onChange = ^(BMInputItem *item) {
+        NSString *password = item.value;
+        [weakSelf checkPassword:password];
+    };
+    
+    [self.m_TableManager addSection:self.m_Section];
+
     // header
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.m_TableView.bm_width, 200.0f)];
     headerView.backgroundColor = [UIColor clearColor];
@@ -200,11 +212,23 @@
     forgetBtn.hidden = YES;
     self.m_ForgetBtn = forgetBtn;
 
+    UIButton *resetBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    resetBtn.frame = CGRectMake(0, btn.bm_bottom+10, 100, 40);
+    resetBtn.backgroundColor = [UIColor clearColor];
+    resetBtn.titleLabel.font = FS_BUTTON_SMALLTEXTFONT;
+    resetBtn.exclusiveTouch = YES;
+    [resetBtn setTitle:@"切换其他账号" forState:UIControlStateNormal];
+    [resetBtn setTitleColor:UI_COLOR_B4 forState:UIControlStateNormal];
+    [resetBtn addTarget:self action:@selector(resetClick:) forControlEvents:UIControlEventTouchUpInside];
+    [footerView addSubview:resetBtn];
+    resetBtn.hidden = YES;
+    self.m_ResetBtn = resetBtn;
+
     self.m_TableView.tableFooterView = footerView;
 
-    [self checkPhoneNum:self.m_PhoneItem.value];
-
     [self.m_TableView reloadData];
+    
+    [self freshCheckViews];
 }
 
 - (void)checkPhoneNum:(NSString *)phoneNum
@@ -234,61 +258,67 @@
     }
     else
     {
-        if (![self verifyPassword:self.m_PassWordItem.value])
+        NSString *passWord = [self.m_PassWordItem.value bm_trim];
+        if (![self verifyPassword:passWord])
         {
             return;
         }
         
-        [self backAction:nil];
+        [self sendLoginRequestWithPhoneNum:self.m_PhoneNum passWord:passWord];
     }
 }
 
 - (void)freshViews
 {
+    [self.m_Section removeAllItems];
+
     if (s_isLogin)
     {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(loginProgressStateChanged:)])
-        {
-            [self.delegate loginProgressStateChanged:FSLoginProgress_InputPassWord];
-        }
+        [self freshLoginViews];
     }
     else
     {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(loginProgressStateChanged:)])
-        {
-            [self.delegate loginProgressStateChanged:FSLoginProgress_LoginPhone];
-        }
+        [self freshCheckViews];
     }
-    
-    [self.m_Section removeAllItems];
 
+    [self.m_TableView reloadData];
+}
+
+- (void)freshCheckViews
+{
+    self.m_WelcomeLabel.hidden = YES;
+    
+    [self.m_ConfirmBtn setTitle:@"提交" forState:UIControlStateNormal];
+    self.m_ForgetBtn.hidden = YES;
+    self.m_ResetBtn.hidden = YES;
+    
+    [self.m_Section addItem:self.m_PhoneItem];
+    
+    [self checkPhoneNum:self.m_PhoneItem.value];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(loginProgressStateChanged:)])
+    {
+        [self.delegate loginProgressStateChanged:FSLoginProgress_LoginPhone];
+    }
+}
+
+- (void)freshLoginViews
+{
     self.m_WelcomeLabel.hidden = NO;
     self.m_WelcomeLabel.text = [NSString stringWithFormat:@"欢迎%@登录", [self.m_PhoneNum bm_maskAtRang:NSMakeRange(3, 4) withMask:'*']];
     
     [self.m_ConfirmBtn setTitle:@"登录" forState:UIControlStateNormal];
     self.m_ForgetBtn.hidden = NO;
-
-    self.m_PassWordItem = [BMTextItem itemWithTitle:nil value:nil placeholder:@"请输入账号密码"];
-    self.m_PassWordItem.textFieldTextFont = FS_CELLTITLE_TEXTFONT;
-    self.m_PassWordItem.keyboardType = UIKeyboardTypeDefault;
-    self.m_PassWordItem.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.m_PassWordItem.underLineDrawType = BMTableViewCell_UnderLineDrawType_SeparatorAllLeftInset;
-    self.m_PassWordItem.underLineColor = FS_LINECOLOR;
-    self.m_PassWordItem.cellBgColor = [UIColor clearColor];
-    
-    self.m_PassWordItem.image = [UIImage imageNamed:@"login_password"];
-    
-    self.m_PassWordItem.charactersLimit = FSPASSWORD_MAXLENGTH;
-    
-    BMWeakSelf
-    self.m_PassWordItem.onChange = ^(BMInputItem *item) {
-        NSString *password = item.value;
-        [weakSelf checkPassword:password];
-    };
+    self.m_ResetBtn.hidden = NO;
     
     [self.m_Section addItem:self.m_PassWordItem];
-
-    [self.m_TableView reloadData];
+    
+    [self checkPassword:nil];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(loginProgressStateChanged:)])
+    {
+        [self.delegate loginProgressStateChanged:FSLoginProgress_InputPassWord];
+    }
 }
 
 - (void)checkPassword:(NSString *)password
@@ -308,14 +338,25 @@
 {
     [self.view endEditing:YES];
     
-    FSLoginVerifyVC *loginVerifyVC = [[FSLoginVerifyVC alloc] initWithVerificationType:BMVerificationCodeType_Type1 phoneNum:@"13569768888"];
-    loginVerifyVC.m_IsRegist = YES;
+    FSLoginVerifyVC *loginVerifyVC = [[FSLoginVerifyVC alloc] initWithVerificationType:BMVerificationCodeType_Type2 phoneNum:self.m_PhoneNum];
+    loginVerifyVC.m_IsRegist = NO;
+    loginVerifyVC.delegate = self.delegate;
     [self.navigationController pushViewController:loginVerifyVC animated:YES];
+}
+
+- (void)resetClick:(UIButton *)btn
+{
+    [self.view endEditing:YES];
+
+    s_isLogin = NO;
+    self.m_PhoneItem.value = nil;
+    
+    [self freshViews];
 }
 
 
 #pragma mark -
-#pragma mark check request
+#pragma mark send request
 
 // 登录检查
 - (void)sendCheckRequestWithPhoneNum:(NSString *)phoneNum
@@ -416,34 +457,99 @@
     }
 }
 
-#if 0
+// 登录
+- (void)sendLoginRequestWithPhoneNum:(NSString *)phoneNum passWord:(NSString *)passWord
 {
-    [self.m_ProgressHUD hideAnimated:NO];
-    
-    NSDictionary *dataDic = [resDic bm_dictionaryForKey:@"data"];
-    if ([dataDic bm_isNotEmptyDictionary])
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSMutableURLRequest *request = [FSApiRequest loginWithPhoneNum:phoneNum password:passWord];
+    if (request)
     {
-        FSUserInfoModle *userInfo = [FSUserInfoModle userInfoWithServerDic:dataDic isUpDateByUserInfoApi:NO];
-        if (userInfo)
-        {
-            GetAppDelegate.m_UserInfo = userInfo;
-            [FSUserInfoModle setCurrentUserID:userInfo.m_UserBaseInfo.m_UserId];
-            [FSUserInfoModle setCurrentUserToken:userInfo.m_Token];
-            
-            [FSUserInfoDB insertAndUpdateUserInfo:userInfo];
-            
-            if (self.delegate && [self.delegate respondsToSelector:@selector(loginFinished)])
+        [self.m_ProgressHUD showAnimated:YES showBackground:NO];
+        
+        [self.m_LoginTask cancel];
+        self.m_LoginTask = nil;
+        
+        BMWeakSelf
+        self.m_LoginTask = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+            if (error)
             {
-                [self.delegate loginFinished];
+                BMLog(@"Error: %@", error);
+                [weakSelf loginRequestFailed:response error:error];
+                
             }
-            
-            return;
-        }
+            else
+            {
+                BMLog(@"%@ %@", response, responseObject);
+                [weakSelf loginRequestFinished:response responseDic:responseObject];
+            }
+        }];
+        [self.m_LoginTask resume];
     }
-    
-    [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
 }
 
-#endif
+- (void)loginRequestFinished:(NSURLResponse *)response responseDic:(NSDictionary *)resDic
+{
+    if (![resDic bm_isNotEmptyDictionary])
+    {
+        [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        
+        if (self.delegate && [self.delegate respondsToSelector:@selector(loginFailedWithProgressState:)])
+        {
+            [self.delegate loginFailedWithProgressState:FSLoginProgress_InputPassWord];
+        }
+        return;
+    }
+    
+    BMLog(@"登录返回数据是:+++++%@", resDic);
+    
+    NSInteger statusCode = [resDic bm_intForKey:@"code"];
+    if (statusCode == 1000)
+    {
+        [self.m_ProgressHUD hideAnimated:NO];
+        
+        NSDictionary *dataDic = [resDic bm_dictionaryForKey:@"data"];
+        if ([dataDic bm_isNotEmptyDictionary])
+        {
+            FSUserInfoModle *userInfo = [FSUserInfoModle userInfoWithServerDic:dataDic isUpDateByUserInfoApi:NO];
+            if (userInfo)
+            {
+                GetAppDelegate.m_UserInfo = userInfo;
+                [FSUserInfoModle setCurrentUserID:userInfo.m_UserBaseInfo.m_UserId];
+                [FSUserInfoModle setCurrentUserToken:userInfo.m_Token];
+                
+                [FSUserInfoDB insertAndUpdateUserInfo:userInfo];
+                
+                if (self.delegate && [self.delegate respondsToSelector:@selector(loginProgressStateChanged:)])
+                {
+                    [self.delegate loginProgressStateChanged:FSLoginProgress_FinishLogin];
+                }
+                
+                [self backAction:nil];
+                
+                return;
+            }
+        }
+    }
+
+    NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
+    [self.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(loginFailedWithProgressState:)])
+    {
+        [self.delegate loginFailedWithProgressState:FSLoginProgress_InputPassWord];
+    }
+}
+
+- (void)loginRequestFailed:(NSURLResponse *)response error:(NSError *)error
+{
+    BMLog(@"登录失败的错误:++++%@", [FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE]);
+    
+    [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(loginFailedWithProgressState:)])
+    {
+        [self.delegate loginFailedWithProgressState:FSLoginProgress_InputPassWord];
+    }
+}
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "FSSetPassWordVC.h"
+#import "AppDelegate.h"
 
 @interface FSSetPassWordVC ()
 {
@@ -22,7 +23,8 @@
 
 @property (nonatomic, strong) UIButton *m_ConfirmBtn;
 
-@property (strong, nonatomic) NSURLSessionDataTask *m_SetPassWordTask;
+@property (strong, nonatomic) NSURLSessionDataTask *m_RegistTask;
+@property (strong, nonatomic) NSURLSessionDataTask *m_resetPassWordTask;
 
 @end
 
@@ -30,8 +32,11 @@
 
 - (void)dealloc
 {
-    [_m_SetPassWordTask cancel];
-    _m_SetPassWordTask = nil;
+    [_m_RegistTask cancel];
+    _m_RegistTask = nil;
+    
+    [_m_resetPassWordTask cancel];
+    _m_resetPassWordTask = nil;
 }
 
 - (instancetype)initWithPhoneNum:(NSString *)phoneNum
@@ -126,7 +131,8 @@
     
     self.m_Section = [BMTableViewSection section];
     
-    self.m_PassWordItem = [BMTextItem itemWithTitle:nil value:nil placeholder:@"请输入密码"];
+    NSString *placeholder = [NSString stringWithFormat:@"请输入密码%@-%@位字母+数字", @(FSPASSWORD_MINLENGTH), @(FSPASSWORD_MAXLENGTH)];
+    self.m_PassWordItem = [BMTextItem itemWithTitle:nil value:nil placeholder:placeholder];
     self.m_PassWordItem.textFieldTextFont = FS_CELLTITLE_TEXTFONT;
     self.m_PassWordItem.keyboardType = UIKeyboardTypeDefault;
     self.m_PassWordItem.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -233,5 +239,106 @@
         return;
     }
 }
+
+
+#pragma mark -
+#pragma mark send request
+
+// 注册
+- (void)sendRegistRequestWithPhoneNum:(NSString *)phoneNum passWord:(NSString *)passWord
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSMutableURLRequest *request = [FSApiRequest registWithPhoneNum:self.m_PhoneNum verificationCode:@"" password:passWord];
+    if (request)
+    {
+        [self.m_ProgressHUD showAnimated:YES showBackground:NO];
+        
+        [self.m_RegistTask cancel];
+        self.m_RegistTask = nil;
+        
+        BMWeakSelf
+        self.m_RegistTask = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+            if (error)
+            {
+                BMLog(@"Error: %@", error);
+                [weakSelf registRequestFailed:response error:error];
+                
+            }
+            else
+            {
+                BMLog(@"%@ %@", response, responseObject);
+                [weakSelf registRequestFinished:response responseDic:responseObject];
+            }
+        }];
+        [self.m_RegistTask resume];
+    }
+}
+
+- (void)registRequestFinished:(NSURLResponse *)response responseDic:(NSDictionary *)resDic
+{
+    if (![resDic bm_isNotEmptyDictionary])
+    {
+        [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        
+        if (self.delegate && [self.delegate respondsToSelector:@selector(loginFailedWithProgressState:)])
+        {
+            [self.delegate loginFailedWithProgressState:FSLoginProgress_SetPassWord];
+        }
+        return;
+    }
+    
+    BMLog(@"注册返回数据是:+++++%@", resDic);
+    
+    NSInteger statusCode = [resDic bm_intForKey:@"code"];
+    if (statusCode == 1000)
+    {
+        [self.m_ProgressHUD hideAnimated:NO];
+        
+        NSDictionary *dataDic = [resDic bm_dictionaryForKey:@"data"];
+        if ([dataDic bm_isNotEmptyDictionary])
+        {
+            FSUserInfoModle *userInfo = [FSUserInfoModle userInfoWithServerDic:dataDic isUpDateByUserInfoApi:NO];
+            if (userInfo)
+            {
+                GetAppDelegate.m_UserInfo = userInfo;
+                [FSUserInfoModle setCurrentUserID:userInfo.m_UserBaseInfo.m_UserId];
+                [FSUserInfoModle setCurrentUserToken:userInfo.m_Token];
+                
+                [FSUserInfoDB insertAndUpdateUserInfo:userInfo];
+                
+                if (self.delegate && [self.delegate respondsToSelector:@selector(loginProgressStateChanged:)])
+                {
+                    [self.delegate loginProgressStateChanged:FSLoginProgress_SetPassWord];
+                }
+                
+                [self backAction:nil];
+                
+                return;
+            }
+        }
+    }
+    
+    NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
+    [self.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(loginFailedWithProgressState:)])
+    {
+        [self.delegate loginFailedWithProgressState:FSLoginProgress_SetPassWord];
+    }
+}
+
+- (void)registRequestFailed:(NSURLResponse *)response error:(NSError *)error
+{
+    BMLog(@"注册失败的错误:++++%@", [FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE]);
+    
+    [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(loginFailedWithProgressState:)])
+    {
+        [self.delegate loginFailedWithProgressState:FSLoginProgress_SetPassWord];
+    }
+}
+
+
 
 @end

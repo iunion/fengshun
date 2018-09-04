@@ -44,6 +44,9 @@ NS_ASSUME_NONNULL_BEGIN
 // https://devftls.odrcloud.net/swagger-ui.html#/%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF/getSMSCodeUsingPOST
 + (nullable NSMutableURLRequest *)getVerificationCodeWithType:(FSVerificationCodeType)verificationCodeType phoneNum:(NSString *)phoneNum;
 
+// 验证验证码
++ (nullable NSMutableURLRequest *)checkVerificationCodeWithType:(FSVerificationCodeType)verificationCodeType phoneNum:(NSString *)phoneNum verificationCode:(NSString *)verificationCode;
+
 // 用户注册
 // https://devftls.odrcloud.net/swagger-ui.html#/%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF/registerUserUsingPOST
 + (nullable NSMutableURLRequest *)registWithPhoneNum:(NSString *)phoneNum verificationCode:(NSString *)verificationCode password:(NSString *)password;
