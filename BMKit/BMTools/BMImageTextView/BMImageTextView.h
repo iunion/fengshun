@@ -29,6 +29,7 @@ typedef void (^BMImageTextViewClicked)(BMImageTextView *imageTextView);
 
 @property (copy, nonatomic, nullable) NSString *imageName;
 @property (copy, nonatomic, nullable) NSString *imageUrl;
+@property (copy, nonatomic, nullable) NSString *placeholderImageName;
 
 @property (copy, nonatomic, nullable) NSString *text;
 @property (copy, nonatomic, nullable) NSAttributedString *attributedText;
@@ -37,8 +38,10 @@ typedef void (^BMImageTextViewClicked)(BMImageTextView *imageTextView);
 @property (strong, nonatomic, nullable) UIFont *textFont;
 
 @property (assign, nonatomic) CGSize imageSize;
+@property (assign, nonatomic) BOOL circleImage;
 
 @property (assign, nonatomic) CGFloat imageTextGap;
+@property (assign, nonatomic) CGFloat accessoryArrowGap;
 
 @property (assign, nonatomic) CGFloat maxWidth;
 

@@ -34,7 +34,7 @@
 // 设置具体的API请求
 - (NSMutableURLRequest *)setLoadDataRequest;
 - (NSMutableURLRequest *)setLoadDataRequestWithFresh:(BOOL)isLoadNew;
-// API请求成功的代理方法
+// API请求成功的代理方法，直接用默认
 - (void)loadDataResponseFinished:(NSURLResponse *)response responseDic:(NSDictionary *)responseDic;
 // API请求失败的代理方法，一般不需要重写
 - (void)loadDataResponseFailed:(NSURLResponse *)response error:(NSError *)error;
@@ -54,7 +54,7 @@
 // 获取下一页
 - (void)loadNextApiData;
 
-// 全部获取数据判断
+// FSAPILoadDataType_Page分页模式，全部获取数据判断
 - (BOOL)checkLoadFinish:(NSDictionary *)requestDic;
 
 - (void)loadDateFinished:(BOOL)isNoMoreData;

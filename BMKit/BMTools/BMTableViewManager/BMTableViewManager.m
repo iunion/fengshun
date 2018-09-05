@@ -505,6 +505,10 @@
     
     if (section.headerHeight != BMTableViewSectionHeaderHeightAutomatic)
     {
+        if (section.headerHeight == 0.0f)
+        {
+            return 0.0001f;
+        }
         return section.headerHeight;
     }
     
@@ -556,6 +560,10 @@
     
     if (section.footerHeight != BMTableViewSectionFooterHeightAutomatic)
     {
+        if (section.footerHeight == 0.0f)
+        {
+            return 0.0001f;
+        }
         return section.footerHeight;
     }
     
