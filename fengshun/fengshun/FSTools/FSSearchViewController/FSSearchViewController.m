@@ -9,6 +9,7 @@
 #import "FSSearchViewController.h"
 #import "BMTableViewManager.h"
 #import "TTGTagCollectionView.h"
+#import "FSRulesSearchResultView.h"
 
 #define SEARCH_HISTORY_MAXCACHECOUNT        10
 #define SEARCH_HISTORY_CACHEFILE(searchKey) [[NSString bm_documentsPath] stringByAppendingPathComponent:[NSString stringWithFormat:@"searchhistory_%@.plist", searchKey]]
@@ -40,11 +41,13 @@
 @property (nonatomic, strong) BMTableViewSection *section;
 
 @property (nonatomic, strong) NSMutableArray *searchHistories;
+@property (nonatomic, strong) FSSearchReaultView *resultView;
 
 @end
 
 @implementation FSSearchViewController
 
+#pragma mark - init&懒加载
 - (instancetype)initWithSearchKey:(NSString *)searchKey hotSearchTags:(NSArray *)hotSearchTags searchHandler:(searchViewSearchHandler)searchHandler
 {
     self = [super init];
@@ -59,6 +62,15 @@
     }
     return self;
 }
+- (FSSearchReaultView *)resultView
+{
+    if (!_resultView) {
+        _resultView = [[FSRulesSearchResultView alloc]initWithFrame:self.view.bounds];
+        _resultView.hidden = YES;
+    }
+    return _resultView;
+}
+#pragma mark - view&UI
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -263,17 +275,18 @@
         return;
     }
     
-    BMTableViewItem *item0 = [BMTableViewItem itemWithTitle:@"搜索记录" subTitle:nil imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorInset accessoryView:nil selectionHandler:nil];
+    UIButton *clearButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+    clearButton.backgroundColor = [UIColor redColor];
+    [clearButton addTarget:self action:@selector(removeAllSearchHistory) forControlEvents:UIControlEventTouchUpInside];
+
+    BMTableViewItem *item0 = [BMTableViewItem itemWithTitle:@"搜索记录" subTitle:nil imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorInset accessoryView:clearButton selectionHandler:nil];
     [self.section addItem:item0];
     item0.cellStyle = UITableViewCellStyleDefault;
     item0.textFont = [UIFont systemFontOfSize:12.0f];
     item0.textColor = UI_COLOR_B4;
     item0.cellHeight = 40.0f;
     item0.enabled = NO;
-    UIButton *clearButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
-    clearButton.backgroundColor = [UIColor redColor];
-    [clearButton addTarget:self action:@selector(removeAllSearchHistory) forControlEvents:UIControlEventTouchUpInside];
-    item0.accessoryView = clearButton;
+    
     
     // 这儿有循环引用的问题
     BMWeakSelf
@@ -356,22 +369,24 @@
 
 - (void)cancelSearch:(id)sender
 {
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     NSString *search = [searchBar.text bm_trim];
-    
+    [_searchTextField resignFirstResponder];
     if ([search bm_isNotEmpty])
     {
         searchBar.text = search;
         [self addSearchHistory:search];
         
-        if (self.searchHandler)
-        {
-            self.searchHandler(search);
-        }
+        if(!self.resultView.superview) [self.view addSubview:self.resultView];
+        [self.resultView addSearchkey:search];
+        self.resultView.hidden = NO;
+        
+        if (self.searchHandler) self.searchHandler(search);
+        
     }
 }
 
