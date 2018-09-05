@@ -10,44 +10,53 @@
 
 @implementation FSApiRequest (Community)
 
-+ (NSMutableURLRequest *)getPlateList{
-    NSString *urlStr = [NSString stringWithFormat:@"%@storm/communityForum/fourmList", FS_URL_SERVER];
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
-}
 
-+ (NSMutableURLRequest *)getPlateRecommendPostList{
-    NSString *urlStr = [NSString stringWithFormat:@"%@storm/communityForum/recommendList", FS_URL_SERVER];
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
-}
-
-+ (NSMutableURLRequest *)editPostsWithTitle:(NSString *)title content:(NSString *)content postId:(NSInteger)postId
++ (XMRequest *)getPlateListWithLimit:(NSInteger)limit pageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize startRow:(NSInteger)startRow success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@storm/postInfo/editPost", FS_URL_SERVER];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters bm_setInteger:limit forKey:@"limit"];
+    [parameters bm_setInteger:pageIndex forKey:@"pageIndex"];
+    [parameters bm_setInteger:pageSize forKey:@"pageSize"];
+    [parameters bm_setInteger:startRow forKey:@"startRow"];
+    return [XMRequestManager rm_requestWithApi:@"/storm/communityForum/fourmList" parameters:parameters success:successBlock failure:failureBlock];
+}
+
++ (XMRequest *)getPlateRecommendPostListWithLimit:(NSInteger)limit pageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize startRow:(NSInteger)startRow success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters bm_setInteger:limit forKey:@"limit"];
+    [parameters bm_setInteger:pageIndex forKey:@"pageIndex"];
+    [parameters bm_setInteger:pageSize forKey:@"pageSize"];
+    [parameters bm_setInteger:startRow forKey:@"startRow"];
+    return [XMRequestManager rm_requestWithApi:@"/storm/communityForum/recommendList" parameters:parameters success:successBlock failure:failureBlock];
+}
+
++ (XMRequest *)editPostsWithTitle:(NSString *)title content:(NSString *)content postId:(NSInteger)postId success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
+{
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters bm_setApiString:title forKey:@"title"];
     [parameters bm_setApiString:content forKey:@"content"];
     [parameters bm_setInteger:postId forKey:@"postId"];
-    return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
+    return [XMRequestManager rm_requestWithApi:@"/storm/postInfo/editPost" parameters:parameters success:successBlock failure:failureBlock];
 }
 
-+ (NSMutableURLRequest *)sendPostsWithTitle:(NSString *)title content:(NSString *)content forumId:(NSInteger)forumId{
-    NSString *urlStr = [NSString stringWithFormat:@"%@storm/postInfo/addPost", FS_URL_SERVER];
++ (XMRequest *)sendPostsWithTitle:(NSString *)title content:(NSString *)content forumId:(NSInteger)forumId success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
+{
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters bm_setApiString:title forKey:@"title"];
     [parameters bm_setApiString:content forKey:@"content"];
     [parameters bm_setInteger:forumId forKey:@"forumId"];
-    return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
+    return [XMRequestManager rm_requestWithApi:@"/storm/postInfo/addPost" parameters:parameters success:successBlock failure:failureBlock];
 }
 
-+ (NSMutableURLRequest *)getPostCommentListWithDetailId:(NSInteger)detailId maxId:(NSInteger)maxId pageSize:(NSInteger)pageSize{
-    NSString *urlStr = [NSString stringWithFormat:@"%@storm/postInfo/postComment", FS_URL_SERVER];
+
++ (XMRequest *)getPostCommentListWithDetailId:(NSInteger)detailId maxId:(NSInteger)maxId pageSize:(NSInteger)pageSize success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
+{
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters bm_setInteger:detailId forKey:@"detailId"];
     [parameters bm_setInteger:maxId forKey:@"maxId"];
     [parameters bm_setInteger:pageSize forKey:@"pageSize"];
-    return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
+    return [XMRequestManager rm_requestWithApi:@"/storm/postInfo/postComment" parameters:parameters success:successBlock failure:failureBlock];
 }
 
 @end

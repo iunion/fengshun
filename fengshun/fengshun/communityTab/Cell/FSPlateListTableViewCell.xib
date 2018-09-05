@@ -130,7 +130,7 @@
                 <outlet property="m_NoteNumLab" destination="rMF-tI-vT6" id="IV4-u1-kr6"/>
                 <outlet property="m_TitleLab" destination="i3i-sj-JVa" id="1dg-Gv-LLr"/>
             </connections>
-            <point key="canvasLocation" x="59" y="69"/>
+            <point key="canvasLocation" x="58.5" y="69"/>
         </tableViewCell>
     </objects>
 </document>

@@ -13,24 +13,28 @@
 
 @implementation FSPushVCManager
 
-+ (void)showCommunitySecVCPushVC:(UIViewController *)pushVC{
++ (void)showCommunitySecVCPushVC:(UIViewController *)pushVC
+{
     FSCommunitySecVC *vc = [[FSCommunitySecVC alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     [pushVC.navigationController pushViewController:vc animated:YES];
 }
 
-+ (void)showPostDetailVCWithPushVC:(UIViewController *)pushVC url:(NSString *)url{
++ (void)showPostDetailVCWithPushVC:(UIViewController *)pushVC url:(NSString *)url
+{
     FSWebViewController *vc = [[FSWebViewController alloc]initWithTitle:@"" url:url];
     [pushVC.navigationController pushViewController:vc animated:YES];
 }
 
-+ (void)showEditPostWithWithPushVC:(UIViewController *)pushVC callBack:(PushVCCallBack)callBack{
++ (void)showEditPostWithWithPushVC:(UIViewController *)pushVC callBack:(PushVCCallBack)callBack
+{
     FSSendPostViewController *vc = [[FSSendPostViewController alloc]init];
     vc.sendPostsCallBack = callBack;
     [pushVC.navigationController pushViewController:vc animated:YES];
 }
 
-+ (void)showSendPostWithWithPushVC:(UIViewController *)pushVC callBack:(PushVCCallBack)callBack{
++ (void)showSendPostWithWithPushVC:(UIViewController *)pushVC callBack:(PushVCCallBack)callBack
+{
     FSSendPostViewController *vc = [[FSSendPostViewController alloc]init];
     vc.sendPostsCallBack = callBack;
     [pushVC.navigationController pushViewController:vc animated:YES];
