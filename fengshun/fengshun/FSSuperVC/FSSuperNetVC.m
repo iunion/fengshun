@@ -150,7 +150,7 @@
     BMLog(@"API返回数据是:+++++%@", responseDic);
     
     NSInteger statusCode = [responseDic bm_intForKey:@"code"];
-    if (statusCode == 0)
+    if (statusCode == 1000)
     {
         if (self.m_ShowResultHUD)
         {

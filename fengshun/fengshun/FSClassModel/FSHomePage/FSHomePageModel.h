@@ -10,6 +10,8 @@
 #define FSHomePageModel_h
 
 #import "FSBannerModel.h"
-
+#import "FSHomePageToolModel.h"
+#import "FSCourseModel.h"
+#import "FSCommunityRecommendModel.h"
 
 #endif /* FSHomePageModel_h */
