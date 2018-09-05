@@ -8,15 +8,20 @@
 
 #import "XMRequestManager.h"
 #import "AFNetworking.h"
+#import "FSApiRequest.h"
+#import "FSAppInfo.h"
+#import "FSLocation.h"
+#import "FSCoreStatus.h"
+#import "FSUserInfo.h"
 
 @implementation XMUploadFile
 
 + (instancetype)uploadFileWithName:(NSString *)fileName mimeType:(NSString *)mimeType andData:(NSData *)fileData
 {
     XMUploadFile *file = [[super alloc] init];
-    file.fileName = fileName;
-    file.mimeType = mimeType;
-    file.fileData = fileData;
+    file.fileName      = fileName;
+    file.mimeType      = mimeType;
+    file.fileData      = fileData;
     return file;
 }
 
@@ -33,13 +38,24 @@
 + (AFHTTPRequestSerializer *)httpRequestSerializer
 {
     static AFHTTPRequestSerializer *mqRequestSerializer;
-    static dispatch_once_t onceToken;
+    static dispatch_once_t          onceToken;
     dispatch_once(&onceToken, ^{
-        mqRequestSerializer = [AFHTTPRequestSerializer serializer];
-        mqRequestSerializer.timeoutInterval = TIMEOUT_SECONDS;
-        // 这儿可设置一些更基层的header
+        mqRequestSerializer                 = [AFHTTPRequestSerializer serializer];
+        mqRequestSerializer.timeoutInterval = FSAPI_TIMEOUT_SECONDS;
+        // 设备号
+        [mqRequestSerializer setValue:[FSAppInfo getOpenUDID] forHTTPHeaderField:@"deviceId"];
+        // 设备型号
+        [mqRequestSerializer setValue:[UIDevice bm_devicePlatformString] forHTTPHeaderField:@"deviceModel"];
+        // 设备系统类型
         [mqRequestSerializer setValue:@"iOS" forHTTPHeaderField:@"cType"];
-
+        // 系统版本号
+        [mqRequestSerializer setValue:CURRENT_SYSTEMVERSION forHTTPHeaderField:@"osVersion"];
+        // app名称
+        [mqRequestSerializer setValue:FSAPP_APPNAME forHTTPHeaderField:@"appName"];
+        // app版本
+        [mqRequestSerializer setValue:APP_VERSIONNO forHTTPHeaderField:@"appVersion"];
+        // 渠道 "App Store"
+        [mqRequestSerializer setValue:[FSAppInfo catchChannelName] forHTTPHeaderField:@"channelCode"];
     });
 
     return mqRequestSerializer;
@@ -48,11 +64,11 @@
 + (AFSecurityPolicy *)customSecurityPolicy
 {
     static AFSecurityPolicy *mqSecurityPolicy;
-    static dispatch_once_t onceToken;
+    static dispatch_once_t   onceToken;
     dispatch_once(&onceToken, ^{
         // 先导入证书，找到证书的路径
         NSString *cerPath = [[NSBundle mainBundle] pathForResource:@"你的证书名字" ofType:@"cer"];
-        NSData *certData = [NSData dataWithContentsOfFile:cerPath];
+        NSData *certData  = [NSData dataWithContentsOfFile:cerPath];
 
         // AFSSLPinningModeCertificate 使用证书验证模式
         AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
@@ -65,7 +81,7 @@
         // 如置为NO，建议自己添加对应域名的校验逻辑。
         securityPolicy.validatesDomainName = NO;
 
-        NSSet *set = [[NSSet alloc] initWithObjects:certData, nil];
+        NSSet *set                        = [[NSSet alloc] initWithObjects:certData, nil];
         securityPolicy.pinnedCertificates = set;
 
         mqSecurityPolicy = securityPolicy;
@@ -74,53 +90,44 @@
     return mqSecurityPolicy;
 }
 
-+ (NSString *)publicErrorMessageWithCode:(NSInteger)code
-{
-    NSString *errorMessage;
-    switch (code)
-    {
-        case 9999:
-            errorMessage = @"服务器内部异常";
-            break;
-        case 1001:
-            errorMessage = @"用户未登录";
-            break;
-        case 1002:
-            errorMessage = @"认证令牌失效";
-            break;
-        case 1003:
-            errorMessage = @"非法参数";
-            break;
-        case 1004:
-            errorMessage = @"权限不足";
-            break;
-        case 1005:
-            errorMessage = @"结果为空";
-            break;
-        case 1006:
-            errorMessage = @"操作数据库失败";
-            break;
-
-        default:
-            errorMessage = @"其他错误";
-            break;
-    }
-    return errorMessage;
-}
 
 + (void)setupNetworkConfig
 {
     // 设置一些基础的header
     [XMEngine sharedEngine].afHTTPRequestSerializer = [self httpRequestSerializer];
+    [XMEngine sharedEngine].afJSONRequestSerializer = [FSApiRequest requestSerializer];
 
     // SSL证书相关
     //    [XMCenter defaultCenter].engine.securitySessionManager.securityPolicy = [self customSecurityPolicy];
 
     // 设置公共的header和公共参数
     [XMCenter setupConfig:^(XMConfig *config) {
-        config.generalServer = kGeneralServer;
+        config.generalServer = FS_URL_SERVER;
         config.callbackQueue = dispatch_get_main_queue();
 //        config.generalHeaders = nil;
+        NSMutableDictionary *genearHeaers = [NSMutableDictionary dictionary];
+        // 时间戳
+        NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
+        NSString *tmp = [NSString stringWithFormat:@"%@", @(time)];
+        [genearHeaers setValue:tmp forKey:@"timer"];
+        
+        // GPS定位
+        [genearHeaers setValue:[NSString stringWithFormat:@"%f", [FSLocation userLocationLongitude]] forKey:FSAPI_GPS_LONGITUDE_KEY];
+        [genearHeaers setValue:[NSString stringWithFormat:@"%f", [FSLocation userLocationLatitude]] forKey:FSAPI_GPS_LATITUDE_KEY];
+        
+        // 网络状态
+        [genearHeaers setValue:[FSCoreStatus currentFSNetWorkStatusString] forKey:@"netWorkStandard"];
+        
+        // token
+        if ([FSUserInfoModle isLogin])
+        {
+            NSString *token = [FSUserInfoModle userInfo].m_Token;
+            if ([token bm_isNotEmpty])
+            {
+                [genearHeaers setValue:token forKey:@"JWTToken"];
+            }
+        }
+        config.generalHeaders = [genearHeaers copy];
 //        config.generalParameters = nil;
 #ifdef DEBUG
         config.consoleLog = YES;
@@ -146,7 +153,7 @@
             NSInteger code = [responseObject[@"code"] integerValue];
             if (code != 1000)
             {
-                *error = [NSError errorWithDomain:@"com.bmsf.publicError" code:code userInfo:@{NSLocalizedDescriptionKey : [self publicErrorMessageWithCode:code]}];
+                *error = [NSError errorWithDomain:@"com.bmsf.publicError" code:code userInfo:@{NSLocalizedDescriptionKey : [FSApiRequest publicErrorMessageWithCode:code]}];
             }
             else
             {
@@ -169,17 +176,18 @@
 + (void)p_setupPostRequest:(XMRequest *)request withServer:(NSString *)server API:(NSString *)api methd:(XMHTTPMethodType)methodType parameters:(NSDictionary *)parameters timeoutInterval:(NSTimeInterval)timeoutInterval
 {
     NSAssert(api.length, @"参数不能为空!");
-    request.requestType = kXMRequestNormal;
-    request.server = server;
-    request.httpMethod = methodType;
-    request.api = api;
-    request.parameters = parameters;
-    request.timeoutInterval = timeoutInterval;
+    request.requestSerializerType = kXMRequestSerializerJSON;
+    request.requestType           = kXMRequestNormal;
+    request.server                = server;
+    request.httpMethod            = methodType;
+    request.api                   = api;
+    request.parameters            = parameters;
+    request.timeoutInterval       = timeoutInterval;
 }
 
 + (XMRequest *)rm_requestWithApi:(NSString *)api parameters:(NSDictionary *)parameters success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
 {
-    return [self rm_requestWithServer:kGeneralServer api:api method:kXMHTTPMethodPOST parameters:parameters timeoutInterval:TIMEOUT_SECONDS success:successBlock failure:failureBlock];
+    return [self rm_requestWithServer:FS_URL_SERVER api:api method:kXMHTTPMethodPOST parameters:parameters timeoutInterval:FSAPI_TIMEOUT_SECONDS success:successBlock failure:failureBlock];
 }
 
 + (XMRequest *)rm_requestWithServer:(NSString *)server api:(NSString *)api method:(XMHTTPMethodType)methodType parameters:(NSDictionary *)parameters timeoutInterval:(NSTimeInterval)timeoutInterval success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
@@ -200,10 +208,11 @@
 + (void)p_setupUploadRequst:(XMRequest *)request withServer:(NSString *)server API:(NSString *)api parameters:(NSDictionary *)parameters dataKey:(NSString *)dataKey andFiles:(NSArray<XMUploadFile *> *)files
 {
     NSAssert(api.length && dataKey.length && files.count, @"文件、dataKey、API不能为空!");
-    request.requestType = kXMRequestUpload;
-    request.server = server;
-    request.api = api;
-    request.parameters = parameters;
+    request.requestType     = kXMRequestUpload;
+    request.server          = server;
+    request.api             = api;
+    request.parameters      = parameters;
+    request.timeoutInterval = FSAPI_UPLOADIMAGE_TIMEOUT_SECONDS;
     for (XMUploadFile *file in files)
     {
         [request addFormDataWithName:dataKey fileName:file.fileName mimeType:file.mimeType fileData:file.fileData];
@@ -212,7 +221,7 @@
 
 + (XMRequest *)rm_uploadFiles:(NSArray<XMUploadFile *> *)files forAPI:(NSString *)api dataKey:(NSString *)dataKey parameters:(NSDictionary *)parameters success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
 {
-    return [self rm_uploadFiles:files withServer:kGeneralServer api:api dataKey:dataKey parameters:parameters success:successBlock failure:failureBlock];
+    return [self rm_uploadFiles:files withServer:FS_URL_SERVER api:api dataKey:dataKey parameters:parameters success:successBlock failure:failureBlock];
 }
 
 + (XMRequest *)rm_uploadFiles:(NSArray<XMUploadFile *> *)files withServer:(NSString *)server api:(NSString *)api dataKey:(NSString *)dataKey parameters:(NSDictionary *)parameters success:(nullable XMSuccessBlock)successBlock failure:(nullable XMFailureBlock)failureBlock

@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FSApiRequest : NSObject
 
 + (NSString *)publicErrorMessageWithCode:(NSInteger)code;
++ (AFJSONRequestSerializer *)requestSerializer;
 
 + (NSMutableURLRequest *)makeRequestWithURL:(NSString *)URLString parameters:(NSDictionary *)parameters;
 + (NSMutableURLRequest *)makeRequestWithURL:(NSString *)URLString parameters:(NSDictionary *)parameters isPost:(BOOL)isPost;

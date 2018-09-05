@@ -12,8 +12,7 @@
 #import "FSMainHeaderView.h"
 #import "FSCourseTableCell.h"
 
-#import "BMVerifyField.h"
-#import "TZImagePickerController.h"
+#import "FSApiRequest+HomePage.h"
 
 
 @interface
@@ -21,7 +20,6 @@ FSMainVC ()
 <
     FSBannerViewDelegate,
     FSMainHeaderDelegate,
-    TZImagePickerControllerDelegate,
     UITableViewDelegate,
     UITableViewDataSource
 >
@@ -41,6 +39,11 @@ FSMainVC ()
     [self setupUI];
     [self.m_TableView registerNib:[UINib nibWithNibName:@"FSCourseTableCell" bundle:nil] forCellReuseIdentifier:@"FSCourseTableCell"];
     self.m_TableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    [FSApiRequest getHomeDataSuccess:^(id  _Nullable responseObject) {
+        
+    } failure:^(NSError * _Nullable error) {
+        
+    }];
     
 }
 - (void)setupUI
