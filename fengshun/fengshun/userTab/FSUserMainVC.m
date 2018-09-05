@@ -9,8 +9,12 @@
 #import "FSUserMainVC.h"
 #import "FSUserInfo.h"
 #import "UIView+BMBadge.h"
+#import "UIImageView+WebCache.h"
 
 #import "FSSearchViewController.h"
+
+#import "FSCustomInfoVC.h"
+
 
 @interface FSUserMainVC ()
 
@@ -53,21 +57,20 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.edgesForExtendedLayout = UIRectEdgeTop;
+//    self.edgesForExtendedLayout = UIRectEdgeTop;
     self.view.backgroundColor = FS_VIEW_BGCOLOR;
 
-    self.m_TableView.frame = CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT);
+    self.m_TableView.frame = CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT-UI_TAB_BAR_HEIGHT);
 
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, -100, self.m_TableView.bm_width, 100.0f)];
-    [self.m_TableView addSubview:view];
-    view.backgroundColor = UI_COLOR_BL1;
-    self.m_TopView = view;
+//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, -400, self.m_TableView.bm_width, 400.0f)];
+//    [self.m_TableView addSubview:view];
+//    view.backgroundColor = UI_COLOR_BL1;
+//    self.m_TopView = view;
 
     self.bm_NavigationBarEffect = [[UIVisualEffect alloc] init];
     [self bm_setNavigationWithTitle:@"" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_setup_icon" leftToucheEvent:@selector(setUpAction:) rightItemTitle:nil rightItemImage:@"navigationbar_message_icon" rightToucheEvent:@selector(messageAction:)];
     
     [self interfaceSettings];
-    
 }
 
 - (BOOL)needKeyboardEvent
@@ -99,32 +102,32 @@
     
     BMWeakSelf
     self.m_TopicItem = [BMTableViewItem itemWithTitle:@"我的帖子" imageName:@"login_mobile" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
-        BMStrongSelf
+
         FSSearchViewController *searchViewController = [[FSSearchViewController alloc] initWithSearchKey:@"test"
                                                                                            hotSearchTags:@[@"婚姻继承", @"借贷纠纷",@"婚姻继承", @"借贷纠纷",@"婚姻继承", @"借贷纠纷",@"婚姻继承", @"借贷纠纷",@"婚姻继承", @"借贷纠纷"]
                                                                                            searchHandler:^(NSString *search) {
                                                                                                NSLog(@"search");
                                                                                            }];
         searchViewController.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:searchViewController animated:YES];
+        [weakSelf.navigationController pushViewController:searchViewController animated:YES];
     }];
     self.m_TopicItem.textFont = FS_CELLTITLE_TEXTFONT;
     self.m_TopicItem.highlightBgColor = UI_COLOR_BL1;
-    self.m_TopicItem.cellHeight = 54.0f;
+    self.m_TopicItem.cellHeight = 50.0f;
 
     self.m_CommentItem = [BMTableViewItem itemWithTitle:@"我的评论" imageName:@"login_mobile" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
     }];
     self.m_CommentItem.textFont = FS_CELLTITLE_TEXTFONT;
     self.m_CommentItem.highlightBgColor = UI_COLOR_BL1;
-    self.m_CommentItem.cellHeight = 54.0f;
+    self.m_CommentItem.cellHeight = 50.0f;
 
-    self.m_CollectItem = [BMTableViewItem itemWithTitle:@"我的收藏" imageName:@"login_mobile" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
+    self.m_CollectItem = [BMTableViewItem itemWithTitle:@"我的收藏" imageName:@"login_mobile" underLineDrawType:BMTableViewCell_UnderLineDrawType_None accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
     }];
     self.m_CollectItem.textFont = FS_CELLTITLE_TEXTFONT;
     self.m_CollectItem.highlightBgColor = UI_COLOR_BL1;
-    self.m_CollectItem.cellHeight = 54.0f;
+    self.m_CollectItem.cellHeight = 50.0f;
 
     [self.m_UserSection addItem:self.m_TopicItem];
     [self.m_UserSection addItem:self.m_CommentItem];
@@ -137,28 +140,28 @@
     }];
     self.m_HelpItem.textFont = FS_CELLTITLE_TEXTFONT;
     self.m_HelpItem.highlightBgColor = UI_COLOR_BL1;
-    self.m_HelpItem.cellHeight = 54.0f;
+    self.m_HelpItem.cellHeight = 50.0f;
 
     self.m_ServiceItem = [BMTableViewItem itemWithTitle:@"联系客服" imageName:@"login_mobile" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
     }];
     self.m_ServiceItem.textFont = FS_CELLTITLE_TEXTFONT;
     self.m_ServiceItem.highlightBgColor = UI_COLOR_BL1;
-    self.m_ServiceItem.cellHeight = 54.0f;
+    self.m_ServiceItem.cellHeight = 50.0f;
     
-    self.m_ShareItem = [BMTableViewItem itemWithTitle:@"分享APP" imageName:@"login_mobile" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
+    self.m_ShareItem = [BMTableViewItem itemWithTitle:@"分享APP" imageName:@"login_mobile" underLineDrawType:BMTableViewCell_UnderLineDrawType_None accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
     }];
     self.m_ShareItem.textFont = FS_CELLTITLE_TEXTFONT;
     self.m_ShareItem.highlightBgColor = UI_COLOR_BL1;
-    self.m_ShareItem.cellHeight = 54.0f;
+    self.m_ShareItem.cellHeight = 50.0f;
     
     [self.m_AppSection addItem:self.m_HelpItem];
     [self.m_AppSection addItem:self.m_ServiceItem];
     [self.m_AppSection addItem:self.m_ShareItem];
 
-    self.m_UserSection.footerHeight = 0.001f;
-    self.m_AppSection.headerHeight = 18.0f;
+    self.m_UserSection.footerHeight = 0.0f;
+    self.m_AppSection.headerHeight = 10.0f;
     
     [self.m_TableManager addSection:self.m_UserSection];
     [self.m_TableManager addSection:self.m_AppSection];
@@ -196,7 +199,8 @@
     {
         FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
         
-        self.m_AvatarImageView.image = [UIImage imageNamed:@"default_avataricon"];
+        [self.m_AvatarImageView sd_setImageWithURL:[NSURL URLWithString:userInfo.m_UserBaseInfo.m_AvatarUrl] placeholderImage:[UIImage imageNamed:@"default_avatariconlarge"] options:SDWebImageRetryFailed|SDWebImageLowPriority];
+        //self.m_AvatarImageView.image = [UIImage imageNamed:@"default_avatariconlarge"];
         
         if ([userInfo.m_UserBaseInfo.m_NickName bm_isNotEmpty])
         {
@@ -210,7 +214,7 @@
     }
     else
     {
-        self.m_AvatarImageView.image = [UIImage imageNamed:@"default_avataricon"];
+        self.m_AvatarImageView.image = [UIImage imageNamed:@"default_avatariconlarge"];
         
         self.m_NameLabel.text = @"未登录";
         self.m_StatusLabel.text = @"点击登录/注册";
@@ -275,7 +279,9 @@
     
     if ([FSUserInfoModle isLogin])
     {
-    
+        FSCustomInfoVC *vc = [[FSCustomInfoVC alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else
     {
@@ -291,38 +297,38 @@
 
 #pragma mark - UIScrollViewDelegate
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    [self.m_TopView bm_bringToFront];
-    [self.m_TableView.bm_freshHeaderView bm_bringToFront];
-    
-    CGFloat offsetY = scrollView.contentOffset.y;
-    CGFloat happenOffsetY = scrollView.contentInset.top;
-    
-    //NSLog(@"%@", @(offsetY));
-    //NSLog(@"%@", @(happenOffsetY));
-    
-    CGFloat maxOffset = 40;
-
-    CGFloat pullingPercent = (happenOffsetY + offsetY) / maxOffset;
-    
-    self.m_TableView.bm_freshHeaderView.hidden = YES;
-
-    if (pullingPercent <= 0.0f)
-    {
-        self.bm_NavigationBarAlpha = 1.0f;
-        self.m_TableView.bm_freshHeaderView.hidden = NO;
-    }
-    else if (pullingPercent <= 1.0f)
-    {
-        self.bm_NavigationBarAlpha = 1.0f - pullingPercent;
-    }
-    else
-    {
-        self.bm_NavigationBarAlpha = 0.0f;
-    }
-    [self bm_setNeedsUpdateNavigationBarAlpha];
-}
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    [self.m_TopView bm_bringToFront];
+//    [self.m_TableView.bm_freshHeaderView bm_bringToFront];
+//
+//    CGFloat offsetY = scrollView.contentOffset.y;
+//    CGFloat happenOffsetY = scrollView.contentInset.top;
+//
+//    //NSLog(@"%@", @(offsetY));
+//    //NSLog(@"%@", @(happenOffsetY));
+//
+//    CGFloat maxOffset = 40;
+//
+//    CGFloat pullingPercent = (happenOffsetY + offsetY) / maxOffset;
+//
+//    self.m_TableView.bm_freshHeaderView.hidden = YES;
+//
+//    if (pullingPercent <= 0.0f)
+//    {
+//        self.bm_NavigationBarAlpha = 1.0f;
+//        self.m_TableView.bm_freshHeaderView.hidden = NO;
+//    }
+//    else if (pullingPercent <= 1.0f)
+//    {
+//        self.bm_NavigationBarAlpha = 1.0f - pullingPercent;
+//    }
+//    else
+//    {
+//        self.bm_NavigationBarAlpha = 0.0f;
+//    }
+//    [self bm_setNeedsUpdateNavigationBarAlpha];
+//}
 
 
 #pragma mark -

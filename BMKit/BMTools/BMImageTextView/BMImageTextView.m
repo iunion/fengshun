@@ -13,6 +13,7 @@
 
 #define IMAGE_GAP           4.0f
 #define IMAGETEXT_GAP       4.0f
+#define ACCESSORYARROW_GAP  8.0f
 
 #define ARROWIMAGE_WIDTH    12.0f
 
@@ -92,6 +93,7 @@
     _textFont = textFont;
     
     _imageTextGap = gap;
+    _accessoryArrowGap = ACCESSORYARROW_GAP;
     
     if (height <= 0)
     {
@@ -260,7 +262,7 @@
         }
         else
         {
-            [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.imageUrl] placeholderImage:nil options:SDWebImageRetryFailed|SDWebImageLowPriority completed:nil];
+            [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.imageUrl] placeholderImage:[UIImage imageNamed:self.placeholderImageName] options:SDWebImageRetryFailed|SDWebImageLowPriority completed:nil];
             
             imageHeight = self.bm_height - IMAGE_GAP;
             imageWidth = imageHeight;
@@ -274,7 +276,19 @@
     }
     else
     {
-        self.imageView.hidden = YES;
+        UIImage *image = [UIImage imageNamed:self.placeholderImageName];
+        if (image)
+        {
+            self.imageView.hidden = NO;
+            self.imageView.image = image;
+            
+            imageHeight = self.bm_height - IMAGE_GAP;
+            imageWidth = imageHeight;
+        }
+        else
+        {
+            self.imageView.hidden = YES;
+        }
         
         self.imageView.bm_width = imageWidth;
         self.imageView.bm_height = imageHeight;
@@ -282,7 +296,7 @@
         
     if (self.showTableCellAccessoryArrow)
     {
-        imageWidth = imageWidth + ARROWIMAGE_WIDTH + self.imageTextGap;
+        imageWidth = imageWidth + ARROWIMAGE_WIDTH + self.accessoryArrowGap;
     }
 
     if (self.maxWidth)
@@ -319,6 +333,15 @@
         self.textLabel.bm_left = 0;
         self.imageView.bm_left = textSize.width + self.imageTextGap;
     }
+    
+    if (self.circleImage)
+    {
+        [self.imageView bm_circleView];
+    }
+    else
+    {
+        [self.imageView bm_removeBorders];
+    }
 }
 
 
@@ -342,6 +365,30 @@
     }
     
     _imageName = imageName;
+    
+    [self setNeedsLayout];
+}
+
+- (void)setImageUrl:(NSString *)imageUrl
+{
+    if ([imageUrl isEqual:_imageUrl])
+    {
+        return;
+    }
+    
+    _imageUrl = imageUrl;
+    
+    [self setNeedsLayout];
+}
+
+- (void)setPlaceholderImageName:(NSString *)placeholderImageName
+{
+    if ([placeholderImageName isEqual:_placeholderImageName])
+    {
+        return;
+    }
+    
+    _placeholderImageName = placeholderImageName;
     
     [self setNeedsLayout];
 }
@@ -429,6 +476,13 @@
     }
     
     _imageSize = imageSize;
+    
+    [self setNeedsLayout];
+}
+
+- (void)setCircleImage:(BOOL)circleImage
+{
+    _circleImage = circleImage;
     
     [self setNeedsLayout];
 }

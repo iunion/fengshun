@@ -262,7 +262,7 @@
 }
 
  // 获取下一页
- - (void)loadNextApiData
+- (void)loadNextApiData
 {
     if (![self canLoadApiData])
     {
@@ -313,8 +313,8 @@
     
     [self hideEmptyView];
     
-    //[self.m_DataTask cancel];
-    //self.m_DataTask = nil;
+    [self.m_DataTask cancel];
+    self.m_DataTask = nil;
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSMutableURLRequest *request = [self setLoadDataRequest];
@@ -404,10 +404,13 @@
         return;
     }
 
-    BMLog(@"API返回数据是:+++++%@", responseDic);
-    
+#if DEBUG
+    NSString *responseStr = [[NSString stringWithFormat:@"%@", responseDic] bm_convertUnicode];
+    BMLog(@"API返回数据是:+++++%@", responseStr);
+#endif
+
     NSInteger statusCode = [responseDic bm_intForKey:@"code"];
-    if (statusCode == 0)
+    if (statusCode == 1000)
     {
         if (self.m_ShowResultHUD)
         {
@@ -496,6 +499,12 @@
             [self.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
 #endif
         }
+
+        // StateError
+        [self.m_TableView resetFreshHeaderState];
+        [self.m_TableView resetFreshFooterState];
+        
+        [self showEmptyViewWithStatus:BMEmptyViewStatus_DataError];
 
         self.m_IsLoadNew = NO;
     }

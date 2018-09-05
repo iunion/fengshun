@@ -92,6 +92,14 @@
     self.m_IsFacialVerify = [dic bm_boolForKey:@"isFacialVerify"];
     // 实名认证: isRealName
     self.m_IsRealName = [dic bm_boolForKey:@"isRealName"];
+    if (![self.m_RealName bm_isNotEmpty])
+    {
+        self.m_IsRealName = NO;
+    }
+    if (!self.m_IsRealName)
+    {
+        self.m_RealName = nil;
+    }
 
     // 职位: job
     self.m_Job = [dic bm_stringTrimForKey:@"job"];

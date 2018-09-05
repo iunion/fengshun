@@ -147,8 +147,11 @@
         return;
     }
     
-    BMLog(@"API返回数据是:+++++%@", responseDic);
-    
+#if DEBUG
+    NSString *responseStr = [[NSString stringWithFormat:@"%@", responseDic] bm_convertUnicode];
+    BMLog(@"API返回数据是:+++++%@", responseStr);
+#endif
+
     NSInteger statusCode = [responseDic bm_intForKey:@"code"];
     if (statusCode == 1000)
     {

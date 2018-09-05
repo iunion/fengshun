@@ -12,10 +12,10 @@
 typedef void(^PushVCCallBack)(id object);
 
 @interface FSPushVCManager : NSObject
-//社区二级页面
+// 社区二级页面
 + (void)showCommunitySecVCPushVC:(UIViewController *)pushVC;
 
-//社区详情
+// 社区详情
 + (void)showPostDetailVCWithPushVC:(UIViewController *)pushVC url:(NSString *)url;
 
 // 发帖
