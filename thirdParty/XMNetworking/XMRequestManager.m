@@ -104,20 +104,20 @@
     [XMCenter setupConfig:^(XMConfig *config) {
         config.generalServer = FS_URL_SERVER;
         config.callbackQueue = dispatch_get_main_queue();
-//        config.generalHeaders = nil;
+        //        config.generalHeaders = nil;
         NSMutableDictionary *genearHeaers = [NSMutableDictionary dictionary];
         // 时间戳
         NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
-        NSString *tmp = [NSString stringWithFormat:@"%@", @(time)];
+        NSString *tmp       = [NSString stringWithFormat:@"%@", @(time)];
         [genearHeaers setValue:tmp forKey:@"timer"];
-        
+
         // GPS定位
         [genearHeaers setValue:[NSString stringWithFormat:@"%f", [FSLocation userLocationLongitude]] forKey:FSAPI_GPS_LONGITUDE_KEY];
         [genearHeaers setValue:[NSString stringWithFormat:@"%f", [FSLocation userLocationLatitude]] forKey:FSAPI_GPS_LATITUDE_KEY];
-        
+
         // 网络状态
         [genearHeaers setValue:[FSCoreStatus currentFSNetWorkStatusString] forKey:@"netWorkStandard"];
-        
+
         // token
         if ([FSUserInfoModle isLogin])
         {

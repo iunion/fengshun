@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "FSPageBannerView.h"
 
+#define HEADER_CONST_HEIGHT 473.0f
+
 @protocol FSMainHeaderDelegate <NSObject>
 
 - (void)headerButtonClikedAtIndex:(NSUInteger)index;
@@ -20,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UIView *                       m_topView;
 @property (nonatomic, strong) FSPageBannerView *                    m_bannerView;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *m_topimageButtons;
+@property (weak, nonatomic) IBOutlet UICollectionView *m_toolCollectionView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *m_toolHeightConstraint;
 
 @property (nonatomic, weak) id<FSBannerViewDelegate, FSMainHeaderDelegate> delegate;
 - (instancetype)initWithFrame:(CGRect)frame andDelegate:(id<FSBannerViewDelegate, FSMainHeaderDelegate>)delegate;

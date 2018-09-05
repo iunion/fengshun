@@ -40,7 +40,8 @@ FSMainVC ()
     [self.m_TableView registerNib:[UINib nibWithNibName:@"FSCourseTableCell" bundle:nil] forCellReuseIdentifier:@"FSCourseTableCell"];
     self.m_TableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [FSApiRequest getHomeDataSuccess:^(id  _Nullable responseObject) {
-        
+        NSDictionary *data = responseObject;
+        NSArray *banners = data[@"broadcastPictures"];
     } failure:^(NSError * _Nullable error) {
         
     }];
@@ -57,8 +58,8 @@ FSMainVC ()
     self.m_TableView.frame                        = CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT-UI_TAB_BAR_HEIGHT);
     [self setBm_NavigationBarImage:[UIImage imageWithColor:[UIColor whiteColor]]];
     [self setBm_NavigationBarAlpha:0];
-    self.m_headerView = [[FSMainHeaderView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 261.0 / 667 * UI_SCREEN_HEIGHT + 391) andDelegate:self];
-    BMLog(@"+++++++++screen width:%f,screen height:%f", UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT);
+    self.m_headerView = [[FSMainHeaderView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, HEADER_CONST_HEIGHT +190) andDelegate:self];
+    
     self.m_TableView.tableHeaderView = _m_headerView;
     NSArray *dataArray               = @[
         @"http://pic01.babytreeimg.com/foto3/photos/2014/0211/68/2/4170109a41ca935610bf8_b.png",
