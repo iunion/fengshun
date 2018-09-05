@@ -8,10 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "XMNetworking.h"
+#import "FSAPIMacros.h"
 
 
-#define kGeneralServer @""
-#define TIMEOUT_SECONDS 60
 
 @interface XMUploadFile : NSObject
 

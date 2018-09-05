@@ -99,11 +99,13 @@
     
     BMWeakSelf
     self.m_TopicItem = [BMTableViewItem itemWithTitle:@"我的帖子" imageName:@"login_mobile" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
+        BMStrongSelf
         FSSearchViewController *searchViewController = [[FSSearchViewController alloc] initWithSearchKey:@"test"
-                                                                                           hotSearchTags:@[ @"1", @"2" ]
+                                                                                           hotSearchTags:@[@"婚姻继承", @"借贷纠纷",@"婚姻继承", @"借贷纠纷",@"婚姻继承", @"借贷纠纷",@"婚姻继承", @"借贷纠纷",@"婚姻继承", @"借贷纠纷"]
                                                                                            searchHandler:^(NSString *search) {
                                                                                                NSLog(@"search");
                                                                                            }];
+        searchViewController.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:searchViewController animated:YES];
     }];
     self.m_TopicItem.textFont = FS_CELLTITLE_TEXTFONT;

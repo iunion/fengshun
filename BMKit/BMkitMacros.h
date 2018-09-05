@@ -182,7 +182,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 // 弱引用/强引用 weakSelf
 #define BMWeakSelf __weak typeof(self) weakSelf = self;
-#define BMStrongSelf __strong typeof(self) strongSelf = weakSelf;
+#define BMStrongSelf __strong typeof(weakSelf) self = weakSelf;
 
 // 弱引用/强引用 weakType
 #define BMWeakType(type)     __weak typeof(type) weak##type = type;

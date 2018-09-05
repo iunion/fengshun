@@ -446,6 +446,10 @@
 		DB57223C2133A1D90065DC30 /* FSCommunityVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB57223A2133A1D90065DC30 /* FSCommunityVC.xib */; };
 		DB8D16112137CC9800EB16E8 /* FSMainHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8D16102137CC9800EB16E8 /* FSMainHeaderView.m */; };
 		DB8D16132137CCAC00EB16E8 /* FSMainHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB8D16122137CCAC00EB16E8 /* FSMainHeaderView.xib */; };
+		DBD4CDE9213E2C7F00857DB3 /* FSSearchReaultView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD4CDE8213E2C7F00857DB3 /* FSSearchReaultView.m */; };
+		DBD4CDEE213E37A000857DB3 /* FSFilterHeaderResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD4CDED213E37A000857DB3 /* FSFilterHeaderResultView.m */; };
+		DBD4CDF1213E383500857DB3 /* FSRulesSearchResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD4CDF0213E383500857DB3 /* FSRulesSearchResultView.m */; };
+		DBD4CDF8213FAA8800857DB3 /* FSApiRequest+HomePage.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD4CDF7213FAA8800857DB3 /* FSApiRequest+HomePage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1283,6 +1287,14 @@
 		DB8D160F2137CC9800EB16E8 /* FSMainHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMainHeaderView.h; sourceTree = "<group>"; };
 		DB8D16102137CC9800EB16E8 /* FSMainHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMainHeaderView.m; sourceTree = "<group>"; };
 		DB8D16122137CCAC00EB16E8 /* FSMainHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSMainHeaderView.xib; sourceTree = "<group>"; };
+		DBD4CDE7213E2C7F00857DB3 /* FSSearchReaultView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSearchReaultView.h; sourceTree = "<group>"; };
+		DBD4CDE8213E2C7F00857DB3 /* FSSearchReaultView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSSearchReaultView.m; sourceTree = "<group>"; };
+		DBD4CDEC213E37A000857DB3 /* FSFilterHeaderResultView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSFilterHeaderResultView.h; sourceTree = "<group>"; };
+		DBD4CDED213E37A000857DB3 /* FSFilterHeaderResultView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSFilterHeaderResultView.m; sourceTree = "<group>"; };
+		DBD4CDEF213E383500857DB3 /* FSRulesSearchResultView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSRulesSearchResultView.h; sourceTree = "<group>"; };
+		DBD4CDF0213E383500857DB3 /* FSRulesSearchResultView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSRulesSearchResultView.m; sourceTree = "<group>"; };
+		DBD4CDF6213FAA8800857DB3 /* FSApiRequest+HomePage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FSApiRequest+HomePage.h"; sourceTree = "<group>"; };
+		DBD4CDF7213FAA8800857DB3 /* FSApiRequest+HomePage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "FSApiRequest+HomePage.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2131,6 +2143,7 @@
 		87426A9921314996003C52F6 /* FSSearchViewController */ = {
 			isa = PBXGroup;
 			children = (
+				DBD4CDEA213E2F0B00857DB3 /* resultView */,
 				87426A9A21314996003C52F6 /* FSSearchViewController.h */,
 				87426A9B21314996003C52F6 /* FSSearchViewController.m */,
 			);
@@ -2190,6 +2203,8 @@
 				87D20B1C213CF9DD001EDD60 /* FSApiUserRequest.m */,
 				AD510296213E560F008CD74D /* FSApiRequest+Community.h */,
 				AD510297213E560F008CD74D /* FSApiRequest+Community.m */,
+				DBD4CDF6213FAA8800857DB3 /* FSApiRequest+HomePage.h */,
+				DBD4CDF7213FAA8800857DB3 /* FSApiRequest+HomePage.m */,
 			);
 			path = FSApiRequest;
 			sourceTree = "<group>";
@@ -3002,6 +3017,27 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		DBD4CDEA213E2F0B00857DB3 /* resultView */ = {
+			isa = PBXGroup;
+			children = (
+				DBD4CDEB213E373400857DB3 /* superResultView */,
+				DBD4CDEC213E37A000857DB3 /* FSFilterHeaderResultView.h */,
+				DBD4CDED213E37A000857DB3 /* FSFilterHeaderResultView.m */,
+				DBD4CDEF213E383500857DB3 /* FSRulesSearchResultView.h */,
+				DBD4CDF0213E383500857DB3 /* FSRulesSearchResultView.m */,
+			);
+			path = resultView;
+			sourceTree = "<group>";
+		};
+		DBD4CDEB213E373400857DB3 /* superResultView */ = {
+			isa = PBXGroup;
+			children = (
+				DBD4CDE7213E2C7F00857DB3 /* FSSearchReaultView.h */,
+				DBD4CDE8213E2C7F00857DB3 /* FSSearchReaultView.m */,
+			);
+			path = superResultView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -3376,6 +3412,7 @@
 				874268F1212E7E36003C52F6 /* UIButton+BMContentRect.m in Sources */,
 				87D20ABE213920E2001EDD60 /* FLEXArgumentInputView.m in Sources */,
 				87D20AC0213920E2001EDD60 /* FLEXArgumentInputSwitchView.m in Sources */,
+				DBD4CDF8213FAA8800857DB3 /* FSApiRequest+HomePage.m in Sources */,
 				87426901212E7E36003C52F6 /* NSData+BMEncrypt.m in Sources */,
 				87426909212E7E36003C52F6 /* NSString+BMRegEx.m in Sources */,
 				874268D1212E7E36003C52F6 /* BMTabItemButton.m in Sources */,
@@ -3385,6 +3422,7 @@
 				874268D9212E7E36003C52F6 /* UIViewController+BMNavigationItem.m in Sources */,
 				87D209EA2138FF46001EDD60 /* RSKImageCropViewController.m in Sources */,
 				87426A90213146A6003C52F6 /* XMEngine.m in Sources */,
+				DBD4CDF1213E383500857DB3 /* FSRulesSearchResultView.m in Sources */,
 				874268ED212E7E36003C52F6 /* CAAnimation+Animation.m in Sources */,
 				87D20AB9213920E2001EDD60 /* FLEXMethodCallingViewController.m in Sources */,
 				87D20ADF213920E2001EDD60 /* FLEXLibrariesTableViewController.m in Sources */,
@@ -3557,6 +3595,7 @@
 				DB5722352133A0FC0065DC30 /* FSScrollPageSegment.m in Sources */,
 				87D20AE8213920E2001EDD60 /* FLEXRuntimeUtility.m in Sources */,
 				87D20AD9213920E2001EDD60 /* FLEXTableColumnHeader.m in Sources */,
+				DBD4CDE9213E2C7F00857DB3 /* FSSearchReaultView.m in Sources */,
 				874268F7212E7E36003C52F6 /* UIButton+BMCategory.m in Sources */,
 				87426903212E7E36003C52F6 /* NSString+BMEncrypt.m in Sources */,
 				87D20AB0213920E2001EDD60 /* FLEXNetworkTransactionDetailTableViewController.m in Sources */,
@@ -3574,6 +3613,7 @@
 				AD22449E213CD6C300F2DC47 /* MASLayoutConstraint.m in Sources */,
 				87426902212E7E36003C52F6 /* NSData+BMCategory.m in Sources */,
 				874268AB212E7E36003C52F6 /* BMTableViewSliderCell.m in Sources */,
+				DBD4CDEE213E37A000857DB3 /* FSFilterHeaderResultView.m in Sources */,
 				8742690C212E7E36003C52F6 /* NSObject+BMCategory.m in Sources */,
 				874268EB212E7E36003C52F6 /* UIView+BMSize.m in Sources */,
 				87D20ABB213920E2001EDD60 /* FLEXFieldEditorViewController.m in Sources */,
