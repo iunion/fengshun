@@ -45,7 +45,7 @@
 
 - (BMFreshViewType)getFreshViewType
 {
-    return BMFreshViewType_Head;
+    return BMFreshViewType_NONE;
 }
 
 - (void)viewDidLoad
@@ -192,14 +192,19 @@
 {
     if ([FSUserInfoModle isLogin])
     {
+        FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
+        
         self.m_AvatarImageView.image = [UIImage imageNamed:@"default_avataricon"];
         
-        self.m_NameLabel.text = @"未登录";
-        self.m_StatusLabel.text = @"点击登录/注册";
-
-        self.m_ApproveLabel.backgroundColor = UI_COLOR_G1;
-        self.m_ApproveLabel.text = @"已认证";
-        self.m_ApproveBtn.userInteractionEnabled = NO;
+        if ([userInfo.m_UserBaseInfo.m_NickName bm_isNotEmpty])
+        {
+            self.m_NameLabel.text = userInfo.m_UserBaseInfo.m_NickName;
+        }
+        else
+        {
+            self.m_NameLabel.text = [userInfo.m_UserBaseInfo.m_PhoneNum bm_maskAtRang:NSMakeRange(3, 4) withMask:'*'];
+        }
+        self.m_StatusLabel.text = userInfo.m_UserBaseInfo.m_Job;
     }
     else
     {
@@ -207,11 +212,9 @@
         
         self.m_NameLabel.text = @"未登录";
         self.m_StatusLabel.text = @"点击登录/注册";
-
-        self.m_ApproveLabel.backgroundColor = UI_COLOR_R1;
-        self.m_ApproveLabel.text = @"立即认证";
-        self.m_ApproveBtn.userInteractionEnabled = YES;
     }
+    
+    [self freshApprove];
     
     UIButton *btn = [self bm_getNavigationRightItemAtIndex:0];
     btn.badgeFont = UI_FONT_9;
@@ -232,14 +235,50 @@
         gap = 2.0f;
     }
     self.m_ApproveBtn.bm_left = self.m_NameLabel.bm_left + width + gap;
-    self.m_LoginBtn.bm_width = self.m_NameLabel.bm_left + width;
+    self.m_LoginBtn.bm_width = self.m_NameLabel.bm_left + width - self.m_AvatarImageView.bm_left;
+}
+
+- (void)freshApprove
+{
+    if ([FSUserInfoModle isLogin])
+    {
+        self.m_ApproveLabel.hidden = NO;
+        self.m_ApproveBtn.hidden = NO;
+        
+        FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
+        if (userInfo.m_UserBaseInfo.m_IsRealName)
+        {
+            self.m_ApproveLabel.backgroundColor = UI_COLOR_G1;
+            self.m_ApproveLabel.text = @"已认证";
+            self.m_ApproveBtn.userInteractionEnabled = NO;
+        }
+        else
+        {
+            self.m_ApproveLabel.backgroundColor = UI_COLOR_R1;
+            self.m_ApproveLabel.text = @"立即认证";
+            self.m_ApproveBtn.userInteractionEnabled = YES;
+        }
+    }
+    else
+    {
+        self.m_ApproveLabel.hidden = YES;
+        self.m_ApproveBtn.hidden = YES;
+        self.m_ApproveBtn.userInteractionEnabled = NO;
+    }
 }
 
 - (void)loginAction:(id)sender
 {
     NSLog(@"loginAction");
     
-    [self showLogin];
+    if ([FSUserInfoModle isLogin])
+    {
+    
+    }
+    else
+    {
+        [self showLogin];
+    }
 }
 
 - (void)approveAction:(id)sender
@@ -283,5 +322,13 @@
     [self bm_setNeedsUpdateNavigationBarAlpha];
 }
 
+
+#pragma mark -
+#pragma mark FSLoginDelegate
+
+- (void)loginFinished
+{
+    [self freshViews];
+}
 
 @end

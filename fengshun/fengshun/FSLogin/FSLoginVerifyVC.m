@@ -89,6 +89,8 @@
     }
     
     [self interfaceSettings];
+    
+    [self getVerificationCode:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -391,7 +393,10 @@
             }
             else
             {
-                BMLog(@"%@ %@", response, responseObject);
+#if DEBUG
+                NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
+                BMLog(@"%@ %@", response, responseStr);
+#endif
                 [weakSelf getVerificationCodeRequestFinished:response responseDic:responseObject];
             }
         }];
@@ -427,7 +432,10 @@
         return;
     }
     
-    BMLog(@"获取短信验证码返回数据是:+++++%@", resDic);
+#if DEBUG
+    NSString *responseStr = [[NSString stringWithFormat:@"%@", resDic] bm_convertUnicode];
+    BMLog(@"获取短信验证码返回数据是:+++++%@", responseStr);
+#endif
     
     NSInteger statusCode = [resDic bm_intForKey:@"code"];
     if (statusCode == 1000)
@@ -515,7 +523,10 @@
             }
             else
             {
-                BMLog(@"%@ %@", response, responseObject);
+#if DEBUG
+                NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
+                BMLog(@"%@ %@", response, responseStr);
+#endif
                 [weakSelf checkVerificationCodeRequestFinished:response responseDic:responseObject];
             }
         }];
@@ -551,7 +562,10 @@
         return;
     }
     
-    BMLog(@"验证短信验证码返回数据是:+++++%@", resDic);
+#if DEBUG
+    NSString *responseStr = [[NSString stringWithFormat:@"%@", resDic] bm_convertUnicode];
+    BMLog(@"验证短信验证码返回数据是:+++++%@", responseStr);
+#endif
     
     NSInteger statusCode = [resDic bm_intForKey:@"code"];
     if (statusCode == 1000)

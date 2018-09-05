@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 🔐身份证号: idCard
 @property (nullable, nonatomic, strong) NSString *m_IdCardNo;
 // 🔐邮箱: email
-//@property (nullable, nonatomic, strong) NSString *m_Email;
+@property (nullable, nonatomic, strong) NSString *m_Email;
 // 昵称: nickName
 @property (nullable, nonatomic, strong) NSString *m_NickName;
 // 性别: sex
@@ -41,19 +41,26 @@ NS_ASSUME_NONNULL_BEGIN
 // 实名认证: isRealName
 @property (nonatomic, assign) BOOL m_IsRealName;
 
+// 职位: job
+@property (nullable, nonatomic, strong) NSString *m_Job;
+
+
+#pragma mark - searchUserBaseInfo
+
+// 擅长领域: ability ','分割成数组
+@property (nullable, nonatomic, strong) NSString *m_Ability;
+@property (nullable, nonatomic, strong) NSMutableArray *m_AbilityArray;
+// 从业时间: employmentTime
+@property (nonatomic, assign) NSUInteger m_EmploymentTime;
+// 个人签名: personalitySignature
+@property (nullable, nonatomic, strong) NSString *m_Signature;
+// 工作机构: workOrganization
+@property (nullable, nonatomic, strong) NSString *m_Organization;
+// 工作年限: workingLife
+@property (nonatomic, assign) NSUInteger m_WorkingLife;
+
+
 + (instancetype)userBaseInfoWithServerDic:(NSDictionary *)dic;
-- (void)updateWithServerDic:(NSDictionary *)dic;
-
-@end
-
-@interface FSUserRoleModle : NSObject
-
-// 用户身份: roleName
-@property (nullable, nonatomic, strong) NSString *m_Role;
-// 用户身份编码: roleCode
-@property (nullable, nonatomic, strong) NSString *m_RoleCode;
-
-+ (instancetype)userRoleWithServerDic:(NSDictionary *)dic;
 - (void)updateWithServerDic:(NSDictionary *)dic;
 
 @end
@@ -69,8 +76,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *m_RefreshToken;
 
 @property (nonatomic, strong) FSUserBaseInfoModle *m_UserBaseInfo;
-
-@property (nonatomic, strong) FSUserRoleModle *m_UserRole;
 
 + (FSUserInfoModle *)userInfo;
 

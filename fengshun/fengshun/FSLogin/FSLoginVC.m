@@ -405,7 +405,10 @@
             }
             else
             {
-                BMLog(@"%@ %@", response, responseObject);
+#if DEBUG
+                NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
+                BMLog(@"%@ %@", response, responseStr);
+#endif
                 [weakSelf loginCheckRequestFinished:response responseDic:responseObject];
             }
         }];
@@ -426,7 +429,10 @@
         return;
     }
     
-    BMLog(@"登录检查返回数据是:+++++%@", resDic);
+#if DEBUG
+    NSString *responseStr = [[NSString stringWithFormat:@"%@", resDic] bm_convertUnicode];
+    BMLog(@"登录检查返回数据是:+++++%@", responseStr);
+#endif
     
     NSInteger statusCode = [resDic bm_intForKey:@"code"];
     if (statusCode == 1000)
@@ -504,7 +510,10 @@
             }
             else
             {
-                BMLog(@"%@ %@", response, responseObject);
+#if DEBUG
+                NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
+                BMLog(@"%@ %@", response, responseStr);
+#endif
                 [weakSelf loginRequestFinished:response responseDic:responseObject];
             }
         }];
@@ -525,7 +534,10 @@
         return;
     }
     
-    BMLog(@"登录返回数据是:+++++%@", resDic);
+#if DEBUG
+    NSString *responseStr = [[NSString stringWithFormat:@"%@", resDic] bm_convertUnicode];
+    BMLog(@"登录返回数据是:+++++%@", responseStr);
+#endif
     
     NSInteger statusCode = [resDic bm_intForKey:@"code"];
     if (statusCode == 1000)
