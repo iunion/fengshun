@@ -73,12 +73,12 @@
 
 // JWTToken
 // timer        当前时间戳
-+ (AFHTTPRequestSerializer *)requestSerializer
++ (AFJSONRequestSerializer *)requestSerializer
 {
-    static AFHTTPRequestSerializer *FSRequestSerializer;
+    static AFJSONRequestSerializer *FSRequestSerializer;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        FSRequestSerializer = [AFHTTPRequestSerializer serializer];
+        FSRequestSerializer = [AFJSONRequestSerializer serializer];
         FSRequestSerializer.timeoutInterval = FSAPI_TIMEOUT_SECONDS;
         // 设备号
         [FSRequestSerializer setValue:[FSAppInfo getOpenUDID] forHTTPHeaderField:@"deviceId"];
@@ -125,7 +125,7 @@
 
 + (NSMutableURLRequest *)makeRequestWithURL:(NSString *)URLString parameters:(NSDictionary *)parameters isPost:(BOOL)isPost
 {
-    AFHTTPRequestSerializer *requestSerializer = [FSApiRequest requestSerializer];
+    AFJSONRequestSerializer *requestSerializer = [FSApiRequest requestSerializer];
     
     NSMutableDictionary *parameterDic;
     if ([parameters bm_isNotEmptyDictionary])

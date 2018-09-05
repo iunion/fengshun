@@ -1,16 +1,13 @@
 //
-//  FSMainVC.h
+//  FSCommunitySecVC.h
 //  fengshun
 //
-//  Created by jiang deng on 2018/8/25.
+//  Created by best2wa on 2018/9/4.
 //  Copyright © 2018年 FS. All rights reserved.
 //
 
 #import "FSTableViewVC.h"
 
-
-
-
-@interface FSMainVC : FSTableViewVC
+@interface FSCommunitySecVC : FSTableViewVC
 
 @end

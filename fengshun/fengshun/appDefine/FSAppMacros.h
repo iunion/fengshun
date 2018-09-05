@@ -9,7 +9,7 @@
 #ifndef FSAppMacros_h
 #define FSAppMacros_h
 
-#define FSAPP_APPNAME       @"fs"
+#define FSAPP_APPNAME       @"ftls"
 
 #define FSTABLE_EACHLOAD_COUNT          20
 

@@ -20,4 +20,9 @@
 
 //#define APPSTORE_CHECK_VERSON_ADDRESS @"http://itunes.apple.com/lookup?id=628470263"
 
+// 腾讯OCR
+#define TXOCR_AppId = "1255516392";
+#define TXOCR_SecretId = "AKIDZ9YjhTPNTJuGNEoKWUEk25uUq43mKSP8";
+#define TXOCR_SecretKey = "bx33rQkqhKhoghTzFF0VjiSwAxWrxnNh";
+
 #endif /* FSAppConfig_h */

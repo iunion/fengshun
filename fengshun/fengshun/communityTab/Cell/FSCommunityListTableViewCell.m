@@ -11,7 +11,8 @@
 
 @implementation FSCommunityListTableViewCell
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
     // Initialization code
     [_m_CategoryView bm_roundedRect:_m_CategoryView.bm_height/2];

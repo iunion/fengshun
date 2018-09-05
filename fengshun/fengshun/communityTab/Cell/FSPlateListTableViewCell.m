@@ -10,7 +10,8 @@
 
 @implementation FSPlateListTableViewCell
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
     // Initialization code
     [_m_ImgView bm_roundedRect:4];

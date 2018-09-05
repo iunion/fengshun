@@ -10,7 +10,8 @@
 
 @implementation FSPlateDetailListTableViewCell
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
     // Initialization code
     [_m_StickView bm_roundedRect:_m_StickView.bm_height/2];

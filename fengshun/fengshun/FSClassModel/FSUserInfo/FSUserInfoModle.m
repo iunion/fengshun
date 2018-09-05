@@ -67,6 +67,7 @@
     {
         return;
     }
+    self.m_UserId = userId;
 
     // 🔐真实姓名: userName
     self.m_RealName = [dic bm_stringTrimForKey:@"userName"];
@@ -178,7 +179,7 @@
     
     if (!userInfoApi)
     {
-        NSString *token = [dic bm_stringTrimForKey:@"token"];
+        NSString *token = [dic bm_stringTrimForKey:@"authToken"];
         if (![token bm_isNotEmpty])
         {
             return nil;
@@ -208,8 +209,8 @@
         
         _m_Token = [FSUserInfoModle getCurrentUserToken];
         
-        //_m_UserBaseInfo = [[FSUserBaseInfoModle alloc] init];
-        //_m_UserRole = [[FSUserRoleModle alloc] init];
+        _m_UserBaseInfo = [[FSUserBaseInfoModle alloc] init];
+        _m_UserRole = [[FSUserRoleModle alloc] init];
     }
     
     return self;
@@ -228,7 +229,7 @@
     if (!userInfoApi)
     {
         // 🔐用户令牌token(登录注册)💡: token
-        NSString *token = [dic bm_stringTrimForKey:@"token"];
+        NSString *token = [dic bm_stringTrimForKey:@"authToken"];
         if (![token bm_isNotEmpty])
         {
             return;
@@ -257,9 +258,11 @@
         return;
     }
 
-    self.m_UserBaseInfo = [FSUserBaseInfoModle userBaseInfoWithServerDic:userBaseDic];
-
-    self.m_UserRole = [FSUserRoleModle userRoleWithServerDic:userRoleDic];
+    //self.m_UserBaseInfo = [FSUserBaseInfoModle userBaseInfoWithServerDic:userBaseDic];
+    //self.m_UserRole = [FSUserRoleModle userRoleWithServerDic:userRoleDic];
+    
+    [self.m_UserBaseInfo updateWithServerDic:userBaseDic];
+    [self.m_UserRole updateWithServerDic:userRoleDic];
     
     // 最后更新时间
     self.m_LastUpdateTs = [[NSDate date] timeIntervalSince1970];

@@ -20,7 +20,6 @@
 // 是否使用手势返回，bm_CanBackInteractive设置
 
 
-
 #pragma mark -
 #pragma mark 登录/注册
 
@@ -28,6 +27,10 @@
 - (BOOL)showLogin;
 // 隐藏登录
 - (void)hideLogin;
+
+- (void)loginFinished;
+- (void)loginFailed;
+- (void)loginClosed;
 
 
 #pragma mark -
