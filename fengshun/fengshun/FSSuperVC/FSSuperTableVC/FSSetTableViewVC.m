@@ -52,6 +52,8 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
 
+    self.m_TableView.bounces = NO;
+
     s_IsNoMorePage = YES;
 
 //    if (IS_IPHONE6P)

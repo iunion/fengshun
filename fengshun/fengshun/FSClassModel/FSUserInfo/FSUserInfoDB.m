@@ -13,9 +13,9 @@
 static NSString *UserInfoDBName = @"userinfo.dat";
 static NSString *UserInfoDBTableName = @"userinfo";
 
-static NSString *UserInfoDBTableContent = @"userid text NOT NULL PRIMARY KEY, mobilenum text NOT NULL, token text NOT NULL, rftoken text, username text, usertype text, nickname text, idcard text, sex text, headurl text, isfacialverify bool, isrealname bool, rolename text, rolecode text, lastupdatets double";
+static NSString *UserInfoDBTableContent = @"userid text NOT NULL PRIMARY KEY, mobilephone text NOT NULL, token text NOT NULL, rftoken text, username text, usertype text, idcard text, nickname text, email text, sex text, headurl text, isfacialverify bool, isrealname bool, job text, ability text, organization text, employmenttime integer, workinglife integer, signature text, lastupdatets double";
 
-static NSString *UserInfoDBTableInsert = @"(userid, mobilenum, token, rftoken, username, usertype, nickname, idcard, sex, headurl, isfacialverify, isrealname, rolename, rolecode, lastupdatets) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+static NSString *UserInfoDBTableInsert = @"(userid, mobilephone, token, rftoken, username, usertype, idcard, nickname, email, sex, headurl, isfacialverify, isrealname, job, ability, organization, employmenttime, workinglife, signature, lastupdatets) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 
 @implementation FSUserInfoDB
@@ -82,7 +82,7 @@ static NSString *UserInfoDBTableInsert = @"(userid, mobilenum, token, rftoken, u
             userInfo.m_UserBaseInfo.m_UserType = [rs stringForColumn:@"usertype"];
             
             // 🔐用户手机号码: mobilenum
-            NSString *dbPhoneNum = [rs stringForColumn:@"mobilenum"];
+            NSString *dbPhoneNum = [rs stringForColumn:@"mobilephone"];
             userInfo.m_UserBaseInfo.m_PhoneNum = [FSEncodeAPI decodeDES:dbPhoneNum];
             // 🔐身份证号: idcard
             NSString *dbIdCardNo = [rs stringForColumn:@"idcard"];
@@ -102,14 +102,24 @@ static NSString *UserInfoDBTableInsert = @"(userid, mobilenum, token, rftoken, u
             // 实名认证: isrealname
             userInfo.m_UserBaseInfo.m_IsRealName = [rs boolForColumn:@"isrealname"];
 
+            // 职位: job
+            userInfo.m_UserBaseInfo.m_Job = [rs stringForColumn:@"job"];
             
-            // role
-            userInfo.m_UserRole = [[FSUserRoleModle alloc] init];
             
-            // 用户身份: rolename
-            userInfo.m_UserRole.m_Role = [rs stringForColumn:@"rolename"];
-            // 用户身份编码: rolecode
-            userInfo.m_UserRole.m_RoleCode = [rs stringForColumn:@"rolecode"];
+#pragma mark - searchUserBaseInfo
+            // 擅长领域: ability ','分割成数组
+            userInfo.m_UserBaseInfo.m_Ability = [rs stringForColumn:@"ability"];
+
+            // 工作机构: workOrganization
+            userInfo.m_UserBaseInfo.m_Organization = [rs stringForColumn:@"organization"];
+            // 工作年限: workingLife
+            userInfo.m_UserBaseInfo.m_WorkingLife = [rs unsignedLongLongIntForColumn:@"workinglife"];
+            // 从业时间: employmentTime
+            userInfo.m_UserBaseInfo.m_EmploymentTime = [rs unsignedLongLongIntForColumn:@"employmenttime"];
+
+            // 个人签名: personalitySignature
+            userInfo.m_UserBaseInfo.m_Signature = [rs stringForColumn:@"signature"];
+
         }
         result = ![DB hadError];
     }];
@@ -149,10 +159,11 @@ static NSString *UserInfoDBTableInsert = @"(userid, mobilenum, token, rftoken, u
 
         NSString *userId = [FSEncodeAPI encodeDES:userInfo.m_UserBaseInfo.m_UserId];
         NSString *phoneNum = [FSEncodeAPI encodeDES:userInfo.m_UserBaseInfo.m_PhoneNum];
+        NSString *emial = [FSEncodeAPI encodeDES:userInfo.m_UserBaseInfo.m_Email];
         NSString *realName = [FSEncodeAPI encodeDES:userInfo.m_UserBaseInfo.m_RealName];
         NSString *idCardNo = [FSEncodeAPI encodeDES:userInfo.m_UserBaseInfo.m_IdCardNo];
         
-        result = [UserInfoDB executeUpdate:sql, userId, phoneNum, token, rftoken, realName, userInfo.m_UserBaseInfo.m_UserType, userInfo.m_UserBaseInfo.m_NickName, idCardNo, userInfo.m_UserBaseInfo.m_Sex, userInfo.m_UserBaseInfo.m_AvatarUrl, @(userInfo.m_UserBaseInfo.m_IsFacialVerify), @(userInfo.m_UserBaseInfo.m_IsRealName), userInfo.m_UserRole.m_Role, userInfo.m_UserRole.m_RoleCode, @(lastUpdateTs)];
+        result = [UserInfoDB executeUpdate:sql, userId, phoneNum, token, rftoken, realName, userInfo.m_UserBaseInfo.m_UserType, idCardNo, userInfo.m_UserBaseInfo.m_NickName, emial, userInfo.m_UserBaseInfo.m_Sex, userInfo.m_UserBaseInfo.m_AvatarUrl, @(userInfo.m_UserBaseInfo.m_IsFacialVerify), @(userInfo.m_UserBaseInfo.m_IsRealName), userInfo.m_UserBaseInfo.m_Job, userInfo.m_UserBaseInfo.m_Ability, userInfo.m_UserBaseInfo.m_Organization, @(userInfo.m_UserBaseInfo.m_EmploymentTime), @(userInfo.m_UserBaseInfo.m_WorkingLife), userInfo.m_UserBaseInfo.m_Signature, @(lastUpdateTs)];
     }];
     
     return result;

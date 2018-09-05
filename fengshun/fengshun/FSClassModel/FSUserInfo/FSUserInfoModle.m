@@ -42,17 +42,17 @@
     }
 }
 
-//- (instancetype)init
-//{
-//    self = [super init];
-//
-//    if (self)
-//    {
-//        _m_UserId = [FSUserInfoModle getCurrentUserId];
-//    }
-//
-//    return self;
-//}
+- (instancetype)init
+{
+    self = [super init];
+
+    if (self)
+    {
+        _m_UserId = [FSUserInfoModle getCurrentUserId];
+    }
+
+    return self;
+}
 
 - (void)updateWithServerDic:(NSDictionary *)dic
 {
@@ -80,7 +80,7 @@
     // 🔐身份证号: idCard
     self.m_IdCardNo = [dic bm_stringTrimForKey:@"idCard"];
     // 🔐邮箱: email
-    //self.m_Email = [dic bm_stringTrimForKey:@"email"];
+    self.m_Email = [dic bm_stringTrimForKey:@"email"];
     // 昵称: nickName
     self.m_NickName = [dic bm_stringTrimForKey:@"nickName"];
     // 性别: sex
@@ -92,39 +92,55 @@
     self.m_IsFacialVerify = [dic bm_boolForKey:@"isFacialVerify"];
     // 实名认证: isRealName
     self.m_IsRealName = [dic bm_boolForKey:@"isRealName"];
+
+    // 职位: job
+    self.m_Job = [dic bm_stringTrimForKey:@"job"];
+
+
+#pragma mark searchUserBaseInfo
+
+    // 擅长领域: ability ','分割成数组
+    if ([dic bm_containsObjectForKey:@"ability"])
+    {
+        NSString *ability = [dic bm_stringTrimForKey:@"ability"];
+        self.m_Ability = ability;
+    }
+    
+    // 从业时间: employmentTime
+    if ([dic bm_containsObjectForKey:@"employmentTime"])
+    {
+        self.m_EmploymentTime = [dic bm_uintForKey:@"ability"];
+    }
+    
+    // 个人签名: personalitySignature
+    if ([dic bm_containsObjectForKey:@"personalitySignature"])
+    {
+        self.m_Signature = [dic bm_stringTrimForKey:@"personalitySignature"];
+    }
+
+    // 工作机构: workOrganization
+    if ([dic bm_containsObjectForKey:@"workOrganization"])
+    {
+        self.m_Organization = [dic bm_stringTrimForKey:@"workOrganization"];
+    }
+    
+    // 工作年限: workingLife
+    if ([dic bm_containsObjectForKey:@"workingLife"])
+    {
+        self.m_WorkingLife = [dic bm_uintForKey:@"workingLife"];
+    }
+}
+
+- (void)setM_Ability:(NSString *)ability
+{
+    NSArray *array = [ability componentsSeparatedByString:@","];
+    self.m_AbilityArray = [NSMutableArray arrayWithArray:array];
 }
 
 @end
 
-@implementation FSUserRoleModle
 
-+ (instancetype)userRoleWithServerDic:(NSDictionary *)dic
-{
-    if (![dic bm_isNotEmptyDictionary])
-    {
-        return nil;
-    }
-    
-    FSUserRoleModle *userRole = [[FSUserRoleModle alloc] init];
-    [userRole updateWithServerDic:dic];
-    
-    return userRole;
-}
-
-- (void)updateWithServerDic:(NSDictionary *)dic
-{
-    if (![dic bm_isNotEmptyDictionary])
-    {
-        return;
-    }
-    
-    // 用户身份: roleName
-    self.m_Role = [dic bm_stringTrimForKey:@"roleName"];
-    // 用户身份编码: roleCode
-    self.m_RoleCode = [dic bm_stringTrimForKey:@"roleCode"];
-}
-
-@end
+#pragma mark - FSUserInfoModle
 
 @implementation FSUserInfoModle
 
@@ -210,7 +226,6 @@
         _m_Token = [FSUserInfoModle getCurrentUserToken];
         
         _m_UserBaseInfo = [[FSUserBaseInfoModle alloc] init];
-        _m_UserRole = [[FSUserRoleModle alloc] init];
     }
     
     return self;
@@ -224,7 +239,6 @@
     }
 
     NSDictionary *userBaseDic = dic;
-    NSDictionary *userRoleDic = nil;
 
     if (!userInfoApi)
     {
@@ -249,7 +263,6 @@
         if ([userBaseDic bm_isNotEmptyDictionary])
         {
             userBaseDic = [userBaseDic bm_dictionaryForKey:@"userInfo"];
-            userRoleDic = [userBaseDic bm_dictionaryForKey:@"userRoles"];
         }
     }
     
@@ -259,10 +272,7 @@
     }
 
     //self.m_UserBaseInfo = [FSUserBaseInfoModle userBaseInfoWithServerDic:userBaseDic];
-    //self.m_UserRole = [FSUserRoleModle userRoleWithServerDic:userRoleDic];
-    
     [self.m_UserBaseInfo updateWithServerDic:userBaseDic];
-    [self.m_UserRole updateWithServerDic:userRoleDic];
     
     // 最后更新时间
     self.m_LastUpdateTs = [[NSDate date] timeIntervalSince1970];
