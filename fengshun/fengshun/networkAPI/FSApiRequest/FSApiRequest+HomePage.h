@@ -7,12 +7,11 @@
 //
 
 #import "FSApiRequest.h"
-#import "XMRequestManager.h"
+
 
 @interface FSApiRequest (HomePage)
 
 // 获取首页数据
-+ (XMRequest *)getHomeDataSuccess:(nullable XMSuccessBlock)successBlock
-                          failure:(nullable XMFailureBlock)failureBlock;
++ (NSMutableURLRequest *)loadHomePageData;
 
 @end

@@ -10,9 +10,11 @@
 
 @implementation FSApiRequest (HomePage)
 
-+(XMRequest *)getHomeDataSuccess:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
++(NSMutableURLRequest *)loadHomePageData
 {
-    return [XMRequestManager rm_requestWithApi:@"/storm/home/getAppHomeData" parameters:nil success:successBlock failure:failureBlock];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/home/getAppHomeData", FS_URL_SERVER];
+
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:@{}];
 }
 
 @end

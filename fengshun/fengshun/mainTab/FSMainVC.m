@@ -13,6 +13,7 @@
 #import "FSCourseTableCell.h"
 
 #import "FSApiRequest+HomePage.h"
+#import "FSHomePageModel.h"
 
 
 @interface
@@ -25,6 +26,9 @@ FSMainVC ()
 >
 
 @property (nonatomic, strong) FSMainHeaderView *m_headerView;
+@property (nonatomic, strong) NSArray <FSBannerModel *> *banners;
+@property (nonatomic, strong) NSArray <FSHomePageToolModel *> *tools;
+@property (nonatomic, strong) NSArray <FSCourseRecommendModel *> *courses;
 
 @end
 
@@ -35,16 +39,9 @@ FSMainVC ()
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
-
     [self setupUI];
     [self.m_TableView registerNib:[UINib nibWithNibName:@"FSCourseTableCell" bundle:nil] forCellReuseIdentifier:@"FSCourseTableCell"];
     self.m_TableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    [FSApiRequest getHomeDataSuccess:^(id  _Nullable responseObject) {
-        NSDictionary *data = responseObject;
-        NSArray *banners = data[@"broadcastPictures"];
-    } failure:^(NSError * _Nullable error) {
-        
-    }];
     
 }
 - (void)setupUI
@@ -61,12 +58,7 @@ FSMainVC ()
     self.m_headerView = [[FSMainHeaderView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, HEADER_CONST_HEIGHT +190) andDelegate:self];
     
     self.m_TableView.tableHeaderView = _m_headerView;
-    NSArray *dataArray               = @[
-        @"http://pic01.babytreeimg.com/foto3/photos/2014/0211/68/2/4170109a41ca935610bf8_b.png",
-        @"http://pic01.babytreeimg.com/foto3/photos/2014/0127/19/9/4170109a267ca641c41ebb_b.png",
-        @"http://pic02.babytreeimg.com/foto3/photos/2014/0207/59/4/4170109a17eca86465f8a4_b.jpg",
-    ];
-    [_m_headerView reloadBannerWithUrlArray:dataArray];
+    
 }
 
 
@@ -77,7 +69,7 @@ FSMainVC ()
 }
 
 
-#pragma mark - banner,header,scrollView delegate
+#pragma mark - banner, header, scrollView delegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     CGFloat offsetY   = scrollView.contentOffset.y;
@@ -134,5 +126,28 @@ FSMainVC ()
     FSCourseTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCourseTableCell"];
     
     return cell;
+}
+#pragma mark - loadData & freshUI
+- (NSMutableURLRequest *)setLoadDataRequest
+{
+    return [FSApiRequest loadHomePageData];
+}
+- (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)data
+{
+    NSArray *banners = [data bm_arrayForKey:@"broadcastPictures"];;
+    self.banners = [FSBannerModel modelsWithDataArray:banners];
+    NSArray *tools = [data bm_arrayForKey:@"tools"];;
+    self.tools = [FSHomePageToolModel modelsWithDataArray:tools];
+    NSArray *courses = [data bm_arrayForKey:@"hotRecommends"];
+    self.courses = [FSCourseRecommendModel modelsWithDataArray:courses];
+    NSArray *forums = [data bm_arrayForKey:@"bestPosts"];
+    BMLog(@"推荐帖子数:%lu",(unsigned long)forums.count);
+    [self freshUI];
+    return [super succeedLoadedRequestWithDic:data];
+}
+
+- (void)freshUI
+{
+    
 }
 @end
