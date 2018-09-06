@@ -8,7 +8,7 @@
 
 #import "FSSuperModel.h"
 
-@interface FSCourseRecommendModel : FSSuperModel
+@interface FSCourseModel : FSSuperModel
 
 @property (nonatomic, assign) NSInteger m_id;
 @property (nonatomic, copy) NSString *  m_tilte;
@@ -21,6 +21,11 @@
 
 // 是否属于某个系列
 @property (nonatomic, assign) BOOL bm_isSeries;
+
+
+@end
+
+@interface FSCourseRecommendModel : FSCourseModel
 
 
 @end

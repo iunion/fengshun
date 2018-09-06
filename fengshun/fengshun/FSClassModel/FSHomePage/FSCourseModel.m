@@ -8,6 +8,11 @@
 
 #import "FSCourseModel.h"
 
+@implementation FSCourseModel
+
+
+@end
+
 @implementation FSCourseRecommendModel
 
 

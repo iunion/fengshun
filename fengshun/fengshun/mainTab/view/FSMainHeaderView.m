@@ -8,6 +8,7 @@
 
 #import "FSMainHeaderView.h"
 #import "UIButton+BMContentRect.h"
+#import "FSMainToolCell.h"
 
 @implementation FSMainHeaderView
 
@@ -22,10 +23,9 @@
 {
     [super awakeFromNib];
     [self configBanner];
-    for (UIButton *button in _m_topimageButtons)
-    {
-        [button bm_layoutButtonWithEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageTop imageTitleGap:13];
-    }
+    _m_toolCollectionView.contentInset = UIEdgeInsetsMake(0, 30, 0, 30);
+    [_m_toolCollectionView registerNib:[UINib nibWithNibName:@"FSMainToolCell" bundle:nil] forCellWithReuseIdentifier:@"FSMainToolCell"];
+    
 }
 - (void)configBanner
 {
@@ -48,10 +48,7 @@
     }
     return self;
 }
-- (IBAction)buttonCliked:(UIButton *)sender
-{
-    [_delegate headerButtonClikedAtIndex:sender.tag];
-}
+
 
 - (void)reloadBannerWithUrlArray:(NSArray<NSString *> *)urlArray
 {
