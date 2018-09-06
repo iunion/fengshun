@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 // 跳转回调
-typedef void(^PushVCCallBack)(id object);
+typedef void (^PushVCCallBack)(id object);
 
 @interface FSPushVCManager : NSObject
 // 社区二级页面

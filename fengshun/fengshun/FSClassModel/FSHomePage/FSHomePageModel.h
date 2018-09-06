@@ -12,6 +12,6 @@
 #import "FSBannerModel.h"
 #import "FSHomePageToolModel.h"
 #import "FSCourseModel.h"
-#import "FSCommunityRecommendModel.h"
+#import "FSCommunityModel.h"
 
 #endif /* FSHomePageModel_h */

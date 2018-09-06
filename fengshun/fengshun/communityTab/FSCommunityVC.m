@@ -11,20 +11,21 @@
 #import "AppDelegate.h"
 #import "TZImagePickerController.h"
 #import "FSTableView.h"
-#import "FSCommunityListTableViewCell.h"
-#import "FSPlateListTableViewCell.h"
+#import "FSTopicListTableViewCell.h"
+#import "FSForumListTableViewCell.h"
 #import "FSApiRequest+Community.h"
-#import "FSCommunityRecommendModel.h"
+#import "FSCommunityModel.h"
+
+static NSString *FSTopicListTableViewCellIdentifier = @"FSTopicListTableViewCellIdentifier";
+static NSString *FSForumListTableViewCellIdentifier = @"FSForumListTableViewCellIdentifier";
 
 @interface
-FSCommunityVC ()
-<
+FSCommunityVC () <
     FSScrollPageViewDelegate,
     FSScrollPageViewDataSource,
     TZImagePickerControllerDelegate,
     UITableViewDelegate,
-    UITableViewDataSource
->
+    UITableViewDataSource>
 
 @property (nonatomic, strong) FSScrollPageSegment *m_SegmentBar;
 @property (nonatomic, strong) FSScrollPageView *   m_ScrollPageView;
@@ -116,7 +117,7 @@ FSCommunityVC ()
         UIView *headerView                    = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _m_ScrollPageView.bm_width, 8)];
         headerView.backgroundColor            = [UIColor bm_colorWithHexString:@"f6f6f6"];
         _m_RecommendTableView.tableHeaderView = headerView;
-        [_m_RecommendTableView registerNib:[UINib nibWithNibName:@"FSCommunityListTableViewCell" bundle:nil] forCellReuseIdentifier:@"FSCommunityListTableViewCellIdentifier"];
+        [_m_RecommendTableView registerNib:[UINib nibWithNibName:@"FSTopicListTableViewCell" bundle:nil] forCellReuseIdentifier:FSTopicListTableViewCellIdentifier];
     }
     return _m_RecommendTableView;
 }
@@ -134,7 +135,7 @@ FSCommunityVC ()
         UIView *headerView                = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _m_ScrollPageView.bm_width, 8)];
         headerView.backgroundColor        = [UIColor bm_colorWithHexString:@"f6f6f6"];
         _m_PlateTableView.tableHeaderView = headerView;
-        [_m_PlateTableView registerNib:[UINib nibWithNibName:@"FSPlateListTableViewCell" bundle:nil] forCellReuseIdentifier:@"FSPlateListTableViewCellIdentifier"];
+        [_m_PlateTableView registerNib:[UINib nibWithNibName:@"FSForumListTableViewCell" bundle:nil] forCellReuseIdentifier:FSForumListTableViewCellIdentifier];
     }
     return _m_PlateTableView;
 }
@@ -150,12 +151,12 @@ FSCommunityVC ()
 {
     if (tableView == _m_RecommendTableView)
     {
-        FSCommunityListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCommunityListTableViewCellIdentifier"];
+        FSTopicListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:FSTopicListTableViewCellIdentifier];
         return cell;
     }
     else if (tableView == _m_PlateTableView)
     {
-        FSPlateListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSPlateListTableViewCellIdentifier"];
+        FSForumListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:FSForumListTableViewCellIdentifier];
         return cell;
     }
     else
@@ -211,22 +212,30 @@ FSCommunityVC ()
 
 - (void)getRecommendList
 {
-    [FSApiRequest getPlateRecommendPostListWithLimit:1 pageIndex:1 pageSize:1 startRow:1 success:^(id  _Nullable responseObject) {
-        FSCommunityRecommendModel *model = [FSCommunityRecommendModel recommendModelWithDic:responseObject];
-        BMLog(@"%@",model);
-    } failure:^(NSError * _Nullable error) {
-        
-    }];
+    [FSApiRequest getPlateRecommendPostListWithLimit:1
+                                           pageIndex:1
+                                            pageSize:1
+                                            startRow:1
+                                             success:^(id _Nullable responseObject) {
+
+                                             }
+                                             failure:^(NSError *_Nullable error){
+
+                                             }];
 }
 
 - (void)getForumList
 {
-    [FSApiRequest getPlateListWithLimit:1 pageIndex:1 pageSize:1 startRow:1 success:^(id _Nullable responseObject) {
-        FSCommunityPlateBaseModel *model = [FSCommunityPlateBaseModel plateBaseModelWithDic:responseObject];
-        BMLog(@"%@", model);
-    }failure:^(NSError *_Nullable error){
-        
-    }];
+    [FSApiRequest getPlateListWithLimit:1
+                              pageIndex:1
+                               pageSize:1
+                               startRow:1
+                                success:^(id _Nullable responseObject) {
+
+                                }
+                                failure:^(NSError *_Nullable error){
+
+                                }];
 }
 
 #pragma mark - 图片选择例子

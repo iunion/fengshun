@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FSPlateDetailListTableViewCell : UITableViewCell
+@interface FSForumDetailListTableViewCell : UITableViewCell
 // 帖子标题
 @property (weak, nonatomic) IBOutlet UILabel *m_TitleLab;
 // 发帖时间
