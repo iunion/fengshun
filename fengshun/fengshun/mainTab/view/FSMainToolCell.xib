@@ -46,7 +46,7 @@
             <size key="customSize" width="83" height="81"/>
             <connections>
                 <outlet property="m_iconImageView" destination="nWf-sy-LRb" id="SRg-Se-812"/>
-                <outlet property="m_titleLabel" destination="nWf-sy-LRb" id="QUr-sO-JCn"/>
+                <outlet property="m_titleLabel" destination="ggu-Gt-cnQ" id="Pnr-to-kgl"/>
             </connections>
             <point key="canvasLocation" x="-64" y="55"/>
         </collectionViewCell>

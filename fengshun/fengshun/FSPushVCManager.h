@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+@class FSWebViewController;
+@protocol FSWebViewControllerDelegate;
+
 // 跳转回调
 typedef void (^PushVCCallBack)(id object);
 
@@ -23,5 +26,11 @@ typedef void (^PushVCCallBack)(id object);
 
 // 编辑帖子
 + (void)showEditPostWithWithPushVC:(UIViewController *)pushVC callBack:(PushVCCallBack)callBack;
+
+
++ (FSWebViewController *)showWebView:(UIViewController *)pushVC url:(NSString *)url title:(NSString *)title;
++ (FSWebViewController *)showWebView:(UIViewController *)pushVC url:(NSString *)url title:(NSString *)title animated:(BOOL)animated;
++ (FSWebViewController *)showWebView:(UIViewController *)pushVC url:(NSString *)url title:(NSString *)title showLoadingBar:(BOOL)showLoadingBar loadingBarColor:(UIColor *)color animated:(BOOL)animated;
++ (FSWebViewController *)showWebView:(UIViewController *)pushVC url:(NSString *)url title:(NSString *)title showLoadingBar:(BOOL)showLoadingBar loadingBarColor:(UIColor *)color delegate:(id<FSWebViewControllerDelegate>)delegate animated:(BOOL)animated;
 
 @end

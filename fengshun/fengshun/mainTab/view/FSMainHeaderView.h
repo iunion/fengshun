@@ -13,7 +13,7 @@
 
 @protocol FSMainHeaderDelegate <NSObject>
 
-- (void)headerButtonClikedAtIndex:(NSUInteger)index;
+- (void)AIButtonCliked;
 @end
 
 @interface FSMainHeaderView : UIView
@@ -21,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *m_bottomButton;
 @property (weak, nonatomic) IBOutlet UIView *                       m_topView;
 @property (nonatomic, strong) FSPageBannerView *                    m_bannerView;
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *m_topimageButtons;
+
 @property (weak, nonatomic) IBOutlet UICollectionView *m_toolCollectionView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *m_toolHeightConstraint;
 

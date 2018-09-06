@@ -41,7 +41,7 @@
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VRz-Dv-ZvQ">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_browseCount.png" translatesAutoresizingMaskIntoConstraints="NO" id="VRz-Dv-ZvQ">
                         <rect key="frame" x="146" y="108" width="14" height="8"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="8" id="IJE-SE-Ivi"/>
@@ -66,6 +66,7 @@
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="oCC-Iz-X7k" secondAttribute="trailing" constant="32" id="RI5-mC-T6M"/>
                     <constraint firstItem="oCC-Iz-X7k" firstAttribute="leading" secondItem="Dxo-3n-XkC" secondAttribute="trailing" constant="16" id="RcW-4c-LsQ"/>
                     <constraint firstItem="VRz-Dv-ZvQ" firstAttribute="centerY" secondItem="2b2-2F-SPC" secondAttribute="centerY" id="aNc-P1-4Zr"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Dxo-3n-XkC" secondAttribute="bottom" constant="14" id="ayC-fr-vTc"/>
                     <constraint firstItem="2b2-2F-SPC" firstAttribute="bottom" secondItem="Dxo-3n-XkC" secondAttribute="bottom" id="dun-0J-HJd"/>
                     <constraint firstItem="cZa-WJ-eUd" firstAttribute="leading" secondItem="oCC-Iz-X7k" secondAttribute="leading" id="n0F-Qm-JQw"/>
                     <constraint firstItem="oCC-Iz-X7k" firstAttribute="top" secondItem="Dxo-3n-XkC" secondAttribute="top" constant="3" id="v7S-C3-Ndp"/>
@@ -80,4 +81,7 @@
             <point key="canvasLocation" x="-19.5" y="89"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="home_browseCount.png" width="14" height="8"/>
+    </resources>
 </document>
