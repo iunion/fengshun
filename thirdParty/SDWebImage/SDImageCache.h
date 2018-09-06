@@ -272,6 +272,11 @@ typedef void(^SDWebImageCalculateSizeBlock)(NSUInteger fileCount, NSUInteger tot
 #pragma mark - Cache Info
 
 /**
+ * Get the cache store path
+ */
+- (nonnull NSString *)getDiskCachePath;
+
+/**
  * Get the size used by the disk cache
  */
 - (NSUInteger)getSize;

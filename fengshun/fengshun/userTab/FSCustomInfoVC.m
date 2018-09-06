@@ -52,7 +52,7 @@
     self.view.backgroundColor = FS_VIEW_BGCOLOR;
     self.m_TableView.bounces = YES;
 
-    [self bm_setNavigationWithTitle:@"" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
+    [self bm_setNavigationWithTitle:@"个人信息" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
     
     [self interfaceSettings];
 }

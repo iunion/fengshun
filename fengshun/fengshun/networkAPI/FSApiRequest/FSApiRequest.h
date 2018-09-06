@@ -61,6 +61,9 @@ NS_ASSUME_NONNULL_BEGIN
 // https://devftls.odrcloud.net/swagger-ui.html#/%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF/searchUserBaseInfoUsingPOST
 + (nullable NSMutableURLRequest *)getUserInfo;
 
+// 用户退出登录
+// http://123.206.193.140:8121/swagger-ui.html#/%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF/userLoginOutUsingPOST
++ (nullable NSMutableURLRequest *)userLogOut;
 
 
 // 刷新token

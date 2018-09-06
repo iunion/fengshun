@@ -13,6 +13,7 @@
 
 #import "FSSearchViewController.h"
 
+#import "FSSetupVC.h"
 #import "FSCustomInfoVC.h"
 
 
@@ -47,6 +48,11 @@
 
 @implementation FSUserMainVC
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:userInfoChangedNotification object:nil];
+}
+
 - (BMFreshViewType)getFreshViewType
 {
     return BMFreshViewType_NONE;
@@ -71,6 +77,8 @@
     [self bm_setNavigationWithTitle:@"" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_setup_icon" leftToucheEvent:@selector(setUpAction:) rightItemTitle:nil rightItemImage:@"navigationbar_message_icon" rightToucheEvent:@selector(messageAction:)];
     
     [self interfaceSettings];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(freshViews) name:userInfoChangedNotification object:nil];
 }
 
 - (BOOL)needKeyboardEvent
@@ -86,7 +94,9 @@
 
 - (void)setUpAction:(id)sender
 {
-    NSLog(@"setUpAction");
+    FSSetupVC *vc = [[FSSetupVC alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)messageAction:(id)sender
@@ -101,7 +111,7 @@
     self.m_UserSection = [BMTableViewSection section];
     
     BMWeakSelf
-    self.m_TopicItem = [BMTableViewItem itemWithTitle:@"我的帖子" imageName:@"login_mobile" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
+    self.m_TopicItem = [BMTableViewItem itemWithTitle:@"我的帖子" imageName:@"user_topicicon" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
 
         FSSearchViewController *searchViewController = [[FSSearchViewController alloc] initWithSearchKey:@"test"
                                                                                            hotSearchTags:@[@"婚姻继承", @"借贷纠纷",@"婚姻继承", @"借贷纠纷",@"婚姻继承", @"借贷纠纷",@"婚姻继承", @"借贷纠纷",@"婚姻继承", @"借贷纠纷"]
@@ -111,20 +121,26 @@
         searchViewController.hidesBottomBarWhenPushed = YES;
         [weakSelf.navigationController pushViewController:searchViewController animated:YES];
     }];
+    self.m_TopicItem.imageH = 16.0f;
+    self.m_TopicItem.imageW = 16.0f;
     self.m_TopicItem.textFont = FS_CELLTITLE_TEXTFONT;
     self.m_TopicItem.highlightBgColor = UI_COLOR_BL1;
     self.m_TopicItem.cellHeight = 50.0f;
 
-    self.m_CommentItem = [BMTableViewItem itemWithTitle:@"我的评论" imageName:@"login_mobile" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
+    self.m_CommentItem = [BMTableViewItem itemWithTitle:@"我的评论" imageName:@"user_commenticon" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
     }];
+    self.m_CommentItem.imageH = 16.0f;
+    self.m_CommentItem.imageW = 16.0f;
     self.m_CommentItem.textFont = FS_CELLTITLE_TEXTFONT;
     self.m_CommentItem.highlightBgColor = UI_COLOR_BL1;
     self.m_CommentItem.cellHeight = 50.0f;
 
-    self.m_CollectItem = [BMTableViewItem itemWithTitle:@"我的收藏" imageName:@"login_mobile" underLineDrawType:BMTableViewCell_UnderLineDrawType_None accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
+    self.m_CollectItem = [BMTableViewItem itemWithTitle:@"我的收藏" imageName:@"user_collecticon" underLineDrawType:BMTableViewCell_UnderLineDrawType_None accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
     }];
+    self.m_CollectItem.imageH = 16.0f;
+    self.m_CollectItem.imageW = 16.0f;
     self.m_CollectItem.textFont = FS_CELLTITLE_TEXTFONT;
     self.m_CollectItem.highlightBgColor = UI_COLOR_BL1;
     self.m_CollectItem.cellHeight = 50.0f;
@@ -135,23 +151,29 @@
 
     self.m_AppSection = [BMTableViewSection section];
     
-    self.m_HelpItem = [BMTableViewItem itemWithTitle:@"帮助中心" imageName:@"login_mobile" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
+    self.m_HelpItem = [BMTableViewItem itemWithTitle:@"帮助中心" imageName:@"user_helpicon" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
     }];
+    self.m_HelpItem.imageH = 16.0f;
+    self.m_HelpItem.imageW = 16.0f;
     self.m_HelpItem.textFont = FS_CELLTITLE_TEXTFONT;
     self.m_HelpItem.highlightBgColor = UI_COLOR_BL1;
     self.m_HelpItem.cellHeight = 50.0f;
 
-    self.m_ServiceItem = [BMTableViewItem itemWithTitle:@"联系客服" imageName:@"login_mobile" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
+    self.m_ServiceItem = [BMTableViewItem itemWithTitle:@"联系客服" imageName:@"user_serviceicon" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
     }];
+    self.m_ServiceItem.imageH = 16.0f;
+    self.m_ServiceItem.imageW = 16.0f;
     self.m_ServiceItem.textFont = FS_CELLTITLE_TEXTFONT;
     self.m_ServiceItem.highlightBgColor = UI_COLOR_BL1;
     self.m_ServiceItem.cellHeight = 50.0f;
     
-    self.m_ShareItem = [BMTableViewItem itemWithTitle:@"分享APP" imageName:@"login_mobile" underLineDrawType:BMTableViewCell_UnderLineDrawType_None accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
+    self.m_ShareItem = [BMTableViewItem itemWithTitle:@"分享APP" imageName:@"user_shareicon" underLineDrawType:BMTableViewCell_UnderLineDrawType_None accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
     }];
+    self.m_ShareItem.imageH = 16.0f;
+    self.m_ShareItem.imageW = 16.0f;
     self.m_ShareItem.textFont = FS_CELLTITLE_TEXTFONT;
     self.m_ShareItem.highlightBgColor = UI_COLOR_BL1;
     self.m_ShareItem.cellHeight = 50.0f;

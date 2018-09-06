@@ -270,6 +270,20 @@
 }
 
 // 根据索引找到VC
+- (UIViewController *)getRootViewControllerAtTabIndex:(BMTabIndex)index
+{
+    BMNavigationController *navCtl = [self getNavigationControllerAtTabIndex:index];
+    
+    NSArray *carray = navCtl.viewControllers;
+    if (![carray bm_isNotEmpty])
+    {
+        return nil;
+    }
+    
+    UIViewController *vc = [carray lastObject];
+    return vc;
+}
+
 - (UIViewController *)getViewControllerAtTabIndex:(BMTabIndex)index
 {
     BMNavigationController *navCtl = [self getNavigationControllerAtTabIndex:index];
@@ -280,11 +294,26 @@
         return nil;
     }
     
-    UIViewController *vc = [carray objectAtIndex:0];
+    UIViewController *vc = [carray firstObject];
     return vc;
 }
 
 // 此函数只是返回当前tab的RootVC
+- (UIViewController *)getCurrentRootViewController
+{
+    BMNavigationController *navCtl = [self getCurrentNavigationController];
+
+    NSArray *carray = navCtl.viewControllers;
+    if (![carray bm_isNotEmpty])
+    {
+        return nil;
+    }
+    
+    // 获取rootVC
+    UIViewController *vc = [carray firstObject];
+    return vc;
+}
+
 - (UIViewController *)getCurrentViewController
 {
     BMNavigationController *navCtl = [self getCurrentNavigationController];
@@ -296,7 +325,7 @@
     }
     
     // 获取rootVC
-    UIViewController *vc = [carray objectAtIndex:0];
+    UIViewController *vc = [carray lastObject];
     return vc;
 }
 

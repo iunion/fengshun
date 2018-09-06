@@ -23,5 +23,12 @@
 // GPS状态
 - (BOOL)checkCLAuthorizationStatus;
 
+// 踢出登录, 同logOut
+- (void)kickOut;
+// 退出登录
+- (void)logOut;
+// 使用API退出登录
+- (void)logOutWithApi;
+
 @end
 

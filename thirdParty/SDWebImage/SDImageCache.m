@@ -758,6 +758,11 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
 
 #pragma mark - Cache Info
 
+- (NSString *)getDiskCachePath
+{
+    return self.diskCachePath;
+}
+
 - (NSUInteger)getSize {
     __block NSUInteger size = 0;
     dispatch_sync(self.ioQueue, ^{
