@@ -10,9 +10,15 @@
 #import "BMVerifyField.h"
 #import "FSSetPassWordVC.h"
 
+#import "DTCoreText.h"
+
+#import "FSPushVCManager.h"
+
+
 @interface FSLoginVerifyVC ()
 <
-    BMVerifyFieldDelegate
+    BMVerifyFieldDelegate,
+    DTAttributedTextContentViewDelegate
 >
 
 @property (nonatomic, strong) NSString *m_PhoneNum;
@@ -24,6 +30,8 @@
 
 @property (nonatomic, strong) UIButton *m_ClockBtn;
 @property (nonatomic, strong) UIButton *m_ConfirmBtn;
+
+@property (strong, nonatomic) UIButton *m_RegistCheckBoxBtn;
 
 @property (strong, nonatomic) NSURLSessionDataTask *m_VerificationCodeTask;
 @property (strong, nonatomic) NSURLSessionDataTask *m_CheckVerificationCodeTask;
@@ -220,6 +228,55 @@
     [self.m_TableView addSubview:btn];
     [btn bm_centerHorizontallyInSuperViewWithTop:label3.bm_bottom+20.0f];
     self.m_ConfirmBtn = btn;
+    
+    if (self.m_IsRegist)
+    {
+        UIButton *checkBox = [[UIButton alloc] initWithFrame:CGRectMake(self.m_ConfirmBtn.bm_left, self.m_ConfirmBtn.bm_bottom+12.0f, 124.0f, 24.0f)];
+        checkBox.bm_imageRect = CGRectMake(0, 4.0f, 10.0f, 10.0f);
+        checkBox.backgroundColor = [UIColor clearColor];
+        checkBox.exclusiveTouch = YES;
+        [checkBox setImage:[UIImage imageNamed:@"login_unchecked"] forState:UIControlStateNormal];
+        [checkBox setImage:[UIImage imageNamed:@"login_checked"] forState:UIControlStateSelected];
+        checkBox.selected = YES;
+        [checkBox addTarget:self action:@selector(checkAgreement:) forControlEvents:UIControlEventTouchUpInside];
+
+        [self.m_TableView addSubview:checkBox];
+        self.m_RegistCheckBoxBtn = checkBox;
+        
+        DTAttributedLabel *protocolLable = [[DTAttributedLabel alloc] initWithFrame:CGRectMake(checkBox.bm_left + 16.0f, self.m_ConfirmBtn.bm_bottom+14.0f, 500.0f, 24.0f)];
+        protocolLable.edgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+        protocolLable.backgroundColor = [UIColor clearColor];
+        protocolLable.layoutFrameHeightIsConstrainedByBounds = NO;
+        protocolLable.delegate = self;
+        //protocolLable.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        NSString *reminderStr = [NSString stringWithFormat:@"<p><span style=\"font-size:12px;color:#999999;text-align:left;\">%@<a style=\"font-size:12px;color:#577EEE;text-decoration:none\" href=\"%@\">%@</a></p>", @"提交注册表示您同意", @"registerProtocol", @"《枫调理顺用户协议》"];
+        protocolLable.attributedString = [[NSAttributedString alloc] initWithHTMLData:[reminderStr dataUsingEncoding:NSUTF8StringEncoding] options:nil documentAttributes:NULL];
+        [self.m_TableView addSubview:protocolLable];
+        [self.m_RegistCheckBoxBtn bm_bringToFront];
+    }
+}
+
+- (void)checkAgreement:(UIButton*)btn
+{
+    self.m_RegistCheckBoxBtn.selected = !self.m_RegistCheckBoxBtn.selected;
+    
+    if (self.m_VerifyField.text.length == 4)
+    {
+        self.m_ConfirmBtn.enabled = self.m_RegistCheckBoxBtn.selected;
+    }
+    else
+    {
+        self.m_ConfirmBtn.enabled = NO;
+    }
+    
+    if (self.m_ConfirmBtn.enabled)
+    {
+        self.m_ConfirmBtn.backgroundColor = UI_COLOR_BL1;
+    }
+    else
+    {
+        self.m_ConfirmBtn.backgroundColor = UI_COLOR_B5;
+    }
 }
 
 - (void)freshViews
@@ -291,7 +348,7 @@
 {
     if (index >= 3 && ![string isEqualToString:@""])
     {
-        self.m_ConfirmBtn.enabled = YES;
+        self.m_ConfirmBtn.enabled = self.m_RegistCheckBoxBtn.selected;
     }
     else
     {
@@ -630,5 +687,52 @@
     }
 }
 
+
+
+#pragma mark -
+#pragma mark DTAttributedTextContentViewDelegate
+
+- (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForAttributedString:(NSAttributedString *)string frame:(CGRect)frame
+{
+    NSDictionary *attributes = [string attributesAtIndex:0 effectiveRange:NULL];
+    
+    NSURL *URL = [attributes objectForKey:DTLinkAttribute];
+    NSString *identifier = [attributes objectForKey:DTGUIDAttribute];
+    
+    DTLinkButton *button = [[DTLinkButton alloc] initWithFrame:frame];
+    button.URL = URL;
+    button.minimumHitSize = CGSizeMake(25, 18); // adjusts it's bounds so that button is always large enough
+    button.GUID = identifier;
+    button.exclusiveTouch = YES;
+    // get image with normal link text
+    UIImage *normalImage = [attributedTextContentView contentImageWithBounds:frame options:DTCoreTextLayoutFrameDrawingDefault];
+    [button setImage:normalImage forState:UIControlStateNormal];
+    
+    // get image for highlighted link text
+    UIImage *highlightImage = [attributedTextContentView contentImageWithBounds:frame options:DTCoreTextLayoutFrameDrawingDrawLinksHighlighted];
+    [button setImage:highlightImage forState:UIControlStateHighlighted];
+    
+    // use normal push action for opening URL
+    [button addTarget:self action:@selector(linkPushed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    return button;
+}
+
+- (void)linkPushed:(DTLinkButton *)button
+{
+    NSURL *url = button.URL;
+    NSString *urlStr = [url absoluteString];
+    if (![urlStr bm_isNotEmpty])
+    {
+        return;
+    }
+    
+    if ([urlStr isEqualToString:@"registerProtocol"])
+    {
+        //NSString *url = [NSString stringWithFormat:@"%@/Client/protocol/registerProtocol.html", MQ_H5_SERVER];
+        NSString *url = @"http://www.baidu.com";
+        [FSPushVCManager showWebView:self url:url title:nil];
+    }
+}
 
 @end
