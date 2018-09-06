@@ -13,7 +13,7 @@
 
 @protocol FSMainHeaderDelegate <NSObject>
 
-- (void)headerButtonClikedAtIndex:(NSUInteger)index;
+- (void)AIButtonCliked;
 @end
 
 @interface FSMainHeaderView : UIView

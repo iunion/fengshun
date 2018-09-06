@@ -175,7 +175,7 @@
 
 + (void)p_setupPostRequest:(XMRequest *)request withServer:(NSString *)server API:(NSString *)api methd:(XMHTTPMethodType)methodType parameters:(NSDictionary *)parameters timeoutInterval:(NSTimeInterval)timeoutInterval
 {
-    NSAssert(api.length, @"参数不能为空!");
+    NSAssert(api.length, @"API不能为空!");
     request.requestSerializerType = kXMRequestSerializerJSON;
     request.requestType           = kXMRequestNormal;
     request.server                = server;

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
 #import "FSAPIMacros.h"
+#import "XMRequestManager.h"
 
 typedef NS_ENUM(NSUInteger, FSVerificationCodeType)
 {
@@ -70,6 +71,18 @@ NS_ASSUME_NONNULL_BEGIN
 // https://devftls.odrcloud.net/swagger-ui.html#/%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF/refreshTokenUsingPOST
 + (nullable NSMutableURLRequest *)updateUserToken:(NSString *)token;
 
+
+
+#pragma mark - 首页API
+
+// 获取首页数据
+// http://123.206.193.140:8121/swagger-ui.html#/%E9%A6%96%E9%A1%B5%E7%9B%B8%E5%85%B3/getAppHomeDataUsingPOST
++ (NSMutableURLRequest *)loadHomePageData;
+
+// 获取是否有未读信息
+// http://123.206.193.140:8121/swagger-ui.html#/%E9%A6%96%E9%A1%B5%E7%9B%B8%E5%85%B3/getMessageUnReadFlagUsingPOST
++ (XMRequest *)getMessageUnReadFlagSuccess:(nullable XMSuccessBlock)successBlock
+                                   failure:(nullable XMFailureBlock)failureBlock;
 
 @end
 

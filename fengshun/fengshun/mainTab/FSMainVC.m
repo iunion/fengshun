@@ -12,33 +12,39 @@
 #import "FSMainHeaderView.h"
 #import "FSCourseTableCell.h"
 
-#import "FSApiRequest+HomePage.h"
 #import "FSHomePageModel.h"
 #import "FSMainToolCell.h"
 #import "FSMainToolCell.h"
+#import "FSTopicListCell.h"
+#import "FSApiRequest.h"
+#import "UIView+BMBadge.h"
 
 #define SECTION_HEDER_HEIGHT 44.0f
 
 @interface
-FSMainVC ()
-<
+FSMainVC () <
     FSBannerViewDelegate,
     FSMainHeaderDelegate,
     UITableViewDelegate,
     UITableViewDataSource,
     UICollectionViewDelegateFlowLayout,
-    UICollectionViewDataSource
->
+    UICollectionViewDataSource>
 
-@property (nonatomic, strong) FSMainHeaderView *                 m_headerView;
-@property (nonatomic, strong) NSArray<FSBannerModel *> *         m_banners;
-@property (nonatomic, strong) NSArray<FSHomePageToolModel *> *   m_tools;
-@property (nonatomic, strong) NSArray<FSCourseRecommendModel *> *m_courses;
+@property (nonatomic, strong) FSMainHeaderView *                    m_headerView;
+@property (nonatomic, strong) NSArray<FSBannerModel *> *            m_banners;
+@property (nonatomic, strong) NSArray<FSHomePageToolModel *> *      m_tools;
+@property (nonatomic, strong) NSArray<FSCourseRecommendModel *> *   m_courses;
+@property (nonatomic, strong) NSArray<FSCommunityTopicListModel *> *m_topics;
 
 @end
 
 @implementation FSMainVC
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self checkUnreadMessage];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -46,18 +52,20 @@ FSMainVC ()
 
     [self setupUI];
     [self.m_TableView registerNib:[UINib nibWithNibName:@"FSCourseTableCell" bundle:nil] forCellReuseIdentifier:@"FSCourseTableCell"];
+    [self.m_TableView registerNib:[UINib nibWithNibName:@"FSTopicListCell" bundle:nil] forCellReuseIdentifier:@"FSTopicListCell"];
     [self loadApiData];
 }
 - (void)setupUI
 {
     self.bm_NavigationItemTintColor = UI_COLOR_B1;
-    [self bm_setNavigationWithTitle:@"主页" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:nil rightItemImage:[UIImage imageNamed:@"navigationbar_message_icon.png"] rightToucheEvent:@selector(popMessageVC:)];
+    [self bm_setNavigationWithTitle:@"主页" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:nil rightItemImage:[UIImage imageNamed:@"home_message"] rightToucheEvent:@selector(popMessageVC:)];
     [GetAppDelegate.m_TabBarController hideOriginTabBar];
     [self setBm_NavigationBarImage:[UIImage imageWithColor:[UIColor whiteColor]]];
     [self setBm_NavigationBarAlpha:0];
 
     self.edgesForExtendedLayout                   = UIRectEdgeTop;
     self.m_TableView.showsVerticalScrollIndicator = NO;
+    self.m_TableView.bm_showEmptyView             = NO;
     self.m_TableView.frame                        = CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT - UI_TAB_BAR_HEIGHT);
     self.m_TableView.separatorStyle               = UITableViewCellSeparatorStyleSingleLine;
 
@@ -69,6 +77,7 @@ FSMainVC ()
     self.m_TableView.tableHeaderView     = _m_headerView;
     self.m_TableView.sectionHeaderHeight = SECTION_HEDER_HEIGHT;
     self.m_TableView.sectionFooterHeight = 10;
+    self.m_TableView.rowHeight           = COURSE_CELL_HEGHT;
     
 }
 
@@ -105,38 +114,37 @@ FSMainVC ()
 {
     _m_headerView.m_pageControl.currentPage = index;
 }
-- (void)headerButtonClikedAtIndex:(NSUInteger)index
+- (void)AIButtonCliked
 {
-    switch (index)
-    {
-        case 0:
-            // 视频调解
-            break;
-
-        case 6:
-            // 智能咨询
-
-            break;
-    }
+    // 智能咨询
+    
 }
 - (void)popMessageVC:(id)sender
 {
 }
 #pragma mark - tableViewDataSource & Delegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section ? 0 : _m_courses.count;
+    return section ? _m_topics.count : _m_courses.count;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (!indexPath.section)
-    {
-        return COURSE_CELL_HEGHT;
-    }
-    return 0;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    if (!indexPath.section)
+//    {
+//        return COURSE_CELL_HEGHT;
+//    }
+//    return 0;
+//}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section) {
+        FSTopicListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSTopicListCell"];
+        return cell;
+    }
     FSCourseTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCourseTableCell"];
 
     cell.m_course = _m_courses[indexPath.row];
@@ -151,7 +159,8 @@ FSMainVC ()
     UIView *view         = [UIView new];
     view.backgroundColor = [UIColor whiteColor];
     UIImageView *icon    = [[UIImageView alloc] initWithFrame:CGRectMake(16, 24, 24, 22)];
-    icon.backgroundColor = [UIColor redColor];
+    icon.contentMode     = UIViewContentModeLeft;
+    icon.image = [UIImage imageNamed:section?@"home_topics":@"home_courses"];
     [view addSubview:icon];
 
     UILabel *titleLabel  = [[UILabel alloc] initWithFrame:CGRectMake(50, 24, 120, 20)];
@@ -170,6 +179,12 @@ FSMainVC ()
     return view;
 }
 #pragma mark - collectionViewDataSource & Delegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+//    FSHomePageToolModel *tool = _m_tools[indexPath.row];
+    
+}
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -195,7 +210,7 @@ FSMainVC ()
 {
     return CGSizeMake(MAIN_TOOLCELL_WIDTH, MAIN_TOOLCELL_HEIGHT);
 }
-#pragma mark - loadData & freshUI
+#pragma mark - NetWorking & freshUI
 - (NSMutableURLRequest *)setLoadDataRequest
 {
     return [FSApiRequest loadHomePageData];
@@ -211,7 +226,8 @@ FSMainVC ()
     NSArray *courses = [data bm_arrayForKey:@"hotRecommends"];
     self.m_courses     = [FSCourseRecommendModel modelsWithDataArray:courses];
     NSArray *topics  = [data bm_arrayForKey:@"bestPosts"];
-    BMLog(@"推荐帖子数:%lu", (unsigned long)topics.count);
+    self.m_topics    = [FSCommunityTopicListModel communityRecommendListModelArr:topics];
+    
     [self freshUI];
     return [super succeedLoadedRequestWithDic:data];
 }
@@ -237,5 +253,21 @@ FSMainVC ()
     [_m_headerView layoutIfNeeded];
 
     [self.m_TableView reloadData];
+}
+- (void)checkUnreadMessage
+{
+    [FSApiRequest getMessageUnReadFlagSuccess:^(id  _Nullable responseObject) {
+        [self showRedBadge:YES];
+    } failure:^(NSError * _Nullable error) {
+        [self showRedBadge:NO];
+    }];
+}
+- (void)showRedBadge:(BOOL)show
+{
+    UIButton *btn = [self bm_getNavigationRightItemAtIndex:0];
+    [btn showRedDotBadge];
+    if (!show) {
+        [btn clearBadge];
+    }
 }
 @end

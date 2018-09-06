@@ -6,7 +6,7 @@
 //  Copyright © 2018 FS. All rights reserved.
 //
 
-#import "FSApiRequest+HomePage.h"
+#import "FSApiRequest.h"
 
 @implementation FSApiRequest (HomePage)
 
@@ -17,4 +17,8 @@
     return [FSApiRequest makeRequestWithURL:urlStr parameters:@{}];
 }
 
++(XMRequest *)getMessageUnReadFlagSuccess:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
+{
+    return [XMRequestManager rm_requestWithApi:@"/storm/home/getMessageUnReadFlag" parameters:nil success:successBlock failure:failureBlock];
+}
 @end
