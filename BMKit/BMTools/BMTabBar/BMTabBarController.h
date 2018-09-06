@@ -42,9 +42,12 @@ typedef NS_ENUM(NSUInteger, BMTabIndex)
 - (BMNavigationController *)getCurrentNavigationController;
 - (BMNavigationController *)getNavigationControllerAtTabIndex:(BMTabIndex)index;
 
-// 以下函数只是返回当前tab的RootVC
+// 返回当前tab的RootVC
+- (UIViewController *)getCurrentRootViewController;
+// 返回当前tab的首层VC
 - (UIViewController *)getCurrentViewController;
 // 根据索引找到VC
+- (UIViewController *)getRootViewControllerAtTabIndex:(BMTabIndex)index;
 - (UIViewController *)getViewControllerAtTabIndex:(BMTabIndex)index;
 
 @end

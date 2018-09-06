@@ -128,6 +128,13 @@
     return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
 }
 
++ (NSMutableURLRequest *)userLogOut
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/user/userLoginOut", FS_URL_SERVER];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
+}
 
 // 刷新token
 + (NSMutableURLRequest *)updateUserToken:(NSString *)token

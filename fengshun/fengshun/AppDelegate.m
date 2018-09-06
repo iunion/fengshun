@@ -16,6 +16,10 @@
 #import "FSDBVersionCheck.h"
 
 #import "FSUserInfo.h"
+#import "BMVerifiTimeManager.h"
+
+#import "FSUserMainVC.h"
+
 //#import "SDWebImageCodersManager.h"
 //#import "SDWebImageGIFCoder.h"
 
@@ -31,6 +35,8 @@
 // 位置信息
 @property (strong, nonatomic) CLLocationManager *m_LocationManager;
 
+@property (strong, nonatomic) NSURLSessionDataTask  *m_LoginOutTask;
+
 @end
 
 @implementation AppDelegate
@@ -42,6 +48,9 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceBatteryStateDidChangeNotification object:nil];
     
     [self removeObserver:self forKeyPath:@"m_UserInfo"];
+
+    [_m_LoginOutTask cancel];
+    _m_LoginOutTask = nil;
 }
 
 - (void)setUpApp
@@ -275,5 +284,99 @@
     
     return YES;
 }
+
+
+
+#pragma mark -
+#pragma mark logOut
+
+// 踢出登录, 同logOut
+- (void)kickOut
+{
+    [self logOut];
+}
+
+// 退出登录
+- (void)logOut
+{
+    // 重置所有倒计时
+    [[BMVerifiTimeManager manager] stopAllType];
+    
+    [FSUserInfoModle logOut];
+    
+    UIViewController *vc = [self.m_TabBarController getCurrentRootViewController];
+    if ([vc isKindOfClass:[FSUserMainVC class]])
+    {
+        if ([self.m_TabBarController getCurrentNavigationController].viewControllers.count != 1)
+        {
+            [[self.m_TabBarController getCurrentNavigationController] popToRootViewControllerAnimated:NO];
+        }
+    }
+    else
+    {
+        [self.m_TabBarController selectedTabWithIndex:BMTabIndex_User];
+    }
+}
+
+// 使用API退出登录
+- (void)logOutWithApi
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSMutableURLRequest *request = [FSApiRequest userLogOut];
+    if (request)
+    {
+        [self.m_LoginOutTask cancel];
+        self.m_LoginOutTask = nil;
+
+        BMWeakSelf
+        self.m_LoginOutTask = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+#if DEBUG
+            if (error)
+            {
+                BMLog(@"Error: %@", error);
+                [weakSelf loginOutRequestFailed:response error:error];
+                
+            }
+            else
+            {
+                NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
+                BMLog(@"%@ %@", response, responseStr);
+                [weakSelf loginOutRequestFinished:response responseDic:responseObject];
+            }
+#endif
+        }];
+        [self.m_LoginOutTask resume];
+    }
+    
+    [self logOut];
+}
+
+- (void)loginOutRequestFinished:(NSURLResponse *)response responseDic:(NSDictionary *)resDic
+{
+    if (![resDic bm_isNotEmptyDictionary])
+    {
+        return;
+    }
+    
+#if DEBUG
+    NSString *responseStr = [[NSString stringWithFormat:@"%@", resDic] bm_convertUnicode];
+    BMLog(@"登出返回数据是:+++++%@", responseStr);
+#endif
+    
+    NSInteger statusCode = [resDic bm_intForKey:@"code"];
+    if (statusCode == 1000)
+    {
+        BMLog(@"登出成功");
+        return;
+    }
+
+    NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
+    BMLog(@"%@", message);
+}
+
+- (void)loginOutRequestFailed:(NSURLResponse *)response error:(NSError *)error
+{
+}
+
 
 @end
