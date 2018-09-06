@@ -17,7 +17,19 @@ typedef NS_ENUM(NSUInteger, FSVerificationCodeType)
     FSMVerificationCodeType_Register = 1,
     FSVerificationCodeType_ResetPassword = 2,
     FSVerificationCodeType_UpdatePhoneNum = 3
- };
+};
+
+typedef NS_ENUM(NSUInteger, FSUpdateUserInfoOperaType)
+{
+    FSUpdateUserInfo_AvatarImageUrl = 0,
+    FSUpdateUserInfo_NickName,
+    FSUpdateUserInfo_RealName,
+    FSUpdateUserInfo_Organization,
+    FSUpdateUserInfo_Job,
+    FSUpdateUserInfo_WorkTime,
+    FSUpdateUserInfo_Ability,
+    FSUpdateUserInfo_Signature
+};
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -31,6 +43,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+
+#pragma mark - 用户相关
 
 @interface FSApiRequest (user)
 
@@ -66,14 +80,21 @@ NS_ASSUME_NONNULL_BEGIN
 // http://123.206.193.140:8121/swagger-ui.html#/%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF/userLoginOutUsingPOST
 + (nullable NSMutableURLRequest *)userLogOut;
 
+// 更新普通用户
+// http://123.206.193.140:8121/swagger-ui.html#/%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF/updateUserBaseInfoUsingPOST
++ (nullable NSMutableURLRequest *)updateUserInfoWithOperaType:(FSUpdateUserInfoOperaType)operaType changeValue:(id)value;
+
 
 // 刷新token
 // https://devftls.odrcloud.net/swagger-ui.html#/%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF/refreshTokenUsingPOST
 + (nullable NSMutableURLRequest *)updateUserToken:(NSString *)token;
 
+@end
 
 
 #pragma mark - 首页API
+
+@interface FSApiRequest (HomePage)
 
 // 获取首页数据
 // http://123.206.193.140:8121/swagger-ui.html#/%E9%A6%96%E9%A1%B5%E7%9B%B8%E5%85%B3/getAppHomeDataUsingPOST

@@ -136,6 +136,64 @@
     return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
 }
 
+// 更新普通用户
++ (NSMutableURLRequest *)updateUserInfoWithOperaType:(FSUpdateUserInfoOperaType)operaType changeValue:(id)value
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/user/updateUserBaseInfo", FS_URL_SERVER];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    
+    switch (operaType)
+    {
+        case FSUpdateUserInfo_AvatarImageUrl:
+            [parameters bm_setApiString:@"UPDATE_HEAD_PORTRAIT_URL" forKey:@"operaEnum"];
+            [parameters bm_setApiString:value forKey:@"headPortraitUrl"];
+            break;
+            
+        case FSUpdateUserInfo_NickName:
+            [parameters bm_setApiString:@"UPDATE_NICK_NAME" forKey:@"operaEnum"];
+            [parameters bm_setApiString:value forKey:@"nickName"];
+            break;
+            
+        case FSUpdateUserInfo_RealName:
+            [parameters bm_setApiString:@"UPDATE_REAL_NAME" forKey:@"operaEnum"];
+            [parameters bm_setApiString:value forKey:@"userName"];
+            break;
+            
+        case FSUpdateUserInfo_Organization:
+            [parameters bm_setApiString:@"UPDATE_WORK_ORGANIZATION" forKey:@"operaEnum"];
+            [parameters bm_setApiString:value forKey:@"workOrganization"];
+            break;
+            
+        case FSUpdateUserInfo_Job:
+            [parameters bm_setApiString:@"UPDATE_JOB" forKey:@"operaEnum"];
+            [parameters bm_setApiString:value forKey:@"job"];
+            break;
+            
+        case FSUpdateUserInfo_WorkTime:
+            [parameters bm_setApiString:@"UPDATE_EMPLOYMENT_TIME" forKey:@"operaEnum"];
+            [parameters bm_setApiString:value forKey:@"employmentTime"];
+            break;
+            
+        case FSUpdateUserInfo_Ability:
+            [parameters bm_setApiString:@"UPDATE_ABILITY" forKey:@"operaEnum"];
+            [parameters bm_setApiString:value forKey:@"ability"];
+            break;
+            
+        case FSUpdateUserInfo_Signature:
+            [parameters bm_setApiString:@"UPDATE_PERSONALITY_SIGNATURE" forKey:@"operaEnum"];
+            [parameters bm_setApiString:value forKey:@"personalitySignature"];
+            break;
+            
+        default:
+            break;
+    }
+    
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
+}
+
+
+
+
 // 刷新token
 + (NSMutableURLRequest *)updateUserToken:(NSString *)token
 {
