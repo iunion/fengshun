@@ -418,13 +418,13 @@
 		AD2244A2213CD6C300F2DC47 /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = AD224497213CD6C300F2DC47 /* MASViewConstraint.m */; };
 		AD2244A3213CD6C300F2DC47 /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = AD224498213CD6C300F2DC47 /* MASViewAttribute.m */; };
 		AD2244A4213CD6C300F2DC47 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD224499213CD6C300F2DC47 /* Info.plist */; };
-		AD2244DB213D158800F2DC47 /* FSPlateDetailListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2244D9213D158800F2DC47 /* FSPlateDetailListTableViewCell.m */; };
-		AD2244DC213D158800F2DC47 /* FSPlateDetailListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD2244DA213D158800F2DC47 /* FSPlateDetailListTableViewCell.xib */; };
+		AD2244DB213D158800F2DC47 /* FSForumDetailListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2244D9213D158800F2DC47 /* FSForumDetailListTableViewCell.m */; };
+		AD2244DC213D158800F2DC47 /* FSForumDetailListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD2244DA213D158800F2DC47 /* FSForumDetailListTableViewCell.xib */; };
 		AD2244DF213D1FE700F2DC47 /* FSCommunityHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD2244DE213D1FE700F2DC47 /* FSCommunityHeaderView.xib */; };
 		AD2244E2213D1FF900F2DC47 /* FSCommunityHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2244E1213D1FF900F2DC47 /* FSCommunityHeaderView.m */; };
 		AD47EFDC2137EBF0004A345F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD47EFDB2137EBF0004A345F /* Launch Screen.storyboard */; };
 		AD510298213E560F008CD74D /* FSApiRequest+Community.m in Sources */ = {isa = PBXBuildFile; fileRef = AD510297213E560F008CD74D /* FSApiRequest+Community.m */; };
-		AD51029C213E6212008CD74D /* FSCommunityRecommendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD51029B213E6212008CD74D /* FSCommunityRecommendModel.m */; };
+		AD51029C213E6212008CD74D /* FSCommunityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD51029B213E6212008CD74D /* FSCommunityModel.m */; };
 		AD51029F213E7771008CD74D /* FSPushVCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD51029E213E7771008CD74D /* FSPushVCManager.m */; };
 		AD5102A3213E77FC008CD74D /* FSCommunitySecVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5102A1213E77FC008CD74D /* FSCommunitySecVC.m */; };
 		AD5102A4213E77FC008CD74D /* FSCommunitySecVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD5102A2213E77FC008CD74D /* FSCommunitySecVC.xib */; };
@@ -447,10 +447,10 @@
 		AD9355AC2137D24100735C2E /* TZLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD93559C2137D24100735C2E /* TZLocationManager.m */; };
 		AD9355AD2137D24100735C2E /* TZGifPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD93559D2137D24100735C2E /* TZGifPhotoPreviewController.m */; };
 		AD9CAAE4212EA0F40071B941 /* UIScrollView+BMEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9CAAE3212EA0F40071B941 /* UIScrollView+BMEmpty.m */; };
-		ADE8689721392853005359B5 /* FSCommunityListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8689521392853005359B5 /* FSCommunityListTableViewCell.m */; };
-		ADE8689821392853005359B5 /* FSCommunityListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADE8689621392853005359B5 /* FSCommunityListTableViewCell.xib */; };
-		ADE8689C21393469005359B5 /* FSPlateListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8689A21393469005359B5 /* FSPlateListTableViewCell.m */; };
-		ADE8689D21393469005359B5 /* FSPlateListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADE8689B21393469005359B5 /* FSPlateListTableViewCell.xib */; };
+		ADE8689721392853005359B5 /* FSTopicListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8689521392853005359B5 /* FSTopicListTableViewCell.m */; };
+		ADE8689821392853005359B5 /* FSTopicListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADE8689621392853005359B5 /* FSTopicListTableViewCell.xib */; };
+		ADE8689C21393469005359B5 /* FSForumListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8689A21393469005359B5 /* FSForumListTableViewCell.m */; };
+		ADE8689D21393469005359B5 /* FSForumListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADE8689B21393469005359B5 /* FSForumListTableViewCell.xib */; };
 		DB14A7AA2139247900E88798 /* FSCourseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB14A7A82139247900E88798 /* FSCourseTableCell.m */; };
 		DB14A7AB2139247900E88798 /* FSCourseTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB14A7A92139247900E88798 /* FSCourseTableCell.xib */; };
 		DB57222F21338B6E0065DC30 /* XMRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB57222D21338B6E0065DC30 /* XMRequestManager.m */; };
@@ -1250,17 +1250,17 @@
 		AD224497213CD6C300F2DC47 /* MASViewConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewConstraint.m; sourceTree = "<group>"; };
 		AD224498213CD6C300F2DC47 /* MASViewAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewAttribute.m; sourceTree = "<group>"; };
 		AD224499213CD6C300F2DC47 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AD2244D8213D158800F2DC47 /* FSPlateDetailListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSPlateDetailListTableViewCell.h; sourceTree = "<group>"; };
-		AD2244D9213D158800F2DC47 /* FSPlateDetailListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSPlateDetailListTableViewCell.m; sourceTree = "<group>"; };
-		AD2244DA213D158800F2DC47 /* FSPlateDetailListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSPlateDetailListTableViewCell.xib; sourceTree = "<group>"; };
+		AD2244D8213D158800F2DC47 /* FSForumDetailListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSForumDetailListTableViewCell.h; sourceTree = "<group>"; };
+		AD2244D9213D158800F2DC47 /* FSForumDetailListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSForumDetailListTableViewCell.m; sourceTree = "<group>"; };
+		AD2244DA213D158800F2DC47 /* FSForumDetailListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSForumDetailListTableViewCell.xib; sourceTree = "<group>"; };
 		AD2244DE213D1FE700F2DC47 /* FSCommunityHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSCommunityHeaderView.xib; sourceTree = "<group>"; };
 		AD2244E0213D1FF900F2DC47 /* FSCommunityHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCommunityHeaderView.h; sourceTree = "<group>"; };
 		AD2244E1213D1FF900F2DC47 /* FSCommunityHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCommunityHeaderView.m; sourceTree = "<group>"; };
 		AD47EFDB2137EBF0004A345F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		AD510296213E560F008CD74D /* FSApiRequest+Community.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FSApiRequest+Community.h"; sourceTree = "<group>"; };
 		AD510297213E560F008CD74D /* FSApiRequest+Community.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "FSApiRequest+Community.m"; sourceTree = "<group>"; };
-		AD51029A213E6212008CD74D /* FSCommunityRecommendModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCommunityRecommendModel.h; sourceTree = "<group>"; };
-		AD51029B213E6212008CD74D /* FSCommunityRecommendModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCommunityRecommendModel.m; sourceTree = "<group>"; };
+		AD51029A213E6212008CD74D /* FSCommunityModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCommunityModel.h; sourceTree = "<group>"; };
+		AD51029B213E6212008CD74D /* FSCommunityModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCommunityModel.m; sourceTree = "<group>"; };
 		AD51029D213E7771008CD74D /* FSPushVCManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSPushVCManager.h; sourceTree = "<group>"; };
 		AD51029E213E7771008CD74D /* FSPushVCManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSPushVCManager.m; sourceTree = "<group>"; };
 		AD5102A0213E77FC008CD74D /* FSCommunitySecVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCommunitySecVC.h; sourceTree = "<group>"; };
@@ -1302,12 +1302,12 @@
 		AD93559E2137D24100735C2E /* TZProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZProgressView.h; sourceTree = "<group>"; };
 		AD9CAAE2212EA0F40071B941 /* UIScrollView+BMEmpty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+BMEmpty.h"; sourceTree = "<group>"; };
 		AD9CAAE3212EA0F40071B941 /* UIScrollView+BMEmpty.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+BMEmpty.m"; sourceTree = "<group>"; };
-		ADE8689421392853005359B5 /* FSCommunityListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCommunityListTableViewCell.h; sourceTree = "<group>"; };
-		ADE8689521392853005359B5 /* FSCommunityListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCommunityListTableViewCell.m; sourceTree = "<group>"; };
-		ADE8689621392853005359B5 /* FSCommunityListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSCommunityListTableViewCell.xib; sourceTree = "<group>"; };
-		ADE8689921393469005359B5 /* FSPlateListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSPlateListTableViewCell.h; sourceTree = "<group>"; };
-		ADE8689A21393469005359B5 /* FSPlateListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSPlateListTableViewCell.m; sourceTree = "<group>"; };
-		ADE8689B21393469005359B5 /* FSPlateListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSPlateListTableViewCell.xib; sourceTree = "<group>"; };
+		ADE8689421392853005359B5 /* FSTopicListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTopicListTableViewCell.h; sourceTree = "<group>"; };
+		ADE8689521392853005359B5 /* FSTopicListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTopicListTableViewCell.m; sourceTree = "<group>"; };
+		ADE8689621392853005359B5 /* FSTopicListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSTopicListTableViewCell.xib; sourceTree = "<group>"; };
+		ADE8689921393469005359B5 /* FSForumListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSForumListTableViewCell.h; sourceTree = "<group>"; };
+		ADE8689A21393469005359B5 /* FSForumListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSForumListTableViewCell.m; sourceTree = "<group>"; };
+		ADE8689B21393469005359B5 /* FSForumListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSForumListTableViewCell.xib; sourceTree = "<group>"; };
 		DB14A7A72139247900E88798 /* FSCourseTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCourseTableCell.h; sourceTree = "<group>"; };
 		DB14A7A82139247900E88798 /* FSCourseTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCourseTableCell.m; sourceTree = "<group>"; };
 		DB14A7A92139247900E88798 /* FSCourseTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSCourseTableCell.xib; sourceTree = "<group>"; };
@@ -2974,8 +2974,8 @@
 		AD510299213E61E2008CD74D /* FSCommunity */ = {
 			isa = PBXGroup;
 			children = (
-				AD51029A213E6212008CD74D /* FSCommunityRecommendModel.h */,
-				AD51029B213E6212008CD74D /* FSCommunityRecommendModel.m */,
+				AD51029A213E6212008CD74D /* FSCommunityModel.h */,
+				AD51029B213E6212008CD74D /* FSCommunityModel.m */,
 			);
 			path = FSCommunity;
 			sourceTree = "<group>";
@@ -3028,15 +3028,15 @@
 		ADE86893213927B2005359B5 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				ADE8689421392853005359B5 /* FSCommunityListTableViewCell.h */,
-				ADE8689521392853005359B5 /* FSCommunityListTableViewCell.m */,
-				ADE8689621392853005359B5 /* FSCommunityListTableViewCell.xib */,
-				ADE8689921393469005359B5 /* FSPlateListTableViewCell.h */,
-				ADE8689A21393469005359B5 /* FSPlateListTableViewCell.m */,
-				ADE8689B21393469005359B5 /* FSPlateListTableViewCell.xib */,
-				AD2244D8213D158800F2DC47 /* FSPlateDetailListTableViewCell.h */,
-				AD2244D9213D158800F2DC47 /* FSPlateDetailListTableViewCell.m */,
-				AD2244DA213D158800F2DC47 /* FSPlateDetailListTableViewCell.xib */,
+				ADE8689421392853005359B5 /* FSTopicListTableViewCell.h */,
+				ADE8689521392853005359B5 /* FSTopicListTableViewCell.m */,
+				ADE8689621392853005359B5 /* FSTopicListTableViewCell.xib */,
+				ADE8689921393469005359B5 /* FSForumListTableViewCell.h */,
+				ADE8689A21393469005359B5 /* FSForumListTableViewCell.m */,
+				ADE8689B21393469005359B5 /* FSForumListTableViewCell.xib */,
+				AD2244D8213D158800F2DC47 /* FSForumDetailListTableViewCell.h */,
+				AD2244D9213D158800F2DC47 /* FSForumDetailListTableViewCell.m */,
+				AD2244DA213D158800F2DC47 /* FSForumDetailListTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -3320,7 +3320,7 @@
 				87D186A9213679F800037DDF /* login_unchecked@3x.png in Resources */,
 				87426A4E213135F0003C52F6 /* fstab_btn3_icon@2x.png in Resources */,
 				87D20B2C213FB7F8001EDD60 /* default_avatariconlarge@2x.png in Resources */,
-				AD2244DC213D158800F2DC47 /* FSPlateDetailListTableViewCell.xib in Resources */,
+				AD2244DC213D158800F2DC47 /* FSForumDetailListTableViewCell.xib in Resources */,
 				87426A59213135F0003C52F6 /* fstab_btn1_highIcon@2x.png in Resources */,
 				87D209732137F399001EDD60 /* FSUserMainVC.xib in Resources */,
 				AD2244A4213CD6C300F2DC47 /* Info.plist in Resources */,
@@ -3346,7 +3346,7 @@
 				874268B5212E7E36003C52F6 /* BMTableView_arrows_rightBlack@2x.png in Resources */,
 				8730AD492140CC28004331A9 /* user_collecticon@3x.png in Resources */,
 				8742689F212E7E36003C52F6 /* decrease_baiduwaimai@3x.png in Resources */,
-				ADE8689D21393469005359B5 /* FSPlateListTableViewCell.xib in Resources */,
+				ADE8689D21393469005359B5 /* FSForumListTableViewCell.xib in Resources */,
 				DB8D16132137CCAC00EB16E8 /* FSMainHeaderView.xib in Resources */,
 				87426897212E7E36003C52F6 /* decrease_meituan@3x.png in Resources */,
 				87426A04212F9657003C52F6 /* navigationbar_back_icon@3x.png in Resources */,
@@ -3362,7 +3362,7 @@
 				87D186A1213679F800037DDF /* login_password@3x.png in Resources */,
 				87D20AF721393B9A001EDD60 /* navigationbar_share_icon@3x.png in Resources */,
 				87D186AB213679F800037DDF /* login_error@2x.png in Resources */,
-				ADE8689821392853005359B5 /* FSCommunityListTableViewCell.xib in Resources */,
+				ADE8689821392853005359B5 /* FSTopicListTableViewCell.xib in Resources */,
 				87426895212E7E36003C52F6 /* increase_baiduwaimai@3x.png in Resources */,
 				87426A23213100BB003C52F6 /* bmsearch_history@3x.png in Resources */,
 				87426A0D212F9657003C52F6 /* navigationbar_select_icon@2x.png in Resources */,
@@ -3531,7 +3531,7 @@
 				87D20AB9213920E2001EDD60 /* FLEXMethodCallingViewController.m in Sources */,
 				87D20ADF213920E2001EDD60 /* FLEXLibrariesTableViewController.m in Sources */,
 				87D20AE7213920E2001EDD60 /* FLEXHeapEnumerator.m in Sources */,
-				ADE8689721392853005359B5 /* FSCommunityListTableViewCell.m in Sources */,
+				ADE8689721392853005359B5 /* FSTopicListTableViewCell.m in Sources */,
 				874268D5212E7E36003C52F6 /* BMVerifiTimeManager.m in Sources */,
 				87D20AB1213920E2001EDD60 /* FLEXNetworkHistoryTableViewController.m in Sources */,
 				87D209CE2138F1E2001EDD60 /* UIView+WebCacheOperation.m in Sources */,
@@ -3620,7 +3620,7 @@
 				AD9355A22137D24100735C2E /* TZAssetModel.m in Sources */,
 				87D20AA7213920E2001EDD60 /* FLEXSetExplorerViewController.m in Sources */,
 				874268C1212E7E36003C52F6 /* BMBoolItem.m in Sources */,
-				ADE8689C21393469005359B5 /* FSPlateListTableViewCell.m in Sources */,
+				ADE8689C21393469005359B5 /* FSForumListTableViewCell.m in Sources */,
 				87D20B1321394A5A001EDD60 /* FSWebViewProgress.m in Sources */,
 				87D20AD2213920E2001EDD60 /* FLEXSystemLogTableViewController.m in Sources */,
 				87D20ADE213920E2001EDD60 /* FLEXCookiesTableViewController.m in Sources */,
@@ -3688,7 +3688,7 @@
 				87D20AE5213920E2001EDD60 /* FLEXHierarchyTableViewController.m in Sources */,
 				874268BE212E7E36003C52F6 /* BMTableViewManager.m in Sources */,
 				87426AEF2135348D003C52F6 /* FMResultSet.m in Sources */,
-				AD51029C213E6212008CD74D /* FSCommunityRecommendModel.m in Sources */,
+				AD51029C213E6212008CD74D /* FSCommunityModel.m in Sources */,
 				87D209BA2138F1E2001EDD60 /* UIImage+ForceDecode.m in Sources */,
 				AD9355AD2137D24100735C2E /* TZGifPhotoPreviewController.m in Sources */,
 				87D20AA6213920E2001EDD60 /* FLEXViewControllerExplorerViewController.m in Sources */,
@@ -3696,7 +3696,7 @@
 				AD9CAAE4212EA0F40071B941 /* UIScrollView+BMEmpty.m in Sources */,
 				87D209CC2138F1E2001EDD60 /* SDWebImageGIFCoder.m in Sources */,
 				874269C3212E9B78003C52F6 /* BMFreshHeaderView.m in Sources */,
-				AD2244DB213D158800F2DC47 /* FSPlateDetailListTableViewCell.m in Sources */,
+				AD2244DB213D158800F2DC47 /* FSForumDetailListTableViewCell.m in Sources */,
 				87D186B22136998E00037DDF /* FSLoginVerifyVC.m in Sources */,
 				874269E2212EB8A4003C52F6 /* BMSearchViewController.m in Sources */,
 				874268B1212E7E36003C52F6 /* BMTableViewCheckBoxGroupCell.m in Sources */,

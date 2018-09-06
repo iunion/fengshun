@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FSCommunityListTableViewCell : UITableViewCell
+@interface FSTopicListTableViewCell : UITableViewCell
 // 头像&&分类标题父视图
 @property (weak, nonatomic) IBOutlet UIView *m_CategoryView;
 // 头像
