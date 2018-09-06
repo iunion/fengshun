@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FSCommunityModel.h"
 
 @interface FSTopicListCell : UITableViewCell
 // 头像&&分类标题父视图
@@ -25,5 +26,14 @@
 @property (weak, nonatomic) IBOutlet UIButton *m_CommentBtn;
 // 置顶标识view
 @property (weak, nonatomic) IBOutlet UIView *m_StickView;
+// 置顶
+@property (weak, nonatomic) IBOutlet UILabel *m_StickLab;
+
+/**
+ 展示model
+
+ @param aModel FSCommunityTopicListModel
+ */
+- (void)showWithTopicModel:(FSCommunityTopicListModel *)aModel;
 
 @end

@@ -6,8 +6,8 @@
 //  Copyright © 2018 FS. All rights reserved.
 //
 
-#import "FSSuperVC.h"
+#import "FSSuperNetVC.h"
 
-@interface FSCommunityVC : FSSuperVC
+@interface FSCommunityVC : FSSuperNetVC
 
 @end

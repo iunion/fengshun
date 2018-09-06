@@ -26,7 +26,7 @@
             aModel.m_ForumName                = [param bm_stringForKey:@"forumName"];
             aModel.m_NickName                 = [param bm_stringForKey:@"nickName"];
             aModel.m_PostsCreateTime          = [param bm_intForKey:@"postsCreateTime"];
-            aModel.m_PostsFlag                = [param bm_stringForKey:@"postsFlag"];
+            aModel.m_TopFlag                  = [param bm_boolForKey:@"topFlag"];
             aModel.m_PostsLastReplyTime       = [param bm_intForKey:@"postsLastReplyTime"];
             aModel.m_PostsTitle               = [param bm_stringForKey:@"postsTitle"];
             [data addObject:aModel];
@@ -52,7 +52,7 @@
     self.m_ForumName          = [data bm_stringForKey:@"forumName"];
     self.m_NickName           = [data bm_stringForKey:@"nickName"];
     self.m_PostsCreateTime    = [data bm_intForKey:@"postsCreateTime"];
-    self.m_PostsFlag          = [data bm_stringForKey:@"postsFlag"];
+    self.m_TopFlag            = [data bm_boolForKey:@"topFlag"];
     self.m_PostsLastReplyTime = [data bm_intForKey:@"postsLastReplyTime"];
     self.m_PostsTitle         = [data bm_stringForKey:@"postsTitle"];
 }

@@ -407,6 +407,8 @@
 		87D20B1D213CF9DD001EDD60 /* FSApiUserRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D20B1C213CF9DD001EDD60 /* FSApiUserRequest.m */; };
 		87D20B23213F87A8001EDD60 /* FSCustomInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D20B22213F87A8001EDD60 /* FSCustomInfoVC.m */; };
 		87D20B2C213FB7F8001EDD60 /* default_avatariconlarge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D20B2B213FB7F7001EDD60 /* default_avatariconlarge@2x.png */; };
+		AD1BE2122141238B0018AF2C /* FSForumSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1BE2112141238B0018AF2C /* FSForumSectionHeaderView.m */; };
+		AD1BE214214127180018AF2C /* FSForumSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD1BE213214127180018AF2C /* FSForumSectionHeaderView.xib */; };
 		AD22449A213CD6C300F2DC47 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AD224481213CD6C300F2DC47 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		AD22449B213CD6C300F2DC47 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AD22448A213CD6C300F2DC47 /* ViewController+MASAdditions.m */; };
 		AD22449C213CD6C300F2DC47 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = AD22448E213CD6C300F2DC47 /* MASCompositeConstraint.m */; };
@@ -1224,6 +1226,9 @@
 		87D20B21213F87A8001EDD60 /* FSCustomInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCustomInfoVC.h; sourceTree = "<group>"; };
 		87D20B22213F87A8001EDD60 /* FSCustomInfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCustomInfoVC.m; sourceTree = "<group>"; };
 		87D20B2B213FB7F7001EDD60 /* default_avatariconlarge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_avatariconlarge@2x.png"; sourceTree = "<group>"; };
+		AD1BE2102141238B0018AF2C /* FSForumSectionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSForumSectionHeaderView.h; sourceTree = "<group>"; };
+		AD1BE2112141238B0018AF2C /* FSForumSectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSForumSectionHeaderView.m; sourceTree = "<group>"; };
+		AD1BE213214127180018AF2C /* FSForumSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSForumSectionHeaderView.xib; sourceTree = "<group>"; };
 		AD224480213CD6C300F2DC47 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		AD224481213CD6C300F2DC47 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
 		AD224482213CD6C300F2DC47 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -2967,6 +2972,9 @@
 				AD2244E0213D1FF900F2DC47 /* FSCommunityHeaderView.h */,
 				AD2244E1213D1FF900F2DC47 /* FSCommunityHeaderView.m */,
 				AD2244DE213D1FE700F2DC47 /* FSCommunityHeaderView.xib */,
+				AD1BE2102141238B0018AF2C /* FSForumSectionHeaderView.h */,
+				AD1BE2112141238B0018AF2C /* FSForumSectionHeaderView.m */,
+				AD1BE213214127180018AF2C /* FSForumSectionHeaderView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3357,6 +3365,7 @@
 				87D1869F213679F800037DDF /* login_openeye@3x.png in Resources */,
 				87D1868D213678B400037DDF /* navigationbar_popback_icon@2x.png in Resources */,
 				87426A5A213135F0003C52F6 /* fstab_btn1_icon@2x.png in Resources */,
+				AD1BE214214127180018AF2C /* FSForumSectionHeaderView.xib in Resources */,
 				8742689C212E7E36003C52F6 /* increase_baiduwaimai@2x.png in Resources */,
 				874268B7212E7E36003C52F6 /* BMTableView_arrows_rightBlack@3x.png in Resources */,
 				87D186A1213679F800037DDF /* login_password@3x.png in Resources */,
@@ -3509,6 +3518,7 @@
 				AD8B63FE21338E0C006DDC22 /* FSPreviewFileTool.m in Sources */,
 				874268E4212E7E36003C52F6 /* UIView+BMAnimation.m in Sources */,
 				87D20AC3213920E2001EDD60 /* FLEXArgumentInputFontView.m in Sources */,
+				AD1BE2122141238B0018AF2C /* FSForumSectionHeaderView.m in Sources */,
 				87D20ACB213920E2001EDD60 /* FLEXWindow.m in Sources */,
 				87D20AAB213920E2001EDD60 /* FLEXNetworkTransaction.m in Sources */,
 				87D20AAD213920E2001EDD60 /* FLEXNetworkRecorder.m in Sources */,

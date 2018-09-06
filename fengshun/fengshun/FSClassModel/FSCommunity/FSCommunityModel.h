@@ -19,8 +19,8 @@
 @property (nonatomic, strong) NSString *m_IconUrl;
 // 版块名称
 @property (nonatomic, strong) NSString *m_ForumName;
-// 帖子标志: 推荐 置顶
-@property (nonatomic, strong) NSString *m_PostsFlag;
+// 是否置顶
+@property (nonatomic, assign) BOOL m_TopFlag;
 // 帖子标题
 @property (nonatomic, strong) NSString *m_PostsTitle;
 // 最后回贴时间

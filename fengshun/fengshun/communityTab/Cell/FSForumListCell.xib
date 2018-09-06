@@ -41,7 +41,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="clJ-ua-4ni">
                         <rect key="frame" x="93" y="69.5" width="54" height="12"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tae-lm-IUq">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="community_attention" translatesAutoresizingMaskIntoConstraints="NO" id="tae-lm-IUq">
                                 <rect key="frame" x="0.0" y="0.0" width="12" height="12"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="tae-lm-IUq" secondAttribute="height" multiplier="1:1" id="mqW-t2-yQ9"/>
@@ -68,7 +68,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rBP-sJ-RBi">
                         <rect key="frame" x="171" y="69.5" width="60.5" height="12"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pSu-W3-EtZ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="community_topic" translatesAutoresizingMaskIntoConstraints="NO" id="pSu-W3-EtZ">
                                 <rect key="frame" x="0.0" y="0.0" width="12" height="12"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="pSu-W3-EtZ" secondAttribute="height" multiplier="1:1" id="F8S-11-ek2"/>
@@ -133,4 +133,8 @@
             <point key="canvasLocation" x="58.5" y="69"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="community_attention" width="10" height="10"/>
+        <image name="community_topic" width="9" height="10"/>
+    </resources>
 </document>

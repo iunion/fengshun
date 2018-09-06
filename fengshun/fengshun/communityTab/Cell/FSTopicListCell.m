@@ -8,6 +8,8 @@
 
 #import "FSTopicListCell.h"
 #import "UIButton+BMContentRect.h"
+#import "UIImageView+WebCache.h"
+#import "NSDate+BMCategory.h"
 
 @implementation FSTopicListCell
 
@@ -26,6 +28,18 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)showWithTopicModel:(FSCommunityTopicListModel *)aModel
+{
+    //    [_m_HeaderImgView sd_setImageWithURL:[aModel.m_IconUrl bm_toURL] placeholderImage:[UIImage imageNamed:@""]];
+    [_m_HeaderImgView sd_setImageWithURL:[aModel.m_IconUrl bm_toURL]];
+    _m_CategoryLab.text = aModel.m_ForumName;
+    _m_TitleLab.text    = aModel.m_PostsTitle;
+    _m_TimeLab.text     = [NSDate hmStringDateFromTs:aModel.m_PostsLastReplyTime];
+    _m_UserNameLab.text = aModel.m_NickName;
+    [_m_CommentBtn setTitle:[NSString stringWithFormat:@"%ld", aModel.m_CommentCount] forState:UIControlStateNormal];
+    _m_StickView.hidden = !aModel.m_TopFlag;
 }
 
 @end

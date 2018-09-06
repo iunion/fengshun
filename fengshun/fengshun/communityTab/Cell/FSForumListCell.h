@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FSCommunityModel.h"
 
 @interface FSForumListCell : UITableViewCell
 // 图片
@@ -21,5 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *m_NoteNumLab;
 // 操作按钮
 @property (weak, nonatomic) IBOutlet UIButton *m_DoBtn;
+
+- (void)showWithFSCommunityForumListModel:(FSCommunityForumListModel *)aModel;
 
 @end

@@ -11,23 +11,19 @@
 @implementation FSApiRequest (Community)
 
 
-+ (XMRequest *)getPlateListWithLimit:(NSInteger)limit pageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize startRow:(NSInteger)startRow success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
++ (XMRequest *)getPlateListWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters bm_setInteger:limit forKey:@"limit"];
     [parameters bm_setInteger:pageIndex forKey:@"pageIndex"];
     [parameters bm_setInteger:pageSize forKey:@"pageSize"];
-    [parameters bm_setInteger:startRow forKey:@"startRow"];
     return [XMRequestManager rm_requestWithApi:@"/storm/communityForum/fourmList" parameters:parameters success:successBlock failure:failureBlock];
 }
 
-+ (XMRequest *)getPlateRecommendPostListWithLimit:(NSInteger)limit pageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize startRow:(NSInteger)startRow success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
++ (XMRequest *)getPlateRecommendPostListWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters bm_setInteger:limit forKey:@"limit"];
     [parameters bm_setInteger:pageIndex forKey:@"pageIndex"];
     [parameters bm_setInteger:pageSize forKey:@"pageSize"];
-    [parameters bm_setInteger:startRow forKey:@"startRow"];
     return [XMRequestManager rm_requestWithApi:@"/storm/communityForum/recommendList" parameters:parameters success:successBlock failure:failureBlock];
 }
 

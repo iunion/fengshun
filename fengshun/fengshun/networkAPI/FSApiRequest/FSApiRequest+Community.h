@@ -18,10 +18,8 @@
  @return XMRequest
  */
 
-+ (XMRequest *)getPlateRecommendPostListWithLimit:(NSInteger)limit
-                                        pageIndex:(NSInteger)pageIndex
++ (XMRequest *)getPlateRecommendPostListWithPageIndex:(NSInteger)pageIndex
                                          pageSize:(NSInteger)pageSize
-                                         startRow:(NSInteger)startRow
                                           success:(nullable XMSuccessBlock)successBlock
                                           failure:(nullable XMFailureBlock)failureBlock;
 
@@ -31,10 +29,8 @@
  @return XMRequest
  */
 
-+ (XMRequest *)getPlateListWithLimit:(NSInteger)limit
-                           pageIndex:(NSInteger)pageIndex
++ (XMRequest *)getPlateListWithPageIndex:(NSInteger)pageIndex
                             pageSize:(NSInteger)pageSize
-                            startRow:(NSInteger)startRow
                              success:(nullable XMSuccessBlock)successBlock
                              failure:(nullable XMFailureBlock)failureBlock;
 /**
