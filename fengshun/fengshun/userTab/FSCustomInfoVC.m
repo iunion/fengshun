@@ -9,7 +9,13 @@
 #import "FSCustomInfoVC.h"
 #import "AppDelegate.h"
 
+#import "TTGTagCollectionView.h"
+
 @interface FSCustomInfoVC ()
+<
+    TTGTagCollectionViewDelegate,
+    TTGTagCollectionViewDataSource
+>
 
 @property (nonatomic, strong) BMTableViewSection *m_BaseSection;
 @property (nonatomic, strong) BMTableViewItem *m_AvatarItem;
@@ -28,6 +34,11 @@
 @property (nonatomic, strong) BMTableViewItem *m_SignatureItem;
 
 @property (nonatomic, strong) NSURLSessionDataTask *m_UserInfoTask;
+
+@property (nonatomic, weak) TTGTagCollectionView *m_AbilityCollectionView;
+@property (nonatomic, strong) NSMutableArray *m_AbilityViewArray;
+
+@property (nonatomic, strong) BMSingleLineView *m_UnderLineView;
 
 @end
 
@@ -250,10 +261,40 @@
     if ([userInfo.m_UserBaseInfo.m_Ability bm_isNotEmpty])
     {
         text = @"修改";
+        
+        //NSArray *tags = @[@"热门", @"热门搜索", @"热门搜", @"热门搜1", @"热门134索", @"热门", @"热门搜索", @"热门搜", @"热门搜1", @"热门134索"];
+        //[self makeAbilityViewWithArray:tags];
+        [self makeAbilityViewWithArray:userInfo.m_UserBaseInfo.m_AbilityArray];
+
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 100)];
+        view.backgroundColor = [UIColor whiteColor];
+        
+        TTGTagCollectionView *collectionView = [[TTGTagCollectionView alloc] initWithFrame:CGRectMake(15.0f, 0, UI_SCREEN_WIDTH-30.0f, 60.0f)];
+        collectionView.delegate = self;
+        collectionView.dataSource = self;
+        collectionView.horizontalSpacing = 12.0f;
+        collectionView.verticalSpacing = 6.0f;
+        collectionView.bm_height = collectionView.contentSize.height;
+        [view addSubview:collectionView];
+        view.bm_height = collectionView.bm_height + 8.0f;
+        self.m_AbilityCollectionView = collectionView;
+        [self.m_AbilityCollectionView reload];
+        
+        CGRect frame = CGRectMake(15.0f, view.bm_height-1, UI_SCREEN_WIDTH-15.0f, 1);
+        self.m_UnderLineView = [[BMSingleLineView alloc] initWithFrame:frame];
+        self.m_UnderLineView.needGap = YES;
+        [view addSubview:self.m_UnderLineView];
+
+        self.m_AbilityItem.underLineDrawType = BMTableViewCell_UnderLineDrawType_None;
+        self.m_AbilitySection.footerView = view;
+        self.m_AbilitySection.footerHeight = view.bm_height;
     }
     else
     {
         text = @"请选择";
+        self.m_AbilityItem.underLineDrawType = BMTableViewCell_UnderLineDrawType_SeparatorLeftInset;
+        self.m_AbilitySection.footerView = nil;
+        self.m_AbilitySection.footerHeight = 0.0f;
     }
     imageTextView = [[BMImageTextView alloc] initWithText:text];
     imageTextView.textColor = UI_COLOR_B4;
@@ -264,10 +305,30 @@
     if ([userInfo.m_UserBaseInfo.m_Signature bm_isNotEmpty])
     {
         text = @"修改";
+        
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 100)];
+        view.backgroundColor = [UIColor whiteColor];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(25.0f, 0, UI_SCREEN_WIDTH-50.0f, 60.0f)];
+        label.backgroundColor = [UIColor clearColor];
+        label.textColor = UI_COLOR_B4;
+        label.numberOfLines = 0;
+        label.font = UI_FONT_12;
+        label.text = userInfo.m_UserBaseInfo.m_Signature;
+        //label.text = @"一句话表达下一句话表达下一句话表达下一句话表达下一句话表达下一句话表达下一句话表达下一句话表达下一句话表达下一句话表达下";
+        CGSize size = [label sizeThatFits:CGSizeMake(UI_SCREEN_WIDTH-50.0f, 1000)];
+        label.bm_height = size.height;
+        [view addSubview:label];
+        view.bm_height = label.bm_height + 8.0f;
+
+        self.m_SignatureSection.footerView = view;
+        self.m_SignatureSection.footerHeight = view.bm_height;
     }
     else
     {
         text = @"一句话表达下";
+        self.m_SignatureSection.footerView = nil;
+        self.m_SignatureSection.footerHeight = 0.0f;
     }
     imageTextView = [[BMImageTextView alloc] initWithText:text];
     imageTextView.textColor = UI_COLOR_B4;
@@ -276,6 +337,24 @@
     self.m_SignatureItem.accessoryView = imageTextView;
 
     [self.m_TableView reloadData];
+}
+
+- (void)makeAbilityViewWithArray:(NSArray *)abilityArray
+{
+    self.m_AbilityViewArray = [NSMutableArray arrayWithCapacity:0];
+    
+    for (NSString *ability in abilityArray)
+    {
+        CGFloat width = [ability bm_widthToFitHeight:20 withFont:[UIFont systemFontOfSize:12.0f]] + 12.0f;
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, 26.0f)];
+        label.backgroundColor = [UIColor bm_colorWithHex:0xF0F0F0];
+        label.font = [UIFont systemFontOfSize:10.0f];
+        label.textColor = [UIColor bm_colorWithHex:0x666666];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.text = ability;
+        [label bm_roundedRect:4.0f];
+        [self.m_AbilityViewArray addObject:label];
+    }
 }
 
 - (NSMutableURLRequest *)setLoadDataRequest
@@ -301,5 +380,32 @@
     
     return NO;
 }
+
+
+#pragma mark - TTGTagCollectionViewDelegate
+
+- (CGSize)tagCollectionView:(TTGTagCollectionView *)tagCollectionView sizeForTagAtIndex:(NSUInteger)index
+{
+    UIView *view = self.m_AbilityViewArray[index];
+    return view.frame.size;
+}
+
+- (void)tagCollectionView:(TTGTagCollectionView *)tagCollectionView didSelectTag:(UIView *)tagView atIndex:(NSUInteger)index
+{
+}
+
+
+#pragma mark - TTGTagCollectionViewDataSource
+
+- (NSUInteger)numberOfTagsInTagCollectionView:(TTGTagCollectionView *)tagCollectionView
+{
+    return self.m_AbilityViewArray.count;
+}
+
+- (UIView *)tagCollectionView:(TTGTagCollectionView *)tagCollectionView tagViewForIndex:(NSUInteger)index
+{
+    return self.m_AbilityViewArray[index];
+}
+
 
 @end
