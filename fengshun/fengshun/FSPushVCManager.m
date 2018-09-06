@@ -9,7 +9,7 @@
 #import "FSPushVCManager.h"
 #import "FSWebViewController.h"
 #import "FSCommunitySecVC.h"
-#import "FSSendPostViewController.h"
+#import "FSSendTopicVC.h"
 
 @implementation FSPushVCManager
 
@@ -28,14 +28,14 @@
 
 + (void)showEditPostWithWithPushVC:(UIViewController *)pushVC callBack:(PushVCCallBack)callBack
 {
-    FSSendPostViewController *vc = [[FSSendPostViewController alloc] init];
+    FSSendTopicVC *vc = [[FSSendTopicVC alloc] init];
     vc.sendPostsCallBack         = callBack;
     [pushVC.navigationController pushViewController:vc animated:YES];
 }
 
 + (void)showSendPostWithWithPushVC:(UIViewController *)pushVC callBack:(PushVCCallBack)callBack
 {
-    FSSendPostViewController *vc = [[FSSendPostViewController alloc] init];
+    FSSendTopicVC *vc = [[FSSendTopicVC alloc] init];
     vc.sendPostsCallBack         = callBack;
     [pushVC.navigationController pushViewController:vc animated:YES];
 }

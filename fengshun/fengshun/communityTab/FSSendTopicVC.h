@@ -8,7 +8,7 @@
 
 #import "FSTableViewVC.h"
 
-@interface FSSendPostViewController : FSTableViewVC
+@interface FSSendTopicVC : FSTableViewVC
 
 @property (nonatomic , copy)void (^sendPostsCallBack)(id );
 

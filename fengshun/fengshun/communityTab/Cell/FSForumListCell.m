@@ -6,9 +6,9 @@
 //  Copyright © 2018年 FS. All rights reserved.
 //
 
-#import "FSForumListTableViewCell.h"
+#import "FSForumListCell.h"
 
-@implementation FSForumListTableViewCell
+@implementation FSForumListCell
 
 - (void)awakeFromNib
 {

@@ -11,8 +11,8 @@
 #import "AppDelegate.h"
 #import "TZImagePickerController.h"
 #import "FSTableView.h"
-#import "FSTopicListTableViewCell.h"
-#import "FSForumListTableViewCell.h"
+#import "FSTopicListCell.h"
+#import "FSForumListCell.h"
 #import "FSApiRequest+Community.h"
 #import "FSCommunityModel.h"
 
@@ -117,7 +117,7 @@ FSCommunityVC () <
         UIView *headerView                    = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _m_ScrollPageView.bm_width, 8)];
         headerView.backgroundColor            = [UIColor bm_colorWithHexString:@"f6f6f6"];
         _m_RecommendTableView.tableHeaderView = headerView;
-        [_m_RecommendTableView registerNib:[UINib nibWithNibName:@"FSTopicListTableViewCell" bundle:nil] forCellReuseIdentifier:FSTopicListTableViewCellIdentifier];
+        [_m_RecommendTableView registerNib:[UINib nibWithNibName:@"FSTopicListCell" bundle:nil] forCellReuseIdentifier:FSTopicListTableViewCellIdentifier];
     }
     return _m_RecommendTableView;
 }
@@ -135,7 +135,7 @@ FSCommunityVC () <
         UIView *headerView                = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _m_ScrollPageView.bm_width, 8)];
         headerView.backgroundColor        = [UIColor bm_colorWithHexString:@"f6f6f6"];
         _m_PlateTableView.tableHeaderView = headerView;
-        [_m_PlateTableView registerNib:[UINib nibWithNibName:@"FSForumListTableViewCell" bundle:nil] forCellReuseIdentifier:FSForumListTableViewCellIdentifier];
+        [_m_PlateTableView registerNib:[UINib nibWithNibName:@"FSForumListCell" bundle:nil] forCellReuseIdentifier:FSForumListTableViewCellIdentifier];
     }
     return _m_PlateTableView;
 }
@@ -151,12 +151,12 @@ FSCommunityVC () <
 {
     if (tableView == _m_RecommendTableView)
     {
-        FSTopicListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:FSTopicListTableViewCellIdentifier];
+        FSTopicListCell *cell = [tableView dequeueReusableCellWithIdentifier:FSTopicListTableViewCellIdentifier];
         return cell;
     }
     else if (tableView == _m_PlateTableView)
     {
-        FSForumListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:FSForumListTableViewCellIdentifier];
+        FSForumListCell *cell = [tableView dequeueReusableCellWithIdentifier:FSForumListTableViewCellIdentifier];
         return cell;
     }
     else

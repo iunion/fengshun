@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FSForumListTableViewCell : UITableViewCell
+@interface FSForumListCell : UITableViewCell
 // 图片
 @property (weak, nonatomic) IBOutlet UIImageView *m_ImgView;
 // 帖子标题

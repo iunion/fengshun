@@ -8,10 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@class FSCommunityForumModel;
 @class FSCommunityForumListModel;
-@class FSCommunityTopicListModel;
 
+#pragma mark - 推荐帖子model
 
 @interface FSCommunityTopicListModel : NSObject
 // 帖子id
@@ -40,6 +39,7 @@
 
 @end
 
+#pragma mark - 板块列表
 
 @interface FSCommunityForumModel : NSObject
 // section名称

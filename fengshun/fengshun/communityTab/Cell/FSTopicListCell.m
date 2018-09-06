@@ -6,10 +6,10 @@
 //  Copyright © 2018年 FS. All rights reserved.
 //
 
-#import "FSTopicListTableViewCell.h"
+#import "FSTopicListCell.h"
 #import "UIButton+BMContentRect.h"
 
-@implementation FSTopicListTableViewCell
+@implementation FSTopicListCell
 
 - (void)awakeFromNib
 {

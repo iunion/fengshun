@@ -6,13 +6,13 @@
 //  Copyright © 2018年 FS. All rights reserved.
 //
 
-#import "FSSendPostViewController.h"
+#import "FSSendTopicVC.h"
 
-@interface FSSendPostViewController ()
+@interface FSSendTopicVC ()
 
 @end
 
-@implementation FSSendPostViewController
+@implementation FSSendTopicVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
