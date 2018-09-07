@@ -49,6 +49,7 @@
 @property (nonatomic, strong) NSMutableArray *pickerLabelArray;
 
 @property (nonatomic, strong) NSDate *pickerDate;
+@property (nonatomic, strong) NSString *formatDate;
 
 - (IBAction)doneClick:(id)sender;
 
@@ -60,7 +61,7 @@
 
 - (instancetype)initWithPickerStyle:(BMPickerStyle)pickerStyle completeBlock:(BMDatePickerDoneBlock)completeBlock
 {
-    return [self initWithPickerStyle:pickerStyle scrollToDate:nil completeBlock:completeBlock];
+    return [self initWithPickerStyle:pickerStyle scrollToDate:[NSDate date] completeBlock:completeBlock];
 }
 
 - (instancetype)initWithPickerStyle:(BMPickerStyle)pickerStyle scrollToDate:(NSDate *)scrollToDate completeBlock:(BMDatePickerDoneBlock)completeBlock
@@ -70,6 +71,10 @@
     self.pickerStyle = pickerStyle;
     self.completeBlock = completeBlock;
     
+    if (!scrollToDate)
+    {
+        scrollToDate = [NSDate date];
+    }
     self.pickerDate = scrollToDate;
     
     [self defaultConfig];
@@ -165,8 +170,11 @@
             case PickerStyle_MonthDayHourMinute:
                 self.formate = @"MM-dd HH:mm";
                 break;
+            case PickerStyle_Year:
+                self.formate = @"yyyy";
+                break;
             case PickerStyle_YearMonthDay:
-                self.formate = @"MM-dd";
+                self.formate = @"yyyy-MM-dd";
                 break;
             case PickerStyle_MonthDay:
                 self.formate = @"MM-dd";
@@ -203,11 +211,14 @@
             case PickerStyle_MonthDayHourMinute:
                 _formate = @"yyyy-MM-dd HH:mm";
                 break;
+            case PickerStyle_Year:
+                self.formate = @"yyyy";
+                break;
             case PickerStyle_YearMonthDay:
                 _formate = @"yyyy-MM-dd";
                 break;
             case PickerStyle_MonthDay:
-                _formate = @"yyyy-MM-dd";
+                _formate = @"MM-dd";
                 break;
             case PickerStyle_HourMinute:
                 _formate = @"HH:mm";
@@ -329,6 +340,9 @@
         case PickerStyle_MonthDayHourMinute:
             [self addPickLabelWithNames:@[@"月",@"日",@"时",@"分"]];
             return 4;
+        case PickerStyle_Year:
+            [self addPickLabelWithNames:@[@"年"]];
+            return 1;
         case PickerStyle_YearMonthDay:
             [self addPickLabelWithNames:@[@"年",@"月",@"日"]];
             return 3;
@@ -390,6 +404,9 @@
         case PickerStyle_MonthDayHourMinute:
             return @[@(monthNum*timeInterval), @(dayNum), @(hourNum), @(minuteNUm)];
             break;
+        case PickerStyle_Year:
+            return @[@(yearNum)];
+            break;
         case PickerStyle_YearMonthDay:
             return @[@(yearNum), @(monthNum), @(dayNum)];
             break;
@@ -448,6 +465,16 @@
                 default:
                     break;
             }
+            break;
+        case PickerStyle_Year:
+            switch (component)
+        {
+            case 0:
+                title = _yearArray[row];
+                break;
+            default:
+                break;
+        }
             break;
         case PickerStyle_YearMonthDay:
             switch (component)
@@ -560,6 +587,17 @@
                     break;
             }
             break;
+        case PickerStyle_Year:
+            switch (component)
+        {
+            case 0:
+                yearIndex = row;
+                self.yearLabel.text =_yearArray[yearIndex];
+                break;
+            default:
+                break;
+        }
+            break;
         case PickerStyle_YearMonthDay:
             switch (component)
             {
@@ -659,21 +697,23 @@
     self.pickerDate = [NSDate bm_dateFromString:dateStr withFormat:@"yyyy-MM-dd HH:mm"];
     
     self.formateLabel.text = [NSDate bm_stringFromDate:self.pickerDate formatter:self.formate];
+    self.formatDate = self.formateLabel.text;
     
     if (self.completeBlock)
     {
         self.completeBlock(self.pickerDate, NO);
     }
 
-//    if ([self.scrollToDate compare:self.minLimitDate] == NSOrderedAscending) {
-//        self.scrollToDate = self.minLimitDate;
-//        [self getNowDate:self.minLimitDate animated:YES];
-//    }else if ([self.scrollToDate compare:self.maxLimitDate] == NSOrderedDescending){
-//        self.scrollToDate = self.maxLimitDate;
-//        [self getNowDate:self.maxLimitDate animated:YES];
-//    }
-//    
-//    _startDate = self.scrollToDate;
+    if ([self.pickerDate compare:self.minLimitDate] == NSOrderedAscending)
+    {
+        self.pickerDate = self.minLimitDate;
+        [self scrollToDate:self.minLimitDate animated:YES];
+    }
+    else if ([self.pickerDate compare:self.maxLimitDate] == NSOrderedDescending)
+    {
+        self.pickerDate = self.maxLimitDate;
+        [self scrollToDate:self.maxLimitDate animated:YES];
+    }
 }
 
 - (void)yearChange:(NSInteger)row
@@ -787,6 +827,9 @@
             break;
         case PickerStyle_MonthDayHourMinute:
             indexArray = @[@(monthIndex),@(dayIndex),@(hourIndex),@(minuteIndex)];
+            break;
+        case PickerStyle_Year:
+            indexArray = @[@(yearIndex)];
             break;
         case PickerStyle_YearMonthDay:
             indexArray = @[@(yearIndex),@(monthIndex),@(dayIndex)];

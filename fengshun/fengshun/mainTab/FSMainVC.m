@@ -35,6 +35,7 @@ FSMainVC () <
 @property (nonatomic, strong) NSArray<FSHomePageToolModel *> *      m_tools;
 @property (nonatomic, strong) NSArray<FSCourseRecommendModel *> *   m_courses;
 @property (nonatomic, strong) NSArray<FSCommunityTopicListModel *> *m_topics;
+@property (nonatomic, strong) NSArray *                             m_caseHotkeys;
 
 @end
 
@@ -54,6 +55,7 @@ FSMainVC () <
     [self.m_TableView registerNib:[UINib nibWithNibName:@"FSCourseTableCell" bundle:nil] forCellReuseIdentifier:@"FSCourseTableCell"];
     [self.m_TableView registerNib:[UINib nibWithNibName:@"FSTopicListCell" bundle:nil] forCellReuseIdentifier:@"FSTopicListCell"];
     [self loadApiData];
+    [self moreNetWorking];
 }
 - (void)setupUI
 {
@@ -211,6 +213,14 @@ FSMainVC () <
     return CGSizeMake(MAIN_TOOLCELL_WIDTH, MAIN_TOOLCELL_HEIGHT);
 }
 #pragma mark - NetWorking & freshUI
+- (void)moreNetWorking
+{
+    [FSApiRequest getCaseSearchHotkeysSuccess:^(id  _Nullable responseObject) {
+        
+    } failure:^(NSError * _Nullable error) {
+        
+    }];
+}
 - (NSMutableURLRequest *)setLoadDataRequest
 {
     return [FSApiRequest loadHomePageData];

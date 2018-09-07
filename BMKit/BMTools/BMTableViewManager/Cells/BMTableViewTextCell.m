@@ -179,6 +179,8 @@
     self.textField.secureTextEntry = self.item.secureTextEntry;
     self.textField.clearButtonMode = self.item.clearButtonMode;
     self.textField.clearsOnBeginEditing = self.item.clearsOnBeginEditing;
+    self.textField.hidden = self.item.hideInputView;
+    self.textField.inputView = self.item.inputView;
     
     if (!UIEdgeInsetsEqualToEdgeInsets(self.item.textFieldSeparatorInset, UIEdgeInsetsZero))
     {

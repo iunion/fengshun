@@ -34,6 +34,9 @@
 + (XMRequest *)rm_requestWithApi:(NSString *)api parameters:(NSDictionary *)parameters
                          success:(nullable XMSuccessBlock)successBlock
                          failure:(nullable XMFailureBlock)failureBlock;
++ (XMRequest *)rm_getRequestWithApi:(NSString *)api parameters:(NSDictionary *)parameters
+                         success:(nullable XMSuccessBlock)successBlock
+                         failure:(nullable XMFailureBlock)failureBlock;
 
 // 发送网络请求的全能方法
 + (XMRequest *)rm_requestWithServer:(NSString *)server api:(NSString *)api method:(XMHTTPMethodType)methodType parameters:(NSDictionary *)parameters timeoutInterval:(NSTimeInterval)timeoutInterval

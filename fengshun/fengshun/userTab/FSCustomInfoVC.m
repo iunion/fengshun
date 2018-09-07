@@ -10,11 +10,16 @@
 #import "AppDelegate.h"
 
 #import "TTGTagCollectionView.h"
+#import "BMDatePicker.h"
+
+#import "FSEditorVC.h"
+
 
 @interface FSCustomInfoVC ()
 <
     TTGTagCollectionViewDelegate,
-    TTGTagCollectionViewDataSource
+    TTGTagCollectionViewDataSource,
+    FSEditorDelegate
 >
 
 @property (nonatomic, strong) BMTableViewSection *m_BaseSection;
@@ -25,7 +30,7 @@
 @property (nonatomic, strong) BMTableViewSection *m_WorkSection;
 @property (nonatomic, strong) BMTableViewItem *m_OrganizationItem;
 @property (nonatomic, strong) BMTableViewItem *m_JobItem;
-@property (nonatomic, strong) BMTableViewItem *m_WorkingLifeItem;
+@property (nonatomic, strong) BMTextItem *m_WorkingLifeItem;
 
 @property (nonatomic, strong) BMTableViewSection *m_AbilitySection;
 @property (nonatomic, strong) BMTableViewItem *m_AbilityItem;
@@ -40,6 +45,12 @@
 
 @property (nonatomic, strong) BMSingleLineView *m_UnderLineView;
 
+@property (nonatomic, strong) BMDatePicker *m_PickerView;
+
+@property (nonatomic, strong) NSURLSessionDataTask *m_updateTask;
+
+@property (nonatomic, assign) NSUInteger m_EmploymentTime;
+
 @end
 
 @implementation FSCustomInfoVC
@@ -48,6 +59,9 @@
 {
     [_m_UserInfoTask cancel];
     _m_UserInfoTask = nil;
+
+    [_m_updateTask cancel];
+    _m_updateTask = nil;
 }
 
 - (BMFreshViewType)getFreshViewType
@@ -70,7 +84,7 @@
 
 - (BOOL)needKeyboardEvent
 {
-    return NO;
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -83,6 +97,13 @@
 {
     [super interfaceSettings];
     
+    BMWeakSelf
+
+    BMDatePicker *datePicker = [[BMDatePicker alloc] initWithPickerStyle:PickerStyle_Year completeBlock:nil];
+    datePicker.maxLimitDate = [NSDate date];
+    datePicker.showDoneBtn = NO;
+    self.m_PickerView = datePicker;
+
     self.m_BaseSection = [BMTableViewSection section];
     self.m_WorkSection = [BMTableViewSection section];
     self.m_AbilitySection = [BMTableViewSection section];
@@ -95,9 +116,7 @@
     self.m_AvatarItem.highlightBgColor = UI_COLOR_BL1;
     self.m_AvatarItem.cellHeight = 70.0f;
     
-    self.m_NikeNameItem = [BMTableViewItem itemWithTitle:@"昵称" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
-        
-    }];
+    self.m_NikeNameItem = [BMTableViewItem itemWithTitle:@"昵称" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:nil];
     self.m_NikeNameItem.textFont = FS_CELLTITLE_TEXTFONT;
     self.m_NikeNameItem.highlightBgColor = UI_COLOR_BL1;
     self.m_NikeNameItem.cellHeight = 50.0f;
@@ -129,12 +148,25 @@
     self.m_JobItem.highlightBgColor = UI_COLOR_BL1;
     self.m_JobItem.cellHeight = 50.0f;
 
-    self.m_WorkingLifeItem = [BMTableViewItem itemWithTitle:@"工作年限" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
+    self.m_WorkingLifeItem = [BMTextItem itemWithTitle:@"工作年限" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
     }];
+    self.m_WorkingLifeItem.hideInputView = YES;
+    self.m_WorkingLifeItem.editable = YES;
     self.m_WorkingLifeItem.textFont = FS_CELLTITLE_TEXTFONT;
     self.m_WorkingLifeItem.highlightBgColor = UI_COLOR_BL1;
     self.m_WorkingLifeItem.cellHeight = 50.0f;
+    self.m_WorkingLifeItem.inputView = self.m_PickerView;
+    self.m_WorkingLifeItem.onEndEditing = ^(BMInputItem *item) {
+        //NSLog(@"onEndEditing: %@", @(weakSelf.m_PickerView.pickerDate.bm_year));
+        weakSelf.m_EmploymentTime = weakSelf.m_PickerView.pickerDate.bm_year;
+        
+        FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
+        if (weakSelf.m_EmploymentTime != userInfo.m_UserBaseInfo.m_EmploymentTime)
+        {
+            [weakSelf sendUpdateUserInfoWithOperaType:FSUpdateUserInfo_WorkTime changeValue:@(weakSelf.m_EmploymentTime)];
+        }
+    };
 
     self.m_WorkSection.headerHeight = 10.0f;
     self.m_WorkSection.footerHeight = 0.0f;
@@ -177,6 +209,8 @@
 {
     FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
     
+    BMWeakSelf
+    
     BMImageTextView *imageTextView = [[BMImageTextView alloc] initWithAttributedText:nil image:nil];
     imageTextView.imageSize = CGSizeMake(60.0f, 60.0f);
     imageTextView.textColor = UI_COLOR_B4;
@@ -201,6 +235,11 @@
     imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
     imageTextView.showTableCellAccessoryArrow = YES;
     self.m_NikeNameItem.accessoryView = imageTextView;
+    self.m_NikeNameItem.selectionHandler = ^(id item) {
+        FSEditorVC *editorVC = [[FSEditorVC alloc] initWithOperaType:FSUpdateUserInfo_NickName minWordCount:0 maxnWordCount:8 text:userInfo.m_UserBaseInfo.m_NickName placeholderText:nil];
+        editorVC.delegate = weakSelf;
+        [weakSelf.navigationController pushViewController:editorVC animated:YES];
+    };
     
     if ([userInfo.m_UserBaseInfo.m_RealName bm_isNotEmpty])
     {
@@ -229,7 +268,12 @@
     imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
     imageTextView.showTableCellAccessoryArrow = YES;
     self.m_OrganizationItem.accessoryView = imageTextView;
-    
+    self.m_OrganizationItem.selectionHandler = ^(id item) {
+        FSEditorVC *editorVC = [[FSEditorVC alloc] initWithOperaType:FSUpdateUserInfo_Organization minWordCount:0 maxnWordCount:100 text:userInfo.m_UserBaseInfo.m_Organization placeholderText:nil];
+        editorVC.delegate = weakSelf;
+        [weakSelf.navigationController pushViewController:editorVC animated:YES];
+    };
+
     if ([userInfo.m_UserBaseInfo.m_Job bm_isNotEmpty])
     {
         text = userInfo.m_UserBaseInfo.m_Job;
@@ -243,10 +287,22 @@
     imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
     imageTextView.showTableCellAccessoryArrow = YES;
     self.m_JobItem.accessoryView = imageTextView;
-    
-    if (userInfo.m_UserBaseInfo.m_WorkingLife != 0)
+    self.m_JobItem.selectionHandler = ^(id item) {
+        FSEditorVC *editorVC = [[FSEditorVC alloc] initWithOperaType:FSUpdateUserInfo_Job minWordCount:0 maxnWordCount:50 text:userInfo.m_UserBaseInfo.m_Job placeholderText:nil];
+        editorVC.delegate = weakSelf;
+        [weakSelf.navigationController pushViewController:editorVC animated:YES];
+    };
+
+    if (userInfo.m_UserBaseInfo.m_EmploymentTime > 1950)
     {
-        text = [NSString stringWithFormat:@"%@年", @(userInfo.m_UserBaseInfo.m_WorkingLife)];
+        if (userInfo.m_UserBaseInfo.m_WorkingLife > 0)
+        {
+            text = [NSString stringWithFormat:@"%@年", @(userInfo.m_UserBaseInfo.m_WorkingLife)];
+        }
+        else
+        {
+            text = @"1年内";
+        }
     }
     else
     {
@@ -335,6 +391,11 @@
     imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
     imageTextView.showTableCellAccessoryArrow = YES;
     self.m_SignatureItem.accessoryView = imageTextView;
+    self.m_SignatureItem.selectionHandler = ^(id item) {
+        FSEditorVC *editorVC = [[FSEditorVC alloc] initWithOperaType:FSUpdateUserInfo_Signature minWordCount:0 maxnWordCount:100 text:userInfo.m_UserBaseInfo.m_Signature placeholderText:nil];
+        editorVC.delegate = weakSelf;
+        [weakSelf.navigationController pushViewController:editorVC animated:YES];
+    };
 
     [self.m_TableView reloadData];
 }
@@ -407,5 +468,129 @@
     return self.m_AbilityViewArray[index];
 }
 
+
+#pragma mark -
+#pragma mark send request
+
+// 更新用户信息
+- (void)sendUpdateUserInfoWithOperaType:(FSUpdateUserInfoOperaType)operaType changeValue:(id)value
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSMutableURLRequest *request = [FSApiRequest updateUserInfoWithOperaType:operaType changeValue:(id)value];
+    if (request)
+    {
+        [self.m_ProgressHUD showAnimated:YES showBackground:NO];
+        
+        [self.m_updateTask cancel];
+        self.m_updateTask = nil;
+        
+        BMWeakSelf
+        self.m_updateTask = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+            if (error)
+            {
+                BMLog(@"Error: %@", error);
+                [weakSelf updateRequestFailed:response error:error];
+                
+            }
+            else
+            {
+#if DEBUG
+                NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
+                BMLog(@"%@ %@", response, responseStr);
+#endif
+                [weakSelf updateRequestFinished:response responseDic:responseObject];
+            }
+        }];
+        [self.m_updateTask resume];
+    }
+}
+
+- (void)updateRequestFinished:(NSURLResponse *)response responseDic:(NSDictionary *)resDic
+{
+    if (![resDic bm_isNotEmptyDictionary])
+    {
+        [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        
+        return;
+    }
+    
+#if DEBUG
+    NSString *responseStr = [[NSString stringWithFormat:@"%@", resDic] bm_convertUnicode];
+    BMLog(@"更新返回数据是:+++++%@", responseStr);
+#endif
+    
+    NSInteger statusCode = [resDic bm_intForKey:@"code"];
+    if (statusCode == 1000)
+    {
+        [self.m_ProgressHUD hideAnimated:NO];
+        
+        NSDictionary *dataDic = [resDic bm_dictionaryForKey:@"data"];
+        if ([dataDic bm_isNotEmptyDictionary])
+        {
+            NSUInteger workingLife = [dataDic bm_uintForKey:@"workingLife"];
+        
+            FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
+            userInfo.m_UserBaseInfo.m_EmploymentTime = self.m_EmploymentTime;
+            userInfo.m_UserBaseInfo.m_WorkingLife = workingLife;
+
+            [FSUserInfoDB insertAndUpdateUserInfo:userInfo];
+            GetAppDelegate.m_UserInfo = userInfo;
+
+            [self freshViews];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:userInfoChangedNotification object:nil userInfo:nil];
+
+            return;
+        }
+    }
+    
+    NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
+    [self.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+}
+
+- (void)updateRequestFailed:(NSURLResponse *)response error:(NSError *)error
+{
+    BMLog(@"更新失败的错误:++++%@", [FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE]);
+    
+    [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+}
+
+
+#pragma mark -
+#pragma mark FSEditorDelegate
+
+- (void)editorFinishedWithOperaType:(FSUpdateUserInfoOperaType)operaType value:(NSString *)value
+{
+    FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
+
+    switch (operaType)
+    {
+        case FSUpdateUserInfo_NickName:
+            userInfo.m_UserBaseInfo.m_NickName = value;
+            break;
+            
+        case FSUpdateUserInfo_Organization:
+            userInfo.m_UserBaseInfo.m_Organization = value;
+            break;
+            
+        case FSUpdateUserInfo_Job:
+            userInfo.m_UserBaseInfo.m_Job = value;
+            break;
+            
+        case FSUpdateUserInfo_Signature:
+            userInfo.m_UserBaseInfo.m_Signature = value;
+            break;
+            
+        default:
+            break;
+    }
+    
+    [FSUserInfoDB insertAndUpdateUserInfo:userInfo];
+    GetAppDelegate.m_UserInfo = userInfo;
+    
+    [self freshViews];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:userInfoChangedNotification object:nil userInfo:nil];
+}
 
 @end

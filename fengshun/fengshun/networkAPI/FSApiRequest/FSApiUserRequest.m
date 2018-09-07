@@ -191,8 +191,45 @@
     return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
 }
 
+// 修改手机号码
++ (NSMutableURLRequest *)changeMobilePhoneWithOldPhoneNum:(NSString *)oldPhoneNum oldVerificationCode:(NSString *)oldVerificationCode newPhoneNum:(NSString *)newPhoneNum newVerificationCode:(NSString *)newVerificationCode
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/user/refreshToken", FS_URL_SERVER];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    
+    [parameters bm_setApiString:oldPhoneNum forKey:@"oldMobilePhone"];
+    [parameters bm_setApiString:oldVerificationCode forKey:@"oldValidateCode"];
+    
+    [parameters bm_setApiString:newPhoneNum forKey:@"newMobilePhone"];
+    [parameters bm_setApiString:newVerificationCode forKey:@"newValidateCode"];
 
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
+}
 
+// 修改密码
++ (NSMutableURLRequest *)changeUserPasswordWithPhoneNum:(NSString *)phoneNum newPassword:(NSString *)password verificationCode:(NSString *)verificationCode
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/user/updatePassword", FS_URL_SERVER];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    
+    [parameters bm_setApiString:phoneNum forKey:@"mobilePhone"];
+    [parameters bm_setApiString:password forKey:@"newPassword"];
+    [parameters bm_setApiString:verificationCode forKey:@"validateCode"];
+    
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
+}
+
+// 实名认证
++ (NSMutableURLRequest *)authenticationWithId:(NSString *)idCard name:(NSString *)name
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/user/updatePassword", FS_URL_SERVER];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    
+    [parameters bm_setApiString:idCard forKey:@"idCard"];
+    [parameters bm_setApiString:name forKey:@"userName"];
+    
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
+}
 
 // 刷新token
 + (NSMutableURLRequest *)updateUserToken:(NSString *)token
