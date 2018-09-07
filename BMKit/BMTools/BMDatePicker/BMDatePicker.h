@@ -12,6 +12,7 @@ typedef NS_ENUM(NSUInteger, BMPickerStyle)
 {
     PickerStyle_YearMonthDayHourMinute  = 0,    // 年月日时分
     PickerStyle_MonthDayHourMinute,             // 月日时分
+    PickerStyle_Year,                           // 年
     PickerStyle_YearMonthDay,                   // 年月日
     PickerStyle_MonthDay,                       // 月日
     PickerStyle_HourMinute                      // 时分(24)
@@ -55,6 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSDate *minLimitDate;
 
 @property (nullable, nonatomic, strong, readonly) NSDate *pickerDate;
+@property (nullable, nonatomic, strong, readonly) NSString *formatDate;
 
 @property (nullable, nonatomic, copy) BMDatePickerDoneBlock completeBlock;
 

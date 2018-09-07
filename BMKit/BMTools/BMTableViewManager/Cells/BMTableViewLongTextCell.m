@@ -125,7 +125,8 @@
     self.textView.returnKeyType = self.item.returnKeyType;
     self.textView.enablesReturnKeyAutomatically = self.item.enablesReturnKeyAutomatically;
     self.textView.secureTextEntry = self.item.secureTextEntry;
-    
+    self.textView.hidden = self.item.hideInputView;
+
     self.actionBar.barStyle = self.item.keyboardAppearance == UIKeyboardAppearanceAlert ? UIBarStyleBlack : UIBarStyleDefault;
     
     self.enabled = self.item.enabled;

@@ -136,6 +136,10 @@
     if ([dic bm_containsObjectForKey:@"workingLife"])
     {
         self.m_WorkingLife = [dic bm_uintForKey:@"workingLife"];
+        if (self.m_WorkingLife < 1950)
+        {
+            self.m_WorkingLife = 0;
+        }
     }
 }
 

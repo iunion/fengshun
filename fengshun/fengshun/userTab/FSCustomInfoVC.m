@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 
 #import "TTGTagCollectionView.h"
+#import "BMDatePicker.h"
 
 @interface FSCustomInfoVC ()
 <
@@ -25,7 +26,7 @@
 @property (nonatomic, strong) BMTableViewSection *m_WorkSection;
 @property (nonatomic, strong) BMTableViewItem *m_OrganizationItem;
 @property (nonatomic, strong) BMTableViewItem *m_JobItem;
-@property (nonatomic, strong) BMTableViewItem *m_WorkingLifeItem;
+@property (nonatomic, strong) BMTextItem *m_WorkingLifeItem;
 
 @property (nonatomic, strong) BMTableViewSection *m_AbilitySection;
 @property (nonatomic, strong) BMTableViewItem *m_AbilityItem;
@@ -40,6 +41,12 @@
 
 @property (nonatomic, strong) BMSingleLineView *m_UnderLineView;
 
+@property (nonatomic, strong) BMDatePicker *m_PickerView;
+
+@property (nonatomic, strong) NSURLSessionDataTask *m_updateTask;
+
+@property (nonatomic, assign) NSUInteger m_WorkingLife;
+
 @end
 
 @implementation FSCustomInfoVC
@@ -48,6 +55,9 @@
 {
     [_m_UserInfoTask cancel];
     _m_UserInfoTask = nil;
+
+    [_m_updateTask cancel];
+    _m_updateTask = nil;
 }
 
 - (BMFreshViewType)getFreshViewType
@@ -70,7 +80,7 @@
 
 - (BOOL)needKeyboardEvent
 {
-    return NO;
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -83,6 +93,13 @@
 {
     [super interfaceSettings];
     
+    BMWeakSelf
+
+    BMDatePicker *datePicker = [[BMDatePicker alloc] initWithPickerStyle:PickerStyle_Year completeBlock:nil];
+    datePicker.maxLimitDate = [NSDate date];
+    datePicker.showDoneBtn = NO;
+    self.m_PickerView = datePicker;
+
     self.m_BaseSection = [BMTableViewSection section];
     self.m_WorkSection = [BMTableViewSection section];
     self.m_AbilitySection = [BMTableViewSection section];
@@ -129,12 +146,25 @@
     self.m_JobItem.highlightBgColor = UI_COLOR_BL1;
     self.m_JobItem.cellHeight = 50.0f;
 
-    self.m_WorkingLifeItem = [BMTableViewItem itemWithTitle:@"工作年限" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
+    self.m_WorkingLifeItem = [BMTextItem itemWithTitle:@"工作年限" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
     }];
+    self.m_WorkingLifeItem.hideInputView = YES;
+    self.m_WorkingLifeItem.editable = YES;
     self.m_WorkingLifeItem.textFont = FS_CELLTITLE_TEXTFONT;
     self.m_WorkingLifeItem.highlightBgColor = UI_COLOR_BL1;
     self.m_WorkingLifeItem.cellHeight = 50.0f;
+    self.m_WorkingLifeItem.inputView = self.m_PickerView;
+    self.m_WorkingLifeItem.onEndEditing = ^(BMInputItem *item) {
+        NSLog(@"onEndEditing: %@", @(weakSelf.m_PickerView.pickerDate.bm_year));
+        weakSelf.m_WorkingLife = weakSelf.m_PickerView.pickerDate.bm_year;
+        
+        FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
+        if (weakSelf.m_WorkingLife != userInfo.m_UserBaseInfo.m_WorkingLife)
+        {
+            [weakSelf sendUpdateUserInfoWithOperaType:FSUpdateUserInfo_WorkTime changeValue:@(weakSelf.m_WorkingLife)];
+        }
+    };
 
     self.m_WorkSection.headerHeight = 10.0f;
     self.m_WorkSection.footerHeight = 0.0f;
@@ -246,7 +276,7 @@
     
     if (userInfo.m_UserBaseInfo.m_WorkingLife != 0)
     {
-        text = [NSString stringWithFormat:@"%@年", @(userInfo.m_UserBaseInfo.m_WorkingLife)];
+        text = [NSString stringWithFormat:@"%@年", @([NSDate date].bm_year - userInfo.m_UserBaseInfo.m_WorkingLife)];
     }
     else
     {
@@ -405,6 +435,82 @@
 - (UIView *)tagCollectionView:(TTGTagCollectionView *)tagCollectionView tagViewForIndex:(NSUInteger)index
 {
     return self.m_AbilityViewArray[index];
+}
+
+
+#pragma mark -
+#pragma mark send request
+
+// 更新用户信息
+- (void)sendUpdateUserInfoWithOperaType:(FSUpdateUserInfoOperaType)operaType changeValue:(id)value
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSMutableURLRequest *request = [FSApiRequest updateUserInfoWithOperaType:operaType changeValue:(id)value];
+    if (request)
+    {
+        [self.m_ProgressHUD showAnimated:YES showBackground:NO];
+        
+        [self.m_updateTask cancel];
+        self.m_updateTask = nil;
+        
+        BMWeakSelf
+        self.m_updateTask = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+            if (error)
+            {
+                BMLog(@"Error: %@", error);
+                [weakSelf updateRequestFailed:response error:error];
+                
+            }
+            else
+            {
+#if DEBUG
+                NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
+                BMLog(@"%@ %@", response, responseStr);
+#endif
+                [weakSelf updateRequestFinished:response responseDic:responseObject];
+            }
+        }];
+        [self.m_updateTask resume];
+    }
+}
+
+- (void)updateRequestFinished:(NSURLResponse *)response responseDic:(NSDictionary *)resDic
+{
+    if (![resDic bm_isNotEmptyDictionary])
+    {
+        [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        
+        return;
+    }
+    
+#if DEBUG
+    NSString *responseStr = [[NSString stringWithFormat:@"%@", resDic] bm_convertUnicode];
+    BMLog(@"更新返回数据是:+++++%@", responseStr);
+#endif
+    
+    NSInteger statusCode = [resDic bm_intForKey:@"code"];
+    if (statusCode == 1000)
+    {
+        [self.m_ProgressHUD hideAnimated:NO];
+        
+        FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
+        userInfo.m_UserBaseInfo.m_WorkingLife = self.m_WorkingLife;
+
+        [FSUserInfoDB insertAndUpdateUserInfo:userInfo];
+        GetAppDelegate.m_UserInfo = userInfo;
+
+        return;
+    }
+    
+    NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
+    [self.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+}
+
+- (void)updateRequestFailed:(NSURLResponse *)response error:(NSError *)error
+{
+    BMLog(@"更新失败的错误:++++%@", [FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE]);
+    
+    [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
 }
 
 

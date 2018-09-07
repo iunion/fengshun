@@ -2292,6 +2292,13 @@
 			path = DTAWS;
 			sourceTree = "<group>";
 		};
+		8730B0A321420EC2004331A9 /* setup */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = setup;
+			sourceTree = "<group>";
+		};
 		87426791212E7E35003C52F6 /* BMKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -3403,6 +3410,7 @@
 			isa = PBXGroup;
 			children = (
 				87D20AED21392FF1001EDD60 /* images */,
+				8730B0A321420EC2004331A9 /* setup */,
 				87D2096F2137F399001EDD60 /* FSUserMainVC.h */,
 				87D209702137F399001EDD60 /* FSUserMainVC.m */,
 				87D209712137F399001EDD60 /* FSUserMainVC.xib */,
