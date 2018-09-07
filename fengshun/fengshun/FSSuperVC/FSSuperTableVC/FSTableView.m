@@ -35,7 +35,7 @@
     self.backgroundColor = [UIColor clearColor];
     self.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.bounces = YES;
-    self.tableFooterView = [UIView new];
+//    self.tableFooterView = [UIView new];
 
 #ifdef __IPHONE_11_0
     if (@available(iOS 11.0, *))

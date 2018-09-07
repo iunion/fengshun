@@ -10,15 +10,15 @@
 
 @implementation FSApiRequest (Community)
 
-
+// 板块列表
 + (XMRequest *)getPlateListWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters bm_setInteger:pageIndex forKey:@"pageIndex"];
     [parameters bm_setInteger:pageSize forKey:@"pageSize"];
-    return [XMRequestManager rm_requestWithApi:@"/storm/communityForum/fourmList" parameters:parameters success:successBlock failure:failureBlock];
+    return [XMRequestManager rm_requestWithApi:@"/storm/communityForum/forumList" parameters:parameters success:successBlock failure:failureBlock];
 }
-
+// 推荐帖子列表
 + (XMRequest *)getPlateRecommendPostListWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
@@ -26,33 +26,53 @@
     [parameters bm_setInteger:pageSize forKey:@"pageSize"];
     return [XMRequestManager rm_requestWithApi:@"/storm/communityForum/recommendList" parameters:parameters success:successBlock failure:failureBlock];
 }
-
-+ (XMRequest *)editPostsWithTitle:(NSString *)title content:(NSString *)content postId:(NSInteger)postId success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
-{
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters bm_setApiString:title forKey:@"title"];
-    [parameters bm_setApiString:content forKey:@"content"];
-    [parameters bm_setInteger:postId forKey:@"postId"];
-    return [XMRequestManager rm_requestWithApi:@"/storm/postInfo/editPost" parameters:parameters success:successBlock failure:failureBlock];
-}
-
-+ (XMRequest *)sendPostsWithTitle:(NSString *)title content:(NSString *)content forumId:(NSInteger)forumId success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
-{
+// 发送||编辑帖子
++ (XMRequest *)sendPostsWithTitle:(NSString *)title content:(NSString *)content forumId:(NSInteger)forumId isEdited:(BOOL)isEdited success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock{
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters bm_setApiString:title forKey:@"title"];
     [parameters bm_setApiString:content forKey:@"content"];
     [parameters bm_setInteger:forumId forKey:@"forumId"];
-    return [XMRequestManager rm_requestWithApi:@"/storm/postInfo/addPost" parameters:parameters success:successBlock failure:failureBlock];
+    return [XMRequestManager rm_requestWithApi:isEdited?@"/storm/postInfo/editPost":@"/storm/postInfo/addPost" parameters:parameters success:successBlock failure:failureBlock];
 }
-
-
-+ (XMRequest *)getPostCommentListWithDetailId:(NSInteger)detailId maxId:(NSInteger)maxId pageSize:(NSInteger)pageSize success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
+// 关注
++ (XMRequest *)updateFourmAttentionStateWithFourmId:(NSInteger)fourmId success:(nullable XMSuccessBlock)successBlock failure:(nullable XMFailureBlock)failureBlock{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters bm_setInteger:fourmId forKey:@"id"];
+    return [XMRequestManager rm_requestWithApi:@"/storm/communityForum/followOrUnFollow" parameters:parameters success:successBlock failure:failureBlock];
+}
+// 二级info信息
++ (XMRequest *)getTwoLevelFourmInfoWithId:(NSInteger)topicId success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters bm_setInteger:detailId forKey:@"detailId"];
-    [parameters bm_setInteger:maxId forKey:@"maxId"];
+    [parameters bm_setInteger:topicId forKey:@"id"];
+    return [XMRequestManager rm_requestWithApi:@"/storm/communityForum/twoLevelForumInfo" parameters:parameters success:successBlock failure:failureBlock];
+}
+// 二级列表
++ (XMRequest *)getTwoLevelFourmListWithListType:(FSCommunityDetailListType)type topicIdId:(NSInteger)topicId PageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters bm_setInteger:topicId forKey:@"id"];
+    [parameters bm_setInteger:pageIndex forKey:@"pageIndex"];
     [parameters bm_setInteger:pageSize forKey:@"pageSize"];
-    return [XMRequestManager rm_requestWithApi:@"/storm/postInfo/postComment" parameters:parameters success:successBlock failure:failureBlock];
+    NSString *urlStr;
+    switch (type) {
+        case FSCommunityDetailListType_NewReply:
+            urlStr = @"/storm/communityForum/newReplyList";
+            break;
+        case FSCommunityDetailListType_NewPulish:
+            urlStr = @"/storm/communityForum/newPublishList";
+            break;
+        case FSCommunityDetailListType_Hot:
+            urlStr = @"/storm/communityForum/hotList";
+            break;
+        case FSCommunityDetailListType_Essence:
+            urlStr = @"/storm/communityForum/essenceList";
+            break;
+        default:
+            urlStr = @"";
+            break;
+    }
+    return [XMRequestManager rm_requestWithApi:urlStr parameters:parameters success:successBlock failure:failureBlock];
 }
 
 @end

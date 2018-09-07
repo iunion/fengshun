@@ -126,3 +126,59 @@
 }
 
 @end
+
+@implementation FSCommunityDetailInfoModel
+/*
+ communityForumDTO =     {
+     attentionCount = 20;
+     attentionFlag = 1;
+     description = "\U7248\U5757\U4ecb\U7ecd";
+     forumNameFirst = "\U4e00\U7ea7\U540d\U79f0";
+     forumNameSecond = "\U4e8c\U7ea7";
+     iconUrlFirst = "kads.jpg";
+     iconUrlSecond = "2.jpg";
+     id = 5;
+     postsCount = 50;
+ };
+ essenceDisplayFlag = 1;
+ */
++ (FSCommunityDetailInfoModel *)infoModelWithDic:(NSDictionary *)dic{
+    if (![[dic bm_stringForKey:@"id"] bm_isNotEmpty])
+    {
+        return nil;
+    }
+    FSCommunityDetailInfoModel *aModel = [FSCommunityDetailInfoModel new];
+    aModel.m_AttentionCount            = [dic bm_intForKey:@"attentionCount"];
+    aModel.m_AttentionFlag             = [dic bm_boolForKey:@"attentionFlag"];
+    aModel.m_Description               = [dic bm_stringForKey:@"description"];
+    aModel.m_ForumNameFirst            = [dic bm_stringForKey:@"forumNameFirst"];
+    aModel.m_ForumNameSecond           = [dic bm_stringForKey:@"forumNameSecond"];
+    aModel.m_IconUrlFirst              = [dic bm_stringForKey:@"iconUrlFirst"];
+    aModel.m_IconUrlSecond             = [dic bm_stringForKey:@"iconUrlSecond"];
+    aModel.m_Id                        = [dic bm_intForKey:@"id"];
+    aModel.m_PostsCount                = [dic bm_intForKey:@"postsCount"];
+    return aModel;
+}
+
+- (void)updateModel:(NSDictionary *)dic{
+    if (![dic bm_isNotEmptyDictionary])
+    {
+        return;
+    }
+    // id不存在不修改
+    if (![[dic bm_stringForKey:@"id"] bm_isNotEmpty])
+    {
+        return;
+    }
+    self.m_AttentionCount  = [dic bm_intForKey:@"attentionCount"];
+    self.m_Description     = [dic bm_stringForKey:@"description"];
+    self.m_ForumNameFirst  = [dic bm_stringForKey:@"forumNameFirst"];
+    self.m_ForumNameSecond = [dic bm_stringForKey:@"forumNameSecond"];
+    self.m_IconUrlFirst    = [dic bm_stringForKey:@"iconUrlFirst"];
+    self.m_IconUrlSecond   = [dic bm_stringForKey:@"iconUrlSecond"];
+    self.m_Id              = [dic bm_intForKey:@"id"];
+    self.m_PostsCount      = [dic bm_intForKey:@"postsCount"];
+    self.m_AttentionFlag   = [dic bm_boolForKey:@"attentionFlag"];
+}
+
+@end

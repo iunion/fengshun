@@ -17,6 +17,8 @@
 #import "FSCommunityModel.h"
 #import "FSForumSectionHeaderView.h"
 #import "UIImageView+WebCache.h"
+#import "FSCommunitySecVC.h"
+#import "FSPushVCManager.h"
 
 static NSString *FSTopicListTableViewCellIdentifier = @"FSTopicListTableViewCellIdentifier";
 static NSString *FSForumListTableViewCellIdentifier = @"FSForumListTableViewCellIdentifier";
@@ -29,10 +31,12 @@ FSCommunityVC ()
     FSScrollPageViewDataSource,
     TZImagePickerControllerDelegate,
     UITableViewDelegate,
-    UITableViewDataSource,
-    FSTableViewDelegate
+    UITableViewDataSource
 >
-
+{
+    NSInteger _m_TopicPage;//推荐帖子列表页码
+    NSInteger _m_ForumPage;//板块列表页码
+}
 @property (nonatomic, strong) FSScrollPageSegment *m_SegmentBar;
 @property (nonatomic, strong) FSScrollPageView *   m_ScrollPageView;
 @property (nonatomic, strong) FSTableView *        m_RecommendTableView;
@@ -64,10 +68,29 @@ FSCommunityVC ()
     //    [self bm_setNavigationWithTitle:@"" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightDicArray:@[btnItem2, btnItem1]];
 
     [self setupUI];
+    //初始化pages
+    _m_TopicPage = 1;
+    _m_ForumPage = 1;
     _m_TopicDataArray = [NSMutableArray array];
     _m_forumDataArray = [NSMutableArray array];
+    BMWeakSelf;
+    self.m_RecommendTableView.bm_freshHeaderView.beginFreshingBlock = ^(BMFreshBaseView *freshView) {
+        _m_TopicPage = 1;
+        [weakSelf getRecommendList];
+    };
+    self.m_RecommendTableView.bm_freshFooterView.beginFreshingBlock = ^(BMFreshBaseView *freshView) {
+        [weakSelf getRecommendList];
+    };
+    self.m_PlateTableView.bm_freshHeaderView.beginFreshingBlock = ^(BMFreshBaseView *freshView) {
+        _m_ForumPage = 1;
+        [weakSelf getForumList];
+    };
+    self.m_PlateTableView.bm_freshFooterView.beginFreshingBlock = ^(BMFreshBaseView *freshView) {
+        [weakSelf getForumList];
+    };
     [self getRecommendList];
 }
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -113,7 +136,7 @@ FSCommunityVC ()
 {
     if (!_m_RecommendTableView)
     {
-        _m_RecommendTableView                 = [[FSTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain freshViewType:BMFreshViewType_ALL];
+        _m_RecommendTableView                 = [[FSTableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped freshViewType:BMFreshViewType_ALL];
         _m_RecommendTableView.delegate        = self;
         _m_RecommendTableView.dataSource      = self;
         _m_RecommendTableView.rowHeight       = 152;
@@ -131,8 +154,7 @@ FSCommunityVC ()
 {
     if (!_m_PlateTableView)
     {
-        _m_PlateTableView                   = [[FSTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain freshViewType:BMFreshViewType_ALL];
-        _m_PlateTableView.tableViewDelegate = self;
+        _m_PlateTableView                   = [[FSTableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped freshViewType:BMFreshViewType_ALL];
         _m_PlateTableView.delegate          = self;
         _m_PlateTableView.dataSource        = self;
         _m_PlateTableView.rowHeight         = 102;
@@ -241,6 +263,16 @@ FSCommunityVC ()
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (tableView == _m_RecommendTableView)
+    {
+        
+    }
+    else if (tableView == _m_PlateTableView)
+    {
+        FSCommunityForumModel *model = _m_forumDataArray[indexPath.section];
+        FSCommunityForumListModel *listModel = model.m_List[indexPath.row];
+        [FSPushVCManager showCommunitySecVCPushVC:self FourmId:listModel.m_Id];
+    }
 }
 
 
@@ -286,14 +318,29 @@ FSCommunityVC ()
 
 - (void)getRecommendList
 {
-    [FSApiRequest getPlateRecommendPostListWithPageIndex:1 pageSize:20 success:^(id  _Nullable responseObject) {
+    [FSApiRequest getPlateRecommendPostListWithPageIndex:_m_TopicPage pageSize:10 success:^(id  _Nullable responseObject) {
         if ([responseObject bm_isNotEmptyDictionary])
         {
+            if (_m_TopicPage == 1) {
+                [self->_m_TopicDataArray  removeAllObjects];
+                [_m_RecommendTableView.bm_freshHeaderView endReFreshing];
+            }
             [self->_m_TopicDataArray addObjectsFromArray:[FSCommunityTopicListModel communityRecommendListModelArr:[responseObject bm_arrayForKey:@"list"]]];
             [self->_m_RecommendTableView reloadData];
+            BOOL hasNextPage = [responseObject bm_boolForKey:@"hasNextPage"];
+            if (hasNextPage)
+            {
+                _m_TopicPage ++;
+                [_m_RecommendTableView.bm_freshFooterView endReFreshing];
+            }
+            else
+            {
+                [_m_RecommendTableView.bm_freshFooterView endReFreshingWithNoMoreData];
+            }
         }
     } failure:^(NSError * _Nullable error) {
-        
+        [_m_RecommendTableView.bm_freshHeaderView endReFreshing];
+        [_m_RecommendTableView.bm_freshFooterView endReFreshing];
     }];
     
     
@@ -301,27 +348,35 @@ FSCommunityVC ()
 
 - (void)getForumList
 {
-    [FSApiRequest getPlateListWithPageIndex:1 pageSize:20 success:^(id  _Nullable responseObject) {
+    [FSApiRequest getPlateListWithPageIndex:_m_ForumPage pageSize:10 success:^(id  _Nullable responseObject) {
         if ([responseObject bm_isNotEmptyDictionary])
         {
+            if (_m_ForumPage == 1) {
+                [self->_m_forumDataArray removeAllObjects];
+                [_m_PlateTableView.bm_freshHeaderView endReFreshing];
+            }
             [self->_m_forumDataArray addObjectsFromArray:[FSCommunityForumModel plateModelWithArr:[responseObject bm_arrayForKey:@"list"]]];
             [self->_m_PlateTableView reloadData];
+            NSInteger totalPages = [responseObject bm_intForKey:@"totalPages"];
+            if (_m_ForumPage < totalPages)
+            {
+                _m_ForumPage ++;
+                [_m_PlateTableView.bm_freshFooterView endReFreshing];
+            }
+            else
+            {
+                [_m_PlateTableView.bm_freshFooterView endReFreshingWithNoMoreData];
+            }
         }
-    } failure:^(NSError * _Nullable error) {
         
+    } failure:^(NSError * _Nullable error) {
+        [_m_PlateTableView.bm_freshHeaderView endReFreshing];
+        [_m_PlateTableView.bm_freshFooterView endReFreshing];
     }];
 }
 
-#pragma mark - FSTableViewDelegate
 
-- (void)freshDataWithTableView:(FSTableView *)tableView
-{
-}
 
-- (void)loadNextDataWithTableView:(FSTableView *)tableView
-{
-    
-}
 
 //#pragma mark - 图片选择例子
 //- (void)photo:(id)sender

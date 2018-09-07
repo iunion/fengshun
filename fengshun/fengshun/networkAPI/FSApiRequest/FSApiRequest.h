@@ -11,16 +11,14 @@
 #import "FSAPIMacros.h"
 #import "XMRequestManager.h"
 
-typedef NS_ENUM(NSUInteger, FSVerificationCodeType)
-{
-    FSVerificationCodeType_Unknown = 0,
-    FSMVerificationCodeType_Register = 1,
-    FSVerificationCodeType_ResetPassword = 2,
+typedef NS_ENUM(NSUInteger, FSVerificationCodeType) {
+    FSVerificationCodeType_Unknown        = 0,
+    FSMVerificationCodeType_Register      = 1,
+    FSVerificationCodeType_ResetPassword  = 2,
     FSVerificationCodeType_UpdatePhoneNum = 3
 };
 
-typedef NS_ENUM(NSUInteger, FSUpdateUserInfoOperaType)
-{
+typedef NS_ENUM(NSUInteger, FSUpdateUserInfoOperaType) {
     FSUpdateUserInfo_AvatarImageUrl = 0,
     FSUpdateUserInfo_NickName,
     FSUpdateUserInfo_RealName,
@@ -29,6 +27,13 @@ typedef NS_ENUM(NSUInteger, FSUpdateUserInfoOperaType)
     FSUpdateUserInfo_WorkTime,
     FSUpdateUserInfo_Ability,
     FSUpdateUserInfo_Signature
+};
+
+typedef NS_ENUM(NSUInteger, FSCommunityDetailListType) {
+    FSCommunityDetailListType_NewReply,   //最新回复
+    FSCommunityDetailListType_NewPulish,  //最新发帖
+    FSCommunityDetailListType_Hot,        //热门
+    FSCommunityDetailListType_Essence     //精华
 };
 
 NS_ASSUME_NONNULL_BEGIN
@@ -112,66 +117,53 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FSApiRequest (Community)
 
 
-/**
- 获取板块推荐列表
- 
- @return XMRequest
- */
-
+// 获取推荐帖子列表
+// http://123.206.193.140:8121/swagger-ui.html#/operations/社区首页/recommendListUsingPOST
 + (XMRequest *)getPlateRecommendPostListWithPageIndex:(NSInteger)pageIndex
                                              pageSize:(NSInteger)pageSize
                                               success:(nullable XMSuccessBlock)successBlock
                                               failure:(nullable XMFailureBlock)failureBlock;
 
-/**
- 获取板块列表
- 
- @return XMRequest
- */
-
+// 获取板块列表
+//http://123.206.193.140:8121/swagger-ui.html#/operations/社区首页/fourmListUsingPOST
 + (XMRequest *)getPlateListWithPageIndex:(NSInteger)pageIndex
                                 pageSize:(NSInteger)pageSize
                                  success:(nullable XMSuccessBlock)successBlock
                                  failure:(nullable XMFailureBlock)failureBlock;
-/**
- 编辑帖子
- 
- @param title 标题
- @param content 内容
- @param postId 帖子Id
- @return XMRequest
- */
-+ (XMRequest *)editPostsWithTitle:(NSString *)title
-                          content:(NSString *)content
-                           postId:(NSInteger)postId
-                          success:(nullable XMSuccessBlock)successBlock
-                          failure:(nullable XMFailureBlock)failureBlock;
-/**
- 发帖
- 
- @param title 标题
- @param content 内容
- @param forumId 版块ID
- @return XMRequest
- */
+// 发帖编辑帖子
+// http://123.206.193.140:8121/swagger-ui.html#/operations/帖子信息/addPostUsingPOST
+// http://123.206.193.140:8121/swagger-ui.html#/operations/帖子信息/editPostUsingPOST
 + (XMRequest *)sendPostsWithTitle:(NSString *)title
                           content:(NSString *)content
                           forumId:(NSInteger)forumId
+                         isEdited:(BOOL )isEdited
                           success:(nullable XMSuccessBlock)successBlock
                           failure:(nullable XMFailureBlock)failureBlock;
-/**
- 帖子评论列表
- 
- @param detailId 帖子ID/课程ID
- @param maxId 上次请求返回中的maxId，最大的Id
- @param pageSize 每页的数量
- @return XMRequest
- */
-+ (XMRequest *)getPostCommentListWithDetailId:(NSInteger)detailId
-                                        maxId:(NSInteger)maxId
-                                     pageSize:(NSInteger)pageSize
-                                      success:(nullable XMSuccessBlock)successBlock
-                                      failure:(nullable XMFailureBlock)failureBlock;
+
+// 获取二级页面header信息
+// http://123.206.193.140:8121/swagger-ui.html#/operations/社区首页/twoLevelFourmInfoUsingPOST
++ (XMRequest *)getTwoLevelFourmInfoWithId:(NSInteger)topicId
+                                  success:(nullable XMSuccessBlock)successBlock
+                                  failure:(nullable XMFailureBlock)failureBlock;
+
+// 获取二级列表：最新回复、最新发帖、热门、精华
+// http://123.206.193.140:8121/swagger-ui.html#/operations/社区首页/newReplyListUsingPOST
+// http://123.206.193.140:8121/swagger-ui.html#/operations/社区首页/newPublishListUsingPOST
+// http://123.206.193.140:8121/swagger-ui.html#/operations/社区首页/hotListUsingPOST
+// http://123.206.193.140:8121/swagger-ui.html#/operations/社区首页/essenceListUsingPOST
++ (XMRequest *)getTwoLevelFourmListWithListType:(FSCommunityDetailListType)type
+                                      topicIdId:(NSInteger)topicId
+                                      PageIndex:(NSInteger)pageIndex
+                                       pageSize:(NSInteger)pageSize
+                                        success:(nullable XMSuccessBlock)successBlock
+                                        failure:(nullable XMFailureBlock)failureBlock;
+
+// 关注板块/取消关注
+// http://123.206.193.140:8121/swagger-ui.html#/operations/社区首页/followOrUnFollowUsingPOST
++ (XMRequest *)updateFourmAttentionStateWithFourmId:(NSInteger )fourmId
+                                            success:(nullable XMSuccessBlock)successBlock
+                                            failure:(nullable XMFailureBlock)failureBlock;
+
 
 @end
 

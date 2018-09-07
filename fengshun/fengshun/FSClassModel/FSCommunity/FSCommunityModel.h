@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @class FSCommunityForumListModel;
-
 #pragma mark - 推荐帖子model
 
 @interface FSCommunityTopicListModel : NSObject
@@ -74,5 +73,35 @@
 - (void)updateForumModel:(NSDictionary *)data;
 
 @end
+#pragma mark - 二级页面headerInfo
+@interface FSCommunityDetailInfoModel :NSObject
+
+
+// 二级版块id
+@property (nonatomic, assign) NSInteger m_Id;
+// 一级封面图片
+@property (nonatomic, strong) NSString *m_IconUrlFirst;
+// 二级封面图片
+@property (nonatomic, strong) NSString *m_IconUrlSecond;
+// 一级版块名称
+@property (nonatomic, strong) NSString *m_ForumNameFirst;
+// 版块介绍
+@property (nonatomic, strong) NSString *m_Description;
+// 二级版块名称
+@property (nonatomic, strong) NSString *m_ForumNameSecond;
+// 版块关注数量
+@property (nonatomic, assign) NSInteger m_AttentionCount;
+// 版块发贴数量
+@property (nonatomic, assign) NSInteger m_PostsCount;
+// 当前用户是否关注
+@property (nonatomic, assign) BOOL m_AttentionFlag;
+
++ (FSCommunityDetailInfoModel *)infoModelWithDic:(NSDictionary *)dic;
+
+- (void)updateModel:(NSDictionary *)dic;
+
+@end
+
+
 
 
