@@ -13,7 +13,7 @@
 #import "FSTableView.h"
 #import "FSTopicListCell.h"
 #import "FSForumListCell.h"
-#import "FSApiRequest+Community.h"
+#import "FSApiRequest.h"
 #import "FSCommunityModel.h"
 #import "FSForumSectionHeaderView.h"
 #import "UIImageView+WebCache.h"

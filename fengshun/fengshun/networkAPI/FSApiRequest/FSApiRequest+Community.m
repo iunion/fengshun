@@ -6,7 +6,7 @@
 //  Copyright © 2018年 FS. All rights reserved.
 //
 
-#import "FSApiRequest+Community.h"
+#import "FSApiRequest.h"
 
 @implementation FSApiRequest (Community)
 
