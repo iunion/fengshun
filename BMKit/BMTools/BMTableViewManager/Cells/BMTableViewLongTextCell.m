@@ -159,7 +159,7 @@
     CGFloat left = self.textLabel.bm_left + self.item.textViewLeftGap;
     CGRect frame;
     
-    if (self.textLabel.text)
+    if ([[self.textLabel.text bm_trim] bm_isNotEmpty])
     {
         CGFloat top = self.textLabel.bm_top + self.textLabel.bm_height + self.item.textViewTopGap;
         frame = CGRectMake(left, top, self.textLabel.bm_width-2.0*self.item.textViewLeftGap, self.bm_height-top-self.item.textViewTopGap);

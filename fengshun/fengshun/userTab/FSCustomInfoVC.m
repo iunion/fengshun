@@ -12,10 +12,14 @@
 #import "TTGTagCollectionView.h"
 #import "BMDatePicker.h"
 
+#import "FSEditorVC.h"
+
+
 @interface FSCustomInfoVC ()
 <
     TTGTagCollectionViewDelegate,
-    TTGTagCollectionViewDataSource
+    TTGTagCollectionViewDataSource,
+    FSEditorDelegate
 >
 
 @property (nonatomic, strong) BMTableViewSection *m_BaseSection;
@@ -112,9 +116,7 @@
     self.m_AvatarItem.highlightBgColor = UI_COLOR_BL1;
     self.m_AvatarItem.cellHeight = 70.0f;
     
-    self.m_NikeNameItem = [BMTableViewItem itemWithTitle:@"昵称" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
-        
-    }];
+    self.m_NikeNameItem = [BMTableViewItem itemWithTitle:@"昵称" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:nil];
     self.m_NikeNameItem.textFont = FS_CELLTITLE_TEXTFONT;
     self.m_NikeNameItem.highlightBgColor = UI_COLOR_BL1;
     self.m_NikeNameItem.cellHeight = 50.0f;
@@ -207,6 +209,8 @@
 {
     FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
     
+    BMWeakSelf
+    
     BMImageTextView *imageTextView = [[BMImageTextView alloc] initWithAttributedText:nil image:nil];
     imageTextView.imageSize = CGSizeMake(60.0f, 60.0f);
     imageTextView.textColor = UI_COLOR_B4;
@@ -231,6 +235,11 @@
     imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
     imageTextView.showTableCellAccessoryArrow = YES;
     self.m_NikeNameItem.accessoryView = imageTextView;
+    self.m_NikeNameItem.selectionHandler = ^(id item) {
+        FSEditorVC *editorVC = [[FSEditorVC alloc] initWithOperaType:FSUpdateUserInfo_NickName minWordCount:0 maxnWordCount:8 text:userInfo.m_UserBaseInfo.m_NickName placeholderText:nil];
+        editorVC.delegate = weakSelf;
+        [weakSelf.navigationController pushViewController:editorVC animated:YES];
+    };
     
     if ([userInfo.m_UserBaseInfo.m_RealName bm_isNotEmpty])
     {
@@ -259,7 +268,12 @@
     imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
     imageTextView.showTableCellAccessoryArrow = YES;
     self.m_OrganizationItem.accessoryView = imageTextView;
-    
+    self.m_OrganizationItem.selectionHandler = ^(id item) {
+        FSEditorVC *editorVC = [[FSEditorVC alloc] initWithOperaType:FSUpdateUserInfo_Organization minWordCount:0 maxnWordCount:100 text:userInfo.m_UserBaseInfo.m_Organization placeholderText:nil];
+        editorVC.delegate = weakSelf;
+        [weakSelf.navigationController pushViewController:editorVC animated:YES];
+    };
+
     if ([userInfo.m_UserBaseInfo.m_Job bm_isNotEmpty])
     {
         text = userInfo.m_UserBaseInfo.m_Job;
@@ -273,7 +287,12 @@
     imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
     imageTextView.showTableCellAccessoryArrow = YES;
     self.m_JobItem.accessoryView = imageTextView;
-    
+    self.m_JobItem.selectionHandler = ^(id item) {
+        FSEditorVC *editorVC = [[FSEditorVC alloc] initWithOperaType:FSUpdateUserInfo_Job minWordCount:0 maxnWordCount:50 text:userInfo.m_UserBaseInfo.m_Job placeholderText:nil];
+        editorVC.delegate = weakSelf;
+        [weakSelf.navigationController pushViewController:editorVC animated:YES];
+    };
+
     if (userInfo.m_UserBaseInfo.m_EmploymentTime > 1950)
     {
         if (userInfo.m_UserBaseInfo.m_WorkingLife > 0)
@@ -372,6 +391,11 @@
     imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
     imageTextView.showTableCellAccessoryArrow = YES;
     self.m_SignatureItem.accessoryView = imageTextView;
+    self.m_SignatureItem.selectionHandler = ^(id item) {
+        FSEditorVC *editorVC = [[FSEditorVC alloc] initWithOperaType:FSUpdateUserInfo_Signature minWordCount:0 maxnWordCount:100 text:userInfo.m_UserBaseInfo.m_Signature placeholderText:nil];
+        editorVC.delegate = weakSelf;
+        [weakSelf.navigationController pushViewController:editorVC animated:YES];
+    };
 
     [self.m_TableView reloadData];
 }
@@ -514,6 +538,8 @@
 
             [self freshViews];
             
+            [[NSNotificationCenter defaultCenter] postNotificationName:userInfoChangedNotification object:nil userInfo:nil];
+
             return;
         }
     }
@@ -529,5 +555,42 @@
     [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
 }
 
+
+#pragma mark -
+#pragma mark FSEditorDelegate
+
+- (void)editorFinishedWithOperaType:(FSUpdateUserInfoOperaType)operaType value:(NSString *)value
+{
+    FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
+
+    switch (operaType)
+    {
+        case FSUpdateUserInfo_NickName:
+            userInfo.m_UserBaseInfo.m_NickName = value;
+            break;
+            
+        case FSUpdateUserInfo_Organization:
+            userInfo.m_UserBaseInfo.m_Organization = value;
+            break;
+            
+        case FSUpdateUserInfo_Job:
+            userInfo.m_UserBaseInfo.m_Job = value;
+            break;
+            
+        case FSUpdateUserInfo_Signature:
+            userInfo.m_UserBaseInfo.m_Signature = value;
+            break;
+            
+        default:
+            break;
+    }
+    
+    [FSUserInfoDB insertAndUpdateUserInfo:userInfo];
+    GetAppDelegate.m_UserInfo = userInfo;
+    
+    [self freshViews];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:userInfoChangedNotification object:nil userInfo:nil];
+}
 
 @end
