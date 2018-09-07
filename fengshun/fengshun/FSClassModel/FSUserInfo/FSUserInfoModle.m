@@ -117,7 +117,7 @@
     // 从业时间: employmentTime
     if ([dic bm_containsObjectForKey:@"employmentTime"])
     {
-        self.m_EmploymentTime = [dic bm_uintForKey:@"ability"];
+        self.m_EmploymentTime = [dic bm_uintForKey:@"employmentTime"];
     }
     
     // 个人签名: personalitySignature
@@ -136,10 +136,6 @@
     if ([dic bm_containsObjectForKey:@"workingLife"])
     {
         self.m_WorkingLife = [dic bm_uintForKey:@"workingLife"];
-        if (self.m_WorkingLife < 1950)
-        {
-            self.m_WorkingLife = 0;
-        }
     }
 }
 

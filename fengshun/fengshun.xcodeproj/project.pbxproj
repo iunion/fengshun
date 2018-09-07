@@ -149,6 +149,7 @@
 		8730B09D2140FFA3004331A9 /* DTCoreGraphicsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730B01B2140FFA2004331A9 /* DTCoreGraphicsUtils.m */; };
 		8730B09E2140FFA3004331A9 /* NSData+DTCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730B01C2140FFA2004331A9 /* NSData+DTCrypto.m */; };
 		8730B09F2140FFA3004331A9 /* NSArray+DTError.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730B01D2140FFA2004331A9 /* NSArray+DTError.m */; };
+		8730B0A6214255B7004331A9 /* FSEditorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730B0A5214255B7004331A9 /* FSEditorVC.m */; };
 		87426892212E7E36003C52F6 /* steppersinput_plusicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87426795212E7E35003C52F6 /* steppersinput_plusicon@3x.png */; };
 		87426893212E7E36003C52F6 /* steppersinput_plusicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87426796212E7E35003C52F6 /* steppersinput_plusicon@2x.png */; };
 		87426894212E7E36003C52F6 /* increase_eleme@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87426797212E7E35003C52F6 /* increase_eleme@3x.png */; };
@@ -943,6 +944,8 @@
 		8730B01C2140FFA2004331A9 /* NSData+DTCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+DTCrypto.m"; sourceTree = "<group>"; };
 		8730B01D2140FFA2004331A9 /* NSArray+DTError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+DTError.m"; sourceTree = "<group>"; };
 		8730B01E2140FFA2004331A9 /* DTFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTFoundation.h; sourceTree = "<group>"; };
+		8730B0A4214255B7004331A9 /* FSEditorVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSEditorVC.h; sourceTree = "<group>"; };
+		8730B0A5214255B7004331A9 /* FSEditorVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSEditorVC.m; sourceTree = "<group>"; };
 		87426790212E7B2C003C52F6 /* fengshun-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "fengshun-Prefix.pch"; sourceTree = "<group>"; };
 		87426795212E7E35003C52F6 /* steppersinput_plusicon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "steppersinput_plusicon@3x.png"; sourceTree = "<group>"; };
 		87426796212E7E35003C52F6 /* steppersinput_plusicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "steppersinput_plusicon@2x.png"; sourceTree = "<group>"; };
@@ -2295,6 +2298,8 @@
 		8730B0A321420EC2004331A9 /* setup */ = {
 			isa = PBXGroup;
 			children = (
+				8730B0A4214255B7004331A9 /* FSEditorVC.h */,
+				8730B0A5214255B7004331A9 /* FSEditorVC.m */,
 			);
 			path = setup;
 			sourceTree = "<group>";
@@ -4774,6 +4779,7 @@
 				87D20AA6213920E2001EDD60 /* FLEXViewControllerExplorerViewController.m in Sources */,
 				874268D8212E7E36003C52F6 /* BMAlertView.m in Sources */,
 				AD9CAAE4212EA0F40071B941 /* UIScrollView+BMEmpty.m in Sources */,
+				8730B0A6214255B7004331A9 /* FSEditorVC.m in Sources */,
 				87D209CC2138F1E2001EDD60 /* SDWebImageGIFCoder.m in Sources */,
 				874269C3212E9B78003C52F6 /* BMFreshHeaderView.m in Sources */,
 				AD2244DB213D158800F2DC47 /* FSForumDetailListCell.m in Sources */,

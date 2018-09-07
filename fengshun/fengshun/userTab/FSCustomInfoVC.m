@@ -45,7 +45,7 @@
 
 @property (nonatomic, strong) NSURLSessionDataTask *m_updateTask;
 
-@property (nonatomic, assign) NSUInteger m_WorkingLife;
+@property (nonatomic, assign) NSUInteger m_EmploymentTime;
 
 @end
 
@@ -156,13 +156,13 @@
     self.m_WorkingLifeItem.cellHeight = 50.0f;
     self.m_WorkingLifeItem.inputView = self.m_PickerView;
     self.m_WorkingLifeItem.onEndEditing = ^(BMInputItem *item) {
-        NSLog(@"onEndEditing: %@", @(weakSelf.m_PickerView.pickerDate.bm_year));
-        weakSelf.m_WorkingLife = weakSelf.m_PickerView.pickerDate.bm_year;
+        //NSLog(@"onEndEditing: %@", @(weakSelf.m_PickerView.pickerDate.bm_year));
+        weakSelf.m_EmploymentTime = weakSelf.m_PickerView.pickerDate.bm_year;
         
         FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
-        if (weakSelf.m_WorkingLife != userInfo.m_UserBaseInfo.m_WorkingLife)
+        if (weakSelf.m_EmploymentTime != userInfo.m_UserBaseInfo.m_EmploymentTime)
         {
-            [weakSelf sendUpdateUserInfoWithOperaType:FSUpdateUserInfo_WorkTime changeValue:@(weakSelf.m_WorkingLife)];
+            [weakSelf sendUpdateUserInfoWithOperaType:FSUpdateUserInfo_WorkTime changeValue:@(weakSelf.m_EmploymentTime)];
         }
     };
 
@@ -274,9 +274,16 @@
     imageTextView.showTableCellAccessoryArrow = YES;
     self.m_JobItem.accessoryView = imageTextView;
     
-    if (userInfo.m_UserBaseInfo.m_WorkingLife != 0)
+    if (userInfo.m_UserBaseInfo.m_EmploymentTime > 1950)
     {
-        text = [NSString stringWithFormat:@"%@年", @([NSDate date].bm_year - userInfo.m_UserBaseInfo.m_WorkingLife)];
+        if (userInfo.m_UserBaseInfo.m_WorkingLife > 0)
+        {
+            text = [NSString stringWithFormat:@"%@年", @(userInfo.m_UserBaseInfo.m_WorkingLife)];
+        }
+        else
+        {
+            text = @"1年内";
+        }
     }
     else
     {
@@ -493,13 +500,22 @@
     {
         [self.m_ProgressHUD hideAnimated:NO];
         
-        FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
-        userInfo.m_UserBaseInfo.m_WorkingLife = self.m_WorkingLife;
+        NSDictionary *dataDic = [resDic bm_dictionaryForKey:@"data"];
+        if ([dataDic bm_isNotEmptyDictionary])
+        {
+            NSUInteger workingLife = [dataDic bm_uintForKey:@"workingLife"];
+        
+            FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
+            userInfo.m_UserBaseInfo.m_EmploymentTime = self.m_EmploymentTime;
+            userInfo.m_UserBaseInfo.m_WorkingLife = workingLife;
 
-        [FSUserInfoDB insertAndUpdateUserInfo:userInfo];
-        GetAppDelegate.m_UserInfo = userInfo;
+            [FSUserInfoDB insertAndUpdateUserInfo:userInfo];
+            GetAppDelegate.m_UserInfo = userInfo;
 
-        return;
+            [self freshViews];
+            
+            return;
+        }
     }
     
     NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
