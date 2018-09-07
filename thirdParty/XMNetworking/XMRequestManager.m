@@ -129,9 +129,7 @@
         }
         config.generalHeaders = [genearHeaers copy];
 //        config.generalParameters = nil;
-#ifdef DEBUG
-        config.consoleLog = YES;
-#endif
+        config.consoleLog = NO;
     }];
 
 
@@ -142,7 +140,8 @@
 
     // 响应后统一处理插件
     [XMCenter setResponseProcessBlock:^id(XMRequest *request, id responseObject, NSError *__autoreleasing *error) {
-
+        
+        BMLog(@"+++++++++++++[%@]原始返回:%@",request.url,responseObject);
         // 对所有请求的响应进行统一的处理,这儿有几点需要注意:
         // 1.此block的返回值如果不为空,后续回调中的responseObject会被替换为此返回值;
         // 2.网络请求出错会通过此处的error返回;
@@ -188,6 +187,11 @@
 + (XMRequest *)rm_requestWithApi:(NSString *)api parameters:(NSDictionary *)parameters success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
 {
     return [self rm_requestWithServer:FS_URL_SERVER api:api method:kXMHTTPMethodPOST parameters:parameters timeoutInterval:FSAPI_TIMEOUT_SECONDS success:successBlock failure:failureBlock];
+}
+
++ (XMRequest *)rm_getRequestWithApi:(NSString *)api parameters:(NSDictionary *)parameters success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
+{
+    return [self rm_requestWithServer:FS_URL_SERVER api:api method:kXMHTTPMethodGET parameters:parameters timeoutInterval:FSAPI_TIMEOUT_SECONDS success:successBlock failure:failureBlock];
 }
 
 + (XMRequest *)rm_requestWithServer:(NSString *)server api:(NSString *)api method:(XMHTTPMethodType)methodType parameters:(NSDictionary *)parameters timeoutInterval:(NSTimeInterval)timeoutInterval success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock

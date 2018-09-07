@@ -21,4 +21,8 @@
 {
     return [XMRequestManager rm_requestWithApi:@"/storm/home/getMessageUnReadFlag" parameters:nil success:successBlock failure:failureBlock];
 }
++ (XMRequest *)getCaseSearchHotkeysSuccess:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
+{
+    return [XMRequestManager rm_getRequestWithApi:@"/search/ftls/cases/hotKeywords" parameters:nil success:successBlock failure:failureBlock];
+}
 @end

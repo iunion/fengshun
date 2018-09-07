@@ -104,6 +104,8 @@ NS_ASSUME_NONNULL_BEGIN
 // http://123.206.193.140:8121/swagger-ui.html#/%E9%A6%96%E9%A1%B5%E7%9B%B8%E5%85%B3/getMessageUnReadFlagUsingPOST
 + (XMRequest *)getMessageUnReadFlagSuccess:(nullable XMSuccessBlock)successBlock
                                    failure:(nullable XMFailureBlock)failureBlock;
++ (XMRequest *)getCaseSearchHotkeysSuccess:(nullable XMSuccessBlock)successBlock
+                                   failure:(nullable XMFailureBlock)failureBlock;
 
 @end
 
