@@ -99,7 +99,7 @@
 
 - (BOOL)needKeyboardEvent
 {
-    return NO;
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning

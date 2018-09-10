@@ -150,6 +150,8 @@
 		8730B09E2140FFA3004331A9 /* NSData+DTCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730B01C2140FFA2004331A9 /* NSData+DTCrypto.m */; };
 		8730B09F2140FFA3004331A9 /* NSArray+DTError.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730B01D2140FFA2004331A9 /* NSArray+DTError.m */; };
 		8730B0A6214255B7004331A9 /* FSEditorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730B0A5214255B7004331A9 /* FSEditorVC.m */; };
+		8730B0A921427A85004331A9 /* FSEditorAbilityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730B0A821427A85004331A9 /* FSEditorAbilityVC.m */; };
+		8730B0AC21427CC7004331A9 /* FSAuthenticationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730B0AB21427CC7004331A9 /* FSAuthenticationVC.m */; };
 		87426892212E7E36003C52F6 /* steppersinput_plusicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87426795212E7E35003C52F6 /* steppersinput_plusicon@3x.png */; };
 		87426893212E7E36003C52F6 /* steppersinput_plusicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87426796212E7E35003C52F6 /* steppersinput_plusicon@2x.png */; };
 		87426894212E7E36003C52F6 /* increase_eleme@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87426797212E7E35003C52F6 /* increase_eleme@3x.png */; };
@@ -946,6 +948,10 @@
 		8730B01E2140FFA2004331A9 /* DTFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTFoundation.h; sourceTree = "<group>"; };
 		8730B0A4214255B7004331A9 /* FSEditorVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSEditorVC.h; sourceTree = "<group>"; };
 		8730B0A5214255B7004331A9 /* FSEditorVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSEditorVC.m; sourceTree = "<group>"; };
+		8730B0A721427A85004331A9 /* FSEditorAbilityVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSEditorAbilityVC.h; sourceTree = "<group>"; };
+		8730B0A821427A85004331A9 /* FSEditorAbilityVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSEditorAbilityVC.m; sourceTree = "<group>"; };
+		8730B0AA21427CC7004331A9 /* FSAuthenticationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSAuthenticationVC.h; sourceTree = "<group>"; };
+		8730B0AB21427CC7004331A9 /* FSAuthenticationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSAuthenticationVC.m; sourceTree = "<group>"; };
 		87426790212E7B2C003C52F6 /* fengshun-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "fengshun-Prefix.pch"; sourceTree = "<group>"; };
 		87426795212E7E35003C52F6 /* steppersinput_plusicon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "steppersinput_plusicon@3x.png"; sourceTree = "<group>"; };
 		87426796212E7E35003C52F6 /* steppersinput_plusicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "steppersinput_plusicon@2x.png"; sourceTree = "<group>"; };
@@ -2300,6 +2306,10 @@
 			children = (
 				8730B0A4214255B7004331A9 /* FSEditorVC.h */,
 				8730B0A5214255B7004331A9 /* FSEditorVC.m */,
+				8730B0A721427A85004331A9 /* FSEditorAbilityVC.h */,
+				8730B0A821427A85004331A9 /* FSEditorAbilityVC.m */,
+				8730B0AA21427CC7004331A9 /* FSAuthenticationVC.h */,
+				8730B0AB21427CC7004331A9 /* FSAuthenticationVC.m */,
 			);
 			path = setup;
 			sourceTree = "<group>";
@@ -4739,6 +4749,7 @@
 				874269C2212E9B78003C52F6 /* BMFreshDotCircleHeader.m in Sources */,
 				87D20AE1213920E2001EDD60 /* FLEXLiveObjectsTableViewController.m in Sources */,
 				87D20AAF213920E2001EDD60 /* FLEXNetworkCurlLogger.m in Sources */,
+				8730B0A921427A85004331A9 /* FSEditorAbilityVC.m in Sources */,
 				874268C2212E7E36003C52F6 /* BMSliderItem.m in Sources */,
 				8730B0342140FFA2004331A9 /* DTCoreTextFontDescriptor.m in Sources */,
 				8730B0412140FFA2004331A9 /* DTAttributedLabel.m in Sources */,
@@ -4822,6 +4833,7 @@
 				DBD4CDEE213E37A000857DB3 /* FSFilterHeaderResultView.m in Sources */,
 				8730B0312140FFA2004331A9 /* DTIframeTextAttachment.m in Sources */,
 				8742690C212E7E36003C52F6 /* NSObject+BMCategory.m in Sources */,
+				8730B0AC21427CC7004331A9 /* FSAuthenticationVC.m in Sources */,
 				874268EB212E7E36003C52F6 /* UIView+BMSize.m in Sources */,
 				8730B04C2140FFA2004331A9 /* DTHTMLElement.m in Sources */,
 				87D20ABB213920E2001EDD60 /* FLEXFieldEditorViewController.m in Sources */,
