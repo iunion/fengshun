@@ -152,6 +152,8 @@
 		8730B0A6214255B7004331A9 /* FSEditorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730B0A5214255B7004331A9 /* FSEditorVC.m */; };
 		8730B0A921427A85004331A9 /* FSEditorAbilityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730B0A821427A85004331A9 /* FSEditorAbilityVC.m */; };
 		8730B0AC21427CC7004331A9 /* FSAuthenticationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730B0AB21427CC7004331A9 /* FSAuthenticationVC.m */; };
+		8730B0AF21461456004331A9 /* FSRecommendListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730B0AE21461456004331A9 /* FSRecommendListVC.m */; };
+		8730B0B22146149E004331A9 /* FSForumListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730B0B12146149E004331A9 /* FSForumListVC.m */; };
 		87426892212E7E36003C52F6 /* steppersinput_plusicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87426795212E7E35003C52F6 /* steppersinput_plusicon@3x.png */; };
 		87426893212E7E36003C52F6 /* steppersinput_plusicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87426796212E7E35003C52F6 /* steppersinput_plusicon@2x.png */; };
 		87426894212E7E36003C52F6 /* increase_eleme@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87426797212E7E35003C52F6 /* increase_eleme@3x.png */; };
@@ -952,6 +954,10 @@
 		8730B0A821427A85004331A9 /* FSEditorAbilityVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSEditorAbilityVC.m; sourceTree = "<group>"; };
 		8730B0AA21427CC7004331A9 /* FSAuthenticationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSAuthenticationVC.h; sourceTree = "<group>"; };
 		8730B0AB21427CC7004331A9 /* FSAuthenticationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSAuthenticationVC.m; sourceTree = "<group>"; };
+		8730B0AD21461456004331A9 /* FSRecommendListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSRecommendListVC.h; sourceTree = "<group>"; };
+		8730B0AE21461456004331A9 /* FSRecommendListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSRecommendListVC.m; sourceTree = "<group>"; };
+		8730B0B02146149E004331A9 /* FSForumListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSForumListVC.h; sourceTree = "<group>"; };
+		8730B0B12146149E004331A9 /* FSForumListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSForumListVC.m; sourceTree = "<group>"; };
 		87426790212E7B2C003C52F6 /* fengshun-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "fengshun-Prefix.pch"; sourceTree = "<group>"; };
 		87426795212E7E35003C52F6 /* steppersinput_plusicon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "steppersinput_plusicon@3x.png"; sourceTree = "<group>"; };
 		87426796212E7E35003C52F6 /* steppersinput_plusicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "steppersinput_plusicon@2x.png"; sourceTree = "<group>"; };
@@ -4005,6 +4011,10 @@
 				DB5722382133A1D90065DC30 /* FSCommunityVC.h */,
 				DB5722392133A1D90065DC30 /* FSCommunityVC.m */,
 				DB57223A2133A1D90065DC30 /* FSCommunityVC.xib */,
+				8730B0AD21461456004331A9 /* FSRecommendListVC.h */,
+				8730B0AE21461456004331A9 /* FSRecommendListVC.m */,
+				8730B0B02146149E004331A9 /* FSForumListVC.h */,
+				8730B0B12146149E004331A9 /* FSForumListVC.m */,
 				AD5102A0213E77FC008CD74D /* FSCommunitySecVC.h */,
 				AD5102A1213E77FC008CD74D /* FSCommunitySecVC.m */,
 				AD5102A2213E77FC008CD74D /* FSCommunitySecVC.xib */,
@@ -4684,6 +4694,7 @@
 				874268C1212E7E36003C52F6 /* BMBoolItem.m in Sources */,
 				8730B07F2140FFA3004331A9 /* DTActionSheet.m in Sources */,
 				ADE8689C21393469005359B5 /* FSForumListCell.m in Sources */,
+				8730B0AF21461456004331A9 /* FSRecommendListVC.m in Sources */,
 				87D20B1321394A5A001EDD60 /* FSWebViewProgress.m in Sources */,
 				87D20AD2213920E2001EDD60 /* FLEXSystemLogTableViewController.m in Sources */,
 				87D20ADE213920E2001EDD60 /* FLEXCookiesTableViewController.m in Sources */,
@@ -4725,6 +4736,7 @@
 				87D1867E213549B700037DDF /* BMVerifyField.m in Sources */,
 				87D20B1D213CF9DD001EDD60 /* FSApiUserRequest.m in Sources */,
 				874268AC212E7E36003C52F6 /* BMTableViewStepperInputCell.m in Sources */,
+				8730B0B22146149E004331A9 /* FSForumListVC.m in Sources */,
 				87D209CA2138F1E2001EDD60 /* UIImageView+WebCache.m in Sources */,
 				DB8D16112137CC9800EB16E8 /* FSMainHeaderView.m in Sources */,
 				87426AAA213156D5003C52F6 /* FSBannerView.m in Sources */,

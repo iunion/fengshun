@@ -59,6 +59,76 @@
 
 @end
 
+@implementation FSTopicModel
+
++ (instancetype)topicWithServerDic:(NSDictionary *)dic
+{
+    if (![dic bm_isNotEmptyDictionary])
+    {
+        return nil;
+    }
+    
+    NSString *topicId = [dic bm_stringTrimForKey:@"id"];
+    if (![topicId bm_isNotEmpty])
+    {
+        return nil;
+    }
+    
+    FSTopicModel *topic = [[FSTopicModel alloc] init];
+    [topic updateWithServerDic:dic];
+    
+    if ([topic.m_Id bm_isNotEmpty])
+    {
+        return topic;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+- (void)updateWithServerDic:(NSDictionary *)dic
+{
+    if (![dic bm_isNotEmptyDictionary])
+    {
+        return;
+    }
+    
+    // id不存在不修改
+    
+    NSString *topicId = [dic bm_stringTrimForKey:@"id"];
+    if (![topicId bm_isNotEmpty])
+    {
+        return;
+    }
+    self.m_Id = topicId;
+    
+    // 版块Id
+    // m_ForumId;
+    // 版块icon
+    self.m_IconUrl = [dic bm_stringTrimForKey:@"iconUrl"];
+    // 版块名称
+    self.m_ForumName = [dic bm_stringTrimForKey:@"forumName"];
+    // 帖子标题
+    self.m_Title = [dic bm_stringTrimForKey:@"postsTitle"];
+    // 发贴时间
+    self.m_CreateTime = [dic bm_doubleForKey:@"postsCreateTime"] / 1000;
+    // 最后回贴时间
+    self.m_LastReplyTime = [dic bm_doubleForKey:@"postsLastReplyTime"] / 1000;
+    // 帖子评论数
+    self. m_CommentCount = [dic bm_uintForKey:@"commentCount"];
+    
+    // 用户Id
+    //self.m_UserId;
+    // 用户昵称
+    self.m_NickName = [dic bm_stringForKey:@"nickName"];
+    
+    // 是否置顶
+    self.m_TopFlag = [dic bm_boolForKey:@"topFlag"];
+}
+
+@end
+
 
 @implementation FSCommunityForumModel
 
