@@ -4011,6 +4011,33 @@
 			path = TZImagePickerController;
 			sourceTree = "<group>";
 		};
+		ADC3CA722146777400CC4A82 /* MainVC */ = {
+			isa = PBXGroup;
+			children = (
+				DB5722382133A1D90065DC30 /* FSCommunityVC.h */,
+				DB5722392133A1D90065DC30 /* FSCommunityVC.m */,
+				DB57223A2133A1D90065DC30 /* FSCommunityVC.xib */,
+				8730B0AD21461456004331A9 /* FSRecommendListVC.h */,
+				8730B0AE21461456004331A9 /* FSRecommendListVC.m */,
+				8730B0B02146149E004331A9 /* FSForumListVC.h */,
+				8730B0B12146149E004331A9 /* FSForumListVC.m */,
+			);
+			path = MainVC;
+			sourceTree = "<group>";
+		};
+		ADC3CA732146779500CC4A82 /* TopicListVC */ = {
+			isa = PBXGroup;
+			children = (
+				AD5102A0213E77FC008CD74D /* FSCommunitySecVC.h */,
+				AD5102A1213E77FC008CD74D /* FSCommunitySecVC.m */,
+				AD5102A2213E77FC008CD74D /* FSCommunitySecVC.xib */,
+				ADA12288214614BE00CF0D87 /* FSTopicListVC.h */,
+				ADA12289214614BE00CF0D87 /* FSTopicListVC.m */,
+				ADA1228A214614BE00CF0D87 /* FSTopicListVC.xib */,
+			);
+			path = TopicListVC;
+			sourceTree = "<group>";
+		};
 		ADE86893213927B2005359B5 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -4041,21 +4068,10 @@
 		DB5722372133A1830065DC30 /* communityTab */ = {
 			isa = PBXGroup;
 			children = (
+				ADC3CA722146777400CC4A82 /* MainVC */,
+				ADC3CA732146779500CC4A82 /* TopicListVC */,
 				AD2244DD213D1F9B00F2DC47 /* View */,
 				ADE86893213927B2005359B5 /* Cell */,
-				DB5722382133A1D90065DC30 /* FSCommunityVC.h */,
-				DB5722392133A1D90065DC30 /* FSCommunityVC.m */,
-				DB57223A2133A1D90065DC30 /* FSCommunityVC.xib */,
-				8730B0AD21461456004331A9 /* FSRecommendListVC.h */,
-				8730B0AE21461456004331A9 /* FSRecommendListVC.m */,
-				8730B0B02146149E004331A9 /* FSForumListVC.h */,
-				8730B0B12146149E004331A9 /* FSForumListVC.m */,
-				AD5102A0213E77FC008CD74D /* FSCommunitySecVC.h */,
-				AD5102A1213E77FC008CD74D /* FSCommunitySecVC.m */,
-				AD5102A2213E77FC008CD74D /* FSCommunitySecVC.xib */,
-				ADA12288214614BE00CF0D87 /* FSTopicListVC.h */,
-				ADA12289214614BE00CF0D87 /* FSTopicListVC.m */,
-				ADA1228A214614BE00CF0D87 /* FSTopicListVC.xib */,
 				AD5102A5213E783E008CD74D /* FSSendTopicVC.h */,
 				AD5102A6213E783E008CD74D /* FSSendTopicVC.m */,
 				AD5102A7213E783E008CD74D /* FSSendTopicVC.xib */,
