@@ -7,10 +7,15 @@
 //
 
 #import "FSTopicListVC.h"
+#import "FSForumDetailListCell.h"
 
-@interface FSTopicListVC ()
+@interface
+FSTopicListVC ()
+
 // 排序类型
-@property (nonatomic, assign)FSTopicSortType m_SortType;
+@property (nonatomic, assign) FSTopicSortType m_SortType;
+// 板块id
+@property (nonatomic, assign) NSInteger m_ForumId;
 
 @end
 
@@ -29,16 +34,51 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (instancetype)initWithTopicSortType:(FSTopicSortType)sortType{
-    if (self = [super init]) {
+- (instancetype)initWithTopicSortType:(FSTopicSortType)sortType formId:(NSInteger)formId
+{
+    if (self = [super init])
+    {
         self.m_SortType = sortType;
+        self.m_ForumId  = formId;
     }
     return self;
 }
 
-- (void)createUI{
-    self.m_TableView.frame = self.view.bounds;
-    
+- (void)createUI
+{
+}
+
+- (NSMutableURLRequest *)setLoadDataRequestWithFresh:(BOOL)isLoadNew
+{
+    return [FSApiRequest getTopicListWithType:self.m_SortType forumId:self.m_ForumId pageIndex:1 pageSize:10];
+}
+
+- (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)requestDic
+{
+    return YES;
+}
+
+#pragma mark - tableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 107.f;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *      cellId = @"cellId";
+    FSForumDetailListCell *cell   = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (!cell)
+    {
+        cell = [[NSBundle mainBundle] loadNibNamed:@"FSForumDetailListCell" owner:self options:nil].firstObject;
+    }
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 /*

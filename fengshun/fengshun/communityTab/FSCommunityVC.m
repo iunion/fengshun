@@ -24,32 +24,23 @@
 #import "FSForumSectionHeaderView.h"
 #import "UIImageView+WebCache.h"
 #import "FSCommunitySecVC.h"
-#import "FSPushVCManager.h"
+
 
 static NSString *FSTopicListTableViewCellIdentifier = @"FSTopicListTableViewCellIdentifier";
 static NSString *FSForumListTableViewCellIdentifier = @"FSForumListTableViewCellIdentifier";
 static NSString *FSForumHeaderIdentifier            = @"FSForumHeaderIdentifier";
 
 @interface
-FSCommunityVC ()
-<
+FSCommunityVC () <
     FSScrollPageViewDelegate,
     FSScrollPageViewDataSource,
-    TZImagePickerControllerDelegate,
-    UITableViewDelegate,
-    UITableViewDataSource
->
-{
-    NSInteger _m_TopicPage;//推荐帖子列表页码
-    NSInteger _m_ForumPage;//板块列表页码
-}
+    TZImagePickerControllerDelegate>
+
 @property (nonatomic, strong) FSScrollPageSegment *m_SegmentBar;
-@property (nonatomic, strong) FSScrollPageView *m_ScrollPageView;
+@property (nonatomic, strong) FSScrollPageView *   m_ScrollPageView;
 
 @property (nonatomic, strong) FSTableViewVC *m_RecommendVC;
 @property (nonatomic, strong) FSTableViewVC *m_ForumVC;
-@property (nonatomic, strong) NSMutableArray *     m_TopicDataArray;
-@property (nonatomic, strong) NSMutableArray *     m_forumDataArray;
 
 @end
 
@@ -66,7 +57,7 @@ FSCommunityVC ()
     self.bm_NavigationBarBgTintColor = [UIColor whiteColor];
     self.bm_NavigationShadowHidden   = NO;
     self.bm_NavigationShadowColor    = [UIColor bm_colorWithHexString:@"D8D8D8"];
-    
+
     [self bm_setNavigationWithTitle:@"枫调理顺" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
     [GetAppDelegate.m_TabBarController hideOriginTabBar];
 
@@ -122,7 +113,7 @@ FSCommunityVC ()
         case 0:
             return @"推荐";
             break;
-            
+
         case 1:
             return @"板块";
             break;
@@ -148,67 +139,6 @@ FSCommunityVC ()
     }
     return aView;
 }
-
-#pragma mark - Request
-#if 0
-- (void)getRecommendList
-{
-    [FSApiRequest getPlateRecommendPostListWithPageIndex:_m_TopicPage pageSize:10 success:^(id  _Nullable responseObject) {
-        if ([responseObject bm_isNotEmptyDictionary])
-        {
-            if (_m_TopicPage == 1) {
-                [self->_m_TopicDataArray  removeAllObjects];
-                [_m_RecommendTableView.bm_freshHeaderView endReFreshing];
-            }
-            [self->_m_TopicDataArray addObjectsFromArray:[FSCommunityTopicListModel communityRecommendListModelArr:[responseObject bm_arrayForKey:@"list"]]];
-            [self->_m_RecommendTableView reloadData];
-            BOOL hasNextPage = [responseObject bm_boolForKey:@"hasNextPage"];
-            if (hasNextPage)
-            {
-                _m_TopicPage ++;
-                [_m_RecommendTableView.bm_freshFooterView endReFreshing];
-            }
-            else
-            {
-                [_m_RecommendTableView.bm_freshFooterView endReFreshingWithNoMoreData];
-            }
-        }
-    } failure:^(NSError * _Nullable error) {
-        [_m_RecommendTableView.bm_freshHeaderView endReFreshing];
-        [_m_RecommendTableView.bm_freshFooterView endReFreshing];
-    }];
-}
-
-- (void)getForumList
-{
-    [FSApiRequest getPlateListWithPageIndex:_m_ForumPage pageSize:10 success:^(id  _Nullable responseObject) {
-        if ([responseObject bm_isNotEmptyDictionary])
-        {
-            if (_m_ForumPage == 1) {
-                [self->_m_forumDataArray removeAllObjects];
-                [_m_PlateTableView.bm_freshHeaderView endReFreshing];
-            }
-            [self->_m_forumDataArray addObjectsFromArray:[FSCommunityForumModel plateModelWithArr:[responseObject bm_arrayForKey:@"list"]]];
-            [self->_m_PlateTableView reloadData];
-            NSInteger totalPages = [responseObject bm_intForKey:@"totalPages"];
-            if (_m_ForumPage < totalPages)
-            {
-                _m_ForumPage ++;
-                [_m_PlateTableView.bm_freshFooterView endReFreshing];
-            }
-            else
-            {
-                [_m_PlateTableView.bm_freshFooterView endReFreshingWithNoMoreData];
-            }
-        }
-        
-    } failure:^(NSError * _Nullable error) {
-        [_m_PlateTableView.bm_freshHeaderView endReFreshing];
-        [_m_PlateTableView.bm_freshFooterView endReFreshing];
-    }];
-}
-
-#endif
 
 
 //#pragma mark - 图片选择例子

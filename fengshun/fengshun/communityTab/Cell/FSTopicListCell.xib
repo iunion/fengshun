@@ -108,17 +108,17 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="m_CategoryLab" destination="kr4-5s-e7T" id="tmH-hh-Rcb"/>
-                <outlet property="m_CategoryView" destination="rlW-i1-tey" id="Nfe-Fw-kW4"/>
-                <outlet property="m_CommentBtn" destination="qjL-hC-HjY" id="6PD-yQ-Phl"/>
-                <outlet property="m_HeaderImgView" destination="Aon-Qc-38l" id="QFc-i8-L6p"/>
-                <outlet property="m_StickLab" destination="pcJ-oB-qgs" id="yMv-OM-YDn"/>
-                <outlet property="m_StickView" destination="NKu-hb-EEg" id="FLf-jR-P8U"/>
-                <outlet property="m_TimeLab" destination="3Y9-i9-lyB" id="bDG-bJ-tAZ"/>
-                <outlet property="m_TitleLab" destination="h91-ZY-cXv" id="LT6-Sp-rR5"/>
-                <outlet property="m_UserNameLab" destination="okL-69-L6k" id="ON2-Ti-t73"/>
+                <outlet property="m_CategoryLab" destination="kr4-5s-e7T" id="RFT-yx-bli"/>
+                <outlet property="m_CategoryView" destination="rlW-i1-tey" id="6cm-AX-mQs"/>
+                <outlet property="m_CommentBtn" destination="qjL-hC-HjY" id="VbM-j9-rUr"/>
+                <outlet property="m_HeaderImgView" destination="Aon-Qc-38l" id="Dg7-Ax-n2k"/>
+                <outlet property="m_StickLab" destination="pcJ-oB-qgs" id="BeS-Oo-ZIH"/>
+                <outlet property="m_StickView" destination="NKu-hb-EEg" id="I4u-za-4Np"/>
+                <outlet property="m_TimeLab" destination="3Y9-i9-lyB" id="f1n-kM-AAP"/>
+                <outlet property="m_TitleLab" destination="h91-ZY-cXv" id="Bqn-en-a9C"/>
+                <outlet property="m_UserNameLab" destination="okL-69-L6k" id="WRh-38-fS7"/>
             </connections>
-            <point key="canvasLocation" x="10" y="27"/>
+            <point key="canvasLocation" x="-164" y="15"/>
         </tableViewCell>
     </objects>
     <resources>

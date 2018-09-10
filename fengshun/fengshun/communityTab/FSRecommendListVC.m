@@ -9,8 +9,11 @@
 #import "FSRecommendListVC.h"
 #import "FSTopicListCell.h"
 
-@interface FSRecommendListVC ()
-
+@interface
+FSRecommendListVC ()
+{
+    NSInteger _currentPages;
+}
 @end
 
 @implementation FSRecommendListVC
@@ -19,7 +22,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    _currentPages = 1;
     [self loadApiData];
 }
 
@@ -31,18 +34,13 @@
 
 - (NSMutableURLRequest *)setLoadDataRequestWithFresh:(BOOL)isLoadNew
 {
-    NSMutableURLRequest *request;
-    
     if (isLoadNew)
     {
-        request = [FSApiRequest getPlateRecommendPostListWithPageIndex:1 pageSize:20];
+        _currentPages = 1;
     }
-    else
-    {
-        request = [FSApiRequest getPlateRecommendPostListWithPageIndex:2 pageSize:20];
-    }
-    return request;
+    return [FSApiRequest getPlateRecommendPostListWithPageIndex:_currentPages pageSize:10];
 }
+
 
 - (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)requestDic
 {
@@ -50,7 +48,7 @@
     if ([topicDicArray bm_isNotEmpty])
     {
         NSMutableArray *topicArray = [[NSMutableArray alloc] initWithCapacity:0];
-        
+
         for (NSDictionary *dic in topicDicArray)
         {
             FSTopicModel *topic = [FSTopicModel topicWithServerDic:dic];
@@ -59,16 +57,27 @@
                 [topicArray addObject:topic];
             }
         }
-        
         if ([topicArray bm_isNotEmpty])
         {
-            self.m_DataArray = [NSMutableArray arrayWithArray:topicArray];
+            if (_currentPages == 1)
+            {
+                [self.m_TableView.bm_freshHeaderView endReFreshing];
+                [self.m_DataArray removeAllObjects];
+            }
+            [self.m_DataArray addObjectsFromArray:topicArray];
             [self.m_TableView reloadData];
         }
-        
+        if ([requestDic bm_boolForKey:@"hasNextPage"])
+        {
+            _currentPages++;
+            [self.m_TableView.bm_freshFooterView endReFreshing];
+        }
+        else
+        {
+            [self.m_TableView.bm_freshFooterView endReFreshingWithNoMoreData];
+        }
         return YES;
     }
-    
     return NO;
 }
 
@@ -84,15 +93,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *taskCellIdentifier = @"FSCell";
-    FSTopicListCell *cell = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
-    
+    FSTopicListCell *cell               = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
     if (cell == nil)
     {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"FSTopicListCell" owner:self options:nil] lastObject];
     }
-    
     [cell drawCellWithModle:self.m_DataArray[indexPath.row]];
-
     return cell;
 }
 

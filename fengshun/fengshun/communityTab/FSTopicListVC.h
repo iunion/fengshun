@@ -8,23 +8,10 @@
 
 #import "FSTableViewVC.h"
 
-/**
- 排序方式
-
- - FSTopicSortTypeNewReply: 最新回复
- - FSTopicSortTypeNewPulish: 最新发布
- - FSTopicSortTypeHot: 热门
- - FSTopicSortTypeEssence: 精华
- */
-typedef NS_ENUM(NSUInteger, FSTopicSortType) {
-    FSTopicSortTypeNewReply,   //最新回复
-    FSTopicSortTypeNewPulish,  //最新发布
-    FSTopicSortTypeHot,        //热门
-    FSTopicSortTypeEssence     //精华
-};
 
 @interface FSTopicListVC : FSTableViewVC
 
-- (instancetype)initWithTopicSortType:(FSTopicSortType)sortType;
+- (instancetype)initWithTopicSortType:(FSTopicSortType)sortType
+                               formId:(NSInteger )formId;
 
 @end

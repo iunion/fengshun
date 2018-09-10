@@ -25,6 +25,6 @@
 // 关注按钮
 @property (weak, nonatomic) IBOutlet UIButton *m_AttentionBtn;
 
-- (void)updateHeaderViewWith:(FSCommunityDetailInfoModel *)aModel;
+- (void)updateHeaderViewWith:(FSForumModel *)aModel;
 
 @end

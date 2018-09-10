@@ -25,11 +25,28 @@
     [_m_UserHeaderImgView bm_roundedRect:4];
     [_m_AttentionBtn bm_roundedRect:_m_AttentionBtn.bm_height/2];
 }
-
-- (void)updateHeaderViewWith:(FSCommunityDetailInfoModel *)aModel
+/*
+ // 二级版块id
+ @property (nonatomic, assign) NSInteger m_Id;
+ // 封面图片
+ @property (nonatomic, strong) NSString *m_IconUrl;
+ // 一级版块名称
+ @property (nonatomic, strong) NSString *m_ForumNameFirst;
+ // 版块介绍
+ @property (nonatomic, strong) NSString *m_Description;
+ // 版块关注数量
+ @property (nonatomic, assign) NSInteger m_AttentionCount;
+ // 版块发贴数量
+ @property (nonatomic, assign) NSInteger m_PostsCount;
+ // 是否关注
+ @property (nonatomic, assign) BOOL m_AttentionFlag;
+ // 二级版块名称
+ @property (nonatomic, strong) NSString *m_ForumNameSecond;
+ */
+- (void)updateHeaderViewWith:(FSForumModel *)aModel
 {
-    [_m_HeaderBGView sd_setImageWithURL:[aModel.m_IconUrlFirst bm_toURL]];
-    [_m_UserHeaderImgView sd_setImageWithURL:[aModel.m_IconUrlSecond bm_toURL]];
+    [_m_HeaderBGView sd_setImageWithURL:[aModel.m_IconUrl bm_toURL]];
+    [_m_UserHeaderImgView sd_setImageWithURL:[aModel.m_IconUrl bm_toURL]];
     _m_CategoryTitleLab.text        = aModel.m_ForumNameSecond;
     _m_TitleLab.text                = aModel.m_Description;
     _m_AttentionNumLab.text         = [NSString stringWithFormat:@"%ld 关注", aModel.m_AttentionCount];

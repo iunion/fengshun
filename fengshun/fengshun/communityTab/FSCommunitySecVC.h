@@ -10,7 +10,7 @@
 
 @interface FSCommunitySecVC : FSSuperVC
 
-
+// 板块id
 - (instancetype)initWithFourmId:(NSInteger )fourmId;
 
 @end

@@ -8,39 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@class FSCommunityForumListModel;
-#pragma mark - 推荐帖子model
+@class FSForumModel;
 
-@interface FSCommunityTopicListModel : NSObject
-// 帖子id
-@property (nonatomic, strong) NSString *m_Id;
-// 版块icon
-@property (nonatomic, strong) NSString *m_IconUrl;
-// 版块名称
-@property (nonatomic, strong) NSString *m_ForumName;
-// 帖子标题
-@property (nonatomic, strong) NSString *m_PostsTitle;
-// 最后回贴时间
-@property (nonatomic, assign) NSInteger m_PostsLastReplyTime;
-// 帖子评论数
-@property (nonatomic, assign) NSInteger m_CommentCount;
-// 发贴时间
-@property (nonatomic, assign) NSInteger m_PostsCreateTime;
-
-// 用户昵称
-@property (nonatomic, strong) NSString *m_NickName;
-
-// 是否置顶
-@property (nonatomic, assign) BOOL m_TopFlag;
-
-+ (NSArray *)communityRecommendListModelArr:(NSArray *)list;
-
-// 刷新model
-- (void)updateTopicModel:(NSDictionary *)data;
-
-@end
-
-
+#pragma mark - 帖子模型
 @interface FSTopicModel : NSObject
 
 // 帖子id
@@ -69,6 +39,9 @@
 @property (nonatomic, assign) BOOL m_TopFlag;
 
 + (instancetype)topicWithServerDic:(NSDictionary *)dic;
+
++ (NSArray *)communityRecommendListModelArr:(NSArray *)arr;
+
 - (void)updateWithServerDic:(NSDictionary *)dic;
 
 @end
@@ -81,13 +54,13 @@
 // 板块图片
 @property (nonatomic, strong) NSString *m_IconUrl;
 // modelList
-@property (nonatomic, strong) NSArray<FSCommunityForumListModel *> *m_List;
+@property (nonatomic, strong) NSArray<FSForumModel *> *m_List;
 
 + (NSArray *)plateModelWithArr:(NSArray *)dataArray;
 
 @end
 
-@interface FSCommunityForumListModel : NSObject
+@interface FSForumModel : NSObject
 // 二级版块id
 @property (nonatomic, assign) NSInteger m_Id;
 // 封面图片
@@ -104,38 +77,14 @@
 @property (nonatomic, assign) BOOL m_AttentionFlag;
 // 二级版块名称
 @property (nonatomic, strong) NSString *m_ForumNameSecond;
+
++ (instancetype)forumModelWithServerDic:(NSDictionary *)dic;
 // 刷新model
 - (void)updateForumModel:(NSDictionary *)data;
 
 @end
-#pragma mark - 二级页面headerInfo
-@interface FSCommunityDetailInfoModel :NSObject
 
 
-// 二级版块id
-@property (nonatomic, assign) NSInteger m_Id;
-// 一级封面图片
-@property (nonatomic, strong) NSString *m_IconUrlFirst;
-// 二级封面图片
-@property (nonatomic, strong) NSString *m_IconUrlSecond;
-// 一级版块名称
-@property (nonatomic, strong) NSString *m_ForumNameFirst;
-// 版块介绍
-@property (nonatomic, strong) NSString *m_Description;
-// 二级版块名称
-@property (nonatomic, strong) NSString *m_ForumNameSecond;
-// 版块关注数量
-@property (nonatomic, assign) NSInteger m_AttentionCount;
-// 版块发贴数量
-@property (nonatomic, assign) NSInteger m_PostsCount;
-// 当前用户是否关注
-@property (nonatomic, assign) BOOL m_AttentionFlag;
-
-+ (FSCommunityDetailInfoModel *)infoModelWithDic:(NSDictionary *)dic;
-
-- (void)updateModel:(NSDictionary *)dic;
-
-@end
 
 
 
