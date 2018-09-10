@@ -7,6 +7,7 @@
 //
 
 #import "FSAuthenticationVC.h"
+#import "AppDelegate.h"
 
 @interface FSAuthenticationVC ()
 
@@ -24,8 +25,6 @@
 
 @property (nonatomic, strong) NSString *m_Name;
 @property (nonatomic, strong) NSString *m_IdNum;
-
-
 
 @end
 
@@ -276,6 +275,14 @@
     {
         [self.m_ProgressHUD hideAnimated:NO];
         
+        FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
+        userInfo.m_UserBaseInfo.m_RealName = self.m_Name;
+        userInfo.m_UserBaseInfo.m_IdCardNo = self.m_IdNum;
+        userInfo.m_UserBaseInfo.m_IsRealName = YES;
+        
+        [FSUserInfoDB insertAndUpdateUserInfo:userInfo];
+        GetAppDelegate.m_UserInfo = userInfo;
+
         if (self.delegate && [self.delegate respondsToSelector:@selector(authenticationFinished:)])
         {
             [self.delegate authenticationFinished:self];

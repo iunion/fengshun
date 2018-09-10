@@ -154,6 +154,12 @@
 		8730B0AC21427CC7004331A9 /* FSAuthenticationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730B0AB21427CC7004331A9 /* FSAuthenticationVC.m */; };
 		8730B0AF21461456004331A9 /* FSRecommendListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730B0AE21461456004331A9 /* FSRecommendListVC.m */; };
 		8730B0B22146149E004331A9 /* FSForumListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730B0B12146149E004331A9 /* FSForumListVC.m */; };
+		8730B0B621464B56004331A9 /* BMCombineItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730B0B521464B56004331A9 /* BMCombineItem.m */; };
+		8730B0B921464F4B004331A9 /* BMTableViewCombineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730B0B721464F4B004331A9 /* BMTableViewCombineCell.m */; };
+		8730B0BF21465034004331A9 /* BMCombine_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730B0BB21465034004331A9 /* BMCombine_up@2x.png */; };
+		8730B0C021465034004331A9 /* BMCombine_up@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730B0BC21465034004331A9 /* BMCombine_up@3x.png */; };
+		8730B0C121465034004331A9 /* BMCombine_down@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730B0BD21465034004331A9 /* BMCombine_down@3x.png */; };
+		8730B0C221465034004331A9 /* BMCombine_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730B0BE21465034004331A9 /* BMCombine_down@2x.png */; };
 		87426892212E7E36003C52F6 /* steppersinput_plusicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87426795212E7E35003C52F6 /* steppersinput_plusicon@3x.png */; };
 		87426893212E7E36003C52F6 /* steppersinput_plusicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87426796212E7E35003C52F6 /* steppersinput_plusicon@2x.png */; };
 		87426894212E7E36003C52F6 /* increase_eleme@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87426797212E7E35003C52F6 /* increase_eleme@3x.png */; };
@@ -960,6 +966,14 @@
 		8730B0AE21461456004331A9 /* FSRecommendListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSRecommendListVC.m; sourceTree = "<group>"; };
 		8730B0B02146149E004331A9 /* FSForumListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSForumListVC.h; sourceTree = "<group>"; };
 		8730B0B12146149E004331A9 /* FSForumListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSForumListVC.m; sourceTree = "<group>"; };
+		8730B0B421464B55004331A9 /* BMCombineItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCombineItem.h; sourceTree = "<group>"; };
+		8730B0B521464B56004331A9 /* BMCombineItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCombineItem.m; sourceTree = "<group>"; };
+		8730B0B721464F4B004331A9 /* BMTableViewCombineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMTableViewCombineCell.m; sourceTree = "<group>"; };
+		8730B0B821464F4B004331A9 /* BMTableViewCombineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMTableViewCombineCell.h; sourceTree = "<group>"; };
+		8730B0BB21465034004331A9 /* BMCombine_up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BMCombine_up@2x.png"; sourceTree = "<group>"; };
+		8730B0BC21465034004331A9 /* BMCombine_up@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BMCombine_up@3x.png"; sourceTree = "<group>"; };
+		8730B0BD21465034004331A9 /* BMCombine_down@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BMCombine_down@3x.png"; sourceTree = "<group>"; };
+		8730B0BE21465034004331A9 /* BMCombine_down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BMCombine_down@2x.png"; sourceTree = "<group>"; };
 		87426790212E7B2C003C52F6 /* fengshun-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "fengshun-Prefix.pch"; sourceTree = "<group>"; };
 		87426795212E7E35003C52F6 /* steppersinput_plusicon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "steppersinput_plusicon@3x.png"; sourceTree = "<group>"; };
 		87426796212E7E35003C52F6 /* steppersinput_plusicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "steppersinput_plusicon@2x.png"; sourceTree = "<group>"; };
@@ -2325,6 +2339,17 @@
 			path = setup;
 			sourceTree = "<group>";
 		};
+		8730B0BA21465034004331A9 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				8730B0BB21465034004331A9 /* BMCombine_up@2x.png */,
+				8730B0BC21465034004331A9 /* BMCombine_up@3x.png */,
+				8730B0BD21465034004331A9 /* BMCombine_down@3x.png */,
+				8730B0BE21465034004331A9 /* BMCombine_down@2x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		87426791212E7E35003C52F6 /* BMKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -2426,10 +2451,13 @@
 		874267AD212E7E35003C52F6 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				8730B0BA21465034004331A9 /* images */,
 				874267C5212E7E35003C52F6 /* BMTableViewBoolCell.h */,
 				874267B6212E7E35003C52F6 /* BMTableViewBoolCell.m */,
 				874267B9212E7E35003C52F6 /* BMTableViewCheckBoxGroupCell.h */,
 				874267C2212E7E35003C52F6 /* BMTableViewCheckBoxGroupCell.m */,
+				8730B0B821464F4B004331A9 /* BMTableViewCombineCell.h */,
+				8730B0B721464F4B004331A9 /* BMTableViewCombineCell.m */,
 				874267BA212E7E35003C52F6 /* BMTableViewDateTimeCell.h */,
 				874267AE212E7E35003C52F6 /* BMTableViewDateTimeCell.m */,
 				874267B1212E7E35003C52F6 /* BMTableViewImageDetailCell.h */,
@@ -2476,6 +2504,8 @@
 				874267DC212E7E35003C52F6 /* BMBoolItem.m */,
 				874267E0212E7E35003C52F6 /* BMCheckBoxGroupItem.h */,
 				874267EE212E7E35003C52F6 /* BMCheckBoxGroupItem.m */,
+				8730B0B421464B55004331A9 /* BMCombineItem.h */,
+				8730B0B521464B56004331A9 /* BMCombineItem.m */,
 				874267DA212E7E35003C52F6 /* BMDateTimeItem.h */,
 				874267E7212E7E35003C52F6 /* BMDateTimeItem.m */,
 				874267D9212E7E35003C52F6 /* BMImageDetailItem.h */,
@@ -4269,12 +4299,15 @@
 				87D20B19213CD80D001EDD60 /* navigationbar_webclose_icon@3x.png in Resources */,
 				AD5102A9213E783E008CD74D /* FSSendTopicVC.xib in Resources */,
 				87D20AEF21392FF2001EDD60 /* user_topbackgroud@2x.png in Resources */,
+				8730B0C021465034004331A9 /* BMCombine_up@3x.png in Resources */,
 				DBD4CE8C2141229400857DB3 /* home_tools@2x.png in Resources */,
+				8730B0BF21465034004331A9 /* BMCombine_up@2x.png in Resources */,
 				8730AD462140CC28004331A9 /* user_serviceicon@2x.png in Resources */,
 				874268B9212E7E36003C52F6 /* BMTableView_UIButtonBarArrowLeft@2x.png in Resources */,
 				8742689B212E7E36003C52F6 /* decrease_eleme@2x.png in Resources */,
 				87D186A0213679F800037DDF /* login_openeye@2x.png in Resources */,
 				8730AD4D2140CC28004331A9 /* user_topicicon@2x.png in Resources */,
+				8730B0C221465034004331A9 /* BMCombine_down@2x.png in Resources */,
 				87426A07212F9657003C52F6 /* navigationbar_select_icon@3x.png in Resources */,
 				87426AA7213156D5003C52F6 /* banner_close@2x.png in Resources */,
 				87426A54213135F0003C52F6 /* fstab_btn4_icon@2x.png in Resources */,
@@ -4362,6 +4395,7 @@
 				87D186A1213679F800037DDF /* login_password@3x.png in Resources */,
 				87D20AF721393B9A001EDD60 /* navigationbar_share_icon@3x.png in Resources */,
 				87D186AB213679F800037DDF /* login_error@2x.png in Resources */,
+				8730B0C121465034004331A9 /* BMCombine_down@3x.png in Resources */,
 				ADE8689821392853005359B5 /* FSTopicListCell.xib in Resources */,
 				87426895212E7E36003C52F6 /* increase_baiduwaimai@3x.png in Resources */,
 				87426A23213100BB003C52F6 /* bmsearch_history@3x.png in Resources */,
@@ -4428,6 +4462,7 @@
 				87D20ADC213920E2001EDD60 /* FLEXRealmDatabaseManager.m in Sources */,
 				87426A92213146A6003C52F6 /* XMRequest.m in Sources */,
 				874268EE212E7E36003C52F6 /* UIColor+BMCategory.m in Sources */,
+				8730B0B621464B56004331A9 /* BMCombineItem.m in Sources */,
 				87D20AA5213920E2001EDD60 /* FLEXDefaultsExplorerViewController.m in Sources */,
 				874268FD212E7E36003C52F6 /* NSBundle+BMResource.m in Sources */,
 				8730AD352140B9BD004331A9 /* FSSetupVC.m in Sources */,
@@ -4682,6 +4717,7 @@
 				874268F3212E7E36003C52F6 /* UIImageView+BMCategory.m in Sources */,
 				8730B04A2140FFA2004331A9 /* DTCoreTextFunctions.m in Sources */,
 				874268BB212E7E36003C52F6 /* BMTableViewSection.m in Sources */,
+				8730B0B921464F4B004331A9 /* BMTableViewCombineCell.m in Sources */,
 				8730B0712140FFA3004331A9 /* zip.c in Sources */,
 				AD9355AB2137D24100735C2E /* TZImagePickerController.m in Sources */,
 				87426905212E7E36003C52F6 /* NSString+BMRoundNumber.m in Sources */,

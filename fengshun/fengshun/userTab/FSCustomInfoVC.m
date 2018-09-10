@@ -13,6 +13,7 @@
 #import "BMDatePicker.h"
 
 #import "FSAuthenticationVC.h"
+#import "FSEditorAbilityVC.h"
 #import "FSEditorVC.h"
 
 
@@ -20,7 +21,9 @@
 <
     TTGTagCollectionViewDelegate,
     TTGTagCollectionViewDataSource,
-    FSEditorDelegate
+    FSEditorDelegate,
+    FSAuthenticationDelegate,
+    FSEditorAbilityDelegate
 >
 
 @property (nonatomic, strong) BMTableViewSection *m_BaseSection;
@@ -123,9 +126,6 @@
     self.m_NikeNameItem.cellHeight = 50.0f;
 
     self.m_RealNameItem = [BMTableViewItem itemWithTitle:@"实名认证" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_None accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
-        FSAuthenticationVC *vc = [[FSAuthenticationVC alloc] init];
-        //vc.delegate = weakSelf;
-        [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     self.m_RealNameItem.textFont = FS_CELLTITLE_TEXTFONT;
     self.m_RealNameItem.highlightBgColor = UI_COLOR_BL1;
@@ -247,10 +247,19 @@
     if ([userInfo.m_UserBaseInfo.m_RealName bm_isNotEmpty])
     {
         text = userInfo.m_UserBaseInfo.m_RealName;
+        self.m_RealNameItem.selectionHandler = nil;
+        imageTextView.showTableCellAccessoryArrow = NO;
+        self.m_RealNameItem.enabled = NO;
     }
     else
     {
         text = @"未认证";
+        self.m_RealNameItem.selectionHandler = ^(id item) {
+            FSAuthenticationVC *vc = [[FSAuthenticationVC alloc] init];
+            vc.delegate = weakSelf;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        };
+        self.m_RealNameItem.enabled = YES;
     }
     imageTextView = [[BMImageTextView alloc] initWithText:text];
     imageTextView.textColor = UI_COLOR_B4;
@@ -360,6 +369,11 @@
     imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
     imageTextView.showTableCellAccessoryArrow = YES;
     self.m_AbilityItem.accessoryView = imageTextView;
+    self.m_AbilityItem.selectionHandler = ^(id item) {
+        FSEditorAbilityVC *editorVC = [[FSEditorAbilityVC alloc] init];
+        editorVC.delegate = weakSelf;
+        [weakSelf.navigationController pushViewController:editorVC animated:YES];
+    };
 
     if ([userInfo.m_UserBaseInfo.m_Signature bm_isNotEmpty])
     {
