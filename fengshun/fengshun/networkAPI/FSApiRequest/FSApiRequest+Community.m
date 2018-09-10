@@ -27,15 +27,17 @@
     return [XMRequestManager rm_requestWithApi:@"/storm/communityForum/recommendList" parameters:parameters success:successBlock failure:failureBlock];
 }
 // 发送||编辑帖子
-+ (XMRequest *)sendPostsWithTitle:(NSString *)title content:(NSString *)content forumId:(NSInteger)forumId isEdited:(BOOL)isEdited success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock{
++ (XMRequest *)sendPostsWithTitle:(NSString *)title content:(NSString *)content forumId:(NSInteger)forumId isEdited:(BOOL)isEdited success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
+{
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters bm_setApiString:title forKey:@"title"];
     [parameters bm_setApiString:content forKey:@"content"];
     [parameters bm_setInteger:forumId forKey:@"forumId"];
-    return [XMRequestManager rm_requestWithApi:isEdited?@"/storm/postInfo/editPost":@"/storm/postInfo/addPost" parameters:parameters success:successBlock failure:failureBlock];
+    return [XMRequestManager rm_requestWithApi:isEdited ? @"/storm/postInfo/editPost" : @"/storm/postInfo/addPost" parameters:parameters success:successBlock failure:failureBlock];
 }
 // 关注
-+ (XMRequest *)updateFourmAttentionStateWithFourmId:(NSInteger)fourmId success:(nullable XMSuccessBlock)successBlock failure:(nullable XMFailureBlock)failureBlock{
++ (XMRequest *)updateFourmAttentionStateWithFourmId:(NSInteger)fourmId success:(nullable XMSuccessBlock)successBlock failure:(nullable XMFailureBlock)failureBlock
+{
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters bm_setInteger:fourmId forKey:@"id"];
     return [XMRequestManager rm_requestWithApi:@"/storm/communityForum/followOrUnFollow" parameters:parameters success:successBlock failure:failureBlock];
@@ -55,7 +57,8 @@
     [parameters bm_setInteger:pageIndex forKey:@"pageIndex"];
     [parameters bm_setInteger:pageSize forKey:@"pageSize"];
     NSString *urlStr;
-    switch (type) {
+    switch (type)
+    {
         case FSCommunityDetailListType_NewReply:
             urlStr = @"/storm/communityForum/newReplyList";
             break;

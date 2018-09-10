@@ -178,7 +178,7 @@ NS_ASSUME_NONNULL_BEGIN
                                             success:(nullable XMSuccessBlock)successBlock
                                             failure:(nullable XMFailureBlock)failureBlock;
 
-
+//+ (NSMutableURLRequest *)
 @end
 
 NS_ASSUME_NONNULL_END

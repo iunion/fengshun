@@ -579,6 +579,8 @@
 		AD9355AC2137D24100735C2E /* TZLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD93559C2137D24100735C2E /* TZLocationManager.m */; };
 		AD9355AD2137D24100735C2E /* TZGifPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD93559D2137D24100735C2E /* TZGifPhotoPreviewController.m */; };
 		AD9CAAE4212EA0F40071B941 /* UIScrollView+BMEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9CAAE3212EA0F40071B941 /* UIScrollView+BMEmpty.m */; };
+		ADA1228B214614BE00CF0D87 /* FSTopicListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA12289214614BE00CF0D87 /* FSTopicListVC.m */; };
+		ADA1228C214614BE00CF0D87 /* FSTopicListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADA1228A214614BE00CF0D87 /* FSTopicListVC.xib */; };
 		ADE8689721392853005359B5 /* FSTopicListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8689521392853005359B5 /* FSTopicListCell.m */; };
 		ADE8689821392853005359B5 /* FSTopicListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADE8689621392853005359B5 /* FSTopicListCell.xib */; };
 		ADE8689C21393469005359B5 /* FSForumListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8689A21393469005359B5 /* FSForumListCell.m */; };
@@ -1731,6 +1733,9 @@
 		AD93559E2137D24100735C2E /* TZProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZProgressView.h; sourceTree = "<group>"; };
 		AD9CAAE2212EA0F40071B941 /* UIScrollView+BMEmpty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+BMEmpty.h"; sourceTree = "<group>"; };
 		AD9CAAE3212EA0F40071B941 /* UIScrollView+BMEmpty.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+BMEmpty.m"; sourceTree = "<group>"; };
+		ADA12288214614BE00CF0D87 /* FSTopicListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTopicListVC.h; sourceTree = "<group>"; };
+		ADA12289214614BE00CF0D87 /* FSTopicListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTopicListVC.m; sourceTree = "<group>"; };
+		ADA1228A214614BE00CF0D87 /* FSTopicListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSTopicListVC.xib; sourceTree = "<group>"; };
 		ADE8689421392853005359B5 /* FSTopicListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTopicListCell.h; sourceTree = "<group>"; };
 		ADE8689521392853005359B5 /* FSTopicListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTopicListCell.m; sourceTree = "<group>"; };
 		ADE8689621392853005359B5 /* FSTopicListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSTopicListCell.xib; sourceTree = "<group>"; };
@@ -3998,6 +4003,9 @@
 				AD5102A0213E77FC008CD74D /* FSCommunitySecVC.h */,
 				AD5102A1213E77FC008CD74D /* FSCommunitySecVC.m */,
 				AD5102A2213E77FC008CD74D /* FSCommunitySecVC.xib */,
+				ADA12288214614BE00CF0D87 /* FSTopicListVC.h */,
+				ADA12289214614BE00CF0D87 /* FSTopicListVC.m */,
+				ADA1228A214614BE00CF0D87 /* FSTopicListVC.xib */,
 				AD5102A5213E783E008CD74D /* FSSendTopicVC.h */,
 				AD5102A6213E783E008CD74D /* FSSendTopicVC.m */,
 				AD5102A7213E783E008CD74D /* FSSendTopicVC.xib */,
@@ -4323,6 +4331,7 @@
 				874269FC212F9657003C52F6 /* navigationbar_help_icon@3x.png in Resources */,
 				87426899212E7E36003C52F6 /* decrease_meituan@2x.png in Resources */,
 				8730AD422140CC28004331A9 /* user_commenticon@2x.png in Resources */,
+				ADA1228C214614BE00CF0D87 /* FSTopicListVC.xib in Resources */,
 				8742689D212E7E36003C52F6 /* increase_eleme@2x.png in Resources */,
 				87D1869F213679F800037DDF /* login_openeye@3x.png in Resources */,
 				87D1868D213678B400037DDF /* navigationbar_popback_icon@2x.png in Resources */,
@@ -4433,6 +4442,7 @@
 				8730B0862140FFA3004331A9 /* DTCustomColoredAccessory.m in Sources */,
 				DBD4CDFD213FB2D800857DB3 /* FSMainToolCell.m in Sources */,
 				87426A5F21313940003C52F6 /* FSMainVC.m in Sources */,
+				ADA1228B214614BE00CF0D87 /* FSTopicListVC.m in Sources */,
 				87D20AA2213920E2001EDD60 /* FLEXImageExplorerViewController.m in Sources */,
 				8730B08B2140FFA3004331A9 /* UIView+DTDebug.m in Sources */,
 				8730B08D2140FFA3004331A9 /* DTSidePanelPanGestureRecognizer.m in Sources */,
@@ -4991,7 +5001,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = K9SAQ4FSAH;
+				DEVELOPMENT_TEAM = 5V3CUNZ42F;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_SOURCE_FILE_NAMES = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -5010,7 +5020,7 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = FS.fengshun;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bmsoft.FS.fengshun;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -5025,7 +5035,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = K9SAQ4FSAH;
+				DEVELOPMENT_TEAM = 5V3CUNZ42F;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_SOURCE_FILE_NAMES = "FLEX*";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -5044,7 +5054,7 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = FS.fengshun;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bmsoft.FS.fengshun;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

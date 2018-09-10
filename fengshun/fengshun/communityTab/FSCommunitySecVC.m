@@ -36,8 +36,8 @@
     [self bm_setNeedsUpdateNavigationBarAlpha];
     self.view.backgroundColor = FS_VIEW_BGCOLOR;
     [self createUI];
-    [self getInfoMsg];
-    [self getListWithListType:1 page:1];
+//    [self getInfoMsg];
+//    [self getListWithListType:1 page:1];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,11 +51,10 @@
     _m_HeaderView = [[NSBundle mainBundle]loadNibNamed:@"FSCommunityHeaderView" owner:self options:nil].firstObject;
     [self.view addSubview:_m_HeaderView];
     [_m_HeaderView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.right.equalTo(self.view);
+        make.left.right.equalTo(self.view);
+        make.top.equalTo(self.view).offset(-(UI_NAVIGATION_BAR_DEFAULTHEIGHT + UI_STATUS_BAR_HEIGHT));
         make.height.mas_equalTo(200);
     }];
-    
-    
     
 }
 
