@@ -18,23 +18,58 @@
 @property (nonatomic, strong) NSString *m_IconUrl;
 // 版块名称
 @property (nonatomic, strong) NSString *m_ForumName;
-// 是否置顶
-@property (nonatomic, assign) BOOL m_TopFlag;
 // 帖子标题
 @property (nonatomic, strong) NSString *m_PostsTitle;
 // 最后回贴时间
 @property (nonatomic, assign) NSInteger m_PostsLastReplyTime;
-// 用户昵称
-@property (nonatomic, strong) NSString *m_NickName;
 // 帖子评论数
 @property (nonatomic, assign) NSInteger m_CommentCount;
 // 发贴时间
 @property (nonatomic, assign) NSInteger m_PostsCreateTime;
 
+// 用户昵称
+@property (nonatomic, strong) NSString *m_NickName;
+
+// 是否置顶
+@property (nonatomic, assign) BOOL m_TopFlag;
+
 + (NSArray *)communityRecommendListModelArr:(NSArray *)list;
 
 // 刷新model
 - (void)updateTopicModel:(NSDictionary *)data;
+
+@end
+
+
+@interface FSTopicModel : NSObject
+
+// 帖子id
+@property (nonatomic, strong) NSString *m_Id;
+// 版块Id
+@property (nonatomic, strong) NSString *m_ForumId;
+// 版块icon
+@property (nonatomic, strong) NSString *m_IconUrl;
+// 版块名称
+@property (nonatomic, strong) NSString *m_ForumName;
+// 帖子标题
+@property (nonatomic, strong) NSString *m_Title;
+// 发贴时间
+@property (nonatomic, assign) NSTimeInterval m_CreateTime;
+// 最后回贴时间
+@property (nonatomic, assign) NSTimeInterval m_LastReplyTime;
+// 帖子评论数
+@property (nonatomic, assign) NSUInteger m_CommentCount;
+
+// 用户Id
+@property (nonatomic, strong) NSString *m_UserId;
+// 用户昵称
+@property (nonatomic, strong) NSString *m_NickName;
+
+// 是否置顶
+@property (nonatomic, assign) BOOL m_TopFlag;
+
++ (instancetype)topicWithServerDic:(NSDictionary *)dic;
+- (void)updateWithServerDic:(NSDictionary *)dic;
 
 @end
 

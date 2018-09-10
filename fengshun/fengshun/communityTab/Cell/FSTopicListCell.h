@@ -34,6 +34,8 @@
 
  @param aModel FSCommunityTopicListModel
  */
-- (void)showWithTopicModel:(FSCommunityTopicListModel *)aModel;
+- (void)showWithTopicModel:(FSTopicModel *)aModel;
+
+- (void)drawCellWithModle:(FSTopicModel *)model;
 
 @end

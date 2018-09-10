@@ -130,6 +130,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FSApiRequest (Community)
 
+// 获取推荐帖子列表
+// http://123.206.193.140:8121/swagger-ui.html#/%E7%A4%BE%E5%8C%BA%E9%A6%96%E9%A1%B5/recommendListUsingPOST
++ (nullable NSMutableURLRequest *)getPlateRecommendPostListWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize;
+
 
 // 获取推荐帖子列表
 // http://123.206.193.140:8121/swagger-ui.html#/operations/社区首页/recommendListUsingPOST

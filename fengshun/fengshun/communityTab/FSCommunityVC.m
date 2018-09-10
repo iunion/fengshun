@@ -7,6 +7,12 @@
 //
 
 #import "FSCommunityVC.h"
+
+#import "FSTableViewVC.h"
+
+#import "FSRecommendListVC.h"
+#import "FSForumListVC.h"
+
 #import "FSScrollPageView.h"
 #import "AppDelegate.h"
 #import "TZImagePickerController.h"
@@ -38,9 +44,10 @@ FSCommunityVC ()
     NSInteger _m_ForumPage;//板块列表页码
 }
 @property (nonatomic, strong) FSScrollPageSegment *m_SegmentBar;
-@property (nonatomic, strong) FSScrollPageView *   m_ScrollPageView;
-@property (nonatomic, strong) FSTableView *        m_RecommendTableView;
-@property (nonatomic, strong) FSTableView *        m_PlateTableView;
+@property (nonatomic, strong) FSScrollPageView *m_ScrollPageView;
+
+@property (nonatomic, strong) FSTableViewVC *m_RecommendVC;
+@property (nonatomic, strong) FSTableViewVC *m_ForumVC;
 @property (nonatomic, strong) NSMutableArray *     m_TopicDataArray;
 @property (nonatomic, strong) NSMutableArray *     m_forumDataArray;
 
@@ -56,46 +63,16 @@ FSCommunityVC ()
 {
     [super viewDidLoad];
 
-    self.title                       = @"枫调理顺";
     self.bm_NavigationBarBgTintColor = [UIColor whiteColor];
     self.bm_NavigationShadowHidden   = NO;
     self.bm_NavigationShadowColor    = [UIColor bm_colorWithHexString:@"D8D8D8"];
+    
+    [self bm_setNavigationWithTitle:@"枫调理顺" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
     [GetAppDelegate.m_TabBarController hideOriginTabBar];
 
-    //    NSDictionary *btnItem1 = [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"navigationbar_collect_icon" toucheEvent:@"collect" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0];
-    //    NSDictionary *btnItem2 = [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"navigationbar_share_icon" toucheEvent:@"share" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageRight imageTitleGap:0];
-    //
-    //    [self bm_setNavigationWithTitle:@"" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightDicArray:@[btnItem2, btnItem1]];
-
     [self setupUI];
-    //初始化pages
-    _m_TopicPage = 1;
-    _m_ForumPage = 1;
-    _m_TopicDataArray = [NSMutableArray array];
-    _m_forumDataArray = [NSMutableArray array];
-    BMWeakSelf;
-    self.m_RecommendTableView.bm_freshHeaderView.beginFreshingBlock = ^(BMFreshBaseView *freshView) {
-        _m_TopicPage = 1;
-        [weakSelf getRecommendList];
-    };
-    self.m_RecommendTableView.bm_freshFooterView.beginFreshingBlock = ^(BMFreshBaseView *freshView) {
-        [weakSelf getRecommendList];
-    };
-    self.m_PlateTableView.bm_freshHeaderView.beginFreshingBlock = ^(BMFreshBaseView *freshView) {
-        _m_ForumPage = 1;
-        [weakSelf getForumList];
-    };
-    self.m_PlateTableView.bm_freshFooterView.beginFreshingBlock = ^(BMFreshBaseView *freshView) {
-        [weakSelf getForumList];
-    };
-    [self getRecommendList];
 }
 
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
 
 #pragma mark - UI
 
@@ -130,151 +107,6 @@ FSCommunityVC ()
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - lazy var
-
-- (FSTableView *)m_RecommendTableView
-{
-    if (!_m_RecommendTableView)
-    {
-        _m_RecommendTableView                 = [[FSTableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped freshViewType:BMFreshViewType_ALL];
-        _m_RecommendTableView.delegate        = self;
-        _m_RecommendTableView.dataSource      = self;
-        _m_RecommendTableView.rowHeight       = 152;
-        _m_RecommendTableView.separatorStyle  = UITableViewCellSeparatorStyleSingleLine;
-        _m_RecommendTableView.separatorInset  = UIEdgeInsetsMake(0, 20, 0, 20);
-        UIView *headerView                    = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _m_ScrollPageView.bm_width, 8)];
-        headerView.backgroundColor            = [UIColor bm_colorWithHexString:@"f6f6f6"];
-        _m_RecommendTableView.tableHeaderView = headerView;
-        [_m_RecommendTableView registerNib:[UINib nibWithNibName:@"FSTopicListCell" bundle:nil] forCellReuseIdentifier:FSTopicListTableViewCellIdentifier];
-    }
-    return _m_RecommendTableView;
-}
-
-- (FSTableView *)m_PlateTableView
-{
-    if (!_m_PlateTableView)
-    {
-        _m_PlateTableView                   = [[FSTableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped freshViewType:BMFreshViewType_ALL];
-        _m_PlateTableView.delegate          = self;
-        _m_PlateTableView.dataSource        = self;
-        _m_PlateTableView.rowHeight         = 102;
-        _m_PlateTableView.separatorInset    = UIEdgeInsetsMake(0, 20, 0, 20);
-        _m_PlateTableView.separatorStyle    = UITableViewCellSeparatorStyleSingleLine;
-        UIView *headerView                  = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _m_ScrollPageView.bm_width, 8)];
-        headerView.backgroundColor          = [UIColor bm_colorWithHexString:@"f6f6f6"];
-        _m_PlateTableView.tableHeaderView   = headerView;
-        [_m_PlateTableView registerNib:[UINib nibWithNibName:@"FSForumListCell" bundle:nil] forCellReuseIdentifier:FSForumListTableViewCellIdentifier];
-        //header复用注册
-        [_m_PlateTableView registerNib:[UINib nibWithNibName:@"FSForumSectionHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:FSForumHeaderIdentifier];
-        [self getForumList];
-    }
-    return _m_PlateTableView;
-}
-
-
-#pragma mark - UITableViewDelegate、UITableViewDataSource
-//关闭section悬停
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    if (scrollView == self.m_PlateTableView)
-    {
-        CGFloat sectionHeaderHeight = 50;
-        if (scrollView.contentOffset.y <= sectionHeaderHeight && scrollView.contentOffset.y >= 0)
-        {
-            scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
-        }
-        else if (scrollView.contentOffset.y >= sectionHeaderHeight)
-        {
-            scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
-        }
-    }
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    if (tableView == _m_RecommendTableView)
-    {
-        return 0;
-    }
-    return 50.f;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    if (tableView == _m_RecommendTableView)
-    {
-        return nil;
-    }
-    FSCommunityForumModel *   model             = _m_forumDataArray[section];
-    FSForumSectionHeaderView *sectionHeaderView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:FSForumHeaderIdentifier];
-    [sectionHeaderView showWithFSCommunityForumModel:model];
-    return sectionHeaderView;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    if (tableView == _m_RecommendTableView)
-    {
-        return 1;
-    }
-    else
-    {
-        return _m_forumDataArray.count;
-    }
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if (tableView == _m_RecommendTableView)
-    {
-        return _m_TopicDataArray.count;
-    }
-    else if (tableView == _m_PlateTableView)
-    {
-        FSCommunityForumModel *model = _m_forumDataArray[section];
-        return model.m_List.count;
-    }
-    else
-    {
-        return 0;
-    }
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (tableView == _m_RecommendTableView)
-    {
-        FSTopicListCell *cell = [tableView dequeueReusableCellWithIdentifier:FSTopicListTableViewCellIdentifier];
-        [cell showWithTopicModel:_m_TopicDataArray[indexPath.row]];
-        return cell;
-    }
-    else if (tableView == _m_PlateTableView)
-    {
-        FSForumListCell *      cell  = [tableView dequeueReusableCellWithIdentifier:FSForumListTableViewCellIdentifier];
-        FSCommunityForumModel *model = _m_forumDataArray[indexPath.section];
-        [cell showWithFSCommunityForumListModel:model.m_List[indexPath.row]];
-        return cell;
-    }
-    else
-    {
-        return nil;
-    }
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (tableView == _m_RecommendTableView)
-    {
-        
-    }
-    else if (tableView == _m_PlateTableView)
-    {
-        FSCommunityForumModel *model = _m_forumDataArray[indexPath.section];
-        FSCommunityForumListModel *listModel = model.m_List[indexPath.row];
-        [FSPushVCManager showCommunitySecVCPushVC:self FourmId:listModel.m_Id];
-    }
-}
-
 
 #pragma mark - FSScrollPageView Delegate & DataSource
 
@@ -290,6 +122,7 @@ FSCommunityVC ()
         case 0:
             return @"推荐";
             break;
+            
         case 1:
             return @"板块";
             break;
@@ -305,17 +138,19 @@ FSCommunityVC ()
     UIView *aView = [[UIView alloc] initWithFrame:scrollPageView.bounds];
     if (index == 0)
     {
-        [aView addSubview:self.m_RecommendTableView];
+        self.m_RecommendVC = [[FSRecommendListVC alloc] init];
+        [aView addSubview:self.m_RecommendVC.view];
     }
     else if (index == 1)
     {
-        [aView addSubview:self.m_PlateTableView];
+        self.m_ForumVC = [[FSForumListVC alloc] init];
+        [aView addSubview:self.m_ForumVC.view];
     }
     return aView;
 }
 
 #pragma mark - Request
-
+#if 0
 - (void)getRecommendList
 {
     [FSApiRequest getPlateRecommendPostListWithPageIndex:_m_TopicPage pageSize:10 success:^(id  _Nullable responseObject) {
@@ -342,8 +177,6 @@ FSCommunityVC ()
         [_m_RecommendTableView.bm_freshHeaderView endReFreshing];
         [_m_RecommendTableView.bm_freshFooterView endReFreshing];
     }];
-    
-    
 }
 
 - (void)getForumList
@@ -375,7 +208,7 @@ FSCommunityVC ()
     }];
 }
 
-
+#endif
 
 
 //#pragma mark - 图片选择例子

@@ -10,6 +10,19 @@
 
 @implementation FSApiRequest (Community)
 
+// 获取推荐帖子列表
+// http://123.206.193.140:8121/swagger-ui.html#/%E7%A4%BE%E5%8C%BA%E9%A6%96%E9%A1%B5/recommendListUsingPOST
++ (nullable NSMutableURLRequest *)getPlateRecommendPostListWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/communityForum/recommendList", FS_URL_SERVER];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    
+    [parameters bm_setInteger:pageIndex forKey:@"pageIndex"];
+    [parameters bm_setInteger:pageSize forKey:@"pageSize"];
+
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
+}
+
 // 板块列表
 + (XMRequest *)getPlateListWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
 {
