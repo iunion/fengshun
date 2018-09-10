@@ -31,4 +31,8 @@
 - (BOOL)verifyPassword:(NSString *)password;
 - (BOOL)verifyPassword:(NSString *)password showMessage:(BOOL)showMessage;
 
+// 身份证号
+- (BOOL)verifyId:(NSString *)idNum;
+- (BOOL)verifyId:(NSString *)idNum showMessage:(BOOL)showMessage;
+
 @end

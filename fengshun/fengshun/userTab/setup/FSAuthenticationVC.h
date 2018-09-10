@@ -8,6 +8,17 @@
 
 #import "FSSetTableViewVC.h"
 
+@protocol FSAuthenticationDelegate;
 @interface FSAuthenticationVC : FSSetTableViewVC
+
+@property (nonatomic, weak) id <FSAuthenticationDelegate> delegate;
+
+@end
+
+@protocol FSAuthenticationDelegate <NSObject>
+
+@optional
+
+- (void)authenticationFinished:(FSAuthenticationVC *)vc;
 
 @end

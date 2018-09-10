@@ -12,6 +12,7 @@
 #import "TTGTagCollectionView.h"
 #import "BMDatePicker.h"
 
+#import "FSAuthenticationVC.h"
 #import "FSEditorVC.h"
 
 
@@ -47,7 +48,7 @@
 
 @property (nonatomic, strong) BMDatePicker *m_PickerView;
 
-@property (nonatomic, strong) NSURLSessionDataTask *m_updateTask;
+@property (nonatomic, strong) NSURLSessionDataTask *m_UpdateTask;
 
 @property (nonatomic, assign) NSUInteger m_EmploymentTime;
 
@@ -60,8 +61,8 @@
     [_m_UserInfoTask cancel];
     _m_UserInfoTask = nil;
 
-    [_m_updateTask cancel];
-    _m_updateTask = nil;
+    [_m_UpdateTask cancel];
+    _m_UpdateTask = nil;
 }
 
 - (BMFreshViewType)getFreshViewType
@@ -122,7 +123,9 @@
     self.m_NikeNameItem.cellHeight = 50.0f;
 
     self.m_RealNameItem = [BMTableViewItem itemWithTitle:@"实名认证" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_None accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
-        
+        FSAuthenticationVC *vc = [[FSAuthenticationVC alloc] init];
+        //vc.delegate = weakSelf;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     self.m_RealNameItem.textFont = FS_CELLTITLE_TEXTFONT;
     self.m_RealNameItem.highlightBgColor = UI_COLOR_BL1;
@@ -481,11 +484,11 @@
     {
         [self.m_ProgressHUD showAnimated:YES showBackground:NO];
         
-        [self.m_updateTask cancel];
-        self.m_updateTask = nil;
+        [self.m_UpdateTask cancel];
+        self.m_UpdateTask = nil;
         
         BMWeakSelf
-        self.m_updateTask = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        self.m_UpdateTask = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
             if (error)
             {
                 BMLog(@"Error: %@", error);
@@ -501,7 +504,7 @@
                 [weakSelf updateRequestFinished:response responseDic:responseObject];
             }
         }];
-        [self.m_updateTask resume];
+        [self.m_UpdateTask resume];
     }
 }
 
