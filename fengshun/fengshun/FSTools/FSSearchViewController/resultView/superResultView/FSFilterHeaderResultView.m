@@ -11,40 +11,38 @@
 
 
 @interface
-FSFilterHeaderResultView ()
-<
+FSFilterHeaderResultView () <
     TTGTagCollectionViewDelegate,
     TTGTagCollectionViewDataSource>
 
 @property (nonatomic, strong) UIControl *           m_filterView;
 @property (nonatomic, strong) UIView *              m_headerView;
-@property (nonatomic, strong) TTGTagCollectionView *tagCollectionView;
-@property (nonatomic, strong) NSMutableArray *      searchArray;
-@property (nonatomic, strong) NSMutableArray *      searchTagviews;
+@property (nonatomic, strong) TTGTagCollectionView *m_tagCollectionView;
+@property (nonatomic, strong) NSMutableArray *      m_searchTagviews;
 
 @end
 
 @implementation FSFilterHeaderResultView
 
-- (instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame andResultVC:(FSSearchResultVC *)resultVC
 {
-    if (self = [super initWithFrame:frame])
+    if (self = [super initWithFrame:frame andResultVC:resultVC])
     {
         [self setupUI];
-        [self configTableViewWithStartY:FILTER_HEADER_HEIGHT];
-
-        _manager              = [[BMTableViewManager alloc] initWithTableView:_m_filterList];
-        _section              = [BMTableViewSection section];
-        _section.headerHeight = 0;
-        _section.footerHeight = 0;
-        [_manager addSection:_section];
+        _m_manager              = [[BMTableViewManager alloc] initWithTableView:_m_filterList];
+        _m_section              = [BMTableViewSection section];
+        _m_section.headerHeight = 0;
+        _m_section.footerHeight = 0;
+        [_m_manager addSection:_m_section];
     }
     return self;
 }
-- (NSArray *)searchKeys
+- (void)configTableView
 {
-    return [_searchArray copy];
+    [super configTableView];
+    self.m_resultVC.view.frame = CGRectMake(0, FILTER_HEADER_HEIGHT, self.bm_width, self.bm_height - FILTER_HEADER_HEIGHT);
 }
+
 - (void)setupUI
 {
     _m_headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.bm_width, FILTER_HEADER_HEIGHT)];
@@ -52,19 +50,18 @@ FSFilterHeaderResultView ()
     _m_headerView.backgroundColor = [UIColor whiteColor];
     _m_filterView                 = [[UIControl alloc] initWithFrame:CGRectMake(0, FILTER_HEADER_HEIGHT, self.bm_width, self.bm_height - FILTER_HEADER_HEIGHT)];
     [self addSubview:_m_filterView];
-    _m_filterView.backgroundColor = [UIColor blackColor];
+    _m_filterView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
     _m_filterView.hidden          = YES;
-    _m_filterView.alpha           = 0.7;
     [_m_filterView addTarget:self action:@selector(filterViewClicked:) forControlEvents:UIControlEventTouchUpInside];
-    _tagCollectionView                                = [[TTGTagCollectionView alloc] initWithFrame:CGRectMake(0, 0, self.bm_width, FILTER_HEADER_HEIGHT - FILTER_BUTTON_HEIGHT)];
-    _tagCollectionView.delegate                       = self;
-    _tagCollectionView.dataSource                     = self;
-    _tagCollectionView.numberOfLines                  = 0;
-    _tagCollectionView.horizontalSpacing              = 8.0f;
-    _tagCollectionView.contentInset                   = UIEdgeInsetsMake(7, 14, 0, 14);
-    _tagCollectionView.scrollDirection                = TTGTagCollectionScrollDirectionHorizontal;
-    _tagCollectionView.showsHorizontalScrollIndicator = NO;
-    [_m_headerView addSubview:_tagCollectionView];
+    _m_tagCollectionView                                = [[TTGTagCollectionView alloc] initWithFrame:CGRectMake(0, 0, self.bm_width, FILTER_HEADER_HEIGHT - FILTER_BUTTON_HEIGHT)];
+    _m_tagCollectionView.delegate                       = self;
+    _m_tagCollectionView.dataSource                     = self;
+    _m_tagCollectionView.numberOfLines                  = 0;
+    _m_tagCollectionView.horizontalSpacing              = 8.0f;
+    _m_tagCollectionView.contentInset                   = UIEdgeInsetsMake(7, 14, 0, 14);
+    _m_tagCollectionView.scrollDirection                = TTGTagCollectionScrollDirectionHorizontal;
+    _m_tagCollectionView.showsHorizontalScrollIndicator = NO;
+    [_m_headerView addSubview:_m_tagCollectionView];
 
     BMSingleLineView *hline = [[BMSingleLineView alloc] initWithFrame:CGRectMake(0, 43, self.bm_width, 2) direction:SingleLineDirectionLandscape];
     hline.lineColor         = UI_COLOR_B6;
@@ -75,7 +72,9 @@ FSFilterHeaderResultView ()
     // leftButton
     _m_leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, FILTER_HEADER_HEIGHT - FILTER_BUTTON_HEIGHT, self.bm_width / 2, FILTER_BUTTON_HEIGHT)];
     [_m_headerView addSubview:_m_leftButton];
+    _m_leftButton.hidden = YES;
     [_m_leftButton bm_layoutButtonWithEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageRight imageTitleGap:7];
+    [_m_leftButton setImage:[UIImage imageNamed:@"search_openFilters"] forState:UIControlStateNormal];
     _m_leftButton.titleLabel.font = [UIFont systemFontOfSize:14];
     [_m_leftButton setTitleColor:UI_COLOR_B1 forState:UIControlStateNormal];
     [_m_leftButton addTarget:self action:@selector(showLeftFilters:) forControlEvents:UIControlEventTouchUpInside];
@@ -83,7 +82,9 @@ FSFilterHeaderResultView ()
     // rightButton
     _m_rightButton = [[UIButton alloc] initWithFrame:CGRectMake(self.bm_width / 2, FILTER_HEADER_HEIGHT - FILTER_BUTTON_HEIGHT, self.bm_width / 2, FILTER_BUTTON_HEIGHT)];
     [_m_headerView addSubview:_m_rightButton];
+    _m_leftButton.hidden = YES;
     [_m_rightButton bm_layoutButtonWithEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageRight imageTitleGap:7];
+    [_m_rightButton setImage:[UIImage imageNamed:@"search_openFilters"] forState:UIControlStateNormal];
     _m_rightButton.titleLabel.font = [UIFont systemFontOfSize:14];
     [_m_rightButton setTitleColor:UI_COLOR_B1 forState:UIControlStateNormal];
     [_m_rightButton addTarget:self action:@selector(showRightFilters:) forControlEvents:UIControlEventTouchUpInside];
@@ -94,14 +95,12 @@ FSFilterHeaderResultView ()
 }
 - (void)showLeftFilters:(id)sender
 {
-    self.m_filterArray = _m_leftFilters;
-    self.m_showList    = FSFilterShowList_Left;
+    self.m_showList = FSFilterShowList_Left;
     [self showFilterList];
 }
 - (void)showRightFilters:(id)sender
 {
-    self.m_filterArray = _m_rightFilters;
-    self.m_showList    = FSFilterShowList_Right;
+    self.m_showList = FSFilterShowList_Right;
     [self showFilterList];
 }
 - (void)filterViewClicked:(id)sender
@@ -112,8 +111,7 @@ FSFilterHeaderResultView ()
 {
     // -1表示全部
     self.m_showList    = FSFilterShowList_None;
-    CGFloat listHeight = _m_filterList.bm_height;
-    [UIView animateWithDuration:FILTER_ANIM_DUR * (listHeight / UI_SCREEN_HEIGHT)
+    [UIView animateWithDuration:FILTER_ANIM_DUR
         animations:^{
             self.m_filterList.frame = CGRectMake(0, 0, self.bm_width, 0);
             [self layoutIfNeeded];
@@ -124,6 +122,19 @@ FSFilterHeaderResultView ()
 }
 - (void)showFilterList
 {
+    switch (_m_showList)
+    {
+        case FSFilterShowList_None:
+            return;
+            break;
+
+        case FSFilterShowList_Left:
+            self.m_filterArray = _m_leftFilters;
+            break;
+        case FSFilterShowList_Right:
+            self.m_filterArray = _m_rightFilters;
+            break;
+    }
     [self freshListView];
     // animation
     CGFloat maxHeight           = self.bm_height - FILTER_HEADER_HEIGHT;
@@ -131,7 +142,7 @@ FSFilterHeaderResultView ()
     _m_filterList.scrollEnabled = contentHeight > maxHeight;
     CGFloat listHeight          = (contentHeight > maxHeight) ? maxHeight : contentHeight;
     self.m_filterView.hidden    = NO;
-    [UIView animateWithDuration:FILTER_ANIM_DUR * (listHeight / UI_SCREEN_HEIGHT)
+    [UIView animateWithDuration:FILTER_ANIM_DUR
                      animations:^{
                          self.m_filterList.frame = CGRectMake(0, 0, self.bm_width, listHeight);
                          [self layoutIfNeeded];
@@ -139,7 +150,7 @@ FSFilterHeaderResultView ()
 }
 - (void)freshListView
 {
-    [_section removeAllItems];
+    [_m_section removeAllItems];
     BMWeakSelf
         BMTableViewItem *item0 = [BMTableViewItem itemWithTitle:@"全部"
                                                        subTitle:nil
@@ -148,13 +159,15 @@ FSFilterHeaderResultView ()
                                                   accessoryView:nil
                                                selectionHandler:^(BMTableViewItem *_Nonnull item) {
                                                    BMStrongSelf
-                                                       [self hiddenFilterListWithIndex:-1];
+                                                       [self selectedRowAtIndex:-1
+                                                                   isLeftfilter:self.m_filterArray == self.m_leftFilters];
+                                                   [self hiddenFilterListWithIndex:-1];
                                                }];
     item0.cellStyle  = UITableViewCellStyleDefault;
     item0.textFont   = [UIFont systemFontOfSize:14.0f];
     item0.textColor  = UI_COLOR_B1;
     item0.cellHeight = FILTER_ROW_HEIGHT;
-    [self.section addItem:item0];
+    [self.m_section addItem:item0];
 
     if ([_m_filterArray bm_isNotEmpty])
     {
@@ -167,13 +180,15 @@ FSFilterHeaderResultView ()
                                                      accessoryView:nil
                                                   selectionHandler:^(BMTableViewItem *item) {
                                                       BMStrongSelf
-                                                          [self hiddenFilterListWithIndex:index];
+                                                          [self selectedRowAtIndex:index
+                                                                      isLeftfilter:self.m_filterArray == self.m_leftFilters];
+                                                      [self hiddenFilterListWithIndex:index];
                                                   }];
             item.cellStyle  = UITableViewCellStyleDefault;
             item.textFont   = [UIFont systemFontOfSize:14.0f];
             item.textColor  = UI_COLOR_B1;
             item.cellHeight = FILTER_ROW_HEIGHT;
-            [self.section addItem:item];
+            [self.m_section addItem:item];
         }
     }
 
@@ -203,38 +218,43 @@ FSFilterHeaderResultView ()
 }
 - (void)deleteButtonAction:(UIButton *)deleteButton
 {
-    NSUInteger index = [_searchTagviews indexOfObject:deleteButton.superview];
-    [_searchArray removeObject:_searchArray[index]];
-    [_searchTagviews removeObject:deleteButton.superview];
-    [_tagCollectionView reload];
+    NSUInteger index = [_m_searchTagviews indexOfObject:deleteButton.superview];
+    [self keysRemoveKey:self.m_searchKeys[index]];
+    [self freshTagView];
 }
 
-- (void)addSearchkey:(NSString *)searchkey
+- (void)freshTagView
 {
-    if (!_searchArray)
+    self.m_searchTagviews = [NSMutableArray array];
+    for (NSString *key in self.m_searchKeys)
     {
-        self.searchArray     = [NSMutableArray array];
-        self.searchTagviews = [NSMutableArray array];
+        UIView *tagView = [self tagViewWithTag:key];
+        [_m_searchTagviews addObject:tagView];
     }
-    if ([_searchArray containsObject:searchkey])
-        return;
-    [_searchArray insertObject:searchkey atIndex:0];
-    [_searchTagviews insertObject:[self tagViewWithTag:searchkey] atIndex:0];
-    [_tagCollectionView reload];
+    [_m_tagCollectionView reload];
 }
 - (CGSize)tagCollectionView:(TTGTagCollectionView *)tagCollectionView sizeForTagAtIndex:(NSUInteger)index
 {
-    UIView *tagView = _searchTagviews[index];
+    UIView *tagView = _m_searchTagviews[index];
     return tagView.frame.size;
 }
 - (NSUInteger)numberOfTagsInTagCollectionView:(TTGTagCollectionView *)tagCollectionView
 {
-    return _searchTagviews.count;
+    return _m_searchTagviews.count;
 }
 
 - (UIView *)tagCollectionView:(TTGTagCollectionView *)tagCollectionView tagViewForIndex:(NSUInteger)index
 {
-    return _searchTagviews[index];
+    return _m_searchTagviews[index];
 }
 
+- (void)searchWithKey:(NSString *)key
+{
+    [super searchWithKey:key];
+    [self freshTagView];
+}
+- (void)selectedRowAtIndex:(NSInteger)index isLeftfilter:(BOOL)isLeft
+{
+    
+}
 @end

@@ -51,7 +51,11 @@
             verificationType = @"SMS_RESET_PASSWORD_CODE";
             break;
             
-        case FSVerificationCodeType_UpdatePhoneNum:
+        case FSVerificationCodeType_UpdatePhoneNumOld:
+            verificationType = @"SMS_UPDATE_MOBILEPHONE_CODE";
+            break;
+            
+        case FSVerificationCodeType_UpdatePhoneNumNew:
             verificationType = @"SMS_UPDATE_MOBILEPHONE_CODE";
             break;
             
@@ -194,7 +198,7 @@
 // 修改手机号码
 + (NSMutableURLRequest *)changeMobilePhoneWithOldPhoneNum:(NSString *)oldPhoneNum oldVerificationCode:(NSString *)oldVerificationCode newPhoneNum:(NSString *)newPhoneNum newVerificationCode:(NSString *)newVerificationCode
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/user/refreshToken", FS_URL_SERVER];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/user/updateMobilePhone", FS_URL_SERVER];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     
     [parameters bm_setApiString:oldPhoneNum forKey:@"oldMobilePhone"];
@@ -222,7 +226,7 @@
 // 实名认证
 + (NSMutableURLRequest *)authenticationWithId:(NSString *)idCard name:(NSString *)name
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/user/updatePassword", FS_URL_SERVER];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/user/setRealNameAuthentication", FS_URL_SERVER];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     
     [parameters bm_setApiString:idCard forKey:@"idCard"];

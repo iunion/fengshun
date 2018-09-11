@@ -113,11 +113,7 @@
     BMWeakSelf
     self.m_TopicItem = [BMTableViewItem itemWithTitle:@"我的帖子" imageName:@"user_topicicon" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
 
-        FSSearchViewController *searchViewController = [[FSSearchViewController alloc] initWithSearchKey:@"test"
-                                                                                           hotSearchTags:@[@"婚姻继承", @"借贷纠纷",@"婚姻继承", @"借贷纠纷",@"婚姻继承", @"借贷纠纷",@"婚姻继承", @"借贷纠纷",@"婚姻继承", @"借贷纠纷"]
-                                                                                           searchHandler:^(NSString *search) {
-                                                                                               NSLog(@"search");
-                                                                                           }];
+        FSSearchViewController *searchViewController = [[FSSearchViewController alloc] initWithSearchKey:@"test" resultType:FSSearchResultType_laws hotSearchTags:@[@"婚姻继承", @"借贷纠纷",@"婚姻继承"] searchHandler:nil];
         searchViewController.hidesBottomBarWhenPushed = YES;
         [weakSelf.navigationController pushViewController:searchViewController animated:YES];
     }];

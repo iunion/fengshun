@@ -78,6 +78,16 @@
     }
 }
 
+- (void)backToViewController:(UIViewController *)viewController
+{
+    if ([self shouldPopOnBackButton])
+    {
+        [self.view endEditing:YES];
+        
+        [self.navigationController popToViewController:viewController animated:YES];
+    }
+}
+
 
 #pragma mark -
 #pragma mark checkRequestStatus

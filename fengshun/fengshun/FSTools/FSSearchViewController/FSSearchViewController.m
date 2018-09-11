@@ -9,7 +9,10 @@
 #import "FSSearchViewController.h"
 #import "BMTableViewManager.h"
 #import "TTGTagCollectionView.h"
-#import "FSRulesSearchResultView.h"
+#import "FSCaseSearchResultView.h"
+#import "FSLawSearchResultView.h"
+#import "FSTextSearchResultView.h"
+
 
 #define SEARCH_HISTORY_MAXCACHECOUNT        10
 #define SEARCH_HISTORY_CACHEFILE(searchKey) [[NSString bm_documentsPath] stringByAppendingPathComponent:[NSString stringWithFormat:@"searchhistory_%@.plist", searchKey]]
@@ -41,14 +44,16 @@
 @property (nonatomic, strong) BMTableViewSection *section;
 
 @property (nonatomic, strong) NSMutableArray *searchHistories;
-@property (nonatomic, strong) FSSearchReaultView *resultView;
+@property (nonatomic, strong) FSSearchResultView *resultView;
+
+@property (nonatomic, assign) FSSearchResultType resultType;
 
 @end
 
 @implementation FSSearchViewController
 
 #pragma mark - init&懒加载
-- (instancetype)initWithSearchKey:(NSString *)searchKey hotSearchTags:(NSArray *)hotSearchTags searchHandler:(searchViewSearchHandler)searchHandler
+- (instancetype)initWithSearchKey:(NSString *)searchKey resultType:(FSSearchResultType)resultType hotSearchTags:(NSArray *)hotSearchTags searchHandler:(searchViewSearchHandler)searchHandler
 {
     self = [super init];
     if (self)
@@ -59,13 +64,26 @@
             self.hotTagArray = [NSMutableArray arrayWithArray:hotSearchTags];
         }
         self.searchHandler = searchHandler;
+        _resultType = resultType;
     }
     return self;
 }
-- (FSSearchReaultView *)resultView
+- (FSSearchResultView *)resultView
 {
     if (!_resultView) {
-        _resultView = [[FSRulesSearchResultView alloc]initWithFrame:self.view.bounds];
+        switch (_resultType) {
+            case FSSearchResultType_text:
+                _resultView = [[FSLawSearchResultView alloc]initWithFrame:self.view.bounds];
+                break;
+                
+            case FSSearchResultType_case:
+                _resultView = [[FSCaseSearchResultView alloc]initWithFrame:self.view.bounds];
+                break;
+            case FSSearchResultType_laws:
+                _resultView = [[FSTextSearchResultView alloc]initWithFrame:self.view.bounds];
+                break;
+        }
+        
         _resultView.hidden = YES;
     }
     return _resultView;
@@ -83,7 +101,7 @@
 
     [self makeSearchHistoriesView];
 
-    [self makeHeaderTagView];
+    if(_resultType)[self makeHeaderTagView];
     
     [self freshItems];
 }
@@ -151,7 +169,7 @@
     self.manager = [[BMTableViewManager alloc] initWithTableView:self.searchHistoriesTableView];
     self.manager.delegate = self;
     BMTableViewSection *section = [BMTableViewSection section];
-    section.headerHeight = 11;
+    section.headerHeight = _resultType ? 11:0;
     section.footerHeight = 0;
     [self.manager addSection:section];
     self.section = section;
@@ -189,15 +207,28 @@
     }
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 100)];
     view.backgroundColor = [UIColor whiteColor];
-    self.headerView = view;
+    self.headerView      = view;
+
+    CGFloat topGap = 16.0f;
+    if (_resultType == FSSearchResultType_case)
+    {
+        CGFloat labelHeight = 30.0f;
+        UIImageView *hotTag = [[UIImageView alloc] initWithFrame:CGRectMake(15, topGap / 2, 11, labelHeight)];
+        hotTag.contentMode  = UIViewContentModeLeft;
+        hotTag.image        = [UIImage imageNamed:@"search_hotKey"];
+        [view addSubview:hotTag];
+
+        UILabel *label  = [[UILabel alloc] initWithFrame:CGRectMake(37, topGap / 2, UI_SCREEN_WIDTH - 37, labelHeight)];
+        label.font      = [UIFont systemFontOfSize:12.0f];
+        label.textColor = [UIColor bm_colorWithHex:0x666666];
+        label.text = @"热门关键词";
+        [view addSubview:label];
+        topGap += labelHeight;
+    }
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, UI_SCREEN_WIDTH, 20)];
-    label.font = [UIFont systemFontOfSize:12.0f];
-    label.textColor = [UIColor bm_colorWithHex:0x666666];
-    label.text = @"热门搜索";
-    [view addSubview:label];
+   
     
-    TTGTagCollectionView *tagCollectionView = [[TTGTagCollectionView alloc] initWithFrame:CGRectMake(12, 36, UI_SCREEN_WIDTH-24, 60.0f)];
+    TTGTagCollectionView *tagCollectionView = [[TTGTagCollectionView alloc] initWithFrame:CGRectMake(12, topGap, UI_SCREEN_WIDTH-24, 60.0f)];
     tagCollectionView.delegate = self;
     tagCollectionView.dataSource = self;
     tagCollectionView.horizontalSpacing = 7.0f;
@@ -276,7 +307,7 @@
     }
     
     UIButton *clearButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
-    clearButton.backgroundColor = [UIColor redColor];
+    [clearButton setImage:[UIImage imageNamed:@"search_delKey"] forState:UIControlStateNormal];
     [clearButton addTarget:self action:@selector(removeAllSearchHistory) forControlEvents:UIControlEventTouchUpInside];
 
     BMTableViewItem *item0 = [BMTableViewItem itemWithTitle:@"搜索记录" subTitle:nil imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorInset accessoryView:clearButton selectionHandler:nil];
@@ -285,7 +316,7 @@
     item0.textFont = [UIFont systemFontOfSize:12.0f];
     item0.textColor = UI_COLOR_B4;
     item0.cellHeight = 40.0f;
-    item0.enabled = NO;
+    item0.highlightBgColor = [UIColor clearColor];
     
     
     // 这儿有循环引用的问题
@@ -300,10 +331,7 @@
         [deleteBtn addTarget:self action:@selector(deleteSearchHistory:) forControlEvents:UIControlEventTouchUpInside];
         BMTableViewItem *item = [BMTableViewItem itemWithTitle:search subTitle:nil imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorAllLeftInset accessoryView:deleteBtn selectionHandler:^(BMTableViewItem *item) {
             BMStrongSelf
-            if (self.searchHandler)
-            {
-                self.searchHandler(item.title);
-            }
+            [self searchWithKey:search];
         }];
         [self.section addItem:item];
         item.cellStyle = UITableViewCellStyleDefault;
@@ -337,19 +365,10 @@
 
 - (void)tagCollectionView:(TTGTagCollectionView *)tagCollectionView didSelectTag:(UIView *)tagView atIndex:(NSUInteger)index
 {
-    //_logLabel.text = [NSString stringWithFormat:@"Tap tag: %@, at: %ld", tagView.class, (long) index];
-    NSLog(@"Tap tag: %@, at: %ld", tagView.class, (long)index);
+    BMLog(@"Tap tag: %@, at: %ld", tagView.class, (long)index);
     
     UILabel *label = (UILabel *)tagView;
-    if (self.addHotTagSearchHistory)
-    {
-        [self addSearchHistory:label.text];
-    }
-    
-    if (self.searchHandler)
-    {
-        self.searchHandler(label.text);
-    }
+    [self searchWithKey:label.text];
 }
 
 
@@ -374,20 +393,27 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    NSString *search = [searchBar.text bm_trim];
+    [self searchWithKey:searchBar.text];
+    if ([searchBar.text bm_isNotEmpty]) searchBar.text = [searchBar.text bm_trim];
+    
+}
+- (void)searchWithKey:(NSString *)searchKey
+{
+    NSString *search = [searchKey bm_trim];
     [_searchTextField resignFirstResponder];
     if ([search bm_isNotEmpty])
     {
-        searchBar.text = search;
+        
         [self addSearchHistory:search];
         
         if(!self.resultView.superview) [self.view addSubview:self.resultView];
-        [self.resultView addSearchkey:search];
+        [self.resultView searchWithKey:search];
         self.resultView.hidden = NO;
+        
+        
         
         if (self.searchHandler) self.searchHandler(search);
         
     }
 }
-
 @end

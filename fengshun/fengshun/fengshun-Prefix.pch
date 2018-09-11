@@ -22,6 +22,7 @@
 #import "FSAppConfig.h"
 #import "Masonry.h"
 #import "UIImageView+WebCache.h"
+#import "FSPushVCManager.h"
 
 #endif
 

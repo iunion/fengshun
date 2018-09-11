@@ -74,6 +74,7 @@
     self.m_NameItem.placeholder = @"请输入您的姓名";
     self.m_NameItem.editable = YES;
     self.m_NameItem.textFont = FS_CELLTITLE_TEXTFONT;
+    self.m_NameItem.textFieldTextFont = FS_CELLTITLE_TEXTFONT;
     self.m_NameItem.highlightBgColor = UI_COLOR_BL1;
     self.m_NameItem.cellHeight = 50.0f;
     self.m_NameItem.charactersLimit = 8;
@@ -88,6 +89,7 @@
     self.m_IdItem.placeholder = @"请输入您的身份证号码";
     self.m_IdItem.editable = YES;
     self.m_IdItem.textFont = FS_CELLTITLE_TEXTFONT;
+    self.m_IdItem.textFieldTextFont = FS_CELLTITLE_TEXTFONT;
     self.m_IdItem.highlightBgColor = UI_COLOR_BL1;
     self.m_IdItem.cellHeight = 50.0f;
     self.m_IdItem.charactersLimit = 18;

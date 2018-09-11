@@ -364,7 +364,6 @@
     [self.view endEditing:YES];
     
     FSLoginVerifyVC *loginVerifyVC = [[FSLoginVerifyVC alloc] initWithVerificationType:BMVerificationCodeType_Type2 phoneNum:self.m_PhoneNum];
-    loginVerifyVC.m_IsRegist = NO;
     loginVerifyVC.delegate = self.delegate;
     [self.navigationController pushViewController:loginVerifyVC animated:YES];
 }
@@ -457,7 +456,6 @@
             [FSAppInfo setCurrentPhoneNum:self.m_PhoneNum];
             
             FSLoginVerifyVC *loginVerifyVC = [[FSLoginVerifyVC alloc] initWithVerificationType:BMVerificationCodeType_Type1 phoneNum:self.m_PhoneNum];
-            loginVerifyVC.m_IsRegist = YES;
             loginVerifyVC.delegate = self.delegate;
             [self.navigationController pushViewController:loginVerifyVC animated:YES];
         }

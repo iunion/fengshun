@@ -9,6 +9,7 @@
 #import "FSLoginVerifyVC.h"
 #import "BMVerifyField.h"
 #import "FSSetPassWordVC.h"
+#import "FSSetPhoneVC.h"
 
 #import "DTCoreText.h"
 
@@ -71,15 +72,24 @@
     self.bm_NavigationBarBgTintColor = [UIColor whiteColor];
     self.bm_NavigationItemTintColor = UI_COLOR_B2;
     
-    if (self.m_IsRegist)
+    switch (self.m_VerificationType)
     {
-        [self bm_setNavigationWithTitle:@"注册" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:@"navigationbar_close_icon" rightToucheEvent:@selector(closeAction:)];
+        case BMVerificationCodeType_Type1:
+            [self bm_setNavigationWithTitle:@"注册" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_popback_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:@"navigationbar_close_icon" rightToucheEvent:@selector(closeAction:)];
+            break;
+            
+        case BMVerificationCodeType_Type2:
+            [self bm_setNavigationWithTitle:@"验证" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_popback_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:@"navigationbar_close_icon" rightToucheEvent:@selector(closeAction:)];
+            break;
+            
+        case BMVerificationCodeType_Type3:
+            [self bm_setNavigationWithTitle:@"换绑手机" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
+            break;
+            
+        default:
+            break;
     }
-    else
-    {
-        [self bm_setNavigationWithTitle:@"验证" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:@"navigationbar_close_icon" rightToucheEvent:@selector(closeAction:)];
-    }
-    
+
     if (IS_IPHONE6P)
     {
         self.m_TableView.bm_left = 40.0f;
@@ -175,10 +185,13 @@
     clockBtn.exclusiveTouch = YES;
     [self.m_TableView addSubview:clockBtn];
 
-    BMWeakSelf
-    [[BMVerifiTimeManager manager] checkTimeWithType:self.m_VerificationType process:^(BMVerificationCodeType type, NSInteger ticket, BOOL stop) {
-        [weakSelf freshClockBtn:ticket];
-    }];
+    // 客户端不做计时判断
+    [[BMVerifiTimeManager manager] stopAllType];
+    [self freshClockBtn:0];
+//    BMWeakSelf
+//    [[BMVerifiTimeManager manager] checkTimeWithType:self.m_VerificationType process:^(BMVerificationCodeType type, NSInteger ticket, BOOL stop) {
+//        [weakSelf freshClockBtn:ticket];
+//    }];
 
     BMVerifyField *verifyField = [[BMVerifyField alloc] initWithFrame:CGRectMake(0, label2.bm_bottom+10.0f, self.m_TableView.bm_width, 40.0f)];
     [self.m_TableView addSubview:verifyField];
@@ -212,14 +225,24 @@
     btn.titleLabel.font = FS_BUTTON_LARGETEXTFONT;
     btn.exclusiveTouch = YES;
     [btn addTarget:self action:@selector(confirmClick:) forControlEvents:UIControlEventTouchUpInside];
-    if (self.m_IsRegist)
+    switch (self.m_VerificationType)
     {
-        [btn setTitle:@"提交注册" forState:UIControlStateNormal];
+        case BMVerificationCodeType_Type1:
+            [btn setTitle:@"提交注册" forState:UIControlStateNormal];
+            break;
+            
+        case BMVerificationCodeType_Type2:
+            [btn setTitle:@"提交验证" forState:UIControlStateNormal];
+            break;
+            
+        case BMVerificationCodeType_Type3:
+            [btn setTitle:@"确定解绑" forState:UIControlStateNormal];
+            break;
+            
+        default:
+            break;
     }
-    else
-    {
-        [btn setTitle:@"提交验证" forState:UIControlStateNormal];
-    }
+
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btn bm_roundedRect:4.0f];
     btn.backgroundColor = UI_COLOR_B5;
@@ -229,7 +252,7 @@
     [btn bm_centerHorizontallyInSuperViewWithTop:label3.bm_bottom+20.0f];
     self.m_ConfirmBtn = btn;
     
-    if (self.m_IsRegist)
+    if (self.m_VerificationType == BMVerificationCodeType_Type1)
     {
         UIButton *checkBox = [[UIButton alloc] initWithFrame:CGRectMake(self.m_ConfirmBtn.bm_left, self.m_ConfirmBtn.bm_bottom+12.0f, 124.0f, 24.0f)];
         checkBox.bm_imageRect = CGRectMake(0, 4.0f, 10.0f, 10.0f);
@@ -348,7 +371,14 @@
 {
     if (index >= 3 && ![string isEqualToString:@""])
     {
-        self.m_ConfirmBtn.enabled = self.m_RegistCheckBoxBtn.selected;
+        if (self.m_VerificationType == BMVerificationCodeType_Type1)
+        {
+            self.m_ConfirmBtn.enabled = self.m_RegistCheckBoxBtn.selected;
+        }
+        else
+        {
+            self.m_ConfirmBtn.enabled = YES;
+        }
     }
     else
     {
@@ -413,8 +443,12 @@
             break;
             
         case BMVerificationCodeType_Type3:
-            verificationType = FSVerificationCodeType_UpdatePhoneNum;
+            verificationType = FSVerificationCodeType_UpdatePhoneNumOld;
             break;
+            
+//        case BMVerificationCodeType_Type4:
+//            verificationType = FSVerificationCodeType_UpdatePhoneNumNew;
+//            break;
             
         default:
             verificationType = FSVerificationCodeType_Unknown;
@@ -459,6 +493,11 @@
         }];
         [self.m_VerificationCodeTask resume];
     }
+    else
+    {
+        [[BMVerifiTimeManager manager] stopTimeWithType:self.m_VerificationType];
+        [self freshClockBtn:0];
+    }
 }
 
 - (void)getVerificationCodeRequestFinished:(NSURLResponse *)response responseDic:(NSDictionary *)resDic
@@ -466,7 +505,10 @@
     if (![resDic bm_isNotEmptyDictionary])
     {
         [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-        
+
+        [[BMVerifiTimeManager manager] stopTimeWithType:self.m_VerificationType];
+        [self freshClockBtn:0];
+
         if (self.delegate && [self.delegate respondsToSelector:@selector(loginFailedWithProgressState:)])
         {
             if (self.delegate && [self.delegate respondsToSelector:@selector(loginClosedWithProgressState:)])
@@ -511,7 +553,10 @@
         
         [self freshErrorLabelWithMessage:message];
     }
-    
+
+    [[BMVerifiTimeManager manager] stopTimeWithType:self.m_VerificationType];
+    [self freshClockBtn:0];
+
     if (self.delegate && [self.delegate respondsToSelector:@selector(loginFailedWithProgressState:)])
     {
         switch (self.m_VerificationType)
@@ -534,6 +579,9 @@
 {
     BMLog(@"获取短信验证码失败的错误:++++%@", [FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE]);
     
+    [[BMVerifiTimeManager manager] stopTimeWithType:self.m_VerificationType];
+    [self freshClockBtn:0];
+
     [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(loginFailedWithProgressState:)])
@@ -629,11 +677,26 @@
     {
         [self.m_ProgressHUD hideAnimated:NO];
         
-        FSSetPassWordVC *setPassWordVC = [[FSSetPassWordVC alloc] initWithPhoneNum:self.m_PhoneNum verificationCode:self.m_VerifyField.text];
-        setPassWordVC.delegate = self.delegate;
-        setPassWordVC.m_IsRegist = self.m_IsRegist;
-        [self.navigationController pushViewController:setPassWordVC animated:YES];
-        
+        if (self.m_VerificationType == BMVerificationCodeType_Type3)
+        {
+            FSSetPhoneVC *vc = [[FSSetPhoneVC alloc] init];
+            vc.m_OldPhoneNum = self.m_PhoneNum;
+            vc.m_OldVerificationCode = self.m_VerifyField.text;
+            vc.m_PopToViewController = self.m_PopToViewController;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        else
+        {
+            FSSetPassWordVC *setPassWordVC = [[FSSetPassWordVC alloc] initWithPhoneNum:self.m_PhoneNum verificationCode:self.m_VerifyField.text];
+            setPassWordVC.delegate = self.delegate;
+            setPassWordVC.m_IsRegist = (self.m_VerificationType == BMVerificationCodeType_Type1);
+            [self.navigationController pushViewController:setPassWordVC animated:YES];
+        }
+
+        // 停止计时
+        [[BMVerifiTimeManager manager] stopTimeWithType:self.m_VerificationType];
+        [self freshClockBtn:0];
+
         return;
     }
     else
