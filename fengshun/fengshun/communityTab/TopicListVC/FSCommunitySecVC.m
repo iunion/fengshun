@@ -50,11 +50,11 @@
     self.view.backgroundColor = FS_VIEW_BGCOLOR;
     self.m_dataArray = [NSMutableArray arrayWithCapacity:0];
     [self createUI];
-    [FSApiRequest getTopicSuccess:^(id  _Nullable responseObject) {
-        
-    } failure:^(NSError * _Nullable error) {
-        
-    }];
+//    [FSApiRequest getTopicSuccess:^(id  _Nullable responseObject) {
+//
+//    } failure:^(NSError * _Nullable error) {
+//
+//    }];
 }
 
 - (void)didReceiveMemoryWarning
