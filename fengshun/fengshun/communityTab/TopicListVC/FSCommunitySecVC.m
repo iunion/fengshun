@@ -28,6 +28,8 @@
 @property (nonatomic, strong) FSScrollPageView *     m_ScrollPageView;
 @property (nonatomic, strong) NSMutableArray *m_dataArray;
 
+@property (nonatomic, strong) NSMutableArray *m_vcArray;
+
 @end
 
 @implementation FSCommunitySecVC
@@ -49,6 +51,8 @@
     [self bm_setNeedsUpdateNavigationBarAlpha];
     self.view.backgroundColor = FS_VIEW_BGCOLOR;
     self.m_dataArray = [NSMutableArray arrayWithCapacity:0];
+    self.m_vcArray = [NSMutableArray array];
+
     [self createUI];
     [FSApiRequest getTopicSuccess:^(id  _Nullable responseObject) {
         
@@ -117,13 +121,11 @@
 {
     UIView *aView = [[UIView alloc] initWithFrame:scrollPageView.bounds];
     FSTopicTypeModel *model = self.m_dataArray[index];
-    NSMutableArray *ctrlArr = [NSMutableArray array];
-    for (int i = 0; i < self.m_dataArray.count; i ++) {
-        FSTopicListVC *vc = [[FSTopicListVC alloc]initWithTopicSortType:model.m_PostListType formId:self.m_FourmId];
-        [ctrlArr addObject:vc];
-    }
-    FSTopicListVC *vc = ctrlArr[index];
+    
+    FSTopicListVC *vc = [[FSTopicListVC alloc]initWithTopicSortType:model.m_PostListType formId:self.m_FourmId];
+    [self.m_vcArray addObject:vc];
     [aView addSubview:vc.view];
+    
     return aView;
 }
 
