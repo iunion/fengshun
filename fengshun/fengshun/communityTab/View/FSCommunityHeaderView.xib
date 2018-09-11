@@ -137,7 +137,7 @@
                 <outlet property="m_TitleLab" destination="yqc-JM-6IB" id="D95-GE-iRn"/>
                 <outlet property="m_UserHeaderImgView" destination="7jM-5H-NgP" id="QaY-NT-9uf"/>
             </connections>
-            <point key="canvasLocation" x="50.5" y="-263.5"/>
+            <point key="canvasLocation" x="-183" y="-270"/>
         </view>
     </objects>
     <resources>

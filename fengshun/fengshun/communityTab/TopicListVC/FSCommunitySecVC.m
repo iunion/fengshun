@@ -12,11 +12,13 @@
 #import "FSApiRequest.h"
 #import "FSTopicListVC.h"
 #import "FSCommunityModel.h"
+#import "BMAlertView.h"
 
 @interface FSCommunitySecVC ()
 <
     FSScrollPageViewDataSource,
-    FSScrollPageViewDelegate
+    FSScrollPageViewDelegate,
+    FSCommunityHeaderViewDelegate
 >
 // 板块id
 @property (nonatomic, assign) NSInteger m_FourmId;
@@ -46,7 +48,6 @@
     [self bm_setNeedsUpdateNavigationBarAlpha];
     self.view.backgroundColor = FS_VIEW_BGCOLOR;
     [self createUI];
-    [self getInfoMsg];
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,7 +59,8 @@
 
 - (void)createUI
 {
-    _m_HeaderView = [[NSBundle mainBundle] loadNibNamed:@"FSCommunityHeaderView" owner:self options:nil].firstObject;
+    _m_HeaderView = (FSCommunityHeaderView *)[[NSBundle mainBundle] loadNibNamed:@"FSCommunityHeaderView" owner:self options:nil].firstObject;
+    _m_HeaderView.delegate = self;
     [self.view addSubview:_m_HeaderView];
     [_m_HeaderView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
@@ -145,6 +147,13 @@
         [aView addSubview:vc.view];
     }
     return aView;
+}
+
+#pragma mark - 关注
+
+- (void)followForumAction:(FSCommunityHeaderView *)aView
+{
+    
 }
 
 #pragma mark - request

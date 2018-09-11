@@ -22,27 +22,25 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    [_m_UserHeaderImgView bm_roundedRect:4];
-    [_m_AttentionBtn bm_roundedRect:_m_AttentionBtn.bm_height/2];
+    [self makeCellStyle];
 }
-/*
- // 二级版块id
- @property (nonatomic, assign) NSInteger m_Id;
- // 封面图片
- @property (nonatomic, strong) NSString *m_IconUrl;
- // 一级版块名称
- @property (nonatomic, strong) NSString *m_ForumNameFirst;
- // 版块介绍
- @property (nonatomic, strong) NSString *m_Description;
- // 版块关注数量
- @property (nonatomic, assign) NSInteger m_AttentionCount;
- // 版块发贴数量
- @property (nonatomic, assign) NSInteger m_PostsCount;
- // 是否关注
- @property (nonatomic, assign) BOOL m_AttentionFlag;
- // 二级版块名称
- @property (nonatomic, strong) NSString *m_ForumNameSecond;
- */
+
+- (void)makeCellStyle
+{
+    [_m_UserHeaderImgView bm_roundedRect:4];
+    [_m_AttentionBtn bm_roundedRect:_m_AttentionBtn.bm_height * 0.5];
+    self.m_AttentionBtn.userInteractionEnabled = YES;
+    [self.m_AttentionBtn addTarget:self action:@selector(followAction) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)followAction
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(followForumAction:)])
+    {
+        [self.delegate followForumAction:self];
+    }
+}
+
 - (void)updateHeaderViewWith:(FSForumModel *)aModel
 {
     [_m_HeaderBGView sd_setImageWithURL:[aModel.m_IconUrl bm_toURL]];
@@ -57,8 +55,7 @@
     [_m_AttentionBtn setTitle:aModel.m_AttentionFlag ? @"已关注" : @"+ 关注" forState:UIControlStateNormal];
 }
 
-- (IBAction)popBackAction:(UIButton *)sender {
-    [[self bm_firstViewController].navigationController popViewControllerAnimated:YES];
-}
+
+
 
 @end

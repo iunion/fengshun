@@ -44,6 +44,8 @@
     [parameters bm_setInteger:pageIndex forKey:@"pageIndex"];
     [parameters bm_setInteger:pageSize forKey:@"pageSize"];
     [parameters bm_setInteger:forumId forKey:@"forumId"];
+//    [parameters bm_setInteger:0 forKey:@"limit"];
+//    [parameters bm_setInteger:0 forKey:@"startRow"];
     NSString *typeString;
     switch (type)
     {
@@ -65,6 +67,15 @@
     }
     [parameters bm_setString:typeString forKey:@"postListType"];
     return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
+}
+
++ (XMRequest *)getTopicSuccess:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters bm_setInteger:1 forKey:@"pageIndex"];
+    [parameters bm_setInteger:10 forKey:@"pageSize"];
+    [parameters bm_setInteger:2 forKey:@"forumId"];
+    [parameters bm_setString:@"LATEST_COMMENT" forKey:@"postListType"];
+    return [XMRequestManager rm_requestWithApi:@"/storm/communityForum/forumPostList" parameters:parameters success:successBlock failure:failureBlock];
 }
 
 // 发送||编辑帖子

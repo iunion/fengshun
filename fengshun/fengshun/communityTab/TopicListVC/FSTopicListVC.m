@@ -26,6 +26,12 @@ FSTopicListVC ()
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self createUI];
+//    [self loadApiData];
+    [FSApiRequest getTopicSuccess:^(id  _Nullable responseObject) {
+        
+    } failure:^(NSError * _Nullable error) {
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,6 +63,12 @@ FSTopicListVC ()
 {
     return YES;
 }
+
+- (BOOL)succeedLoadedRequestWithArray:(NSArray *)requestArray
+{
+    return YES;
+}
+
 
 #pragma mark - tableViewDelegate
 

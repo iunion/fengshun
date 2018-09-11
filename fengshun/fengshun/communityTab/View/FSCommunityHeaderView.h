@@ -9,6 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "FSCommunityModel.h"
 
+@class FSCommunityHeaderView;
+
+@protocol FSCommunityHeaderViewDelegate <NSObject>
+
+@optional
+
+- (void)followForumAction:(FSCommunityHeaderView *)aView;
+
+@end
+
 @interface FSCommunityHeaderView : UIView
 // 背景图
 @property (weak, nonatomic) IBOutlet UIImageView *m_HeaderBGView;
@@ -25,6 +35,10 @@
 // 关注按钮
 @property (weak, nonatomic) IBOutlet UIButton *m_AttentionBtn;
 
+@property(nonatomic, weak) id <FSCommunityHeaderViewDelegate> delegate;
+
 - (void)updateHeaderViewWith:(FSForumModel *)aModel;
 
+
 @end
+

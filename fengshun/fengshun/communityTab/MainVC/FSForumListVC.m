@@ -142,7 +142,7 @@ FSForumListVC ()
 {
     FSCommunityForumModel *model      = self.m_DataArray[indexPath.section];
     FSForumModel *         forumModel = model.m_List[indexPath.row];
-    [FSPushVCManager showCommunitySecVCPushVC:self FourmId:forumModel.m_Id];
+    [FSPushVCManager showCommunitySecVCPushVC:[self.view.superview bm_viewController] FourmId:forumModel.m_Id];
 }
 
 
