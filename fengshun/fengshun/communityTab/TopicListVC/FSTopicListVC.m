@@ -54,11 +54,6 @@ FSTopicListVC ()
     return [FSApiRequest getTopicListWithType:self.m_SortType forumId:self.m_ForumId pageIndex:1 pageSize:10];
 }
 
-- (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)requestDic
-{
-    return YES;
-}
-
 - (BOOL)succeedLoadedRequestWithArray:(NSArray *)requestArray
 {
     return YES;
