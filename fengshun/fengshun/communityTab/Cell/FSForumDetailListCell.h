@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FSCommunityModel.h"
 
 @interface FSForumDetailListCell : UITableViewCell
 
-
+- (void)showWithTopicModel:(FSTopicModel *)model;
 
 @end

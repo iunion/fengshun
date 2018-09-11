@@ -55,9 +55,9 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6JZ-Sb-LBp">
-                        <rect key="frame" x="275" y="67" width="30" height="27"/>
+                        <rect key="frame" x="283" y="73" width="22" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <state key="normal" title="0">
+                        <state key="normal" title="0" image="community_comment_white">
                             <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
@@ -87,4 +87,7 @@
             <point key="canvasLocation" x="62" y="110"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="community_comment_white" width="14" height="14"/>
+    </resources>
 </document>

@@ -8,10 +8,14 @@
 
 #import "FSTopicListVC.h"
 #import "FSForumDetailListCell.h"
+#import "FSCommunityModel.h"
 
 @interface
 FSTopicListVC ()
-
+{
+    NSInteger _currentPages;
+    BOOL _isLoadFinish;
+}
 // 排序类型
 @property (nonatomic, strong) NSString *m_SortType;
 // 板块id
@@ -25,6 +29,8 @@ FSTopicListVC ()
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.m_LoadDataType = FSAPILoadDataType_Page;
+    _currentPages = 1;
     [self createUI];
     [self loadApiData];
 }
@@ -47,18 +53,108 @@ FSTopicListVC ()
 
 - (void)createUI
 {
+    
 }
 
 - (NSMutableURLRequest *)setLoadDataRequestWithFresh:(BOOL)isLoadNew
 {
-    return [FSApiRequest getTopicListWithType:self.m_SortType forumId:self.m_ForumId pageIndex:1 pageSize:10];
+    if (isLoadNew) {
+        _currentPages = 1;
+    }
+    return [FSApiRequest getTopicListWithType:self.m_SortType forumId:self.m_ForumId pageIndex:_currentPages pageSize:10];
 }
 
 - (BOOL)succeedLoadedRequestWithArray:(NSArray *)requestArray
 {
+    if (![requestArray bm_isNotEmpty])
+    {
+        return NO;
+    }
+    NSMutableArray *arr = [NSMutableArray arrayWithCapacity:0];
+    for (NSDictionary *dic in requestArray)
+    {
+        FSTopicTypeModel *model = [FSTopicTypeModel topicTypeModelWithDic:dic];
+        if (model && model.m_IsActive)
+        {
+            NSArray *list = [[dic bm_dictionaryForKey:@"postInfo"] bm_arrayForKey:@"list"];
+            NSInteger totalPages = [[dic bm_dictionaryForKey:@"postInfo"]bm_intForKey:@"totalPages"];
+            _isLoadFinish = _currentPages >= totalPages;
+            if (!_isLoadFinish) {
+                _currentPages ++;
+            }
+            if (self.m_IsLoadNew) {
+                [self.m_DataArray removeAllObjects];
+            }
+            if ([list bm_isNotEmpty])
+            {
+                for (NSDictionary *data in list)
+                {
+                    FSTopicModel *topicModel = [FSTopicModel topicWithServerDic:data];
+                    if (topicModel)
+                    {
+                        [arr addObject:topicModel];
+                    }
+                }
+            }
+        }
+    }
+    [self.m_DataArray addObjectsFromArray:arr];
+    [self.m_TableView reloadData];
+    [self.m_ProgressHUD hideAnimated:YES];
     return YES;
 }
 
+- (BOOL)checkLoadFinish:(NSDictionary *)requestDic{
+    return _isLoadFinish;
+}
+
+//- (void)loadDataResponseFinished:(NSURLResponse *)response responseDic:(NSDictionary *)responseDic
+//{
+//    [self.m_ProgressHUD hideAnimated:NO];
+//    if (![responseDic bm_isNotEmptyDictionary]) {
+//        return;
+//    }
+//    if ([responseDic bm_intForKey:@"code"] != 1000) {
+//        return;
+//    }
+//    if (![[responseDic bm_arrayForKey:@"data"] bm_isNotEmpty]) {
+//        return;
+//    }
+//    NSArray *requestArray =[responseDic bm_arrayForKey:@"data"];
+//    NSMutableArray *arr = [NSMutableArray arrayWithCapacity:0];
+//    for (NSDictionary *dic in requestArray)
+//    {
+//        FSTopicTypeModel *model = [FSTopicTypeModel topicTypeModelWithDic:dic];
+//        if (model && model.m_IsActive)
+//        {
+//            NSArray *list = [[dic bm_dictionaryForKey:@"postInfo"] bm_arrayForKey:@"list"];
+//            NSInteger totalPages = [[dic bm_dictionaryForKey:@"postInfo"]bm_intForKey:@"totalPages"];
+//            if (_currentPages == 1) {
+//                [self.m_DataArray removeAllObjects];
+//                [self.m_TableView resetFreshHeaderState];
+//            }
+//            if (_currentPages >= totalPages) {
+//                [self.m_TableView resetFreshFooterStateWithNoMoreData];
+//            }else{
+//                _currentPages ++;
+//                [self.m_TableView resetFreshFooterState];
+//            }
+//            if ([list bm_isNotEmpty])
+//            {
+//                for (NSDictionary *data in list)
+//                {
+//                    FSTopicModel *topicModel = [FSTopicModel topicWithServerDic:data];
+//                    if (topicModel)
+//                    {
+//                        [arr addObject:topicModel];
+//                    }
+//                }
+//            }
+//        }
+//    }
+//    [self.m_DataArray addObjectsFromArray:arr];
+//    [self.m_TableView reloadData];
+//}
 
 #pragma mark - tableViewDelegate
 
@@ -75,6 +171,7 @@ FSTopicListVC ()
     {
         cell = [[NSBundle mainBundle] loadNibNamed:@"FSForumDetailListCell" owner:self options:nil].firstObject;
     }
+    [cell showWithTopicModel:self.m_DataArray[indexPath.row]];
     return cell;
 }
 

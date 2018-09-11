@@ -49,15 +49,6 @@
     return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
 }
 
-+ (XMRequest *)getTopicSuccess:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock{
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters bm_setInteger:1 forKey:@"pageIndex"];
-    [parameters bm_setInteger:10 forKey:@"pageSize"];
-    [parameters bm_setInteger:2 forKey:@"forumId"];
-//    [parameters bm_setString:@"" forKey:@"postListType"];
-    return [XMRequestManager rm_requestWithApi:@"/storm/communityForum/forumPostList" parameters:parameters success:successBlock failure:failureBlock];
-}
-
 // 发送||编辑帖子
 // http://123.206.193.140:8121/swagger-ui.html#/operations/帖子信息/addPostUsingPOST
 // http://123.206.193.140:8121/swagger-ui.html#/operations/帖子信息/editPostUsingPOST

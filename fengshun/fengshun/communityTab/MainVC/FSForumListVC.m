@@ -15,9 +15,7 @@
 
 @interface
 FSForumListVC ()
-{
-    NSInteger _currentPages;
-}
+
 @end
 
 @implementation FSForumListVC
@@ -26,7 +24,7 @@ FSForumListVC ()
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _currentPages = 1;
+    self.m_LoadDataType = FSAPILoadDataType_Page;
     [self loadApiData];
 }
 
@@ -38,36 +36,22 @@ FSForumListVC ()
 
 - (NSMutableURLRequest *)setLoadDataRequestWithFresh:(BOOL)isLoadNew
 {
-    if (isLoadNew)
-    {
-        _currentPages = 1;
-    }
-    return [FSApiRequest getForumListWithPageIndex:_currentPages pageSize:10];
+    return [FSApiRequest getForumListWithPageIndex:s_BakLoadedPage pageSize:self.m_CountPerPage];
 }
 
 - (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)requestDic
 {
+    if (![requestDic bm_isNotEmptyDictionary]) {
+        return NO;
+    }
     NSArray *forumList = [FSCommunityForumModel plateModelWithArr:[requestDic bm_arrayForKey:@"list"]];
     if ([forumList bm_isNotEmpty])
     {
-        if (_currentPages == 1)
-        {
+        if (self.m_IsLoadNew) {
             [self.m_DataArray removeAllObjects];
-            [self.m_TableView.bm_freshHeaderView endReFreshing];
         }
         [self.m_DataArray addObjectsFromArray:forumList];
         [self.m_TableView reloadData];
-        // 判断是否还有数据
-        NSInteger totalPage = [requestDic bm_intForKey:@"totalPages"];
-        if (_currentPages >= totalPage)
-        {
-            [self.m_TableView.bm_freshFooterView endReFreshingWithNoMoreData];
-        }
-        else
-        {
-            _currentPages++;
-            [self.m_TableView.bm_freshFooterView endReFreshing];
-        }
         return YES;
     }
     return NO;

@@ -185,8 +185,6 @@ NS_ASSUME_NONNULL_BEGIN
                                              pageIndex:(NSInteger)pageIndex
                                               pageSize:(NSInteger)pageSize;
 
-+ (XMRequest *)getTopicSuccess:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock;
-
 // 关注板块/取消关注
 // http://123.206.193.140:8121/swagger-ui.html#/operations/社区首页/followOrUnFollowUsingPOST
 + (XMRequest *)updateFourmAttentionStateWithFourmId:(NSInteger )fourmId

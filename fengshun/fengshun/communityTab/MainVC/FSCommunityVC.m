@@ -110,18 +110,17 @@ static NSString *FSForumHeaderIdentifier            = @"FSForumHeaderIdentifier"
 
 - (id)scrollPageView:(FSScrollPageView *)scrollPageView pageAtIndex:(NSUInteger)index
 {
-    UIView *aView = [[UIView alloc] initWithFrame:scrollPageView.bounds];
     if (index == 0)
     {
         self.m_RecommendVC = [[FSRecommendListVC alloc] init];
-        [aView addSubview:self.m_RecommendVC.view];
+        return self.m_RecommendVC.view;
     }
     else if (index == 1)
     {
         self.m_ForumVC = [[FSForumListVC alloc] init];
-        [aView addSubview:self.m_ForumVC.view];
+        return self.m_ForumVC.view;
     }
-    return aView;
+    return nil;
 }
 
 

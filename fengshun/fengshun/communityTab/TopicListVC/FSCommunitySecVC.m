@@ -14,21 +14,19 @@
 #import "FSCommunityModel.h"
 #import "BMAlertView.h"
 
-@interface FSCommunitySecVC ()
-<
+@interface
+FSCommunitySecVC () <
     FSScrollPageViewDataSource,
     FSScrollPageViewDelegate,
-    FSCommunityHeaderViewDelegate
->
+    FSCommunityHeaderViewDelegate>
 // 板块id
 @property (nonatomic, assign) NSInteger m_FourmId;
 // headerView
 @property (nonatomic, strong) FSCommunityHeaderView *m_HeaderView;
 @property (nonatomic, strong) FSScrollPageSegment *  m_SegmentBar;
 @property (nonatomic, strong) FSScrollPageView *     m_ScrollPageView;
-@property (nonatomic, strong) NSMutableArray *m_dataArray;
-
-@property (nonatomic, strong) NSMutableArray *m_vcArray;
+@property (nonatomic, strong) NSMutableArray *       m_dataArray;
+@property (nonatomic, strong) NSMutableArray *       m_vcArray;
 
 @end
 
@@ -50,15 +48,11 @@
     self.bm_NavigationBarHidden = YES;
     [self bm_setNeedsUpdateNavigationBarAlpha];
     self.view.backgroundColor = FS_VIEW_BGCOLOR;
-    self.m_dataArray = [NSMutableArray arrayWithCapacity:0];
-    self.m_vcArray = [NSMutableArray array];
+    self.m_dataArray          = [NSMutableArray arrayWithCapacity:0];
+    self.m_vcArray            = [NSMutableArray array];
 
     [self createUI];
-//    [FSApiRequest getTopicSuccess:^(id  _Nullable responseObject) {
-//
-//    } failure:^(NSError * _Nullable error) {
-//
-//    }];
+    [self loadApiData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,7 +64,7 @@
 
 - (void)createUI
 {
-    _m_HeaderView = (FSCommunityHeaderView *)[[NSBundle mainBundle] loadNibNamed:@"FSCommunityHeaderView" owner:self options:nil].firstObject;
+    _m_HeaderView          = (FSCommunityHeaderView *)[[NSBundle mainBundle] loadNibNamed:@"FSCommunityHeaderView" owner:self options:nil].firstObject;
     _m_HeaderView.delegate = self;
     [self.view addSubview:_m_HeaderView];
     [_m_HeaderView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -101,7 +95,6 @@
     [self.m_ScrollPageView setM_MoveLineColor:UI_COLOR_BL1];
     [self.m_ScrollPageView reloadPage];
     [self.m_ScrollPageView scrollPageWithIndex:0];
-    [self loadApiData];
 }
 
 #pragma mark - FSScrollPageView Delegate & DataSource
@@ -119,21 +112,16 @@
 
 - (id)scrollPageView:(FSScrollPageView *)scrollPageView pageAtIndex:(NSUInteger)index
 {
-    UIView *aView = [[UIView alloc] initWithFrame:scrollPageView.bounds];
     FSTopicTypeModel *model = self.m_dataArray[index];
-    
-    FSTopicListVC *vc = [[FSTopicListVC alloc]initWithTopicSortType:model.m_PostListType formId:self.m_FourmId];
+    FSTopicListVC *vc       = [[FSTopicListVC alloc] initWithTopicSortType:model.m_PostListType formId:self.m_FourmId];
     [self.m_vcArray addObject:vc];
-    [aView addSubview:vc.view];
-    
-    return aView;
+    return vc;
 }
 
 #pragma mark - 关注
 
 - (void)followForumAction:(FSCommunityHeaderView *)aView
 {
-    
 }
 
 #pragma mark - request
@@ -143,31 +131,25 @@
     return [FSApiRequest getTopicListWithType:@"" forumId:self.m_FourmId pageIndex:1 pageSize:10];
 }
 
-- (BOOL)succeedLoadedRequestWithArray:(NSArray *)requestArray{
-    if ([requestArray bm_isNotEmpty]) {
+- (BOOL)succeedLoadedRequestWithArray:(NSArray *)requestArray
+{
+    if ([requestArray bm_isNotEmpty])
+    {
         NSMutableArray *data = [NSMutableArray arrayWithCapacity:0];
-        for (NSDictionary *dic in requestArray) {
+        for (NSDictionary *dic in requestArray)
+        {
             FSTopicTypeModel *model = [FSTopicTypeModel topicTypeModelWithDic:dic];
-            if (model) {
+            if (model)
+            {
                 [data addObject:model];
             }
         }
         [self.m_dataArray addObjectsFromArray:data];
         [self.m_ScrollPageView reloadPage];
-       return YES;
+        [self.m_ScrollPageView scrollPageWithIndex:0];
+        return YES;
     }
     return NO;
-}
-
-- (void)getInfoMsg
-{
-    [FSApiRequest getTwoLevelFourmInfoWithId:self.m_FourmId success:^(id  _Nullable responseObject) {
-        if ([responseObject bm_isNotEmptyDictionary]) {
-            
-        }
-    } failure:^(NSError * _Nullable error) {
-        
-    }];
 }
 
 /*
