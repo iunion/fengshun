@@ -33,7 +33,7 @@ FSSearchResultView ()
         {
             _m_resultVC = resultVC;
         }
-//        resultVC.m_LoadDataType = FSAPILoadDataType_Page;
+        resultVC.m_LoadDataType = FSAPILoadDataType_Page;
         resultVC.m_resultView   = self;
         [self addSubview:_m_resultVC.view];
         _m_tableView = _m_resultVC.m_TableView;

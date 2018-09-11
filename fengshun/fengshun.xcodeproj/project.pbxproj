@@ -615,6 +615,7 @@
 		DB2656E021467363002ED713 /* FSTextSearchResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2656DF21467363002ED713 /* FSTextSearchResultView.m */; };
 		DB2656E321467396002ED713 /* FSTextSearchResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2656E221467396002ED713 /* FSTextSearchResultVC.m */; };
 		DB4C7E4121479C08008CC6BB /* FSLawSearchResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4C7E4021479C08008CC6BB /* FSLawSearchResultModel.m */; };
+		DB4C7E452147C13A008CC6BB /* FSTextSplitVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4C7E442147C13A008CC6BB /* FSTextSplitVC.m */; };
 		DB57222F21338B6E0065DC30 /* XMRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB57222D21338B6E0065DC30 /* XMRequestManager.m */; };
 		DB5722352133A0FC0065DC30 /* FSScrollPageSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5722312133A0FC0065DC30 /* FSScrollPageSegment.m */; };
 		DB5722362133A0FC0065DC30 /* FSScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5722332133A0FC0065DC30 /* FSScrollPageView.m */; };
@@ -1823,6 +1824,8 @@
 		DB2656E221467396002ED713 /* FSTextSearchResultVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTextSearchResultVC.m; sourceTree = "<group>"; };
 		DB4C7E3F21479C08008CC6BB /* FSLawSearchResultModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSLawSearchResultModel.h; sourceTree = "<group>"; };
 		DB4C7E4021479C08008CC6BB /* FSLawSearchResultModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSLawSearchResultModel.m; sourceTree = "<group>"; };
+		DB4C7E432147C13A008CC6BB /* FSTextSplitVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTextSplitVC.h; sourceTree = "<group>"; };
+		DB4C7E442147C13A008CC6BB /* FSTextSplitVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTextSplitVC.m; sourceTree = "<group>"; };
 		DB57222D21338B6E0065DC30 /* XMRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMRequestManager.m; sourceTree = "<group>"; };
 		DB57222E21338B6E0065DC30 /* XMRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMRequestManager.h; sourceTree = "<group>"; };
 		DB5722312133A0FC0065DC30 /* FSScrollPageSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSScrollPageSegment.m; sourceTree = "<group>"; };
@@ -3153,6 +3156,8 @@
 				DB2656CC214664FF002ED713 /* FSLawSearchResultVC.m */,
 				DB2656E121467396002ED713 /* FSTextSearchResultVC.h */,
 				DB2656E221467396002ED713 /* FSTextSearchResultVC.m */,
+				DB4C7E432147C13A008CC6BB /* FSTextSplitVC.h */,
+				DB4C7E442147C13A008CC6BB /* FSTextSplitVC.m */,
 			);
 			path = mainTab;
 			sourceTree = "<group>";
@@ -4655,6 +4660,7 @@
 				AD9355AC2137D24100735C2E /* TZLocationManager.m in Sources */,
 				8730B03F2140FFA2004331A9 /* DTDictationPlaceholderTextAttachment.m in Sources */,
 				87D20B062139492F001EDD60 /* WebViewJavascriptBridge_JS.m in Sources */,
+				DB4C7E452147C13A008CC6BB /* FSTextSplitVC.m in Sources */,
 				87D20AEB213920E2001EDD60 /* FLEXResources.m in Sources */,
 				874268E1212E7E36003C52F6 /* UIView+BMBadge.m in Sources */,
 				8730B06D2140FFA3004331A9 /* NSDictionary+DTError.m in Sources */,
