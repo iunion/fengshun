@@ -18,8 +18,9 @@
 
 @property (nonatomic, strong, readonly) NSString *m_PhoneNum;
 
-// 是否注册校验
-@property (nonatomic, assign) BOOL m_IsRegist;
+// for BMVerificationCodeType_Type2
+@property (nonatomic, weak) FSSetTableViewVC *m_PopToViewController;
+
 
 - (instancetype)initWithVerificationType:(BMVerificationCodeType)verificationType phoneNum:(NSString *)phoneNum;
 

@@ -12,10 +12,11 @@
 #import "XMRequestManager.h"
 
 typedef NS_ENUM(NSUInteger, FSVerificationCodeType) {
-    FSVerificationCodeType_Unknown        = 0,
-    FSMVerificationCodeType_Register      = 1,
-    FSVerificationCodeType_ResetPassword  = 2,
-    FSVerificationCodeType_UpdatePhoneNum = 3
+    FSVerificationCodeType_Unknown              = 0,
+    FSMVerificationCodeType_Register            = 1,
+    FSVerificationCodeType_ResetPassword        = 2,
+    FSVerificationCodeType_UpdatePhoneNumOld    = 3,
+    FSVerificationCodeType_UpdatePhoneNumNew    = 4
 };
 
 typedef NS_ENUM(NSUInteger, FSUpdateUserInfoOperaType) {

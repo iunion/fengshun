@@ -160,6 +160,11 @@
 		8730B0C021465034004331A9 /* BMCombine_up@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730B0BC21465034004331A9 /* BMCombine_up@3x.png */; };
 		8730B0C121465034004331A9 /* BMCombine_down@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730B0BD21465034004331A9 /* BMCombine_down@3x.png */; };
 		8730B0C221465034004331A9 /* BMCombine_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730B0BE21465034004331A9 /* BMCombine_down@2x.png */; };
+		8730B0C6214758F0004331A9 /* FSSetPhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730B0C5214758F0004331A9 /* FSSetPhoneVC.m */; };
+		8730B0C9214772AD004331A9 /* user_verifyicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730B0C7214772AC004331A9 /* user_verifyicon@2x.png */; };
+		8730B0CA214772AD004331A9 /* user_verifyicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730B0C8214772AD004331A9 /* user_verifyicon@3x.png */; };
+		8730B0CD214772BC004331A9 /* user_mobileicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730B0CB214772BB004331A9 /* user_mobileicon@2x.png */; };
+		8730B0CE214772BC004331A9 /* user_mobileicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730B0CC214772BC004331A9 /* user_mobileicon@3x.png */; };
 		87426892212E7E36003C52F6 /* steppersinput_plusicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87426795212E7E35003C52F6 /* steppersinput_plusicon@3x.png */; };
 		87426893212E7E36003C52F6 /* steppersinput_plusicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87426796212E7E35003C52F6 /* steppersinput_plusicon@2x.png */; };
 		87426894212E7E36003C52F6 /* increase_eleme@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87426797212E7E35003C52F6 /* increase_eleme@3x.png */; };
@@ -993,6 +998,12 @@
 		8730B0BC21465034004331A9 /* BMCombine_up@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BMCombine_up@3x.png"; sourceTree = "<group>"; };
 		8730B0BD21465034004331A9 /* BMCombine_down@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BMCombine_down@3x.png"; sourceTree = "<group>"; };
 		8730B0BE21465034004331A9 /* BMCombine_down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BMCombine_down@2x.png"; sourceTree = "<group>"; };
+		8730B0C4214758F0004331A9 /* FSSetPhoneVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSetPhoneVC.h; sourceTree = "<group>"; };
+		8730B0C5214758F0004331A9 /* FSSetPhoneVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSSetPhoneVC.m; sourceTree = "<group>"; };
+		8730B0C7214772AC004331A9 /* user_verifyicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_verifyicon@2x.png"; sourceTree = "<group>"; };
+		8730B0C8214772AD004331A9 /* user_verifyicon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_verifyicon@3x.png"; sourceTree = "<group>"; };
+		8730B0CB214772BB004331A9 /* user_mobileicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_mobileicon@2x.png"; sourceTree = "<group>"; };
+		8730B0CC214772BC004331A9 /* user_mobileicon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_mobileicon@3x.png"; sourceTree = "<group>"; };
 		87426790212E7B2C003C52F6 /* fengshun-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "fengshun-Prefix.pch"; sourceTree = "<group>"; };
 		87426795212E7E35003C52F6 /* steppersinput_plusicon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "steppersinput_plusicon@3x.png"; sourceTree = "<group>"; };
 		87426796212E7E35003C52F6 /* steppersinput_plusicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "steppersinput_plusicon@2x.png"; sourceTree = "<group>"; };
@@ -2382,6 +2393,8 @@
 				8730B0A821427A85004331A9 /* FSEditorAbilityVC.m */,
 				8730B0AA21427CC7004331A9 /* FSAuthenticationVC.h */,
 				8730B0AB21427CC7004331A9 /* FSAuthenticationVC.m */,
+				8730B0C4214758F0004331A9 /* FSSetPhoneVC.h */,
+				8730B0C5214758F0004331A9 /* FSSetPhoneVC.m */,
 			);
 			path = setup;
 			sourceTree = "<group>";
@@ -3909,12 +3922,16 @@
 				8730AD3C2140CC27004331A9 /* user_commenticon@3x.png */,
 				8730AD3B2140CC27004331A9 /* user_helpicon@2x.png */,
 				8730AD3F2140CC27004331A9 /* user_helpicon@3x.png */,
+				8730B0CB214772BB004331A9 /* user_mobileicon@2x.png */,
+				8730B0CC214772BC004331A9 /* user_mobileicon@3x.png */,
 				8730AD3A2140CC27004331A9 /* user_serviceicon@2x.png */,
 				8730AD372140CC27004331A9 /* user_serviceicon@3x.png */,
 				8730AD382140CC27004331A9 /* user_shareicon@2x.png */,
 				8730AD402140CC28004331A9 /* user_shareicon@3x.png */,
 				8730AD412140CC28004331A9 /* user_topicicon@2x.png */,
 				8730AD3E2140CC27004331A9 /* user_topicicon@3x.png */,
+				8730B0C7214772AC004331A9 /* user_verifyicon@2x.png */,
+				8730B0C8214772AD004331A9 /* user_verifyicon@3x.png */,
 				87D20AEE21392FF1001EDD60 /* user_topbackgroud@2x.png */,
 			);
 			path = images;
@@ -4418,6 +4435,7 @@
 				DB2656DC21466D06002ED713 /* search_openFilters@2x.png in Resources */,
 				8730AD4A2140CC28004331A9 /* user_topicicon@3x.png in Resources */,
 				87426A4D213135F0003C52F6 /* fstab_btn3_highIcon@2x.png in Resources */,
+				8730B0C9214772AD004331A9 /* user_verifyicon@2x.png in Resources */,
 				DB14A7AB2139247900E88798 /* FSCourseTableCell.xib in Resources */,
 				87D186A6213679F800037DDF /* login_password@2x.png in Resources */,
 				87426A21213100BB003C52F6 /* bmsearch_close@2x.png in Resources */,
@@ -4435,6 +4453,7 @@
 				8730B0C221465034004331A9 /* BMCombine_down@2x.png in Resources */,
 				87426A07212F9657003C52F6 /* navigationbar_select_icon@3x.png in Resources */,
 				87426AA7213156D5003C52F6 /* banner_close@2x.png in Resources */,
+				8730B0CE214772BC004331A9 /* user_mobileicon@3x.png in Resources */,
 				DB804FEA21425CE9007F7B19 /* FSCaseSearchResultCell.xib in Resources */,
 				87426A54213135F0003C52F6 /* fstab_btn4_icon@2x.png in Resources */,
 				87426A4B213135F0003C52F6 /* fstab_btn3_icon@3x.png in Resources */,
@@ -4452,6 +4471,7 @@
 				DB804FE521422548007F7B19 /* search_delKey@3x.png in Resources */,
 				874268A0212E7E36003C52F6 /* decrease_taobao@3x.png in Resources */,
 				874269FD212F9657003C52F6 /* navigationbar_help_icon@2x.png in Resources */,
+				8730B0CD214772BC004331A9 /* user_mobileicon@2x.png in Resources */,
 				87D186A7213679F800037DDF /* login_logo@2x.png in Resources */,
 				DBD4CE8F2141229400857DB3 /* home_arrow@2x.png in Resources */,
 				87D209F2213912ED001EDD60 /* default_avataricon@2x.png in Resources */,
@@ -4468,6 +4488,7 @@
 				8730AD482140CC28004331A9 /* user_commenticon@3x.png in Resources */,
 				87D186A8213679F800037DDF /* login_closeeye@3x.png in Resources */,
 				87426A24213100BB003C52F6 /* bmsearch_searchicon@3x.png in Resources */,
+				8730B0CA214772AD004331A9 /* user_verifyicon@3x.png in Resources */,
 				8730AD4B2140CC28004331A9 /* user_helpicon@3x.png in Resources */,
 				874268A3212E7E36003C52F6 /* steppersinput_minusicon@2x.png in Resources */,
 				87426A52213135F0003C52F6 /* fstab_btn4_highIcon@2x.png in Resources */,
@@ -4839,6 +4860,7 @@
 				87D20ACA213920E2001EDD60 /* FLEXExplorerViewController.m in Sources */,
 				87426AF521353510003C52F6 /* FSDB.m in Sources */,
 				87D20AC8213920E2001EDD60 /* FLEXArgumentInputNotSupportedView.m in Sources */,
+				8730B0C6214758F0004331A9 /* FSSetPhoneVC.m in Sources */,
 				8730B07E2140FFA3004331A9 /* UIView+DTActionHandlers.m in Sources */,
 				874268D3212E7E36003C52F6 /* BMCheckBoxLabel.m in Sources */,
 				874268BD212E7E36003C52F6 /* BMTableViewItem.m in Sources */,
@@ -5203,7 +5225,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = K9SAQ4FSAH;
+				DEVELOPMENT_TEAM = 5V3CUNZ42F;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_SOURCE_FILE_NAMES = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -5237,7 +5259,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = K9SAQ4FSAH;
+				DEVELOPMENT_TEAM = 5V3CUNZ42F;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_SOURCE_FILE_NAMES = "FLEX*";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

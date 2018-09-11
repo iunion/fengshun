@@ -10,6 +10,9 @@
 #import "SDImageCache.h"
 #import "AppDelegate.h"
 
+#import "FSLoginVerifyVC.h"
+#import "FSSetPhoneVC.h"
+
 typedef void(^FSSetupCalculateSizeBlock)(NSString *path, NSUInteger fileCount, NSUInteger totalSize, BOOL finished);
 
 @interface FSSetupVC ()
@@ -151,6 +154,8 @@ typedef void(^FSSetupCalculateSizeBlock)(NSString *path, NSUInteger fileCount, N
 {
     [self.m_TableManager removeAllSections];
     
+    BMWeakSelf
+    
     BMImageTextView *imageTextView;
 
     if ([FSUserInfoModle isLogin])
@@ -161,10 +166,21 @@ typedef void(^FSSetupCalculateSizeBlock)(NSString *path, NSUInteger fileCount, N
         if ([userInfo.m_UserBaseInfo.m_PhoneNum bm_isNotEmpty])
         {
             text = [userInfo.m_UserBaseInfo.m_PhoneNum bm_maskAtRang:NSMakeRange(3, 4) withMask:'*'];
+            
+            self.m_MobilePhoneItem.selectionHandler = ^(id item) {
+                FSLoginVerifyVC *vc = [[FSLoginVerifyVC alloc] initWithVerificationType:BMVerificationCodeType_Type3 phoneNum:userInfo.m_UserBaseInfo.m_PhoneNum];
+                vc.m_PopToViewController = weakSelf;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            };
         }
         else
         {
             text = @"未绑定";
+            
+//            self.m_MobilePhoneItem.selectionHandler = ^(id item) {
+//                FSSetPhoneVC *vc = [[FSSetPhoneVC alloc] init];
+//                [weakSelf.navigationController pushViewController:vc animated:YES];
+//            };
         }
         imageTextView = [[BMImageTextView alloc] initWithText:text];
         imageTextView.textColor = UI_COLOR_B4;
@@ -193,7 +209,6 @@ typedef void(^FSSetupCalculateSizeBlock)(NSString *path, NSUInteger fileCount, N
     NSString *cachePath = [cache getDiskCachePath];
     [cachePathArray addObject:cachePath];
     
-    BMWeakSelf
     [self calculateSizeWithFileURLPathArray:cachePathArray completionBlock:^(NSString *path, NSUInteger fileCount, NSUInteger totalSize, BOOL finished) {
         if (finished)
         {

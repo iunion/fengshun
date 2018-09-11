@@ -17,6 +17,7 @@
 - (BOOL)shouldPopOnBackButton;
 - (void)backAction:(id)sender;
 - (void)backRootAction:(id)sender;
+- (void)backToViewController:(UIViewController *)viewController;
 
 @optional
 

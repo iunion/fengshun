@@ -64,7 +64,14 @@
     self.bm_NavigationBarBgTintColor = [UIColor whiteColor];
     self.bm_NavigationItemTintColor = UI_COLOR_B2;
     
-    [self bm_setNavigationWithTitle:@"设置密码" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:@"navigationbar_close_icon" rightToucheEvent:@selector(closeAction:)];
+    if (self.m_IsRegist)
+    {
+        [self bm_setNavigationWithTitle:@"设置密码" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_popback_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:@"navigationbar_close_icon" rightToucheEvent:@selector(closeAction:)];
+    }
+    else
+    {
+        [self bm_setNavigationWithTitle:@"重设密码" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_popback_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:@"navigationbar_close_icon" rightToucheEvent:@selector(closeAction:)];
+    }
 
     if (IS_IPHONE6P)
     {
