@@ -58,7 +58,7 @@
             {
                 [self.m_DataArray removeAllObjects];
             }
-            //[self.m_DataArray addObjectsFromArray:topicArray];
+            [self.m_DataArray addObjectsFromArray:topicArray];
             [self.m_TableView reloadData];
         }
         

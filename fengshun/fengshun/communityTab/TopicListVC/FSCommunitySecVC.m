@@ -26,6 +26,7 @@
 @property (nonatomic, strong) FSCommunityHeaderView *m_HeaderView;
 @property (nonatomic, strong) FSScrollPageSegment *  m_SegmentBar;
 @property (nonatomic, strong) FSScrollPageView *     m_ScrollPageView;
+@property (nonatomic, strong) NSMutableArray *m_dataArray;
 
 @end
 
@@ -47,7 +48,13 @@
     self.bm_NavigationBarHidden = YES;
     [self bm_setNeedsUpdateNavigationBarAlpha];
     self.view.backgroundColor = FS_VIEW_BGCOLOR;
+    self.m_dataArray = [NSMutableArray arrayWithCapacity:0];
     [self createUI];
+    [FSApiRequest getTopicSuccess:^(id  _Nullable responseObject) {
+        
+    } failure:^(NSError * _Nullable error) {
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -96,55 +103,24 @@
 
 - (NSUInteger)scrollPageViewNumberOfPages:(FSScrollPageView *)scrollPageView
 {
-    return 4;
+    return self.m_dataArray.count;
 }
 
 - (NSString *)scrollPageView:(FSScrollPageView *)scrollPageView titleAtIndex:(NSUInteger)index
 {
-    switch (index)
-    {
-        case 0:
-            return @"最新回复";
-            break;
-
-        case 1:
-            return @"最新发布";
-            break;
-        case 2:
-            return @"热门";
-            break;
-        case 3:
-            return @"精华";
-            break;
-        default:
-            return @"默认标题";
-            break;
-    }
+    FSTopicTypeModel *model = self.m_dataArray[index];
+    return model.m_PostListName;
 }
 
 - (id)scrollPageView:(FSScrollPageView *)scrollPageView pageAtIndex:(NSUInteger)index
 {
     UIView *aView = [[UIView alloc] initWithFrame:scrollPageView.bounds];
-    // 最新
-    if (index == 0)
-    {
-        FSTopicListVC *vc = [[FSTopicListVC alloc] initWithTopicSortType:FSTopicSortTypeNewReply formId:self.m_FourmId];
-        [aView addSubview:vc.view];
-    }
-    else if (index == 1)
-    {
-        FSTopicListVC *vc = [[FSTopicListVC alloc] initWithTopicSortType:FSTopicSortTypeNewPulish formId:self.m_FourmId];
-        [aView addSubview:vc.view];
-    }
-    else if (index == 2)
-    {
-        FSTopicListVC *vc = [[FSTopicListVC alloc] initWithTopicSortType:FSTopicSortTypeHot formId:self.m_FourmId];
-        [aView addSubview:vc.view];
-    }
-    else
-    {
-        FSTopicListVC *vc = [[FSTopicListVC alloc] initWithTopicSortType:FSTopicSortTypeEssence formId:self.m_FourmId];
-        [aView addSubview:vc.view];
+    FSTopicTypeModel *model = self.m_dataArray[index];
+    for (int i = 0; i < self.m_dataArray.count; i ++) {
+        FSTopicListVC *vc = [[FSTopicListVC alloc]initWithTopicSortType:model.m_PostListType formId:self.m_FourmId];
+        if (index == i) {
+            [aView addSubview:vc.view];
+        }
     }
     return aView;
 }
@@ -157,6 +133,27 @@
 }
 
 #pragma mark - request
+
+- (NSMutableURLRequest *)setLoadDataRequest
+{
+    return [FSApiRequest getTopicListWithType:@"" forumId:self.m_FourmId pageIndex:1 pageSize:10];
+}
+
+- (BOOL)succeedLoadedRequestWithArray:(NSArray *)requestArray{
+    if ([requestArray bm_isNotEmpty]) {
+        NSMutableArray *data = [NSMutableArray arrayWithCapacity:0];
+        for (NSDictionary *dic in requestArray) {
+            FSTopicTypeModel *model = [FSTopicTypeModel topicTypeModelWithDic:dic];
+            if (model) {
+                [data addObject:model];
+            }
+        }
+        [self.m_dataArray addObjectsFromArray:data];
+        [self.m_ScrollPageView reloadPage];
+       return YES;
+    }
+    return NO;
+}
 
 - (void)getInfoMsg
 {

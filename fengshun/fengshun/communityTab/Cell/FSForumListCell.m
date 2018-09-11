@@ -37,7 +37,7 @@
 - (void)makeCellStyle
 {
     [_m_ImgView bm_roundedRect:4];
-    [_m_DoBtn bm_roundedRect:_m_DoBtn.bm_height / 2];
+    [_m_DoBtn bm_roundedRect:_m_DoBtn.bm_height * 0.5];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -49,8 +49,7 @@
 
 - (void)showWithFSCommunityForumListModel:(FSForumModel *)aModel
 {
-    //    [_m_ImgView sd_setImageWithURL:[aModel.m_IconUrl bm_toURL] placeholderImage:[UIImage imageNamed:@""]];
-    [self.m_ImgView sd_setImageWithURL:[aModel.m_IconUrl bm_toURL]];
+    [self.m_ImgView sd_setImageWithURL:[aModel.m_IconUrl bm_toURL]placeholderImage:nil options:SDWebImageRetryFailed | SDWebImageLowPriority];
     self.m_TitleLab.text        = aModel.m_ForumNameSecond;
     self.m_ContentLab.text      = aModel.m_Description;
     self.m_AttentionNumLab.text = [NSString stringWithFormat:@"%ld", aModel.m_AttentionCount];

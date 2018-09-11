@@ -19,12 +19,14 @@
 }
 */
 
-- (void)awakeFromNib{
+- (void)awakeFromNib
+{
     [super awakeFromNib];
     
 }
 
-- (void)showWithFSCommunityForumModel:(FSCommunityForumModel *)aModel{
+- (void)showWithFSCommunityForumModel:(FSCommunityForumModel *)aModel
+{
     [self.m_IconImgView sd_setImageWithURL:[aModel.m_IconUrl bm_toURL]];
     self.m_SectionTitleLab.text = aModel.m_Name;
 }

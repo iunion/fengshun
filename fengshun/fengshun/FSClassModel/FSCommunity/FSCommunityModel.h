@@ -85,7 +85,17 @@
 @end
 
 
+@interface FSTopicTypeModel : NSObject
+// 是否活跃
+@property (nonatomic , assign) BOOL m_IsActive;
+// 帖子类型名称 （最新发布、最新回复）
+@property (nonatomic , strong) NSString *m_PostListName;
+// 帖子类型 请求type
+@property (nonatomic , strong) NSString *m_PostListType;
 
++ (instancetype)topicTypeModelWithDic:(NSDictionary *)dic;
+
+@end
 
 
 

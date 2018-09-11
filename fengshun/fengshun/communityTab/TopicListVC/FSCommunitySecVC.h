@@ -6,9 +6,9 @@
 //  Copyright © 2018年 FS. All rights reserved.
 //
 
-#import "FSSuperVC.h"
+#import "FSSuperNetVC.h"
 
-@interface FSCommunitySecVC : FSSuperVC
+@interface FSCommunitySecVC : FSSuperNetVC
 
 // 板块id
 - (instancetype)initWithFourmId:(NSInteger )fourmId;

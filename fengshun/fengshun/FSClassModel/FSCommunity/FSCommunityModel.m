@@ -21,6 +21,10 @@
     NSString *topicId = [dic bm_stringTrimForKey:@"id"];
     if (![topicId bm_isNotEmpty])
     {
+        topicId = [dic bm_stringTrimForKey:@"postsId"];
+    }
+    if (![topicId bm_isNotEmpty])
+    {
         return nil;
     }
 
@@ -47,6 +51,10 @@
     // id不存在不修改
 
     NSString *topicId = [dic bm_stringTrimForKey:@"id"];
+    if (![topicId bm_isNotEmpty])
+    {
+        topicId = [dic bm_stringTrimForKey:@"postsId"];
+    }
     if (![topicId bm_isNotEmpty])
     {
         return;
@@ -175,6 +183,25 @@
     self.m_PostsCount = [data bm_intForKey:@"postsCount"];
     // 是否关注
     self.m_AttentionFlag   = [data bm_boolForKey:@"attentionFlag"];
+}
+
+@end
+
+@implementation FSTopicTypeModel
+
++ (instancetype)topicTypeModelWithDic:(NSDictionary *)dic
+{
+    if (![dic bm_isNotEmptyDictionary]) {
+        return nil;
+    }
+    FSTopicTypeModel *model = [FSTopicTypeModel new];
+    // 类型名： 最新回复
+    model.m_PostListName = [dic bm_stringTrimForKey:@"postListName"];
+    // 类型请求type
+    model.m_PostListType = [dic bm_stringTrimForKey:@"postListType"];
+    // 是否活跃
+    model.m_IsActive = [dic bm_boolForKey:@"isActive"];
+    return model;
 }
 
 @end

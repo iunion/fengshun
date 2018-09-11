@@ -11,7 +11,7 @@
 
 @interface FSTopicListVC : FSTableViewVC
 
-- (instancetype)initWithTopicSortType:(FSTopicSortType)sortType
+- (instancetype)initWithTopicSortType:(NSString *)sortType
                                formId:(NSInteger )formId;
 
 @end

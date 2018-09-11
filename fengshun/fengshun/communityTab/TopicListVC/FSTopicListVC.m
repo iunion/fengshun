@@ -13,7 +13,7 @@
 FSTopicListVC ()
 
 // 排序类型
-@property (nonatomic, assign) FSTopicSortType m_SortType;
+@property (nonatomic, strong) NSString *m_SortType;
 // 板块id
 @property (nonatomic, assign) NSInteger m_ForumId;
 
@@ -26,12 +26,7 @@ FSTopicListVC ()
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self createUI];
-//    [self loadApiData];
-    [FSApiRequest getTopicSuccess:^(id  _Nullable responseObject) {
-        
-    } failure:^(NSError * _Nullable error) {
-        
-    }];
+    [self loadApiData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,7 +35,7 @@ FSTopicListVC ()
     // Dispose of any resources that can be recreated.
 }
 
-- (instancetype)initWithTopicSortType:(FSTopicSortType)sortType formId:(NSInteger)formId
+- (instancetype)initWithTopicSortType:(NSString *)sortType formId:(NSInteger)formId
 {
     if (self = [super init])
     {

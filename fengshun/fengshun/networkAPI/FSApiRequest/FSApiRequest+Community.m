@@ -36,36 +36,14 @@
 }
 // 获取二级列表：最新回复、最新发帖、热门、精华
 // http://123.206.193.140:8121/swagger-ui.html#/operations/社区首页/newReplyListUsingPOST
-+ (NSMutableURLRequest *)getTopicListWithType:(FSTopicSortType)type forumId:(NSInteger)forumId pageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize
++ (NSMutableURLRequest *)getTopicListWithType:(NSString *)type forumId:(NSInteger)forumId pageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize
 {
     NSString *           urlStr     = [NSString stringWithFormat:@"%@/storm/communityForum/forumPostList", FS_URL_SERVER];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-
     [parameters bm_setInteger:pageIndex forKey:@"pageIndex"];
     [parameters bm_setInteger:pageSize forKey:@"pageSize"];
     [parameters bm_setInteger:forumId forKey:@"forumId"];
-//    [parameters bm_setInteger:0 forKey:@"limit"];
-//    [parameters bm_setInteger:0 forKey:@"startRow"];
-    NSString *typeString;
-    switch (type)
-    {
-        case FSTopicSortTypeNewReply:
-            typeString = @"LATEST_COMMENT";
-            break;
-        case FSTopicSortTypeNewPulish:
-            typeString = @"LATEST_CREATE";
-            break;
-        case FSTopicSortTypeHot:
-            typeString = @"HOT";
-            break;
-        case FSTopicSortTypeEssence:
-            typeString = @"ESSENCE";
-            break;
-        default:
-            typeString = @"LATEST_COMMENT";
-            break;
-    }
-    [parameters bm_setString:typeString forKey:@"postListType"];
+    [parameters bm_setString:type forKey:@"postListType"];
     return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
 }
 
@@ -74,7 +52,7 @@
     [parameters bm_setInteger:1 forKey:@"pageIndex"];
     [parameters bm_setInteger:10 forKey:@"pageSize"];
     [parameters bm_setInteger:2 forKey:@"forumId"];
-    [parameters bm_setString:@"LATEST_COMMENT" forKey:@"postListType"];
+//    [parameters bm_setString:@"" forKey:@"postListType"];
     return [XMRequestManager rm_requestWithApi:@"/storm/communityForum/forumPostList" parameters:parameters success:successBlock failure:failureBlock];
 }
 

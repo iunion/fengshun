@@ -180,7 +180,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 获取二级列表：最新回复、最新发帖、热门、精华
 // http://123.206.193.140:8121/swagger-ui.html#/operations/社区首页/newReplyListUsingPOST
-+ (nullable NSMutableURLRequest *)getTopicListWithType:(FSTopicSortType)type
++ (nullable NSMutableURLRequest *)getTopicListWithType:(NSString *)type
                                                forumId:(NSInteger)forumId
                                              pageIndex:(NSInteger)pageIndex
                                               pageSize:(NSInteger)pageSize;

@@ -587,7 +587,7 @@
                 // totalRecord/pageSize + 1;
                 s_TotalPage = totalPage;
                 
-                if (s_TotalPage == s_LoadedPage)
+                if (s_TotalPage <= s_LoadedPage)
                 {
                     s_IsNoMorePage = YES;
                     return YES;
