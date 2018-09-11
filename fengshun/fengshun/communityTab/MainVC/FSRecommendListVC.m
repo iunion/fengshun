@@ -9,11 +9,8 @@
 #import "FSRecommendListVC.h"
 #import "FSTopicListCell.h"
 
-@interface
-FSRecommendListVC ()
-{
-    NSInteger _currentPages;
-}
+@interface FSRecommendListVC ()
+
 @end
 
 @implementation FSRecommendListVC
@@ -22,7 +19,9 @@ FSRecommendListVC ()
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _currentPages = 1;
+    
+    self.m_LoadDataType = FSAPILoadDataType_Page;
+    
     [self loadApiData];
 }
 
@@ -34,11 +33,7 @@ FSRecommendListVC ()
 
 - (NSMutableURLRequest *)setLoadDataRequestWithFresh:(BOOL)isLoadNew
 {
-    if (isLoadNew)
-    {
-        _currentPages = 1;
-    }
-    return [FSApiRequest getPlateRecommendPostListWithPageIndex:_currentPages pageSize:10];
+    return [FSApiRequest getPlateRecommendPostListWithPageIndex:s_BakLoadedPage pageSize:self.m_CountPerPage];
 }
 
 
@@ -59,25 +54,17 @@ FSRecommendListVC ()
         }
         if ([topicArray bm_isNotEmpty])
         {
-            if (_currentPages == 1)
+            if (self.m_IsLoadNew)
             {
-                [self.m_TableView.bm_freshHeaderView endReFreshing];
                 [self.m_DataArray removeAllObjects];
             }
-            [self.m_DataArray addObjectsFromArray:topicArray];
+            //[self.m_DataArray addObjectsFromArray:topicArray];
             [self.m_TableView reloadData];
         }
-        if ([requestDic bm_boolForKey:@"hasNextPage"])
-        {
-            _currentPages++;
-            [self.m_TableView.bm_freshFooterView endReFreshing];
-        }
-        else
-        {
-            [self.m_TableView.bm_freshFooterView endReFreshingWithNoMoreData];
-        }
+        
         return YES;
     }
+    
     return NO;
 }
 
@@ -93,12 +80,15 @@ FSRecommendListVC ()
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *taskCellIdentifier = @"FSCell";
-    FSTopicListCell *cell               = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
+    FSTopicListCell *cell = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
+    
     if (cell == nil)
     {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"FSTopicListCell" owner:self options:nil] lastObject];
     }
+    
     [cell drawCellWithModle:self.m_DataArray[indexPath.row]];
+    
     return cell;
 }
 

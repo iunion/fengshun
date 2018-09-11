@@ -35,6 +35,9 @@
 // 上拉下拉类型
 @property (nonatomic, assign, readonly) BMFreshViewType m_FreshViewType;
 
+// 加载数据模式：按页加载/按个数
+@property (nonatomic, assign) FSAPILoadDataType m_LoadDataType;
+
 @property (nonatomic, strong, readonly) FSTableView *m_TableView;
 
 // 内容数据

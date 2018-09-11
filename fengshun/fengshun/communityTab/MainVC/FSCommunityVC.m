@@ -8,36 +8,28 @@
 
 #import "FSCommunityVC.h"
 
-#import "FSTableViewVC.h"
+#import "AppDelegate.h"
 
+#import "FSScrollPageView.h"
 #import "FSRecommendListVC.h"
 #import "FSForumListVC.h"
 
-#import "FSScrollPageView.h"
-#import "AppDelegate.h"
 #import "TZImagePickerController.h"
-#import "FSTableView.h"
-#import "FSTopicListCell.h"
-#import "FSForumListCell.h"
-#import "FSApiRequest.h"
-#import "FSCommunityModel.h"
-#import "FSForumSectionHeaderView.h"
-#import "UIImageView+WebCache.h"
-#import "FSCommunitySecVC.h"
 
 
 static NSString *FSTopicListTableViewCellIdentifier = @"FSTopicListTableViewCellIdentifier";
 static NSString *FSForumListTableViewCellIdentifier = @"FSForumListTableViewCellIdentifier";
 static NSString *FSForumHeaderIdentifier            = @"FSForumHeaderIdentifier";
 
-@interface
-FSCommunityVC () <
+@interface FSCommunityVC ()
+<
     FSScrollPageViewDelegate,
     FSScrollPageViewDataSource,
-    TZImagePickerControllerDelegate>
+    TZImagePickerControllerDelegate
+>
 
 @property (nonatomic, strong) FSScrollPageSegment *m_SegmentBar;
-@property (nonatomic, strong) FSScrollPageView *   m_ScrollPageView;
+@property (nonatomic, strong) FSScrollPageView *m_ScrollPageView;
 
 @property (nonatomic, strong) FSTableViewVC *m_RecommendVC;
 @property (nonatomic, strong) FSTableViewVC *m_ForumVC;
@@ -72,21 +64,13 @@ FSCommunityVC () <
     // 切换视图
     self.m_SegmentBar = [[FSScrollPageSegment alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 44) titles:nil titleColor:nil selectTitleColor:nil showUnderLine:NO moveLineFrame:CGRectZero isEqualDivide:YES fresh:YES];
     [self.view addSubview:_m_SegmentBar];
-    [self.m_SegmentBar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.right.equalTo(self.view);
-        make.height.mas_equalTo(44);
-    }];
-    _m_SegmentBar.backgroundColor = [UIColor whiteColor];
+    self.m_SegmentBar.backgroundColor = [UIColor whiteColor];
 
     // 内容视图
     self.m_ScrollPageView = [[FSScrollPageView alloc] initWithFrame:CGRectMake(0, 44, UI_SCREEN_WIDTH, UI_MAINSCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT - UI_TAB_BAR_HEIGHT - 44) titleColor:UI_COLOR_B1 selectTitleColor:UI_COLOR_B1 scrollPageSegment:_m_SegmentBar isSubViewPageSegment:NO];
     [self.view addSubview:self.m_ScrollPageView];
-    [self.m_ScrollPageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(self.view);
-        make.top.mas_equalTo(self.m_SegmentBar.bm_bottom);
-    }];
     self.m_ScrollPageView.datasource = self;
-    self.m_ScrollPageView.delegate   = self;
+    self.m_ScrollPageView.delegate = self;
     [self.m_ScrollPageView setM_MoveLineColor:UI_COLOR_BL1];
     [self.m_ScrollPageView reloadPage];
     [self.m_ScrollPageView scrollPageWithIndex:0];

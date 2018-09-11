@@ -24,9 +24,6 @@
 // 是否下拉刷新
 @property (nonatomic, assign) BOOL m_IsLoadNew;
 
-// 加载数据模式：按页加载/按个数
-@property (nonatomic, assign) FSAPILoadDataType m_LoadDataType;
-
 @end
 
 @implementation FSTableViewVC
@@ -557,20 +554,30 @@
         s_IsNoMorePage = NO;
     }
     
+//    hasNextPage = 0;
+//    hasPreviousPage = 0;
+//    lastPage = 1;
+//    pageIndex = 1;
+//    pageSize = 10;
+//    totalPages = 1;
+//    startRow = 0;
+//    totalRows = 10;
+//    endRow = 9;
+
     if ([requestDic bm_isNotEmptyDictionary])
     {
-        NSDictionary *pageDic = [requestDic bm_dictionaryForKey:@"pageInfo"];
+        NSDictionary *pageDic = requestDic;//[requestDic bm_dictionaryForKey:@"pageInfo"];
         
-        if ([pageDic bm_isNotEmptyDictionary])
+        //if ([pageDic bm_isNotEmptyDictionary])
         {
-            // 总记录数: totalRecord
-            NSUInteger totalcount = [pageDic bm_uintForKey:@"totalRecord"];
+            // 总记录数:  totalRows
+            NSUInteger totalcount = [pageDic bm_uintForKey:@"totalRows"];
             // 每页记录数: pageSize
-            //NSUInteger pageSize = [pageDic uintForKey:@"pageSize"];
-            // 当前页码: curPageNo
-            NSUInteger curPageNo = [pageDic bm_uintForKey:@"curPageNo"];
-            //总页码: totalPage
-            NSUInteger totalPage = [pageDic bm_uintForKey:@"totalPage"];
+            //NSUInteger pageSize = [pageDic bm_uintForKey:@"pageSize"];
+            // 当前页码: pageIndex
+            NSUInteger curPageNo = [pageDic bm_uintForKey:@"pageIndex"];
+            //总页码: totalPages
+            NSUInteger totalPage = [pageDic bm_uintForKey:@"totalPages"];
             
             if (self.m_CountPerPage != 0 && totalcount != 0)
             {

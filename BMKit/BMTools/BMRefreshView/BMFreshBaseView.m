@@ -259,7 +259,7 @@ NSString *const DJFreshKeyPathPanState = @"state";
     }
     else
     {
-        self.freshState = BMFreshStateIdle;
+        self.freshState = BMFreshStateNoMoreData;
     }
 }
 
