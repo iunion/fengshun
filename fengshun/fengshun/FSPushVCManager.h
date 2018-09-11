@@ -39,5 +39,5 @@ typedef void (^PushVCCallBack)(id object);
 +(void)homePage:(UIViewController *)mainVC pushToCaseSearchWithHotKeys:(NSArray *)hotKeys;
 
 // 法规检索
-+ (void)homePage:(UIViewController *)mainVC pushToCaseSearchWithTopics:(NSArray *)topics;
++ (void)homePage:(UIViewController *)mainVC pushToLawSearchWithTopics:(NSArray *)topics;
 @end

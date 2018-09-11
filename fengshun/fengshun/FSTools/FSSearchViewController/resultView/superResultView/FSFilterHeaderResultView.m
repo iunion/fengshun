@@ -73,7 +73,6 @@ FSFilterHeaderResultView () <
     _m_leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, FILTER_HEADER_HEIGHT - FILTER_BUTTON_HEIGHT, self.bm_width / 2, FILTER_BUTTON_HEIGHT)];
     [_m_headerView addSubview:_m_leftButton];
     _m_leftButton.hidden = YES;
-    [_m_leftButton bm_layoutButtonWithEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageRight imageTitleGap:7];
     [_m_leftButton setImage:[UIImage imageNamed:@"search_openFilters"] forState:UIControlStateNormal];
     _m_leftButton.titleLabel.font = [UIFont systemFontOfSize:14];
     [_m_leftButton setTitleColor:UI_COLOR_B1 forState:UIControlStateNormal];
@@ -82,8 +81,8 @@ FSFilterHeaderResultView () <
     // rightButton
     _m_rightButton = [[UIButton alloc] initWithFrame:CGRectMake(self.bm_width / 2, FILTER_HEADER_HEIGHT - FILTER_BUTTON_HEIGHT, self.bm_width / 2, FILTER_BUTTON_HEIGHT)];
     [_m_headerView addSubview:_m_rightButton];
-    _m_leftButton.hidden = YES;
-    [_m_rightButton bm_layoutButtonWithEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageRight imageTitleGap:7];
+    _m_rightButton.hidden = YES;
+
     [_m_rightButton setImage:[UIImage imageNamed:@"search_openFilters"] forState:UIControlStateNormal];
     _m_rightButton.titleLabel.font = [UIFont systemFontOfSize:14];
     [_m_rightButton setTitleColor:UI_COLOR_B1 forState:UIControlStateNormal];
@@ -95,12 +94,12 @@ FSFilterHeaderResultView () <
 }
 - (void)showLeftFilters:(id)sender
 {
-    self.m_showList = FSFilterShowList_Left;
+    self.m_showList = FSSearchFilterShowList_Left;
     [self showFilterList];
 }
 - (void)showRightFilters:(id)sender
 {
-    self.m_showList = FSFilterShowList_Right;
+    self.m_showList = FSSearchFilterShowList_Right;
     [self showFilterList];
 }
 - (void)filterViewClicked:(id)sender
@@ -110,7 +109,7 @@ FSFilterHeaderResultView () <
 - (void)hiddenFilterListWithIndex:(NSInteger)index
 {
     // -1表示全部
-    self.m_showList    = FSFilterShowList_None;
+    self.m_showList    = FSSearchFilterShowList_None;
     [UIView animateWithDuration:FILTER_ANIM_DUR
         animations:^{
             self.m_filterList.frame = CGRectMake(0, 0, self.bm_width, 0);
@@ -124,14 +123,14 @@ FSFilterHeaderResultView () <
 {
     switch (_m_showList)
     {
-        case FSFilterShowList_None:
+        case FSSearchFilterShowList_None:
             return;
             break;
 
-        case FSFilterShowList_Left:
+        case FSSearchFilterShowList_Left:
             self.m_filterArray = _m_leftFilters;
             break;
-        case FSFilterShowList_Right:
+        case FSSearchFilterShowList_Right:
             self.m_filterArray = _m_rightFilters;
             break;
     }
@@ -152,7 +151,7 @@ FSFilterHeaderResultView () <
 {
     [_m_section removeAllItems];
     BMWeakSelf
-        BMTableViewItem *item0 = [BMTableViewItem itemWithTitle:@"全部"
+    BMTableViewItem *item0 = [BMTableViewItem itemWithTitle:@"全部"
                                                        subTitle:nil
                                                       imageName:nil
                                               underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorAllLeftInset

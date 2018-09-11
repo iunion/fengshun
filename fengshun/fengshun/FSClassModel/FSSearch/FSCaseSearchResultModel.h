@@ -8,7 +8,7 @@
 
 #import "FSSuperModel.h"
 
-@class FSCaseFilterSegment, FSCaseFilter;
+@class FSSearchFilterSegment, FSSearchFilter;
 
 @interface FSCaseReultModel : FSSuperModel
 
@@ -31,24 +31,27 @@
 @property (nonatomic, assign) BOOL      m_isMore;
 @property (nonatomic, assign) NSInteger m_totalCount;
 
-@property (nonatomic, strong) NSArray<FSCaseReultModel *> *m_resultDataArray;
+// 用于跳转到详情页
+@property (nonatomic, copy) NSString *m_keywordsStr;
 
-@property (nonatomic, strong) NSArray<FSCaseFilterSegment *> *m_filterSegments;
+@property (nonatomic, strong) NSArray<FSSearchFilterSegment *> *m_filterSegments;
+@property (nonatomic, strong) NSArray<FSCaseReultModel *> *     m_resultDataArray;
 
-@end
-
-@interface FSCaseFilterSegment :FSSuperModel
-
-@property(nonatomic, copy)NSString *m_title;
-@property(nonatomic, copy)NSString *m_type;
-@property(nonatomic, strong)NSArray <FSCaseFilter *> *m_filters;
 
 @end
 
-@interface FSCaseFilter :FSSuperModel
+@interface FSSearchFilterSegment : FSSuperModel
 
-@property(nonatomic, copy)NSString *m_name;
-@property(nonatomic, copy)NSString *m_value;
-@property(nonatomic, assign)NSInteger m_docCount;
+@property (nonatomic, copy) NSString *                   m_title;
+@property (nonatomic, copy) NSString *                   m_type;
+@property (nonatomic, strong) NSArray<FSSearchFilter *> *m_filters;
+
+@end
+
+@interface FSSearchFilter : FSSuperModel
+
+@property (nonatomic, copy) NSString *  m_name;
+@property (nonatomic, copy) NSString *  m_value;
+@property (nonatomic, assign) NSInteger m_docCount;
 
 @end

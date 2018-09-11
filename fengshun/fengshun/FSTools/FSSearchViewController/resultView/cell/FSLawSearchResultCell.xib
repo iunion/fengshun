@@ -24,7 +24,7 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="twQ-VC-THR">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="twQ-VC-THR">
                         <rect key="frame" x="16" y="56" width="342" height="0.0"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -89,6 +89,14 @@
                     <constraint firstAttribute="trailing" secondItem="oYH-0J-UHQ" secondAttribute="trailing" constant="17" id="wJk-dC-7gt"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="m_contentLabel" destination="oYH-0J-UHQ" id="h0M-hf-2F5"/>
+                <outlet property="m_detailLabel" destination="twQ-VC-THR" id="fyz-nB-hdU"/>
+                <outlet property="m_matchLabel" destination="bjV-XQ-Rgz" id="lNc-iX-Nai"/>
+                <outlet property="m_tagLabel" destination="Py0-3s-2Hi" id="Txc-mI-50z"/>
+                <outlet property="m_tagView" destination="Ag8-oq-2BC" id="FcD-zm-Msi"/>
+                <outlet property="m_titleLabel" destination="SuV-aJ-mZg" id="Efd-FS-j1x"/>
+            </connections>
             <point key="canvasLocation" x="16.5" y="-61"/>
         </tableViewCell>
     </objects>

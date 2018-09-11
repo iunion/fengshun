@@ -72,19 +72,19 @@
 {
     if (!_resultView) {
         switch (_resultType) {
-            case FSSearchResultType_text:
+            case FSSearchResultType_laws:
                 _resultView = [[FSLawSearchResultView alloc]initWithFrame:self.view.bounds];
                 break;
-                
+
             case FSSearchResultType_case:
-                _resultView = [[FSCaseSearchResultView alloc]initWithFrame:self.view.bounds];
+                _resultView = [[FSCaseSearchResultView alloc] initWithFrame:self.view.bounds];
                 break;
-            case FSSearchResultType_laws:
-                _resultView = [[FSTextSearchResultView alloc]initWithFrame:self.view.bounds];
+            case FSSearchResultType_text:
+                _resultView = [[FSTextSearchResultView alloc] initWithFrame:self.view.bounds];
                 break;
         }
-        
-        _resultView.hidden = YES;
+        _resultView.m_masterVC = self;
+        _resultView.hidden     = YES;
     }
     return _resultView;
 }
@@ -409,8 +409,6 @@
         if(!self.resultView.superview) [self.view addSubview:self.resultView];
         [self.resultView searchWithKey:search];
         self.resultView.hidden = NO;
-        
-        
         
         if (self.searchHandler) self.searchHandler(search);
         

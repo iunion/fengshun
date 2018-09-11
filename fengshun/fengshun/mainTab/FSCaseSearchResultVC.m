@@ -28,7 +28,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - tableView
+#pragma mark - tableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -61,7 +61,7 @@
                              @"docCount":@(_m_rightFilter.m_docCount),
                              }];
     }
-    return [FSApiRequest searchCaseWithKeywords:self.m_resultView.m_searchKeys start:_m_searchResultModel.m_resultDataArray.count size:5 filters:filters];
+    return [FSApiRequest searchCaseWithKeywords:self.m_resultView.m_searchKeys start:_m_searchResultModel.m_resultDataArray.count size:self.m_CountPerPage filters:filters];
 }
 - (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)responseObject
 {
@@ -73,18 +73,16 @@
     {
         _m_searchResultModel.m_resultDataArray = [_m_searchResultModel.m_resultDataArray arrayByAddingObjectsFromArray:result.m_resultDataArray];
     }
-    self.m_searchResultModel.m_isMore = NO;
-    
-    if (self.m_searchResultModel.m_isMore) {
-        [self.m_TableView.bm_freshFooterView endReFreshing];
-    }
-    else
-    {
-        [self.m_TableView.bm_freshFooterView endReFreshingWithNoMoreData];
-    }
+    self.m_searchResultModel.m_isMore         = result.m_isMore;
+    self.m_searchResultModel.m_filterSegments = result.m_filterSegments;
+
     if (self.m_searchsucceed) self.m_searchsucceed(self.m_searchResultModel);
     [self.m_TableView reloadData];
     
     return [super succeedLoadedRequestWithDic:responseObject];
+}
+- (BOOL)checkLoadFinish:(NSDictionary *)requestDic
+{
+    return !_m_searchResultModel.m_isMore;
 }
 @end

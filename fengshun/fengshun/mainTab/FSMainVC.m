@@ -36,6 +36,7 @@ FSMainVC () <
 @property (nonatomic, strong) NSArray<FSCourseRecommendModel *> *   m_courses;
 @property (nonatomic, strong) NSArray<FSForumModel *> *m_topics;
 @property (nonatomic, strong) NSArray *                             m_caseHotkeys;
+@property (nonatomic, strong) NSArray *                             m_lawTopics;
 
 @end
 
@@ -131,10 +132,14 @@ FSMainVC () <
 - (void)pushWithToolModel:(FSHomePageToolModel *)tool
 {
     switch (tool.m_toolType) {
+        // 案例检索
         case FSHomePageTooltype_CaseSearching:
             [FSPushVCManager homePage:self pushToCaseSearchWithHotKeys:self.m_caseHotkeys];
             break;
-            
+        // 法规检索
+        case FSHomePageTooltype_StatuteSearching:
+            [FSPushVCManager homePage:self pushToLawSearchWithTopics:self.m_lawTopics];
+            break;
         default:
             break;
     }
@@ -242,6 +247,12 @@ FSMainVC () <
     }];
     
     // 获取法规检索的法规专题
+    [FSApiRequest getLawTopicSuccess:^(id  _Nullable responseObject) {
+        NSDictionary *data = responseObject;
+        self.m_lawTopics = [data bm_arrayForKey:@"thematic"];
+    } failure:^(NSError * _Nullable error) {
+        
+    }];
     
 }
 - (NSMutableURLRequest *)setLoadDataRequest

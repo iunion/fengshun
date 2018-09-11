@@ -8,11 +8,11 @@
 
 #import "FSSearchResultVC.h"
 
-@class FSCaseFilter, FSCaseSearchResultModel;
+@class FSSearchFilter, FSCaseSearchResultModel;
 
 @interface FSCaseSearchResultVC : FSSearchResultVC
 
-@property(nonatomic, strong)FSCaseFilter *m_leftFilter;
-@property(nonatomic, strong)FSCaseFilter *m_rightFilter;
+@property(nonatomic, strong)FSSearchFilter *m_leftFilter;
+@property(nonatomic, strong)FSSearchFilter *m_rightFilter;
 @property(nonatomic, strong)FSCaseSearchResultModel *m_searchResultModel;
 @end

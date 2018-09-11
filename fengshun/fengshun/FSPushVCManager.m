@@ -88,7 +88,7 @@
     searchViewController.hidesBottomBarWhenPushed = YES;
     [mainVC.navigationController pushViewController:searchViewController animated:YES];
 }
-+ (void)homePage:(UIViewController *)mainVC pushToCaseSearchWithTopics:(NSArray *)topics
++ (void)homePage:(UIViewController *)mainVC pushToLawSearchWithTopics:(NSArray *)topics
 {
     // 做个备份吧
     if (!topics) {
@@ -98,7 +98,7 @@
     {
         [topics writeToFile:SEARCH_LAWTOPIC_CACHEFILE atomically:NO];
     }
-    FSSearchViewController *searchViewController = [[FSSearchViewController alloc] initWithSearchKey:@"lawsSearch" resultType:FSSearchResultType_case hotSearchTags:topics searchHandler:nil];
+    FSSearchViewController *searchViewController = [[FSSearchViewController alloc] initWithSearchKey:@"lawsSearch" resultType:FSSearchResultType_laws hotSearchTags:topics searchHandler:nil];
     searchViewController.hidesBottomBarWhenPushed = YES;
     [mainVC.navigationController pushViewController:searchViewController animated:YES];
 }

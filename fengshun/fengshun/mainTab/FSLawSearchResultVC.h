@@ -8,6 +8,10 @@
 
 #import "FSSearchResultVC.h"
 
-@interface FSLawSearchResultVC : FSSearchResultVC
+@class FSSearchFilter, FSLawSearchResultModel;
 
+@interface FSLawSearchResultVC : FSSearchResultVC
+@property(nonatomic, strong)FSSearchFilter *m_leftFilter;
+@property(nonatomic, strong)FSSearchFilter *m_rightFilter;
+@property(nonatomic, strong)FSLawSearchResultModel *m_searchResultModel;
 @end

@@ -33,29 +33,30 @@
     FSCaseSearchResultModel *model = [[self alloc] init];
     model.m_isMore                 = [params bm_boolForKey:@"isMore"];
     model.m_totalCount             = [params bm_intForKey:@"size"];
+    model.m_keywordsStr            = [params bm_stringForKey:@"keywords"];
     model.m_resultDataArray        = [FSCaseReultModel modelsWithDataArray:[params bm_arrayForKey:@"data"]];
-    model.m_filterSegments         = [FSCaseFilterSegment modelsWithDataArray:[params bm_arrayForKey:@"aggs"]];
+    model.m_filterSegments         = [FSSearchFilterSegment modelsWithDataArray:[params bm_arrayForKey:@"aggs"]];
     return model;
 }
 @end
 
-@implementation FSCaseFilterSegment
+@implementation FSSearchFilterSegment
 + (instancetype)modelWithParams:(NSDictionary *)params
 {
-    FSCaseFilterSegment *model = [[self alloc] init];
+    FSSearchFilterSegment *model = [[self alloc] init];
     model.m_title              = [params bm_stringForKey:@"value" withDefault:@""];
     model.m_type               = [params bm_stringForKey:@"name" withDefault:@""];
-    model.m_filters            = [FSCaseFilter modelsWithDataArray:[params bm_arrayForKey:@"bucket"]];
+    model.m_filters            = [FSSearchFilter modelsWithDataArray:[params bm_arrayForKey:@"bucket"]];
     return model;
 }
 
 @end
 
-@implementation FSCaseFilter
+@implementation FSSearchFilter
 
 + (instancetype)modelWithParams:(NSDictionary *)params
 {
-    FSCaseFilter *model = [[self alloc] init];
+    FSSearchFilter *model = [[self alloc] init];
     model.m_docCount    = [params bm_intForKey:@"docCount"];
     model.m_name        = [params bm_stringForKey:@"name" withDefault:@""];
     model.m_value       = [params bm_stringForKey:@"value" withDefault:@""];
