@@ -11,13 +11,13 @@
 
 @interface FSTopicListCell : UITableViewCell
 
+@property (nonatomic, strong, readonly) FSTopicModel *m_TopicModel;
+
 /**
  展示model
-
- @param aModel FSCommunityTopicListModel
+ 
+ @param model FSCommunityTopicListModel
  */
-- (void)showWithTopicModel:(FSTopicModel *)aModel;
-
 - (void)drawCellWithModle:(FSTopicModel *)model;
 
 @end
