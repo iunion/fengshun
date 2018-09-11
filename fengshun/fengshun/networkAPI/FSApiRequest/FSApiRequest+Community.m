@@ -43,7 +43,9 @@
     [parameters bm_setInteger:pageIndex forKey:@"pageIndex"];
     [parameters bm_setInteger:pageSize forKey:@"pageSize"];
     [parameters bm_setInteger:forumId forKey:@"forumId"];
-    [parameters bm_setString:type forKey:@"postListType"];
+    if ([type bm_isNotEmpty]) {
+        [parameters bm_setString:type forKey:@"postListType"];
+    }
     return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
 }
 

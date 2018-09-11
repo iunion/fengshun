@@ -97,6 +97,7 @@
     [self.m_ScrollPageView setM_MoveLineColor:UI_COLOR_BL1];
     [self.m_ScrollPageView reloadPage];
     [self.m_ScrollPageView scrollPageWithIndex:0];
+    [self loadApiData];
 }
 
 #pragma mark - FSScrollPageView Delegate & DataSource
@@ -116,12 +117,13 @@
 {
     UIView *aView = [[UIView alloc] initWithFrame:scrollPageView.bounds];
     FSTopicTypeModel *model = self.m_dataArray[index];
+    NSMutableArray *ctrlArr = [NSMutableArray array];
     for (int i = 0; i < self.m_dataArray.count; i ++) {
         FSTopicListVC *vc = [[FSTopicListVC alloc]initWithTopicSortType:model.m_PostListType formId:self.m_FourmId];
-        if (index == i) {
-            [aView addSubview:vc.view];
-        }
+        [ctrlArr addObject:vc];
     }
+    FSTopicListVC *vc = ctrlArr[index];
+    [aView addSubview:vc.view];
     return aView;
 }
 
