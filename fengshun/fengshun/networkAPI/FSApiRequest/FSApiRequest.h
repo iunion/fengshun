@@ -104,8 +104,26 @@ NS_ASSUME_NONNULL_BEGIN
 // http://123.206.193.140:8121/swagger-ui.html#/%E9%A6%96%E9%A1%B5%E7%9B%B8%E5%85%B3/getMessageUnReadFlagUsingPOST
 + (XMRequest *)getMessageUnReadFlagSuccess:(nullable XMSuccessBlock)successBlock
                                    failure:(nullable XMFailureBlock)failureBlock;
+
+// 获取案例检索的热词
+// http://122.112.248.222:13000/swagger-ui.html#!/391183584329702390348212821226696203632562832034/casesHotKeywordsUsingGET
 + (XMRequest *)getCaseSearchHotkeysSuccess:(nullable XMSuccessBlock)successBlock
                                    failure:(nullable XMFailureBlock)failureBlock;
+
+// 案例检索
+// http://122.112.248.222:13000/swagger-ui.html#!/391183584329702390348212821226696203632562832034/searchCasesUsingPOST
++(NSMutableURLRequest *)searchCaseWithKeywords:(NSArray *)keywords start:(NSUInteger)startLocation size:(NSUInteger)size filters:(NSArray *)filters;
+
+// 获取法规检索的法规专题
+// http://122.112.248.222:13000/swagger-ui.html#!/391183584329702390348212821227861352682562832034/casesHotKeywordsUsingGET_1
++ (XMRequest *)getLawTopicSuccess:(nullable XMSuccessBlock)successBlock
+                          failure:(nullable XMFailureBlock)failureBlock;
+
+// 法规检索
+// http://122.112.248.222:13000/swagger-ui.html#!/391183584329702390348212821227861352682562832034/searchLawsUsingPOST
++(NSMutableURLRequest *)searchLawsWithKeywords:(NSArray *)keywords start:(NSUInteger)startLocation size:(NSUInteger)size filters:(NSArray *)filters;
+
+
 
 @end
 

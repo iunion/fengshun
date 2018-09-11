@@ -79,7 +79,7 @@ FSMainVC () <
     self.m_TableView.tableHeaderView     = _m_headerView;
     self.m_TableView.sectionHeaderHeight = SECTION_HEDER_HEIGHT;
     self.m_TableView.sectionFooterHeight = 10;
-    self.m_TableView.rowHeight           = COURSE_CELL_HEGHT;
+    self.m_TableView.estimatedRowHeight  = COURSE_CELL_HEGHT;
     
 }
 
@@ -120,6 +120,24 @@ FSMainVC () <
 {
     // 智能咨询
     
+}
+#pragma mark - view push
+- (void)jumpWithImageJumpModel:(FSImageJump *)imageJump
+{
+    if ([imageJump isKindOfClass:[FSHomePageToolModel class]]) {
+        [self pushWithToolModel:(FSHomePageToolModel *)imageJump];
+    }
+}
+- (void)pushWithToolModel:(FSHomePageToolModel *)tool
+{
+    switch (tool.m_toolType) {
+        case FSHomePageTooltype_CaseSearching:
+            [FSPushVCManager homePage:self pushToCaseSearchWithHotKeys:self.m_caseHotkeys];
+            break;
+            
+        default:
+            break;
+    }
 }
 - (void)popMessageVC:(id)sender
 {
@@ -171,12 +189,11 @@ FSMainVC () <
     titleLabel.text      = section ? @"精华帖子" : @"热门推荐";
     [view addSubview:titleLabel];
 
-    UIButton *moreButton       = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bm_width - 69, 0, 69, 70)];
-    moreButton.titleLabel.font = [UIFont systemFontOfSize:15];
-    [moreButton setTitle:@"更多" forState:UIControlStateNormal];
-    [moreButton setTitleColor:UI_COLOR_B1 forState:UIControlStateNormal];
-    [view addSubview:moreButton];
-    
+//    UIButton *moreButton       = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bm_width - 69, 0, 69, 70)];
+//    moreButton.titleLabel.font = [UIFont systemFontOfSize:15];
+//    [moreButton setTitle:@"更多" forState:UIControlStateNormal];
+//    [moreButton setTitleColor:UI_COLOR_B1 forState:UIControlStateNormal];
+//    [view addSubview:moreButton];
     
     return view;
 }
@@ -184,7 +201,8 @@ FSMainVC () <
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    FSHomePageToolModel *tool = _m_tools[indexPath.row];
+    FSHomePageToolModel *tool = _m_tools[indexPath.row];
+    [self jumpWithImageJumpModel:tool];
     
 }
 
@@ -215,11 +233,16 @@ FSMainVC () <
 #pragma mark - NetWorking & freshUI
 - (void)moreNetWorking
 {
+    // 获取案例检索的搜索热词
     [FSApiRequest getCaseSearchHotkeysSuccess:^(id  _Nullable responseObject) {
-        
+        NSDictionary *data = responseObject;
+        self.m_caseHotkeys = [data bm_arrayForKey:@"hotKeywords"];
     } failure:^(NSError * _Nullable error) {
         
     }];
+    
+    // 获取法规检索的法规专题
+    
 }
 - (NSMutableURLRequest *)setLoadDataRequest
 {

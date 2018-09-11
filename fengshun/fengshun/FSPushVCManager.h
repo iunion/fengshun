@@ -33,4 +33,11 @@ typedef void (^PushVCCallBack)(id object);
 + (FSWebViewController *)showWebView:(UIViewController *)pushVC url:(NSString *)url title:(NSString *)title showLoadingBar:(BOOL)showLoadingBar loadingBarColor:(UIColor *)color animated:(BOOL)animated;
 + (FSWebViewController *)showWebView:(UIViewController *)pushVC url:(NSString *)url title:(NSString *)title showLoadingBar:(BOOL)showLoadingBar loadingBarColor:(UIColor *)color delegate:(id<FSWebViewControllerDelegate>)delegate animated:(BOOL)animated;
 
+#pragma mark - homePage push
+
+// 案例检索
++(void)homePage:(UIViewController *)mainVC pushToCaseSearchWithHotKeys:(NSArray *)hotKeys;
+
+// 法规检索
++ (void)homePage:(UIViewController *)mainVC pushToCaseSearchWithTopics:(NSArray *)topics;
 @end

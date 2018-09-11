@@ -140,8 +140,11 @@
 
     // 响应后统一处理插件
     [XMCenter setResponseProcessBlock:^id(XMRequest *request, id responseObject, NSError *__autoreleasing *error) {
-        
-        BMLog(@"+++++++++++++[%@]原始返回:%@",request.url,responseObject);
+#if DEBUG
+        NSString *responseStr = [[NSString stringWithFormat:@"%@",responseObject] bm_convertUnicode];
+        BMLog(@"+++++++++++++[%@]原始返回:%@", request.url,responseStr);
+#endif
+
         // 对所有请求的响应进行统一的处理,这儿有几点需要注意:
         // 1.此block的返回值如果不为空,后续回调中的responseObject会被替换为此返回值;
         // 2.网络请求出错会通过此处的error返回;

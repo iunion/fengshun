@@ -13,6 +13,8 @@
 
 #import "FSWebViewController.h"
 
+#import "FSSearchViewController.h"
+
 @implementation FSPushVCManager
 
 + (void)showCommunitySecVCPushVC:(UIViewController *)pushVC
@@ -71,4 +73,34 @@
     
     return vc;
 }
+
++ (void)homePage:(UIViewController *)mainVC pushToCaseSearchWithHotKeys:(NSArray *)hotKeys
+{
+    // 搜索热词做份缓存,以应对网络添加较差的情况
+    if (!hotKeys) {
+        hotKeys = [NSArray arrayWithContentsOfFile:SEARCH_CASEHOTKEY_CACHEFILE];
+    }
+    else
+    {
+        [hotKeys writeToFile:SEARCH_CASEHOTKEY_CACHEFILE atomically:NO];
+    }
+    FSSearchViewController *searchViewController = [[FSSearchViewController alloc] initWithSearchKey:@"caseSearch" resultType:FSSearchResultType_case hotSearchTags:hotKeys searchHandler:nil];
+    searchViewController.hidesBottomBarWhenPushed = YES;
+    [mainVC.navigationController pushViewController:searchViewController animated:YES];
+}
++ (void)homePage:(UIViewController *)mainVC pushToCaseSearchWithTopics:(NSArray *)topics
+{
+    // 做个备份吧
+    if (!topics) {
+        topics = [NSArray arrayWithContentsOfFile:SEARCH_LAWTOPIC_CACHEFILE];
+    }
+    else
+    {
+        [topics writeToFile:SEARCH_LAWTOPIC_CACHEFILE atomically:NO];
+    }
+    FSSearchViewController *searchViewController = [[FSSearchViewController alloc] initWithSearchKey:@"lawsSearch" resultType:FSSearchResultType_case hotSearchTags:topics searchHandler:nil];
+    searchViewController.hidesBottomBarWhenPushed = YES;
+    [mainVC.navigationController pushViewController:searchViewController animated:YES];
+}
+
 @end

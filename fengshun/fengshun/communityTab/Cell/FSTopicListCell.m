@@ -38,7 +38,7 @@
     _m_TitleLab.text    = aModel.m_PostsTitle;
     _m_TimeLab.text     = [NSDate hmStringDateFromTs:aModel.m_PostsLastReplyTime];
     _m_UserNameLab.text = aModel.m_NickName;
-    [_m_CommentBtn setTitle:[NSString stringWithFormat:@"%ld", aModel.m_CommentCount] forState:UIControlStateNormal];
+    [_m_CommentBtn setTitle:[NSString stringWithFormat:@"%ld", (long)aModel.m_CommentCount] forState:UIControlStateNormal];
     _m_StickView.hidden = !aModel.m_TopFlag;
 }
 

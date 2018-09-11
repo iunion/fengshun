@@ -1,5 +1,5 @@
 //
-//  FSRulesSearchResultView.h
+//  FSCaseSearchResultView.h
 //  fengshun
 //
 //  Created by Aiwei on 2018/9/4.
@@ -8,6 +8,9 @@
 
 #import "FSFilterHeaderResultView.h"
 
-@interface FSRulesSearchResultView : FSFilterHeaderResultView
+
+@interface FSCaseSearchResultView : FSFilterHeaderResultView
+
+
 
 @end
