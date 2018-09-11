@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FSScrollPageSegment.h"
+#import "FSCommunityModel.h"
 
 @interface FSCommunityHeaderView : UIView
 // 背景图
@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *m_PostNumLab;
 // 关注按钮
 @property (weak, nonatomic) IBOutlet UIButton *m_AttentionBtn;
-// PageSegment
-@property (weak, nonatomic) IBOutlet FSScrollPageSegment *m_PageSegment;
+
+- (void)updateHeaderViewWith:(FSForumModel *)aModel;
+
 @end

@@ -78,11 +78,11 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="m_CommentBtn" destination="6JZ-Sb-LBp" id="BQj-zQ-aAL"/>
-                <outlet property="m_StickView" destination="H5s-fp-Vkr" id="ywI-hY-Sdf"/>
-                <outlet property="m_TimeLab" destination="qHv-Jj-wpq" id="UZh-aU-Hce"/>
-                <outlet property="m_TitleLab" destination="DC9-9K-Cod" id="paj-iN-nCS"/>
-                <outlet property="m_UsernameLab" destination="lxY-0H-6ts" id="7Tp-o5-7aO"/>
+                <outlet property="m_CommentBtn" destination="6JZ-Sb-LBp" id="4cu-Sv-tN6"/>
+                <outlet property="m_StickView" destination="H5s-fp-Vkr" id="fH3-gm-f2J"/>
+                <outlet property="m_TimeLab" destination="qHv-Jj-wpq" id="udb-5E-far"/>
+                <outlet property="m_TitleLab" destination="DC9-9K-Cod" id="Bo4-Cb-HRx"/>
+                <outlet property="m_UsernameLab" destination="lxY-0H-6ts" id="1nr-vO-Ty5"/>
             </connections>
             <point key="canvasLocation" x="62" y="110"/>
         </tableViewCell>

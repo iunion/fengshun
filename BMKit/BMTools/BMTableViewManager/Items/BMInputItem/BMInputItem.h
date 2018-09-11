@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) BOOL editable;
 
+// default is NO
+@property (nonatomic, assign) BOOL hideInputView;
 
 // Keyboard
 //
@@ -38,6 +40,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL enablesReturnKeyAutomatically;
 // default is NO
 @property (nonatomic, assign) BOOL secureTextEntry;
+
+@property (nullable, nonatomic, strong) UIView *inputView;
 
 // 输入字符数限制 0: 不限制
 @property (nonatomic, assign) NSUInteger charactersLimit;

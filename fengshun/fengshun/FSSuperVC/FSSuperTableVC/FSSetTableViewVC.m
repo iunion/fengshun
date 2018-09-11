@@ -230,4 +230,34 @@
     return YES;
 }
 
+// 身份证号
+- (BOOL)verifyId:(NSString *)idNum
+{
+    return [self verifyId:idNum showMessage:YES];
+}
+
+- (BOOL)verifyId:(NSString *)idNum showMessage:(BOOL)showMessage
+{
+    if (![idNum bm_isNotEmpty])
+    {
+        if (showMessage)
+        {
+            [self.m_ProgressHUD showAnimated:YES withDetailText:@"请输入身份证号码" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        }
+        
+        return NO;
+    }
+    else if (![idNum bm_isValidChineseIDNumberString])
+    {
+        if (showMessage)
+        {
+            [self.m_ProgressHUD showAnimated:YES withDetailText:@"请输入正确的身份证号码" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        }
+        
+        return NO;
+    }
+    
+    return YES;
+}
+
 @end

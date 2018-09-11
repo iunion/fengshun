@@ -6,8 +6,11 @@
 //  Copyright © 2018年 FS. All rights reserved.
 //
 
-#import "FSTableViewVC.h"
+#import "FSSuperVC.h"
 
-@interface FSCommunitySecVC : FSTableViewVC
+@interface FSCommunitySecVC : FSSuperVC
+
+// 板块id
+- (instancetype)initWithFourmId:(NSInteger )fourmId;
 
 @end

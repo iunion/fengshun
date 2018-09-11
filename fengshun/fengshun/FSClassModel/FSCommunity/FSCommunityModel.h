@@ -8,34 +8,41 @@
 
 #import <Foundation/Foundation.h>
 
-@class FSCommunityForumListModel;
+@class FSForumModel;
 
-#pragma mark - 推荐帖子model
+#pragma mark - 帖子模型
+@interface FSTopicModel : NSObject
 
-@interface FSCommunityTopicListModel : NSObject
 // 帖子id
 @property (nonatomic, strong) NSString *m_Id;
+// 版块Id
+@property (nonatomic, strong) NSString *m_ForumId;
 // 版块icon
 @property (nonatomic, strong) NSString *m_IconUrl;
 // 版块名称
 @property (nonatomic, strong) NSString *m_ForumName;
-// 是否置顶
-@property (nonatomic, assign) BOOL m_TopFlag;
 // 帖子标题
-@property (nonatomic, strong) NSString *m_PostsTitle;
+@property (nonatomic, strong) NSString *m_Title;
+// 发贴时间
+@property (nonatomic, assign) NSTimeInterval m_CreateTime;
 // 最后回贴时间
-@property (nonatomic, assign) NSInteger m_PostsLastReplyTime;
+@property (nonatomic, assign) NSTimeInterval m_LastReplyTime;
+// 帖子评论数
+@property (nonatomic, assign) NSUInteger m_CommentCount;
+
+// 用户Id
+@property (nonatomic, strong) NSString *m_UserId;
 // 用户昵称
 @property (nonatomic, strong) NSString *m_NickName;
-// 帖子评论数
-@property (nonatomic, assign) NSInteger m_CommentCount;
-// 发贴时间
-@property (nonatomic, assign) NSInteger m_PostsCreateTime;
 
-+ (NSArray *)communityRecommendListModelArr:(NSArray *)list;
+// 是否置顶
+@property (nonatomic, assign) BOOL m_TopFlag;
 
-// 刷新model
-- (void)updateTopicModel:(NSDictionary *)data;
++ (instancetype)topicWithServerDic:(NSDictionary *)dic;
+
++ (NSArray *)communityRecommendListModelArr:(NSArray *)arr;
+
+- (void)updateWithServerDic:(NSDictionary *)dic;
 
 @end
 
@@ -47,13 +54,13 @@
 // 板块图片
 @property (nonatomic, strong) NSString *m_IconUrl;
 // modelList
-@property (nonatomic, strong) NSArray<FSCommunityForumListModel *> *m_List;
+@property (nonatomic, strong) NSArray<FSForumModel *> *m_List;
 
 + (NSArray *)plateModelWithArr:(NSArray *)dataArray;
 
 @end
 
-@interface FSCommunityForumListModel : NSObject
+@interface FSForumModel : NSObject
 // 二级版块id
 @property (nonatomic, assign) NSInteger m_Id;
 // 封面图片
@@ -70,9 +77,15 @@
 @property (nonatomic, assign) BOOL m_AttentionFlag;
 // 二级版块名称
 @property (nonatomic, strong) NSString *m_ForumNameSecond;
+
++ (instancetype)forumModelWithServerDic:(NSDictionary *)dic;
 // 刷新model
 - (void)updateForumModel:(NSDictionary *)data;
 
 @end
+
+
+
+
 
 

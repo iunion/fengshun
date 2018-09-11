@@ -17,9 +17,9 @@
 
 @implementation FSPushVCManager
 
-+ (void)showCommunitySecVCPushVC:(UIViewController *)pushVC
++ (void)showCommunitySecVCPushVC:(UIViewController *)pushVC FourmId:(NSInteger)fourId
 {
-    FSCommunitySecVC *vc        = [[FSCommunitySecVC alloc] init];
+    FSCommunitySecVC *vc        = [[FSCommunitySecVC alloc] initWithFourmId:fourId];
     vc.hidesBottomBarWhenPushed = YES;
     [pushVC.navigationController pushViewController:vc animated:YES];
 }

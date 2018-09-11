@@ -8,12 +8,30 @@
 
 #import "FSForumDetailListCell.h"
 
+@interface FSForumDetailListCell()
+
+// 帖子标题
+@property (weak, nonatomic) IBOutlet UILabel *m_TitleLab;
+// 发帖时间
+@property (weak, nonatomic) IBOutlet UILabel *m_TimeLab;
+// 发帖人
+@property (weak, nonatomic) IBOutlet UILabel *m_UsernameLab;
+// 置顶View
+@property (weak, nonatomic) IBOutlet UIView *m_StickView;
+// 评论按钮
+@property (weak, nonatomic) IBOutlet UIButton *m_CommentBtn;
+
+@end
+
 @implementation FSForumDetailListCell
 
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    // Initialization code
+}
+
+- (void)makeCellStyle
+{
     [_m_StickView bm_roundedRect:_m_StickView.bm_height / 2];
     [_m_CommentBtn bm_layoutButtonWithEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:5];
 }

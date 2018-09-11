@@ -9,16 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface FSForumDetailListCell : UITableViewCell
-// 帖子标题
-@property (weak, nonatomic) IBOutlet UILabel *m_TitleLab;
-// 发帖时间
-@property (weak, nonatomic) IBOutlet UILabel *m_TimeLab;
-// 发帖人
-@property (weak, nonatomic) IBOutlet UILabel *m_UsernameLab;
-// 置顶View
-@property (weak, nonatomic) IBOutlet UIView *m_StickView;
-// 评论按钮
-@property (weak, nonatomic) IBOutlet UIButton *m_CommentBtn;
+
 
 
 @end

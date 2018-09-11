@@ -135,6 +135,8 @@
     self[@"BMCheckBoxGroupItem"] = @"BMTableViewCheckBoxGroupCell";
     self[@"BMSliderItem"] = @"BMTableViewSliderCell";
     self[@"BMImageDetailItem"] = @"BMTableViewImageDetailCell";
+    self[@"BMCombineItem"] = @"BMTableViewCombineCell";
+
 
     // add your Class here
 }

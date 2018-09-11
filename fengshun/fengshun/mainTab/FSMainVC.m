@@ -34,7 +34,7 @@ FSMainVC () <
 @property (nonatomic, strong) NSArray<FSBannerModel *> *            m_banners;
 @property (nonatomic, strong) NSArray<FSHomePageToolModel *> *      m_tools;
 @property (nonatomic, strong) NSArray<FSCourseRecommendModel *> *   m_courses;
-@property (nonatomic, strong) NSArray<FSCommunityTopicListModel *> *m_topics;
+@property (nonatomic, strong) NSArray<FSForumModel *> *m_topics;
 @property (nonatomic, strong) NSArray *                             m_caseHotkeys;
 
 @end
@@ -259,7 +259,8 @@ FSMainVC () <
     NSArray *courses = [data bm_arrayForKey:@"hotRecommends"];
     self.m_courses     = [FSCourseRecommendModel modelsWithDataArray:courses];
     NSArray *topics  = [data bm_arrayForKey:@"bestPosts"];
-    self.m_topics    = [FSCommunityTopicListModel communityRecommendListModelArr:topics];
+    
+    self.m_topics    = [FSTopicModel communityRecommendListModelArr:topics];
     
     [self freshUI];
     return [super succeedLoadedRequestWithDic:data];

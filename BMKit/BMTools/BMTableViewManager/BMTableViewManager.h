@@ -27,6 +27,7 @@
 #import "BMCheckBoxGroupItem.h"
 #import "BMSliderItem.h"
 #import "BMImageDetailItem.h"
+#import "BMCombineItem.h"
 
 #import "BMTableViewTextCell.h"
 #import "BMTableViewMaskTextCell.h"
@@ -40,6 +41,7 @@
 #import "BMTableViewCheckBoxGroupCell.h"
 #import "BMTableViewSliderCell.h"
 #import "BMTableViewImageDetailCell.h"
+#import "BMTableViewCombineCell.h"
 
 @protocol BMTableViewManagerDelegate;
 

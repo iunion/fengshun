@@ -11,7 +11,7 @@
 
 #define FS_URL_SERVER       (@"https://devftls.odrcloud.net")
 
-#define FS_H5_SERVER        (@"https://mobile.xxx.com")
+#define FS_H5_SERVER        (@"https://devftlsh5.odrcloud.net")
 
 // 一般API超时时间
 #define FSAPI_TIMEOUT_SECONDS               (30.0f)

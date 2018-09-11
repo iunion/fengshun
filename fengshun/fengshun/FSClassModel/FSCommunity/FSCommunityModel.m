@@ -9,52 +9,89 @@
 #import "FSCommunityModel.h"
 
 
-@implementation FSCommunityTopicListModel
+@implementation FSTopicModel
 
-+ (NSArray *)communityRecommendListModelArr:(NSArray *)list
++ (instancetype)topicWithServerDic:(NSDictionary *)dic
 {
-    NSMutableArray *data = [NSMutableArray array];
-    for (id object in list)
+    if (![dic bm_isNotEmptyDictionary])
     {
-        if ([object isKindOfClass:[NSDictionary class]])
+        return nil;
+    }
+
+    NSString *topicId = [dic bm_stringTrimForKey:@"id"];
+    if (![topicId bm_isNotEmpty])
+    {
+        return nil;
+    }
+
+    FSTopicModel *topic = [[FSTopicModel alloc] init];
+    [topic updateWithServerDic:dic];
+
+    if ([topic.m_Id bm_isNotEmpty])
+    {
+        return topic;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+- (void)updateWithServerDic:(NSDictionary *)dic
+{
+    if (![dic bm_isNotEmptyDictionary])
+    {
+        return;
+    }
+
+    // id不存在不修改
+
+    NSString *topicId = [dic bm_stringTrimForKey:@"id"];
+    if (![topicId bm_isNotEmpty])
+    {
+        return;
+    }
+    self.m_Id = topicId;
+
+    // 版块Id
+    // m_ForumId;
+    // 版块icon
+    self.m_IconUrl = [dic bm_stringTrimForKey:@"iconUrl"];
+    // 版块名称
+    self.m_ForumName = [dic bm_stringTrimForKey:@"forumName"];
+    // 帖子标题
+    self.m_Title = [dic bm_stringTrimForKey:@"postsTitle"];
+    // 发贴时间
+    self.m_CreateTime = [dic bm_doubleForKey:@"postsCreateTime"] / 1000;
+    // 最后回贴时间
+    self.m_LastReplyTime = [dic bm_doubleForKey:@"postsLastReplyTime"] / 1000;
+    // 帖子评论数
+    self.m_CommentCount = [dic bm_uintForKey:@"commentCount"];
+
+    // 用户Id
+    //self.m_UserId;
+    // 用户昵称
+    self.m_NickName = [dic bm_stringForKey:@"nickName"];
+
+    // 是否置顶
+    self.m_TopFlag = [dic bm_boolForKey:@"topFlag"];
+}
+
++ (NSArray *)communityRecommendListModelArr:(NSArray *)arr
+{
+    NSMutableArray *data = [NSMutableArray arrayWithCapacity:0];
+    if ([arr bm_isNotEmpty])
+    {
+        for (NSDictionary *dic in arr)
         {
-            NSDictionary *             param  = object;
-            FSCommunityTopicListModel *aModel = [FSCommunityTopicListModel new];
-            aModel.m_Id                       = [param bm_stringForKey:@"id"];
-            aModel.m_IconUrl                  = [param bm_stringForKey:@"iconUrl"];
-            aModel.m_CommentCount             = [param bm_intForKey:@"commentCount"];
-            aModel.m_ForumName                = [param bm_stringForKey:@"forumName"];
-            aModel.m_NickName                 = [param bm_stringForKey:@"nickName"];
-            aModel.m_PostsCreateTime          = [param bm_intForKey:@"postsCreateTime"];
-            aModel.m_TopFlag                  = [param bm_boolForKey:@"topFlag"];
-            aModel.m_PostsLastReplyTime       = [param bm_intForKey:@"postsLastReplyTime"];
-            aModel.m_PostsTitle               = [param bm_stringForKey:@"postsTitle"];
-            [data addObject:aModel];
+            FSTopicModel *model = [FSTopicModel topicWithServerDic:dic];
+            if (model)
+            {
+                [data addObject:model];
+            }
         }
     }
     return data;
-}
-
-- (void)updateTopicModel:(NSDictionary *)data
-{
-    if (![data bm_isNotEmptyDictionary])
-    {
-        return;
-    }
-    // id不存在不修改
-    if (![[data bm_stringForKey:@"id"] bm_isNotEmpty])
-    {
-        return;
-    }
-    self.m_Id                 = [data bm_stringForKey:@"id"];
-    self.m_IconUrl            = [data bm_stringForKey:@"iconUrl"];
-    self.m_CommentCount       = [data bm_intForKey:@"commentCount"];
-    self.m_ForumName          = [data bm_stringForKey:@"forumName"];
-    self.m_NickName           = [data bm_stringForKey:@"nickName"];
-    self.m_PostsCreateTime    = [data bm_intForKey:@"postsCreateTime"];
-    self.m_TopFlag            = [data bm_boolForKey:@"topFlag"];
-    self.m_PostsLastReplyTime = [data bm_intForKey:@"postsLastReplyTime"];
-    self.m_PostsTitle         = [data bm_stringForKey:@"postsTitle"];
 }
 
 @end
@@ -80,16 +117,12 @@
                     NSMutableArray *arr = [NSMutableArray array];
                     for (NSDictionary *dic in [param bm_arrayForKey:@"list"])
                     {
-                        FSCommunityForumListModel *listModel = [FSCommunityForumListModel new];
-                        listModel.m_AttentionCount           = [dic bm_intForKey:@"attentionCount"];
-                        listModel.m_Description              = [dic bm_stringForKey:@"description"];
-                        listModel.m_ForumNameFirst           = [dic bm_stringForKey:@"forumNameFirst"];
-                        listModel.m_ForumNameSecond          = [dic bm_stringForKey:@"forumNameSecond"];
-                        listModel.m_IconUrl                  = [dic bm_stringForKey:@"iconUrl"];
-                        listModel.m_Id                       = [dic bm_intForKey:@"id"];
-                        listModel.m_PostsCount               = [dic bm_intForKey:@"postsCount"];
-                        listModel.m_AttentionFlag            = [dic bm_boolForKey:@"attentionFlag"];
-                        [arr addObject:listModel];
+                        FSForumModel *listModel = [FSForumModel new];
+                        [listModel updateForumModel:dic];
+                        if (listModel)
+                        {
+                            [arr addObject:listModel];
+                        }
                     }
                     aModel.m_List = arr.mutableCopy;
                 }
@@ -102,7 +135,18 @@
 
 @end
 
-@implementation FSCommunityForumListModel
+@implementation FSForumModel
+
++ (instancetype)forumModelWithServerDic:(NSDictionary *)dic
+{
+    if (![dic bm_isNotEmptyDictionary])
+    {
+        return nil;
+    }
+    FSForumModel *model = [FSForumModel new];
+    [model updateForumModel:dic];
+    return model;
+}
 
 - (void)updateForumModel:(NSDictionary *)data
 {
@@ -115,13 +159,21 @@
     {
         return;
     }
-    self.m_AttentionCount  = [data bm_intForKey:@"attentionCount"];
-    self.m_Description     = [data bm_stringForKey:@"description"];
-    self.m_ForumNameFirst  = [data bm_stringForKey:@"forumNameFirst"];
+    //关注数
+    self.m_AttentionCount = [data bm_intForKey:@"attentionCount"];
+    //描述
+    self.m_Description = [data bm_stringForKey:@"description"];
+    // 第一板块名称
+    self.m_ForumNameFirst = [data bm_stringForKey:@"forumNameFirst"];
+    // 第二季名称
     self.m_ForumNameSecond = [data bm_stringForKey:@"forumNameSecond"];
-    self.m_IconUrl         = [data bm_stringForKey:@"iconUrl"];
-    self.m_Id              = [data bm_intForKey:@"id"];
-    self.m_PostsCount      = [data bm_intForKey:@"postsCount"];
+    // 板块图片
+    self.m_IconUrl = [data bm_stringForKey:@"iconUrl"];
+    // 板块id
+    self.m_Id = [data bm_intForKey:@"id"];
+    // 发帖数
+    self.m_PostsCount = [data bm_intForKey:@"postsCount"];
+    // 是否关注
     self.m_AttentionFlag   = [data bm_boolForKey:@"attentionFlag"];
 }
 

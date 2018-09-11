@@ -123,12 +123,12 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="m_AttentionNumLab" destination="3el-7s-Lkn" id="idx-6E-i0m"/>
-                <outlet property="m_ContentLab" destination="f30-FJ-tDz" id="wg2-mh-d5R"/>
-                <outlet property="m_DoBtn" destination="l84-Tr-GaT" id="nHp-6N-hov"/>
-                <outlet property="m_ImgView" destination="N3Z-0x-wff" id="zHe-Rw-lkf"/>
-                <outlet property="m_NoteNumLab" destination="rMF-tI-vT6" id="IV4-u1-kr6"/>
-                <outlet property="m_TitleLab" destination="i3i-sj-JVa" id="1dg-Gv-LLr"/>
+                <outlet property="m_AttentionNumLab" destination="3el-7s-Lkn" id="Rt3-GA-xP8"/>
+                <outlet property="m_ContentLab" destination="f30-FJ-tDz" id="n7F-xR-5Df"/>
+                <outlet property="m_DoBtn" destination="l84-Tr-GaT" id="0Pm-0Q-2cc"/>
+                <outlet property="m_ImgView" destination="N3Z-0x-wff" id="Ifr-TG-5NW"/>
+                <outlet property="m_NoteNumLab" destination="rMF-tI-vT6" id="KS5-S1-tbu"/>
+                <outlet property="m_TitleLab" destination="i3i-sj-JVa" id="XR6-1J-Ze4"/>
             </connections>
             <point key="canvasLocation" x="58.5" y="69"/>
         </tableViewCell>

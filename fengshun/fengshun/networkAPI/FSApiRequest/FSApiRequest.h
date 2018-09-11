@@ -11,16 +11,14 @@
 #import "FSAPIMacros.h"
 #import "XMRequestManager.h"
 
-typedef NS_ENUM(NSUInteger, FSVerificationCodeType)
-{
-    FSVerificationCodeType_Unknown = 0,
-    FSMVerificationCodeType_Register = 1,
-    FSVerificationCodeType_ResetPassword = 2,
+typedef NS_ENUM(NSUInteger, FSVerificationCodeType) {
+    FSVerificationCodeType_Unknown        = 0,
+    FSMVerificationCodeType_Register      = 1,
+    FSVerificationCodeType_ResetPassword  = 2,
     FSVerificationCodeType_UpdatePhoneNum = 3
 };
 
-typedef NS_ENUM(NSUInteger, FSUpdateUserInfoOperaType)
-{
+typedef NS_ENUM(NSUInteger, FSUpdateUserInfoOperaType) {
     FSUpdateUserInfo_AvatarImageUrl = 0,
     FSUpdateUserInfo_NickName,
     FSUpdateUserInfo_RealName,
@@ -29,6 +27,26 @@ typedef NS_ENUM(NSUInteger, FSUpdateUserInfoOperaType)
     FSUpdateUserInfo_WorkTime,
     FSUpdateUserInfo_Ability,
     FSUpdateUserInfo_Signature
+};
+
+/**
+ 排序方式
+ 
+ - FSTopicSortTypeNewReply: 最新回复
+ - FSTopicSortTypeNewPulish: 最新发布
+ - FSTopicSortTypeHot: 热门
+ - FSTopicSortTypeEssence: 精华
+ */
+typedef NS_ENUM(NSUInteger, FSTopicSortType) {
+    FSTopicSortTypeNewReply,   //最新回复
+    FSTopicSortTypeNewPulish,  //最新发布
+    FSTopicSortTypeHot,        //热门
+    FSTopicSortTypeEssence     //精华
+};
+
+typedef NS_ENUM(NSUInteger, FSForumFollowState) {
+    FSForumFollowState_Follow,         //关注
+    FSForumFollowState_Cancel_FOLLOW,  // 取关
 };
 
 NS_ASSUME_NONNULL_BEGIN
@@ -84,6 +102,18 @@ NS_ASSUME_NONNULL_BEGIN
 // http://123.206.193.140:8121/swagger-ui.html#/%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF/updateUserBaseInfoUsingPOST
 + (nullable NSMutableURLRequest *)updateUserInfoWithOperaType:(FSUpdateUserInfoOperaType)operaType changeValue:(id)value;
 
+// 修改手机号码
+// http://123.206.193.140:8121/swagger-ui.html#/%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF/updateMobilePhoneUsingPOST
++ (nullable NSMutableURLRequest *)changeMobilePhoneWithOldPhoneNum:(NSString *)oldPhoneNum oldVerificationCode:(NSString *)oldVerificationCode newPhoneNum:(NSString *)newPhoneNum newVerificationCode:(NSString *)newVerificationCode;
+
+// 修改密码
+// http://123.206.193.140:8121/swagger-ui.html#/%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF/updatePasswordUsingPOST
++ (nullable NSMutableURLRequest *)changeUserPasswordWithPhoneNum:(NSString *)phoneNum newPassword:(NSString *)password verificationCode:(NSString *)verificationCode;
+
+// 实名认证
+// http://123.206.193.140:8121/swagger-ui.html#/%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF/setRealNameAuthenticationUsingPOST
++ (nullable NSMutableURLRequest *)authenticationWithId:(NSString *)idCard name:(NSString *)name;
+
 
 // 刷新token
 // https://devftls.odrcloud.net/swagger-ui.html#/%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF/refreshTokenUsingPOST
@@ -131,67 +161,46 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FSApiRequest (Community)
 
+// 获取推荐帖子列表
+// http://123.206.193.140:8121/swagger-ui.html#/%E7%A4%BE%E5%8C%BA%E9%A6%96%E9%A1%B5/recommendListUsingPOST
++ (nullable NSMutableURLRequest *)getPlateRecommendPostListWithPageIndex:(NSInteger)pageIndex
+                                                                pageSize:(NSInteger)pageSize;
+// 获取板块列表列表
+// http://123.206.193.140:8121/swagger-ui.html#/%E7%A4%BE%E5%8C%BA%E9%A6%96%E9%A1%B5/recommendListUsingPOST
++ (nullable NSMutableURLRequest *)getForumListWithPageIndex:(NSInteger)pageIndex
+                                                   pageSize:(NSInteger)pageSize;
 
-/**
- 获取板块推荐列表
- 
- @return XMRequest
- */
 
-+ (XMRequest *)getPlateRecommendPostListWithPageIndex:(NSInteger)pageIndex
-                                             pageSize:(NSInteger)pageSize
-                                              success:(nullable XMSuccessBlock)successBlock
-                                              failure:(nullable XMFailureBlock)failureBlock;
+// 获取二级页面header信息
+// http://123.206.193.140:8121/swagger-ui.html#/operations/社区首页/twoLevelFourmInfoUsingPOST
++ (XMRequest *)getTwoLevelFourmInfoWithId:(NSInteger)topicId
+                                  success:(nullable XMSuccessBlock)successBlock
+                                  failure:(nullable XMFailureBlock)failureBlock;
 
-/**
- 获取板块列表
- 
- @return XMRequest
- */
+// 获取二级列表：最新回复、最新发帖、热门、精华
+// http://123.206.193.140:8121/swagger-ui.html#/operations/社区首页/newReplyListUsingPOST
++ (nullable NSMutableURLRequest *)getTopicListWithType:(FSTopicSortType)type
+                                               forumId:(NSInteger)forumId
+                                             pageIndex:(NSInteger)pageIndex
+                                              pageSize:(NSInteger)pageSize;
 
-+ (XMRequest *)getPlateListWithPageIndex:(NSInteger)pageIndex
-                                pageSize:(NSInteger)pageSize
-                                 success:(nullable XMSuccessBlock)successBlock
-                                 failure:(nullable XMFailureBlock)failureBlock;
-/**
- 编辑帖子
- 
- @param title 标题
- @param content 内容
- @param postId 帖子Id
- @return XMRequest
- */
-+ (XMRequest *)editPostsWithTitle:(NSString *)title
-                          content:(NSString *)content
-                           postId:(NSInteger)postId
-                          success:(nullable XMSuccessBlock)successBlock
-                          failure:(nullable XMFailureBlock)failureBlock;
-/**
- 发帖
- 
- @param title 标题
- @param content 内容
- @param forumId 版块ID
- @return XMRequest
- */
+// 关注板块/取消关注
+// http://123.206.193.140:8121/swagger-ui.html#/operations/社区首页/followOrUnFollowUsingPOST
++ (XMRequest *)updateFourmAttentionStateWithFourmId:(NSInteger )fourmId
+                                       followStatus:(FSForumFollowState )followStatus
+                                            success:(nullable XMSuccessBlock)successBlock
+                                            failure:(nullable XMFailureBlock)failureBlock;
+
+#pragma mark - 帖子相关
+// 发帖编辑帖子
+// http://123.206.193.140:8121/swagger-ui.html#/operations/帖子信息/addPostUsingPOST
+// http://123.206.193.140:8121/swagger-ui.html#/operations/帖子信息/editPostUsingPOST
 + (XMRequest *)sendPostsWithTitle:(NSString *)title
                           content:(NSString *)content
                           forumId:(NSInteger)forumId
+                         isEdited:(BOOL)isEdited
                           success:(nullable XMSuccessBlock)successBlock
                           failure:(nullable XMFailureBlock)failureBlock;
-/**
- 帖子评论列表
- 
- @param detailId 帖子ID/课程ID
- @param maxId 上次请求返回中的maxId，最大的Id
- @param pageSize 每页的数量
- @return XMRequest
- */
-+ (XMRequest *)getPostCommentListWithDetailId:(NSInteger)detailId
-                                        maxId:(NSInteger)maxId
-                                     pageSize:(NSInteger)pageSize
-                                      success:(nullable XMSuccessBlock)successBlock
-                                      failure:(nullable XMFailureBlock)failureBlock;
 
 @end
 

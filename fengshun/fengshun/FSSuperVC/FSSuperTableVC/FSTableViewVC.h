@@ -10,6 +10,11 @@
 #import "FSTableView.h"
 
 @interface FSTableViewVC : FSSuperNetVC
+<
+    UITableViewDelegate,
+    UITableViewDataSource,
+    FSTableViewDelegate
+>
 {
     // 当前页
     NSUInteger s_LoadedPage;
@@ -33,7 +38,7 @@
 @property (nonatomic, strong, readonly) FSTableView *m_TableView;
 
 // 内容数据
-@property (nonatomic, strong, readonly) NSMutableArray *m_DataArray;
+@property (nonatomic, strong) NSMutableArray *m_DataArray;
 
 // 是否刷新数据
 @property (nonatomic, assign, readonly) BOOL m_IsLoadNew;

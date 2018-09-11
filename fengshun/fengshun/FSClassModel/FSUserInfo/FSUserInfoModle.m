@@ -117,7 +117,7 @@
     // 从业时间: employmentTime
     if ([dic bm_containsObjectForKey:@"employmentTime"])
     {
-        self.m_EmploymentTime = [dic bm_uintForKey:@"ability"];
+        self.m_EmploymentTime = [dic bm_uintForKey:@"employmentTime"];
     }
     
     // 个人签名: personalitySignature

@@ -12,11 +12,6 @@
 #define DEFAULT_COUNTPERPAGE    20
 
 @interface FSTableViewVC ()
-<
-    UITableViewDelegate,
-    UITableViewDataSource,
-    FSTableViewDelegate
->
 
 @property (nonatomic, strong) FSTableView *m_TableView;
 
@@ -24,7 +19,7 @@
 @property (nonatomic, strong) NSURLSessionDataTask *m_DataTask;
 
 // 内容数据
-@property (nonatomic, strong) NSMutableArray *m_DataArray;
+//@property (nonatomic, strong) NSMutableArray *m_DataArray;
 
 // 是否下拉刷新
 @property (nonatomic, assign) BOOL m_IsLoadNew;
