@@ -15,9 +15,9 @@
 #define BUTTON_FONTSIZE 16.0f
 #define BUTTON_MINWIDTH 30.0f
 
-#define GAPLINE_INDENT 5.0f
-#define GAPLINE_WIDTH 3.0f
-#define SEGMENT_LINE_COLOR FS_VIEW_BGCOLOR
+#define GAPLINE_INDENT 10.0f
+#define GAPLINE_WIDTH 2.0f
+#define SEGMENT_LINE_COLOR UI_COLOR_B6
 
 #define BUTTON_START_TAG 100
 #define CIRCLE_RADIUS 10.0f
@@ -83,7 +83,7 @@ FSScrollPageSegment ()
 }
 - (instancetype)initWithFrame:(CGRect)frame titles:(NSArray *)titles titleColor:(UIColor *)titleColor selectTitleColor:(UIColor *)selectTitleColor showUnderLine:(BOOL)showUnderLine moveLineFrame:(CGRect)moveLineFrame isEqualDivide:(BOOL)isEqualDivide fresh:(BOOL)fresh
 {
-    return [self initWithFrame:frame titles:titles titleColor:titleColor selectTitleColor:selectTitleColor showUnderLine:showUnderLine moveLineFrame:moveLineFrame isEqualDivide:isEqualDivide fresh:fresh showTopline:NO showGapline:NO];
+    return [self initWithFrame:frame titles:titles titleColor:titleColor selectTitleColor:selectTitleColor showUnderLine:showUnderLine moveLineFrame:moveLineFrame isEqualDivide:isEqualDivide fresh:fresh showTopline:NO showGapline:YES];
 }
 - (instancetype)initWithFrame:(CGRect)frame titles:(NSArray *)titles titleColor:(UIColor *)titleColor selectTitleColor:(UIColor *)selectTitleColor showUnderLine:(BOOL)showUnderLine moveLineFrame:(CGRect)moveLineFrame isEqualDivide:(BOOL)isEqualDivide fresh:(BOOL)fresh showTopline:(BOOL)showTopline showGapline:(BOOL)showGapline
 {
