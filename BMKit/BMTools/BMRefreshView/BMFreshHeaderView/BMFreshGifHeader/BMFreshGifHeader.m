@@ -97,11 +97,15 @@
     // 停止动画
     [self.gifImageView stopAnimating];
     
+    NSUInteger index = 0;
     // 设置当前需要显示的图片
-    NSUInteger index = images.count * self.pullingPercent;
-    if (index >= images.count)
+    if (self.pullingPercent >= 0.5f)
     {
-        index = images.count - 1;
+        index = images.count * (self.pullingPercent-0.5)*2;
+        if (index >= images.count)
+        {
+            index = images.count - 1;
+        }
     }
     self.gifImageView.image = images[index];
 }
