@@ -569,6 +569,7 @@
 		AD2244DC213D158800F2DC47 /* FSForumDetailListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD2244DA213D158800F2DC47 /* FSForumDetailListCell.xib */; };
 		AD2244DF213D1FE700F2DC47 /* FSCommunityHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD2244DE213D1FE700F2DC47 /* FSCommunityHeaderView.xib */; };
 		AD2244E2213D1FF900F2DC47 /* FSCommunityHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2244E1213D1FF900F2DC47 /* FSCommunityHeaderView.m */; };
+		AD4691DD2148BE34008CAF27 /* FSH5DemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD4691DC2148BE34008CAF27 /* FSH5DemoVC.m */; };
 		AD47EFDC2137EBF0004A345F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD47EFDB2137EBF0004A345F /* Launch Screen.storyboard */; };
 		AD510298213E560F008CD74D /* FSApiRequest+Community.m in Sources */ = {isa = PBXBuildFile; fileRef = AD510297213E560F008CD74D /* FSApiRequest+Community.m */; };
 		AD51029C213E6212008CD74D /* FSCommunityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD51029B213E6212008CD74D /* FSCommunityModel.m */; };
@@ -1746,6 +1747,8 @@
 		AD2244DE213D1FE700F2DC47 /* FSCommunityHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSCommunityHeaderView.xib; sourceTree = "<group>"; };
 		AD2244E0213D1FF900F2DC47 /* FSCommunityHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCommunityHeaderView.h; sourceTree = "<group>"; };
 		AD2244E1213D1FF900F2DC47 /* FSCommunityHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCommunityHeaderView.m; sourceTree = "<group>"; };
+		AD4691DB2148BE34008CAF27 /* FSH5DemoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSH5DemoVC.h; sourceTree = "<group>"; };
+		AD4691DC2148BE34008CAF27 /* FSH5DemoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSH5DemoVC.m; sourceTree = "<group>"; };
 		AD47EFDB2137EBF0004A345F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		AD510297213E560F008CD74D /* FSApiRequest+Community.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "FSApiRequest+Community.m"; sourceTree = "<group>"; };
 		AD51029A213E6212008CD74D /* FSCommunityModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCommunityModel.h; sourceTree = "<group>"; };
@@ -4174,6 +4177,8 @@
 				AD5102A5213E783E008CD74D /* FSSendTopicVC.h */,
 				AD5102A6213E783E008CD74D /* FSSendTopicVC.m */,
 				AD5102A7213E783E008CD74D /* FSSendTopicVC.xib */,
+				AD4691DB2148BE34008CAF27 /* FSH5DemoVC.h */,
+				AD4691DC2148BE34008CAF27 /* FSH5DemoVC.m */,
 			);
 			path = communityTab;
 			sourceTree = "<group>";
@@ -5061,6 +5066,7 @@
 				87426AC32133AA9D003C52F6 /* FSApiRequest.m in Sources */,
 				8730B04F2140FFA2004331A9 /* DTTextHTMLElement.m in Sources */,
 				8730B0652140FFA3004331A9 /* NSURL+DTComparing.m in Sources */,
+				AD4691DD2148BE34008CAF27 /* FSH5DemoVC.m in Sources */,
 				87426AF621353510003C52F6 /* FSDBVersionCheck.m in Sources */,
 				87426904212E7E36003C52F6 /* NSString+BMMandarinLatin.m in Sources */,
 				87D209E72138FF46001EDD60 /* RSKInternalUtility.m in Sources */,

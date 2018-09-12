@@ -55,6 +55,7 @@ FSCommunitySecVC () <
 
     [self createUI];
     [self loadApiData];
+    [self getHeaderInfoMsg];
 }
 
 - (void)didReceiveMemoryWarning
@@ -158,6 +159,18 @@ FSCommunitySecVC () <
     return NO;
 }
 
+- (void)getHeaderInfoMsg
+{
+    [FSApiRequest getTwoLevelFourmInfoWithId:self.m_FourmId success:^(id  _Nullable responseObject) {
+        if ([[responseObject bm_dictionaryForKey:@"communityForumDTO"] bm_isNotEmptyDictionary])
+        {
+            FSForumModel *model = [FSForumModel forumModelWithServerDic:[responseObject bm_dictionaryForKey:@"communityForumDTO"]];
+            [_m_HeaderView updateHeaderViewWith:model];
+        }
+    } failure:^(NSError * _Nullable error) {
+        
+    }];
+}
 /*
 #pragma mark - Navigation
 

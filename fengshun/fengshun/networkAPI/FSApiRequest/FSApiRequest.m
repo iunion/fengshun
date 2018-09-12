@@ -85,7 +85,7 @@
         // 设备型号
         [FSRequestSerializer setValue:[UIDevice bm_devicePlatformString] forHTTPHeaderField:@"deviceModel"];
         // 设备系统类型
-        [FSRequestSerializer setValue:@"iOS" forHTTPHeaderField:@"cType"];
+        [FSRequestSerializer setValue:@"IOS" forHTTPHeaderField:@"cType"];
         // 系统版本号
         [FSRequestSerializer setValue:CURRENT_SYSTEMVERSION forHTTPHeaderField:@"osVersion"];
         // app名称

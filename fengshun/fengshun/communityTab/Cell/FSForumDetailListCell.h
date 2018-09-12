@@ -11,6 +11,8 @@
 
 @interface FSForumDetailListCell : UITableViewCell
 
++ (CGFloat)cellHeight;
+
 - (void)showWithTopicModel:(FSTopicModel *)model;
 
 @end

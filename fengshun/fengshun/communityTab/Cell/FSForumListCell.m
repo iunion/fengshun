@@ -26,6 +26,10 @@
 
 @implementation FSForumListCell
 
++ (CGFloat)cellHeight{
+    return 102;
+}
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];
@@ -49,7 +53,7 @@
 
 - (void)showWithFSCommunityForumListModel:(FSForumModel *)aModel
 {
-    [self.m_ImgView sd_setImageWithURL:[aModel.m_IconUrl bm_toURL]placeholderImage:nil options:SDWebImageRetryFailed | SDWebImageLowPriority];
+    [self.m_ImgView sd_setImageWithURL:[aModel.m_IconUrlSecond bm_toURL]placeholderImage:nil options:SDWebImageRetryFailed | SDWebImageLowPriority];
     self.m_TitleLab.text        = aModel.m_ForumNameSecond;
     self.m_ContentLab.text      = aModel.m_Description;
     self.m_AttentionNumLab.text = [NSString stringWithFormat:@"%ld", aModel.m_AttentionCount];
