@@ -176,6 +176,16 @@
     return request;
 }
 
+// 通过最顶级字典code，一次性查出来所有的子集数据
++ (NSMutableURLRequest *)getDictionaryInfoWithLevelCode:(NSString *)levelCode
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/dictionary/searchDictionaryInfoByTopLevelCode", FS_URL_SERVER];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    
+    [parameters bm_setApiString:levelCode forKey:@"topLevelCode"];
+    
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
+}
 
 
 @end
