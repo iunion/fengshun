@@ -95,9 +95,16 @@
     [self setNeedsLayout];
 }
 
-- (void)setContainerLeftGap:(CGFloat)containerLeftGap
+- (void)setContainerXOffset:(CGFloat)containerXOffset
 {
-    _containerLeftGap = containerLeftGap;
+    _containerXOffset = containerXOffset;
+    
+    [self setNeedsLayout];
+}
+
+- (void)setContainerYOffset:(CGFloat)containerYOffset
+{
+    _containerYOffset = containerYOffset;
     
     [self setNeedsLayout];
 }
@@ -118,8 +125,9 @@
     
     self.containerSize = CGSizeMake(BMFreshDefaultContainerSize, BMFreshDefaultContainerSize);
     self.containerLabelGap = BMFreshDefaultContainerLabelGap;
-    self.containerLeftGap = 0;
-    
+    self.containerXOffset = 0;
+    self.containerYOffset = 0;
+
     [self setFreshTitle:BMFRESH_DEFAULT_NORMALHEADERTEXT forState:BMFreshStateIdle];
     [self setFreshTitle:BMFRESH_DEFAULT_WILLLOADHEADERTEXT forState:BMFreshStateWillRefresh];
     [self setFreshTitle:BMFRESH_DEFAULT_LOADINGHEADERTEXT forState:BMFreshStateRefreshing];
@@ -152,7 +160,8 @@
     self.containerView.bm_height = self.containerSize.height;
     
     // container中心点
-    CGFloat containerCenterX = self.bm_width * 0.5 + self.containerLeftGap;
+    CGFloat containerCenterX = self.bm_width * 0.5 + self.containerXOffset;
+    CGFloat containerCenterY = self.bm_height * 0.5 + self.containerYOffset;
     
     // 刷新文本
     CGFloat textWidth = 0;
@@ -170,7 +179,7 @@
     if (textWidth)
     {
         containerCenterX = containerCenterX - (textWidth * 0.5 + self.containerLabelGap);
-        self.messageLabel.bm_left = self.bm_width * 0.25 + self.containerLeftGap;
+        self.messageLabel.bm_left = self.bm_width * 0.25 + self.containerXOffset;
         
         self.containerView.bm_centerX = containerCenterX - self.containerView.bm_width * 0.5;
     }
@@ -178,6 +187,9 @@
     {
         self.containerView.bm_centerX = containerCenterX;
     }
+    
+    self.containerView.bm_centerY = containerCenterY;
+    self.messageLabel.bm_centerY = containerCenterY;
 }
 
 @end

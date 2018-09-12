@@ -50,10 +50,37 @@
     // 初始化下拉刷新
     if (_m_FreshViewType & BMFreshViewType_Head)
     {
-        BMFreshFiveStarHeader *refreshHeaderView = [[BMFreshFiveStarHeader alloc] init];
+        BMFreshGifHeader *refreshHeaderView = [[BMFreshGifHeader alloc] init];
         self.bm_freshHeaderView = refreshHeaderView;
 
-        refreshHeaderView.starWidth = 40;
+        [refreshHeaderView setFreshTitles:nil];
+        refreshHeaderView.bm_height = 72.0f;
+        refreshHeaderView.containerSize = CGSizeMake(50.0f, 50.0f);
+        refreshHeaderView.containerYOffset = 8.0f;
+ 
+        NSMutableArray *idleImages = [NSMutableArray array];
+        for (NSUInteger i = 1; i<=26; i++)
+        {
+            UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"fsfreshidle_icon%@", @(i)]];
+            [idleImages addObject:image];
+        }
+        // 设置普通状态的动画图片
+        [refreshHeaderView setImages:idleImages forState:BMFreshStateIdle];
+
+        NSMutableArray *willfreshingImages = [NSMutableArray array];
+        [willfreshingImages addObject:[UIImage imageNamed:@"fsfreshidle_icon27"]];
+        // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
+        [refreshHeaderView setImages:willfreshingImages forState:BMFreshStateWillRefresh];
+
+        NSMutableArray *refreshingImages = [NSMutableArray array];
+        for (NSUInteger i = 1; i<=8; i++)
+        {
+            UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"fsfreshfreshing_icon%@", @(i)]];
+            [refreshingImages addObject:image];
+        }
+        // 设置正在刷新状态的动画图片
+        [refreshHeaderView setImages:refreshingImages forState:BMFreshStateRefreshing];
+
         refreshHeaderView.beginFreshingBlock = ^(BMFreshBaseView *freshView) {
             [weakSelf.tableViewDelegate freshDataWithTableView:self];
         };

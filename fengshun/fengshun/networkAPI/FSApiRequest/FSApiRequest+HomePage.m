@@ -53,4 +53,15 @@
     return [FSApiRequest makeRequestWithURL:urlStr parameters:parames];
 }
 
+// 文书范本
++ (XMRequest *)loadTextIndexPageDataSuccess:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
+{
+    return [XMRequestManager rm_requestWithApi:@"/storm/document/getDocumentHome" parameters:nil success:successBlock failure:failureBlock];
+}
++ (NSMutableURLRequest *)loadTextListyWithType:(NSString *)typeName andTypeCode:(NSString *)typeCode
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/document/getDocumentList", FS_URL_SERVER];
+    
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:@{@"documentName":typeName,@"documentTypeCodeEnums":typeCode}];
+}
 @end
