@@ -158,7 +158,14 @@ NS_ASSUME_NONNULL_BEGIN
 // http://122.112.248.222:13000/swagger-ui.html#!/391183584329702390348212821227861352682562832034/searchLawsUsingPOST
 +(NSMutableURLRequest *)searchLawsWithKeywords:(NSArray *)keywords start:(NSUInteger)startLocation size:(NSUInteger)size filters:(NSArray *)filters;
 
+// 文书范本Index页数据
+// http://115.159.33.190:8121/swagger-ui.html#/%E6%96%87%E4%B9%A6%E8%8C%83%E6%9C%AC/getDocumentHomeUsingPOST
++ (XMRequest *)loadTextIndexPageDataSuccess:(nullable XMSuccessBlock)successBlock
+                                    failure:(nullable XMFailureBlock)failureBlock;
 
+// 文书列表
+// http://115.159.33.190:8121/swagger-ui.html#/%E6%96%87%E4%B9%A6%E8%8C%83%E6%9C%AC/getDocumentListUsingPOST
++ (NSMutableURLRequest *)loadTextListyWithType:(NSString *)typeName andTypeCode:(NSString *)typeCode;
 
 @end
 

@@ -43,6 +43,10 @@
 
 @implementation FSTopicListCell
 
++ (CGFloat)cellHeight{
+    return 152;
+}
+
 - (void)dealloc
 {
     [self.m_TopicModel removeObserver:self forKeyPath:@"m_NickName"];
@@ -57,6 +61,7 @@
 
     [self makeCellStyle];
 }
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {

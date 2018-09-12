@@ -33,7 +33,7 @@
                         <constraint firstItem="KOv-NN-2Xr" firstAttribute="leading" secondItem="aSn-uP-mXd" secondAttribute="leading" id="qSN-jB-jja"/>
                     </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0x1-u6-FGU">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0x1-u6-FGU">
                     <rect key="frame" x="20" y="29" width="22" height="22"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="ITn-D1-Wvm"/>

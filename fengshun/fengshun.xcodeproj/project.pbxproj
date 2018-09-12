@@ -605,6 +605,7 @@
 		AD2244DC213D158800F2DC47 /* FSForumDetailListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD2244DA213D158800F2DC47 /* FSForumDetailListCell.xib */; };
 		AD2244DF213D1FE700F2DC47 /* FSCommunityHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD2244DE213D1FE700F2DC47 /* FSCommunityHeaderView.xib */; };
 		AD2244E2213D1FF900F2DC47 /* FSCommunityHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2244E1213D1FF900F2DC47 /* FSCommunityHeaderView.m */; };
+		AD4691DD2148BE34008CAF27 /* FSH5DemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD4691DC2148BE34008CAF27 /* FSH5DemoVC.m */; };
 		AD47EFDC2137EBF0004A345F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD47EFDB2137EBF0004A345F /* Launch Screen.storyboard */; };
 		AD510298213E560F008CD74D /* FSApiRequest+Community.m in Sources */ = {isa = PBXBuildFile; fileRef = AD510297213E560F008CD74D /* FSApiRequest+Community.m */; };
 		AD51029C213E6212008CD74D /* FSCommunityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD51029B213E6212008CD74D /* FSCommunityModel.m */; };
@@ -650,6 +651,13 @@
 		DB2656DD21466D06002ED713 /* search_openFilters@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB2656DB21466D06002ED713 /* search_openFilters@3x.png */; };
 		DB2656E021467363002ED713 /* FSTextSearchResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2656DF21467363002ED713 /* FSTextSearchResultView.m */; };
 		DB2656E321467396002ED713 /* FSTextSearchResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2656E221467396002ED713 /* FSTextSearchResultVC.m */; };
+		DB4874202148A90D00AB0805 /* search_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB48741E2148A90D00AB0805 /* search_icon@2x.png */; };
+		DB4874212148A90D00AB0805 /* search_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB48741F2148A90D00AB0805 /* search_icon@3x.png */; };
+		DB4874242148BD3F00AB0805 /* FSListTextModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4874232148BD3F00AB0805 /* FSListTextModel.m */; };
+		DB4874292148DFE100AB0805 /* FSTextListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4874272148DFE100AB0805 /* FSTextListCell.m */; };
+		DB48742A2148DFE100AB0805 /* FSTextListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB4874282148DFE100AB0805 /* FSTextListCell.xib */; };
+		DB48742E2148DFFE00AB0805 /* FSTextTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB48742C2148DFFE00AB0805 /* FSTextTypeCell.m */; };
+		DB48742F2148DFFE00AB0805 /* FSTextTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB48742D2148DFFE00AB0805 /* FSTextTypeCell.xib */; };
 		DB4C7E4121479C08008CC6BB /* FSLawSearchResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4C7E4021479C08008CC6BB /* FSLawSearchResultModel.m */; };
 		DB4C7E452147C13A008CC6BB /* FSTextSplitVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4C7E442147C13A008CC6BB /* FSTextSplitVC.m */; };
 		DB57222F21338B6E0065DC30 /* XMRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB57222D21338B6E0065DC30 /* XMRequestManager.m */; };
@@ -1819,6 +1827,8 @@
 		AD2244DE213D1FE700F2DC47 /* FSCommunityHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSCommunityHeaderView.xib; sourceTree = "<group>"; };
 		AD2244E0213D1FF900F2DC47 /* FSCommunityHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCommunityHeaderView.h; sourceTree = "<group>"; };
 		AD2244E1213D1FF900F2DC47 /* FSCommunityHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCommunityHeaderView.m; sourceTree = "<group>"; };
+		AD4691DB2148BE34008CAF27 /* FSH5DemoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSH5DemoVC.h; sourceTree = "<group>"; };
+		AD4691DC2148BE34008CAF27 /* FSH5DemoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSH5DemoVC.m; sourceTree = "<group>"; };
 		AD47EFDB2137EBF0004A345F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		AD510297213E560F008CD74D /* FSApiRequest+Community.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "FSApiRequest+Community.m"; sourceTree = "<group>"; };
 		AD51029A213E6212008CD74D /* FSCommunityModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCommunityModel.h; sourceTree = "<group>"; };
@@ -1895,6 +1905,16 @@
 		DB2656DF21467363002ED713 /* FSTextSearchResultView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTextSearchResultView.m; sourceTree = "<group>"; };
 		DB2656E121467396002ED713 /* FSTextSearchResultVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTextSearchResultVC.h; sourceTree = "<group>"; };
 		DB2656E221467396002ED713 /* FSTextSearchResultVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTextSearchResultVC.m; sourceTree = "<group>"; };
+		DB48741E2148A90D00AB0805 /* search_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_icon@2x.png"; sourceTree = "<group>"; };
+		DB48741F2148A90D00AB0805 /* search_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_icon@3x.png"; sourceTree = "<group>"; };
+		DB4874222148BD3F00AB0805 /* FSListTextModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSListTextModel.h; sourceTree = "<group>"; };
+		DB4874232148BD3F00AB0805 /* FSListTextModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSListTextModel.m; sourceTree = "<group>"; };
+		DB4874262148DFE100AB0805 /* FSTextListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTextListCell.h; sourceTree = "<group>"; };
+		DB4874272148DFE100AB0805 /* FSTextListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTextListCell.m; sourceTree = "<group>"; };
+		DB4874282148DFE100AB0805 /* FSTextListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSTextListCell.xib; sourceTree = "<group>"; };
+		DB48742B2148DFFE00AB0805 /* FSTextTypeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTextTypeCell.h; sourceTree = "<group>"; };
+		DB48742C2148DFFE00AB0805 /* FSTextTypeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTextTypeCell.m; sourceTree = "<group>"; };
+		DB48742D2148DFFE00AB0805 /* FSTextTypeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSTextTypeCell.xib; sourceTree = "<group>"; };
 		DB4C7E3F21479C08008CC6BB /* FSLawSearchResultModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSLawSearchResultModel.h; sourceTree = "<group>"; };
 		DB4C7E4021479C08008CC6BB /* FSLawSearchResultModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSLawSearchResultModel.m; sourceTree = "<group>"; };
 		DB4C7E432147C13A008CC6BB /* FSTextSplitVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTextSplitVC.h; sourceTree = "<group>"; };
@@ -3229,6 +3249,7 @@
 			children = (
 				DBD4CE7B2141224500857DB3 /* images */,
 				DB8D160D2137CC7100EB16E8 /* view */,
+				DB4874252148DFB400AB0805 /* cell */,
 				87426A5C21313940003C52F6 /* FSMainVC.h */,
 				87426A5D21313940003C52F6 /* FSMainVC.m */,
 				87426A5E21313940003C52F6 /* FSMainVC.xib */,
@@ -4264,6 +4285,25 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		DB4874252148DFB400AB0805 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				DB14A7A72139247900E88798 /* FSCourseTableCell.h */,
+				DB14A7A82139247900E88798 /* FSCourseTableCell.m */,
+				DB14A7A92139247900E88798 /* FSCourseTableCell.xib */,
+				DBD4CDFA213FB2D800857DB3 /* FSMainToolCell.h */,
+				DBD4CDFB213FB2D800857DB3 /* FSMainToolCell.m */,
+				DBD4CDFC213FB2D800857DB3 /* FSMainToolCell.xib */,
+				DB4874262148DFE100AB0805 /* FSTextListCell.h */,
+				DB4874272148DFE100AB0805 /* FSTextListCell.m */,
+				DB4874282148DFE100AB0805 /* FSTextListCell.xib */,
+				DB48742B2148DFFE00AB0805 /* FSTextTypeCell.h */,
+				DB48742C2148DFFE00AB0805 /* FSTextTypeCell.m */,
+				DB48742D2148DFFE00AB0805 /* FSTextTypeCell.xib */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
 		DB4C7E3B21476426008CC6BB /* FSOCR */ = {
 			isa = PBXGroup;
 			children = (
@@ -4292,6 +4332,8 @@
 				AD5102A5213E783E008CD74D /* FSSendTopicVC.h */,
 				AD5102A6213E783E008CD74D /* FSSendTopicVC.m */,
 				AD5102A7213E783E008CD74D /* FSSendTopicVC.xib */,
+				AD4691DB2148BE34008CAF27 /* FSH5DemoVC.h */,
+				AD4691DC2148BE34008CAF27 /* FSH5DemoVC.m */,
 			);
 			path = communityTab;
 			sourceTree = "<group>";
@@ -4299,6 +4341,8 @@
 		DB804FDD214224ED007F7B19 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				DB48741E2148A90D00AB0805 /* search_icon@2x.png */,
+				DB48741F2148A90D00AB0805 /* search_icon@3x.png */,
 				DB804FDF21422539007F7B19 /* search_hotKey@2x.png */,
 				DB804FDE21422539007F7B19 /* search_hotKey@3x.png */,
 				DB804FE221422547007F7B19 /* search_delKey@2x.png */,
@@ -4337,12 +4381,6 @@
 				DB8D160F2137CC9800EB16E8 /* FSMainHeaderView.h */,
 				DB8D16102137CC9800EB16E8 /* FSMainHeaderView.m */,
 				DB8D16122137CCAC00EB16E8 /* FSMainHeaderView.xib */,
-				DB14A7A72139247900E88798 /* FSCourseTableCell.h */,
-				DB14A7A82139247900E88798 /* FSCourseTableCell.m */,
-				DB14A7A92139247900E88798 /* FSCourseTableCell.xib */,
-				DBD4CDFA213FB2D800857DB3 /* FSMainToolCell.h */,
-				DBD4CDFB213FB2D800857DB3 /* FSMainToolCell.m */,
-				DBD4CDFC213FB2D800857DB3 /* FSMainToolCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -4390,6 +4428,8 @@
 				DBD4CE04213FBF6C00857DB3 /* FSHomePageToolModel.m */,
 				DBD4CE06213FBFA000857DB3 /* FSCourseModel.h */,
 				DBD4CE07213FBFA000857DB3 /* FSCourseModel.m */,
+				DB4874222148BD3F00AB0805 /* FSListTextModel.h */,
+				DB4874232148BD3F00AB0805 /* FSListTextModel.m */,
 			);
 			path = FSHomePage;
 			sourceTree = "<group>";
@@ -4545,6 +4585,7 @@
 				8730B1202148E5D1004331A9 /* fsfreshidle_icon25@2x.png in Resources */,
 				87426A6021313940003C52F6 /* FSMainVC.xib in Resources */,
 				87D186A3213679F800037DDF /* login_checked@2x.png in Resources */,
+				DB48742A2148DFE100AB0805 /* FSTextListCell.xib in Resources */,
 				874268A2212E7E36003C52F6 /* decrease_baiduwaimai@2x.png in Resources */,
 				87426A57213135F0003C52F6 /* fstab_btn1_icon@3x.png in Resources */,
 				8730AD4C2140CC28004331A9 /* user_shareicon@3x.png in Resources */,
@@ -4655,6 +4696,7 @@
 				8730B10F2148E5D1004331A9 /* fsfreshfreshing_icon1@2x.png in Resources */,
 				87D20B2C213FB7F8001EDD60 /* default_avatariconlarge@2x.png in Resources */,
 				DBD4CE902141229400857DB3 /* home_browseCount@2x.png in Resources */,
+				DB48742F2148DFFE00AB0805 /* FSTextTypeCell.xib in Resources */,
 				8730B1112148E5D1004331A9 /* fsfreshidle_icon5@2x.png in Resources */,
 				AD2244DC213D158800F2DC47 /* FSForumDetailListCell.xib in Resources */,
 				87426A59213135F0003C52F6 /* fstab_btn1_highIcon@2x.png in Resources */,
@@ -4679,10 +4721,12 @@
 				8730B1072148E5D1004331A9 /* fsfreshidle_icon10@2x.png in Resources */,
 				8730B11C2148E5D1004331A9 /* fsfreshidle_icon17@2x.png in Resources */,
 				DB2656D921466B0B002ED713 /* search_lawCount@3x.png in Resources */,
+				DB4874202148A90D00AB0805 /* search_icon@2x.png in Resources */,
 				874268A4212E7E36003C52F6 /* increase_meituan@3x.png in Resources */,
 				874268CE212E7E36003C52F6 /* bmtab_clear_line@2x.png in Resources */,
 				87D20B18213CD80D001EDD60 /* navigationbar_webclose_icon@2x.png in Resources */,
 				87426A58213135F0003C52F6 /* fstab_btn1_highIcon@3x.png in Resources */,
+				DB4874212148A90D00AB0805 /* search_icon@3x.png in Resources */,
 				8730B1272148E5D1004331A9 /* fsfreshidle_icon7@2x.png in Resources */,
 				DBD4CE8B2141229400857DB3 /* home_topics@3x.png in Resources */,
 				87D186AA213679F800037DDF /* login_error@3x.png in Resources */,
@@ -4786,6 +4830,7 @@
 				87D209B52138F1E2001EDD60 /* UIImage+WebP.m in Sources */,
 				87D20ADC213920E2001EDD60 /* FLEXRealmDatabaseManager.m in Sources */,
 				87426A92213146A6003C52F6 /* XMRequest.m in Sources */,
+				DB48742E2148DFFE00AB0805 /* FSTextTypeCell.m in Sources */,
 				874268EE212E7E36003C52F6 /* UIColor+BMCategory.m in Sources */,
 				8730B0B621464B56004331A9 /* BMCombineItem.m in Sources */,
 				87D20AA5213920E2001EDD60 /* FLEXDefaultsExplorerViewController.m in Sources */,
@@ -4903,6 +4948,7 @@
 				87426AEC2135348D003C52F6 /* FMDatabaseAdditions.m in Sources */,
 				874268B3212E7E36003C52F6 /* BMTableViewCellStyle.m in Sources */,
 				8730B09A2140FFA3004331A9 /* NSMutableArray+DTMoving.m in Sources */,
+				DB4874292148DFE100AB0805 /* FSTextListCell.m in Sources */,
 				87426AA8213156D5003C52F6 /* FSPageBannerView.m in Sources */,
 				87426A7E2131461F003C52F6 /* AFURLResponseSerialization.m in Sources */,
 				87D20ADB213920E2001EDD60 /* FLEXTableContentCell.m in Sources */,
@@ -4922,6 +4968,7 @@
 				87D20AAB213920E2001EDD60 /* FLEXNetworkTransaction.m in Sources */,
 				87D20AAD213920E2001EDD60 /* FLEXNetworkRecorder.m in Sources */,
 				87D20B042139492F001EDD60 /* WKWebViewJavascriptBridge.m in Sources */,
+				DB4874242148BD3F00AB0805 /* FSListTextModel.m in Sources */,
 				874268F1212E7E36003C52F6 /* UIButton+BMContentRect.m in Sources */,
 				87D20ABE213920E2001EDD60 /* FLEXArgumentInputView.m in Sources */,
 				87D20AC0213920E2001EDD60 /* FLEXArgumentInputSwitchView.m in Sources */,
@@ -5215,6 +5262,7 @@
 				87426AC32133AA9D003C52F6 /* FSApiRequest.m in Sources */,
 				8730B04F2140FFA2004331A9 /* DTTextHTMLElement.m in Sources */,
 				8730B0652140FFA3004331A9 /* NSURL+DTComparing.m in Sources */,
+				AD4691DD2148BE34008CAF27 /* FSH5DemoVC.m in Sources */,
 				87426AF621353510003C52F6 /* FSDBVersionCheck.m in Sources */,
 				87426904212E7E36003C52F6 /* NSString+BMMandarinLatin.m in Sources */,
 				87D209E72138FF46001EDD60 /* RSKInternalUtility.m in Sources */,

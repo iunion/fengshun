@@ -25,6 +25,10 @@
 
 @implementation FSForumDetailListCell
 
++ (CGFloat)cellHeight{
+    return 107;
+}
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];

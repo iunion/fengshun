@@ -175,8 +175,9 @@
     self.m_ForumNameFirst = [data bm_stringForKey:@"forumNameFirst"];
     // 第二季名称
     self.m_ForumNameSecond = [data bm_stringForKey:@"forumNameSecond"];
-    // 板块图片
-    self.m_IconUrl = [data bm_stringForKey:@"iconUrl"];
+    // 第一板块图片
+    self.m_IconUrlFirst = [data bm_stringForKey:@"iconUrlFirst"];
+    self.m_IconUrlSecond = [data bm_stringForKey:@"iconUrlSecond"];
     // 板块id
     self.m_Id = [data bm_intForKey:@"id"];
     // 发帖数
