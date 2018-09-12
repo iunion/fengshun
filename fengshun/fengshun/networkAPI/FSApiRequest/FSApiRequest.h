@@ -61,6 +61,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSMutableURLRequest *)makeRequestWithURL:(NSString *)URLString parameters:(NSDictionary *)parameters;
 + (NSMutableURLRequest *)makeRequestWithURL:(NSString *)URLString parameters:(NSDictionary *)parameters isPost:(BOOL)isPost;
 
+// 通过最顶级字典code，一次性查出来所有的子集数据
+// http://115.159.33.190:8121/swagger-ui.html#/%E5%AD%97%E5%85%B8/searchDictionaryInfoByTopLevelCodeUsingPOST
++ (nullable NSMutableURLRequest *)getDictionaryInfoWithLevelCode:(NSString *)levelCode;
+
 @end
 
 

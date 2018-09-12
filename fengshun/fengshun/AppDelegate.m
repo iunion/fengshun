@@ -18,6 +18,7 @@
 #import "FSUserInfo.h"
 #import "BMVerifiTimeManager.h"
 
+#import "FSSetTableViewVC.h"
 #import "FSUserMainVC.h"
 
 //#import "SDWebImageCodersManager.h"
@@ -35,7 +36,10 @@
 // 位置信息
 @property (strong, nonatomic) CLLocationManager *m_LocationManager;
 
-@property (strong, nonatomic) NSURLSessionDataTask  *m_LoginOutTask;
+@property (strong, nonatomic) NSURLSessionDataTask *m_LoginOutTask;
+
+@property (weak, nonatomic) FSSetTableViewVC *m_GetAbilityVC;
+@property (strong, nonatomic) NSURLSessionDataTask *m_UserAbilityTask;
 
 @end
 
@@ -51,6 +55,9 @@
 
     [_m_LoginOutTask cancel];
     _m_LoginOutTask = nil;
+
+    [_m_UserAbilityTask cancel];
+    _m_UserAbilityTask = nil;
 }
 
 - (void)setUpApp
@@ -141,6 +148,8 @@
     self.window.rootViewController = tabBarController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    [self getUserAbilityInfoWithVc:nil];
     
     return YES;
 }
@@ -378,5 +387,90 @@
 {
 }
 
+- (void)getUserAbilityInfoWithVc:(FSSetTableViewVC *)vc
+{
+    self.m_GetAbilityVC = nil;
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSMutableURLRequest *request = [FSApiRequest getDictionaryInfoWithLevelCode:@"ABILITY_TYPE"];
+    if (request)
+    {
+        if (vc)
+        {
+            self.m_GetAbilityVC = vc;
+            [vc.m_ProgressHUD showAnimated:YES showBackground:NO];
+        }
+
+        [self.m_UserAbilityTask cancel];
+        self.m_UserAbilityTask = nil;
+        
+        BMWeakSelf
+        self.m_UserAbilityTask = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+#if DEBUG
+            if (error)
+            {
+                BMLog(@"Error: %@", error);
+                [weakSelf getUserAbilityInfoRequestFailed:response error:error];
+                
+            }
+            else
+            {
+                NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
+                BMLog(@"%@ %@", response, responseStr);
+                [weakSelf getUserAbilityInfoRequestFinished:response responseDic:responseObject];
+            }
+#endif
+        }];
+        [self.m_UserAbilityTask resume];
+    }
+}
+
+- (void)getUserAbilityInfoRequestFinished:(NSURLResponse *)response responseDic:(NSDictionary *)resDic
+{
+    if (![resDic bm_isNotEmptyDictionary])
+    {
+        if (self.m_GetAbilityVC)
+        {
+            [self.m_GetAbilityVC.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        }
+        
+        self.m_GetAbilityVC = nil;
+        
+        return;
+    }
+    
+#if DEBUG
+    NSString *responseStr = [[NSString stringWithFormat:@"%@", resDic] bm_convertUnicode];
+    BMLog(@"查询擅长领域返回数据是:+++++%@", responseStr);
+#endif
+    
+    NSInteger statusCode = [resDic bm_intForKey:@"code"];
+    if (statusCode == 1000)
+    {
+        BMLog(@"查询擅长领域成功");
+        return;
+    }
+    
+    NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
+    BMLog(@"%@", message);
+    if (self.m_GetAbilityVC)
+    {
+        [self.m_GetAbilityVC.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        
+        self.m_GetAbilityVC = nil;
+    }
+}
+
+- (void)getUserAbilityInfoRequestFailed:(NSURLResponse *)response error:(NSError *)error
+{
+    BMLog(@"查询擅长领域失败的错误:++++%@", [FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE]);
+    
+    if (self.m_GetAbilityVC)
+    {
+        [self.m_GetAbilityVC.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        
+        self.m_GetAbilityVC = nil;
+    }
+}
 
 @end

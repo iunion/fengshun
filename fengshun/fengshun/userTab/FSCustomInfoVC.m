@@ -370,9 +370,16 @@
     imageTextView.showTableCellAccessoryArrow = YES;
     self.m_AbilityItem.accessoryView = imageTextView;
     self.m_AbilityItem.selectionHandler = ^(id item) {
-        FSEditorAbilityVC *editorVC = [[FSEditorAbilityVC alloc] init];
-        editorVC.delegate = weakSelf;
-        [weakSelf.navigationController pushViewController:editorVC animated:YES];
+        if (GetAppDelegate.m_Globle_UserAbilityInfo)
+        {
+            FSEditorAbilityVC *editorVC = [[FSEditorAbilityVC alloc] init];
+            editorVC.delegate = weakSelf;
+            [weakSelf.navigationController pushViewController:editorVC animated:YES];
+        }
+        else
+        {
+            
+        }
     };
 
     if ([userInfo.m_UserBaseInfo.m_Signature bm_isNotEmpty])
