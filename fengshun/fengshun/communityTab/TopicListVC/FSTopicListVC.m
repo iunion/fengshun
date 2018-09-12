@@ -53,7 +53,9 @@ FSTopicListVC ()
 
 - (void)createUI
 {
-    
+    self.m_TableView.tableFooterView = [UIView new];
+    self.m_TableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.m_TableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
 - (NSMutableURLRequest *)setLoadDataRequestWithFresh:(BOOL)isLoadNew

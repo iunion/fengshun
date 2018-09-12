@@ -11,7 +11,7 @@
 #import "FSForumSectionHeaderView.h"
 #import "FSPushVCManager.h"
 
-#define SECTION_HEADER_HEIGHT 50  //section高度
+#define SECTION_HEADER_HEIGHT 58  //section高度
 
 @interface
 FSForumListVC ()
@@ -25,6 +25,9 @@ FSForumListVC ()
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.m_LoadDataType = FSAPILoadDataType_Page;
+    self.m_TableView.tableFooterView = [UIView new];
+    self.m_TableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.m_TableView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 24);
     [self loadApiData];
 }
 
