@@ -14,6 +14,7 @@
 #import "FSWebViewController.h"
 
 #import "FSSearchViewController.h"
+#import "FSTextSplitVC.h"
 
 @implementation FSPushVCManager
 
@@ -103,4 +104,11 @@
     [mainVC.navigationController pushViewController:searchViewController animated:YES];
 }
 
++ (void)homePagePushToTextSplitVC:(UIViewController *)mainVC
+{
+    FSTextSplitVC *splitVC = [[FSTextSplitVC alloc]initWithNibName:nil bundle:nil freshViewType:BMFreshViewType_NONE];
+    splitVC.hidesBottomBarWhenPushed = YES;
+    [mainVC.navigationController pushViewController:splitVC animated:YES];
+    
+}
 @end
