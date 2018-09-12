@@ -61,7 +61,7 @@
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:freshWebViewNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:userInfoChangedNotification object:nil];
 }
 
 - (instancetype)initWithTitle:(NSString *)title url:(NSString *)url
@@ -178,7 +178,7 @@
     
     [self makeWebView];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(makeWebView) name:freshWebViewNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(makeWebView) name:userInfoChangedNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -507,31 +507,15 @@
 - (void)removeJSHandler
 {
     // 登录
-    [self.m_WebView removeHandler:@"login"];
+    [self.m_WebView removeHandler:@"toLogin"];
     // 注册
     [self.m_WebView removeHandler:@"register"];
     // 分享
-    [self.m_WebView removeHandler:@"share"];
-    // 跳转首页
-    [self.m_WebView removeHandler:@"showmain"];
-    // 跳转活期首页
-    [self.m_WebView removeHandler:@"showcurrentmain"];
-    // 跳转定期首页
-    [self.m_WebView removeHandler:@"showdepositmain"];
-    // 跳转定期/定期jh详情
-    [self.m_WebView removeHandler:@"showdepositdetail"];
-    // 跳转充值页
-    [self.m_WebView removeHandler:@"showrecharge"];
-    // 跳转优惠券
-    [self.m_WebView removeHandler:@"showmywealthlist"];
+    [self.m_WebView removeHandler:@"toShare"];
     // 查看大图
     [self.m_WebView removeHandler:@"showpic"];
     // 复制文本到粘贴板
     [self.m_WebView removeHandler:@"copy"];
-    // 江西银行操作结果返回
-    [self.m_WebView removeHandler:@"jxBankCallBak"];
-    // 跳转提现
-    [self.m_WebView removeHandler:@"withdrawCallBack"];
 }
 
 - (void)registerJSHandler
@@ -539,7 +523,7 @@
     BMWeakSelf
     
     // 登录
-    [self.m_WebView registerHandler:@"login" handler:^(id data, WVJBResponseCallback responseCallback) {
+    [self.m_WebView registerHandler:@"toLogin" handler:^(id data, WVJBResponseCallback responseCallback) {
         BMLog(@"login called: %@", data);
         //responseCallback(@"Response from register");
         
@@ -548,7 +532,7 @@
     
 #if 0
     // 分享
-    [self.m_WebView registerHandler:@"share" handler:^(id data, WVJBResponseCallback responseCallback) {
+    [self.m_WebView registerHandler:@"toShare" handler:^(id data, WVJBResponseCallback responseCallback) {
         BMLog(@"share called: %@", data);
         //responseCallback(@"Response from register");
         
