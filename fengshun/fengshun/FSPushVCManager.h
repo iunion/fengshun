@@ -27,6 +27,8 @@ typedef void (^PushVCCallBack)(id object);
 // 编辑帖子
 + (void)showEditPostWithPushVC:(UIViewController *)pushVC callBack:(PushVCCallBack)callBack;
 
+//帖子详情
++ (void)showTopicDetail:(UIViewController *)pushVC  topicId:(NSString *)topicId;
 
 + (FSWebViewController *)showWebView:(UIViewController *)pushVC url:(NSString *)url title:(NSString *)title;
 + (FSWebViewController *)showWebView:(UIViewController *)pushVC url:(NSString *)url title:(NSString *)title animated:(BOOL)animated;

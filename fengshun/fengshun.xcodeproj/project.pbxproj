@@ -636,6 +636,7 @@
 		ADE8689821392853005359B5 /* FSTopicListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADE8689621392853005359B5 /* FSTopicListCell.xib */; };
 		ADE8689C21393469005359B5 /* FSForumListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8689A21393469005359B5 /* FSForumListCell.m */; };
 		ADE8689D21393469005359B5 /* FSForumListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADE8689B21393469005359B5 /* FSForumListCell.xib */; };
+		ADF7AAD821490D1F00B550E6 /* FSTopicDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF7AAD721490D1E00B550E6 /* FSTopicDetailVC.m */; };
 		DB14A7AA2139247900E88798 /* FSCourseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB14A7A82139247900E88798 /* FSCourseTableCell.m */; };
 		DB14A7AB2139247900E88798 /* FSCourseTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB14A7A92139247900E88798 /* FSCourseTableCell.xib */; };
 		DB2656C4214619A0002ED713 /* FSCaseSearchResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2656C3214619A0002ED713 /* FSCaseSearchResultVC.m */; };
@@ -1880,6 +1881,8 @@
 		ADE8689921393469005359B5 /* FSForumListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSForumListCell.h; sourceTree = "<group>"; };
 		ADE8689A21393469005359B5 /* FSForumListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSForumListCell.m; sourceTree = "<group>"; };
 		ADE8689B21393469005359B5 /* FSForumListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSForumListCell.xib; sourceTree = "<group>"; };
+		ADF7AAD621490D1E00B550E6 /* FSTopicDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTopicDetailVC.h; sourceTree = "<group>"; };
+		ADF7AAD721490D1E00B550E6 /* FSTopicDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTopicDetailVC.m; sourceTree = "<group>"; };
 		DB14A7A72139247900E88798 /* FSCourseTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCourseTableCell.h; sourceTree = "<group>"; };
 		DB14A7A82139247900E88798 /* FSCourseTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCourseTableCell.m; sourceTree = "<group>"; };
 		DB14A7A92139247900E88798 /* FSCourseTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSCourseTableCell.xib; sourceTree = "<group>"; };
@@ -4241,6 +4244,8 @@
 				ADA12288214614BE00CF0D87 /* FSTopicListVC.h */,
 				ADA12289214614BE00CF0D87 /* FSTopicListVC.m */,
 				ADA1228A214614BE00CF0D87 /* FSTopicListVC.xib */,
+				ADF7AAD621490D1E00B550E6 /* FSTopicDetailVC.h */,
+				ADF7AAD721490D1E00B550E6 /* FSTopicDetailVC.m */,
 			);
 			path = TopicListVC;
 			sourceTree = "<group>";
@@ -4834,6 +4839,7 @@
 				87D20AB3213920E2001EDD60 /* FLEXNetworkObserver.m in Sources */,
 				874268E2212E7E36003C52F6 /* BMImageTextView.m in Sources */,
 				87D209652137B6C5001EDD60 /* FSSetPassWordVC.m in Sources */,
+				ADF7AAD821490D1F00B550E6 /* FSTopicDetailVC.m in Sources */,
 				8730B02F2140FFA2004331A9 /* DTAttributedTextView.m in Sources */,
 				87D209C02138F1E2001EDD60 /* SDWebImageCoderHelper.m in Sources */,
 				87D209D22138F1E2001EDD60 /* SDWebImageWebPCoder.m in Sources */,

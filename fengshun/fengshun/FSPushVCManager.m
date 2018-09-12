@@ -13,6 +13,7 @@
 #import "FSWebViewController.h"
 #import "FSSearchViewController.h"
 #import "FSTextSplitVC.h"
+#import "FSTopicDetailVC.h"
 
 @implementation FSPushVCManager
 
@@ -40,6 +41,12 @@
 {
     FSSendTopicVC *vc = [[FSSendTopicVC alloc] init];
     vc.sendPostsCallBack         = callBack;
+    [pushVC.navigationController pushViewController:vc animated:YES];
+}
+
++ (void)showTopicDetail:(UIViewController *)pushVC topicId:(NSString *)topicId{
+    FSTopicDetailVC *vc = [[FSTopicDetailVC alloc] initWithTitle:@"" url:[NSString stringWithFormat:@"%@/note/%@",FS_H5_SERVER,topicId] showLoadingBar:NO  loadingBarColor:nil delegate:nil];
+    vc.hidesBottomBarWhenPushed = YES;
     [pushVC.navigationController pushViewController:vc animated:YES];
 }
 

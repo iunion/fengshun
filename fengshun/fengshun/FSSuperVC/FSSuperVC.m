@@ -40,7 +40,7 @@
     self.bm_NavigationBarBgTintColor = FS_NAVIGATION_BGCOLOR;
     self.bm_NavigationItemTintColor = FS_NAVIGATION_ITEMCOLOR;
     self.bm_NavigationShadowHidden = YES;
-
+    
     self.view.backgroundColor = FS_VIEW_BGCOLOR;
 
 }

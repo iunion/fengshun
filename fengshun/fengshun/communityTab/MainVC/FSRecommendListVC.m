@@ -19,7 +19,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     self.m_LoadDataType = FSAPILoadDataType_Page;
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.m_TableView.bm_width, 8)];
     self.m_TableView.tableHeaderView = headerView;
@@ -101,6 +100,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    FSTopicModel *model = self.m_DataArray[indexPath.row];
+    [FSPushVCManager showTopicDetail:[self.view.superview bm_viewController]  topicId:model.m_Id];
 }
 
 @end

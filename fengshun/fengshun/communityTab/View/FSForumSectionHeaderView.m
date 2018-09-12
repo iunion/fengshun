@@ -27,7 +27,14 @@
 
 - (void)showWithFSCommunityForumModel:(FSCommunityForumModel *)aModel
 {
-    [self.m_IconImgView sd_setImageWithURL:[aModel.m_IconUrl bm_toURL]];
+    if ([aModel.m_IconUrl bm_isNotEmpty]) {
+        [self.m_IconImgView sd_setImageWithURL:[aModel.m_IconUrl bm_toURL]];
+    }else{
+        if ([aModel.m_List bm_isNotEmpty]) {
+            FSForumModel *model = aModel.m_List[0];
+            [self.m_IconImgView sd_setImageWithURL:[model.m_IconUrlFirst bm_toURL]];
+        }
+    }
     self.m_SectionTitleLab.text = aModel.m_Name;
 }
 

@@ -46,8 +46,9 @@ typedef NS_ENUM(NSUInteger, FSTopicSortType) {
 };
 
 typedef NS_ENUM(NSUInteger, FSForumFollowState) {
-    FSForumFollowState_Follow,         //关注
-    FSForumFollowState_Cancel_FOLLOW,  // 取关
+    
+    FSForumFollowState_Cancel_FOLLOW = 0, // 取关
+    FSForumFollowState_Follow         //关注
 };
 
 NS_ASSUME_NONNULL_BEGIN

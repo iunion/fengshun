@@ -9,6 +9,7 @@
 #import "FSTopicListVC.h"
 #import "FSForumDetailListCell.h"
 #import "FSCommunityModel.h"
+#import "FSPushVCManager.h"
 
 @interface
 FSTopicListVC ()
@@ -180,6 +181,8 @@ FSTopicListVC ()
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    FSTopicModel *model = self.m_DataArray[indexPath.row];
+    [FSPushVCManager showTopicDetail:[self.view.superview bm_viewController]  topicId:model.m_Id];
 }
 
 /*

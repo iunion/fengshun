@@ -176,7 +176,7 @@
 
     self.m_UserNameLabel.text = model.m_NickName;
     [self.m_CommentBtn setTitle:[NSString stringWithFormat:@"%@", @(model.m_CommentCount)] forState:UIControlStateNormal];
-    self.m_StickBgView.hidden = NO;//!model.m_TopFlag;
+    self.m_StickBgView.hidden = !model.m_TopFlag;
 }
 
 @end

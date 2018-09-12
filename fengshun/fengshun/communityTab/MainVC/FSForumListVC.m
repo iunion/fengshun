@@ -55,6 +55,7 @@ FSForumListVC ()
         }
         [self.m_DataArray addObjectsFromArray:forumList];
         [self.m_TableView reloadData];
+        [self.m_ProgressHUD hideAnimated:NO];
         return YES;
     }
     return NO;

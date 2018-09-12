@@ -92,7 +92,7 @@
                             <constraint firstAttribute="trailing" secondItem="rMF-tI-vT6" secondAttribute="trailing" id="qZM-f7-P7U"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l84-Tr-GaT">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l84-Tr-GaT">
                         <rect key="frame" x="302" y="38.5" width="54" height="25"/>
                         <color key="backgroundColor" red="0.30588235294117649" green="0.48627450980392156" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -104,6 +104,9 @@
                         <state key="selected" title="已关注">
                             <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
+                        <connections>
+                            <action selector="doFollowAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hMx-SP-YQi"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
