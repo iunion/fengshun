@@ -8,6 +8,12 @@
 
 #import "FSVideoMediateModel.h"
 
+
+@implementation MeetingPersonnelModel
+
+@end
+
+
 @implementation VideoMediateListModel
 
 @end

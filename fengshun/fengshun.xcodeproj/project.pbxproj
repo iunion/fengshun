@@ -17,6 +17,10 @@
 		4561393321490FEC007DF6A1 /* FSVideoMessageListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4561393221490FEC007DF6A1 /* FSVideoMessageListVC.m */; };
 		4561393621491033007DF6A1 /* FSVideoAttendListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4561393521491033007DF6A1 /* FSVideoAttendListVC.m */; };
 		45A3BF8B2148AA2E0093278C /* FSVideoMediateListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A3BF8A2148AA2E0093278C /* FSVideoMediateListVC.m */; };
+		45DC029B214A1EB700FCE042 /* FSEditVideoMediateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DC029A214A1EB700FCE042 /* FSEditVideoMediateView.m */; };
+		45DC029E214A1EED00FCE042 /* ORDTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DC029D214A1EED00FCE042 /* ORDTextView.m */; };
+		45DC02A1214A248900FCE042 /* FSCreateVideoMediateHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DC02A0214A248900FCE042 /* FSCreateVideoMediateHeader.m */; };
+		45DC02A4214A3B4400FCE042 /* FSVideoMediateSheetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DC02A3214A3B4400FCE042 /* FSVideoMediateSheetVC.m */; };
 		8730AD352140B9BD004331A9 /* FSSetupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730AD332140B9BC004331A9 /* FSSetupVC.m */; };
 		8730AD422140CC28004331A9 /* user_commenticon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730AD362140CC26004331A9 /* user_commenticon@2x.png */; };
 		8730AD432140CC28004331A9 /* user_serviceicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730AD372140CC27004331A9 /* user_serviceicon@3x.png */; };
@@ -883,6 +887,14 @@
 		4561393521491033007DF6A1 /* FSVideoAttendListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoAttendListVC.m; sourceTree = "<group>"; };
 		45A3BF892148AA2E0093278C /* FSVideoMediateListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVideoMediateListVC.h; sourceTree = "<group>"; };
 		45A3BF8A2148AA2E0093278C /* FSVideoMediateListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoMediateListVC.m; sourceTree = "<group>"; };
+		45DC0299214A1EB700FCE042 /* FSEditVideoMediateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSEditVideoMediateView.h; sourceTree = "<group>"; };
+		45DC029A214A1EB700FCE042 /* FSEditVideoMediateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSEditVideoMediateView.m; sourceTree = "<group>"; };
+		45DC029C214A1EED00FCE042 /* ORDTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORDTextView.h; sourceTree = "<group>"; };
+		45DC029D214A1EED00FCE042 /* ORDTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORDTextView.m; sourceTree = "<group>"; };
+		45DC029F214A248900FCE042 /* FSCreateVideoMediateHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCreateVideoMediateHeader.h; sourceTree = "<group>"; };
+		45DC02A0214A248900FCE042 /* FSCreateVideoMediateHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCreateVideoMediateHeader.m; sourceTree = "<group>"; };
+		45DC02A2214A3B4400FCE042 /* FSVideoMediateSheetVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVideoMediateSheetVC.h; sourceTree = "<group>"; };
+		45DC02A3214A3B4400FCE042 /* FSVideoMediateSheetVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoMediateSheetVC.m; sourceTree = "<group>"; };
 		8730AD332140B9BC004331A9 /* FSSetupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSetupVC.m; sourceTree = "<group>"; };
 		8730AD342140B9BC004331A9 /* FSSetupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSetupVC.h; sourceTree = "<group>"; };
 		8730AD362140CC26004331A9 /* user_commenticon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_commenticon@2x.png"; sourceTree = "<group>"; };
@@ -2273,10 +2285,16 @@
 		4561391F2149019B007DF6A1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				45DC029C214A1EED00FCE042 /* ORDTextView.h */,
+				45DC029D214A1EED00FCE042 /* ORDTextView.m */,
 				456139192148E063007DF6A1 /* FSHeaderCommonSelector.h */,
 				4561391A2148E063007DF6A1 /* FSHeaderCommonSelector.m */,
 				45613921214901E5007DF6A1 /* VideoMediateListCell.h */,
 				45613922214901E5007DF6A1 /* VideoMediateListCell.m */,
+				45DC0299214A1EB700FCE042 /* FSEditVideoMediateView.h */,
+				45DC029A214A1EB700FCE042 /* FSEditVideoMediateView.m */,
+				45DC02A2214A3B4400FCE042 /* FSVideoMediateSheetVC.h */,
+				45DC02A3214A3B4400FCE042 /* FSVideoMediateSheetVC.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2299,6 +2317,8 @@
 				45A3BF8A2148AA2E0093278C /* FSVideoMediateListVC.m */,
 				45613927214908AA007DF6A1 /* FSCreateVideoMediateVC.h */,
 				45613928214908AA007DF6A1 /* FSCreateVideoMediateVC.m */,
+				45DC029F214A248900FCE042 /* FSCreateVideoMediateHeader.h */,
+				45DC02A0214A248900FCE042 /* FSCreateVideoMediateHeader.m */,
 				4561392B21490E5D007DF6A1 /* FSVideoMediateDetailVC.h */,
 				4561392C21490E5D007DF6A1 /* FSVideoMediateDetailVC.m */,
 				4561392E21490F83007DF6A1 /* FSVideoInviteLitigantVC.h */,
@@ -5555,6 +5575,7 @@
 				87D209D12138F1E2001EDD60 /* UIButton+WebCache.m in Sources */,
 				8730B09D2140FFA3004331A9 /* DTCoreGraphicsUtils.m in Sources */,
 				8730B04E2140FFA2004331A9 /* DTCSSStylesheet.m in Sources */,
+				45DC02A4214A3B4400FCE042 /* FSVideoMediateSheetVC.m in Sources */,
 				8730B0842140FFA3004331A9 /* DTActivityTitleView.m in Sources */,
 				874268D9212E7E36003C52F6 /* UIViewController+BMNavigationItem.m in Sources */,
 				87D209EA2138FF46001EDD60 /* RSKImageCropViewController.m in Sources */,
@@ -5589,6 +5610,7 @@
 				87D209C42138F1E2001EDD60 /* NSButton+WebCache.m in Sources */,
 				87D20B1421394A5A001EDD60 /* FSWebViewProgressView.m in Sources */,
 				87426ACD2133D5E9003C52F6 /* MBProgressHUD.m in Sources */,
+				45DC02A1214A248900FCE042 /* FSCreateVideoMediateHeader.m in Sources */,
 				87D20ABC213920E2001EDD60 /* FLEXArgumentInputStringView.m in Sources */,
 				8730B0532140FFA2004331A9 /* DTImageTextAttachment.m in Sources */,
 				DBD4CE08213FBFA000857DB3 /* FSCourseModel.m in Sources */,
@@ -5723,6 +5745,7 @@
 				DB5722362133A0FC0065DC30 /* FSScrollPageView.m in Sources */,
 				87426A822131461F003C52F6 /* AFNetworkReachabilityManager.m in Sources */,
 				87D20AB8213920E2001EDD60 /* FLEXDefaultEditorViewController.m in Sources */,
+				45DC029B214A1EB700FCE042 /* FSEditVideoMediateView.m in Sources */,
 				874269C9212E9B78003C52F6 /* UIScrollView+BMFresh.m in Sources */,
 				45613923214901E5007DF6A1 /* VideoMediateListCell.m in Sources */,
 				8730B05B2140FFA3004331A9 /* DTListItemHTMLElement.m in Sources */,
@@ -5773,6 +5796,7 @@
 				87D20AAF213920E2001EDD60 /* FLEXNetworkCurlLogger.m in Sources */,
 				8730B0A921427A85004331A9 /* FSEditorAbilityVC.m in Sources */,
 				874268C2212E7E36003C52F6 /* BMSliderItem.m in Sources */,
+				45DC029E214A1EED00FCE042 /* ORDTextView.m in Sources */,
 				8730B0342140FFA2004331A9 /* DTCoreTextFontDescriptor.m in Sources */,
 				8730B0412140FFA2004331A9 /* DTAttributedLabel.m in Sources */,
 				874269BD212E9B78003C52F6 /* BMFreshDotHeader.m in Sources */,
