@@ -71,7 +71,7 @@
     if ([childrenArray bm_isNotEmpty])
     {
         self.m_Children = [[NSMutableArray alloc] init];
-        for (NSDictionary *childDic in dic)
+        for (NSDictionary *childDic in childrenArray)
         {
             FSGlobleDataModle *globleData = [FSGlobleDataModle globleDataModleWithServerDic:childDic];
             if (globleData)

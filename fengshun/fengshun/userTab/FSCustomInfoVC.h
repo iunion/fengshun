@@ -10,4 +10,6 @@
 
 @interface FSCustomInfoVC : FSSetTableViewVC
 
+- (void)editAbility;
+
 @end

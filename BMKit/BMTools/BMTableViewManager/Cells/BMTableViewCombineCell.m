@@ -78,6 +78,15 @@
         }
     };
 
+    if (self.item.isShowAllItem)
+    {
+        self.imageTextView.imageName = @"BMCombine_up";
+    }
+    else
+    {
+        self.imageTextView.imageName = @"BMCombine_down";
+    }
+
     self.enabled = self.item.enabled;
 }
 

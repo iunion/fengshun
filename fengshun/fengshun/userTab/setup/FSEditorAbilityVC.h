@@ -13,7 +13,9 @@
 
 @property (nonatomic, weak) id <FSEditorAbilityDelegate> delegate;
 
-@property (nonatomic, strong) NSMutableArray *m_AbilityArray;
+@property (nonatomic, strong, readonly) NSMutableArray *m_AbilityArray;
+
+- (instancetype)initWithAbilityArray:(NSArray *)abilityArray;
 
 @end
 
