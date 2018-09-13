@@ -21,6 +21,9 @@
 #import "FSSetTableViewVC.h"
 #import "FSUserMainVC.h"
 
+#import "FSGlobleDataModle.h"
+#import "FSCustomInfoVC.h"
+
 //#import "SDWebImageCodersManager.h"
 //#import "SDWebImageGIFCoder.h"
 
@@ -448,6 +451,35 @@
     if (statusCode == 1000)
     {
         BMLog(@"查询擅长领域成功");
+        
+        NSArray *dataDicArray = [resDic bm_arrayForKey:@"data"];
+        if ([dataDicArray bm_isNotEmpty])
+        {
+            NSMutableArray *abilityArray = [[NSMutableArray alloc] init];
+            
+            for (NSDictionary *dataDic in dataDicArray)
+            {
+                FSGlobleDataModle *abilityData = [FSGlobleDataModle globleDataModleWithServerDic:dataDic];
+                if (abilityData)
+                {
+                    [abilityArray addObject:abilityData];
+                }
+            }
+            
+            if ([abilityArray bm_isNotEmpty])
+            {
+                self.m_Globle_UserAbilityInfo = abilityArray;
+                if (self.m_GetAbilityVC)
+                {
+                    if ([self.m_GetAbilityVC isKindOfClass:[FSCustomInfoVC class]])
+                    {
+                        FSCustomInfoVC *customInfoVC = (FSCustomInfoVC *)self.m_GetAbilityVC;
+                        [customInfoVC editAbility];
+                    }
+                }
+            }
+        }
+
         return;
     }
     

@@ -14,7 +14,7 @@
 #define BMCombine_CountPerLine      3
 //#define BMCombine_ShortLineCount    4
 
-#define BMCombine_TopGap            8.0f
+#define BMCombine_TopGap            12.0f
 #define BMCombine_LineGap           4.0f
 #define BMCombine_LeftGap           6.0f
 #define BMCombine_ItemHeight        30.0f

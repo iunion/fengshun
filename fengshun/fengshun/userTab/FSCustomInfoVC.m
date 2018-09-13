@@ -372,13 +372,11 @@
     self.m_AbilityItem.selectionHandler = ^(id item) {
         if (GetAppDelegate.m_Globle_UserAbilityInfo)
         {
-            FSEditorAbilityVC *editorVC = [[FSEditorAbilityVC alloc] init];
-            editorVC.delegate = weakSelf;
-            [weakSelf.navigationController pushViewController:editorVC animated:YES];
+            [weakSelf editAbility];
         }
         else
         {
-            
+            [GetAppDelegate getUserAbilityInfoWithVc:weakSelf];
         }
     };
 
@@ -422,6 +420,15 @@
     };
 
     [self.m_TableView reloadData];
+}
+
+- (void)editAbility
+{
+    FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
+    
+    FSEditorAbilityVC *editorVC = [[FSEditorAbilityVC alloc] initWithAbilityArray:userInfo.m_UserBaseInfo.m_AbilityArray];
+    editorVC.delegate = self;
+    [self.navigationController pushViewController:editorVC animated:YES];
 }
 
 - (void)makeAbilityViewWithArray:(NSArray *)abilityArray
