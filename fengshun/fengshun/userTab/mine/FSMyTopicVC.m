@@ -20,6 +20,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [self bm_setNavigationWithTitle:@"我的帖子" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
+
     self.m_LoadDataType = FSAPILoadDataType_Page;
     
     [self loadApiData];

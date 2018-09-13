@@ -13,7 +13,7 @@
 
 #import "FSMyTopicVC.h"
 #import "FSMyCommentVC.h"
-#import "FSMyCollectionVC.h"
+#import "FSMyCollectionTabVC.h"
 
 #import "FSSetupVC.h"
 #import "FSCustomInfoVC.h"
@@ -76,6 +76,9 @@
 //    [self.m_TableView addSubview:view];
 //    view.backgroundColor = UI_COLOR_BL1;
 //    self.m_TopView = view;
+
+    self.bm_NavigationBarBgTintColor = UI_COLOR_BL1;
+    self.bm_NavigationItemTintColor = [UIColor whiteColor];
 
     self.bm_NavigationBarEffect = [[UIVisualEffect alloc] init];
     [self bm_setNavigationWithTitle:@"" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_setup_icon" leftToucheEvent:@selector(setUpAction:) rightItemTitle:nil rightItemImage:@"navigationbar_message_icon" rightToucheEvent:@selector(messageAction:)];
@@ -141,9 +144,9 @@
 
     self.m_CollectItem = [BMTableViewItem itemWithTitle:@"我的收藏" imageName:@"user_collecticon" underLineDrawType:BMTableViewCell_UnderLineDrawType_None accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
-        FSMyCollectionVC *myCollectionVC = [[FSMyCollectionVC alloc] init];
-        myCollectionVC.hidesBottomBarWhenPushed = YES;
-        [weakSelf.navigationController pushViewController:myCollectionVC animated:YES];
+        FSMyCollectionTabVC *myCollectionTabVC = [[FSMyCollectionTabVC alloc] init];
+        myCollectionTabVC.hidesBottomBarWhenPushed = YES;
+        [weakSelf.navigationController pushViewController:myCollectionTabVC animated:YES];
     }];
     self.m_CollectItem.imageH = 16.0f;
     self.m_CollectItem.imageW = 16.0f;

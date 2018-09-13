@@ -443,6 +443,7 @@
 		87741FEB214A381700F72427 /* FSMyCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87741FEA214A381700F72427 /* FSMyCollectionVC.m */; };
 		87741FEE214A385700F72427 /* FSMyCommentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87741FED214A385700F72427 /* FSMyCommentVC.m */; };
 		87741FF1214A387100F72427 /* FSMyTopicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87741FF0214A387100F72427 /* FSMyTopicVC.m */; };
+		87741FF4214A42C800F72427 /* FSMyCollectionTabVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87741FF3214A42C800F72427 /* FSMyCollectionTabVC.m */; };
 		87C0134B212E7A5200D0AAC3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0134A212E7A5200D0AAC3 /* AppDelegate.m */; };
 		87C0134D212E7A5300D0AAC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87C0134C212E7A5300D0AAC3 /* Assets.xcassets */; };
 		87C01353212E7A5300D0AAC3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C01352212E7A5300D0AAC3 /* main.m */; };
@@ -1632,6 +1633,8 @@
 		87741FED214A385700F72427 /* FSMyCommentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMyCommentVC.m; sourceTree = "<group>"; };
 		87741FEF214A387100F72427 /* FSMyTopicVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMyTopicVC.h; sourceTree = "<group>"; };
 		87741FF0214A387100F72427 /* FSMyTopicVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMyTopicVC.m; sourceTree = "<group>"; };
+		87741FF2214A42C800F72427 /* FSMyCollectionTabVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMyCollectionTabVC.h; sourceTree = "<group>"; };
+		87741FF3214A42C800F72427 /* FSMyCollectionTabVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMyCollectionTabVC.m; sourceTree = "<group>"; };
 		87C01346212E7A5200D0AAC3 /* fengshun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fengshun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87C01349212E7A5200D0AAC3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		87C0134A212E7A5200D0AAC3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -3809,6 +3812,8 @@
 		87741FE8214A37C200F72427 /* mine */ = {
 			isa = PBXGroup;
 			children = (
+				87741FF2214A42C800F72427 /* FSMyCollectionTabVC.h */,
+				87741FF3214A42C800F72427 /* FSMyCollectionTabVC.m */,
 				87741FE9214A381700F72427 /* FSMyCollectionVC.h */,
 				87741FEA214A381700F72427 /* FSMyCollectionVC.m */,
 				87741FEC214A385700F72427 /* FSMyCommentVC.h */,
@@ -5529,6 +5534,7 @@
 				87D20ABE213920E2001EDD60 /* FLEXArgumentInputView.m in Sources */,
 				87D20AC0213920E2001EDD60 /* FLEXArgumentInputSwitchView.m in Sources */,
 				DBD4CDF8213FAA8800857DB3 /* FSApiRequest+HomePage.m in Sources */,
+				87741FF4214A42C800F72427 /* FSMyCollectionTabVC.m in Sources */,
 				8730B0932140FFA3004331A9 /* DTScriptVariable.m in Sources */,
 				87426901212E7E36003C52F6 /* NSData+BMEncrypt.m in Sources */,
 				87426909212E7E36003C52F6 /* NSString+BMRegEx.m in Sources */,
