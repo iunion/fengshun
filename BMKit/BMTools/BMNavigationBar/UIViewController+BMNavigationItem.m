@@ -298,7 +298,7 @@
                 if (itemImage)
                 {
                     // Set the rendering mode to respect tint color
-                    UIImage *tintItemImage = [itemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                    UIImage *tintItemImage = [itemImage imageWithRenderingMode:UIImageRenderingModeAutomatic];
                     CGFloat width = itemImage.size.width+size.width+gap;
                     CGFloat height = itemImage.size.height>size.height ? itemImage.size.height  : size.height;
                     btn.frame = CGRectMake(0, 0, width, height);
@@ -325,7 +325,7 @@
             if (itemImage)
             {
                 // Set the rendering mode to respect tint color
-                UIImage *tintItemImage = [itemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                UIImage *tintItemImage = [itemImage imageWithRenderingMode:UIImageRenderingModeAutomatic];
                 btn.frame = CGRectMake(0, 0, itemImage.size.width, itemImage.size.height);
                 [btn setBackgroundImage:tintItemImage forState:UIControlStateNormal];
                 [btn setImage:nil forState:UIControlStateNormal];

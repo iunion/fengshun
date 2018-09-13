@@ -235,4 +235,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+#pragma mark - 视频调解
+
+@interface FSApiRequest (VideoMediate)
+
++ (nullable NSMutableURLRequest *)getMeetingListWithType:(NSString *)meetingTypeEnums
+                                                  status:(NSString *)meetingStatusEnums
+                                               pageIndex:(NSInteger)pageIndex
+                                                pageSize:(NSInteger)pageSize;
+
+@end
+
 NS_ASSUME_NONNULL_END
