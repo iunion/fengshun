@@ -25,15 +25,10 @@
 @property (nonatomic, copy) NSString *meetingContent;   // 会议内容
 @property (nonatomic, copy) NSString *meetingName;      // 会议名称
 @property (nonatomic, copy) NSString *meetingStatus;    // 会议状态
+@property (nonatomic, copy) NSString *meetingType;  //会议类型
 @property (nonatomic, assign) NSTimeInterval startTime; // 会议开始时间
 @property (nonatomic, assign) NSTimeInterval endTime;   // 会议结束时间
 @property (nonatomic, strong) NSArray<MeetingPersonnelModel *> *meetingPersonnelResponseDTO; // 参会人员
-@end
-
-
-// 会议详情model
-@interface MeetingDetailModel : VideoMediateListModel
 @property (nonatomic, copy) NSString *creatorId;    // 创建人id
 @property (nonatomic, copy) NSString *meetingInvite;//会议邀请链接
-@property (nonatomic, copy) NSString *meetingType;  //会议类型
 @end
