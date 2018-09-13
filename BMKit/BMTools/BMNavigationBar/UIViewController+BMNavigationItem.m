@@ -325,7 +325,7 @@
             if (itemImage)
             {
                 // Set the rendering mode to respect tint color
-                UIImage *tintItemImage = [itemImage imageWithRenderingMode:UIImageRenderingModeAutomatic];
+                UIImage *tintItemImage = [itemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
                 btn.frame = CGRectMake(0, 0, itemImage.size.width, itemImage.size.height);
                 [btn setBackgroundImage:tintItemImage forState:UIControlStateNormal];
                 [btn setImage:nil forState:UIControlStateNormal];

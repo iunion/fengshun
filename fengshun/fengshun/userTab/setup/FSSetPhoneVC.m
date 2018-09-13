@@ -8,6 +8,8 @@
 
 #import "FSSetPhoneVC.h"
 #import "AppDelegate.h"
+#import "FSAppInfo.h"
+
 #import "BMVerifiTimeManager.h"
 
 @interface FSSetPhoneVC ()
@@ -446,6 +448,8 @@
         FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
         userInfo.m_UserBaseInfo.m_PhoneNum = self.m_PhoneNum;
         
+        [FSAppInfo setCurrentPhoneNum:self.m_PhoneNum];
+
         [FSUserInfoDB insertAndUpdateUserInfo:userInfo];
         GetAppDelegate.m_UserInfo = userInfo;
         

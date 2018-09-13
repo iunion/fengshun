@@ -6,9 +6,10 @@
 //  Copyright © 2018年 FS. All rights reserved.
 //
 
-#import "FSTableViewVC.h"
+#import "ZSSRichTextEditor.h"
 
-@interface FSSendTopicVC : FSTableViewVC
+
+@interface FSSendTopicVC : ZSSRichTextEditor
 
 @property (nonatomic , copy)void (^sendPostsCallBack)(id );
 

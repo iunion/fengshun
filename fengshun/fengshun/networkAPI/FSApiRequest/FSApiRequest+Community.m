@@ -96,4 +96,9 @@
     return [XMRequestManager rm_requestWithApi:@"/storm/communityForum/twoLevelForumInfo" parameters:parameters success:successBlock failure:failureBlock];
 }
 
++ (XMRequest *)uploadImg:(NSData *)imgData success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock{
+    
+    return [XMRequestManager rm_uploadFiles:@[[XMUploadFile uploadFileWithName:@"1" mimeType:@"image/jpeg" andData:imgData]] forAPI:@"/storm/file/upload" dataKey:@"file" parameters:nil success:successBlock failure:failureBlock];
+}
+
 @end

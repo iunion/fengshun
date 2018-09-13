@@ -54,9 +54,9 @@
         self.bm_freshHeaderView = refreshHeaderView;
 
         [refreshHeaderView setFreshTitles:nil];
-        refreshHeaderView.bm_height = 72.0f;
+        refreshHeaderView.bm_height = 90.0f;
         refreshHeaderView.containerSize = CGSizeMake(50.0f, 50.0f);
-        refreshHeaderView.containerYOffset = 8.0f;
+        refreshHeaderView.containerYOffset = 18.0f;
  
         NSMutableArray *idleImages = [NSMutableArray array];
         for (NSUInteger i = 1; i<=26; i++)
@@ -108,6 +108,7 @@
                 [weakSelf.tableViewDelegate resetTableViewFreshState:weakSelf.bm_freshFooterView];
             }
         };
+        self.bm_freshFooterView.hidden = YES;
     }
     
     [self bringSomeViewToFront];

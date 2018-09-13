@@ -99,9 +99,9 @@
     
     NSUInteger index = 0;
     // 设置当前需要显示的图片
-    if (self.pullingPercent >= 0.5f)
+    if (self.pullingPercent >= 0.2f)
     {
-        index = images.count * (self.pullingPercent-0.5)*2;
+        index = images.count * (self.pullingPercent-0.2f)*(1/0.8f);
         if (index >= images.count)
         {
             index = images.count - 1;
