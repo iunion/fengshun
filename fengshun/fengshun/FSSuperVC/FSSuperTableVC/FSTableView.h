@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BMFreshFiveStarHeader.h"
+#import "BMFreshGifHeader.h"
 #import "BMFreshAutoNormalFooter.h"
 #import "UIScrollView+BMEmpty.h"
 #import "UIScrollView+BMFresh.h"

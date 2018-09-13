@@ -144,6 +144,10 @@ FSMainVC () <
         case FSHomePageTooltype_StatuteSearching:
             [FSPushVCManager homePage:self pushToLawSearchWithTopics:self.m_lawTopics];
             break;
+        // 文书范本
+        case FSHomePageTooltype_Document:
+            [FSPushVCManager homePagePushToTextSplitVC:self];
+            break;
         default:
             break;
     }
@@ -160,14 +164,14 @@ FSMainVC () <
 {
     return section ? _m_topics.count : _m_courses.count;
 }
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    if (!indexPath.section)
-//    {
-//        return COURSE_CELL_HEGHT;
-//    }
-//    return 0;
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (!indexPath.section)
+    {
+        return COURSE_CELL_HEGHT;
+    }
+    return 0;
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section) {

@@ -43,6 +43,7 @@
 #define UI_COLOR_BL5            [UIColor bm_colorWithHex:0x54C2E7]  //84,194,231
 
 #define UI_COLOR_G1             [UIColor bm_colorWithHex:0x53CB4D]  //83,203,77
+#define UI_COLOR_G2             [UIColor bm_colorWithHex:0xF2F2F2]  //242,242,242
 
 #define UI_COLOR_P1             [UIColor bm_colorWithHex:0xDE9BFD]  //222,155,253
 

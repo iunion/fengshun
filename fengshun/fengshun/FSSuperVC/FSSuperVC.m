@@ -33,13 +33,14 @@
     // 隐藏系统的返回按钮
     UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];
     temporaryBarButtonItem.title = @"";
+//    temporaryBarButtonItem.tintColor = [UIColor whiteColor];
     self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
     
     self.bm_NavigationBarStyle = UIBarStyleDefault;
     self.bm_NavigationBarBgTintColor = FS_NAVIGATION_BGCOLOR;
     self.bm_NavigationItemTintColor = FS_NAVIGATION_ITEMCOLOR;
     self.bm_NavigationShadowHidden = YES;
-
+    
     self.view.backgroundColor = FS_VIEW_BGCOLOR;
 
 }

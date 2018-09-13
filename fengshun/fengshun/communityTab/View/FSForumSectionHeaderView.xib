@@ -17,17 +17,31 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aSn-uP-mXd">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KOv-NN-2Xr">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="8"/>
+                            <color key="backgroundColor" red="0.96078431372549022" green="0.96470588235294119" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="8" id="TeC-1l-Zdn"/>
+                            </constraints>
+                        </view>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="KOv-NN-2Xr" firstAttribute="top" secondItem="aSn-uP-mXd" secondAttribute="top" id="LQL-Pw-BFo"/>
+                        <constraint firstAttribute="trailing" secondItem="KOv-NN-2Xr" secondAttribute="trailing" id="TR1-bP-dTm"/>
+                        <constraint firstItem="KOv-NN-2Xr" firstAttribute="leading" secondItem="aSn-uP-mXd" secondAttribute="leading" id="qSN-jB-jja"/>
+                    </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0x1-u6-FGU">
-                    <rect key="frame" x="20" y="21" width="22" height="22"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0x1-u6-FGU">
+                    <rect key="frame" x="20" y="29" width="22" height="22"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="ITn-D1-Wvm"/>
                         <constraint firstAttribute="width" constant="22" id="eZX-75-AP9"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已关注" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YtX-hH-XOm">
-                    <rect key="frame" x="55" y="20" width="307" height="24"/>
+                    <rect key="frame" x="55" y="28" width="307" height="24"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -43,7 +57,7 @@
                 <constraint firstItem="aSn-uP-mXd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="gld-61-odS"/>
                 <constraint firstItem="YtX-hH-XOm" firstAttribute="leading" secondItem="0x1-u6-FGU" secondAttribute="trailing" constant="13" id="ljz-Jm-4tD"/>
                 <constraint firstItem="0x1-u6-FGU" firstAttribute="centerY" secondItem="YtX-hH-XOm" secondAttribute="centerY" id="mEq-U3-qP7"/>
-                <constraint firstItem="YtX-hH-XOm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="uqi-XB-HPI"/>
+                <constraint firstItem="YtX-hH-XOm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="28" id="uqi-XB-HPI"/>
                 <constraint firstAttribute="trailing" secondItem="aSn-uP-mXd" secondAttribute="trailing" id="zVe-Bz-yLp"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

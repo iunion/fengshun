@@ -63,8 +63,10 @@
 @interface FSForumModel : NSObject
 // 二级版块id
 @property (nonatomic, assign) NSInteger m_Id;
-// 封面图片
-@property (nonatomic, strong) NSString *m_IconUrl;
+// 一级图片
+@property (nonatomic, strong) NSString *m_IconUrlFirst;
+// 二级图片
+@property (nonatomic, strong) NSString *m_IconUrlSecond;
 // 一级版块名称
 @property (nonatomic, strong) NSString *m_ForumNameFirst;
 // 版块介绍

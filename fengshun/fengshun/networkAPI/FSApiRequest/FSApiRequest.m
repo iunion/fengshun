@@ -85,7 +85,7 @@
         // 设备型号
         [FSRequestSerializer setValue:[UIDevice bm_devicePlatformString] forHTTPHeaderField:@"deviceModel"];
         // 设备系统类型
-        [FSRequestSerializer setValue:@"iOS" forHTTPHeaderField:@"cType"];
+        [FSRequestSerializer setValue:@"IOS" forHTTPHeaderField:@"cType"];
         // 系统版本号
         [FSRequestSerializer setValue:CURRENT_SYSTEMVERSION forHTTPHeaderField:@"osVersion"];
         // app名称
@@ -176,6 +176,16 @@
     return request;
 }
 
+// 通过最顶级字典code，一次性查出来所有的子集数据
++ (NSMutableURLRequest *)getDictionaryInfoWithLevelCode:(NSString *)levelCode
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/dictionary/searchDictionaryInfoByTopLevelCode", FS_URL_SERVER];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    
+    [parameters bm_setApiString:levelCode forKey:@"topLevelCode"];
+    
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
+}
 
 
 @end

@@ -141,6 +141,8 @@
 
 - (void)setM_Ability:(NSString *)ability
 {
+    _m_Ability = ability;
+    
     NSArray *array = [ability componentsSeparatedByString:@","];
     self.m_AbilityArray = [NSMutableArray arrayWithArray:array];
 }

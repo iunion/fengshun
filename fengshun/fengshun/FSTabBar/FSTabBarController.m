@@ -10,6 +10,7 @@
 #import "FSMainVC.h"
 #import "FSCommunityVC.h"
 #import "FSUserMainVC.h"
+#import "FSH5DemoVC.h"
 
 @interface FSTabBarController ()
 
@@ -70,7 +71,7 @@
     BMNavigationController *nav1 = [[BMNavigationController alloc] initWithRootViewController:[[FSMainVC alloc] initWithNibName:@"FSMainVC" bundle:nil freshViewType:BMFreshViewType_NONE]];
     nav1.popOnBackButtonHandler = [self getPopOnBackButtonHandler];
     
-    BMNavigationController *nav2 = [[BMNavigationController alloc] initWithRootViewController:[[FSSuperVC alloc] init]];
+    BMNavigationController *nav2 = [[BMNavigationController alloc] initWithRootViewController:[[FSH5DemoVC alloc] init]];
     nav2.popOnBackButtonHandler = [self getPopOnBackButtonHandler];
     
     BMNavigationController *nav3 = [[BMNavigationController alloc] initWithRootViewController:[[FSCommunityVC alloc] initWithNibName:@"FSCommunityVC" bundle:nil]];

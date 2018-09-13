@@ -15,6 +15,8 @@
 #import "FSWebViewController.h"
 
 #import "FSSearchViewController.h"
+#import "FSTextSplitVC.h"
+#import "FSTopicDetailVC.h"
 
 @implementation FSPushVCManager
 
@@ -31,17 +33,23 @@
     [pushVC.navigationController pushViewController:vc animated:YES];
 }
 
-+ (void)showEditPostWithWithPushVC:(UIViewController *)pushVC callBack:(PushVCCallBack)callBack
++ (void)showEditPostWithPushVC:(UIViewController *)pushVC callBack:(PushVCCallBack)callBack
 {
     FSSendTopicVC *vc = [[FSSendTopicVC alloc] init];
     vc.sendPostsCallBack         = callBack;
     [pushVC.navigationController pushViewController:vc animated:YES];
 }
 
-+ (void)showSendPostWithWithPushVC:(UIViewController *)pushVC callBack:(PushVCCallBack)callBack
++ (void)showSendPostWithPushVC:(UIViewController *)pushVC callBack:(PushVCCallBack)callBack
 {
     FSSendTopicVC *vc = [[FSSendTopicVC alloc] init];
     vc.sendPostsCallBack         = callBack;
+    [pushVC.navigationController pushViewController:vc animated:YES];
+}
+
++ (void)showTopicDetail:(UIViewController *)pushVC topicId:(NSString *)topicId{
+    FSTopicDetailVC *vc = [[FSTopicDetailVC alloc] initWithTitle:@"" url:[NSString stringWithFormat:@"%@/note/%@",FS_H5_SERVER,topicId] showLoadingBar:NO  loadingBarColor:nil delegate:nil];
+    vc.hidesBottomBarWhenPushed = YES;
     [pushVC.navigationController pushViewController:vc animated:YES];
 }
 
@@ -111,4 +119,11 @@
     [nav pushViewController:vc animated:YES];
 }
 
++ (void)homePagePushToTextSplitVC:(UIViewController *)mainVC
+{
+    FSTextSplitVC *splitVC = [[FSTextSplitVC alloc]initWithNibName:nil bundle:nil freshViewType:BMFreshViewType_NONE];
+    splitVC.hidesBottomBarWhenPushed = YES;
+    [mainVC.navigationController pushViewController:splitVC animated:YES];
+    
+}
 @end

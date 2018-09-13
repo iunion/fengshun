@@ -13,6 +13,7 @@
 #import "FSTopicListVC.h"
 #import "FSCommunityModel.h"
 #import "BMAlertView.h"
+#import "FSPushVCManager.h"
 
 @interface
 FSCommunitySecVC () <
@@ -25,6 +26,7 @@ FSCommunitySecVC () <
 @property (nonatomic, strong) FSCommunityHeaderView *m_HeaderView;
 @property (nonatomic, strong) FSScrollPageSegment *  m_SegmentBar;
 @property (nonatomic, strong) FSScrollPageView *     m_ScrollPageView;
+@property (nonatomic, strong) UIButton *m_PulishBtn;
 @property (nonatomic, strong) NSMutableArray *       m_dataArray;
 @property (nonatomic, strong) NSMutableArray *       m_vcArray;
 
@@ -53,6 +55,7 @@ FSCommunitySecVC () <
 
     [self createUI];
     [self loadApiData];
+    [self getHeaderInfoMsg];
 }
 
 - (void)didReceiveMemoryWarning
@@ -67,34 +70,38 @@ FSCommunitySecVC () <
     _m_HeaderView          = (FSCommunityHeaderView *)[[NSBundle mainBundle] loadNibNamed:@"FSCommunityHeaderView" owner:self options:nil].firstObject;
     _m_HeaderView.delegate = self;
     [self.view addSubview:_m_HeaderView];
-    [_m_HeaderView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.view);
-        make.top.equalTo(self.view).offset(-(UI_NAVIGATION_BAR_DEFAULTHEIGHT + UI_STATUS_BAR_HEIGHT));
-        make.height.mas_equalTo(200);
-    }];
+    _m_HeaderView.frame = CGRectMake(0, -64, UI_SCREEN_WIDTH, 200);
 
     // 切换视图
-    self.m_SegmentBar = [[FSScrollPageSegment alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 44) titles:nil titleColor:nil selectTitleColor:nil showUnderLine:NO moveLineFrame:CGRectZero isEqualDivide:YES fresh:YES];
+    self.m_SegmentBar = [[FSScrollPageSegment alloc] initWithFrame:CGRectMake(0, _m_HeaderView.bm_bottom + 8, UI_SCREEN_WIDTH, 44) titles:nil titleColor:nil selectTitleColor:nil showUnderLine:YES moveLineFrame:CGRectZero isEqualDivide:YES fresh:YES];
     [self.view addSubview:_m_SegmentBar];
-    [self.m_SegmentBar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(_m_HeaderView.mas_bottom);
-        make.left.right.equalTo(self.view);
-        make.height.mas_equalTo(44);
-    }];
     _m_SegmentBar.backgroundColor = [UIColor whiteColor];
 
     // 内容视图
-    self.m_ScrollPageView = [[FSScrollPageView alloc] initWithFrame:CGRectMake(0, 44, UI_SCREEN_WIDTH, UI_MAINSCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT - UI_TAB_BAR_HEIGHT - 44) titleColor:UI_COLOR_B1 selectTitleColor:UI_COLOR_B1 scrollPageSegment:_m_SegmentBar isSubViewPageSegment:NO];
+    self.m_ScrollPageView = [[FSScrollPageView alloc] initWithFrame:CGRectMake(0, _m_SegmentBar.bm_bottom, UI_SCREEN_WIDTH, self.view.bm_height - _m_SegmentBar.bm_bottom) titleColor:UI_COLOR_B1 selectTitleColor:UI_COLOR_B1 scrollPageSegment:_m_SegmentBar isSubViewPageSegment:NO];
     [self.view addSubview:self.m_ScrollPageView];
-    [self.m_ScrollPageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(self.view);
-        make.top.mas_equalTo(self.m_SegmentBar.mas_bottom);
-    }];
     self.m_ScrollPageView.datasource = self;
     self.m_ScrollPageView.delegate   = self;
     [self.m_ScrollPageView setM_MoveLineColor:UI_COLOR_BL1];
     [self.m_ScrollPageView reloadPage];
     [self.m_ScrollPageView scrollPageWithIndex:0];
+    
+    self.m_PulishBtn = [UIButton bm_buttonWithFrame:CGRectMake(0, 0, 52.f, 52.f) image:[UIImage imageNamed:@"community_comment"]];
+    [self.m_PulishBtn addTarget:self action:@selector(pulishTopicAction) forControlEvents:UIControlEventTouchUpInside];
+    CGFloat space = 20.f;
+    [self.view addSubview:self.m_PulishBtn];
+    [self.m_PulishBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.bottom.equalTo(self.view).offset(-space);
+        make.width.height.mas_equalTo(52);
+    }];
+}
+
+#pragma mark - Action
+// 发帖
+- (void)pulishTopicAction{
+    [FSPushVCManager showSendPostWithPushVC:self callBack:^(id object) {
+        
+    }];
 }
 
 #pragma mark - FSScrollPageView Delegate & DataSource
@@ -152,6 +159,18 @@ FSCommunitySecVC () <
     return NO;
 }
 
+- (void)getHeaderInfoMsg
+{
+    [FSApiRequest getTwoLevelFourmInfoWithId:self.m_FourmId success:^(id  _Nullable responseObject) {
+        if ([[responseObject bm_dictionaryForKey:@"communityForumDTO"] bm_isNotEmptyDictionary])
+        {
+            FSForumModel *model = [FSForumModel forumModelWithServerDic:[responseObject bm_dictionaryForKey:@"communityForumDTO"]];
+            [_m_HeaderView updateHeaderViewWith:model];
+        }
+    } failure:^(NSError * _Nullable error) {
+        
+    }];
+}
 /*
 #pragma mark - Navigation
 

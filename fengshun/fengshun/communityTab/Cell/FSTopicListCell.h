@@ -20,4 +20,6 @@
  */
 - (void)drawCellWithModle:(FSTopicModel *)model;
 
++ (CGFloat)cellHeight;
+
 @end

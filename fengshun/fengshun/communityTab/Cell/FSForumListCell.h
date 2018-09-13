@@ -11,6 +11,10 @@
 
 @interface FSForumListCell : UITableViewCell
 
++ (CGFloat)cellHeight;
+
+@property (nonatomic, strong)FSForumModel *m_ForumModel;
+
 - (void)showWithFSCommunityForumListModel:(FSForumModel *)aModel;
 
 @end
