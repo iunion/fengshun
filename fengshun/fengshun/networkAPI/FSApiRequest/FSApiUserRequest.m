@@ -235,6 +235,43 @@
     return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
 }
 
+// 联系客服
+// http://115.159.33.190:8121/swagger-ui.html#/%E6%88%91%E7%9A%84%E7%9B%B8%E5%85%B3/getCustomerServiceUsingPOST
++ (NSMutableURLRequest *)getCustomerService
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/personal/getCustomerService", FS_URL_SERVER];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+        
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
+}
+
+// 我的收藏
++ (NSMutableURLRequest *)getMyCollections
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/personal/getMyCollections", FS_URL_SERVER];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
+}
+
+// 我的评论
++ (NSMutableURLRequest *)getMyComments
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/personal/etMyComments", FS_URL_SERVER];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
+}
+
+// 我的帖子
++ (NSMutableURLRequest *)getMyTopic
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/personal/getMyPosts", FS_URL_SERVER];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
+}
+
 // 刷新token
 + (NSMutableURLRequest *)updateUserToken:(NSString *)token
 {

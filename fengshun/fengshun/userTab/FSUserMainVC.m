@@ -16,6 +16,8 @@
 #import "FSSetupVC.h"
 #import "FSCustomInfoVC.h"
 
+#import "FSServiceVC.h"
+
 
 @interface FSUserMainVC ()
 
@@ -157,7 +159,9 @@
     self.m_HelpItem.cellHeight = 50.0f;
 
     self.m_ServiceItem = [BMTableViewItem itemWithTitle:@"联系客服" imageName:@"user_serviceicon" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
-        
+        FSServiceVC *serviceVC = [[FSServiceVC alloc] initWithNibName:@"FSServiceVC" bundle:nil];
+        serviceVC.hidesBottomBarWhenPushed = YES;
+        [weakSelf.navigationController pushViewController:serviceVC animated:YES];
     }];
     self.m_ServiceItem.imageH = 16.0f;
     self.m_ServiceItem.imageW = 16.0f;
