@@ -132,6 +132,10 @@ FSMainVC () <
 - (void)pushWithToolModel:(FSHomePageToolModel *)tool
 {
     switch (tool.m_toolType) {
+        // 视频调解
+        case FSHomePageTooltype_VideoMediation:
+            [FSPushVCManager pushVideoMediateList:self.navigationController];
+            break;
         // 案例检索
         case FSHomePageTooltype_CaseSearching:
             [FSPushVCManager homePage:self pushToCaseSearchWithHotKeys:self.m_caseHotkeys];

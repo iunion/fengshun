@@ -11,6 +11,7 @@
 #import "FSCommunitySecVC.h"
 #import "FSSendTopicVC.h"
 
+#import "FSVideoMediateListVC.h"
 #import "FSWebViewController.h"
 
 #import "FSSearchViewController.h"
@@ -101,6 +102,13 @@
     FSSearchViewController *searchViewController = [[FSSearchViewController alloc] initWithSearchKey:@"lawsSearch" resultType:FSSearchResultType_laws hotSearchTags:topics searchHandler:nil];
     searchViewController.hidesBottomBarWhenPushed = YES;
     [mainVC.navigationController pushViewController:searchViewController animated:YES];
+}
+
++ (void)pushVideoMediateList:(UINavigationController *)nav;
+{
+    FSVideoMediateListVC *vc = [FSVideoMediateListVC new];
+    vc.hidesBottomBarWhenPushed = YES;
+    [nav pushViewController:vc animated:YES];
 }
 
 @end

@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4561391B2148E063007DF6A1 /* FSHeaderCommonSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 4561391A2148E063007DF6A1 /* FSHeaderCommonSelector.m */; };
+		4561391E2148FA2B007DF6A1 /* FSApiRequest+VideoMediate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4561391D2148FA2B007DF6A1 /* FSApiRequest+VideoMediate.m */; };
+		45613923214901E5007DF6A1 /* VideoMediateListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 45613922214901E5007DF6A1 /* VideoMediateListCell.m */; };
+		45613926214901F6007DF6A1 /* FSVideoMediateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 45613925214901F6007DF6A1 /* FSVideoMediateModel.m */; };
+		45613929214908AA007DF6A1 /* FSCreateVideoMediateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 45613928214908AA007DF6A1 /* FSCreateVideoMediateVC.m */; };
+		4561392D21490E5D007DF6A1 /* FSVideoMediateDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4561392C21490E5D007DF6A1 /* FSVideoMediateDetailVC.m */; };
+		4561393021490F83007DF6A1 /* FSVideoInviteLitigantVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4561392F21490F83007DF6A1 /* FSVideoInviteLitigantVC.m */; };
+		4561393321490FEC007DF6A1 /* FSVideoMessageListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4561393221490FEC007DF6A1 /* FSVideoMessageListVC.m */; };
+		4561393621491033007DF6A1 /* FSVideoAttendListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4561393521491033007DF6A1 /* FSVideoAttendListVC.m */; };
+		45A3BF8B2148AA2E0093278C /* FSVideoMediateListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A3BF8A2148AA2E0093278C /* FSVideoMediateListVC.m */; };
 		8730AD352140B9BD004331A9 /* FSSetupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730AD332140B9BC004331A9 /* FSSetupVC.m */; };
 		8730AD422140CC28004331A9 /* user_commenticon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730AD362140CC26004331A9 /* user_commenticon@2x.png */; };
 		8730AD432140CC28004331A9 /* user_serviceicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730AD372140CC27004331A9 /* user_serviceicon@3x.png */; };
@@ -703,6 +713,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		456139192148E063007DF6A1 /* FSHeaderCommonSelector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSHeaderCommonSelector.h; sourceTree = "<group>"; };
+		4561391A2148E063007DF6A1 /* FSHeaderCommonSelector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSHeaderCommonSelector.m; sourceTree = "<group>"; };
+		4561391D2148FA2B007DF6A1 /* FSApiRequest+VideoMediate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "FSApiRequest+VideoMediate.m"; sourceTree = "<group>"; };
+		45613921214901E5007DF6A1 /* VideoMediateListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoMediateListCell.h; sourceTree = "<group>"; };
+		45613922214901E5007DF6A1 /* VideoMediateListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoMediateListCell.m; sourceTree = "<group>"; };
+		45613924214901F6007DF6A1 /* FSVideoMediateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVideoMediateModel.h; sourceTree = "<group>"; };
+		45613925214901F6007DF6A1 /* FSVideoMediateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoMediateModel.m; sourceTree = "<group>"; };
+		45613927214908AA007DF6A1 /* FSCreateVideoMediateVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCreateVideoMediateVC.h; sourceTree = "<group>"; };
+		45613928214908AA007DF6A1 /* FSCreateVideoMediateVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCreateVideoMediateVC.m; sourceTree = "<group>"; };
+		4561392B21490E5D007DF6A1 /* FSVideoMediateDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVideoMediateDetailVC.h; sourceTree = "<group>"; };
+		4561392C21490E5D007DF6A1 /* FSVideoMediateDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoMediateDetailVC.m; sourceTree = "<group>"; };
+		4561392E21490F83007DF6A1 /* FSVideoInviteLitigantVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVideoInviteLitigantVC.h; sourceTree = "<group>"; };
+		4561392F21490F83007DF6A1 /* FSVideoInviteLitigantVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoInviteLitigantVC.m; sourceTree = "<group>"; };
+		4561393121490FEC007DF6A1 /* FSVideoMessageListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVideoMessageListVC.h; sourceTree = "<group>"; };
+		4561393221490FEC007DF6A1 /* FSVideoMessageListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoMessageListVC.m; sourceTree = "<group>"; };
+		4561393421491033007DF6A1 /* FSVideoAttendListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVideoAttendListVC.h; sourceTree = "<group>"; };
+		4561393521491033007DF6A1 /* FSVideoAttendListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoAttendListVC.m; sourceTree = "<group>"; };
+		45A3BF892148AA2E0093278C /* FSVideoMediateListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVideoMediateListVC.h; sourceTree = "<group>"; };
+		45A3BF8A2148AA2E0093278C /* FSVideoMediateListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoMediateListVC.m; sourceTree = "<group>"; };
 		8730AD332140B9BC004331A9 /* FSSetupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSetupVC.m; sourceTree = "<group>"; };
 		8730AD342140B9BC004331A9 /* FSSetupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSetupVC.h; sourceTree = "<group>"; };
 		8730AD362140CC26004331A9 /* user_commenticon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_commenticon@2x.png"; sourceTree = "<group>"; };
@@ -1910,6 +1939,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4561391F2149019B007DF6A1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				456139192148E063007DF6A1 /* FSHeaderCommonSelector.h */,
+				4561391A2148E063007DF6A1 /* FSHeaderCommonSelector.m */,
+				45613921214901E5007DF6A1 /* VideoMediateListCell.h */,
+				45613922214901E5007DF6A1 /* VideoMediateListCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		45613920214901B2007DF6A1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				45613924214901F6007DF6A1 /* FSVideoMediateModel.h */,
+				45613925214901F6007DF6A1 /* FSVideoMediateModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		45A3BF882148A9C20093278C /* VideoMediateTool */ = {
+			isa = PBXGroup;
+			children = (
+				45613920214901B2007DF6A1 /* Model */,
+				4561391F2149019B007DF6A1 /* View */,
+				45A3BF892148AA2E0093278C /* FSVideoMediateListVC.h */,
+				45A3BF8A2148AA2E0093278C /* FSVideoMediateListVC.m */,
+				45613927214908AA007DF6A1 /* FSCreateVideoMediateVC.h */,
+				45613928214908AA007DF6A1 /* FSCreateVideoMediateVC.m */,
+				4561392B21490E5D007DF6A1 /* FSVideoMediateDetailVC.h */,
+				4561392C21490E5D007DF6A1 /* FSVideoMediateDetailVC.m */,
+				4561392E21490F83007DF6A1 /* FSVideoInviteLitigantVC.h */,
+				4561392F21490F83007DF6A1 /* FSVideoInviteLitigantVC.m */,
+				4561393121490FEC007DF6A1 /* FSVideoMessageListVC.h */,
+				4561393221490FEC007DF6A1 /* FSVideoMessageListVC.m */,
+				4561393421491033007DF6A1 /* FSVideoAttendListVC.h */,
+				4561393521491033007DF6A1 /* FSVideoAttendListVC.m */,
+			);
+			path = VideoMediateTool;
+			sourceTree = "<group>";
+		};
 		8730AEFB2140FFA1004331A9 /* DTCoreText */ = {
 			isa = PBXGroup;
 			children = (
@@ -3145,6 +3215,7 @@
 		87426A5B21313915003C52F6 /* mainTab */ = {
 			isa = PBXGroup;
 			children = (
+				45A3BF882148A9C20093278C /* VideoMediateTool */,
 				DBD4CE7B2141224500857DB3 /* images */,
 				DB8D160D2137CC7100EB16E8 /* view */,
 				87426A5C21313940003C52F6 /* FSMainVC.h */,
@@ -3313,6 +3384,7 @@
 				87D20B1C213CF9DD001EDD60 /* FSApiUserRequest.m */,
 				AD510297213E560F008CD74D /* FSApiRequest+Community.m */,
 				DBD4CDF7213FAA8800857DB3 /* FSApiRequest+HomePage.m */,
+				4561391D2148FA2B007DF6A1 /* FSApiRequest+VideoMediate.m */,
 			);
 			path = FSApiRequest;
 			sourceTree = "<group>";
@@ -4659,6 +4731,7 @@
 				87D20AE2213920E2001EDD60 /* FLEXClassesTableViewController.m in Sources */,
 				AD9355AC2137D24100735C2E /* TZLocationManager.m in Sources */,
 				8730B03F2140FFA2004331A9 /* DTDictationPlaceholderTextAttachment.m in Sources */,
+				4561391E2148FA2B007DF6A1 /* FSApiRequest+VideoMediate.m in Sources */,
 				87D20B062139492F001EDD60 /* WebViewJavascriptBridge_JS.m in Sources */,
 				DB4C7E452147C13A008CC6BB /* FSTextSplitVC.m in Sources */,
 				87D20AEB213920E2001EDD60 /* FLEXResources.m in Sources */,
@@ -4689,6 +4762,7 @@
 				87D20AC6213920E2001EDD60 /* FLEXArgumentInputNumberView.m in Sources */,
 				8730B0732140FFA3004331A9 /* mztools.c in Sources */,
 				874268E3212E7E36003C52F6 /* UIWindow+BMCategory.m in Sources */,
+				4561393321490FEC007DF6A1 /* FSVideoMessageListVC.m in Sources */,
 				87D20AD5213920E2001EDD60 /* FLEXTableLeftCell.m in Sources */,
 				87D209B72138F1E2001EDD60 /* SDWebImageManager.m in Sources */,
 				87426AD42133F3C8003C52F6 /* FSTableViewVC.m in Sources */,
@@ -4749,6 +4823,8 @@
 				87426AEE2135348D003C52F6 /* FMDatabasePool.m in Sources */,
 				87426AEC2135348D003C52F6 /* FMDatabaseAdditions.m in Sources */,
 				874268B3212E7E36003C52F6 /* BMTableViewCellStyle.m in Sources */,
+				4561391B2148E063007DF6A1 /* FSHeaderCommonSelector.m in Sources */,
+				4561393021490F83007DF6A1 /* FSVideoInviteLitigantVC.m in Sources */,
 				8730B09A2140FFA3004331A9 /* NSMutableArray+DTMoving.m in Sources */,
 				87426AA8213156D5003C52F6 /* FSPageBannerView.m in Sources */,
 				87426A7E2131461F003C52F6 /* AFURLResponseSerialization.m in Sources */,
@@ -4759,6 +4835,7 @@
 				AD93559F2137D24100735C2E /* TZImageCropManager.m in Sources */,
 				87D20AD7213920E2001EDD60 /* FLEXTableContentViewController.m in Sources */,
 				8730B0962140FFA3004331A9 /* DTASN1Serialization.m in Sources */,
+				45613926214901F6007DF6A1 /* FSVideoMediateModel.m in Sources */,
 				874269D6212E9E21003C52F6 /* BMFreshBackFooterView.m in Sources */,
 				AD8B63FE21338E0C006DDC22 /* FSPreviewFileTool.m in Sources */,
 				874268E4212E7E36003C52F6 /* UIView+BMAnimation.m in Sources */,
@@ -4777,6 +4854,7 @@
 				87426901212E7E36003C52F6 /* NSData+BMEncrypt.m in Sources */,
 				87426909212E7E36003C52F6 /* NSString+BMRegEx.m in Sources */,
 				8730B09F2140FFA3004331A9 /* NSArray+DTError.m in Sources */,
+				4561393621491033007DF6A1 /* FSVideoAttendListVC.m in Sources */,
 				874268D1212E7E36003C52F6 /* BMTabItemButton.m in Sources */,
 				87D20ADA213920E2001EDD60 /* FLEXMultiColumnTableView.m in Sources */,
 				87D209BF2138F1E2001EDD60 /* UIImage+MultiFormat.m in Sources */,
@@ -4923,6 +5001,7 @@
 				8730B07F2140FFA3004331A9 /* DTActionSheet.m in Sources */,
 				ADE8689C21393469005359B5 /* FSForumListCell.m in Sources */,
 				8730B0AF21461456004331A9 /* FSRecommendListVC.m in Sources */,
+				45A3BF8B2148AA2E0093278C /* FSVideoMediateListVC.m in Sources */,
 				87D20B1321394A5A001EDD60 /* FSWebViewProgress.m in Sources */,
 				87D20AD2213920E2001EDD60 /* FLEXSystemLogTableViewController.m in Sources */,
 				87D20ADE213920E2001EDD60 /* FLEXCookiesTableViewController.m in Sources */,
@@ -4945,6 +5024,7 @@
 				87426A822131461F003C52F6 /* AFNetworkReachabilityManager.m in Sources */,
 				87D20AB8213920E2001EDD60 /* FLEXDefaultEditorViewController.m in Sources */,
 				874269C9212E9B78003C52F6 /* UIScrollView+BMFresh.m in Sources */,
+				45613923214901E5007DF6A1 /* VideoMediateListCell.m in Sources */,
 				8730B05B2140FFA3004331A9 /* DTListItemHTMLElement.m in Sources */,
 				874269C5212E9B78003C52F6 /* BMFreshAutoFooterView.m in Sources */,
 				874268FF212E7E36003C52F6 /* NSURL+BMParameters.m in Sources */,
@@ -5011,6 +5091,7 @@
 				87426A7F2131461F003C52F6 /* AFHTTPSessionManager.m in Sources */,
 				DB57223B2133A1D90065DC30 /* FSCommunityVC.m in Sources */,
 				87426AD72133F446003C52F6 /* FSSuperNetVC.m in Sources */,
+				4561392D21490E5D007DF6A1 /* FSVideoMediateDetailVC.m in Sources */,
 				8730B0762140FFA3004331A9 /* DTAsyncFileDeleter.m in Sources */,
 				8730B06A2140FFA3004331A9 /* DTFoundationConstants.m in Sources */,
 				AD2244A2213CD6C300F2DC47 /* MASViewConstraint.m in Sources */,
@@ -5029,6 +5110,7 @@
 				AD9355AD2137D24100735C2E /* TZGifPhotoPreviewController.m in Sources */,
 				8730B07D2140FFA3004331A9 /* DTAlertView.m in Sources */,
 				87D20AA6213920E2001EDD60 /* FLEXViewControllerExplorerViewController.m in Sources */,
+				45613929214908AA007DF6A1 /* FSCreateVideoMediateVC.m in Sources */,
 				874268D8212E7E36003C52F6 /* BMAlertView.m in Sources */,
 				AD9CAAE4212EA0F40071B941 /* UIScrollView+BMEmpty.m in Sources */,
 				8730B0A6214255B7004331A9 /* FSEditorVC.m in Sources */,

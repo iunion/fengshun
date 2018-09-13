@@ -40,4 +40,7 @@ typedef void (^PushVCCallBack)(id object);
 
 // 法规检索
 + (void)homePage:(UIViewController *)mainVC pushToLawSearchWithTopics:(NSArray *)topics;
+
++ (void)pushVideoMediateList:(UINavigationController *)nav;
+
 @end
