@@ -434,6 +434,15 @@
 		87426AF521353510003C52F6 /* FSDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AF321353510003C52F6 /* FSDB.m */; };
 		87426AF621353510003C52F6 /* FSDBVersionCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AF421353510003C52F6 /* FSDBVersionCheck.m */; };
 		87426AF9213536AC003C52F6 /* FSUserInfoDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AF8213536AC003C52F6 /* FSUserInfoDB.m */; };
+		87741FDC214A0C8A00F72427 /* FSServiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87741FDA214A0C8A00F72427 /* FSServiceVC.m */; };
+		87741FDD214A0C8A00F72427 /* FSServiceVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87741FDB214A0C8A00F72427 /* FSServiceVC.xib */; };
+		87741FE3214A132200F72427 /* user_wechaticon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87741FDF214A132200F72427 /* user_wechaticon@3x.png */; };
+		87741FE4214A132200F72427 /* user_qqicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87741FE0214A132200F72427 /* user_qqicon@2x.png */; };
+		87741FE5214A132200F72427 /* user_wechaticon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87741FE1214A132200F72427 /* user_wechaticon@2x.png */; };
+		87741FE6214A132200F72427 /* user_qqicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87741FE2214A132200F72427 /* user_qqicon@3x.png */; };
+		87741FEB214A381700F72427 /* FSMyCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87741FEA214A381700F72427 /* FSMyCollectionVC.m */; };
+		87741FEE214A385700F72427 /* FSMyCommentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87741FED214A385700F72427 /* FSMyCommentVC.m */; };
+		87741FF1214A387100F72427 /* FSMyTopicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87741FF0214A387100F72427 /* FSMyTopicVC.m */; };
 		87C0134B212E7A5200D0AAC3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0134A212E7A5200D0AAC3 /* AppDelegate.m */; };
 		87C0134D212E7A5300D0AAC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87C0134C212E7A5300D0AAC3 /* Assets.xcassets */; };
 		87C01353212E7A5300D0AAC3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C01352212E7A5300D0AAC3 /* main.m */; };
@@ -1611,6 +1620,20 @@
 		87426AF421353510003C52F6 /* FSDBVersionCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSDBVersionCheck.m; sourceTree = "<group>"; };
 		87426AF7213536AC003C52F6 /* FSUserInfoDB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSUserInfoDB.h; sourceTree = "<group>"; };
 		87426AF8213536AC003C52F6 /* FSUserInfoDB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSUserInfoDB.m; sourceTree = "<group>"; };
+		87741FD72149FF5F00F72427 /* ExampleApp.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = ExampleApp.html; path = "../../../../gitHubs/WebViewJavascriptBridge/Example Apps/ExampleApp.html"; sourceTree = "<group>"; };
+		87741FD9214A0C8A00F72427 /* FSServiceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSServiceVC.h; sourceTree = "<group>"; };
+		87741FDA214A0C8A00F72427 /* FSServiceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSServiceVC.m; sourceTree = "<group>"; };
+		87741FDB214A0C8A00F72427 /* FSServiceVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSServiceVC.xib; sourceTree = "<group>"; };
+		87741FDF214A132200F72427 /* user_wechaticon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_wechaticon@3x.png"; sourceTree = "<group>"; };
+		87741FE0214A132200F72427 /* user_qqicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_qqicon@2x.png"; sourceTree = "<group>"; };
+		87741FE1214A132200F72427 /* user_wechaticon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_wechaticon@2x.png"; sourceTree = "<group>"; };
+		87741FE2214A132200F72427 /* user_qqicon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_qqicon@3x.png"; sourceTree = "<group>"; };
+		87741FE9214A381700F72427 /* FSMyCollectionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMyCollectionVC.h; sourceTree = "<group>"; };
+		87741FEA214A381700F72427 /* FSMyCollectionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMyCollectionVC.m; sourceTree = "<group>"; };
+		87741FEC214A385700F72427 /* FSMyCommentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMyCommentVC.h; sourceTree = "<group>"; };
+		87741FED214A385700F72427 /* FSMyCommentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMyCommentVC.m; sourceTree = "<group>"; };
+		87741FEF214A387100F72427 /* FSMyTopicVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMyTopicVC.h; sourceTree = "<group>"; };
+		87741FF0214A387100F72427 /* FSMyTopicVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMyTopicVC.m; sourceTree = "<group>"; };
 		87C01346212E7A5200D0AAC3 /* fengshun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fengshun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87C01349212E7A5200D0AAC3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		87C0134A212E7A5200D0AAC3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -3789,6 +3812,19 @@
 			path = FSDB;
 			sourceTree = "<group>";
 		};
+		87741FE8214A37C200F72427 /* mine */ = {
+			isa = PBXGroup;
+			children = (
+				87741FE9214A381700F72427 /* FSMyCollectionVC.h */,
+				87741FEA214A381700F72427 /* FSMyCollectionVC.m */,
+				87741FEC214A385700F72427 /* FSMyCommentVC.h */,
+				87741FED214A385700F72427 /* FSMyCommentVC.m */,
+				87741FEF214A387100F72427 /* FSMyTopicVC.h */,
+				87741FF0214A387100F72427 /* FSMyTopicVC.m */,
+			);
+			path = mine;
+			sourceTree = "<group>";
+		};
 		87C0133D212E7A5200D0AAC3 = {
 			isa = PBXGroup;
 			children = (
@@ -3934,6 +3970,7 @@
 			isa = PBXGroup;
 			children = (
 				87D20AED21392FF1001EDD60 /* images */,
+				87741FE8214A37C200F72427 /* mine */,
 				8730B0A321420EC2004331A9 /* setup */,
 				87D2096F2137F399001EDD60 /* FSUserMainVC.h */,
 				87D209702137F399001EDD60 /* FSUserMainVC.m */,
@@ -3942,6 +3979,9 @@
 				87D20B22213F87A8001EDD60 /* FSCustomInfoVC.m */,
 				8730AD342140B9BC004331A9 /* FSSetupVC.h */,
 				8730AD332140B9BC004331A9 /* FSSetupVC.m */,
+				87741FD9214A0C8A00F72427 /* FSServiceVC.h */,
+				87741FDA214A0C8A00F72427 /* FSServiceVC.m */,
+				87741FDB214A0C8A00F72427 /* FSServiceVC.xib */,
 			);
 			path = userTab;
 			sourceTree = "<group>";
@@ -4367,6 +4407,10 @@
 				8730AD3E2140CC27004331A9 /* user_topicicon@3x.png */,
 				8730B0C7214772AC004331A9 /* user_verifyicon@2x.png */,
 				8730B0C8214772AD004331A9 /* user_verifyicon@3x.png */,
+				87741FE0214A132200F72427 /* user_qqicon@2x.png */,
+				87741FE2214A132200F72427 /* user_qqicon@3x.png */,
+				87741FE1214A132200F72427 /* user_wechaticon@2x.png */,
+				87741FDF214A132200F72427 /* user_wechaticon@3x.png */,
 				87D20AEE21392FF1001EDD60 /* user_topbackgroud@2x.png */,
 			);
 			path = images;
@@ -4375,6 +4419,7 @@
 		87D20AFA2139492E001EDD60 /* WebViewJavascriptBridge */ = {
 			isa = PBXGroup;
 			children = (
+				87741FD72149FF5F00F72427 /* ExampleApp.html */,
 				87D20AFE2139492E001EDD60 /* WebViewJavascriptBridge_JS.h */,
 				87D20B002139492E001EDD60 /* WebViewJavascriptBridge_JS.m */,
 				87D20B012139492E001EDD60 /* WebViewJavascriptBridge.h */,
@@ -5039,6 +5084,7 @@
 				87D186AE213679F800037DDF /* login_logo@3x.png in Resources */,
 				8730B1172148E5D1004331A9 /* fsfreshidle_icon13@2x.png in Resources */,
 				87D20AD6213920E2001EDD60 /* LICENSE in Resources */,
+				87741FE5214A132200F72427 /* user_wechaticon@2x.png in Resources */,
 				AD5102A4213E77FC008CD74D /* FSCommunitySecVC.xib in Resources */,
 				AD3B81E1214A0EA100D72DE9 /* ZSSkeyboard.png in Resources */,
 				DBD4CE922141229400857DB3 /* home_topics@2x.png in Resources */,
@@ -5085,6 +5131,7 @@
 				AD3B81E3214A0EA100D72DE9 /* ZSSh2.png in Resources */,
 				8730B1182148E5D1004331A9 /* fsfreshidle_icon9@2x.png in Resources */,
 				8730B1262148E5D1004331A9 /* fsfreshidle_icon4@2x.png in Resources */,
+				87741FE3214A132200F72427 /* user_wechaticon@3x.png in Resources */,
 				8730B11B2148E5D1004331A9 /* fsfreshidle_icon16@2x.png in Resources */,
 				AD3B81BD214A0EA100D72DE9 /* ZSSoutdent@2x.png in Resources */,
 				AD3B81FE214A0EA100D72DE9 /* ZSSbold@2x.png in Resources */,
@@ -5124,6 +5171,7 @@
 				AD3B81D3214A0EA100D72DE9 /* ZSSh6.png in Resources */,
 				AD3B81BE214A0EA100D72DE9 /* ZSSh2@2x.png in Resources */,
 				8730B0CD214772BC004331A9 /* user_mobileicon@2x.png in Resources */,
+				87741FDD214A0C8A00F72427 /* FSServiceVC.xib in Resources */,
 				AD3B81F9214A0EA100D72DE9 /* ZSSh5@2x.png in Resources */,
 				87D186A7213679F800037DDF /* login_logo@2x.png in Resources */,
 				8730B10B2148E5D1004331A9 /* fsfreshfreshing_icon3@2x.png in Resources */,
@@ -5134,6 +5182,7 @@
 				AD3B81C1214A0EA100D72DE9 /* ZSShorizontalrule@2x.png in Resources */,
 				87426A56213135F0003C52F6 /* fstab_btn2_icon@3x.png in Resources */,
 				87D20AF821393B9A001EDD60 /* navigationbar_share_icon@2x.png in Resources */,
+				87741FE4214A132200F72427 /* user_qqicon@2x.png in Resources */,
 				87426A22213100BB003C52F6 /* bmsearch_history@2x.png in Resources */,
 				DBD4CE8A2141229400857DB3 /* home_courses@3x.png in Resources */,
 				87426893212E7E36003C52F6 /* steppersinput_plusicon@2x.png in Resources */,
@@ -5174,6 +5223,7 @@
 				8730B1112148E5D1004331A9 /* fsfreshidle_icon5@2x.png in Resources */,
 				AD2244DC213D158800F2DC47 /* FSForumDetailListCell.xib in Resources */,
 				87426A59213135F0003C52F6 /* fstab_btn1_highIcon@2x.png in Resources */,
+				87741FE6214A132200F72427 /* user_qqicon@3x.png in Resources */,
 				87D209732137F399001EDD60 /* FSUserMainVC.xib in Resources */,
 				AD2244A4213CD6C300F2DC47 /* Info.plist in Resources */,
 				AD9355A62137D24100735C2E /* TZImagePickerController.bundle in Resources */,
@@ -5396,6 +5446,7 @@
 				874268E3212E7E36003C52F6 /* UIWindow+BMCategory.m in Sources */,
 				4561393321490FEC007DF6A1 /* FSVideoMessageListVC.m in Sources */,
 				87D20AD5213920E2001EDD60 /* FLEXTableLeftCell.m in Sources */,
+				87741FEB214A381700F72427 /* FSMyCollectionVC.m in Sources */,
 				87D209B72138F1E2001EDD60 /* SDWebImageManager.m in Sources */,
 				87426AD42133F3C8003C52F6 /* FSTableViewVC.m in Sources */,
 				87D20AD3213920E2001EDD60 /* FLEXSystemLogMessage.m in Sources */,
@@ -5643,6 +5694,7 @@
 				8730B07F2140FFA3004331A9 /* DTActionSheet.m in Sources */,
 				ADE8689C21393469005359B5 /* FSForumListCell.m in Sources */,
 				8730B0AF21461456004331A9 /* FSRecommendListVC.m in Sources */,
+				87741FEE214A385700F72427 /* FSMyCommentVC.m in Sources */,
 				45A3BF8B2148AA2E0093278C /* FSVideoMediateListVC.m in Sources */,
 				87D20B1321394A5A001EDD60 /* FSWebViewProgress.m in Sources */,
 				87D20AD2213920E2001EDD60 /* FLEXSystemLogTableViewController.m in Sources */,
@@ -5685,6 +5737,7 @@
 				87D209CB2138F1E2001EDD60 /* NSImage+WebCache.m in Sources */,
 				8730B01F2140FFA2004331A9 /* DTCoreTextGlyphRun.m in Sources */,
 				87D1867E213549B700037DDF /* BMVerifyField.m in Sources */,
+				87741FDC214A0C8A00F72427 /* FSServiceVC.m in Sources */,
 				87D20B1D213CF9DD001EDD60 /* FSApiUserRequest.m in Sources */,
 				874268AC212E7E36003C52F6 /* BMTableViewStepperInputCell.m in Sources */,
 				8730B0B22146149E004331A9 /* FSForumListVC.m in Sources */,
@@ -5791,6 +5844,7 @@
 				87426AF621353510003C52F6 /* FSDBVersionCheck.m in Sources */,
 				87426904212E7E36003C52F6 /* NSString+BMMandarinLatin.m in Sources */,
 				87D209E72138FF46001EDD60 /* RSKInternalUtility.m in Sources */,
+				87741FF1214A387100F72427 /* FSMyTopicVC.m in Sources */,
 				87D209BB2138F1E2001EDD60 /* SDWebImageCodersManager.m in Sources */,
 				8730B0722140FFA3004331A9 /* ioapi.c in Sources */,
 				874268A8212E7E36003C52F6 /* BMTableViewTextCell.m in Sources */,

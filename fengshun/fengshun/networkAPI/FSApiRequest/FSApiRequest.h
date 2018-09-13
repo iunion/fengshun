@@ -121,6 +121,24 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable NSMutableURLRequest *)authenticationWithId:(NSString *)idCard name:(NSString *)name;
 
 
+// 联系客服
+// http://115.159.33.190:8121/swagger-ui.html#/%E6%88%91%E7%9A%84%E7%9B%B8%E5%85%B3/getCustomerServiceUsingPOST
++ (nullable NSMutableURLRequest *)getCustomerService;
+
+// 我的收藏
+// http://115.159.33.190:8121/swagger-ui.html#/%E6%88%91%E7%9A%84%E7%9B%B8%E5%85%B3/getMyCollectionsUsingPOST
++ (nullable NSMutableURLRequest *)getMyCollectionsWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize;
+
+// 我的评论
+// http://115.159.33.190:8121/swagger-ui.html#/%E6%88%91%E7%9A%84%E7%9B%B8%E5%85%B3/getMyCommentsUsingPOST
++ (nullable NSMutableURLRequest *)getMyCommentsWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize;
+
+// 我的帖子
+// http://115.159.33.190:8121/swagger-ui.html#/%E6%88%91%E7%9A%84%E7%9B%B8%E5%85%B3/getMyPostsUsingPOST
++ (nullable NSMutableURLRequest *)getMyTopicWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize;
+
+
+
 // 刷新token
 // https://devftls.odrcloud.net/swagger-ui.html#/%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF/refreshTokenUsingPOST
 + (nullable NSMutableURLRequest *)updateUserToken:(NSString *)token;

@@ -235,6 +235,53 @@
     return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
 }
 
+// 联系客服
+// http://115.159.33.190:8121/swagger-ui.html#/%E6%88%91%E7%9A%84%E7%9B%B8%E5%85%B3/getCustomerServiceUsingPOST
++ (NSMutableURLRequest *)getCustomerService
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/personal/getCustomerService", FS_URL_SERVER];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+        
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
+}
+
+// 我的收藏
++ (NSMutableURLRequest *)getMyCollectionsWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/personal/getMyCollections", FS_URL_SERVER];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+
+    [parameters bm_setApiString:@"COURSE" forKey:@"collectionType"];
+    [parameters bm_setInteger:pageIndex forKey:@"pageIndex"];
+    [parameters bm_setInteger:pageSize forKey:@"pageSize"];
+
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
+}
+
+// 我的评论
++ (NSMutableURLRequest *)getMyCommentsWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/personal/getMyComments", FS_URL_SERVER];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+
+    [parameters bm_setInteger:pageIndex forKey:@"pageIndex"];
+    [parameters bm_setInteger:pageSize forKey:@"pageSize"];
+
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
+}
+
+// 我的帖子
++ (NSMutableURLRequest *)getMyTopicWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/personal/getMyPosts", FS_URL_SERVER];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+
+    [parameters bm_setInteger:pageIndex forKey:@"pageIndex"];
+    [parameters bm_setInteger:pageSize forKey:@"pageSize"];
+
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
+}
+
 // 刷新token
 + (NSMutableURLRequest *)updateUserToken:(NSString *)token
 {

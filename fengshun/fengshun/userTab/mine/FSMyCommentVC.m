@@ -1,19 +1,19 @@
 //
-//  FSRecommendListVC.m
+//  FSMyCommentVC.m
 //  fengshun
 //
-//  Created by jiang deng on 2018/9/10.
+//  Created by jiang deng on 2018/9/13.
 //  Copyright © 2018年 FS. All rights reserved.
 //
 
-#import "FSRecommendListVC.h"
+#import "FSMyCommentVC.h"
 #import "FSTopicListCell.h"
 
-@interface FSRecommendListVC ()
+@interface FSMyCommentVC ()
 
 @end
 
-@implementation FSRecommendListVC
+@implementation FSMyCommentVC
 
 - (void)viewDidLoad
 {
@@ -33,9 +33,8 @@
 
 - (NSMutableURLRequest *)setLoadDataRequestWithFresh:(BOOL)isLoadNew
 {
-    return [FSApiRequest getPlateRecommendPostListWithPageIndex:s_BakLoadedPage pageSize:self.m_CountPerPage];
+    return [FSApiRequest getMyCommentsWithPageIndex:s_BakLoadedPage pageSize:self.m_CountPerPage];
 }
-
 
 - (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)requestDic
 {
@@ -43,7 +42,7 @@
     if ([topicDicArray bm_isNotEmpty])
     {
         NSMutableArray *topicArray = [[NSMutableArray alloc] initWithCapacity:0];
-
+        
         for (NSDictionary *dic in topicDicArray)
         {
             FSTopicModel *topic = [FSTopicModel topicWithServerDic:dic];
@@ -61,11 +60,9 @@
             [self.m_DataArray addObjectsFromArray:topicArray];
             [self.m_TableView reloadData];
         }
-        
-        return YES;
     }
     
-    return NO;
+    return YES;
 }
 
 

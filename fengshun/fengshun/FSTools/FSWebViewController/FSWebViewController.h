@@ -25,10 +25,10 @@ NS_ASSUME_NONNULL_BEGIN
 // 是否是post请求
 @property (nonatomic, assign) BOOL m_IsPost;
 
-// 刷新title，Default value is YES.
+// 通过H5的dcoument.title页面刷新title，默认: YES
 @property (nonatomic, assign) BOOL m_ShowPageTitles;
 
-// 是否不显示左上角x按钮
+// 是否不显示左上角x按钮，默认: NO，显示x
 @property (nonatomic, assign) BOOL m_IsNotShowCloseBtn;
 
 - (instancetype)initWithTitle:(nullable NSString *)title url:(nullable NSString *)url;
