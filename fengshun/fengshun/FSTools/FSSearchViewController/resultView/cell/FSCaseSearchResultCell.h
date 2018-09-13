@@ -17,5 +17,5 @@
 @property (weak, nonatomic) IBOutlet UIView *m_tagView;
 
 @property (nonatomic, strong) FSCaseReultModel *m_caseResultModel;
-
+- (void)setAttributedCaseResultModel:(FSCaseReultModel *)model;
 @end

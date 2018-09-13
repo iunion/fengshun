@@ -395,7 +395,23 @@
 }
 
 @end
+@implementation NSMutableAttributedString (HTML)
 
++(instancetype)bm_attributedStringReplaceHTMLString:(NSString *)htmlString fontSize:(NSInteger)fontSize contentColor:(NSString *)contentHexColor tagColor:(NSString *)tagHexColor starTag:(NSString *)starTag endTag:(NSString *)endTag
+{
+    if (![htmlString bm_isNotEmpty]) {
+        return nil;
+    }
+    NSString *styleHeaer = [NSString stringWithFormat:@"<p style=   \"font-size :%ld;color:%@;\">",(long)fontSize,contentHexColor];
+    NSString *styleTrail = @"</p>";
+    NSString *fullhtmlString = [htmlString stringByReplacingOccurrencesOfString:starTag withString:[NSString stringWithFormat:@"<font color=%@>",tagHexColor]];
+    fullhtmlString = [fullhtmlString stringByReplacingOccurrencesOfString:endTag withString:@"</font>"];
+    fullhtmlString = [NSString stringWithFormat:@"%@%@%@",styleHeaer,fullhtmlString,styleTrail];
+    NSMutableAttributedString * attrStr = [[self alloc] initWithData:[fullhtmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    return attrStr;
+}
+
+@end
 
 //#pragma mark -
 //#pragma mark MQ

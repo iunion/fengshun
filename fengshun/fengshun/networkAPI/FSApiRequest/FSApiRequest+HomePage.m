@@ -58,10 +58,16 @@
 {
     return [XMRequestManager rm_requestWithApi:@"/storm/document/getDocumentHome" parameters:nil success:successBlock failure:failureBlock];
 }
-+ (NSMutableURLRequest *)loadTextListyWithType:(NSString *)typeName andTypeCode:(NSString *)typeCode
++ (NSMutableURLRequest *)loadTextListWithTypeCode:(NSString *)typeCode
 {
     NSString *urlStr = [NSString stringWithFormat:@"%@/storm/document/getDocumentList", FS_URL_SERVER];
     
-    return [FSApiRequest makeRequestWithURL:urlStr parameters:@{@"documentName":typeName,@"documentTypeCodeEnums":typeCode}];
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:@{@"documentTypeCodeEnums":typeCode}];
+}
++ (NSMutableURLRequest *)searchTextWithKeyword:(NSString *)keyword
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/document/getDocumentList", FS_URL_SERVER];
+    
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:@{@"documentName":keyword}];
 }
 @end

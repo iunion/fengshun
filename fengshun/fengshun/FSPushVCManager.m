@@ -126,4 +126,10 @@
     [mainVC.navigationController pushViewController:splitVC animated:YES];
     
 }
++ (void)pushToTextSearchVC:(UIViewController *)showVC
+{
+    FSSearchViewController *searchViewController = [[FSSearchViewController alloc] initWithSearchKey:@"textSearch" resultType:FSSearchResultType_text hotSearchTags:nil searchHandler:nil];
+    searchViewController.hidesBottomBarWhenPushed = YES;
+    [showVC.navigationController pushViewController:searchViewController animated:YES];
+}
 @end
