@@ -13,6 +13,7 @@
 
 @interface FSCreateVideoMediateHeader ()
 {
+    BOOL isStartImmediately;
     NSInteger __Hour;
     NSInteger __Minute;
 }
@@ -34,6 +35,7 @@
     self = [super initWithFrame:frame];
     
     if (self) {
+        self.backgroundColor = [UIColor clearColor];
         [self buildUI];
     }
     
@@ -46,7 +48,7 @@
     
     FSEditVideoMediateTextView *nameView = [[FSEditVideoMediateTextView alloc] initWithFrame:CGRectMake(0, 9, self.bm_width, 0)];
     nameView.titleLabel.text = @"名称";
-    nameView.desLabel.attributedPlaceholder = [self placeHolderAttributedWithString:@"请输入名称"];
+    nameView.desLabel.attributedPlaceholder = [nameView placeHolderAttributedWithString:@"请输入名称"];
     [self addSubview:nameView];
     nameView.textChangeHandle = ^(FSEditVideoMediateTextView *editView) {
         BMStrongSelf
@@ -78,10 +80,12 @@
     FSEditVideoMediateImageView *timeView = [[FSEditVideoMediateImageView alloc] initWithFrame:CGRectMake(0, _m_MeetingTypeView.bm_bottom, self.bm_width, 0) imageName:@"BMTableView_arrows_rightBlack"];
     timeView.titleLabel.text = @"时间";
     timeView.desLabel.text = @"立即开始";
+    isStartImmediately = YES;
     self.m_TimeTypeView = timeView;
     [self addSubview:timeView];
     [timeView setEditEnabled:NO];
     timeView.tapHandle = ^(FSEditVideoMediateBaseView *editView) {
+        
         FSVideoMediateSheetVC *sheetVC = [[FSVideoMediateSheetVC alloc] initWithTitleArray:@[@"立即开始",@"预约时间"]];
         sheetVC.modalPresentationStyle = UIModalPresentationCustom;
         sheetVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -91,19 +95,20 @@
             weakSelf.m_TimeTypeView.desLabel.text = title;
             if (index == 0) {
                 [weakSelf setSelectTimeViewHidden:YES];
+                isStartImmediately = YES;
             } else {
                 [weakSelf setSelectTimeViewHidden:NO];
+                isStartImmediately = NO;
             }
         };
     };
 
     FSEditVideoMediateImageView *startView = [[FSEditVideoMediateImageView alloc] initWithFrame:CGRectMake(0, timeView.bm_bottom, self.bm_width, 0) imageName:@"BMTableView_arrows_rightBlack"];
     startView.titleLabel.text = @"选择时间";
-    startView.desLabel.attributedPlaceholder = [self placeHolderAttributedWithString:@"请选择"];
+    startView.desLabel.attributedPlaceholder = [startView placeHolderAttributedWithString:@"请选择"];
     [self addSubview:startView];
     [startView setEditEnabled:NO];
     startView.tapHandle = ^(FSEditVideoMediateBaseView *editView) {
-        NSLog(@"startView.tapHandle");
         [weakSelf didClickTimePickerButton];
     };
     startView.hidden = YES;
@@ -114,7 +119,7 @@
     
     _m_TimeLengthView = [[FSEditVideoMediateImageView alloc] initWithFrame:CGRectMake(0, 0, self.bm_width, 0) imageName:@"BMTableView_arrows_rightBlack"];
     _m_TimeLengthView.titleLabel.text = @"时长";
-    _m_TimeLengthView.desLabel.attributedPlaceholder = [self placeHolderAttributedWithString:@"请选择"];
+    _m_TimeLengthView.desLabel.attributedPlaceholder = [startView placeHolderAttributedWithString:@"请选择"];
     _m_TimeLengthView.line.hidden = YES;
     [_m_underTimeView addSubview:_m_TimeLengthView];
     [_m_TimeLengthView setEditEnabled:NO];
@@ -163,14 +168,6 @@
 
 - (void)didClickHoursAndMinutesButton {
     [self resignFirstResponder];
-}
-
-- (NSAttributedString *)placeHolderAttributedWithString:(NSString *)string
-{
-    return [[NSAttributedString alloc] initWithString:string
-                                           attributes:@{NSForegroundColorAttributeName:UI_COLOR_B10,
-                                                        NSFontAttributeName:UI_FONT_16
-                                                        }];
 }
 
 @end

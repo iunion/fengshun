@@ -8,10 +8,14 @@
 
 #import "FSCreateVideoMediateVC.h"
 #import "FSCreateVideoMediateHeader.h"
+#import "FSVideoMediatePersonalCell.h"
+#import "FSVideoInviteLitigantVC.h"
 
 @interface FSCreateVideoMediateVC () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) VideoMediateListModel *m_CreateModel;
+
+@property (nonatomic, strong) NSMutableArray *meetingAttendedList; // 参与人员列表
 
 @end
 
@@ -47,8 +51,42 @@
     FSCreateVideoMediateHeader *header = [[FSCreateVideoMediateHeader alloc] initWithFrame:CGRectMake(0, 0, self.m_TableView.bm_width, 0)];
     self.m_TableView.tableHeaderView = header;
     header.m_Model = _m_CreateModel;
+
+    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.m_TableView.bm_width, 24+44)];
+    
+    UIButton *btn = [UIButton bm_buttonWithFrame:CGRectMake(0, 0, self.m_TableView.bm_width, 44)];
+    btn.backgroundColor = [UIColor whiteColor];
+    btn.titleLabel.font = UI_FONT_14;
+    [btn addTarget:self action:@selector(inviteAction) forControlEvents:UIControlEventTouchUpInside];
+    [footer addSubview:btn];
+    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:@"+  邀请当事人"
+                                                                             attributes:@{NSForegroundColorAttributeName:UI_COLOR_BL1,
+                                                                                          NSFontAttributeName:UI_FONT_14
+                                                                                          }];
+    [attr addAttribute:NSFontAttributeName value:UI_BOLDFONT_18 range:NSMakeRange(0, 1)];
+    [btn setAttributedTitle:attr forState:UIControlStateNormal];
+    self.m_TableView.tableFooterView = footer;
 }
 
+- (NSMutableArray *)meetingAttendedList
+{
+    if (_meetingAttendedList == nil) {
+        _meetingAttendedList = [NSMutableArray array];
+        [_meetingAttendedList addObject:[MeetingPersonnelModel userModel]];
+        
+        [_meetingAttendedList addObject:[MeetingPersonnelModel userModelWithState:0]];
+        [_meetingAttendedList addObject:[MeetingPersonnelModel userModelWithState:1]];
+    }
+    
+    return _meetingAttendedList;
+}
+
+- (void)inviteAction
+{
+    FSVideoInviteLitigantVC *vc = [FSVideoInviteLitigantVC new];
+    vc.m_InviteList = self.meetingAttendedList;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (void)bottomButtonClickAction
 {
@@ -59,27 +97,47 @@
 #pragma mark -
 #pragma mark Table Data Source Methods
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.meetingAttendedList.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 24;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 70;
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)sectionIndex
 {
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor clearColor];
     
-    if (sectionIndex == 2) {
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(14, 0, self.m_TableView.bm_width-28, 23)];
-        label.text = @"参与人员：2人";
-        label.textColor = UI_COLOR_B4;
-        label.font = UI_FONT_12;
-        [view addSubview:label];
-    }
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(14, 0, self.m_TableView.bm_width-28, 24)];
+    label.text = [NSString stringWithFormat:@"参与人员：%ld人",_meetingAttendedList.count];
+    label.textColor = UI_COLOR_B4;
+    label.font = UI_FONT_12;
+    [view addSubview:label];
+    
     return view;
 }
 
-#pragma mark -
-#pragma mark UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    static NSString *cellID = @"FSVideoMediatePersonalCell";
+
+    FSVideoMediatePersonalCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (cell == nil) {
+        cell = [[FSVideoMediatePersonalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    }
+    MeetingPersonnelModel *model = self.meetingAttendedList[indexPath.row];
+    [cell setModel:model];
+    return cell;
 }
+
 
 @end

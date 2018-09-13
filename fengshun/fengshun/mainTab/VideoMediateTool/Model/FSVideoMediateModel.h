@@ -16,6 +16,12 @@
 @property (nonatomic, copy) NSString *meetingIdentityTypeEnums; // 身份类型
 @property (nonatomic, copy) NSString *mobilePhone;              // 手机号码
 @property (nonatomic, copy) NSString *userName;                 // 邀请人姓名
+@property (nonatomic, assign) NSUInteger selectState;           // 选中状态  -1必须选中 0没选中 1选中
+
++ (instancetype)userModel;
+
++ (instancetype)userModelWithState:(NSUInteger)state;
+
 @end
 
 // 会议列表简单类型

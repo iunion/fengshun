@@ -33,13 +33,23 @@
     }
 }
 
+- (NSAttributedString *)placeHolderAttributedWithString:(NSString *)string
+{
+    return [[NSAttributedString alloc] initWithString:string
+                                           attributes:@{NSForegroundColorAttributeName:UI_COLOR_B10,
+                                                        NSFontAttributeName:UI_FONT_16
+                                                        }];
+}
+
 @end
 
 // 左侧显示title
 @implementation FSEditVideoMediateTitleView
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.bm_height = kTextViewHeight;
+        if (self.bm_height == 0) {
+            self.bm_height = kTextViewHeight;
+        }
         self.backgroundColor = [UIColor whiteColor];
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(kMarginLeft, 0, 80, self.bm_height)];
         _titleLabel.textColor = UI_COLOR_B1;
