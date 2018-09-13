@@ -11,9 +11,23 @@
 
 @interface FSMyCollectionVC ()
 
+@property (nonatomic, assign) FSCollectionType m_CollectionType;
+
 @end
 
 @implementation FSMyCollectionVC
+
+- (instancetype)initWithCollectionType:(FSCollectionType)collectionType
+{
+    self = [self init];
+    
+    if (self)
+    {
+        _m_CollectionType = collectionType;
+    }
+    
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -33,7 +47,7 @@
 
 - (NSMutableURLRequest *)setLoadDataRequestWithFresh:(BOOL)isLoadNew
 {
-    return [FSApiRequest getMyCollectionsWithPageIndex:s_BakLoadedPage pageSize:self.m_CountPerPage];
+    return [FSApiRequest getMyCollectionsWithPageIndex:s_BakLoadedPage pageSize:self.m_CountPerPage collectionType:self.m_CollectionType];
 }
 
 - (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)requestDic

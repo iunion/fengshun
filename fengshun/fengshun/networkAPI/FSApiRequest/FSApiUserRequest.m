@@ -246,12 +246,34 @@
 }
 
 // 我的收藏
-+ (NSMutableURLRequest *)getMyCollectionsWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize
++ (NSMutableURLRequest *)getMyCollectionsWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize collectionType:(FSCollectionType)collectionType
 {
     NSString *urlStr = [NSString stringWithFormat:@"%@/storm/personal/getMyCollections", FS_URL_SERVER];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
 
-    [parameters bm_setApiString:@"COURSE" forKey:@"collectionType"];
+    switch (collectionType)
+    {
+        case FSCollectionType_POSTS:
+            [parameters bm_setApiString:@"POSTS" forKey:@"collectionType"];
+            break;
+            
+        case FSCollectionType_STATUTE:
+            [parameters bm_setApiString:@"STATUTE" forKey:@"collectionType"];
+            break;
+
+        case FSCollectionType_CASE:
+            [parameters bm_setApiString:@"CASE" forKey:@"collectionType"];
+            break;
+
+        case FSCollectionType_DOCUMENT:
+            [parameters bm_setApiString:@"DOCUMENT" forKey:@"collectionType"];
+            break;
+
+        case FSCollectionType_COURSE:
+            [parameters bm_setApiString:@"COURSE" forKey:@"collectionType"];
+            break;
+    }
+
     [parameters bm_setInteger:pageIndex forKey:@"pageIndex"];
     [parameters bm_setInteger:pageSize forKey:@"pageSize"];
 
