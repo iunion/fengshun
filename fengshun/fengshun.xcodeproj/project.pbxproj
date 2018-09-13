@@ -440,6 +440,9 @@
 		87741FE4214A132200F72427 /* user_qqicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87741FE0214A132200F72427 /* user_qqicon@2x.png */; };
 		87741FE5214A132200F72427 /* user_wechaticon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87741FE1214A132200F72427 /* user_wechaticon@2x.png */; };
 		87741FE6214A132200F72427 /* user_qqicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87741FE2214A132200F72427 /* user_qqicon@3x.png */; };
+		87741FEB214A381700F72427 /* FSMyCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87741FEA214A381700F72427 /* FSMyCollectionVC.m */; };
+		87741FEE214A385700F72427 /* FSMyCommentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87741FED214A385700F72427 /* FSMyCommentVC.m */; };
+		87741FF1214A387100F72427 /* FSMyTopicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87741FF0214A387100F72427 /* FSMyTopicVC.m */; };
 		87C0134B212E7A5200D0AAC3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0134A212E7A5200D0AAC3 /* AppDelegate.m */; };
 		87C0134D212E7A5300D0AAC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87C0134C212E7A5300D0AAC3 /* Assets.xcassets */; };
 		87C01353212E7A5300D0AAC3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C01352212E7A5300D0AAC3 /* main.m */; };
@@ -1623,6 +1626,12 @@
 		87741FE0214A132200F72427 /* user_qqicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_qqicon@2x.png"; sourceTree = "<group>"; };
 		87741FE1214A132200F72427 /* user_wechaticon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_wechaticon@2x.png"; sourceTree = "<group>"; };
 		87741FE2214A132200F72427 /* user_qqicon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_qqicon@3x.png"; sourceTree = "<group>"; };
+		87741FE9214A381700F72427 /* FSMyCollectionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMyCollectionVC.h; sourceTree = "<group>"; };
+		87741FEA214A381700F72427 /* FSMyCollectionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMyCollectionVC.m; sourceTree = "<group>"; };
+		87741FEC214A385700F72427 /* FSMyCommentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMyCommentVC.h; sourceTree = "<group>"; };
+		87741FED214A385700F72427 /* FSMyCommentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMyCommentVC.m; sourceTree = "<group>"; };
+		87741FEF214A387100F72427 /* FSMyTopicVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMyTopicVC.h; sourceTree = "<group>"; };
+		87741FF0214A387100F72427 /* FSMyTopicVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMyTopicVC.m; sourceTree = "<group>"; };
 		87C01346212E7A5200D0AAC3 /* fengshun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fengshun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87C01349212E7A5200D0AAC3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		87C0134A212E7A5200D0AAC3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -3797,6 +3806,19 @@
 			path = FSDB;
 			sourceTree = "<group>";
 		};
+		87741FE8214A37C200F72427 /* mine */ = {
+			isa = PBXGroup;
+			children = (
+				87741FE9214A381700F72427 /* FSMyCollectionVC.h */,
+				87741FEA214A381700F72427 /* FSMyCollectionVC.m */,
+				87741FEC214A385700F72427 /* FSMyCommentVC.h */,
+				87741FED214A385700F72427 /* FSMyCommentVC.m */,
+				87741FEF214A387100F72427 /* FSMyTopicVC.h */,
+				87741FF0214A387100F72427 /* FSMyTopicVC.m */,
+			);
+			path = mine;
+			sourceTree = "<group>";
+		};
 		87C0133D212E7A5200D0AAC3 = {
 			isa = PBXGroup;
 			children = (
@@ -3940,6 +3962,7 @@
 			isa = PBXGroup;
 			children = (
 				87D20AED21392FF1001EDD60 /* images */,
+				87741FE8214A37C200F72427 /* mine */,
 				8730B0A321420EC2004331A9 /* setup */,
 				87D2096F2137F399001EDD60 /* FSUserMainVC.h */,
 				87D209702137F399001EDD60 /* FSUserMainVC.m */,
@@ -5415,6 +5438,7 @@
 				874268E3212E7E36003C52F6 /* UIWindow+BMCategory.m in Sources */,
 				4561393321490FEC007DF6A1 /* FSVideoMessageListVC.m in Sources */,
 				87D20AD5213920E2001EDD60 /* FLEXTableLeftCell.m in Sources */,
+				87741FEB214A381700F72427 /* FSMyCollectionVC.m in Sources */,
 				87D209B72138F1E2001EDD60 /* SDWebImageManager.m in Sources */,
 				87426AD42133F3C8003C52F6 /* FSTableViewVC.m in Sources */,
 				87D20AD3213920E2001EDD60 /* FLEXSystemLogMessage.m in Sources */,
@@ -5662,6 +5686,7 @@
 				8730B07F2140FFA3004331A9 /* DTActionSheet.m in Sources */,
 				ADE8689C21393469005359B5 /* FSForumListCell.m in Sources */,
 				8730B0AF21461456004331A9 /* FSRecommendListVC.m in Sources */,
+				87741FEE214A385700F72427 /* FSMyCommentVC.m in Sources */,
 				45A3BF8B2148AA2E0093278C /* FSVideoMediateListVC.m in Sources */,
 				87D20B1321394A5A001EDD60 /* FSWebViewProgress.m in Sources */,
 				87D20AD2213920E2001EDD60 /* FLEXSystemLogTableViewController.m in Sources */,
@@ -5811,6 +5836,7 @@
 				87426AF621353510003C52F6 /* FSDBVersionCheck.m in Sources */,
 				87426904212E7E36003C52F6 /* NSString+BMMandarinLatin.m in Sources */,
 				87D209E72138FF46001EDD60 /* RSKInternalUtility.m in Sources */,
+				87741FF1214A387100F72427 /* FSMyTopicVC.m in Sources */,
 				87D209BB2138F1E2001EDD60 /* SDWebImageCodersManager.m in Sources */,
 				8730B0722140FFA3004331A9 /* ioapi.c in Sources */,
 				874268A8212E7E36003C52F6 /* BMTableViewTextCell.m in Sources */,
