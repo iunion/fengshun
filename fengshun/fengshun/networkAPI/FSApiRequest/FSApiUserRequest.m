@@ -246,29 +246,39 @@
 }
 
 // 我的收藏
-+ (NSMutableURLRequest *)getMyCollections
++ (NSMutableURLRequest *)getMyCollectionsWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize
 {
     NSString *urlStr = [NSString stringWithFormat:@"%@/storm/personal/getMyCollections", FS_URL_SERVER];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    
+
+    [parameters bm_setApiString:@"COURSE" forKey:@"collectionType"];
+    [parameters bm_setInteger:pageIndex forKey:@"pageIndex"];
+    [parameters bm_setInteger:pageSize forKey:@"pageSize"];
+
     return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
 }
 
 // 我的评论
-+ (NSMutableURLRequest *)getMyComments
++ (NSMutableURLRequest *)getMyCommentsWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/personal/etMyComments", FS_URL_SERVER];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/personal/getMyComments", FS_URL_SERVER];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    
+
+    [parameters bm_setInteger:pageIndex forKey:@"pageIndex"];
+    [parameters bm_setInteger:pageSize forKey:@"pageSize"];
+
     return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
 }
 
 // 我的帖子
-+ (NSMutableURLRequest *)getMyTopic
++ (NSMutableURLRequest *)getMyTopicWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize
 {
     NSString *urlStr = [NSString stringWithFormat:@"%@/storm/personal/getMyPosts", FS_URL_SERVER];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    
+
+    [parameters bm_setInteger:pageIndex forKey:@"pageIndex"];
+    [parameters bm_setInteger:pageSize forKey:@"pageSize"];
+
     return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
 }
 

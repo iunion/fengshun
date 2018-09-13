@@ -127,15 +127,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 我的收藏
 // http://115.159.33.190:8121/swagger-ui.html#/%E6%88%91%E7%9A%84%E7%9B%B8%E5%85%B3/getMyCollectionsUsingPOST
-+ (nullable NSMutableURLRequest *)getMyCollections;
++ (nullable NSMutableURLRequest *)getMyCollectionsWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize;
 
 // 我的评论
 // http://115.159.33.190:8121/swagger-ui.html#/%E6%88%91%E7%9A%84%E7%9B%B8%E5%85%B3/getMyCommentsUsingPOST
-+ (nullable NSMutableURLRequest *)getMyComments;
++ (nullable NSMutableURLRequest *)getMyCommentsWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize;
 
 // 我的帖子
 // http://115.159.33.190:8121/swagger-ui.html#/%E6%88%91%E7%9A%84%E7%9B%B8%E5%85%B3/getMyPostsUsingPOST
-+ (nullable NSMutableURLRequest *)getMyTopic;
++ (nullable NSMutableURLRequest *)getMyTopicWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize;
 
 
 

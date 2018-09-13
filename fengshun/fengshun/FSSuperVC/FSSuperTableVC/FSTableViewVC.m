@@ -441,6 +441,19 @@
             }
 
             [self showEmptyViewWithStatus:[self getNoDataEmptyViewStatus]];
+            
+            // 无数据时隐藏上拉
+            if (self.m_IsLoadNew)
+            {
+                if ([self.m_DataArray bm_isNotEmpty])
+                {
+                    self.m_TableView.bm_freshFooterView.hidden = NO;
+                }
+                else
+                {
+                    self.m_TableView.bm_freshFooterView.hidden = YES;
+                }
+            }
             self.m_IsLoadNew = NO;
             
             return;

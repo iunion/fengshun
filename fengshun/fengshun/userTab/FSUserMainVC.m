@@ -11,7 +11,9 @@
 #import "UIView+BMBadge.h"
 #import "UIImageView+WebCache.h"
 
-#import "FSSearchViewController.h"
+#import "FSMyTopicVC.h"
+#import "FSMyCommentVC.h"
+#import "FSMyCollectionVC.h"
 
 #import "FSSetupVC.h"
 #import "FSCustomInfoVC.h"
@@ -115,9 +117,9 @@
     BMWeakSelf
     self.m_TopicItem = [BMTableViewItem itemWithTitle:@"我的帖子" imageName:@"user_topicicon" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
 
-        FSSearchViewController *searchViewController = [[FSSearchViewController alloc] initWithSearchKey:@"test" resultType:FSSearchResultType_laws hotSearchTags:@[@"婚姻继承", @"借贷纠纷",@"婚姻继承"] searchHandler:nil];
-        searchViewController.hidesBottomBarWhenPushed = YES;
-        [weakSelf.navigationController pushViewController:searchViewController animated:YES];
+        FSMyTopicVC *myTopicVC = [[FSMyTopicVC alloc] init];
+        myTopicVC.hidesBottomBarWhenPushed = YES;
+        [weakSelf.navigationController pushViewController:myTopicVC animated:YES];
     }];
     self.m_TopicItem.imageH = 16.0f;
     self.m_TopicItem.imageW = 16.0f;
@@ -127,6 +129,9 @@
 
     self.m_CommentItem = [BMTableViewItem itemWithTitle:@"我的评论" imageName:@"user_commenticon" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
+        FSMyCommentVC *myCommentVC = [[FSMyCommentVC alloc] init];
+        myCommentVC.hidesBottomBarWhenPushed = YES;
+        [weakSelf.navigationController pushViewController:myCommentVC animated:YES];
     }];
     self.m_CommentItem.imageH = 16.0f;
     self.m_CommentItem.imageW = 16.0f;
@@ -136,6 +141,9 @@
 
     self.m_CollectItem = [BMTableViewItem itemWithTitle:@"我的收藏" imageName:@"user_collecticon" underLineDrawType:BMTableViewCell_UnderLineDrawType_None accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
+        FSMyCollectionVC *myCollectionVC = [[FSMyCollectionVC alloc] init];
+        myCollectionVC.hidesBottomBarWhenPushed = YES;
+        [weakSelf.navigationController pushViewController:myCollectionVC animated:YES];
     }];
     self.m_CollectItem.imageH = 16.0f;
     self.m_CollectItem.imageW = 16.0f;

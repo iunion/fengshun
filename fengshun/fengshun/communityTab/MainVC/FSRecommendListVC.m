@@ -19,10 +19,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     self.m_LoadDataType = FSAPILoadDataType_Page;
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.m_TableView.bm_width, 8)];
-    self.m_TableView.tableHeaderView = headerView;
-    self.m_TableView.tableFooterView = [UIView new];
+    
     [self loadApiData];
 }
 
@@ -73,6 +72,11 @@
 #pragma mark -
 #pragma mark Table Data Source Methods
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 8.0f;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [FSTopicListCell cellHeight];
@@ -101,7 +105,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     FSTopicModel *model = self.m_DataArray[indexPath.row];
-    [FSPushVCManager showTopicDetail:[self.view.superview bm_viewController]  topicId:model.m_Id];
+    [FSPushVCManager showTopicDetail:[self.view.superview bm_viewController] topicId:model.m_Id];
 }
 
 @end
