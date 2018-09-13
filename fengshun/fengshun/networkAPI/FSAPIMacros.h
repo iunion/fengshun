@@ -13,6 +13,8 @@
 
 #define FS_H5_SERVER        (@"https://devftlsh5.odrcloud.net")
 
+#define FS_FILE_Adress      (@"/storm/file/download/")
+
 // 一般API超时时间
 #define FSAPI_TIMEOUT_SECONDS               (30.0f)
 // 数据上传超时时间

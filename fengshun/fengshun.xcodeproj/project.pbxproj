@@ -709,6 +709,8 @@
 		AD3B8216214A0EA100D72DE9 /* HRColorCursor.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3B81B0214A0EA100D72DE9 /* HRColorCursor.m */; };
 		AD3B8217214A0EA100D72DE9 /* ZSSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3B81B9214A0EA100D72DE9 /* ZSSTextView.m */; };
 		AD3B8218214A0EA100D72DE9 /* jQuery.js in Resources */ = {isa = PBXBuildFile; fileRef = AD3B81BA214A0EA100D72DE9 /* jQuery.js */; };
+		AD3B821C214A467900D72DE9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD3B821B214A467800D72DE9 /* CoreGraphics.framework */; };
+		AD3B821E214A468100D72DE9 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD3B821D214A468100D72DE9 /* CoreText.framework */; };
 		AD4691DD2148BE34008CAF27 /* FSH5DemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD4691DC2148BE34008CAF27 /* FSH5DemoVC.m */; };
 		AD47EFDC2137EBF0004A345F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD47EFDB2137EBF0004A345F /* Launch Screen.storyboard */; };
 		AD510298213E560F008CD74D /* FSApiRequest+Community.m in Sources */ = {isa = PBXBuildFile; fileRef = AD510297213E560F008CD74D /* FSApiRequest+Community.m */; };
@@ -2060,6 +2062,8 @@
 		AD3B81B8214A0EA100D72DE9 /* CYRTextStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYRTextStorage.h; sourceTree = "<group>"; };
 		AD3B81B9214A0EA100D72DE9 /* ZSSTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSSTextView.m; sourceTree = "<group>"; };
 		AD3B81BA214A0EA100D72DE9 /* jQuery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jQuery.js; sourceTree = "<group>"; };
+		AD3B821B214A467800D72DE9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		AD3B821D214A468100D72DE9 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		AD4691DB2148BE34008CAF27 /* FSH5DemoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSH5DemoVC.h; sourceTree = "<group>"; };
 		AD4691DC2148BE34008CAF27 /* FSH5DemoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSH5DemoVC.m; sourceTree = "<group>"; };
 		AD47EFDB2137EBF0004A345F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -2217,6 +2221,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD3B821E214A468100D72DE9 /* CoreText.framework in Frameworks */,
+				AD3B821C214A467900D72DE9 /* CoreGraphics.framework in Frameworks */,
 				87D1867921353C9000037DDF /* libFSEncodeAPI.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3862,6 +3868,8 @@
 		87D18659213539EE00037DDF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AD3B821D214A468100D72DE9 /* CoreText.framework */,
+				AD3B821B214A467800D72DE9 /* CoreGraphics.framework */,
 				87D1866F21353A8700037DDF /* FSEncodeAPI.xcodeproj */,
 			);
 			name = Frameworks;

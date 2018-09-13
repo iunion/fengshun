@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FSSuperVC.h"
 #import "HRColorPickerViewController.h"
 #import "ZSSFontsViewController.h"
 
