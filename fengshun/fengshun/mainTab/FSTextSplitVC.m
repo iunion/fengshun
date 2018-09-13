@@ -118,6 +118,7 @@ FSTextSplitVC ()
 
 - (void)searchAction:(id)sender
 {
+    [FSPushVCManager pushToTextSearchVC:self];
 }
 #pragma mark - tableView
 - (void)selectedTextTypeAtIndex:(NSInteger)index
@@ -184,12 +185,13 @@ FSTextSplitVC ()
 }
 - (NSMutableURLRequest *)setLoadDataRequest
 {
-    return [FSApiRequest loadTextListyWithType:_m_selectedType.m_typeName andTypeCode:_m_selectedType.m_typeCode];
+    return [FSApiRequest loadTextListWithTypeCode:_m_selectedType.m_typeCode];
 }
 - (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)requestDic
 {
-    
-    
+    NSArray *textList = [FSListTextModel modelsWithDataArray:[requestDic bm_arrayForKey:@"documentList"]];
+    _m_selectedType.m_textList = textList;
+    [self.m_TableView reloadData];
     return [super succeedLoadedRequestWithDic:requestDic];
 }
 @end

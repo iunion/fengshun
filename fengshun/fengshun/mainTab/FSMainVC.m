@@ -19,6 +19,8 @@
 #import "FSApiRequest.h"
 #import "UIView+BMBadge.h"
 
+#import "FSOCRManager.h"
+
 #define SECTION_HEDER_HEIGHT 44.0f
 
 @interface
@@ -34,7 +36,7 @@ FSMainVC () <
 @property (nonatomic, strong) NSArray<FSBannerModel *> *            m_banners;
 @property (nonatomic, strong) NSArray<FSHomePageToolModel *> *      m_tools;
 @property (nonatomic, strong) NSArray<FSCourseRecommendModel *> *   m_courses;
-@property (nonatomic, strong) NSArray<FSForumModel *> *m_topics;
+@property (nonatomic, strong) NSArray<FSTopicModel *> *             m_topics;
 @property (nonatomic, strong) NSArray *                             m_caseHotkeys;
 @property (nonatomic, strong) NSArray *                             m_lawTopics;
 
@@ -78,7 +80,6 @@ FSMainVC () <
     _m_headerView.m_toolCollectionView.dataSource = self;
 
     self.m_TableView.tableHeaderView     = _m_headerView;
-    self.m_TableView.sectionHeaderHeight = SECTION_HEDER_HEIGHT;
     self.m_TableView.sectionFooterHeight = 10;
     self.m_TableView.estimatedRowHeight  = COURSE_CELL_HEGHT;
     
@@ -148,6 +149,16 @@ FSMainVC () <
         case FSHomePageTooltype_Document:
             [FSPushVCManager homePagePushToTextSplitVC:self];
             break;
+        // 文书扫描
+        case FSHomePageTooltype_FileScanning:
+        {
+            [[FSOCRManager manager] ocr_getTextWithImage:@"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3685369849,2682466948&fm=26&gp=0.jpg" succeed:^(NSString *text) {
+                
+            } failed:^(NSError *error) {
+                
+            }];
+        }
+            break;
         default:
             break;
     }
@@ -170,12 +181,13 @@ FSMainVC () <
     {
         return COURSE_CELL_HEGHT;
     }
-    return 0;
+    return 152;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section) {
         FSTopicListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSTopicListCell"];
+        [cell drawCellWithModle:_m_topics[indexPath.row]];
         return cell;
     }
     FSCourseTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCourseTableCell"];
@@ -186,6 +198,17 @@ FSMainVC () <
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     return [UIView new];
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 0&&[_m_courses bm_isNotEmpty]) {
+        return SECTION_HEDER_HEIGHT;
+    }
+    else if (section == 1&&[_m_topics bm_isNotEmpty])
+    {
+        return SECTION_HEDER_HEIGHT;
+    }
+    return 0;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {

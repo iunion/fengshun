@@ -16,9 +16,11 @@
 #import "FSEditorAbilityVC.h"
 #import "FSEditorVC.h"
 
+#import "TZImagePickerController.h"
 
 @interface FSCustomInfoVC ()
 <
+    TZImagePickerControllerDelegate,
     TTGTagCollectionViewDelegate,
     TTGTagCollectionViewDataSource,
     FSEditorDelegate,
@@ -54,6 +56,9 @@
 @property (nonatomic, strong) NSURLSessionDataTask *m_UpdateTask;
 
 @property (nonatomic, assign) NSUInteger m_EmploymentTime;
+
+@property (nonatomic, assign) FSUpdateUserInfoOperaType m_OperaType;
+@property (nonatomic, strong) NSString *m_AvatarUrl;
 
 @end
 
@@ -115,6 +120,7 @@
 
     self.m_AvatarItem = [BMTableViewItem itemWithTitle:@"头像" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
+        [weakSelf openPhoto];
     }];
     self.m_AvatarItem.textFont = FS_CELLTITLE_TEXTFONT;
     self.m_AvatarItem.highlightBgColor = UI_COLOR_BL1;
@@ -500,12 +506,82 @@
 }
 
 
+#pragma mark - 图片选择
+- (void)openPhoto
+{
+    self.m_AvatarUrl = nil;
+
+    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 columnNumber:4 delegate:self pushPhotoPickerVc:YES];
+
+    imagePickerVc.sortAscendingByModificationDate = NO;
+
+    imagePickerVc.allowTakePicture = YES;
+
+    imagePickerVc.allowPickingVideo = NO;
+    imagePickerVc.allowPickingImage = YES;
+    
+    imagePickerVc.allowPickingOriginalPhoto = NO;
+    imagePickerVc.showSelectBtn = NO;
+
+    [imagePickerVc setUiImagePickerControllerSettingBlock:^(UIImagePickerController *imagePickerController) {
+        imagePickerController.videoQuality = UIImagePickerControllerQualityTypeHigh;
+    }];
+    
+    imagePickerVc.allowCrop = YES;
+    // 设置竖屏下的裁剪尺寸
+    // 200X200
+    CGFloat cropRectWidth = 200.0f/320.0f*UI_SCREEN_WIDTH;
+    CGFloat cropRectHeight = cropRectWidth;
+
+    imagePickerVc.cropRect = CGRectMake((UI_SCREEN_WIDTH-cropRectWidth)*0.5f, (UI_SCREEN_HEIGHT-cropRectHeight)*0.5f, cropRectWidth, cropRectHeight);
+    
+    [self presentViewController:imagePickerVc animated:YES completion:nil];
+}
+
+
+#pragma mark - TZImagePickerControllerDelegate
+
+/// 用户点击了取消
+- (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker
+{
+    BMLog(@"用户点击了取消");
+}
+
+- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos
+{
+    if (![photos bm_isNotEmpty])
+    {
+        return;
+    }
+
+    UIImage *image = photos[0];
+    
+    [self.m_ProgressHUD showAnimated:YES showBackground:NO];
+
+    BMWeakSelf
+    [FSApiRequest uploadImg:UIImageJPEGRepresentation(image, 0.8f) success:^(id responseObject) {
+        NSString *url = [NSString stringWithFormat:@"%@%@%@", FS_URL_SERVER, FS_FILE_Adress, [responseObject bm_stringTrimForKey:@"fileId"]];
+        
+        weakSelf.m_AvatarUrl = url;
+        
+        [self.m_ProgressHUD hideAnimated:NO];
+        [weakSelf sendUpdateUserInfoWithOperaType:FSUpdateUserInfo_AvatarImageUrl changeValue:url];
+
+    } failure:^(NSError * _Nullable error) {
+        
+        [self.m_ProgressHUD showAnimated:YES withDetailText:@"头像上传失败" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+    }];
+}
+
+
 #pragma mark -
 #pragma mark send request
 
 // 更新用户信息
 - (void)sendUpdateUserInfoWithOperaType:(FSUpdateUserInfoOperaType)operaType changeValue:(id)value
 {
+    self.m_OperaType = operaType;
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSMutableURLRequest *request = [FSApiRequest updateUserInfoWithOperaType:operaType changeValue:(id)value];
     if (request)
@@ -555,22 +631,39 @@
     {
         [self.m_ProgressHUD hideAnimated:NO];
         
-        NSDictionary *dataDic = [resDic bm_dictionaryForKey:@"data"];
-        if ([dataDic bm_isNotEmptyDictionary])
+        FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
+
+        if (self.m_OperaType == FSUpdateUserInfo_WorkTime)
         {
-            NSUInteger workingLife = [dataDic bm_uintForKey:@"workingLife"];
-        
-            FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
-            userInfo.m_UserBaseInfo.m_EmploymentTime = self.m_EmploymentTime;
-            userInfo.m_UserBaseInfo.m_WorkingLife = workingLife;
+            NSDictionary *dataDic = [resDic bm_dictionaryForKey:@"data"];
+            if ([dataDic bm_isNotEmptyDictionary])
+            {
+                NSUInteger workingLife = [dataDic bm_uintForKey:@"workingLife"];
+            
+                userInfo.m_UserBaseInfo.m_EmploymentTime = self.m_EmploymentTime;
+                userInfo.m_UserBaseInfo.m_WorkingLife = workingLife;
+
+                [FSUserInfoDB insertAndUpdateUserInfo:userInfo];
+                GetAppDelegate.m_UserInfo = userInfo;
+
+                [self freshViews];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:userInfoChangedNotification object:nil userInfo:nil];
+
+                return;
+            }
+        }
+        else if (self.m_OperaType == FSUpdateUserInfo_AvatarImageUrl)
+        {
+            userInfo.m_UserBaseInfo.m_AvatarUrl = self.m_AvatarUrl;
 
             [FSUserInfoDB insertAndUpdateUserInfo:userInfo];
             GetAppDelegate.m_UserInfo = userInfo;
-
+            
             [self freshViews];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:userInfoChangedNotification object:nil userInfo:nil];
-
+            
             return;
         }
     }

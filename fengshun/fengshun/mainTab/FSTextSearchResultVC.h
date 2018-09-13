@@ -7,7 +7,10 @@
 //
 
 #import "FSSearchResultVC.h"
+#import "FSTextListCell.h"
 
 @interface FSTextSearchResultVC : FSSearchResultVC
+
+@property (nonatomic, copy)NSString *m_keyword;
 
 @end

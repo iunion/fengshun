@@ -789,6 +789,7 @@
 		DB48742A2148DFE100AB0805 /* FSTextListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB4874282148DFE100AB0805 /* FSTextListCell.xib */; };
 		DB48742E2148DFFE00AB0805 /* FSTextTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB48742C2148DFFE00AB0805 /* FSTextTypeCell.m */; };
 		DB48742F2148DFFE00AB0805 /* FSTextTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB48742D2148DFFE00AB0805 /* FSTextTypeCell.xib */; };
+		DB487435214A03D000AB0805 /* FSOCRManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB487434214A03D000AB0805 /* FSOCRManager.m */; };
 		DB4C7E4121479C08008CC6BB /* FSLawSearchResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4C7E4021479C08008CC6BB /* FSLawSearchResultModel.m */; };
 		DB4C7E452147C13A008CC6BB /* FSTextSplitVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4C7E442147C13A008CC6BB /* FSTextSplitVC.m */; };
 		DB57222F21338B6E0065DC30 /* XMRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB57222D21338B6E0065DC30 /* XMRequestManager.m */; };
@@ -2214,6 +2215,8 @@
 		DB48742B2148DFFE00AB0805 /* FSTextTypeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTextTypeCell.h; sourceTree = "<group>"; };
 		DB48742C2148DFFE00AB0805 /* FSTextTypeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTextTypeCell.m; sourceTree = "<group>"; };
 		DB48742D2148DFFE00AB0805 /* FSTextTypeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSTextTypeCell.xib; sourceTree = "<group>"; };
+		DB487433214A03D000AB0805 /* FSOCRManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSOCRManager.h; sourceTree = "<group>"; };
+		DB487434214A03D000AB0805 /* FSOCRManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSOCRManager.m; sourceTree = "<group>"; };
 		DB4C7E3F21479C08008CC6BB /* FSLawSearchResultModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSLawSearchResultModel.h; sourceTree = "<group>"; };
 		DB4C7E4021479C08008CC6BB /* FSLawSearchResultModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSLawSearchResultModel.m; sourceTree = "<group>"; };
 		DB4C7E432147C13A008CC6BB /* FSTextSplitVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTextSplitVC.h; sourceTree = "<group>"; };
@@ -4848,6 +4851,8 @@
 		DB4C7E3B21476426008CC6BB /* FSOCR */ = {
 			isa = PBXGroup;
 			children = (
+				DB487433214A03D000AB0805 /* FSOCRManager.h */,
+				DB487434214A03D000AB0805 /* FSOCRManager.m */,
 			);
 			path = FSOCR;
 			sourceTree = "<group>";
@@ -5946,6 +5951,7 @@
 				DBD4CDEE213E37A000857DB3 /* FSFilterHeaderResultView.m in Sources */,
 				8730B0312140FFA2004331A9 /* DTIframeTextAttachment.m in Sources */,
 				8742690C212E7E36003C52F6 /* NSObject+BMCategory.m in Sources */,
+				DB487435214A03D000AB0805 /* FSOCRManager.m in Sources */,
 				8730B0AC21427CC7004331A9 /* FSAuthenticationVC.m in Sources */,
 				874268EB212E7E36003C52F6 /* UIView+BMSize.m in Sources */,
 				8730B04C2140FFA2004331A9 /* DTHTMLElement.m in Sources */,

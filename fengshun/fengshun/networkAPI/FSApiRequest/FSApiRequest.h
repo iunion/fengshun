@@ -192,8 +192,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 文书列表
 // http://115.159.33.190:8121/swagger-ui.html#/%E6%96%87%E4%B9%A6%E8%8C%83%E6%9C%AC/getDocumentListUsingPOST
-+ (NSMutableURLRequest *)loadTextListyWithType:(NSString *)typeName andTypeCode:(NSString *)typeCode;
++ (NSMutableURLRequest *)loadTextListWithTypeCode:(NSString *)typeCode;
 
+// 文书搜索
+// http://115.159.33.190:8121/swagger-ui.html#/%E6%96%87%E4%B9%A6%E8%8C%83%E6%9C%AC/getDocumentListUsingPOST
++ (NSMutableURLRequest *)searchTextWithKeyword:(NSString *)keyword;
 @end
 
 #pragma mark - 社区模块

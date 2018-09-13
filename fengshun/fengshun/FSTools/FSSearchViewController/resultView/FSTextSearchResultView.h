@@ -10,4 +10,5 @@
 
 @interface FSTextSearchResultView : FSSearchResultView
 
+
 @end

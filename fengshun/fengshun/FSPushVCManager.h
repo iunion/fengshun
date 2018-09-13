@@ -46,4 +46,5 @@ typedef void (^PushVCCallBack)(id object);
 + (void)pushVideoMediateList:(UINavigationController *)nav;
 // 文书范本
 + (void)homePagePushToTextSplitVC:(UIViewController *)mainVC;
++ (void)pushToTextSearchVC:(UIViewController *)showVC;
 @end

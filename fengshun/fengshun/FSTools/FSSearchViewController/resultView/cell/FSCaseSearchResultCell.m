@@ -21,16 +21,10 @@
 
     // Configure the view for the selected state
 }
-- (void)setM_caseResultModel:(FSCaseReultModel *)model
+- (void)setAttributedCaseResultModel:(FSCaseReultModel *)model
 {
     _m_caseResultModel = model;
-    _m_titleLabel.text = model.m_title;
-    NSString *htmlStr = [model.m_simpleContent stringByReplacingOccurrencesOfString:@"<em>" withString:@"<font color=\"red\">"];
-    htmlStr = [htmlStr stringByReplacingOccurrencesOfString:@"</em>" withString:@"</font>"];
-    NSMutableAttributedString * attrStr = [[NSMutableAttributedString alloc] initWithData:[htmlStr dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
-        
-    _m_contentLabel.attributedText = attrStr;
-    _m_tabLabel.text = model.m_caseTag;
+    _m_titleLabel.attributedText = [NSMutableAttributedString bm_attributedStringReplaceHTMLString:model.m_title fontSize:18 contentColor:UI_COLOR_B1.hexStringFromColor tagColor:UI_COLOR_R1.hexStringFromColor starTag:@"<em>" endTag:@"</em>"];
     NSString * detail = @"";
     if ([model.m_court bm_isNotEmpty]) {
         detail = [detail stringByAppendingString:[NSString stringWithFormat:@" | %@",model.m_court]];
@@ -41,6 +35,9 @@
     if ([model.m_date bm_isNotEmpty]) {
         detail =  [detail stringByAppendingString:[NSString stringWithFormat:@" | %@",model.m_date]];
     }
-    _m_detailLabel.text = [detail bm_isNotEmpty]?detail:nil;
+    _m_detailLabel.attributedText = [NSMutableAttributedString bm_attributedStringReplaceHTMLString:detail fontSize:12 contentColor:UI_COLOR_B4.hexStringFromColor tagColor:UI_COLOR_R1.hexStringFromColor starTag:@"<em>" endTag:@"</em>"];
+    _m_contentLabel.attributedText = [NSMutableAttributedString bm_attributedStringReplaceHTMLString:model.m_simpleContent fontSize:14 contentColor:UI_COLOR_B1.hexStringFromColor tagColor:UI_COLOR_R1.hexStringFromColor starTag:@"<em>" endTag:@"</em>"];
+    _m_tabLabel.text = model.m_caseTag;
 }
+
 @end

@@ -7,8 +7,10 @@
 //
 
 #import "FSTextSearchResultVC.h"
+#import "FSListTextModel.h"
 
 @interface FSTextSearchResultVC ()
+@property(nonatomic, strong)NSArray <FSListTextModel *>* m_textList;
 
 @end
 
@@ -23,15 +25,32 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _m_textList.count;
 }
-*/
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    FSTextListCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"FSTextListCell"];
+    FSListTextModel *model =_m_textList[indexPath.row];
+    [cell setTextModel:model colors:YES];
+    return cell;
+}
+
+# pragma mark - NetWorking
+- (NSMutableURLRequest *)setLoadDataRequest
+{
+    return [FSApiRequest searchTextWithKeyword:_m_keyword];
+}
+- (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)requestDic
+{
+    NSArray *textList = [FSListTextModel modelsWithDataArray:[requestDic bm_arrayForKey:@"documentList"]];
+    self.m_textList = textList;
+    if (self.m_searchsucceed) {
+        self.m_searchsucceed(textList);
+    }
+    [self.m_TableView reloadData];
+    return [super succeedLoadedRequestWithDic:requestDic];
+}
 
 @end

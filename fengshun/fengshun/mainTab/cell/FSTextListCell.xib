@@ -42,7 +42,6 @@
                     <constraint firstItem="c9p-Yk-OQG" firstAttribute="top" secondItem="igf-hy-unV" secondAttribute="bottom" id="pCU-dk-Jao"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="m_subTitleLabel" destination="c9p-Yk-OQG" id="1Lm-MG-L5O"/>
                 <outlet property="m_titleLabel" destination="igf-hy-unV" id="oRd-fm-PVu"/>
