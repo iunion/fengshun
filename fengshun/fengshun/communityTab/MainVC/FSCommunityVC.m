@@ -14,7 +14,7 @@
 #import "FSRecommendListVC.h"
 #import "FSForumListVC.h"
 
-#import "TZImagePickerController.h"
+
 
 
 static NSString *FSTopicListTableViewCellIdentifier = @"FSTopicListTableViewCellIdentifier";
@@ -24,8 +24,7 @@ static NSString *FSForumHeaderIdentifier            = @"FSForumHeaderIdentifier"
 @interface FSCommunityVC ()
 <
     FSScrollPageViewDelegate,
-    FSScrollPageViewDataSource,
-    TZImagePickerControllerDelegate
+    FSScrollPageViewDataSource
 >
 
 @property (nonatomic, strong) FSScrollPageSegment *m_SegmentBar;

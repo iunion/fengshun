@@ -233,6 +233,10 @@ NS_ASSUME_NONNULL_BEGIN
                           success:(nullable XMSuccessBlock)successBlock
                           failure:(nullable XMFailureBlock)failureBlock;
 
++ (XMRequest *)uploadImg:(NSData *)imgData
+                 success:(nullable XMSuccessBlock)successBlock
+                 failure:(nullable XMFailureBlock)failureBlock;
+
 @end
 
 #pragma mark - 视频调解
