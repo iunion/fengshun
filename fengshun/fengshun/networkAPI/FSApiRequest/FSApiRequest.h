@@ -261,6 +261,7 @@ NS_ASSUME_NONNULL_BEGIN
                                                 pageSize:(NSInteger)pageSize;
 
 + (nullable NSMutableURLRequest *)saveMeetingWithInfo:(NSDictionary *)dic;
++ (nullable NSMutableURLRequest *)getMeetingDetailWithId:(NSInteger)meetingId;
 
 @end
 

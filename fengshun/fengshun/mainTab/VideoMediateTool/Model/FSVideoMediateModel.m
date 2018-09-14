@@ -188,7 +188,7 @@ static NSDictionary *FSMeetingPersonIdentityTypeDic;
 + (instancetype)modelWithParams:(NSDictionary *)params
 {
     FSMeetingPersonnelModel *model = [[self alloc] init];
-    model.id                            = [params bm_intForKey:@"id"];
+    model.personnelId                            = [params bm_intForKey:@"id"];
     model.userName                      = [params bm_stringForKey:@"userName"];
     model.inviteCode                    = [params bm_stringForKey:@"inviteCode"];
     model.mobilePhone                   = [params bm_stringForKey:@"mobilePhone"];
@@ -201,23 +201,11 @@ static NSDictionary *FSMeetingPersonIdentityTypeDic;
     FSUserInfoModle *user = [FSUserInfoModle userInfo];
     
     FSMeetingPersonnelModel *model = [FSMeetingPersonnelModel new];
-    model.id = [user.m_UserBaseInfo.m_UserId integerValue];
+    model.personnelId = [user.m_UserBaseInfo.m_UserId integerValue];
     model.mobilePhone = user.m_UserBaseInfo.m_PhoneNum;
     model.userName = user.m_UserBaseInfo.m_RealName;
     model.meetingIdentityTypeEnums = @"MEDIATOR";
 
-    return model;
-}
-
-+ (instancetype)userModelWithState:(NSUInteger)state
-{
-    FSMeetingPersonnelModel *model = [FSMeetingPersonnelModel new];
-    model.id = 123;
-    model.mobilePhone = @"13000009987";
-    model.userName = @"邓家佳";
-    model.meetingIdentityTypeEnums = @"APPLICAT";
-    model.selectState = state;
-    
     return model;
 }
 
@@ -229,7 +217,8 @@ static NSDictionary *FSMeetingPersonIdentityTypeDic;
 + (instancetype)modelWithParams:(NSDictionary *)params
 {
     FSMeetingDetailModel *model = [[self alloc] init];
-    model.id                = [params bm_intForKey:@"id"];
+    model.meetingId         = [params bm_intForKey:@"id"];
+    model.creatorId         = [params bm_intForKey:@"creatorId"];
     model.roomId            = [params bm_stringForKey:@"roomId"];
     model.meetingName       = [params bm_stringForKey:@"meetingName"];
     model.meetingType       = [params bm_stringForKey:@"meetingType"];
@@ -238,6 +227,8 @@ static NSDictionary *FSMeetingPersonIdentityTypeDic;
     model.startTime         = [params bm_doubleForKey:@"startTime"];
     model.endTime           = [params bm_doubleForKey:@"endTime"];
     model.meetingType       = [params bm_stringForKey:@"meetingType"];
+    model.meetingInvite       = [params bm_stringForKey:@"meetingInvite"];
+    
     model.meetingPersonnelResponseDTO = [FSMeetingPersonnelModel modelsWithDataArray:[params bm_arrayForKey:@"meetingPersonnelResponseDTO"]];
     return model;
 }
@@ -275,13 +266,26 @@ static NSDictionary *FSMeetingPersonIdentityTypeDic;
 - (NSString *)getMeetingPersonnelNameList
 {
     NSMutableString *string = [NSMutableString string];
-    NSInteger index = 0;
     NSInteger count = self.meetingPersonnelResponseDTO.count;
-    for (FSMeetingPersonnelModel *model in self.meetingPersonnelResponseDTO) {
-        [string appendString:model.userName];
-        index ++;
-        if (index < count) {
+    if (count > 2)
+    {
+        for (int index = 0; index < 2; index++) {
+            FSMeetingPersonnelModel *model = self.meetingPersonnelResponseDTO[index];
+            [string appendString:model.userName];
             [string appendString:@"、"];
+        }
+
+        [string appendString:[NSString stringWithFormat:@"等%ld人", count]];
+    }
+    else
+    {
+        NSInteger index = 0;
+        for (FSMeetingPersonnelModel *model in self.meetingPersonnelResponseDTO) {
+            [string appendString:model.userName];
+            index ++;
+            if (index < count) {
+                [string appendString:@"、"];
+            }
         }
     }
     return string;

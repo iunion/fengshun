@@ -10,4 +10,6 @@
 
 @interface FSVideoAttendListVC : FSTableViewVC
 
+@property (nonatomic, strong) NSArray *m_AttendList;
+
 @end

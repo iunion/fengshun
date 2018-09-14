@@ -11,6 +11,10 @@
 
 @interface FSVideoMediatePersonalCell : UITableViewCell
 
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier selectEnable:(BOOL)enable;
+
+@property (nonatomic, assign) BOOL selectEnable;
+
 @property (nonatomic, strong) FSMeetingPersonnelModel *model;
 
 @end

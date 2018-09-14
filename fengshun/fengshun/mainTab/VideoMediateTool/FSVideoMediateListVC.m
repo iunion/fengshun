@@ -22,7 +22,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"视频调解";
     self.m_LoadDataType = FSAPILoadDataType_Page;
 
     [self bm_setNavigationWithTitle:@"视频调解" barTintColor:[UIColor whiteColor] leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
@@ -137,7 +136,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FSVideoMediateDetailVC *vc = [FSVideoMediateDetailVC new];
-    vc.m_DetailModel = self.m_DataArray[indexPath.row];
+    FSMeetingDetailModel *model = self.m_DataArray[indexPath.row];
+    vc.m_MeetingId = model.meetingId;
     [self.navigationController pushViewController:vc animated:YES];
     
     [tableView deselectRowAtIndexPath:indexPath animated:NO];

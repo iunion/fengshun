@@ -30,7 +30,7 @@ typedef NS_ENUM(NSInteger, FSMeetingDataType) {
 
 // 参会人员model
 @interface FSMeetingPersonnelModel : FSSuperModel
-@property (nonatomic, assign) NSInteger id;
+@property (nonatomic, assign) NSInteger personnelId;
 @property (nonatomic, copy) NSString *inviteCode;               // 邀请码
 @property (nonatomic, copy) NSString *meetingIdentityTypeEnums; // 身份类型
 @property (nonatomic, copy) NSString *mobilePhone;              // 手机号码
@@ -39,13 +39,11 @@ typedef NS_ENUM(NSInteger, FSMeetingDataType) {
 
 + (instancetype)userModel;
 
-+ (instancetype)userModelWithState:(NSUInteger)state;
-
 @end
 
 // 会议列表简单类型
 @interface FSMeetingDetailModel : FSSuperModel
-@property (nonatomic, assign) NSInteger id;
+@property (nonatomic, assign) NSInteger meetingId;
 @property (nonatomic, copy) NSString *roomId;           // 房间id
 @property (nonatomic, copy) NSString *meetingContent;   // 会议内容
 @property (nonatomic, copy) NSString *meetingName;      // 会议名称
@@ -54,7 +52,7 @@ typedef NS_ENUM(NSInteger, FSMeetingDataType) {
 @property (nonatomic, assign) NSTimeInterval startTime; // 会议开始时间
 @property (nonatomic, assign) NSTimeInterval endTime;   // 会议结束时间
 @property (nonatomic, strong) NSArray<FSMeetingPersonnelModel *> *meetingPersonnelResponseDTO; // 参会人员
-@property (nonatomic, copy) NSString *creatorId;    // 创建人id
+@property (nonatomic, assign) NSInteger creatorId;    // 创建人id
 @property (nonatomic, copy) NSString *meetingInvite;//会议邀请链接
 @property (nonatomic, copy) NSString *orderHour;
 

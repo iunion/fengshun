@@ -30,4 +30,10 @@
     return [FSApiRequest makeRequestWithURL:urlStr parameters:dic];
 }
 
++ (nullable NSMutableURLRequest *)getMeetingDetailWithId:(NSInteger)meetingId
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/meeting/meetingDetail", FS_URL_SERVER];
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:@{@"id":@(meetingId)}];
+}
+
 @end

@@ -22,17 +22,12 @@
 @end
 
 @implementation FSCreateVideoMediateVC
-
 @synthesize m_FreshViewType = _m_FreshViewType;
 
 - (void)viewDidLoad {
-
     _m_FreshViewType = BMFreshViewType_NONE;
-    
     [super viewDidLoad];
 
-    self.bm_NavigationShadowHidden = NO;
-    self.bm_NavigationShadowColor = UI_COLOR_B6;
     [self bm_setNavigationWithTitle:@"新建视频调解" barTintColor:[UIColor whiteColor] leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
 
     self.m_CreateModel = [FSMeetingDetailModel new];
@@ -201,7 +196,7 @@
 
     FSVideoMediatePersonalCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (cell == nil) {
-        cell = [[FSVideoMediatePersonalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell = [[FSVideoMediatePersonalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID selectEnable:YES];
     }
     FSMeetingPersonnelModel *model = self.m_AttendedList[indexPath.row];
     [cell setModel:model];

@@ -149,4 +149,10 @@
 // 右侧view自定义
 @implementation FSEditVideoMediateCustomerView
 
+- (void)setCustomerView:(UIView *)customerView
+{
+    _customerView = customerView;
+    [self addSubview:customerView];
+}
+
 @end
