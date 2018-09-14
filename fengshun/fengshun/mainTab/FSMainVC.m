@@ -330,20 +330,32 @@ FSMainVC () <
 
     [self.m_TableView reloadData];
 }
+
 - (void)checkUnreadMessage
 {
-    [FSApiRequest getMessageUnReadFlagSuccess:^(id  _Nullable responseObject) {
-        [self showRedBadge:YES];
-    } failure:^(NSError * _Nullable error) {
-        [self showRedBadge:NO];
+    [FSApiRequest getMessageUnReadFlagSuccess:^(id responseObject) {
+        if ([responseObject isKindOfClass:[NSNumber class]])
+        {
+            BOOL show = ((NSNumber *)responseObject).boolValue;
+            [self showRedBadge:show];
+        }
+    } failure:^(NSError *error) {
     }];
 }
+
 - (void)showRedBadge:(BOOL)show
 {
     UIButton *btn = [self bm_getNavigationRightItemAtIndex:0];
-    [btn showRedDotBadge];
-    if (!show) {
+    if (show)
+    {
+        btn.badgeBgColor = UI_COLOR_R1;
+        btn.badgeBorderWidth = 0.0f;
+        [btn showRedDotBadge];
+    }
+    else
+    {
         [btn clearBadge];
     }
 }
+
 @end

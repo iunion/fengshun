@@ -21,7 +21,7 @@
 
 @implementation UIView (BMBadge)
 
-- (void)badgeInit
+- (UILabel *)badgeInit
 {
     CGFloat redotWidth = BMBadgeDefaultRedDotRadius * 2;
     CGRect frame = CGRectMake(CGRectGetWidth(self.frame), -redotWidth, redotWidth, redotWidth);
@@ -36,6 +36,8 @@
     [self addSubview:badgeLabel];
     
     self.badgeLabel = badgeLabel;
+    
+    return badgeLabel;
 }
 
 #pragma mark - setter/getter
@@ -45,7 +47,7 @@
     UILabel *label = objc_getAssociatedObject(self, _cmd);
     if (nil == label)
     {
-        [self badgeInit];
+        label = [self badgeInit];
     }
     return label;
 }
