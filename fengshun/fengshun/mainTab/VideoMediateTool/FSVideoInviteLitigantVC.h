@@ -7,7 +7,8 @@
 //
 
 #import "FSSuperVC.h"
+#import "FSTableViewVC.h"
 
-@interface FSVideoInviteLitigantVC : FSSuperVC
-
+@interface FSVideoInviteLitigantVC : FSTableViewVC
+@property (nonatomic, strong) NSMutableArray *m_InviteList; // 参与人员列表
 @end

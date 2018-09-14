@@ -7,16 +7,15 @@
 //
 
 #import "FSCreateVideoMediateVC.h"
-#import "BMTableViewManager.h"
+#import "FSCreateVideoMediateHeader.h"
+#import "FSVideoMediatePersonalCell.h"
+#import "FSVideoInviteLitigantVC.h"
 
 @interface FSCreateVideoMediateVC () <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) BMTableViewManager *m_TableManager;
+@property (nonatomic, strong) VideoMediateListModel *m_CreateModel;
 
-@property (nonatomic, strong) BMTableViewSection *m_BasicSection;
-@property (nonatomic, strong) BMTableViewSection *m_ContentSection;
-@property (nonatomic, strong) BMTableViewSection *m_AttendedSection;
-
+@property (nonatomic, strong) NSMutableArray *meetingAttendedList; // 参与人员列表
 
 @end
 
@@ -33,6 +32,7 @@
     self.bm_NavigationShadowColor = UI_COLOR_B6;
     [self bm_setNavigationWithTitle:@"新建视频调解" barTintColor:[UIColor whiteColor] leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
 
+    self.m_CreateModel = [VideoMediateListModel new];
     [self buildUI];
 }
 
@@ -48,71 +48,45 @@
     
     self.m_TableView.frame = CGRectMake(0, 0, self.view.bm_width, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - 48);
     
-    self.m_TableManager = [[BMTableViewManager alloc] initWithTableView:self.m_TableView];
-    self.m_BasicSection = [BMTableViewSection section];
-    self.m_ContentSection = [BMTableViewSection section];
-    self.m_AttendedSection = [BMTableViewSection section];
+    FSCreateVideoMediateHeader *header = [[FSCreateVideoMediateHeader alloc] initWithFrame:CGRectMake(0, 0, self.m_TableView.bm_width, 0)];
+    self.m_TableView.tableHeaderView = header;
+    header.m_Model = _m_CreateModel;
 
-    _m_BasicSection.headerHeight = 9.0f;
-    _m_ContentSection.headerHeight = 9.0f;
-    _m_AttendedSection.headerHeight = 23.0f;
-    [self.m_TableManager addSectionsFromArray:@[_m_BasicSection, _m_ContentSection, _m_AttendedSection]];
+    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.m_TableView.bm_width, 24+44)];
     
-    
-    BMTableViewItem *item1 = [BMTableViewItem itemWithTitle:@"名称" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
-        
-    }];
-    item1.textColor = UI_COLOR_B1;
-    
-    BMTableViewItem *item2 = [BMTableViewItem itemWithTitle:@"类型" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
-        
-    }];
-    item2.textColor = UI_COLOR_B1;
-
-    BMTableViewItem *item3 = [BMTableViewItem itemWithTitle:@"时间" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
-        
-    }];
-    item3.textColor = UI_COLOR_B1;
-
-    BMTableViewItem *item4 = [BMTableViewItem itemWithTitle:@"时长" underLineDrawType:BMTableViewCell_UnderLineDrawType_None accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
-        
-    }];
-    item4.textColor = UI_COLOR_B1;
-
-    [_m_BasicSection addItemsFromArray:@[item1, item2, item3, item4]];
-    
-    
-    BMLongTextItem *item5 = [BMLongTextItem itemWithTitle:@"内容" value:nil placeholder:@"请输入内容"];
-    item5.underLineDrawType = BMTableViewCell_UnderLineDrawType_None;
-    item5.cellBgColor = [UIColor whiteColor];
-    item5.editable = YES;
-    item5.textViewLeftGap = 0.0f;
-    item5.textViewTopGap = 8.0f;
-    item5.showTextViewBorder = NO;
-    item5.textViewFont = [UIFont systemFontOfSize:16.0f];
-    item5.cellHeight = 128.0f;
-    item5.textColor = UI_COLOR_B1;
-    item5.textViewTextColor = UI_COLOR_B1;
-    item5.textViewPlaceholderColor = [UIColor bm_colorWithHex:0xB5B5B5];
-
-    item5.onChange = ^(BMInputItem * _Nonnull item) {
-        NSLog(@"item %@", item.value);
-    };
-
-    [_m_ContentSection addItem:item5];
-    
-    
-    BMTableViewItem *item6 = [BMTableViewItem itemWithTitle:@"时间" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
-        
-    }];
-    item6.textColor = UI_COLOR_B1;
-    [_m_AttendedSection addItem:item6];
-    
-    _m_AttendedSection.headerTitle = @"参与人员：2人";
-    
-    [self.m_TableView reloadData];
+    UIButton *btn = [UIButton bm_buttonWithFrame:CGRectMake(0, 0, self.m_TableView.bm_width, 44)];
+    btn.backgroundColor = [UIColor whiteColor];
+    btn.titleLabel.font = UI_FONT_14;
+    [btn addTarget:self action:@selector(inviteAction) forControlEvents:UIControlEventTouchUpInside];
+    [footer addSubview:btn];
+    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:@"+  邀请当事人"
+                                                                             attributes:@{NSForegroundColorAttributeName:UI_COLOR_BL1,
+                                                                                          NSFontAttributeName:UI_FONT_14
+                                                                                          }];
+    [attr addAttribute:NSFontAttributeName value:UI_BOLDFONT_18 range:NSMakeRange(0, 1)];
+    [btn setAttributedTitle:attr forState:UIControlStateNormal];
+    self.m_TableView.tableFooterView = footer;
 }
 
+- (NSMutableArray *)meetingAttendedList
+{
+    if (_meetingAttendedList == nil) {
+        _meetingAttendedList = [NSMutableArray array];
+        [_meetingAttendedList addObject:[MeetingPersonnelModel userModel]];
+        
+        [_meetingAttendedList addObject:[MeetingPersonnelModel userModelWithState:0]];
+        [_meetingAttendedList addObject:[MeetingPersonnelModel userModelWithState:1]];
+    }
+    
+    return _meetingAttendedList;
+}
+
+- (void)inviteAction
+{
+    FSVideoInviteLitigantVC *vc = [FSVideoInviteLitigantVC new];
+    vc.m_InviteList = self.meetingAttendedList;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (void)bottomButtonClickAction
 {
@@ -123,44 +97,47 @@
 #pragma mark -
 #pragma mark Table Data Source Methods
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return self.meetingAttendedList.count;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 0;
+    return 24;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 135.0f;
+    return 70;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)sectionIndex
 {
-    return nil;
-//    static NSString *taskCellIdentifier = @"VideoMediateListCell";
-//    VideoMediateListCell *cell = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
-//
-//    if (cell == nil)
-//    {
-//        cell = [[[NSBundle mainBundle] loadNibNamed:@"VideoMediateListCell" owner:self options:nil] lastObject];
-//    }
-//
-//    [cell setModel:self.m_DataArray[indexPath.row]];
-//
-//    return cell;
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(14, 0, self.m_TableView.bm_width-28, 24)];
+    label.text = [NSString stringWithFormat:@"参与人员：%ld人",_meetingAttendedList.count];
+    label.textColor = UI_COLOR_B4;
+    label.font = UI_FONT_12;
+    [view addSubview:label];
+    
+    return view;
 }
 
-
-#pragma mark -
-#pragma mark UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    static NSString *cellID = @"FSVideoMediatePersonalCell";
+
+    FSVideoMediatePersonalCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (cell == nil) {
+        cell = [[FSVideoMediatePersonalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    }
+    MeetingPersonnelModel *model = self.meetingAttendedList[indexPath.row];
+    [cell setModel:model];
+    return cell;
 }
+
 
 @end

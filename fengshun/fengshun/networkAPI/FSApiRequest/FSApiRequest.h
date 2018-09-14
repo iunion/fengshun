@@ -30,6 +30,14 @@ typedef NS_ENUM(NSUInteger, FSUpdateUserInfoOperaType) {
     FSUpdateUserInfo_Signature
 };
 
+typedef NS_ENUM(NSUInteger, FSCollectionType) {
+    FSCollectionType_POSTS = 0,
+    FSCollectionType_STATUTE,
+    FSCollectionType_CASE,
+    FSCollectionType_DOCUMENT,
+    FSCollectionType_COURSE
+};
+
 /**
  排序方式
  
@@ -127,7 +135,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 我的收藏
 // http://115.159.33.190:8121/swagger-ui.html#/%E6%88%91%E7%9A%84%E7%9B%B8%E5%85%B3/getMyCollectionsUsingPOST
-+ (nullable NSMutableURLRequest *)getMyCollectionsWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize;
++ (nullable NSMutableURLRequest *)getMyCollectionsWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize collectionType:(FSCollectionType)collectionType;
 
 // 我的评论
 // http://115.159.33.190:8121/swagger-ui.html#/%E6%88%91%E7%9A%84%E7%9B%B8%E5%85%B3/getMyCommentsUsingPOST
@@ -184,8 +192,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 文书列表
 // http://115.159.33.190:8121/swagger-ui.html#/%E6%96%87%E4%B9%A6%E8%8C%83%E6%9C%AC/getDocumentListUsingPOST
-+ (NSMutableURLRequest *)loadTextListyWithType:(NSString *)typeName andTypeCode:(NSString *)typeCode;
++ (NSMutableURLRequest *)loadTextListWithTypeCode:(NSString *)typeCode;
 
+// 文书搜索
+// http://115.159.33.190:8121/swagger-ui.html#/%E6%96%87%E4%B9%A6%E8%8C%83%E6%9C%AC/getDocumentListUsingPOST
++ (NSMutableURLRequest *)searchTextWithKeyword:(NSString *)keyword;
 @end
 
 #pragma mark - 社区模块

@@ -712,7 +712,7 @@
 
 - (NSString *) hexStringFromColor
 {
-    return [NSString stringWithFormat:@"%0.6X", (unsigned int)self.rgbHex];
+    return [NSString stringWithFormat:@"#%0.6X", (unsigned int)self.rgbHex];
 }
 
 #pragma mark Color Space Conversions

@@ -104,4 +104,5 @@ FSSearchResultView ()
 {
     // search
 }
+
 @end

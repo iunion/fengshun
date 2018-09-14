@@ -17,6 +17,20 @@
 		4561393321490FEC007DF6A1 /* FSVideoMessageListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4561393221490FEC007DF6A1 /* FSVideoMessageListVC.m */; };
 		4561393621491033007DF6A1 /* FSVideoAttendListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4561393521491033007DF6A1 /* FSVideoAttendListVC.m */; };
 		45A3BF8B2148AA2E0093278C /* FSVideoMediateListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A3BF8A2148AA2E0093278C /* FSVideoMediateListVC.m */; };
+		45DC029B214A1EB700FCE042 /* FSEditVideoMediateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DC029A214A1EB700FCE042 /* FSEditVideoMediateView.m */; };
+		45DC029E214A1EED00FCE042 /* ORDTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DC029D214A1EED00FCE042 /* ORDTextView.m */; };
+		45DC02A1214A248900FCE042 /* FSCreateVideoMediateHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DC02A0214A248900FCE042 /* FSCreateVideoMediateHeader.m */; };
+		45DC02A4214A3B4400FCE042 /* FSVideoMediateSheetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DC02A3214A3B4400FCE042 /* FSVideoMediateSheetVC.m */; };
+		45DC02AE214A53FD00FCE042 /* FSVideoMediatePersonalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DC02AD214A53FD00FCE042 /* FSVideoMediatePersonalCell.m */; };
+		45DC02B6214A61EF00FCE042 /* video_unselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45DC02B0214A61EE00FCE042 /* video_unselect@2x.png */; };
+		45DC02B7214A61EF00FCE042 /* video_not_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45DC02B1214A61EE00FCE042 /* video_not_selected@3x.png */; };
+		45DC02B8214A61EF00FCE042 /* video_unselect@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45DC02B2214A61EE00FCE042 /* video_unselect@3x.png */; };
+		45DC02B9214A61EF00FCE042 /* video_not_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45DC02B3214A61EE00FCE042 /* video_not_selected@2x.png */; };
+		45DC02BA214A61EF00FCE042 /* video_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45DC02B4214A61EE00FCE042 /* video_selected@3x.png */; };
+		45DC02BB214A61EF00FCE042 /* video_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45DC02B5214A61EF00FCE042 /* video_selected@2x.png */; };
+		45DC02C2214A6C4900FCE042 /* FSVideoInviteLitigantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DC02C1214A6C4900FCE042 /* FSVideoInviteLitigantCell.m */; };
+		45DC02C5214A734700FCE042 /* video_invite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45DC02C3214A734700FCE042 /* video_invite@3x.png */; };
+		45DC02C6214A734700FCE042 /* video_invite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45DC02C4214A734700FCE042 /* video_invite@2x.png */; };
 		8730AD352140B9BD004331A9 /* FSSetupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730AD332140B9BC004331A9 /* FSSetupVC.m */; };
 		8730AD422140CC28004331A9 /* user_commenticon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730AD362140CC26004331A9 /* user_commenticon@2x.png */; };
 		8730AD432140CC28004331A9 /* user_serviceicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730AD372140CC27004331A9 /* user_serviceicon@3x.png */; };
@@ -775,6 +789,7 @@
 		DB48742A2148DFE100AB0805 /* FSTextListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB4874282148DFE100AB0805 /* FSTextListCell.xib */; };
 		DB48742E2148DFFE00AB0805 /* FSTextTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB48742C2148DFFE00AB0805 /* FSTextTypeCell.m */; };
 		DB48742F2148DFFE00AB0805 /* FSTextTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB48742D2148DFFE00AB0805 /* FSTextTypeCell.xib */; };
+		DB487435214A03D000AB0805 /* FSOCRManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB487434214A03D000AB0805 /* FSOCRManager.m */; };
 		DB4C7E4121479C08008CC6BB /* FSLawSearchResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4C7E4021479C08008CC6BB /* FSLawSearchResultModel.m */; };
 		DB4C7E452147C13A008CC6BB /* FSTextSplitVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4C7E442147C13A008CC6BB /* FSTextSplitVC.m */; };
 		DB57222F21338B6E0065DC30 /* XMRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB57222D21338B6E0065DC30 /* XMRequestManager.m */; };
@@ -883,6 +898,26 @@
 		4561393521491033007DF6A1 /* FSVideoAttendListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoAttendListVC.m; sourceTree = "<group>"; };
 		45A3BF892148AA2E0093278C /* FSVideoMediateListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVideoMediateListVC.h; sourceTree = "<group>"; };
 		45A3BF8A2148AA2E0093278C /* FSVideoMediateListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoMediateListVC.m; sourceTree = "<group>"; };
+		45DC0299214A1EB700FCE042 /* FSEditVideoMediateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSEditVideoMediateView.h; sourceTree = "<group>"; };
+		45DC029A214A1EB700FCE042 /* FSEditVideoMediateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSEditVideoMediateView.m; sourceTree = "<group>"; };
+		45DC029C214A1EED00FCE042 /* ORDTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORDTextView.h; sourceTree = "<group>"; };
+		45DC029D214A1EED00FCE042 /* ORDTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORDTextView.m; sourceTree = "<group>"; };
+		45DC029F214A248900FCE042 /* FSCreateVideoMediateHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCreateVideoMediateHeader.h; sourceTree = "<group>"; };
+		45DC02A0214A248900FCE042 /* FSCreateVideoMediateHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCreateVideoMediateHeader.m; sourceTree = "<group>"; };
+		45DC02A2214A3B4400FCE042 /* FSVideoMediateSheetVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVideoMediateSheetVC.h; sourceTree = "<group>"; };
+		45DC02A3214A3B4400FCE042 /* FSVideoMediateSheetVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoMediateSheetVC.m; sourceTree = "<group>"; };
+		45DC02AC214A53FD00FCE042 /* FSVideoMediatePersonalCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVideoMediatePersonalCell.h; sourceTree = "<group>"; };
+		45DC02AD214A53FD00FCE042 /* FSVideoMediatePersonalCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoMediatePersonalCell.m; sourceTree = "<group>"; };
+		45DC02B0214A61EE00FCE042 /* video_unselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_unselect@2x.png"; sourceTree = "<group>"; };
+		45DC02B1214A61EE00FCE042 /* video_not_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_not_selected@3x.png"; sourceTree = "<group>"; };
+		45DC02B2214A61EE00FCE042 /* video_unselect@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_unselect@3x.png"; sourceTree = "<group>"; };
+		45DC02B3214A61EE00FCE042 /* video_not_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_not_selected@2x.png"; sourceTree = "<group>"; };
+		45DC02B4214A61EE00FCE042 /* video_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_selected@3x.png"; sourceTree = "<group>"; };
+		45DC02B5214A61EF00FCE042 /* video_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_selected@2x.png"; sourceTree = "<group>"; };
+		45DC02C0214A6C4900FCE042 /* FSVideoInviteLitigantCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVideoInviteLitigantCell.h; sourceTree = "<group>"; };
+		45DC02C1214A6C4900FCE042 /* FSVideoInviteLitigantCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoInviteLitigantCell.m; sourceTree = "<group>"; };
+		45DC02C3214A734700FCE042 /* video_invite@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_invite@3x.png"; sourceTree = "<group>"; };
+		45DC02C4214A734700FCE042 /* video_invite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_invite@2x.png"; sourceTree = "<group>"; };
 		8730AD332140B9BC004331A9 /* FSSetupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSetupVC.m; sourceTree = "<group>"; };
 		8730AD342140B9BC004331A9 /* FSSetupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSetupVC.h; sourceTree = "<group>"; };
 		8730AD362140CC26004331A9 /* user_commenticon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_commenticon@2x.png"; sourceTree = "<group>"; };
@@ -2180,6 +2215,8 @@
 		DB48742B2148DFFE00AB0805 /* FSTextTypeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTextTypeCell.h; sourceTree = "<group>"; };
 		DB48742C2148DFFE00AB0805 /* FSTextTypeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTextTypeCell.m; sourceTree = "<group>"; };
 		DB48742D2148DFFE00AB0805 /* FSTextTypeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSTextTypeCell.xib; sourceTree = "<group>"; };
+		DB487433214A03D000AB0805 /* FSOCRManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSOCRManager.h; sourceTree = "<group>"; };
+		DB487434214A03D000AB0805 /* FSOCRManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSOCRManager.m; sourceTree = "<group>"; };
 		DB4C7E3F21479C08008CC6BB /* FSLawSearchResultModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSLawSearchResultModel.h; sourceTree = "<group>"; };
 		DB4C7E4021479C08008CC6BB /* FSLawSearchResultModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSLawSearchResultModel.m; sourceTree = "<group>"; };
 		DB4C7E432147C13A008CC6BB /* FSTextSplitVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTextSplitVC.h; sourceTree = "<group>"; };
@@ -2273,10 +2310,14 @@
 		4561391F2149019B007DF6A1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				45DC029C214A1EED00FCE042 /* ORDTextView.h */,
+				45DC029D214A1EED00FCE042 /* ORDTextView.m */,
 				456139192148E063007DF6A1 /* FSHeaderCommonSelector.h */,
 				4561391A2148E063007DF6A1 /* FSHeaderCommonSelector.m */,
-				45613921214901E5007DF6A1 /* VideoMediateListCell.h */,
-				45613922214901E5007DF6A1 /* VideoMediateListCell.m */,
+				45DC0299214A1EB700FCE042 /* FSEditVideoMediateView.h */,
+				45DC029A214A1EB700FCE042 /* FSEditVideoMediateView.m */,
+				45DC02A2214A3B4400FCE042 /* FSVideoMediateSheetVC.h */,
+				45DC02A3214A3B4400FCE042 /* FSVideoMediateSheetVC.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2293,6 +2334,8 @@
 		45A3BF882148A9C20093278C /* VideoMediateTool */ = {
 			isa = PBXGroup;
 			children = (
+				45DC02BC214A645800FCE042 /* Cell */,
+				45DC02AF214A619700FCE042 /* image */,
 				45613920214901B2007DF6A1 /* Model */,
 				4561391F2149019B007DF6A1 /* View */,
 				45A3BF892148AA2E0093278C /* FSVideoMediateListVC.h */,
@@ -2309,6 +2352,36 @@
 				4561393521491033007DF6A1 /* FSVideoAttendListVC.m */,
 			);
 			path = VideoMediateTool;
+			sourceTree = "<group>";
+		};
+		45DC02AF214A619700FCE042 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				45DC02C4214A734700FCE042 /* video_invite@2x.png */,
+				45DC02C3214A734700FCE042 /* video_invite@3x.png */,
+				45DC02B3214A61EE00FCE042 /* video_not_selected@2x.png */,
+				45DC02B1214A61EE00FCE042 /* video_not_selected@3x.png */,
+				45DC02B5214A61EF00FCE042 /* video_selected@2x.png */,
+				45DC02B4214A61EE00FCE042 /* video_selected@3x.png */,
+				45DC02B0214A61EE00FCE042 /* video_unselect@2x.png */,
+				45DC02B2214A61EE00FCE042 /* video_unselect@3x.png */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
+		45DC02BC214A645800FCE042 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				45613921214901E5007DF6A1 /* VideoMediateListCell.h */,
+				45613922214901E5007DF6A1 /* VideoMediateListCell.m */,
+				45DC02AC214A53FD00FCE042 /* FSVideoMediatePersonalCell.h */,
+				45DC02AD214A53FD00FCE042 /* FSVideoMediatePersonalCell.m */,
+				45DC029F214A248900FCE042 /* FSCreateVideoMediateHeader.h */,
+				45DC02A0214A248900FCE042 /* FSCreateVideoMediateHeader.m */,
+				45DC02C0214A6C4900FCE042 /* FSVideoInviteLitigantCell.h */,
+				45DC02C1214A6C4900FCE042 /* FSVideoInviteLitigantCell.m */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		8730AEFB2140FFA1004331A9 /* DTCoreText */ = {
@@ -4787,6 +4860,8 @@
 		DB4C7E3B21476426008CC6BB /* FSOCR */ = {
 			isa = PBXGroup;
 			children = (
+				DB487433214A03D000AB0805 /* FSOCRManager.h */,
+				DB487434214A03D000AB0805 /* FSOCRManager.m */,
 			);
 			path = FSOCR;
 			sourceTree = "<group>";
@@ -5059,6 +5134,8 @@
 				87426A4C213135F0003C52F6 /* fstab_btn3_highIcon@3x.png in Resources */,
 				AD3B839C214A4FB600D72DE9 /* ZSSsubscript.png in Resources */,
 				AD3B83C1214A4FB600D72DE9 /* ZSSindent.png in Resources */,
+				45DC02B6214A61EF00FCE042 /* video_unselect@2x.png in Resources */,
+				AD3B81EB214A0EA100D72DE9 /* ZSSfonts.png in Resources */,
 				874269FF212F9657003C52F6 /* navigationbar_back_icon@2x.png in Resources */,
 				AD3B83A6214A4FB600D72DE9 /* ZSSunorderedlist@2x.png in Resources */,
 				AD3B83BA214A4FB600D72DE9 /* ZSSimageDevice.png in Resources */,
@@ -5106,6 +5183,7 @@
 				AD3B83BD214A4FB600D72DE9 /* ZSSlink@2x.png in Resources */,
 				DBD4CE952141229400857DB3 /* home_robot@3x.png in Resources */,
 				87D186AD213679F800037DDF /* login_closeeye@2x.png in Resources */,
+				45DC02B8214A61EF00FCE042 /* video_unselect@3x.png in Resources */,
 				87D186AE213679F800037DDF /* login_logo@3x.png in Resources */,
 				8730B1172148E5D1004331A9 /* fsfreshidle_icon13@2x.png in Resources */,
 				87D20AD6213920E2001EDD60 /* LICENSE in Resources */,
@@ -5116,6 +5194,7 @@
 				87426A50213135F0003C52F6 /* fstab_btn4_highIcon@3x.png in Resources */,
 				AD3B839F214A4FB600D72DE9 /* ZSSrightjustify.png in Resources */,
 				DBD4CE8D2141229400857DB3 /* home_arrow@3x.png in Resources */,
+				45DC02BA214A61EF00FCE042 /* video_selected@3x.png in Resources */,
 				8730B11A2148E5D1004331A9 /* fsfreshidle_icon6@2x.png in Resources */,
 				87426A02212F9657003C52F6 /* navigationbar_close_icon@2x.png in Resources */,
 				8730B11F2148E5D1004331A9 /* fsfreshfreshing_icon2@2x.png in Resources */,
@@ -5152,6 +5231,7 @@
 				DB804FEA21425CE9007F7B19 /* FSCaseSearchResultCell.xib in Resources */,
 				AD3B83DA214A4FB600D72DE9 /* ZSSredo@2x.png in Resources */,
 				AD3B83C4214A4FB600D72DE9 /* ZSSinsertkeyword@2x.png in Resources */,
+				45DC02B7214A61EF00FCE042 /* video_not_selected@3x.png in Resources */,
 				87426A54213135F0003C52F6 /* fstab_btn4_icon@2x.png in Resources */,
 				87426A4B213135F0003C52F6 /* fstab_btn3_icon@3x.png in Resources */,
 				AD3B83B4214A4FB600D72DE9 /* ZSSkeyboard@2x.png in Resources */,
@@ -5192,6 +5272,8 @@
 				DBD4CE8F2141229400857DB3 /* home_arrow@2x.png in Resources */,
 				87D209F2213912ED001EDD60 /* default_avataricon@2x.png in Resources */,
 				AD3B83D5214A4FB600D72DE9 /* ZSSquicklink.png in Resources */,
+				AD3B81C1214A0EA100D72DE9 /* ZSShorizontalrule@2x.png in Resources */,
+				45DC02B9214A61EF00FCE042 /* video_not_selected@2x.png in Resources */,
 				87426A56213135F0003C52F6 /* fstab_btn2_icon@3x.png in Resources */,
 				87D20AF821393B9A001EDD60 /* navigationbar_share_icon@2x.png in Resources */,
 				AD3B83D7214A4FB600D72DE9 /* ZSSsuperscript.png in Resources */,
@@ -5228,6 +5310,8 @@
 				DBD4CE962141229400857DB3 /* home_courses@2x.png in Resources */,
 				8730B10F2148E5D1004331A9 /* fsfreshfreshing_icon1@2x.png in Resources */,
 				87D20B2C213FB7F8001EDD60 /* default_avatariconlarge@2x.png in Resources */,
+				AD3B81D8214A0EA100D72DE9 /* ZSSbgcolor.png in Resources */,
+				45DC02C6214A734700FCE042 /* video_invite@2x.png in Resources */,
 				DBD4CE902141229400857DB3 /* home_browseCount@2x.png in Resources */,
 				AD3B83C0214A4FB600D72DE9 /* ZSSleftjustify.png in Resources */,
 				DB48742F2148DFFE00AB0805 /* FSTextTypeCell.xib in Resources */,
@@ -5240,6 +5324,7 @@
 				AD3B83B7214A4FB600D72DE9 /* ZSSh2.png in Resources */,
 				AD2244A4213CD6C300F2DC47 /* Info.plist in Resources */,
 				AD9355A62137D24100735C2E /* TZImagePickerController.bundle in Resources */,
+				45DC02C5214A734700FCE042 /* video_invite@3x.png in Resources */,
 				AD2244DF213D1FE700F2DC47 /* FSCommunityHeaderView.xib in Resources */,
 				8730B1082148E5D1004331A9 /* fsfreshidle_icon12@2x.png in Resources */,
 				DBD4CE932141229400857DB3 /* home_robot@2x.png in Resources */,
@@ -5316,6 +5401,8 @@
 				DB2656D821466B0B002ED713 /* search_lawCount@2x.png in Resources */,
 				87D20AF721393B9A001EDD60 /* navigationbar_share_icon@3x.png in Resources */,
 				AD3B83B6214A4FB600D72DE9 /* ZSSredo.png in Resources */,
+				AD3B81D1214A0EA100D72DE9 /* ZSSunlink@2x.png in Resources */,
+				45DC02BB214A61EF00FCE042 /* video_selected@2x.png in Resources */,
 				87D186AB213679F800037DDF /* login_error@2x.png in Resources */,
 				8730B1152148E5D1004331A9 /* fsfreshidle_icon24@2x.png in Resources */,
 				8730B0C121465034004331A9 /* BMCombine_down@3x.png in Resources */,
@@ -5364,6 +5451,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8730B0482140FFA2004331A9 /* default.css in Sources */,
+				45DC02C2214A6C4900FCE042 /* FSVideoInviteLitigantCell.m in Sources */,
 				87D20ABA213920E2001EDD60 /* FLEXIvarEditorViewController.m in Sources */,
 				8730B0252140FFA2004331A9 /* DTCoreTextLayoutLine.m in Sources */,
 				87D1868721365BBB00037DDF /* FSLoginVC.m in Sources */,
@@ -5564,6 +5652,7 @@
 				87D209D12138F1E2001EDD60 /* UIButton+WebCache.m in Sources */,
 				8730B09D2140FFA3004331A9 /* DTCoreGraphicsUtils.m in Sources */,
 				8730B04E2140FFA2004331A9 /* DTCSSStylesheet.m in Sources */,
+				45DC02A4214A3B4400FCE042 /* FSVideoMediateSheetVC.m in Sources */,
 				8730B0842140FFA3004331A9 /* DTActivityTitleView.m in Sources */,
 				874268D9212E7E36003C52F6 /* UIViewController+BMNavigationItem.m in Sources */,
 				87D209EA2138FF46001EDD60 /* RSKImageCropViewController.m in Sources */,
@@ -5598,6 +5687,7 @@
 				87D209C42138F1E2001EDD60 /* NSButton+WebCache.m in Sources */,
 				87D20B1421394A5A001EDD60 /* FSWebViewProgressView.m in Sources */,
 				87426ACD2133D5E9003C52F6 /* MBProgressHUD.m in Sources */,
+				45DC02A1214A248900FCE042 /* FSCreateVideoMediateHeader.m in Sources */,
 				87D20ABC213920E2001EDD60 /* FLEXArgumentInputStringView.m in Sources */,
 				AD3B83E9214A4FB600D72DE9 /* HRColorUtil.m in Sources */,
 				8730B0532140FFA2004331A9 /* DTImageTextAttachment.m in Sources */,
@@ -5663,6 +5753,7 @@
 				DBD4CE05213FBF6C00857DB3 /* FSHomePageToolModel.m in Sources */,
 				87D20AB5213920E2001EDD60 /* FLEXExplorerToolbar.m in Sources */,
 				87D20ACA213920E2001EDD60 /* FLEXExplorerViewController.m in Sources */,
+				45DC02AE214A53FD00FCE042 /* FSVideoMediatePersonalCell.m in Sources */,
 				87426AF521353510003C52F6 /* FSDB.m in Sources */,
 				87D20AC8213920E2001EDD60 /* FLEXArgumentInputNotSupportedView.m in Sources */,
 				8730B0C6214758F0004331A9 /* FSSetPhoneVC.m in Sources */,
@@ -5733,6 +5824,7 @@
 				AD3B83E7214A4FB600D72DE9 /* CYRTextStorage.m in Sources */,
 				87426A822131461F003C52F6 /* AFNetworkReachabilityManager.m in Sources */,
 				87D20AB8213920E2001EDD60 /* FLEXDefaultEditorViewController.m in Sources */,
+				45DC029B214A1EB700FCE042 /* FSEditVideoMediateView.m in Sources */,
 				874269C9212E9B78003C52F6 /* UIScrollView+BMFresh.m in Sources */,
 				45613923214901E5007DF6A1 /* VideoMediateListCell.m in Sources */,
 				8730B05B2140FFA3004331A9 /* DTListItemHTMLElement.m in Sources */,
@@ -5784,6 +5876,7 @@
 				87D20AAF213920E2001EDD60 /* FLEXNetworkCurlLogger.m in Sources */,
 				8730B0A921427A85004331A9 /* FSEditorAbilityVC.m in Sources */,
 				874268C2212E7E36003C52F6 /* BMSliderItem.m in Sources */,
+				45DC029E214A1EED00FCE042 /* ORDTextView.m in Sources */,
 				8730B0342140FFA2004331A9 /* DTCoreTextFontDescriptor.m in Sources */,
 				8730B0412140FFA2004331A9 /* DTAttributedLabel.m in Sources */,
 				874269BD212E9B78003C52F6 /* BMFreshDotHeader.m in Sources */,
@@ -5872,6 +5965,7 @@
 				DBD4CDEE213E37A000857DB3 /* FSFilterHeaderResultView.m in Sources */,
 				8730B0312140FFA2004331A9 /* DTIframeTextAttachment.m in Sources */,
 				8742690C212E7E36003C52F6 /* NSObject+BMCategory.m in Sources */,
+				DB487435214A03D000AB0805 /* FSOCRManager.m in Sources */,
 				8730B0AC21427CC7004331A9 /* FSAuthenticationVC.m in Sources */,
 				874268EB212E7E36003C52F6 /* UIView+BMSize.m in Sources */,
 				8730B04C2140FFA2004331A9 /* DTHTMLElement.m in Sources */,

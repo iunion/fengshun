@@ -16,6 +16,12 @@
 @property (nonatomic, copy) NSString *meetingIdentityTypeEnums; // 身份类型
 @property (nonatomic, copy) NSString *mobilePhone;              // 手机号码
 @property (nonatomic, copy) NSString *userName;                 // 邀请人姓名
+@property (nonatomic, assign) NSUInteger selectState;           // 选中状态  -1必须选中 0没选中 1选中
+
++ (instancetype)userModel;
+
++ (instancetype)userModelWithState:(NSUInteger)state;
+
 @end
 
 // 会议列表简单类型
@@ -25,15 +31,10 @@
 @property (nonatomic, copy) NSString *meetingContent;   // 会议内容
 @property (nonatomic, copy) NSString *meetingName;      // 会议名称
 @property (nonatomic, copy) NSString *meetingStatus;    // 会议状态
+@property (nonatomic, copy) NSString *meetingType;  //会议类型
 @property (nonatomic, assign) NSTimeInterval startTime; // 会议开始时间
 @property (nonatomic, assign) NSTimeInterval endTime;   // 会议结束时间
 @property (nonatomic, strong) NSArray<MeetingPersonnelModel *> *meetingPersonnelResponseDTO; // 参会人员
-@end
-
-
-// 会议详情model
-@interface MeetingDetailModel : VideoMediateListModel
 @property (nonatomic, copy) NSString *creatorId;    // 创建人id
 @property (nonatomic, copy) NSString *meetingInvite;//会议邀请链接
-@property (nonatomic, copy) NSString *meetingType;  //会议类型
 @end

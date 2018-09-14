@@ -10,4 +10,6 @@
 
 @interface FSMyCollectionVC : FSTableViewVC
 
+- (instancetype)initWithCollectionType:(FSCollectionType)collectionType;
+
 @end

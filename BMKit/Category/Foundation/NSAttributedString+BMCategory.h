@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+
+
 @interface NSAttributedString (BMSize)
 
 - (CGSize)bm_sizeToFitWidth:(CGFloat)width;
@@ -71,7 +73,11 @@
                                 range:(NSRange)range;
 @end
 
+@interface NSMutableAttributedString (HTML)
 
++(instancetype)bm_attributedStringReplaceHTMLString:(NSString *)htmlString fontSize:(NSInteger)fontSize contentColor:(NSString *)contentHexColor tagColor:(NSString *)tagHexColor starTag:(NSString *)starTag endTag:(NSString *)endTag;
+
+@end
 //@interface NSMutableAttributedString (MQ)
 //
 //

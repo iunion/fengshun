@@ -38,7 +38,8 @@
 {
     FSCaseSearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCaseSearchResultCell"];
 
-    cell.m_caseResultModel = _m_searchResultModel.m_resultDataArray[indexPath.row];
+    FSCaseReultModel *model = _m_searchResultModel.m_resultDataArray[indexPath.row];
+    [cell setAttributedCaseResultModel:model];
     return cell;
 }
 - (BOOL)canLoadApiData

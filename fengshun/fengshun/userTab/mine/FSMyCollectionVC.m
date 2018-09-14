@@ -11,9 +11,23 @@
 
 @interface FSMyCollectionVC ()
 
+@property (nonatomic, assign) FSCollectionType m_CollectionType;
+
 @end
 
 @implementation FSMyCollectionVC
+
+- (instancetype)initWithCollectionType:(FSCollectionType)collectionType
+{
+    self = [self init];
+    
+    if (self)
+    {
+        _m_CollectionType = collectionType;
+    }
+    
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -33,7 +47,7 @@
 
 - (NSMutableURLRequest *)setLoadDataRequestWithFresh:(BOOL)isLoadNew
 {
-    return [FSApiRequest getMyCollectionsWithPageIndex:s_BakLoadedPage pageSize:self.m_CountPerPage];
+    return [FSApiRequest getMyCollectionsWithPageIndex:s_BakLoadedPage pageSize:self.m_CountPerPage collectionType:self.m_CollectionType];
 }
 
 - (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)requestDic
@@ -43,14 +57,38 @@
     {
         NSMutableArray *topicArray = [[NSMutableArray alloc] initWithCapacity:0];
         
+#warning CollectionType
         for (NSDictionary *dic in topicDicArray)
         {
-            FSTopicModel *topic = [FSTopicModel topicWithServerDic:dic];
-            if ([topic bm_isNotEmpty])
+            switch (self.m_CollectionType)
             {
-                [topicArray addObject:topic];
+                case FSCollectionType_POSTS:
+                {
+                    FSTopicModel *topic = [FSTopicModel topicWithServerDic:dic];
+                    if ([topic bm_isNotEmpty])
+                    {
+                        [topicArray addObject:topic];
+                    }
+                }
+                    break;
+                    
+                case FSCollectionType_STATUTE:
+                    break;
+                    
+                case FSCollectionType_CASE:
+                    break;
+                    
+                case FSCollectionType_DOCUMENT:
+                    break;
+                    
+                case FSCollectionType_COURSE:
+                    break;
+                    
+                default:
+                    break;
             }
         }
+        
         if ([topicArray bm_isNotEmpty])
         {
             if (self.m_IsLoadNew)

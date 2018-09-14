@@ -9,17 +9,49 @@
 #import "FSTextSearchResultView.h"
 #import "FSTextSearchResultVC.h"
 
+
+@interface FSTextSearchResultView()
+
+@property(nonatomic, strong)NSArray <FSListTextModel *>* m_textList;
+@property(nonatomic, weak)FSTextSearchResultVC *m_textResultVC;
+
+@end
 @implementation FSTextSearchResultView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+-(instancetype)initWithFrame:(CGRect)frame andResultVC:(FSSearchResultVC *)resultVC
+{
+    self = [super initWithFrame:frame andResultVC:resultVC];
+    if (self) {
+        _m_textResultVC = (FSTextSearchResultVC *)resultVC;
+        BMWeakSelf
+        resultVC.m_searchsucceed = ^(id resultModel) {
+            BMStrongSelf
+            self.m_textList = resultModel;
+
+        };
+        
+    }
+    return self;
 }
-*/
 - (instancetype)initWithFrame:(CGRect)frame
 {
-    return [self initWithFrame:frame andResultVC:[[FSTextSearchResultVC alloc]initWithNibName:nil bundle:nil freshViewType:BMFreshViewType_Bottom]];
+    return [self initWithFrame:frame andResultVC:[[FSTextSearchResultVC alloc]initWithNibName:nil bundle:nil freshViewType:BMFreshViewType_NONE]];
+}
+- (void)configTableView
+{
+    [super configTableView];
+
+    [self.m_tableView registerNib:[UINib nibWithNibName:@"FSTextListCell" bundle:nil] forCellReuseIdentifier:@"FSTextListCell"];
+    self.m_tableView.estimatedRowHeight = 52;
+    self.m_tableView.bm_showEmptyView   = NO;
+}
+- (NSInteger)m_totalCount
+{
+    return _m_textList.count;
+}
+- (void)searchAction
+{
+    _m_textResultVC.m_keyword = self.m_searchKey;
+    [_m_textResultVC loadApiData];
 }
 @end
