@@ -9,6 +9,7 @@
 #import "FSSendTopicVC.h"
 #import "TZImagePickerController.h"
 #import "FSApiRequest.h"
+#import "ZSSBarButtonItem.h"
 
 @interface
 FSSendTopicVC ()
@@ -23,21 +24,20 @@ TZImagePickerControllerDelegate
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-//    self.enabledToolbarItems = @[ZSSRichTextEditorToolbarNone];
-//    self.shouldShowKeyboard = NO;
-//    self.alwaysShowToolbar = YES;
-//    self.receiveEditorDidChangeEvents = NO;
-//    self.baseURL = [NSURL URLWithString:FS_URL_SERVER];
-//    self.shouldShowKeyboard = NO;
-//    self.formatHTML = YES;
     // Custom image button
+    self.enabledToolbarItems = @[ZSSRichTextEditorToolbarNone];
+    
     UIButton *myButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 50, 28.0f)];
-//    [myButton setImage:[UIImage imageNamed:@"community_delete"] forState:UIControlStateNormal];
-    [myButton setTitle:@"Test" forState:UIControlStateNormal];
+    [myButton setTitle:@" " forState:UIControlStateNormal];
     [myButton addTarget:self
                  action:@selector(didTapCustomToolbarButton)
        forControlEvents:UIControlEventTouchUpInside];
     [self addCustomToolbarItemWithButton:myButton];
+    
+    // Custom image button
+    ZSSBarButtonItem *item = [[ZSSBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ZSSinsertkeyword.png"] style:UIBarButtonItemStylePlain target:self action:@selector(didTapCustomToolbarButton)];
+    [self addCustomToolbarItem:item];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,12 +46,10 @@ TZImagePickerControllerDelegate
     // Dispose of any resources that can be recreated.
 }
 
-- (void)showInsertImageAlternatePicker{
-    [self didTapCustomToolbarButton];
-}
 
 - (void)didTapCustomToolbarButton
 {
+    
     TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 columnNumber:4 delegate:self pushPhotoPickerVc:YES];
     //    imagePickerVc.selectedAssets = _selectedAssets;// 目前已经选中的图片数组
     imagePickerVc.allowTakePicture = YES;  // 在内部显示拍照按钮
