@@ -209,6 +209,11 @@
     [super cellLayoutSubviews];
     
     [self layoutDetailView:self.textField minimumWidth:0];
+    
+    if (self.item.contentMiddleGap > 1)
+    {
+        self.textField.bm_left = self.textLabel.bm_right + self.item.contentMiddleGap;
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

@@ -25,8 +25,7 @@
         _m_textResultVC = (FSTextSearchResultVC *)resultVC;
         BMWeakSelf
         resultVC.m_searchsucceed = ^(id resultModel) {
-            BMStrongSelf
-            self.m_textList = resultModel;
+            weakSelf.m_textList = resultModel;
 
         };
         

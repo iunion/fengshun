@@ -157,10 +157,9 @@ FSFilterHeaderResultView () <
                                               underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorAllLeftInset
                                                   accessoryView:nil
                                                selectionHandler:^(BMTableViewItem *_Nonnull item) {
-                                                   BMStrongSelf
-                                                       [self selectedRowAtIndex:-1
+                                                   [weakSelf selectedRowAtIndex:-1
                                                                    isLeftfilter:self.m_filterArray == self.m_leftFilters];
-                                                   [self hiddenFilterListWithIndex:-1];
+                                                   [weakSelf hiddenFilterListWithIndex:-1];
                                                }];
     item0.cellStyle  = UITableViewCellStyleDefault;
     item0.textFont   = [UIFont systemFontOfSize:14.0f];
@@ -178,10 +177,9 @@ FSFilterHeaderResultView () <
                                                  underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorAllLeftInset
                                                      accessoryView:nil
                                                   selectionHandler:^(BMTableViewItem *item) {
-                                                      BMStrongSelf
-                                                          [self selectedRowAtIndex:index
+                                                      [weakSelf selectedRowAtIndex:index
                                                                       isLeftfilter:self.m_filterArray == self.m_leftFilters];
-                                                      [self hiddenFilterListWithIndex:index];
+                                                      [weakSelf hiddenFilterListWithIndex:index];
                                                   }];
             item.cellStyle  = UITableViewCellStyleDefault;
             item.textFont   = [UIFont systemFontOfSize:14.0f];

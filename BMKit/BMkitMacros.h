@@ -135,8 +135,10 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define UI_NAVIGATION_BAR_DEFAULTHEIGHT 44
 #define UI_NAVIGATION_BAR_HEIGHT        44
 #define UI_TOOL_BAR_HEIGHT              44
-#define UI_TAB_BAR_HEIGHT               49
-#define UI_STATUS_BAR_HEIGHT            20
+#define UI_HOME_INDICATOR_HEIGHT        (IS_IPHONEX ? 34 : 0.0f)
+#define UI_TAB_BAR_HEIGHT               (IS_IPHONEX ? (49+UI_HOME_INDICATOR_HEIGHT) : 49)
+#define UI_STATUS_BAR_HEIGHT            (IS_IPHONEX ? 44 : 20)
+
 #define UI_SCREEN_WIDTH                 ([[UIScreen mainScreen] bounds].size.width)
 #define UI_SCREEN_HEIGHT                ([[UIScreen mainScreen] bounds].size.height)
 //#define SCREEN_WIDTH ((([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortrait) || ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown)) ? [[UIScreen mainScreen] bounds].size.width : [[UIScreen mainScreen] bounds].size.height)
@@ -182,10 +184,10 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 // 弱引用/强引用 weakSelf
 #define BMWeakSelf __weak typeof(self) weakSelf = self;
-#define BMStrongSelf __strong typeof(weakSelf) self = weakSelf;
+#define BMStrongSelf __strong typeof(weakSelf) strongSelf = weakSelf;
 
 // 弱引用/强引用 weakType
 #define BMWeakType(type)     __weak typeof(type) weak##type = type;
-#define BMStrongType(type)   __strong typeof(type) strong##type = weak##type;
+#define BMStrongType(type)   __strong typeof(weak##type) strong##type = weak##type;
 
 #endif
