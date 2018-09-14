@@ -160,7 +160,7 @@
 
 #pragma mark - View lifecycle
 
-
+#if 0
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -172,6 +172,25 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+#endif
+
+// 是否支持屏幕旋转
+- (BOOL)shouldAutorotate
+{
+    return YES;
+}
+
+// 支持的旋转方向
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskAllButUpsideDown;//UIInterfaceOrientationMaskAllButUpsideDown;
+}
+
+// 一开始的屏幕旋转方向
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationPortrait;
 }
 
 @end

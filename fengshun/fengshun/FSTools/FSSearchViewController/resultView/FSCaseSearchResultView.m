@@ -28,9 +28,8 @@
         _m_caseResultVC = (FSCaseSearchResultVC *)resultVC;
         BMWeakSelf
         resultVC.m_searchsucceed = ^(id resultModel) {
-            BMStrongSelf
-            self.m_searchResultModel = resultModel;
-            [self setupFilterHeader];
+            weakSelf.m_searchResultModel = resultModel;
+            [weakSelf setupFilterHeader];
         };
         
     }

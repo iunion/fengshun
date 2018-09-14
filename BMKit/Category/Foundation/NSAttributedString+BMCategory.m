@@ -395,7 +395,7 @@
 }
 
 @end
-@implementation NSMutableAttributedString (HTML)
+@implementation NSMutableAttributedString (BMHTML)
 
 +(instancetype)bm_attributedStringReplaceHTMLString:(NSString *)htmlString fontSize:(NSInteger)fontSize contentColor:(NSString *)contentHexColor tagColor:(NSString *)tagHexColor starTag:(NSString *)starTag endTag:(NSString *)endTag
 {

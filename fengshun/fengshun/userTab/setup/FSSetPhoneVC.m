@@ -104,7 +104,7 @@
     // 客户端不做计时判断
     [[BMVerifiTimeManager manager] stopAllType];
     [self freshClockBtn:0];
-//    [[BMVerifiTimeManager manager] checkTimeWithType:BMVerificationCodeType_Type3 process:^(BMVerificationCodeType type, NSInteger ticket, BOOL stop) {
+//    [[BMVerifiTimeManager manager] checkTimeWithType:BMVerificationCodeType_Type5 process:^(BMVerificationCodeType type, NSInteger ticket, BOOL stop) {
 //        [weakSelf freshClockBtn:ticket];
 //    }];
 
@@ -277,11 +277,11 @@
     //[self.m_ProgressHUD showAnimated:YES showBackground:NO];
     
     BMWeakSelf
-    [[BMVerifiTimeManager manager] startTimeWithType:BMVerificationCodeType_Type3 process:^(BMVerificationCodeType type, NSInteger ticket, BOOL stop) {
+    [[BMVerifiTimeManager manager] startTimeWithType:BMVerificationCodeType_Type5 process:^(BMVerificationCodeType type, NSInteger ticket, BOOL stop) {
         [weakSelf freshClockBtn:ticket];
     }];
     
-    [self sendGetVerificationCodeWithType:BMVerificationCodeType_Type3 phoneNum:self.m_PhoneNum];
+    [self sendGetVerificationCodeWithType:BMVerificationCodeType_Type5 phoneNum:self.m_PhoneNum];
 }
 
 // 获取短信验证码
@@ -321,7 +321,7 @@
     }
     else
     {
-        [[BMVerifiTimeManager manager] stopTimeWithType:BMVerificationCodeType_Type3];
+        [[BMVerifiTimeManager manager] stopTimeWithType:BMVerificationCodeType_Type5];
         [self freshClockBtn:0];
     }
 }
@@ -332,7 +332,7 @@
     {
         [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
 
-        [[BMVerifiTimeManager manager] stopTimeWithType:BMVerificationCodeType_Type3];
+        [[BMVerifiTimeManager manager] stopTimeWithType:BMVerificationCodeType_Type5];
         [self freshClockBtn:0];
 
         return;
@@ -358,7 +358,7 @@
         //[self.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         [self.m_ProgressHUD hideAnimated:NO];
         
-        [[BMVerifiTimeManager manager] stopTimeWithType:BMVerificationCodeType_Type3];
+        [[BMVerifiTimeManager manager] stopTimeWithType:BMVerificationCodeType_Type5];
         [self freshClockBtn:0];
 
         [self freshErrorLabelWithMessage:message];
@@ -369,7 +369,7 @@
 {
     BMLog(@"获取短信验证码失败的错误:++++%@", [FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE]);
     
-    [[BMVerifiTimeManager manager] stopTimeWithType:BMVerificationCodeType_Type3];
+    [[BMVerifiTimeManager manager] stopTimeWithType:BMVerificationCodeType_Type5];
     [self freshClockBtn:0];
 
     [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
@@ -454,7 +454,7 @@
         GetAppDelegate.m_UserInfo = userInfo;
         
         // 停止计时
-        [[BMVerifiTimeManager manager] stopTimeWithType:BMVerificationCodeType_Type3];
+        [[BMVerifiTimeManager manager] stopTimeWithType:BMVerificationCodeType_Type5];
         [self freshClockBtn:0];
 
         if (self.m_PopToViewController)

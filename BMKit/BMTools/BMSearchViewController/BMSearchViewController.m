@@ -289,10 +289,9 @@
         deleteBtn.exclusiveTouch = YES;
         [deleteBtn addTarget:self action:@selector(deleteSearchHistory:) forControlEvents:UIControlEventTouchUpInside];
         BMTableViewItem *item = [BMTableViewItem itemWithTitle:search subTitle:nil imageName:@"bmsearch_history" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorAllLeftInset accessoryView:deleteBtn selectionHandler:^(BMTableViewItem *item) {
-            BMStrongSelf
-            if (self.searchHandler)
+            if (weakSelf.searchHandler)
             {
-                self.searchHandler(item.title);
+                weakSelf.searchHandler(item.title);
             }
         }];
         [self.section addItem:item];
@@ -304,8 +303,7 @@
     }
    
     BMTableViewItem *item1 = [BMTableViewItem itemWithTitle:@"清空搜索历史" subTitle:nil imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_None accessoryView:nil selectionHandler:^(BMTableViewItem *item) {
-        BMStrongSelf
-        [self removeAllSearchHistory];
+        [weakSelf removeAllSearchHistory];
     }];
     [self.section addItem:item1];
     item1.cellStyle = UITableViewCellStyleDefault;

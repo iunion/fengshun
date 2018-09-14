@@ -461,6 +461,10 @@
     if (self.item.cellStyle == UITableViewCellStyleValue2)
     {
         self.textLabel.textAlignment = self.item.textAlignment;
+        if (self.item.contentMiddleGap > 1)
+        {
+            self.detailTextLabel.bm_left = self.textLabel.bm_right + self.item.contentMiddleGap;
+        }
     }
     else if (self.item.cellStyle == UITableViewCellStyleSubtitle)
     {

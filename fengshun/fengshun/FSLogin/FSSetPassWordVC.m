@@ -14,6 +14,8 @@
     BOOL s_eyeOpen;
 }
 
+@property (nonatomic, assign) BMVerificationCodeType m_VerificationType;
+
 @property (nonatomic, strong) NSString *m_PhoneNum;
 @property (nonatomic, strong) NSString *m_VerificationCode;
 
@@ -40,12 +42,13 @@
     _m_ResetPassWordTask = nil;
 }
 
-- (instancetype)initWithPhoneNum:(NSString *)phoneNum verificationCode:(NSString *)VerificationCode
+- (instancetype)initWithVerificationType:(BMVerificationCodeType)verificationType phoneNum:(NSString *)phoneNum verificationCode:(NSString *)VerificationCode
 {
     self = [super init];
     
     if (self)
     {
+        _m_VerificationType = verificationType;
         _m_PhoneNum = phoneNum;
         _m_VerificationCode = VerificationCode;
     }
@@ -64,7 +67,7 @@
     self.bm_NavigationBarBgTintColor = [UIColor whiteColor];
     self.bm_NavigationItemTintColor = UI_COLOR_B2;
     
-    if (self.m_IsRegist)
+    if (self.m_VerificationType == BMVerificationCodeType_Type1)
     {
         [self bm_setNavigationWithTitle:@"设置密码" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_popback_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:@"navigationbar_close_icon" rightToucheEvent:@selector(closeAction:)];
     }
@@ -98,7 +101,7 @@
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(loginProgressStateChanged:)])
     {
-        if (self.m_IsRegist)
+        if (self.m_VerificationType == BMVerificationCodeType_Type1)
         {
             [self.delegate loginProgressStateChanged:FSLoginProgress_SetPassWord];
         }
@@ -121,7 +124,7 @@
     [self dismissViewControllerAnimated:YES completion:^{
         if (self.delegate && [self.delegate respondsToSelector:@selector(loginClosedWithProgressState:)])
         {
-            if (self.m_IsRegist)
+            if (self.m_VerificationType == BMVerificationCodeType_Type1)
             {
                 [self.delegate loginClosedWithProgressState:FSLoginProgress_SetPassWord];
             }
@@ -254,7 +257,7 @@
         return;
     }
     
-    if (self.m_IsRegist)
+    if (self.m_VerificationType == BMVerificationCodeType_Type1)
     {
         [self sendRegistRequestWithPhoneNum:self.m_PhoneNum passWord:passWord];
     }
@@ -373,7 +376,16 @@
 - (void)sendResetRequestWithPhoneNum:(NSString *)phoneNum passWord:(NSString *)passWord
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSMutableURLRequest *request = [FSApiRequest resetUserPasswordWithPhoneNum:phoneNum newPassword:passWord verificationCode:self.m_VerificationCode];
+    NSMutableURLRequest *request;
+    
+    if (self.m_VerificationType == BMVerificationCodeType_Type3)
+    {
+        request = [FSApiRequest changeUserPasswordWithPhoneNum:phoneNum newPassword:passWord verificationCode:self.m_VerificationCode];
+    }
+    else
+    {
+        request = [FSApiRequest resetUserPasswordWithPhoneNum:phoneNum newPassword:passWord verificationCode:self.m_VerificationCode];
+    }
     if (request)
     {
         [self.m_ProgressHUD showAnimated:YES showBackground:NO];
@@ -430,7 +442,14 @@
             [self.delegate loginProgressStateChanged:FSLoginProgress_FinishForget];
         }
         
-        [self backRootAction:nil];
+        if (self.m_VerificationType == BMVerificationCodeType_Type3)
+        {
+            [GetAppDelegate logOut];
+        }
+        else
+        {
+            [self backRootAction:nil];
+        }
         return;
     }
     

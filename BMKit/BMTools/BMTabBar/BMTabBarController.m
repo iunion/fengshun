@@ -133,7 +133,13 @@
 {
     [super setViewControllers:viewControllers];
     
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+    if (IOS_VERSION < 9.0)
+    {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+#pragma clang diagnostic pop
+    }
     
     [self hideOriginTabBar];
     
@@ -145,10 +151,10 @@
     [self selectedTabWithIndex:0];
 }
 
-//- (UIStatusBarStyle)preferredStatusBarStyle
-//{
-//    return UIStatusBarStyleLightContent;
-//}
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
 
 - (void)unselectedTab:(BMTabIndex)index
 {

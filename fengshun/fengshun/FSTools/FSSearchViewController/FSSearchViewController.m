@@ -330,8 +330,7 @@
         deleteBtn.exclusiveTouch = YES;
         [deleteBtn addTarget:self action:@selector(deleteSearchHistory:) forControlEvents:UIControlEventTouchUpInside];
         BMTableViewItem *item = [BMTableViewItem itemWithTitle:search subTitle:nil imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorAllLeftInset accessoryView:deleteBtn selectionHandler:^(BMTableViewItem *item) {
-            BMStrongSelf
-            [self searchWithKey:search];
+            [weakSelf searchWithKey:search];
         }];
         [self.section addItem:item];
         item.cellStyle = UITableViewCellStyleDefault;
