@@ -38,6 +38,7 @@
 {
     // 注册短信: SMS_REGISTER_USER_CODE
     // 找回密码: SMS_RESET_PASSWORD_CODE
+    // 修改密码: SMS_UPDATE_PASSWORD_CODE
     // 更新手机号码: SMS_UPDATE_MOBILEPHONE_CODE
     
     NSString *verificationType;
@@ -51,6 +52,10 @@
             verificationType = @"SMS_RESET_PASSWORD_CODE";
             break;
             
+        case FSVerificationCodeType_UpdatePassword:
+            verificationType = @"SMS_UPDATE_PASSWORD_CODE";
+            break;
+
         case FSVerificationCodeType_UpdatePhoneNumOld:
             verificationType = @"SMS_UPDATE_MOBILEPHONE_CODE";
             break;

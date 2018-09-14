@@ -18,7 +18,7 @@
 
 @property (nonatomic, strong, readonly) NSString *m_PhoneNum;
 
-// for BMVerificationCodeType_Type2
+// for BMVerificationCodeType_Type4 变更手机号码刷新数据及返回页面使用
 @property (nonatomic, weak) FSSetTableViewVC *m_PopToViewController;
 
 
