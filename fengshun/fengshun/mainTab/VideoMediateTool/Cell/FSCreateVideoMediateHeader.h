@@ -10,5 +10,8 @@
 #import "FSVideoMediateModel.h"
 
 @interface FSCreateVideoMediateHeader : UIView
-@property (nonatomic, strong) VideoMediateListModel *m_Model;
+@property (nonatomic, strong) FSMeetingDetailModel *m_Model;
+
+- (BOOL)validMeetingInfo;
+
 @end
