@@ -528,6 +528,7 @@
 	return orientations;
 }
 
+#if 0
 // iOS 5 autorotation
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
@@ -611,16 +612,19 @@
 {
 	return NO;
 }
+#endif
 
 - (BOOL)shouldAutomaticallyForwardAppearanceMethods
 {
 	return NO;
 }
 
+#if 0
 - (BOOL)automaticallyForwardAppearanceAndRotationMethodsToChildViewControllers
 {
 	return NO;
 }
+#endif
 
 #pragma mark - Actions
 

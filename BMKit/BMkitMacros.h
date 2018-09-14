@@ -190,4 +190,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define BMWeakType(type)     __weak typeof(type) weak##type = type;
 #define BMStrongType(type)   __strong typeof(weak##type) strong##type = weak##type;
 
+// 过期提醒
+#define BM_DEPRECATED(instead)       NS_DEPRECATED(2_0, 2_0, 2_0, 2_0, instead)
+#define BM_DEPRECATED_IOS(instead)   NS_DEPRECATED_IOS(2_0, 2_0, instead)
+
 #endif
