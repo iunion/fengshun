@@ -24,7 +24,8 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+    self.backgroundColor = [UIColor clearColor];
+    self.contentView.backgroundColor = [UIColor clearColor];
     if (self) {
         [self build];
     }
@@ -41,67 +42,65 @@
     label.font = UI_FONT_12;
     [self.contentView addSubview:label];
 
+    UIButton *btn = [UIButton bm_buttonWithFrame:CGRectMake(UI_SCREEN_WIDTH - 40 - 4, 0, 40, 24) image:[UIImage imageNamed:@"video_delete_btn"]];
+    [btn addTarget:self action:@selector(deleteFromSuperView) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:btn];
+
+    
     FSEditVideoMediateTextView *nameView = [[FSEditVideoMediateTextView alloc] initWithFrame:CGRectMake(0, 24, UI_SCREEN_WIDTH, 0)];
     nameView.titleLabel.text = @"姓名";
     nameView.desLabel.attributedPlaceholder = [nameView placeHolderAttributedWithString:@"请输入姓名"];
     [self.contentView addSubview:nameView];
     self.m_NameView = nameView;
     nameView.textChangeHandle = ^(FSEditVideoMediateTextView *editView) {
-        BMStrongSelf
-        self.m_Model.userName = editView.desLabel.text;
+        weakSelf.m_Model.userName = editView.desLabel.text;
     };
 
     FSEditVideoMediateTextView *phoneView = [[FSEditVideoMediateTextView alloc] initWithFrame:CGRectMake(0, nameView.bm_bottom, UI_SCREEN_WIDTH, 0)];
     phoneView.titleLabel.text = @"手机号";
+    phoneView.desLabel.keyboardType = UIKeyboardTypeNumberPad;
     phoneView.desLabel.attributedPlaceholder = [phoneView placeHolderAttributedWithString:@"请输入手机号"];
     [self.contentView addSubview:phoneView];
     self.m_PhoneView = phoneView;
     phoneView.textChangeHandle = ^(FSEditVideoMediateTextView *editView) {
-        BMStrongSelf
-        self.m_Model.mobilePhone = editView.desLabel.text;
+        weakSelf.m_Model.mobilePhone = editView.desLabel.text;
     };
 
     FSEditVideoMediateImageView *identify = [[FSEditVideoMediateImageView alloc] initWithFrame:CGRectMake(0, phoneView.bm_bottom, UI_SCREEN_WIDTH, 0) imageName:@"BMTableView_arrows_rightBlack"];
     identify.titleLabel.text = @"身份";
+    identify.desLabel.attributedPlaceholder = [identify placeHolderAttributedWithString:@"请选择"];
     [self.contentView addSubview:identify];
     self.m_IdentifyView = identify;
     identify.line.hidden = YES;
     [identify setEditEnabled:NO];
     identify.tapHandle = ^(FSEditVideoMediateBaseView *editView) {
-        
-        NSArray *array1 = @[@"APPLICAT_GENERAL_AGENT",
-                            @"APPLICAT_ESPECIALLY_IMPOWER_AGENTAPPLICAT",
-                            @"APPLICAT",
-                            @"RESPONDENT",
-                            @"RESPONDENT_GENERAL_AGENT",
-                            @"RESPONDENT_ESPECIALLY_IMPOWER_AGENT",
-                            @"MEDIATOR"];
-        NSArray *array2 = @[@"申请人一般代理人",
-                            @"申请人特别授权代理人",
-                            @"申请人",
-                            @"被申请人",
-                            @"被申请人一般代理人",
-                            @"被申请人特别授权代理人",
-                            @"调解员"];
-        
-        FSVideoMediateSheetVC *sheetVC = [[FSVideoMediateSheetVC alloc] initWithTitleArray:array2];
+        [weakSelf endEditing:NO];
+
+        FSVideoMediateSheetVC *sheetVC = [[FSVideoMediateSheetVC alloc] initWithTitleArray:[FSMeetingDataForm getMeetingDataAllValuesWithType:FSMeetingDataType_PersonIdentityType]];
         sheetVC.modalPresentationStyle = UIModalPresentationCustom;
         sheetVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         [weakSelf.bm_viewController presentViewController:sheetVC animated:YES completion:nil];
 
         sheetVC.m_ActionSheetDoneBlock = ^(NSInteger index, NSString *title) {
             weakSelf.m_IdentifyView.desLabel.text = title;
-            weakSelf.m_Model.meetingIdentityTypeEnums = array1[index];
+            weakSelf.m_Model.meetingIdentityTypeEnums = [FSMeetingDataForm getKeyForVlaue:title type:FSMeetingDataType_PersonIdentityType];
         };
     };
 }
 
--(void)setM_Model:(MeetingPersonnelModel *)model
+- (void)setM_Model:(FSMeetingPersonnelModel *)model
 {
     _m_Model = model;
     _m_NameView.desLabel.text = model.userName;
     _m_PhoneView.desLabel.text = model.mobilePhone;
-    _m_IdentifyView.desLabel.text = model.meetingIdentityTypeEnums;
+    _m_IdentifyView.desLabel.text = [FSMeetingDataForm getValueForKey:model.meetingIdentityTypeEnums type:FSMeetingDataType_PersonIdentityType];
+}
+
+- (void)deleteFromSuperView
+{
+    if (self.deleteBlock) {
+        self.deleteBlock(self);
+    }
 }
 
 @end

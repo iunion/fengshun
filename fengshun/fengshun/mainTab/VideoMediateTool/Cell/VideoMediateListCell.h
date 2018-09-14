@@ -13,6 +13,6 @@
 
 @property (nonatomic, strong) UIView *m_BGView;
 
-@property (nonatomic, strong) VideoMediateListModel *model;
+@property (nonatomic, strong) FSMeetingDetailModel *model;
 
 @end

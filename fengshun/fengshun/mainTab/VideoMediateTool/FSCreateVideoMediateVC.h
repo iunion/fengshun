@@ -9,6 +9,10 @@
 #import "FSSuperVC.h"
 #import "FSTableViewVC.h"
 
+typedef void(^createVideoMediateSuccessBlock)(void);
+
 @interface FSCreateVideoMediateVC : FSTableViewVC
+
+@property (nonatomic, copy) createVideoMediateSuccessBlock successBlock;
 
 @end

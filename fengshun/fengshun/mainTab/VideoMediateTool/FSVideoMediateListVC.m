@@ -33,18 +33,16 @@
 
 -(void)buildUI
 {
-    FSHeaderCommonSelectorModel *left =     [FSHeaderCommonSelectorModel modelWithTitle:@"类型"
-                                                                              hiddenkey:@"meetingTypeEnums"
-                                                                                   list:@[[FSSelectorListModel modelWithName:@"全部" key:@"MEETING_TYPE_OR"],
-                                                                                          [FSSelectorListModel modelWithName:@"调解" key:@"MEETING_MEDIATE"],
-                                                                                          [FSSelectorListModel modelWithName:@"调查" key:@"MEETING_SURVEY"]]];
-    
-    FSHeaderCommonSelectorModel *right =    [FSHeaderCommonSelectorModel modelWithTitle:@"状态"
-                                                                              hiddenkey:@"meetingStatusEnums"
-                                                                                   list:@[[FSSelectorListModel modelWithName:@"全部" key:@"MEETING_STATUS_OR"],
-                                                                                          [FSSelectorListModel modelWithName:@"未开始" key:@"MEETING_NOT_START"],
-                                                                                          [FSSelectorListModel modelWithName:@"进行中" key:@"MEETING_UNDERWAY"],
-                                                                                          [FSSelectorListModel modelWithName:@"已结束" key:@"MEETING_END"]]];
+    FSHeaderCommonSelectorModel *left =
+    [FSHeaderCommonSelectorModel modelWithTitle:@"类型"
+                                      hiddenkey:@"meetingTypeEnums"
+                                           list:[FSMeetingDataForm formMeetingDataToModelWithType:FSMeetingDataType_AllMeetingType]];
+
+    FSHeaderCommonSelectorModel *right =
+    [FSHeaderCommonSelectorModel modelWithTitle:@"状态"
+                                      hiddenkey:@"meetingStatusEnums"
+                                           list:[FSMeetingDataForm formMeetingDataToModelWithType:FSMeetingDataType_AllMeetingStatus]];
+
     
     FSHeaderCommonSelectorView *selector = [[FSHeaderCommonSelectorView alloc] initWithFrame:CGRectMake(0, 0, self.view.bm_width, 42)];
     selector.m_DataArray = @[left, right];
@@ -74,6 +72,10 @@
 - (void)createVideoMediate
 {
     FSCreateVideoMediateVC *vc = [FSCreateVideoMediateVC new];
+    BMWeakSelf
+    vc.successBlock = ^{
+        [weakSelf loadApiData];
+    };
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -88,7 +90,7 @@
 - (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)data
 {
     NSLog(@"%@",data);
-    NSArray *array = [VideoMediateListModel modelsWithDataArray:data[@"list"]];
+    NSArray *array = [FSMeetingDetailModel modelsWithDataArray:data[@"list"]];
     if (self.m_IsLoadNew) {
         [self.m_DataArray removeAllObjects];
     }
@@ -99,6 +101,8 @@
     if (self.m_DataArray.count == 0) {
         [self showEmptyViewWithStatus:BMEmptyViewStatus_NoData];
     }
+    
+    [self.m_TableView reloadData];
     
     return [super succeedLoadedRequestWithDic:data];
 }
@@ -118,7 +122,7 @@
     
     if (cell == nil)
     {
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"VideoMediateListCell" owner:self options:nil] lastObject];
+        cell = [[VideoMediateListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:taskCellIdentifier];
     }
     
     [cell setModel:self.m_DataArray[indexPath.row]];
@@ -133,6 +137,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FSVideoMediateDetailVC *vc = [FSVideoMediateDetailVC new];
+    vc.m_DetailModel = self.m_DataArray[indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
     
     [tableView deselectRowAtIndexPath:indexPath animated:NO];

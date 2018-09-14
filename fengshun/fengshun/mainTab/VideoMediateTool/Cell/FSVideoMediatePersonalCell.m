@@ -64,18 +64,20 @@
     [_m_SelectButton addTarget:self action:@selector(selectAction) forControlEvents:UIControlEventTouchUpInside];
 }
 
--(void)setModel:(MeetingPersonnelModel *)model
+-(void)setModel:(FSMeetingPersonnelModel *)model
 {
     _model = model;
     _m_FamilyNameLabel.text = [model.userName substringWithRange:NSMakeRange(0, 1)];
     _m_FullNameLable.text = model.userName;
     _m_PhoneLabel.text = model.mobilePhone;
-    if (_model.selectState == -1) {
+    if ([_model.meetingIdentityTypeEnums isEqualToString:@"MEDIATOR"]) {
         [_m_SelectButton setImage:[UIImage imageNamed:@"video_unselect"] forState:UIControlStateNormal] ;
-    } else if (_model.selectState == 0) {
-        [_m_SelectButton setImage:[UIImage imageNamed:@"video_not_selected"] forState:UIControlStateNormal] ;
     } else {
-        [_m_SelectButton setImage:[UIImage imageNamed:@"video_selected"] forState:UIControlStateNormal] ;
+        if (_model.selectState == 0) {
+            [_m_SelectButton setImage:[UIImage imageNamed:@"video_not_selected"] forState:UIControlStateNormal] ;
+        } else {
+            [_m_SelectButton setImage:[UIImage imageNamed:@"video_selected"] forState:UIControlStateNormal] ;
+        }
     }
 }
 

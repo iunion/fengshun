@@ -259,6 +259,8 @@ NS_ASSUME_NONNULL_BEGIN
                                                pageIndex:(NSInteger)pageIndex
                                                 pageSize:(NSInteger)pageSize;
 
++ (nullable NSMutableURLRequest *)saveMeetingWithInfo:(NSDictionary *)dic;
+
 @end
 
 NS_ASSUME_NONNULL_END
