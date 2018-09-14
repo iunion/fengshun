@@ -28,15 +28,11 @@ TZImagePickerControllerDelegate
     self.enabledToolbarItems = @[ZSSRichTextEditorToolbarNone];
     
     UIButton *myButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 50, 28.0f)];
-    [myButton setTitle:@" " forState:UIControlStateNormal];
+    [myButton setTitle:@"123" forState:UIControlStateNormal];
     [myButton addTarget:self
                  action:@selector(didTapCustomToolbarButton)
        forControlEvents:UIControlEventTouchUpInside];
     [self addCustomToolbarItemWithButton:myButton];
-    
-    // Custom image button
-    ZSSBarButtonItem *item = [[ZSSBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ZSSinsertkeyword.png"] style:UIBarButtonItemStylePlain target:self action:@selector(didTapCustomToolbarButton)];
-    [self addCustomToolbarItem:item];
     
 }
 
