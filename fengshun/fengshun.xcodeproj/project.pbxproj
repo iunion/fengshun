@@ -736,6 +736,8 @@
 		DB48744A214B887700AB0805 /* scanfile_select@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB487448214B887600AB0805 /* scanfile_select@2x.png */; };
 		DB48744D214B887F00AB0805 /* scanfile_camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB48744B214B887F00AB0805 /* scanfile_camera@2x.png */; };
 		DB48744E214B887F00AB0805 /* scanfile_camera@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB48744C214B887F00AB0805 /* scanfile_camera@3x.png */; };
+		DB48745B214BB03400AB0805 /* FSFileScanImagePreviewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB487459214BB03400AB0805 /* FSFileScanImagePreviewVC.m */; };
+		DB48745C214BB03400AB0805 /* FSFileScanImagePreviewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB48745A214BB03400AB0805 /* FSFileScanImagePreviewVC.xib */; };
 		DB4C7E4121479C08008CC6BB /* FSLawSearchResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4C7E4021479C08008CC6BB /* FSLawSearchResultModel.m */; };
 		DB4C7E452147C13A008CC6BB /* FSTextSplitVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4C7E442147C13A008CC6BB /* FSTextSplitVC.m */; };
 		DB57222F21338B6E0065DC30 /* XMRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB57222D21338B6E0065DC30 /* XMRequestManager.m */; };
@@ -2112,6 +2114,9 @@
 		DB487448214B887600AB0805 /* scanfile_select@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scanfile_select@2x.png"; sourceTree = "<group>"; };
 		DB48744B214B887F00AB0805 /* scanfile_camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scanfile_camera@2x.png"; sourceTree = "<group>"; };
 		DB48744C214B887F00AB0805 /* scanfile_camera@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scanfile_camera@3x.png"; sourceTree = "<group>"; };
+		DB487458214BB03400AB0805 /* FSFileScanImagePreviewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSFileScanImagePreviewVC.h; sourceTree = "<group>"; };
+		DB487459214BB03400AB0805 /* FSFileScanImagePreviewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSFileScanImagePreviewVC.m; sourceTree = "<group>"; };
+		DB48745A214BB03400AB0805 /* FSFileScanImagePreviewVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSFileScanImagePreviewVC.xib; sourceTree = "<group>"; };
 		DB4C7E3F21479C08008CC6BB /* FSLawSearchResultModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSLawSearchResultModel.h; sourceTree = "<group>"; };
 		DB4C7E4021479C08008CC6BB /* FSLawSearchResultModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSLawSearchResultModel.m; sourceTree = "<group>"; };
 		DB4C7E432147C13A008CC6BB /* FSTextSplitVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTextSplitVC.h; sourceTree = "<group>"; };
@@ -3551,6 +3556,9 @@
 				DB48743A214A5CCD00AB0805 /* FSFileScanVC.h */,
 				DB48743B214A5CCD00AB0805 /* FSFileScanVC.m */,
 				DB48743C214A5CCD00AB0805 /* FSFileScanVC.xib */,
+				DB487458214BB03400AB0805 /* FSFileScanImagePreviewVC.h */,
+				DB487459214BB03400AB0805 /* FSFileScanImagePreviewVC.m */,
+				DB48745A214BB03400AB0805 /* FSFileScanImagePreviewVC.xib */,
 			);
 			path = mainTab;
 			sourceTree = "<group>";
@@ -5156,6 +5164,7 @@
 				DB8D16132137CCAC00EB16E8 /* FSMainHeaderView.xib in Resources */,
 				87426897212E7E36003C52F6 /* decrease_meituan@3x.png in Resources */,
 				87426A04212F9657003C52F6 /* navigationbar_back_icon@3x.png in Resources */,
+				DB48745C214BB03400AB0805 /* FSFileScanImagePreviewVC.xib in Resources */,
 				874269FC212F9657003C52F6 /* navigationbar_help_icon@3x.png in Resources */,
 				8730B10E2148E5D1004331A9 /* fsfreshidle_icon21@2x.png in Resources */,
 				45F3FD22214BBF48007712EE /* video_message_icon@3x.png in Resources */,
@@ -5593,6 +5602,7 @@
 				45613923214901E5007DF6A1 /* VideoMediateListCell.m in Sources */,
 				8730B05B2140FFA3004331A9 /* DTListItemHTMLElement.m in Sources */,
 				874269C5212E9B78003C52F6 /* BMFreshAutoFooterView.m in Sources */,
+				DB48745B214BB03400AB0805 /* FSFileScanImagePreviewVC.m in Sources */,
 				AD932607214B4FDA007F3A93 /* HRColorUtil.m in Sources */,
 				874268FF212E7E36003C52F6 /* NSURL+BMParameters.m in Sources */,
 				AD932600214B4FDA007F3A93 /* HRColorPickerViewController.m in Sources */,

@@ -9,8 +9,9 @@
 #import "FSFileScanVC.h"
 #import "TZImagePickerController.h"
 #import "FSImageFileCell.h"
+#import "FSFileScanImagePreviewVC.h"
 
-#define TOOLVIEW_HEIGHT 59.0f
+
 
 @interface FSFileScanVC ()
 <
@@ -209,6 +210,13 @@
     if (_m_editing&&![_m_selectedImageFiles containsObject:model]) {
         [_m_selectedImageFiles addObject:model];
         [self refreshView];
+    }
+    else
+    {
+        FSFileScanImagePreviewVC *preVC = [FSPushVCManager fileScanVC:self pushToImagePreviewWithSourceArray:_m_allImageFiles localArray:_m_localImageFiles selectIndex:indexPath.row];
+        preVC.SourceDataChanged = ^{
+            [collectionView reloadData];
+        };
     }
 }
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath

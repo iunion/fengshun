@@ -20,16 +20,17 @@
 }
 + (instancetype)imageFileWithSelectInfo:(NSDictionary *)info andImage:(UIImage *)image
 {
-    NSDate *currentDate = [NSDate date];
-    NSString *timeStamp = [@(currentDate.timeIntervalSince1970) stringValue];
-    FSImageFileModel *model = [[self alloc]init];
+    NSString *timeStamp = [@((long)[NSDate date].timeIntervalSince1970) stringValue];
     NSString *urlKey = [info bm_stringForKey:@"PHImageFileURLKey"];
-    NSString *extension = [urlKey pathExtension];
-    NSString *urlContent = [urlKey stringByDeletingPathExtension];
-    NSString *realUrlKey = [[NSString stringWithFormat:@"%@%@",urlContent,timeStamp]stringByAppendingPathExtension:extension];
-    model.m_imageUrlKey = realUrlKey;
-    model.m_fileName = [[urlContent lastPathComponent]stringByAppendingString:extension];
-    model.m_creatTime = [currentDate bm_stringWithFormat:@"yyyy-MM-dd\nHH:mm"];
+    NSString *realUrlKey = [urlKey stringByAppendingPathComponent:timeStamp];
+    return [self creatImageFileWithUrlKey:realUrlKey fileName:[urlKey lastPathComponent] andImage:image];
+}
++ (instancetype)creatImageFileWithUrlKey:(NSString *)urlKey fileName:(NSString *)fileName andImage:(UIImage *)image
+{
+    FSImageFileModel *model = [[self alloc]init];
+    model.m_imageUrlKey = urlKey;
+    model.m_fileName = fileName;
+    model.m_creatTime = [[NSDate date] bm_stringWithFormat:@"yyyy-MM-dd\nHH:mm"];
     model.m_image = image;
     model.m_isLocalSaved = NO;
     return model;
@@ -44,7 +45,7 @@
     FSImageFileModel *model = [[self alloc] init];
     model.m_imageUrlKey     = [params bm_stringForKey:@"fileUrlKey"];
     model.m_fileName        = [params bm_stringForKey:@"fileName"];
-    model.m_fileName        = [params bm_stringForKey:@"creatTime"];
+    model.m_creatTime       = [params bm_stringForKey:@"creatTime"];
 
     model.m_isLocalSaved = YES;
     model.m_image        = [[self p_imageCache] imageFromCacheForKey:model.m_imageUrlKey];
