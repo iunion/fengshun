@@ -18,7 +18,6 @@
     self.m_BGView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.bm_width, 126)];
     _m_BGView.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:_m_BGView];
-    
 }
 
 

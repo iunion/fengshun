@@ -105,9 +105,8 @@ FSTextSplitVC ()
     _m_textTypeListView.rowHeight       = LEFT_CELL_HEIGHT;
     BMWeakSelf
         _m_typeListManager.selectedType = ^(NSInteger typeIndex) {
-        BMStrongSelf
             // 左边栏点击事件
-            [self selectedTextTypeAtIndex:typeIndex];
+            [weakSelf selectedTextTypeAtIndex:typeIndex];
     };
 }
 - (void)didReceiveMemoryWarning

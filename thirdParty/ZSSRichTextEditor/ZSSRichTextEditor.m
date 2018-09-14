@@ -12,6 +12,7 @@
 #import "ZSSBarButtonItem.h"
 #import "HRColorUtil.h"
 #import "ZSSTextView.h"
+#import <WebKit/WebKit.h>
 
 @import JavaScriptCore;
 
@@ -110,7 +111,6 @@ static Class hackishFixClass = Nil;
  *  UIWebView for writing/editing/displaying the content
  */
 @property (nonatomic, strong) UIWebView *editorView;
-
 /*
  *  ZSSTextView for displaying the source code for what is displayed in the editor view
  */
@@ -250,7 +250,8 @@ static CGFloat kDefaultScale = 0.5;
     self.enabledToolbarItems = [[NSArray alloc] init];
     
     //Frame for the source view and editor view
-    CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    //CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    CGRect frame = CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT);
     
     //Source View
     [self createSourceViewWithFrame:frame];
@@ -274,8 +275,9 @@ static CGFloat kDefaultScale = 0.5;
     if (![self isIpad]) {
         
         // Toolbar holder used to crop and position toolbar
-        UIView *toolbarCropper = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width-44, 0, 44, 44)];
-        toolbarCropper.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+        //UIView *toolbarCropper = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width-44, 0, 44, 44)];
+        UIView *toolbarCropper = [[UIView alloc] initWithFrame:CGRectMake(UI_SCREEN_WIDTH-44, 0, 44, 44)];
+        //toolbarCropper.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
         toolbarCropper.clipsToBounds = YES;
         
         // Use a toolbar so that we can tint
@@ -338,7 +340,7 @@ static CGFloat kDefaultScale = 0.5;
     self.sourceView.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.sourceView.autocorrectionType = UITextAutocorrectionTypeNo;
     self.sourceView.font = [UIFont fontWithName:@"Courier" size:13.0];
-    self.sourceView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    //self.sourceView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.sourceView.autoresizesSubviews = YES;
     self.sourceView.delegate = self;
     [self.view addSubview:self.sourceView];
@@ -352,7 +354,7 @@ static CGFloat kDefaultScale = 0.5;
     self.editorView.hidesInputAccessoryView = YES;
     self.editorView.keyboardDisplayRequiresUserAction = NO;
     self.editorView.scalesPageToFit = YES;
-    self.editorView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+//    self.editorView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     self.editorView.dataDetectorTypes = UIDataDetectorTypeNone;
     self.editorView.scrollView.bounces = NO;
     self.editorView.backgroundColor = [UIColor whiteColor];
@@ -372,7 +374,7 @@ static CGFloat kDefaultScale = 0.5;
 
 - (void)createToolBarScroll {
     
-    self.toolBarScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, [self isIpad] ? self.view.frame.size.width : self.view.frame.size.width - 44, 44)];
+    self.toolBarScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, [self isIpad] ? UI_SCREEN_WIDTH : UI_SCREEN_WIDTH - 44, 44)];
     self.toolBarScroll.backgroundColor = [UIColor clearColor];
     self.toolBarScroll.showsHorizontalScrollIndicator = NO;
     
@@ -381,29 +383,30 @@ static CGFloat kDefaultScale = 0.5;
 - (void)createToolbar {
     
     self.toolbar = [[UIToolbar alloc] initWithFrame:CGRectZero];
-    self.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+//    self.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.toolbar.backgroundColor = [UIColor clearColor];
     [self.toolBarScroll addSubview:self.toolbar];
-    self.toolBarScroll.autoresizingMask = self.toolbar.autoresizingMask;
     
 }
 
 - (void)createParentHoldingView {
     
     //Background Toolbar
-    UIToolbar *backgroundToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
-    backgroundToolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    UIToolbar *backgroundToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 44)];
+    //backgroundToolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     
     //Parent holding view
     self.toolbarHolder = [[UIView alloc] init];
     
     if (_alwaysShowToolbar) {
-        self.toolbarHolder.frame = CGRectMake(0, self.view.frame.size.height - 44, self.view.frame.size.width, 44);
+        CGRect frame = CGRectMake(0, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - 44, UI_SCREEN_WIDTH, 44);
+        self.toolbarHolder.frame = frame;
     } else {
-        self.toolbarHolder.frame = CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 44);
+        CGRect frame = CGRectMake(0, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT, UI_SCREEN_WIDTH, 44);
+        self.toolbarHolder.frame = frame;
     }
     
-    self.toolbarHolder.autoresizingMask = self.toolbar.autoresizingMask;
+    //self.toolbarHolder.autoresizingMask = self.toolbar.autoresizingMask;
     [self.toolbarHolder addSubview:self.toolBarScroll];
     [self.toolbarHolder insertSubview:backgroundToolbar atIndex:0];
     
@@ -473,7 +476,7 @@ static CGFloat kDefaultScale = 0.5;
 - (NSArray *)itemsForToolbar {
     
     //Define correct bundle for loading resources
-    NSBundle* bundle = [NSBundle bundleForClass:[ZSSRichTextEditor class]];
+    NSBundle* bundle = [NSBundle mainBundle];
     
     NSMutableArray *items = [[NSMutableArray alloc] init];
     
@@ -493,7 +496,7 @@ static CGFloat kDefaultScale = 0.5;
     
     // Bold
     if ((_enabledToolbarItems && [_enabledToolbarItems containsObject:ZSSRichTextEditorToolbarBold]) || (_enabledToolbarItems && [_enabledToolbarItems containsObject:ZSSRichTextEditorToolbarAll])) {
-        ZSSBarButtonItem *bold = [[ZSSBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ZSSbold.png" inBundle:nil compatibleWithTraitCollection:nil] style:UIBarButtonItemStylePlain target:self action:@selector(setBold)];
+        ZSSBarButtonItem *bold = [[ZSSBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ZSSbold.png" inBundle:bundle compatibleWithTraitCollection:nil] style:UIBarButtonItemStylePlain target:self action:@selector(setBold)];
         bold.label = @"bold";
         if (customOrder) {
             [items replaceObjectAtIndex:[_enabledToolbarItems indexOfObject:ZSSRichTextEditorToolbarBold] withObject:bold];
@@ -803,7 +806,7 @@ static CGFloat kDefaultScale = 0.5;
     
     // Image
     if ((_enabledToolbarItems && [_enabledToolbarItems containsObject:ZSSRichTextEditorToolbarInsertImage]) || (_enabledToolbarItems && [_enabledToolbarItems containsObject:ZSSRichTextEditorToolbarAll])) {
-        ZSSBarButtonItem *insertImage = [[ZSSBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ZSSimage.png" inBundle:nil compatibleWithTraitCollection:nil] style:UIBarButtonItemStylePlain target:self action:@selector(insertImage)];
+        ZSSBarButtonItem *insertImage = [[ZSSBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ZSSimage.png" inBundle:bundle compatibleWithTraitCollection:nil] style:UIBarButtonItemStylePlain target:self action:@selector(insertImage)];
         insertImage.label = @"image";
         if (customOrder) {
             [items replaceObjectAtIndex:[_enabledToolbarItems indexOfObject:ZSSRichTextEditorToolbarInsertImage] withObject:insertImage];
@@ -1561,12 +1564,14 @@ static CGFloat kDefaultScale = 0.5;
 }
 
 - (void)insertImage:(NSString *)url alt:(NSString *)alt {
+    [self.editorView stringByEvaluatingJavaScriptFromString:@"zss_editor.prepareInsert();"];
     NSString *trigger = [NSString stringWithFormat:@"zss_editor.insertImage(\"%@\", \"%@\");", url, alt];
     [self.editorView stringByEvaluatingJavaScriptFromString:trigger];
 }
 
 
 - (void)updateImage:(NSString *)url alt:(NSString *)alt {
+//    [self.editorView stringByEvaluatingJavaScriptFromString:@"zss_editor.prepareInsert();"];
     NSString *trigger = [NSString stringWithFormat:@"zss_editor.updateImage(\"%@\", \"%@\");", url, alt];
     [self.editorView stringByEvaluatingJavaScriptFromString:trigger];
 }
@@ -1870,6 +1875,7 @@ static CGFloat kDefaultScale = 0.5;
 
 - (void)showInsertImageAlternatePicker {
     // Blank method. User should implement this in their subclass
+    NSLog(@"123");
 }
 
 #pragma mark - Image Picker Delegate
@@ -1941,12 +1947,12 @@ static CGFloat kDefaultScale = 0.5;
             
             // Toolbar
             CGRect frame = self.toolbarHolder.frame;
-            frame.origin.y = self.view.frame.size.height - (keyboardHeight + sizeOfToolbar);
+            frame.origin.y = UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - (keyboardHeight + sizeOfToolbar);
             self.toolbarHolder.frame = frame;
             
             // Editor View
             CGRect editorFrame = self.editorView.frame;
-            editorFrame.size.height = (self.view.frame.size.height - keyboardHeight) - sizeOfToolbar - extraHeight;
+            editorFrame.size.height = (UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - keyboardHeight) - sizeOfToolbar - extraHeight;
             self.editorView.frame = editorFrame;
             self.editorViewFrame = self.editorView.frame;
             self.editorView.scrollView.contentInset = UIEdgeInsetsZero;
@@ -1954,7 +1960,7 @@ static CGFloat kDefaultScale = 0.5;
             
             // Source View
             CGRect sourceFrame = self.sourceView.frame;
-            sourceFrame.size.height = (self.view.frame.size.height - keyboardHeight) - sizeOfToolbar - extraHeight;
+            sourceFrame.size.height = (UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - keyboardHeight) - sizeOfToolbar - extraHeight;
             self.sourceView.frame = sourceFrame;
             
             // Provide editor with keyboard height and editor view height
@@ -1970,9 +1976,9 @@ static CGFloat kDefaultScale = 0.5;
             CGRect frame = self.toolbarHolder.frame;
             
             if (_alwaysShowToolbar) {
-                frame.origin.y = self.view.frame.size.height - sizeOfToolbar;
+                frame.origin.y = UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - sizeOfToolbar;
             } else {
-                frame.origin.y = self.view.frame.size.height + keyboardHeight;
+                frame.origin.y = UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT + keyboardHeight;
             }
             
             self.toolbarHolder.frame = frame;
@@ -1981,9 +1987,9 @@ static CGFloat kDefaultScale = 0.5;
             CGRect editorFrame = self.editorView.frame;
             
             if (_alwaysShowToolbar) {
-                editorFrame.size.height = ((self.view.frame.size.height - sizeOfToolbar) - extraHeight);
+                editorFrame.size.height = ((UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - sizeOfToolbar) - extraHeight);
             } else {
-                editorFrame.size.height = self.view.frame.size.height;
+                editorFrame.size.height = UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT;
             }
             
             self.editorView.frame = editorFrame;
@@ -1995,9 +2001,9 @@ static CGFloat kDefaultScale = 0.5;
             CGRect sourceFrame = self.sourceView.frame;
             
             if (_alwaysShowToolbar) {
-                sourceFrame.size.height = ((self.view.frame.size.height - sizeOfToolbar) - extraHeight);
+                sourceFrame.size.height = ((UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - sizeOfToolbar) - extraHeight);
             } else {
-                sourceFrame.size.height = self.view.frame.size.height;
+                sourceFrame.size.height = UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT;
             }
             
             self.sourceView.frame = sourceFrame;

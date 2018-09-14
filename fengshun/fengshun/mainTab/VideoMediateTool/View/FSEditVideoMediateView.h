@@ -19,6 +19,9 @@ typedef void(^FSEditVideoViewTextChangeHandler)(FSEditVideoMediateTextView *edit
 @property (nonatomic, copy) FSEditVideoViewTapHandler tapHandle;
 
 - (void)setEditEnabled:(BOOL)enable;
+
+- (NSAttributedString *)placeHolderAttributedWithString:(NSString *)string;
+
 @end
 
 // 左侧显示title

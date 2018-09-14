@@ -83,6 +83,10 @@
             break;
             
         case BMVerificationCodeType_Type3:
+            [self bm_setNavigationWithTitle:@"变更密码" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
+            break;
+
+        case BMVerificationCodeType_Type4:
             [self bm_setNavigationWithTitle:@"换绑手机" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
             break;
             
@@ -236,6 +240,10 @@
             break;
             
         case BMVerificationCodeType_Type3:
+            [btn setTitle:@"确定变更" forState:UIControlStateNormal];
+            break;
+            
+        case BMVerificationCodeType_Type4:
             [btn setTitle:@"确定解绑" forState:UIControlStateNormal];
             break;
             
@@ -443,12 +451,16 @@
             break;
             
         case BMVerificationCodeType_Type3:
+            verificationType = FSVerificationCodeType_UpdatePassword;
+            break;
+            
+        case BMVerificationCodeType_Type4:
             verificationType = FSVerificationCodeType_UpdatePhoneNumOld;
             break;
             
-//        case BMVerificationCodeType_Type4:
-//            verificationType = FSVerificationCodeType_UpdatePhoneNumNew;
-//            break;
+        case BMVerificationCodeType_Type5:
+            verificationType = FSVerificationCodeType_UpdatePhoneNumNew;
+            break;
             
         default:
             verificationType = FSVerificationCodeType_Unknown;
@@ -677,7 +689,7 @@
     {
         [self.m_ProgressHUD hideAnimated:NO];
         
-        if (self.m_VerificationType == BMVerificationCodeType_Type3)
+        if (self.m_VerificationType == BMVerificationCodeType_Type4)
         {
             FSSetPhoneVC *vc = [[FSSetPhoneVC alloc] init];
             vc.m_OldPhoneNum = self.m_PhoneNum;
@@ -687,9 +699,8 @@
         }
         else
         {
-            FSSetPassWordVC *setPassWordVC = [[FSSetPassWordVC alloc] initWithPhoneNum:self.m_PhoneNum verificationCode:self.m_VerifyField.text];
+            FSSetPassWordVC *setPassWordVC = [[FSSetPassWordVC alloc] initWithVerificationType:self.m_VerificationType phoneNum:self.m_PhoneNum verificationCode:self.m_VerifyField.text];
             setPassWordVC.delegate = self.delegate;
-            setPassWordVC.m_IsRegist = (self.m_VerificationType == BMVerificationCodeType_Type1);
             [self.navigationController pushViewController:setPassWordVC animated:YES];
         }
 

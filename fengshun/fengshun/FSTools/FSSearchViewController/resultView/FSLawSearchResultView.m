@@ -28,10 +28,9 @@
         _m_lawResultVC = (FSLawSearchResultVC *)resultVC;
         BMWeakSelf
         resultVC.m_searchsucceed = ^(id resultModel) {
-            BMStrongSelf
-            self.m_searchResultModel = resultModel;
+            weakSelf.m_searchResultModel = resultModel;
             // 持有返回结果
-            [self setupFilterHeader];
+            [weakSelf setupFilterHeader];
         };
         
     }

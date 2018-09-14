@@ -32,7 +32,7 @@
 #import "BMTableViewTextCell.h"
 #import "BMTableViewMaskTextCell.h"
 #import "BMTableViewNumberTextCell.h"
-#import "BMTableViewSliderCell.h"
+#import "BMTableViewStepperInputCell.h"
 #import "BMTableViewLongTextCell.h"
 #import "BMTableViewBoolCell.h"
 #import "BMTableViewPickerCell.h"

@@ -259,6 +259,11 @@
                 imageHeight = self.imageSize.height;
                 imageWidth = self.imageSize.width;
             }
+            
+            if ([self.imageUrl bm_isNotEmpty])
+            {
+                [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.imageUrl] placeholderImage:image options:SDWebImageRetryFailed|SDWebImageLowPriority completed:nil];
+            }
         }
         else
         {

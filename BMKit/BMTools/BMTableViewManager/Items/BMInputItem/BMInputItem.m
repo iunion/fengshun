@@ -20,12 +20,7 @@
     return [[self alloc] initWithTitle:title value:value placeholder:placeholder];
 }
 
-- (instancetype)initWithTitle:(NSString *)title value:(NSString *)value
-{
-    return [self initWithTitle:title value:value placeholder:nil];
-}
-
-- (instancetype)initWithTitle:(NSString *)title value:(NSString *)value placeholder:(NSString *)placeholder
+- (instancetype)init
 {
     self = [super init];
     
@@ -34,6 +29,24 @@
         self.isShowHighlightBg = NO;
         
         self.editable = YES;
+        
+        self.contentMiddleGap = 0.0f;
+    }
+    
+    return self;
+}
+
+- (instancetype)initWithTitle:(NSString *)title value:(NSString *)value
+{
+    return [self initWithTitle:title value:value placeholder:nil];
+}
+
+- (instancetype)initWithTitle:(NSString *)title value:(NSString *)value placeholder:(NSString *)placeholder
+{
+    self = [self init];
+    
+    if (self)
+    {
         self.title = title;
         self.value = value;
         self.placeholder = placeholder;

@@ -10,6 +10,7 @@
 #import "FSSuperVC.h"
 #import "HRColorPickerViewController.h"
 #import "ZSSFontsViewController.h"
+#import "FSSuperVC.h"
 
 /**
  *  The types of toolbar items that can be added
@@ -56,7 +57,7 @@ static NSString * const ZSSRichTextEditorToolbarFonts = @"com.zedsaid.toolbarite
 /**
  *  The viewController used with ZSSRichTextEditor
  */
-@interface ZSSRichTextEditor : UIViewController <UIWebViewDelegate, HRColorPickerViewControllerDelegate, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate,ZSSFontsViewControllerDelegate>
+@interface ZSSRichTextEditor : FSSuperVC <UIWebViewDelegate, HRColorPickerViewControllerDelegate, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate,ZSSFontsViewControllerDelegate>
 
 
 /**
