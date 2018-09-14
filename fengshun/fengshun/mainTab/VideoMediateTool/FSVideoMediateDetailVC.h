@@ -7,7 +7,10 @@
 //
 
 #import "FSSuperVC.h"
+#import "FSVideoMediateModel.h"
 
 @interface FSVideoMediateDetailVC : FSSuperVC
+
+@property (nonatomic, strong) FSMeetingDetailModel *m_DetailModel;
 
 @end

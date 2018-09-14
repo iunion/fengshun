@@ -11,6 +11,6 @@
 
 @interface FSVideoMediatePersonalCell : UITableViewCell
 
-@property (nonatomic, strong) MeetingPersonnelModel *model;
+@property (nonatomic, strong) FSMeetingPersonnelModel *model;
 
 @end

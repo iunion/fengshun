@@ -47,4 +47,7 @@ typedef void (^PushVCCallBack)(id object);
 // 文书范本
 + (void)homePagePushToTextSplitVC:(UIViewController *)mainVC;
 + (void)pushToTextSearchVC:(UIViewController *)showVC;
+
+// 文件扫描
++ (void)homePagePushToFileScanVC:(UIViewController *)mainVC;
 @end

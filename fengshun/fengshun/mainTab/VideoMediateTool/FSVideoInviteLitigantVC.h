@@ -9,6 +9,8 @@
 #import "FSSuperVC.h"
 #import "FSTableViewVC.h"
 
+typedef void(^inviteLitigantCompleteBlock)(NSArray *litigantList);
+
 @interface FSVideoInviteLitigantVC : FSTableViewVC
-@property (nonatomic, strong) NSMutableArray *m_InviteList; // 参与人员列表
+@property (nonatomic, copy) inviteLitigantCompleteBlock inviteComplete;
 @end
