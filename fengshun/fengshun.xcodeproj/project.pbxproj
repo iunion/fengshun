@@ -780,6 +780,15 @@
 		DB48742E2148DFFE00AB0805 /* FSTextTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB48742C2148DFFE00AB0805 /* FSTextTypeCell.m */; };
 		DB48742F2148DFFE00AB0805 /* FSTextTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB48742D2148DFFE00AB0805 /* FSTextTypeCell.xib */; };
 		DB487435214A03D000AB0805 /* FSOCRManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB487434214A03D000AB0805 /* FSOCRManager.m */; };
+		DB48743D214A5CCD00AB0805 /* FSFileScanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB48743B214A5CCD00AB0805 /* FSFileScanVC.m */; };
+		DB48743E214A5CCD00AB0805 /* FSFileScanVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB48743C214A5CCD00AB0805 /* FSFileScanVC.xib */; };
+		DB487441214A6E5B00AB0805 /* FSImageFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB487440214A6E5B00AB0805 /* FSImageFileModel.m */; };
+		DB487445214B642600AB0805 /* FSImageFileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB487443214B642600AB0805 /* FSImageFileCell.m */; };
+		DB487446214B642600AB0805 /* FSImageFileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB487444214B642600AB0805 /* FSImageFileCell.xib */; };
+		DB487449214B887700AB0805 /* scanfile_select@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB487447214B887600AB0805 /* scanfile_select@3x.png */; };
+		DB48744A214B887700AB0805 /* scanfile_select@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB487448214B887600AB0805 /* scanfile_select@2x.png */; };
+		DB48744D214B887F00AB0805 /* scanfile_camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB48744B214B887F00AB0805 /* scanfile_camera@2x.png */; };
+		DB48744E214B887F00AB0805 /* scanfile_camera@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB48744C214B887F00AB0805 /* scanfile_camera@3x.png */; };
 		DB4C7E4121479C08008CC6BB /* FSLawSearchResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4C7E4021479C08008CC6BB /* FSLawSearchResultModel.m */; };
 		DB4C7E452147C13A008CC6BB /* FSTextSplitVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4C7E442147C13A008CC6BB /* FSTextSplitVC.m */; };
 		DB57222F21338B6E0065DC30 /* XMRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB57222D21338B6E0065DC30 /* XMRequestManager.m */; };
@@ -2195,6 +2204,18 @@
 		DB48742D2148DFFE00AB0805 /* FSTextTypeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSTextTypeCell.xib; sourceTree = "<group>"; };
 		DB487433214A03D000AB0805 /* FSOCRManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSOCRManager.h; sourceTree = "<group>"; };
 		DB487434214A03D000AB0805 /* FSOCRManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSOCRManager.m; sourceTree = "<group>"; };
+		DB48743A214A5CCD00AB0805 /* FSFileScanVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSFileScanVC.h; sourceTree = "<group>"; };
+		DB48743B214A5CCD00AB0805 /* FSFileScanVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSFileScanVC.m; sourceTree = "<group>"; };
+		DB48743C214A5CCD00AB0805 /* FSFileScanVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSFileScanVC.xib; sourceTree = "<group>"; };
+		DB48743F214A6E5B00AB0805 /* FSImageFileModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSImageFileModel.h; sourceTree = "<group>"; };
+		DB487440214A6E5B00AB0805 /* FSImageFileModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSImageFileModel.m; sourceTree = "<group>"; };
+		DB487442214B642600AB0805 /* FSImageFileCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSImageFileCell.h; sourceTree = "<group>"; };
+		DB487443214B642600AB0805 /* FSImageFileCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSImageFileCell.m; sourceTree = "<group>"; };
+		DB487444214B642600AB0805 /* FSImageFileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSImageFileCell.xib; sourceTree = "<group>"; };
+		DB487447214B887600AB0805 /* scanfile_select@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scanfile_select@3x.png"; sourceTree = "<group>"; };
+		DB487448214B887600AB0805 /* scanfile_select@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scanfile_select@2x.png"; sourceTree = "<group>"; };
+		DB48744B214B887F00AB0805 /* scanfile_camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scanfile_camera@2x.png"; sourceTree = "<group>"; };
+		DB48744C214B887F00AB0805 /* scanfile_camera@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scanfile_camera@3x.png"; sourceTree = "<group>"; };
 		DB4C7E3F21479C08008CC6BB /* FSLawSearchResultModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSLawSearchResultModel.h; sourceTree = "<group>"; };
 		DB4C7E4021479C08008CC6BB /* FSLawSearchResultModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSLawSearchResultModel.m; sourceTree = "<group>"; };
 		DB4C7E432147C13A008CC6BB /* FSTextSplitVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTextSplitVC.h; sourceTree = "<group>"; };
@@ -3594,6 +3615,9 @@
 				DB2656E221467396002ED713 /* FSTextSearchResultVC.m */,
 				DB4C7E432147C13A008CC6BB /* FSTextSplitVC.h */,
 				DB4C7E442147C13A008CC6BB /* FSTextSplitVC.m */,
+				DB48743A214A5CCD00AB0805 /* FSFileScanVC.h */,
+				DB48743B214A5CCD00AB0805 /* FSFileScanVC.m */,
+				DB48743C214A5CCD00AB0805 /* FSFileScanVC.xib */,
 			);
 			path = mainTab;
 			sourceTree = "<group>";
@@ -4794,6 +4818,9 @@
 				DB48742B2148DFFE00AB0805 /* FSTextTypeCell.h */,
 				DB48742C2148DFFE00AB0805 /* FSTextTypeCell.m */,
 				DB48742D2148DFFE00AB0805 /* FSTextTypeCell.xib */,
+				DB487442214B642600AB0805 /* FSImageFileCell.h */,
+				DB487443214B642600AB0805 /* FSImageFileCell.m */,
+				DB487444214B642600AB0805 /* FSImageFileCell.xib */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -4926,6 +4953,8 @@
 				DBD4CE07213FBFA000857DB3 /* FSCourseModel.m */,
 				DB4874222148BD3F00AB0805 /* FSListTextModel.h */,
 				DB4874232148BD3F00AB0805 /* FSListTextModel.m */,
+				DB48743F214A6E5B00AB0805 /* FSImageFileModel.h */,
+				DB487440214A6E5B00AB0805 /* FSImageFileModel.m */,
 			);
 			path = FSHomePage;
 			sourceTree = "<group>";
@@ -4947,6 +4976,10 @@
 				DBD4CE7D2141229100857DB3 /* home_topics@3x.png */,
 				DBD4CE822141229200857DB3 /* home_browseCount@2x.png */,
 				DBD4CE832141229200857DB3 /* home_browseCount@3x.png */,
+				DB487448214B887600AB0805 /* scanfile_select@2x.png */,
+				DB487447214B887600AB0805 /* scanfile_select@3x.png */,
+				DB48744B214B887F00AB0805 /* scanfile_camera@2x.png */,
+				DB48744C214B887F00AB0805 /* scanfile_camera@3x.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -5121,6 +5154,7 @@
 				87426A50213135F0003C52F6 /* fstab_btn4_highIcon@3x.png in Resources */,
 				DBD4CE8D2141229400857DB3 /* home_arrow@3x.png in Resources */,
 				8730B11A2148E5D1004331A9 /* fsfreshidle_icon6@2x.png in Resources */,
+				DB48744A214B887700AB0805 /* scanfile_select@2x.png in Resources */,
 				87426A02212F9657003C52F6 /* navigationbar_close_icon@2x.png in Resources */,
 				8730B11F2148E5D1004331A9 /* fsfreshfreshing_icon2@2x.png in Resources */,
 				DB2656DC21466D06002ED713 /* search_openFilters@2x.png in Resources */,
@@ -5161,9 +5195,11 @@
 				AD3B81E3214A0EA100D72DE9 /* ZSSh2.png in Resources */,
 				8730B1182148E5D1004331A9 /* fsfreshidle_icon9@2x.png in Resources */,
 				8730B1262148E5D1004331A9 /* fsfreshidle_icon4@2x.png in Resources */,
+				DB48744D214B887F00AB0805 /* scanfile_camera@2x.png in Resources */,
 				87741FE3214A132200F72427 /* user_wechaticon@3x.png in Resources */,
 				8730B11B2148E5D1004331A9 /* fsfreshidle_icon16@2x.png in Resources */,
 				AD3B81BD214A0EA100D72DE9 /* ZSSoutdent@2x.png in Resources */,
+				DB48743E214A5CCD00AB0805 /* FSFileScanVC.xib in Resources */,
 				AD3B81FE214A0EA100D72DE9 /* ZSSbold@2x.png in Resources */,
 				AD3B81C4214A0EA100D72DE9 /* ZSSleftjustify@2x.png in Resources */,
 				AD3B81DA214A0EA100D72DE9 /* ZSSh6@2x.png in Resources */,
@@ -5195,6 +5231,7 @@
 				AD3B81FB214A0EA100D72DE9 /* ZSStextcolor@2x.png in Resources */,
 				AD3B81DC214A0EA100D72DE9 /* ZSSh1.png in Resources */,
 				DB804FE521422548007F7B19 /* search_delKey@3x.png in Resources */,
+				DB487446214B642600AB0805 /* FSImageFileCell.xib in Resources */,
 				8730B1102148E5D1004331A9 /* fsfreshidle_icon8@2x.png in Resources */,
 				874268A0212E7E36003C52F6 /* decrease_taobao@3x.png in Resources */,
 				874269FD212F9657003C52F6 /* navigationbar_help_icon@2x.png in Resources */,
@@ -5223,6 +5260,7 @@
 				8730B1222148E5D1004331A9 /* fsfreshidle_icon20@2x.png in Resources */,
 				874268CF212E7E36003C52F6 /* bmtab_bg@3x.png in Resources */,
 				8730B1232148E5D1004331A9 /* fsfreshfreshing_icon5@2x.png in Resources */,
+				DB48744E214B887F00AB0805 /* scanfile_camera@3x.png in Resources */,
 				87426A51213135F0003C52F6 /* fstab_btn2_highIcon@2x.png in Resources */,
 				8730AD482140CC28004331A9 /* user_commenticon@3x.png in Resources */,
 				AD3B820B214A0EA100D72DE9 /* JSBeautifier.js in Resources */,
@@ -5271,6 +5309,7 @@
 				8730B11D2148E5D1004331A9 /* fsfreshfreshing_icon6@2x.png in Resources */,
 				8742689A212E7E36003C52F6 /* increase_taobao@3x.png in Resources */,
 				8730AD442140CC28004331A9 /* user_shareicon@2x.png in Resources */,
+				DB487449214B887700AB0805 /* scanfile_select@3x.png in Resources */,
 				87426A55213135F0003C52F6 /* fstab_btn2_icon@2x.png in Resources */,
 				DBD4CDFE213FB2D800857DB3 /* FSMainToolCell.xib in Resources */,
 				8730B1132148E5D1004331A9 /* fsfreshidle_icon26@2x.png in Resources */,
@@ -5677,9 +5716,11 @@
 				87C0134B212E7A5200D0AAC3 /* AppDelegate.m in Sources */,
 				AD5102A3213E77FC008CD74D /* FSCommunitySecVC.m in Sources */,
 				DBD4CE05213FBF6C00857DB3 /* FSHomePageToolModel.m in Sources */,
+				DB487441214A6E5B00AB0805 /* FSImageFileModel.m in Sources */,
 				87D20AB5213920E2001EDD60 /* FLEXExplorerToolbar.m in Sources */,
 				87D20ACA213920E2001EDD60 /* FLEXExplorerViewController.m in Sources */,
 				87426AF521353510003C52F6 /* FSDB.m in Sources */,
+				DB487445214B642600AB0805 /* FSImageFileCell.m in Sources */,
 				87D20AC8213920E2001EDD60 /* FLEXArgumentInputNotSupportedView.m in Sources */,
 				8730B0C6214758F0004331A9 /* FSSetPhoneVC.m in Sources */,
 				8730B07E2140FFA3004331A9 /* UIView+DTActionHandlers.m in Sources */,
@@ -5864,6 +5905,7 @@
 				87426AA9213156D5003C52F6 /* FSManualBannerView.m in Sources */,
 				8730B0242140FFA2004331A9 /* UIFont+DTCoreText.m in Sources */,
 				8730B0682140FFA3004331A9 /* DTLog.m in Sources */,
+				DB48743D214A5CCD00AB0805 /* FSFileScanVC.m in Sources */,
 				8730B0392140FFA2004331A9 /* NSAttributedString+SmallCaps.m in Sources */,
 				87D20AC2213920E2001EDD60 /* FLEXArgumentInputDateView.m in Sources */,
 				8730B0952140FFA3004331A9 /* NSURL+DTUnshorten.m in Sources */,

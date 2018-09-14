@@ -151,13 +151,7 @@ FSMainVC () <
             break;
         // 文书扫描
         case FSHomePageTooltype_FileScanning:
-        {
-            [[FSOCRManager manager] ocr_getTextWithImage:@"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3685369849,2682466948&fm=26&gp=0.jpg" succeed:^(NSString *text) {
-                
-            } failed:^(NSError *error) {
-                
-            }];
-        }
+            [FSPushVCManager homePagePushToFileScanVC:self];
             break;
         default:
             break;
