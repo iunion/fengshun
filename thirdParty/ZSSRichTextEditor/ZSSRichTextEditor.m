@@ -12,6 +12,7 @@
 #import "ZSSBarButtonItem.h"
 #import "HRColorUtil.h"
 #import "ZSSTextView.h"
+#import <WebKit/WebKit.h>
 
 @import JavaScriptCore;
 
@@ -110,7 +111,6 @@ static Class hackishFixClass = Nil;
  *  UIWebView for writing/editing/displaying the content
  */
 @property (nonatomic, strong) UIWebView *editorView;
-
 /*
  *  ZSSTextView for displaying the source code for what is displayed in the editor view
  */
@@ -352,7 +352,7 @@ static CGFloat kDefaultScale = 0.5;
     self.editorView.hidesInputAccessoryView = YES;
     self.editorView.keyboardDisplayRequiresUserAction = NO;
     self.editorView.scalesPageToFit = YES;
-    self.editorView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+//    self.editorView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     self.editorView.dataDetectorTypes = UIDataDetectorTypeNone;
     self.editorView.scrollView.bounces = NO;
     self.editorView.backgroundColor = [UIColor whiteColor];
@@ -381,7 +381,7 @@ static CGFloat kDefaultScale = 0.5;
 - (void)createToolbar {
     
     self.toolbar = [[UIToolbar alloc] initWithFrame:CGRectZero];
-    self.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+//    self.toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.toolbar.backgroundColor = [UIColor clearColor];
     [self.toolBarScroll addSubview:self.toolbar];
     self.toolBarScroll.autoresizingMask = self.toolbar.autoresizingMask;
@@ -1568,7 +1568,7 @@ static CGFloat kDefaultScale = 0.5;
 
 
 - (void)updateImage:(NSString *)url alt:(NSString *)alt {
-    [self.editorView stringByEvaluatingJavaScriptFromString:@"zss_editor.prepareInsert();"];
+//    [self.editorView stringByEvaluatingJavaScriptFromString:@"zss_editor.prepareInsert();"];
     NSString *trigger = [NSString stringWithFormat:@"zss_editor.updateImage(\"%@\", \"%@\");", url, alt];
     [self.editorView stringByEvaluatingJavaScriptFromString:trigger];
 }

@@ -27,17 +27,15 @@ TZImagePickerControllerDelegate
     // Custom image button
     self.enabledToolbarItems = @[ZSSRichTextEditorToolbarNone];
     
-    UIButton *myButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 50, 28.0f)];
-    [myButton setTitle:@"自定义" forState:UIControlStateNormal];
+    UIButton *myButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 60.f, 28.0f)];
+    [myButton setImage:[UIImage imageNamed:@"community_add_pic"] forState:UIControlStateNormal];
     [myButton addTarget:self
                  action:@selector(didTapCustomToolbarButton)
        forControlEvents:UIControlEventTouchUpInside];
     [self addCustomToolbarItemWithButton:myButton];
-    
     // Custom image button
-    ZSSBarButtonItem *item = [[ZSSBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ZSSinsertkeyword.png"] style:UIBarButtonItemStylePlain target:self action:@selector(didTapCustomToolbarButton)];
-    [self addCustomToolbarItem:item];
-    
+//    ZSSBarButtonItem *item = [[ZSSBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"community_add_pic"] style:UIBarButtonItemStylePlain target:self action:@selector(didTapCustomToolbarButton)];
+//    [self addCustomToolbarItem:item];
 }
 
 - (void)didReceiveMemoryWarning
