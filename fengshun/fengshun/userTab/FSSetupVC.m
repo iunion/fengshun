@@ -140,8 +140,7 @@ typedef void(^FSSetupCalculateSizeBlock)(NSString *path, NSUInteger fileCount, N
     [btn addTarget:self action:@selector(logoutClick:) forControlEvents:UIControlEventTouchUpInside];
     [btn setTitle:@"退出登录" forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    //[btn bm_roundedRect:4.0f];
-    [btn bm_roundedDashRect:4.0f borderWidth:1.0f borderColor:[UIColor redColor]];
+    [btn bm_roundedRect:4.0f];
     self.m_LogoutBtn = btn;
     
     [footerView addSubview:btn];
