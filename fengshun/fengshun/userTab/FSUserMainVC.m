@@ -99,6 +99,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self checkUnreadMessage];
+}
+
 - (void)setUpAction:(id)sender
 {
     FSSetupVC *vc = [[FSSetupVC alloc] init];
@@ -255,13 +262,6 @@
     
     [self freshApprove];
     
-    UIButton *btn = [self bm_getNavigationRightItemAtIndex:0];
-    btn.badgeFont = UI_FONT_9;
-    btn.badgeBgColor = UI_COLOR_R1;
-    btn.badgeTextColor = [UIColor whiteColor];
-    btn.badgeBorderWidth = 0;
-    [btn showNumberBadgeWithValue:2];
-    
     CGSize labelsize = [self.m_NameLabel sizeThatFits:CGSizeMake(UI_SCREEN_WIDTH, MAXFLOAT)];
     CGFloat width = labelsize.width;
     CGFloat gap = 6.0f;
@@ -370,6 +370,33 @@
 - (void)loginFinished
 {
     [self freshViews];
+}
+
+- (void)checkUnreadMessage
+{
+    [FSApiRequest getMessageUnReadFlagSuccess:^(id responseObject) {
+        if ([responseObject isKindOfClass:[NSNumber class]])
+        {
+            BOOL show = ((NSNumber *)responseObject).boolValue;
+            [self showRedBadge:show];
+        }
+    } failure:^(NSError *error) {
+    }];
+}
+
+- (void)showRedBadge:(BOOL)show
+{
+    UIButton *btn = [self bm_getNavigationRightItemAtIndex:0];
+    if (show)
+    {
+        btn.badgeBgColor = UI_COLOR_R1;
+        btn.badgeBorderWidth = 0.0f;
+        [btn showRedDotBadge];
+    }
+    else
+    {
+        [btn clearBadge];
+    }
 }
 
 @end

@@ -151,13 +151,7 @@ FSMainVC () <
             break;
         // 文书扫描
         case FSHomePageTooltype_FileScanning:
-        {
-            [[FSOCRManager manager] ocr_getTextWithImage:@"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3685369849,2682466948&fm=26&gp=0.jpg" succeed:^(NSString *text) {
-                
-            } failed:^(NSError *error) {
-                
-            }];
-        }
+            [FSPushVCManager homePagePushToFileScanVC:self];
             break;
         default:
             break;
@@ -330,20 +324,32 @@ FSMainVC () <
 
     [self.m_TableView reloadData];
 }
+
 - (void)checkUnreadMessage
 {
-    [FSApiRequest getMessageUnReadFlagSuccess:^(id  _Nullable responseObject) {
-        [self showRedBadge:YES];
-    } failure:^(NSError * _Nullable error) {
-        [self showRedBadge:NO];
+    [FSApiRequest getMessageUnReadFlagSuccess:^(id responseObject) {
+        if ([responseObject isKindOfClass:[NSNumber class]])
+        {
+            BOOL show = ((NSNumber *)responseObject).boolValue;
+            [self showRedBadge:show];
+        }
+    } failure:^(NSError *error) {
     }];
 }
+
 - (void)showRedBadge:(BOOL)show
 {
     UIButton *btn = [self bm_getNavigationRightItemAtIndex:0];
-    [btn showRedDotBadge];
-    if (!show) {
+    if (show)
+    {
+        btn.badgeBgColor = UI_COLOR_R1;
+        btn.badgeBorderWidth = 0.0f;
+        [btn showRedDotBadge];
+    }
+    else
+    {
         [btn clearBadge];
     }
 }
+
 @end

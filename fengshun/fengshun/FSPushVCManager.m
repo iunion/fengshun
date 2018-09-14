@@ -17,6 +17,7 @@
 #import "FSSearchViewController.h"
 #import "FSTextSplitVC.h"
 #import "FSTopicDetailVC.h"
+#import "FSFileScanVC.h"
 
 @implementation FSPushVCManager
 
@@ -131,5 +132,11 @@
     FSSearchViewController *searchViewController = [[FSSearchViewController alloc] initWithSearchKey:@"textSearch" resultType:FSSearchResultType_text hotSearchTags:nil searchHandler:nil];
     searchViewController.hidesBottomBarWhenPushed = YES;
     [showVC.navigationController pushViewController:searchViewController animated:YES];
+}
++ (void)homePagePushToFileScanVC:(UIViewController *)mainVC
+{
+    FSFileScanVC *vc = [[FSFileScanVC alloc]initWithNibName:@"FSFileScanVC" bundle:nil];
+    vc.hidesBottomBarWhenPushed = YES;
+    [mainVC.navigationController pushViewController:vc animated:YES];
 }
 @end
