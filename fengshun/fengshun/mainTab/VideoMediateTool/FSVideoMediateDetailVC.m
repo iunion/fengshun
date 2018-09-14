@@ -83,23 +83,18 @@
                 
                 NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
                 [self.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-
             }
         }];
         [task resume];
     }
 }
 
-
 -(void)setM_DetailModel:(FSMeetingDetailModel *)model
 {
     _m_DetailModel = model;
     [self.m_TableView bm_removeAllSubviews];
 
-    if (model == nil) {
-        return;
-    }
-    
+    if (model == nil) { return; }
     
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:model.startTime/1000];
 
@@ -193,16 +188,50 @@
     };
 
     UIView *lastView = [[UIView alloc] initWithFrame:CGRectMake(0, shareView.bm_bottom + 9, UI_SCREEN_WIDTH, 58)];
+    lastView.backgroundColor = [UIColor whiteColor];
     [contenView addSubview:lastView];
+    
+    UIButton *leftBtn = [self buttonWithFrame:CGRectMake(60, 12, 112, 34) Title:@"视频回放" image:@"video_history_icon"];
+    [leftBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -8, 0, 0)];
+    [leftBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 4, 0, 0)];
+    [lastView addSubview:leftBtn];
+    [leftBtn addTarget:self action:@selector(videoHistoryAction) forControlEvents:UIControlEventTouchUpInside];
+
+    UIButton *rightBtn = [self buttonWithFrame:CGRectMake(UI_SCREEN_WIDTH - 112 - 60, 12, 112, 34) Title:@"消息记录" image:@"video_message_icon"];
+    [lastView addSubview:rightBtn];
+    [rightBtn setImageEdgeInsets:UIEdgeInsetsMake(2, -8, 0, 0)];
+    [rightBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 4, 0, 0)];
+    [rightBtn addTarget:self action:@selector(messageListAction) forControlEvents:UIControlEventTouchUpInside];
+
 
     contenView.bm_height = lastView.bm_bottom + 15;
     [self.m_TableView addSubview:contenView];
     self.m_TableView.contentSize = CGSizeMake(UI_SCREEN_WIDTH, contenView.bm_height);
 }
 
+- (UIButton *)buttonWithFrame:(CGRect)frame Title:(NSString *)title image:(NSString *)imageName
+{
+    UIButton *btn = [[UIButton alloc] initWithFrame:frame];
+    [btn bm_roundedDashRect:17.0f borderWidth:2.0f borderColor:UI_COLOR_BL1];
+    btn.backgroundColor = [UIColor bm_colorWithHex:0xE5ECFD];
+    [btn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+    [btn setTitle:title forState:UIControlStateNormal];
+    [btn setTitleColor:UI_COLOR_BL1 forState:UIControlStateNormal];
+    btn.titleLabel.font = UI_FONT_14;
+    return btn;
+}
+
 - (void)bottomButtonClickAction
 {
     // 进入视频
+}
+- (void)videoHistoryAction
+{
+    
+}
+- (void)messageListAction
+{
+    
 }
 
 

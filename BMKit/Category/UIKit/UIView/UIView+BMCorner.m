@@ -160,7 +160,7 @@
     //填充的颜色
     self.bm_dashRectLayer.fillColor = [UIColor clearColor].CGColor;
     
-    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:5];
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:radius];
     //设置路径
     self.bm_dashRectLayer.path = path.CGPath;
     self.bm_dashRectLayer.frame = self.bounds;
