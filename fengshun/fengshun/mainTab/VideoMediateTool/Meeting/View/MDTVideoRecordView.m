@@ -1,0 +1,65 @@
+//
+//  MDTVideoRecordView.m
+//  ODR
+//
+//  Created by DH on 2018/9/12.
+//  Copyright © 2018年 DH. All rights reserved.
+//
+
+#import "MDTVideoRecordView.h"
+
+@implementation MDTVideoRecordCell
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.contentView.backgroundColor = [UIColor whiteColor];
+        [self initUI];
+    }
+    return self;
+}
+
+- (void)initUI {
+
+    _lineView = [UIView new];
+    _lineView.backgroundColor = UI_COLOR_R2;
+    [self.contentView addSubview:_lineView];
+    [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.contentView);
+        make.height.offset(0.5);
+        make.top.equalTo(self.contentView).offset(33);
+    }];
+    
+    _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(14, 1, UI_SCREEN_WIDTH - 28, 32)];
+    _titleLabel.textColor = UI_COLOR_B2;
+    _titleLabel.font = UI_FONT_14;
+    [self.contentView addSubview:_titleLabel];
+    
+    UILabel *timeTitle = [[UILabel alloc] initWithFrame:CGRectMake(14, 34, UI_SCREEN_WIDTH - 28, 49)];
+    timeTitle.textColor = UI_COLOR_B2;
+    timeTitle.font = UI_FONT_14;
+    [self.contentView addSubview:timeTitle];
+    timeTitle.text = @"上传时间：";
+    
+    _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(86, 34, UI_SCREEN_WIDTH - 14 - 86, 49)];
+    _timeLabel.textColor = UI_COLOR_B2;
+    _timeLabel.font = UI_FONT_14;
+    [self.contentView addSubview:_timeLabel];
+    
+    UIButton *playBtn = [[UIButton alloc] initWithFrame:CGRectMake(UI_SCREEN_WIDTH - 14 - 73, 43, 73, 30)];
+    [playBtn setImage:[UIImage imageNamed:@"video_record_play"] forState:UIControlStateNormal];
+    [playBtn addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:playBtn];
+}
+
+- (void)onClick:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(videoRecordCell:playBtnDidClick:)]) {
+        [self.delegate videoRecordCell:self playBtnDidClick:sender];
+    }
+}
+
+- (void)setModel:(MDTVideoRecordModel *)model {
+    _timeLabel.text = [NSDate bm_stringFromTs:model.uploadTime * 0.001 formatter:@"yyyy-MM-dd HH:mm:ss"];
+    _titleLabel.text = [NSString stringWithFormat:@"参会人：%@", model.joinUser];
+}
+
+@end

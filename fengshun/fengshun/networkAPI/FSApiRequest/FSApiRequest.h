@@ -265,6 +265,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable NSMutableURLRequest *)inviteListPersonnelWithId:(NSInteger)meetingId personList:(NSArray *)list;
 + (nullable NSMutableURLRequest *)getRoomMessageRecordList:(NSInteger)roomId;
 + (nullable NSMutableURLRequest *)getMeetingVideoList:(NSInteger)meetingId;
++ (nullable NSMutableURLRequest *)startMeetingWithId:(NSInteger)meetingId;
++ (nullable NSMutableURLRequest *)getJoinMeetingToken:(NSString *)inviteCode phone:(NSString *)phone;
 @end
 
 NS_ASSUME_NONNULL_END

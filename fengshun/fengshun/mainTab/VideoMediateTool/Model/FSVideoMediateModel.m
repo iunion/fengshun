@@ -296,6 +296,17 @@ static NSDictionary *FSMeetingPersonIdentityTypeDic;
     return string;
 }
 
+- (FSMeetingPersonnelModel *)getMeetingMediator
+{
+    for (FSMeetingPersonnelModel *model in self.meetingPersonnelResponseDTO) {
+        if ([model.meetingIdentityTypeEnums isEqualToString:@"MEDIATOR"]) {
+            return model;
+        }
+    }
+
+    return nil;
+}
+
 @end
 
 

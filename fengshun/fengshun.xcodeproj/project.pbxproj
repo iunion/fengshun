@@ -80,6 +80,107 @@
 		45FEF76D214D11060005AD43 /* ILiveSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF762214D11060005AD43 /* ILiveSDK.framework */; };
 		45FEF76E214D11060005AD43 /* ILiveLogReport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF763214D11060005AD43 /* ILiveLogReport.framework */; };
 		45FEF76F214D11060005AD43 /* TILLiveSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF764214D11060005AD43 /* TILLiveSDK.framework */; };
+		45FEF7E1214D1A590005AD43 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7A0214D1A580005AD43 /* SRWebSocket.m */; };
+		45FEF7E2214D1A590005AD43 /* base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7A3214D1A580005AD43 /* base64.m */; };
+		45FEF7E3214D1A590005AD43 /* libQCloudAAIClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF7A4214D1A580005AD43 /* libQCloudAAIClient.a */; };
+		45FEF7E4214D1A590005AD43 /* SocketHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7A7214D1A580005AD43 /* SocketHelper.m */; };
+		45FEF7E5214D1A590005AD43 /* ZFPlayerGestureControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7AD214D1A580005AD43 /* ZFPlayerGestureControl.m */; };
+		45FEF7E6214D1A590005AD43 /* ZFPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7AE214D1A580005AD43 /* ZFPlayerController.m */; };
+		45FEF7E7214D1A590005AD43 /* ZFOrientationObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7B1214D1A580005AD43 /* ZFOrientationObserver.m */; };
+		45FEF7E8214D1A590005AD43 /* UIScrollView+ZFPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7B6214D1A580005AD43 /* UIScrollView+ZFPlayer.m */; };
+		45FEF7E9214D1A590005AD43 /* ZFPlayerNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7B9214D1A580005AD43 /* ZFPlayerNotification.m */; };
+		45FEF7EA214D1A590005AD43 /* ZFFloatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7BA214D1A580005AD43 /* ZFFloatView.m */; };
+		45FEF7EB214D1A590005AD43 /* ZFPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7BD214D1A580005AD43 /* ZFPlayerView.m */; };
+		45FEF7EC214D1A590005AD43 /* ZFKVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7BF214D1A580005AD43 /* ZFKVOController.m */; };
+		45FEF7ED214D1A590005AD43 /* ZFReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7C1214D1A580005AD43 /* ZFReachabilityManager.m */; };
+		45FEF7EE214D1A590005AD43 /* UIViewController+ZFPlayerRotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7C2214D1A580005AD43 /* UIViewController+ZFPlayerRotation.m */; };
+		45FEF7EF214D1A590005AD43 /* ZFAVPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7C4214D1A580005AD43 /* ZFAVPlayerManager.m */; };
+		45FEF7F0214D1A590005AD43 /* ZFUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7C7214D1A580005AD43 /* ZFUtilities.m */; };
+		45FEF7F1214D1A590005AD43 /* UIView+ZFFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7C8214D1A580005AD43 /* UIView+ZFFrame.m */; };
+		45FEF7F2214D1A590005AD43 /* ZFVolumeBrightnessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7CC214D1A580005AD43 /* ZFVolumeBrightnessView.m */; };
+		45FEF7F3214D1A590005AD43 /* ZFLandScapeControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7CF214D1A580005AD43 /* ZFLandScapeControlView.m */; };
+		45FEF7F4214D1A590005AD43 /* ZFNetworkSpeedMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7D0214D1A580005AD43 /* ZFNetworkSpeedMonitor.m */; };
+		45FEF7F5214D1A590005AD43 /* ZFPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF7D3214D1A580005AD43 /* ZFPlayer.bundle */; };
+		45FEF7F6214D1A590005AD43 /* ZFSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7D6214D1A580005AD43 /* ZFSliderView.m */; };
+		45FEF7F7214D1A590005AD43 /* ZFPlayerControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7D7214D1A580005AD43 /* ZFPlayerControlView.m */; };
+		45FEF7F8214D1A590005AD43 /* ZFSmallFloatControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7D8214D1A580005AD43 /* ZFSmallFloatControlView.m */; };
+		45FEF7F9214D1A590005AD43 /* ZFLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7D9214D1A580005AD43 /* ZFLoadingView.m */; };
+		45FEF7FA214D1A590005AD43 /* ZFSpeedLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7DA214D1A580005AD43 /* ZFSpeedLoadingView.m */; };
+		45FEF7FB214D1A590005AD43 /* ZFPortraitControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7DC214D1A580005AD43 /* ZFPortraitControlView.m */; };
+		45FEF7FC214D1A590005AD43 /* UIImageView+ZFCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7DD214D1A580005AD43 /* UIImageView+ZFCache.m */; };
+		45FEF7FD214D1A590005AD43 /* ASRManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7E0214D1A590005AD43 /* ASRManager.m */; };
+		45FEF802214D1A980005AD43 /* MDTMeetingListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7FE214D1A980005AD43 /* MDTMeetingListModel.m */; };
+		45FEF803214D1A980005AD43 /* VideoCallModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF801214D1A980005AD43 /* VideoCallModel.m */; };
+		45FEF81A214D1AEC0005AD43 /* MJPropertyType.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF808214D1AEC0005AD43 /* MJPropertyType.m */; };
+		45FEF81B214D1AEC0005AD43 /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF80B214D1AEC0005AD43 /* NSObject+MJKeyValue.m */; };
+		45FEF81C214D1AEC0005AD43 /* MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF80C214D1AEC0005AD43 /* MJProperty.m */; };
+		45FEF81D214D1AEC0005AD43 /* NSObject+MJCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF80E214D1AEC0005AD43 /* NSObject+MJCoding.m */; };
+		45FEF81E214D1AEC0005AD43 /* MJExtensionConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF810214D1AEC0005AD43 /* MJExtensionConst.m */; };
+		45FEF81F214D1AEC0005AD43 /* NSObject+MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF811214D1AEC0005AD43 /* NSObject+MJProperty.m */; };
+		45FEF820214D1AEC0005AD43 /* NSObject+MJClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF813214D1AEC0005AD43 /* NSObject+MJClass.m */; };
+		45FEF821214D1AEC0005AD43 /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF814214D1AEC0005AD43 /* NSString+MJExtension.m */; };
+		45FEF822214D1AEC0005AD43 /* MJPropertyKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF815214D1AEC0005AD43 /* MJPropertyKey.m */; };
+		45FEF823214D1AEC0005AD43 /* MJFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF819214D1AEC0005AD43 /* MJFoundation.m */; };
+		45FEF830214D1B4D0005AD43 /* MDTVideoInviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF824214D1B4A0005AD43 /* MDTVideoInviteViewController.m */; };
+		45FEF831214D1B4D0005AD43 /* VideoCallController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF826214D1B4B0005AD43 /* VideoCallController.m */; };
+		45FEF832214D1B4D0005AD43 /* MDTVideoRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF828214D1B4B0005AD43 /* MDTVideoRecordViewController.m */; };
+		45FEF833214D1B4D0005AD43 /* UIViewController+VideoCall.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF829214D1B4B0005AD43 /* UIViewController+VideoCall.m */; };
+		45FEF834214D1B4D0005AD43 /* VideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF82A214D1B4C0005AD43 /* VideoPlayerViewController.m */; };
+		45FEF835214D1B4D0005AD43 /* MDTMeetingListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF82C214D1B4C0005AD43 /* MDTMeetingListViewController.m */; };
+		45FEF83C214D1B580005AD43 /* MDTMeetingListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF837214D1B580005AD43 /* MDTMeetingListView.m */; };
+		45FEF83D214D1B580005AD43 /* MDTVideoRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF83A214D1B580005AD43 /* MDTVideoRecordView.m */; };
+		45FEF83E214D1B580005AD43 /* VideoCallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF83B214D1B580005AD43 /* VideoCallView.m */; };
+		45FEF843214D1B720005AD43 /* UIAlertController+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF840214D1B710005AD43 /* UIAlertController+Blocks.m */; };
+		45FEF844214D1B720005AD43 /* UIButton+XQAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF841214D1B710005AD43 /* UIButton+XQAdd.m */; };
+		45FEF855214D1B970005AD43 /* SingleTextChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF84A214D1B970005AD43 /* SingleTextChatViewController.m */; };
+		45FEF856214D1B970005AD43 /* TextChatHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF84B214D1B970005AD43 /* TextChatHistoryViewController.m */; };
+		45FEF857214D1B970005AD43 /* PublicTextChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF84C214D1B970005AD43 /* PublicTextChatViewController.m */; };
+		45FEF858214D1B970005AD43 /* ChatTextViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF84F214D1B970005AD43 /* ChatTextViewModel.m */; };
+		45FEF859214D1B970005AD43 /* ChatTextModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF850214D1B970005AD43 /* ChatTextModel.m */; };
+		45FEF85A214D1B970005AD43 /* ChatTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF854214D1B970005AD43 /* ChatTextView.m */; };
+		45FEF85D214D278C0005AD43 /* FSVideoStartTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF85C214D278C0005AD43 /* FSVideoStartTool.m */; };
+		45FEF889214D39310005AD43 /* videocall_end_record@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF85F214D39280005AD43 /* videocall_end_record@2x.png */; };
+		45FEF88A214D39310005AD43 /* chat_head_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF860214D39280005AD43 /* chat_head_user@2x.png */; };
+		45FEF88B214D39310005AD43 /* chat_left_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF861214D39280005AD43 /* chat_left_bg@2x.png */; };
+		45FEF88C214D39310005AD43 /* video_bottom_message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF862214D39290005AD43 /* video_bottom_message@2x.png */; };
+		45FEF88D214D39310005AD43 /* video_bottom_message@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF863214D39290005AD43 /* video_bottom_message@3x.png */; };
+		45FEF88E214D39310005AD43 /* videocall_default_minhead@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF864214D39290005AD43 /* videocall_default_minhead@2x.png */; };
+		45FEF88F214D39310005AD43 /* videocall_close_video@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF865214D39290005AD43 /* videocall_close_video@3x.png */; };
+		45FEF890214D39310005AD43 /* videocall_default_minhead@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF866214D39290005AD43 /* videocall_default_minhead@3x.png */; };
+		45FEF891214D39310005AD43 /* videocall_open_audio@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF867214D392A0005AD43 /* videocall_open_audio@2x.png */; };
+		45FEF892214D39310005AD43 /* chat_message_text@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF868214D392A0005AD43 /* chat_message_text@3x.png */; };
+		45FEF893214D39310005AD43 /* videocall_open_video@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF869214D392A0005AD43 /* videocall_open_video@2x.png */; };
+		45FEF894214D39310005AD43 /* videocall_chat_voice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF86A214D392A0005AD43 /* videocall_chat_voice@3x.png */; };
+		45FEF895214D39310005AD43 /* video_bottom_endbtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF86B214D392A0005AD43 /* video_bottom_endbtn@2x.png */; };
+		45FEF896214D39310005AD43 /* videocall_default_head@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF86C214D392A0005AD43 /* videocall_default_head@3x.png */; };
+		45FEF897214D39310005AD43 /* chat_head_mediator@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF86D214D392A0005AD43 /* chat_head_mediator@3x.png */; };
+		45FEF898214D39310005AD43 /* chat_message_text@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF86E214D392B0005AD43 /* chat_message_text@2x.png */; };
+		45FEF899214D39310005AD43 /* videocall_start_record@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF86F214D392B0005AD43 /* videocall_start_record@3x.png */; };
+		45FEF89A214D39310005AD43 /* videocall_chat_voice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF870214D392B0005AD43 /* videocall_chat_voice@2x.png */; };
+		45FEF89B214D39310005AD43 /* chat_left_bg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF871214D392C0005AD43 /* chat_left_bg@3x.png */; };
+		45FEF89C214D39310005AD43 /* chat_right_bg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF872214D392C0005AD43 /* chat_right_bg@3x.png */; };
+		45FEF89D214D39310005AD43 /* videocall_camera_switch@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF873214D392C0005AD43 /* videocall_camera_switch@3x.png */; };
+		45FEF89E214D39310005AD43 /* videocall_close_video@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF874214D392C0005AD43 /* videocall_close_video@2x.png */; };
+		45FEF89F214D39310005AD43 /* videocall_voice_open@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF875214D392C0005AD43 /* videocall_voice_open@3x.png */; };
+		45FEF8A0214D39310005AD43 /* videocall_voice_off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF876214D392C0005AD43 /* videocall_voice_off@3x.png */; };
+		45FEF8A1214D39310005AD43 /* videocall_open_video@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF877214D392C0005AD43 /* videocall_open_video@3x.png */; };
+		45FEF8A2214D39310005AD43 /* videocall_close_audio@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF878214D392D0005AD43 /* videocall_close_audio@3x.png */; };
+		45FEF8A3214D39310005AD43 /* videocall_start_record@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF879214D392D0005AD43 /* videocall_start_record@2x.png */; };
+		45FEF8A4214D39310005AD43 /* videocall_voice_open@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF87A214D392D0005AD43 /* videocall_voice_open@2x.png */; };
+		45FEF8A5214D39310005AD43 /* videocall_camera_switch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF87B214D392D0005AD43 /* videocall_camera_switch@2x.png */; };
+		45FEF8A6214D39310005AD43 /* chat_head_user@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF87C214D392D0005AD43 /* chat_head_user@3x.png */; };
+		45FEF8A7214D39310005AD43 /* video_bottom_endbtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF87D214D392D0005AD43 /* video_bottom_endbtn@3x.png */; };
+		45FEF8A8214D39310005AD43 /* chat_message_voice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF87E214D392E0005AD43 /* chat_message_voice@2x.png */; };
+		45FEF8A9214D39310005AD43 /* chat_head_mediator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF87F214D392E0005AD43 /* chat_head_mediator@2x.png */; };
+		45FEF8AA214D39310005AD43 /* videocall_close_audio@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF880214D392E0005AD43 /* videocall_close_audio@2x.png */; };
+		45FEF8AB214D39310005AD43 /* videocall_open_audio@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF881214D392F0005AD43 /* videocall_open_audio@3x.png */; };
+		45FEF8AC214D39310005AD43 /* videocall_privte_chat@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF882214D392F0005AD43 /* videocall_privte_chat@3x.png */; };
+		45FEF8AD214D39310005AD43 /* videocall_privte_chat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF883214D392F0005AD43 /* videocall_privte_chat@2x.png */; };
+		45FEF8AE214D39310005AD43 /* videocall_voice_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF884214D392F0005AD43 /* videocall_voice_off@2x.png */; };
+		45FEF8AF214D39310005AD43 /* chat_right_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF885214D39300005AD43 /* chat_right_bg@2x.png */; };
+		45FEF8B0214D39310005AD43 /* videocall_default_head@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF886214D39300005AD43 /* videocall_default_head@2x.png */; };
+		45FEF8B1214D39310005AD43 /* videocall_end_record@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF887214D39300005AD43 /* videocall_end_record@3x.png */; };
+		45FEF8B2214D39310005AD43 /* chat_message_voice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF888214D39300005AD43 /* chat_message_voice@3x.png */; };
 		8730AD352140B9BD004331A9 /* FSSetupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730AD332140B9BC004331A9 /* FSSetupVC.m */; };
 		8730AD422140CC28004331A9 /* user_commenticon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730AD362140CC26004331A9 /* user_commenticon@2x.png */; };
 		8730AD432140CC28004331A9 /* user_serviceicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730AD372140CC27004331A9 /* user_serviceicon@3x.png */; };
@@ -962,6 +1063,169 @@
 		45FEF762214D11060005AD43 /* ILiveSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ILiveSDK.framework; sourceTree = "<group>"; };
 		45FEF763214D11060005AD43 /* ILiveLogReport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ILiveLogReport.framework; sourceTree = "<group>"; };
 		45FEF764214D11060005AD43 /* TILLiveSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TILLiveSDK.framework; sourceTree = "<group>"; };
+		45FEF7A0214D1A580005AD43 /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
+		45FEF7A1214D1A580005AD43 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
+		45FEF7A2214D1A580005AD43 /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
+		45FEF7A3214D1A580005AD43 /* base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = base64.m; sourceTree = "<group>"; };
+		45FEF7A4214D1A580005AD43 /* libQCloudAAIClient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libQCloudAAIClient.a; sourceTree = "<group>"; };
+		45FEF7A5214D1A580005AD43 /* QCloudAAIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCloudAAIClient.h; sourceTree = "<group>"; };
+		45FEF7A6214D1A580005AD43 /* SocketHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketHelper.h; sourceTree = "<group>"; };
+		45FEF7A7214D1A580005AD43 /* SocketHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketHelper.m; sourceTree = "<group>"; };
+		45FEF7A8214D1A580005AD43 /* ASRManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASRManager.h; sourceTree = "<group>"; };
+		45FEF7AC214D1A580005AD43 /* ZFPlayerNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFPlayerNotification.h; sourceTree = "<group>"; };
+		45FEF7AD214D1A580005AD43 /* ZFPlayerGestureControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFPlayerGestureControl.m; sourceTree = "<group>"; };
+		45FEF7AE214D1A580005AD43 /* ZFPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFPlayerController.m; sourceTree = "<group>"; };
+		45FEF7AF214D1A580005AD43 /* ZFFloatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFFloatView.h; sourceTree = "<group>"; };
+		45FEF7B0214D1A580005AD43 /* ZFKVOController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFKVOController.h; sourceTree = "<group>"; };
+		45FEF7B1214D1A580005AD43 /* ZFOrientationObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFOrientationObserver.m; sourceTree = "<group>"; };
+		45FEF7B2214D1A580005AD43 /* ZFPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFPlayerView.h; sourceTree = "<group>"; };
+		45FEF7B3214D1A580005AD43 /* UIViewController+ZFPlayerRotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZFPlayerRotation.h"; sourceTree = "<group>"; };
+		45FEF7B4214D1A580005AD43 /* ZFPlayerMediaPlayback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFPlayerMediaPlayback.h; sourceTree = "<group>"; };
+		45FEF7B5214D1A580005AD43 /* ZFReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFReachabilityManager.h; sourceTree = "<group>"; };
+		45FEF7B6214D1A580005AD43 /* UIScrollView+ZFPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+ZFPlayer.m"; sourceTree = "<group>"; };
+		45FEF7B7214D1A580005AD43 /* ZFPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFPlayer.h; sourceTree = "<group>"; };
+		45FEF7B8214D1A580005AD43 /* ZFPlayerGestureControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFPlayerGestureControl.h; sourceTree = "<group>"; };
+		45FEF7B9214D1A580005AD43 /* ZFPlayerNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFPlayerNotification.m; sourceTree = "<group>"; };
+		45FEF7BA214D1A580005AD43 /* ZFFloatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFFloatView.m; sourceTree = "<group>"; };
+		45FEF7BB214D1A580005AD43 /* ZFPlayerMediaControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFPlayerMediaControl.h; sourceTree = "<group>"; };
+		45FEF7BC214D1A580005AD43 /* ZFPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFPlayerController.h; sourceTree = "<group>"; };
+		45FEF7BD214D1A580005AD43 /* ZFPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFPlayerView.m; sourceTree = "<group>"; };
+		45FEF7BE214D1A580005AD43 /* ZFOrientationObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFOrientationObserver.h; sourceTree = "<group>"; };
+		45FEF7BF214D1A580005AD43 /* ZFKVOController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFKVOController.m; sourceTree = "<group>"; };
+		45FEF7C0214D1A580005AD43 /* UIScrollView+ZFPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+ZFPlayer.h"; sourceTree = "<group>"; };
+		45FEF7C1214D1A580005AD43 /* ZFReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFReachabilityManager.m; sourceTree = "<group>"; };
+		45FEF7C2214D1A580005AD43 /* UIViewController+ZFPlayerRotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZFPlayerRotation.m"; sourceTree = "<group>"; };
+		45FEF7C4214D1A580005AD43 /* ZFAVPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFAVPlayerManager.m; sourceTree = "<group>"; };
+		45FEF7C5214D1A580005AD43 /* ZFAVPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFAVPlayerManager.h; sourceTree = "<group>"; };
+		45FEF7C7214D1A580005AD43 /* ZFUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFUtilities.m; sourceTree = "<group>"; };
+		45FEF7C8214D1A580005AD43 /* UIView+ZFFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZFFrame.m"; sourceTree = "<group>"; };
+		45FEF7C9214D1A580005AD43 /* ZFSmallFloatControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFSmallFloatControlView.h; sourceTree = "<group>"; };
+		45FEF7CA214D1A580005AD43 /* ZFPlayerControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFPlayerControlView.h; sourceTree = "<group>"; };
+		45FEF7CB214D1A580005AD43 /* ZFSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFSliderView.h; sourceTree = "<group>"; };
+		45FEF7CC214D1A580005AD43 /* ZFVolumeBrightnessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFVolumeBrightnessView.m; sourceTree = "<group>"; };
+		45FEF7CD214D1A580005AD43 /* ZFSpeedLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFSpeedLoadingView.h; sourceTree = "<group>"; };
+		45FEF7CE214D1A580005AD43 /* ZFLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFLoadingView.h; sourceTree = "<group>"; };
+		45FEF7CF214D1A580005AD43 /* ZFLandScapeControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFLandScapeControlView.m; sourceTree = "<group>"; };
+		45FEF7D0214D1A580005AD43 /* ZFNetworkSpeedMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFNetworkSpeedMonitor.m; sourceTree = "<group>"; };
+		45FEF7D1214D1A580005AD43 /* UIImageView+ZFCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+ZFCache.h"; sourceTree = "<group>"; };
+		45FEF7D2214D1A580005AD43 /* ZFPortraitControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFPortraitControlView.h; sourceTree = "<group>"; };
+		45FEF7D3214D1A580005AD43 /* ZFPlayer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZFPlayer.bundle; sourceTree = "<group>"; };
+		45FEF7D4214D1A580005AD43 /* UIView+ZFFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ZFFrame.h"; sourceTree = "<group>"; };
+		45FEF7D5214D1A580005AD43 /* ZFUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFUtilities.h; sourceTree = "<group>"; };
+		45FEF7D6214D1A580005AD43 /* ZFSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFSliderView.m; sourceTree = "<group>"; };
+		45FEF7D7214D1A580005AD43 /* ZFPlayerControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFPlayerControlView.m; sourceTree = "<group>"; };
+		45FEF7D8214D1A580005AD43 /* ZFSmallFloatControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFSmallFloatControlView.m; sourceTree = "<group>"; };
+		45FEF7D9214D1A580005AD43 /* ZFLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFLoadingView.m; sourceTree = "<group>"; };
+		45FEF7DA214D1A580005AD43 /* ZFSpeedLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFSpeedLoadingView.m; sourceTree = "<group>"; };
+		45FEF7DB214D1A580005AD43 /* ZFVolumeBrightnessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFVolumeBrightnessView.h; sourceTree = "<group>"; };
+		45FEF7DC214D1A580005AD43 /* ZFPortraitControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFPortraitControlView.m; sourceTree = "<group>"; };
+		45FEF7DD214D1A580005AD43 /* UIImageView+ZFCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+ZFCache.m"; sourceTree = "<group>"; };
+		45FEF7DE214D1A580005AD43 /* ZFNetworkSpeedMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFNetworkSpeedMonitor.h; sourceTree = "<group>"; };
+		45FEF7DF214D1A580005AD43 /* ZFLandScapeControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFLandScapeControlView.h; sourceTree = "<group>"; };
+		45FEF7E0214D1A590005AD43 /* ASRManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASRManager.m; sourceTree = "<group>"; };
+		45FEF7FE214D1A980005AD43 /* MDTMeetingListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDTMeetingListModel.m; sourceTree = "<group>"; };
+		45FEF7FF214D1A980005AD43 /* VideoCallModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCallModel.h; sourceTree = "<group>"; };
+		45FEF800214D1A980005AD43 /* MDTMeetingListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDTMeetingListModel.h; sourceTree = "<group>"; };
+		45FEF801214D1A980005AD43 /* VideoCallModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCallModel.m; sourceTree = "<group>"; };
+		45FEF805214D1AEC0005AD43 /* MJPropertyKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPropertyKey.h; sourceTree = "<group>"; };
+		45FEF806214D1AEC0005AD43 /* NSObject+MJClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJClass.h"; sourceTree = "<group>"; };
+		45FEF807214D1AEC0005AD43 /* NSString+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MJExtension.h"; sourceTree = "<group>"; };
+		45FEF808214D1AEC0005AD43 /* MJPropertyType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPropertyType.m; sourceTree = "<group>"; };
+		45FEF809214D1AEC0005AD43 /* NSObject+MJProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJProperty.h"; sourceTree = "<group>"; };
+		45FEF80A214D1AEC0005AD43 /* MJExtensionConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJExtensionConst.h; sourceTree = "<group>"; };
+		45FEF80B214D1AEC0005AD43 /* NSObject+MJKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJKeyValue.m"; sourceTree = "<group>"; };
+		45FEF80C214D1AEC0005AD43 /* MJProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJProperty.m; sourceTree = "<group>"; };
+		45FEF80D214D1AEC0005AD43 /* MJFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJFoundation.h; sourceTree = "<group>"; };
+		45FEF80E214D1AEC0005AD43 /* NSObject+MJCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJCoding.m"; sourceTree = "<group>"; };
+		45FEF80F214D1AEC0005AD43 /* MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJExtension.h; sourceTree = "<group>"; };
+		45FEF810214D1AEC0005AD43 /* MJExtensionConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJExtensionConst.m; sourceTree = "<group>"; };
+		45FEF811214D1AEC0005AD43 /* NSObject+MJProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJProperty.m"; sourceTree = "<group>"; };
+		45FEF812214D1AEC0005AD43 /* MJPropertyType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPropertyType.h; sourceTree = "<group>"; };
+		45FEF813214D1AEC0005AD43 /* NSObject+MJClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJClass.m"; sourceTree = "<group>"; };
+		45FEF814214D1AEC0005AD43 /* NSString+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MJExtension.m"; sourceTree = "<group>"; };
+		45FEF815214D1AEC0005AD43 /* MJPropertyKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPropertyKey.m; sourceTree = "<group>"; };
+		45FEF816214D1AEC0005AD43 /* MJProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJProperty.h; sourceTree = "<group>"; };
+		45FEF817214D1AEC0005AD43 /* NSObject+MJKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJKeyValue.h"; sourceTree = "<group>"; };
+		45FEF818214D1AEC0005AD43 /* NSObject+MJCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJCoding.h"; sourceTree = "<group>"; };
+		45FEF819214D1AEC0005AD43 /* MJFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJFoundation.m; sourceTree = "<group>"; };
+		45FEF824214D1B4A0005AD43 /* MDTVideoInviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDTVideoInviteViewController.m; sourceTree = "<group>"; };
+		45FEF825214D1B4B0005AD43 /* UIViewController+VideoCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+VideoCall.h"; sourceTree = "<group>"; };
+		45FEF826214D1B4B0005AD43 /* VideoCallController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCallController.m; sourceTree = "<group>"; };
+		45FEF827214D1B4B0005AD43 /* VideoPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerViewController.h; sourceTree = "<group>"; };
+		45FEF828214D1B4B0005AD43 /* MDTVideoRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDTVideoRecordViewController.m; sourceTree = "<group>"; };
+		45FEF829214D1B4B0005AD43 /* UIViewController+VideoCall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+VideoCall.m"; sourceTree = "<group>"; };
+		45FEF82A214D1B4C0005AD43 /* VideoPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerViewController.m; sourceTree = "<group>"; };
+		45FEF82B214D1B4C0005AD43 /* MDTVideoRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDTVideoRecordViewController.h; sourceTree = "<group>"; };
+		45FEF82C214D1B4C0005AD43 /* MDTMeetingListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDTMeetingListViewController.m; sourceTree = "<group>"; };
+		45FEF82D214D1B4C0005AD43 /* VideoCallController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCallController.h; sourceTree = "<group>"; };
+		45FEF82E214D1B4C0005AD43 /* MDTVideoInviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDTVideoInviteViewController.h; sourceTree = "<group>"; };
+		45FEF82F214D1B4C0005AD43 /* MDTMeetingListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDTMeetingListViewController.h; sourceTree = "<group>"; };
+		45FEF836214D1B570005AD43 /* MDTVideoRecordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDTVideoRecordView.h; sourceTree = "<group>"; };
+		45FEF837214D1B580005AD43 /* MDTMeetingListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDTMeetingListView.m; sourceTree = "<group>"; };
+		45FEF838214D1B580005AD43 /* MDTMeetingListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDTMeetingListView.h; sourceTree = "<group>"; };
+		45FEF839214D1B580005AD43 /* VideoCallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCallView.h; sourceTree = "<group>"; };
+		45FEF83A214D1B580005AD43 /* MDTVideoRecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDTVideoRecordView.m; sourceTree = "<group>"; };
+		45FEF83B214D1B580005AD43 /* VideoCallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCallView.m; sourceTree = "<group>"; };
+		45FEF83F214D1B710005AD43 /* UIAlertController+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Blocks.h"; sourceTree = "<group>"; };
+		45FEF840214D1B710005AD43 /* UIAlertController+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+Blocks.m"; sourceTree = "<group>"; };
+		45FEF841214D1B710005AD43 /* UIButton+XQAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+XQAdd.m"; sourceTree = "<group>"; };
+		45FEF842214D1B710005AD43 /* UIButton+XQAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+XQAdd.h"; sourceTree = "<group>"; };
+		45FEF847214D1B970005AD43 /* SingleTextChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleTextChatViewController.h; sourceTree = "<group>"; };
+		45FEF848214D1B970005AD43 /* PublicTextChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicTextChatViewController.h; sourceTree = "<group>"; };
+		45FEF849214D1B970005AD43 /* TextChatHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextChatHistoryViewController.h; sourceTree = "<group>"; };
+		45FEF84A214D1B970005AD43 /* SingleTextChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleTextChatViewController.m; sourceTree = "<group>"; };
+		45FEF84B214D1B970005AD43 /* TextChatHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextChatHistoryViewController.m; sourceTree = "<group>"; };
+		45FEF84C214D1B970005AD43 /* PublicTextChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicTextChatViewController.m; sourceTree = "<group>"; };
+		45FEF84E214D1B970005AD43 /* ChatTextModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTextModel.h; sourceTree = "<group>"; };
+		45FEF84F214D1B970005AD43 /* ChatTextViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTextViewModel.m; sourceTree = "<group>"; };
+		45FEF850214D1B970005AD43 /* ChatTextModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTextModel.m; sourceTree = "<group>"; };
+		45FEF851214D1B970005AD43 /* ChatTextViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTextViewModel.h; sourceTree = "<group>"; };
+		45FEF853214D1B970005AD43 /* ChatTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTextView.h; sourceTree = "<group>"; };
+		45FEF854214D1B970005AD43 /* ChatTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTextView.m; sourceTree = "<group>"; };
+		45FEF85B214D278C0005AD43 /* FSVideoStartTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVideoStartTool.h; sourceTree = "<group>"; };
+		45FEF85C214D278C0005AD43 /* FSVideoStartTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoStartTool.m; sourceTree = "<group>"; };
+		45FEF85F214D39280005AD43 /* videocall_end_record@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_end_record@2x.png"; sourceTree = "<group>"; };
+		45FEF860214D39280005AD43 /* chat_head_user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_head_user@2x.png"; sourceTree = "<group>"; };
+		45FEF861214D39280005AD43 /* chat_left_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_left_bg@2x.png"; sourceTree = "<group>"; };
+		45FEF862214D39290005AD43 /* video_bottom_message@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_bottom_message@2x.png"; sourceTree = "<group>"; };
+		45FEF863214D39290005AD43 /* video_bottom_message@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_bottom_message@3x.png"; sourceTree = "<group>"; };
+		45FEF864214D39290005AD43 /* videocall_default_minhead@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_default_minhead@2x.png"; sourceTree = "<group>"; };
+		45FEF865214D39290005AD43 /* videocall_close_video@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_close_video@3x.png"; sourceTree = "<group>"; };
+		45FEF866214D39290005AD43 /* videocall_default_minhead@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_default_minhead@3x.png"; sourceTree = "<group>"; };
+		45FEF867214D392A0005AD43 /* videocall_open_audio@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_open_audio@2x.png"; sourceTree = "<group>"; };
+		45FEF868214D392A0005AD43 /* chat_message_text@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_message_text@3x.png"; sourceTree = "<group>"; };
+		45FEF869214D392A0005AD43 /* videocall_open_video@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_open_video@2x.png"; sourceTree = "<group>"; };
+		45FEF86A214D392A0005AD43 /* videocall_chat_voice@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_chat_voice@3x.png"; sourceTree = "<group>"; };
+		45FEF86B214D392A0005AD43 /* video_bottom_endbtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_bottom_endbtn@2x.png"; sourceTree = "<group>"; };
+		45FEF86C214D392A0005AD43 /* videocall_default_head@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_default_head@3x.png"; sourceTree = "<group>"; };
+		45FEF86D214D392A0005AD43 /* chat_head_mediator@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_head_mediator@3x.png"; sourceTree = "<group>"; };
+		45FEF86E214D392B0005AD43 /* chat_message_text@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_message_text@2x.png"; sourceTree = "<group>"; };
+		45FEF86F214D392B0005AD43 /* videocall_start_record@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_start_record@3x.png"; sourceTree = "<group>"; };
+		45FEF870214D392B0005AD43 /* videocall_chat_voice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_chat_voice@2x.png"; sourceTree = "<group>"; };
+		45FEF871214D392C0005AD43 /* chat_left_bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_left_bg@3x.png"; sourceTree = "<group>"; };
+		45FEF872214D392C0005AD43 /* chat_right_bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_right_bg@3x.png"; sourceTree = "<group>"; };
+		45FEF873214D392C0005AD43 /* videocall_camera_switch@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_camera_switch@3x.png"; sourceTree = "<group>"; };
+		45FEF874214D392C0005AD43 /* videocall_close_video@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_close_video@2x.png"; sourceTree = "<group>"; };
+		45FEF875214D392C0005AD43 /* videocall_voice_open@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_voice_open@3x.png"; sourceTree = "<group>"; };
+		45FEF876214D392C0005AD43 /* videocall_voice_off@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_voice_off@3x.png"; sourceTree = "<group>"; };
+		45FEF877214D392C0005AD43 /* videocall_open_video@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_open_video@3x.png"; sourceTree = "<group>"; };
+		45FEF878214D392D0005AD43 /* videocall_close_audio@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_close_audio@3x.png"; sourceTree = "<group>"; };
+		45FEF879214D392D0005AD43 /* videocall_start_record@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_start_record@2x.png"; sourceTree = "<group>"; };
+		45FEF87A214D392D0005AD43 /* videocall_voice_open@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_voice_open@2x.png"; sourceTree = "<group>"; };
+		45FEF87B214D392D0005AD43 /* videocall_camera_switch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_camera_switch@2x.png"; sourceTree = "<group>"; };
+		45FEF87C214D392D0005AD43 /* chat_head_user@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_head_user@3x.png"; sourceTree = "<group>"; };
+		45FEF87D214D392D0005AD43 /* video_bottom_endbtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_bottom_endbtn@3x.png"; sourceTree = "<group>"; };
+		45FEF87E214D392E0005AD43 /* chat_message_voice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_message_voice@2x.png"; sourceTree = "<group>"; };
+		45FEF87F214D392E0005AD43 /* chat_head_mediator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_head_mediator@2x.png"; sourceTree = "<group>"; };
+		45FEF880214D392E0005AD43 /* videocall_close_audio@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_close_audio@2x.png"; sourceTree = "<group>"; };
+		45FEF881214D392F0005AD43 /* videocall_open_audio@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_open_audio@3x.png"; sourceTree = "<group>"; };
+		45FEF882214D392F0005AD43 /* videocall_privte_chat@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_privte_chat@3x.png"; sourceTree = "<group>"; };
+		45FEF883214D392F0005AD43 /* videocall_privte_chat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_privte_chat@2x.png"; sourceTree = "<group>"; };
+		45FEF884214D392F0005AD43 /* videocall_voice_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_voice_off@2x.png"; sourceTree = "<group>"; };
+		45FEF885214D39300005AD43 /* chat_right_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_right_bg@2x.png"; sourceTree = "<group>"; };
+		45FEF886214D39300005AD43 /* videocall_default_head@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_default_head@2x.png"; sourceTree = "<group>"; };
+		45FEF887214D39300005AD43 /* videocall_end_record@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_end_record@3x.png"; sourceTree = "<group>"; };
+		45FEF888214D39300005AD43 /* chat_message_voice@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_message_voice@3x.png"; sourceTree = "<group>"; };
 		8730AD332140B9BC004331A9 /* FSSetupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSetupVC.m; sourceTree = "<group>"; };
 		8730AD342140B9BC004331A9 /* FSSetupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSetupVC.h; sourceTree = "<group>"; };
 		8730AD362140CC26004331A9 /* user_commenticon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_commenticon@2x.png"; sourceTree = "<group>"; };
@@ -2311,6 +2575,7 @@
 				453444B8214D0DFA00EA7BFA /* CoreVideo.framework in Frameworks */,
 				453444BA214D0DFA00EA7BFA /* CoreTelephony.framework in Frameworks */,
 				453444BC214D0DFA00EA7BFA /* CoreMedia.framework in Frameworks */,
+				45FEF7E3214D1A590005AD43 /* libQCloudAAIClient.a in Frameworks */,
 				45FEF76C214D11060005AD43 /* QAVSDK.framework in Frameworks */,
 				AD3B821C214A467900D72DE9 /* CoreGraphics.framework in Frameworks */,
 				453444BE214D0DFA00EA7BFA /* AVFoundation.framework in Frameworks */,
@@ -2364,6 +2629,7 @@
 		45A3BF882148A9C20093278C /* VideoMediateTool */ = {
 			isa = PBXGroup;
 			children = (
+				45FEF770214D194E0005AD43 /* Meeting */,
 				45DC02BC214A645800FCE042 /* Cell */,
 				45DC02AF214A619700FCE042 /* image */,
 				45613920214901B2007DF6A1 /* Model */,
@@ -2596,6 +2862,300 @@
 				45FEF764214D11060005AD43 /* TILLiveSDK.framework */,
 			);
 			path = ILiveSDK;
+			sourceTree = "<group>";
+		};
+		45FEF770214D194E0005AD43 /* Meeting */ = {
+			isa = PBXGroup;
+			children = (
+				45FEF85E214D39140005AD43 /* Image */,
+				45FEF845214D1B970005AD43 /* Message */,
+				45FEF774214D199B0005AD43 /* Tool */,
+				45FEF771214D19600005AD43 /* Controller */,
+				45FEF772214D19650005AD43 /* Model */,
+				45FEF773214D196B0005AD43 /* View */,
+			);
+			path = Meeting;
+			sourceTree = "<group>";
+		};
+		45FEF771214D19600005AD43 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				45FEF82D214D1B4C0005AD43 /* VideoCallController.h */,
+				45FEF826214D1B4B0005AD43 /* VideoCallController.m */,
+				45FEF825214D1B4B0005AD43 /* UIViewController+VideoCall.h */,
+				45FEF829214D1B4B0005AD43 /* UIViewController+VideoCall.m */,
+				45FEF82F214D1B4C0005AD43 /* MDTMeetingListViewController.h */,
+				45FEF82C214D1B4C0005AD43 /* MDTMeetingListViewController.m */,
+				45FEF82E214D1B4C0005AD43 /* MDTVideoInviteViewController.h */,
+				45FEF824214D1B4A0005AD43 /* MDTVideoInviteViewController.m */,
+				45FEF82B214D1B4C0005AD43 /* MDTVideoRecordViewController.h */,
+				45FEF828214D1B4B0005AD43 /* MDTVideoRecordViewController.m */,
+				45FEF827214D1B4B0005AD43 /* VideoPlayerViewController.h */,
+				45FEF82A214D1B4C0005AD43 /* VideoPlayerViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		45FEF772214D19650005AD43 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				45FEF800214D1A980005AD43 /* MDTMeetingListModel.h */,
+				45FEF7FE214D1A980005AD43 /* MDTMeetingListModel.m */,
+				45FEF7FF214D1A980005AD43 /* VideoCallModel.h */,
+				45FEF801214D1A980005AD43 /* VideoCallModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		45FEF773214D196B0005AD43 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				45FEF838214D1B580005AD43 /* MDTMeetingListView.h */,
+				45FEF837214D1B580005AD43 /* MDTMeetingListView.m */,
+				45FEF836214D1B570005AD43 /* MDTVideoRecordView.h */,
+				45FEF83A214D1B580005AD43 /* MDTVideoRecordView.m */,
+				45FEF839214D1B580005AD43 /* VideoCallView.h */,
+				45FEF83B214D1B580005AD43 /* VideoCallView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		45FEF774214D199B0005AD43 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				45FEF7A6214D1A580005AD43 /* SocketHelper.h */,
+				45FEF7A7214D1A580005AD43 /* SocketHelper.m */,
+				45FEF7A8214D1A580005AD43 /* ASRManager.h */,
+				45FEF7E0214D1A590005AD43 /* ASRManager.m */,
+				45FEF85B214D278C0005AD43 /* FSVideoStartTool.h */,
+				45FEF85C214D278C0005AD43 /* FSVideoStartTool.m */,
+				45FEF804214D1AEC0005AD43 /* MJExtension-3.0.13 */,
+				45FEF79F214D1A580005AD43 /* ASRSDK */,
+				45FEF7A9214D1A580005AD43 /* ZFPlayer */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		45FEF79F214D1A580005AD43 /* ASRSDK */ = {
+			isa = PBXGroup;
+			children = (
+				45FEF7A0214D1A580005AD43 /* SRWebSocket.m */,
+				45FEF7A1214D1A580005AD43 /* base64.h */,
+				45FEF7A2214D1A580005AD43 /* SRWebSocket.h */,
+				45FEF7A3214D1A580005AD43 /* base64.m */,
+				45FEF7A4214D1A580005AD43 /* libQCloudAAIClient.a */,
+				45FEF7A5214D1A580005AD43 /* QCloudAAIClient.h */,
+			);
+			path = ASRSDK;
+			sourceTree = "<group>";
+		};
+		45FEF7A9214D1A580005AD43 /* ZFPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				45FEF7AA214D1A580005AD43 /* Classes */,
+			);
+			path = ZFPlayer;
+			sourceTree = "<group>";
+		};
+		45FEF7AA214D1A580005AD43 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				45FEF7AB214D1A580005AD43 /* Core */,
+				45FEF7C3214D1A580005AD43 /* AVPlayer */,
+				45FEF7C6214D1A580005AD43 /* ControlView */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		45FEF7AB214D1A580005AD43 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				45FEF7AC214D1A580005AD43 /* ZFPlayerNotification.h */,
+				45FEF7AD214D1A580005AD43 /* ZFPlayerGestureControl.m */,
+				45FEF7AE214D1A580005AD43 /* ZFPlayerController.m */,
+				45FEF7AF214D1A580005AD43 /* ZFFloatView.h */,
+				45FEF7B0214D1A580005AD43 /* ZFKVOController.h */,
+				45FEF7B1214D1A580005AD43 /* ZFOrientationObserver.m */,
+				45FEF7B2214D1A580005AD43 /* ZFPlayerView.h */,
+				45FEF7B3214D1A580005AD43 /* UIViewController+ZFPlayerRotation.h */,
+				45FEF7B4214D1A580005AD43 /* ZFPlayerMediaPlayback.h */,
+				45FEF7B5214D1A580005AD43 /* ZFReachabilityManager.h */,
+				45FEF7B6214D1A580005AD43 /* UIScrollView+ZFPlayer.m */,
+				45FEF7B7214D1A580005AD43 /* ZFPlayer.h */,
+				45FEF7B8214D1A580005AD43 /* ZFPlayerGestureControl.h */,
+				45FEF7B9214D1A580005AD43 /* ZFPlayerNotification.m */,
+				45FEF7BA214D1A580005AD43 /* ZFFloatView.m */,
+				45FEF7BB214D1A580005AD43 /* ZFPlayerMediaControl.h */,
+				45FEF7BC214D1A580005AD43 /* ZFPlayerController.h */,
+				45FEF7BD214D1A580005AD43 /* ZFPlayerView.m */,
+				45FEF7BE214D1A580005AD43 /* ZFOrientationObserver.h */,
+				45FEF7BF214D1A580005AD43 /* ZFKVOController.m */,
+				45FEF7C0214D1A580005AD43 /* UIScrollView+ZFPlayer.h */,
+				45FEF7C1214D1A580005AD43 /* ZFReachabilityManager.m */,
+				45FEF7C2214D1A580005AD43 /* UIViewController+ZFPlayerRotation.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		45FEF7C3214D1A580005AD43 /* AVPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				45FEF7C4214D1A580005AD43 /* ZFAVPlayerManager.m */,
+				45FEF7C5214D1A580005AD43 /* ZFAVPlayerManager.h */,
+			);
+			path = AVPlayer;
+			sourceTree = "<group>";
+		};
+		45FEF7C6214D1A580005AD43 /* ControlView */ = {
+			isa = PBXGroup;
+			children = (
+				45FEF7C7214D1A580005AD43 /* ZFUtilities.m */,
+				45FEF7C8214D1A580005AD43 /* UIView+ZFFrame.m */,
+				45FEF7C9214D1A580005AD43 /* ZFSmallFloatControlView.h */,
+				45FEF7CA214D1A580005AD43 /* ZFPlayerControlView.h */,
+				45FEF7CB214D1A580005AD43 /* ZFSliderView.h */,
+				45FEF7CC214D1A580005AD43 /* ZFVolumeBrightnessView.m */,
+				45FEF7CD214D1A580005AD43 /* ZFSpeedLoadingView.h */,
+				45FEF7CE214D1A580005AD43 /* ZFLoadingView.h */,
+				45FEF7CF214D1A580005AD43 /* ZFLandScapeControlView.m */,
+				45FEF7D0214D1A580005AD43 /* ZFNetworkSpeedMonitor.m */,
+				45FEF7D1214D1A580005AD43 /* UIImageView+ZFCache.h */,
+				45FEF7D2214D1A580005AD43 /* ZFPortraitControlView.h */,
+				45FEF7D3214D1A580005AD43 /* ZFPlayer.bundle */,
+				45FEF7D4214D1A580005AD43 /* UIView+ZFFrame.h */,
+				45FEF7D5214D1A580005AD43 /* ZFUtilities.h */,
+				45FEF7D6214D1A580005AD43 /* ZFSliderView.m */,
+				45FEF7D7214D1A580005AD43 /* ZFPlayerControlView.m */,
+				45FEF7D8214D1A580005AD43 /* ZFSmallFloatControlView.m */,
+				45FEF7D9214D1A580005AD43 /* ZFLoadingView.m */,
+				45FEF7DA214D1A580005AD43 /* ZFSpeedLoadingView.m */,
+				45FEF7DB214D1A580005AD43 /* ZFVolumeBrightnessView.h */,
+				45FEF7DC214D1A580005AD43 /* ZFPortraitControlView.m */,
+				45FEF7DD214D1A580005AD43 /* UIImageView+ZFCache.m */,
+				45FEF7DE214D1A580005AD43 /* ZFNetworkSpeedMonitor.h */,
+				45FEF7DF214D1A580005AD43 /* ZFLandScapeControlView.h */,
+			);
+			path = ControlView;
+			sourceTree = "<group>";
+		};
+		45FEF804214D1AEC0005AD43 /* MJExtension-3.0.13 */ = {
+			isa = PBXGroup;
+			children = (
+				45FEF805214D1AEC0005AD43 /* MJPropertyKey.h */,
+				45FEF806214D1AEC0005AD43 /* NSObject+MJClass.h */,
+				45FEF807214D1AEC0005AD43 /* NSString+MJExtension.h */,
+				45FEF808214D1AEC0005AD43 /* MJPropertyType.m */,
+				45FEF809214D1AEC0005AD43 /* NSObject+MJProperty.h */,
+				45FEF80A214D1AEC0005AD43 /* MJExtensionConst.h */,
+				45FEF80B214D1AEC0005AD43 /* NSObject+MJKeyValue.m */,
+				45FEF80C214D1AEC0005AD43 /* MJProperty.m */,
+				45FEF80D214D1AEC0005AD43 /* MJFoundation.h */,
+				45FEF80E214D1AEC0005AD43 /* NSObject+MJCoding.m */,
+				45FEF80F214D1AEC0005AD43 /* MJExtension.h */,
+				45FEF810214D1AEC0005AD43 /* MJExtensionConst.m */,
+				45FEF811214D1AEC0005AD43 /* NSObject+MJProperty.m */,
+				45FEF812214D1AEC0005AD43 /* MJPropertyType.h */,
+				45FEF813214D1AEC0005AD43 /* NSObject+MJClass.m */,
+				45FEF814214D1AEC0005AD43 /* NSString+MJExtension.m */,
+				45FEF815214D1AEC0005AD43 /* MJPropertyKey.m */,
+				45FEF816214D1AEC0005AD43 /* MJProperty.h */,
+				45FEF817214D1AEC0005AD43 /* NSObject+MJKeyValue.h */,
+				45FEF818214D1AEC0005AD43 /* NSObject+MJCoding.h */,
+				45FEF819214D1AEC0005AD43 /* MJFoundation.m */,
+			);
+			path = "MJExtension-3.0.13";
+			sourceTree = "<group>";
+		};
+		45FEF845214D1B970005AD43 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				45FEF846214D1B970005AD43 /* Controller */,
+				45FEF84D214D1B970005AD43 /* Model */,
+				45FEF852214D1B970005AD43 /* View */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		45FEF846214D1B970005AD43 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				45FEF847214D1B970005AD43 /* SingleTextChatViewController.h */,
+				45FEF84A214D1B970005AD43 /* SingleTextChatViewController.m */,
+				45FEF848214D1B970005AD43 /* PublicTextChatViewController.h */,
+				45FEF84C214D1B970005AD43 /* PublicTextChatViewController.m */,
+				45FEF849214D1B970005AD43 /* TextChatHistoryViewController.h */,
+				45FEF84B214D1B970005AD43 /* TextChatHistoryViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		45FEF84D214D1B970005AD43 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				45FEF84E214D1B970005AD43 /* ChatTextModel.h */,
+				45FEF850214D1B970005AD43 /* ChatTextModel.m */,
+				45FEF851214D1B970005AD43 /* ChatTextViewModel.h */,
+				45FEF84F214D1B970005AD43 /* ChatTextViewModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		45FEF852214D1B970005AD43 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				45FEF853214D1B970005AD43 /* ChatTextView.h */,
+				45FEF854214D1B970005AD43 /* ChatTextView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		45FEF85E214D39140005AD43 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				45FEF87F214D392E0005AD43 /* chat_head_mediator@2x.png */,
+				45FEF86D214D392A0005AD43 /* chat_head_mediator@3x.png */,
+				45FEF860214D39280005AD43 /* chat_head_user@2x.png */,
+				45FEF87C214D392D0005AD43 /* chat_head_user@3x.png */,
+				45FEF861214D39280005AD43 /* chat_left_bg@2x.png */,
+				45FEF871214D392C0005AD43 /* chat_left_bg@3x.png */,
+				45FEF86E214D392B0005AD43 /* chat_message_text@2x.png */,
+				45FEF868214D392A0005AD43 /* chat_message_text@3x.png */,
+				45FEF87E214D392E0005AD43 /* chat_message_voice@2x.png */,
+				45FEF888214D39300005AD43 /* chat_message_voice@3x.png */,
+				45FEF885214D39300005AD43 /* chat_right_bg@2x.png */,
+				45FEF872214D392C0005AD43 /* chat_right_bg@3x.png */,
+				45FEF86B214D392A0005AD43 /* video_bottom_endbtn@2x.png */,
+				45FEF87D214D392D0005AD43 /* video_bottom_endbtn@3x.png */,
+				45FEF862214D39290005AD43 /* video_bottom_message@2x.png */,
+				45FEF863214D39290005AD43 /* video_bottom_message@3x.png */,
+				45FEF87B214D392D0005AD43 /* videocall_camera_switch@2x.png */,
+				45FEF873214D392C0005AD43 /* videocall_camera_switch@3x.png */,
+				45FEF870214D392B0005AD43 /* videocall_chat_voice@2x.png */,
+				45FEF86A214D392A0005AD43 /* videocall_chat_voice@3x.png */,
+				45FEF880214D392E0005AD43 /* videocall_close_audio@2x.png */,
+				45FEF878214D392D0005AD43 /* videocall_close_audio@3x.png */,
+				45FEF874214D392C0005AD43 /* videocall_close_video@2x.png */,
+				45FEF865214D39290005AD43 /* videocall_close_video@3x.png */,
+				45FEF886214D39300005AD43 /* videocall_default_head@2x.png */,
+				45FEF86C214D392A0005AD43 /* videocall_default_head@3x.png */,
+				45FEF864214D39290005AD43 /* videocall_default_minhead@2x.png */,
+				45FEF866214D39290005AD43 /* videocall_default_minhead@3x.png */,
+				45FEF85F214D39280005AD43 /* videocall_end_record@2x.png */,
+				45FEF887214D39300005AD43 /* videocall_end_record@3x.png */,
+				45FEF867214D392A0005AD43 /* videocall_open_audio@2x.png */,
+				45FEF881214D392F0005AD43 /* videocall_open_audio@3x.png */,
+				45FEF869214D392A0005AD43 /* videocall_open_video@2x.png */,
+				45FEF877214D392C0005AD43 /* videocall_open_video@3x.png */,
+				45FEF883214D392F0005AD43 /* videocall_privte_chat@2x.png */,
+				45FEF882214D392F0005AD43 /* videocall_privte_chat@3x.png */,
+				45FEF879214D392D0005AD43 /* videocall_start_record@2x.png */,
+				45FEF86F214D392B0005AD43 /* videocall_start_record@3x.png */,
+				45FEF884214D392F0005AD43 /* videocall_voice_off@2x.png */,
+				45FEF876214D392C0005AD43 /* videocall_voice_off@3x.png */,
+				45FEF87A214D392D0005AD43 /* videocall_voice_open@2x.png */,
+				45FEF875214D392C0005AD43 /* videocall_voice_open@3x.png */,
+			);
+			path = Image;
 			sourceTree = "<group>";
 		};
 		8730AEFB2140FFA1004331A9 /* DTCoreText */ = {
@@ -3453,6 +4013,10 @@
 		87426831212E7E35003C52F6 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				45FEF83F214D1B710005AD43 /* UIAlertController+Blocks.h */,
+				45FEF840214D1B710005AD43 /* UIAlertController+Blocks.m */,
+				45FEF842214D1B710005AD43 /* UIButton+XQAdd.h */,
+				45FEF841214D1B710005AD43 /* UIButton+XQAdd.m */,
 				87426835212E7E35003C52F6 /* UIView */,
 				8742685D212E7E35003C52F6 /* CAAnimation+Animation.h */,
 				87426849212E7E35003C52F6 /* CAAnimation+Animation.m */,
@@ -5337,18 +5901,23 @@
 				874269FF212F9657003C52F6 /* navigationbar_back_icon@2x.png in Resources */,
 				87426894212E7E36003C52F6 /* increase_eleme@3x.png in Resources */,
 				8730B1192148E5D1004331A9 /* fsfreshidle_icon19@2x.png in Resources */,
+				45FEF88D214D39310005AD43 /* video_bottom_message@3x.png in Resources */,
 				87D20AF321393B91001EDD60 /* navigationbar_collect_icon@2x.png in Resources */,
 				874268A1212E7E36003C52F6 /* decrease_taobao@2x.png in Resources */,
 				8730B1202148E5D1004331A9 /* fsfreshidle_icon25@2x.png in Resources */,
 				87426A6021313940003C52F6 /* FSMainVC.xib in Resources */,
 				87D186A3213679F800037DDF /* login_checked@2x.png in Resources */,
 				DB48742A2148DFE100AB0805 /* FSTextListCell.xib in Resources */,
+				45FEF88C214D39310005AD43 /* video_bottom_message@2x.png in Resources */,
+				45FEF891214D39310005AD43 /* videocall_open_audio@2x.png in Resources */,
 				874268A2212E7E36003C52F6 /* decrease_baiduwaimai@2x.png in Resources */,
 				87426A57213135F0003C52F6 /* fstab_btn1_icon@3x.png in Resources */,
 				45F3FD24214BBF48007712EE /* video_history_icon@3x.png in Resources */,
 				8730AD4C2140CC28004331A9 /* user_shareicon@3x.png in Resources */,
 				87426A0E212F9657003C52F6 /* navigationbar_setup_icon@3x.png in Resources */,
 				87C0134D212E7A5300D0AAC3 /* Assets.xcassets in Resources */,
+				45FEF895214D39310005AD43 /* video_bottom_endbtn@2x.png in Resources */,
+				45FEF88A214D39310005AD43 /* chat_head_user@2x.png in Resources */,
 				87D1868C213678B400037DDF /* navigationbar_popback_icon@3x.png in Resources */,
 				874268B8212E7E36003C52F6 /* BMTableView_Transparent@2x.png in Resources */,
 				874268D0212E7E36003C52F6 /* bmtab_bg@2x.png in Resources */,
@@ -5358,24 +5927,33 @@
 				45F3FD21214BBF48007712EE /* video_history_icon@2x.png in Resources */,
 				8730B1162148E5D1004331A9 /* fsfreshidle_icon22@2x.png in Resources */,
 				45F3FD0D214B59B6007712EE /* video_delete_btn@3x.png in Resources */,
+				45FEF88B214D39310005AD43 /* chat_left_bg@2x.png in Resources */,
 				87426A20213100BB003C52F6 /* bmsearch_close@3x.png in Resources */,
 				87426A06212F9657003C52F6 /* navigationbar_message_icon@2x.png in Resources */,
 				DB2656D42146678A002ED713 /* FSLawSearchResultCell.xib in Resources */,
+				45FEF8A2214D39310005AD43 /* videocall_close_audio@3x.png in Resources */,
 				874268BA212E7E36003C52F6 /* BMTableView_UIButtonBarArrowLeft.png in Resources */,
 				8730B10D2148E5D1004331A9 /* fsfreshidle_icon2@2x.png in Resources */,
 				8730B1052148E5D1004331A9 /* fsfreshidle_icon18@2x.png in Resources */,
 				87D186A4213679F800037DDF /* login_checked@3x.png in Resources */,
 				DBD4CE952141229400857DB3 /* home_robot@3x.png in Resources */,
+				45FEF890214D39310005AD43 /* videocall_default_minhead@3x.png in Resources */,
 				87D186AD213679F800037DDF /* login_closeeye@2x.png in Resources */,
 				45DC02B8214A61EF00FCE042 /* video_unselect@3x.png in Resources */,
+				45FEF894214D39310005AD43 /* videocall_chat_voice@3x.png in Resources */,
 				87D186AE213679F800037DDF /* login_logo@3x.png in Resources */,
 				8730B1172148E5D1004331A9 /* fsfreshidle_icon13@2x.png in Resources */,
 				87D20AD6213920E2001EDD60 /* LICENSE in Resources */,
+				45FEF8AF214D39310005AD43 /* chat_right_bg@2x.png in Resources */,
 				87741FE5214A132200F72427 /* user_wechaticon@2x.png in Resources */,
+				45FEF8A9214D39310005AD43 /* chat_head_mediator@2x.png in Resources */,
 				AD5102A4213E77FC008CD74D /* FSCommunitySecVC.xib in Resources */,
 				DBD4CE922141229400857DB3 /* home_topics@2x.png in Resources */,
+				45FEF8A8214D39310005AD43 /* chat_message_voice@2x.png in Resources */,
 				87426A50213135F0003C52F6 /* fstab_btn4_highIcon@3x.png in Resources */,
 				DBD4CE8D2141229400857DB3 /* home_arrow@3x.png in Resources */,
+				45FEF8B2214D39310005AD43 /* chat_message_voice@3x.png in Resources */,
+				45FEF89B214D39310005AD43 /* chat_left_bg@3x.png in Resources */,
 				45DC02BA214A61EF00FCE042 /* video_selected@3x.png in Resources */,
 				8730B11A2148E5D1004331A9 /* fsfreshidle_icon6@2x.png in Resources */,
 				DB48744A214B887700AB0805 /* scanfile_select@2x.png in Resources */,
@@ -5388,12 +5966,14 @@
 				8730B0C9214772AD004331A9 /* user_verifyicon@2x.png in Resources */,
 				DB14A7AB2139247900E88798 /* FSCourseTableCell.xib in Resources */,
 				87D186A6213679F800037DDF /* login_password@2x.png in Resources */,
+				45FEF893214D39310005AD43 /* videocall_open_video@2x.png in Resources */,
 				8730B1062148E5D1004331A9 /* fsfreshidle_icon1@2x.png in Resources */,
 				87426A21213100BB003C52F6 /* bmsearch_close@2x.png in Resources */,
 				87D20B19213CD80D001EDD60 /* navigationbar_webclose_icon@3x.png in Resources */,
 				AD5102A9213E783E008CD74D /* FSSendTopicVC.xib in Resources */,
 				8730B1252148E5D1004331A9 /* fsfreshidle_icon14@2x.png in Resources */,
 				87D20AEF21392FF2001EDD60 /* user_topbackgroud@2x.png in Resources */,
+				45FEF8A7214D39310005AD43 /* video_bottom_endbtn@3x.png in Resources */,
 				8730B0C021465034004331A9 /* BMCombine_up@3x.png in Resources */,
 				DBD4CE8C2141229400857DB3 /* home_tools@2x.png in Resources */,
 				8730B0BF21465034004331A9 /* BMCombine_up@2x.png in Resources */,
@@ -5402,10 +5982,12 @@
 				8742689B212E7E36003C52F6 /* decrease_eleme@2x.png in Resources */,
 				87D186A0213679F800037DDF /* login_openeye@2x.png in Resources */,
 				8730AD4D2140CC28004331A9 /* user_topicicon@2x.png in Resources */,
+				45FEF8AD214D39310005AD43 /* videocall_privte_chat@2x.png in Resources */,
 				8730B0C221465034004331A9 /* BMCombine_down@2x.png in Resources */,
 				87426A07212F9657003C52F6 /* navigationbar_select_icon@3x.png in Resources */,
 				87426AA7213156D5003C52F6 /* banner_close@2x.png in Resources */,
 				8730B0CE214772BC004331A9 /* user_mobileicon@3x.png in Resources */,
+				45FEF89F214D39310005AD43 /* videocall_voice_open@3x.png in Resources */,
 				DB804FEA21425CE9007F7B19 /* FSCaseSearchResultCell.xib in Resources */,
 				45DC02B7214A61EF00FCE042 /* video_not_selected@3x.png in Resources */,
 				87426A54213135F0003C52F6 /* fstab_btn4_icon@2x.png in Resources */,
@@ -5417,6 +5999,9 @@
 				DB48744D214B887F00AB0805 /* scanfile_camera@2x.png in Resources */,
 				87741FE3214A132200F72427 /* user_wechaticon@3x.png in Resources */,
 				8730B11B2148E5D1004331A9 /* fsfreshidle_icon16@2x.png in Resources */,
+				45FEF8AE214D39310005AD43 /* videocall_voice_off@2x.png in Resources */,
+				45FEF8AB214D39310005AD43 /* videocall_open_audio@3x.png in Resources */,
+				45FEF897214D39310005AD43 /* chat_head_mediator@3x.png in Resources */,
 				DB48743E214A5CCD00AB0805 /* FSFileScanVC.xib in Resources */,
 				DBD4CE972141229400857DB3 /* home_message@3x.png in Resources */,
 				87426898212E7E36003C52F6 /* increase_taobao@2x.png in Resources */,
@@ -5426,10 +6011,12 @@
 				874268B6212E7E36003C52F6 /* BMTableView_UIButtonBarArrowRight@2x.png in Resources */,
 				DB2656DD21466D06002ED713 /* search_openFilters@3x.png in Resources */,
 				8730B10C2148E5D1004331A9 /* fsfreshfreshing_icon4@2x.png in Resources */,
+				45FEF8AC214D39310005AD43 /* videocall_privte_chat@3x.png in Resources */,
 				DBD4CE942141229400857DB3 /* home_message@2x.png in Resources */,
 				87426896212E7E36003C52F6 /* decrease_eleme@3x.png in Resources */,
 				874268D7212E7E36003C52F6 /* BMDatePicker.xib in Resources */,
 				874269BA212E9B78003C52F6 /* bmfresh_arrow@3x.png in Resources */,
+				45FEF899214D39310005AD43 /* videocall_start_record@3x.png in Resources */,
 				DB804FE521422548007F7B19 /* search_delKey@3x.png in Resources */,
 				DB487446214B642600AB0805 /* FSImageFileCell.xib in Resources */,
 				8730B1102148E5D1004331A9 /* fsfreshidle_icon8@2x.png in Resources */,
@@ -5451,9 +6038,11 @@
 				87426A22213100BB003C52F6 /* bmsearch_history@2x.png in Resources */,
 				DBD4CE8A2141229400857DB3 /* home_courses@3x.png in Resources */,
 				87426893212E7E36003C52F6 /* steppersinput_plusicon@2x.png in Resources */,
+				45FEF8A4214D39310005AD43 /* videocall_voice_open@2x.png in Resources */,
 				87D20AF421393B91001EDD60 /* navigationbar_collect_icon@3x.png in Resources */,
 				8730AD432140CC28004331A9 /* user_serviceicon@3x.png in Resources */,
 				87426A0C212F9657003C52F6 /* navigationbar_message_icon@3x.png in Resources */,
+				45FEF89D214D39310005AD43 /* videocall_camera_switch@3x.png in Resources */,
 				8730B1222148E5D1004331A9 /* fsfreshidle_icon20@2x.png in Resources */,
 				874268CF212E7E36003C52F6 /* bmtab_bg@3x.png in Resources */,
 				8730B1232148E5D1004331A9 /* fsfreshfreshing_icon5@2x.png in Resources */,
@@ -5466,6 +6055,7 @@
 				8730B1242148E5D1004331A9 /* fsfreshidle_icon15@2x.png in Resources */,
 				8730B1092148E5D1004331A9 /* fsfreshfreshing_icon7@2x.png in Resources */,
 				8730AD4B2140CC28004331A9 /* user_helpicon@3x.png in Resources */,
+				45FEF8A6214D39310005AD43 /* chat_head_user@3x.png in Resources */,
 				8730B1142148E5D1004331A9 /* fsfreshidle_icon11@2x.png in Resources */,
 				874268A3212E7E36003C52F6 /* steppersinput_minusicon@2x.png in Resources */,
 				87426A52213135F0003C52F6 /* fstab_btn4_highIcon@2x.png in Resources */,
@@ -5477,9 +6067,11 @@
 				45DC02C6214A734700FCE042 /* video_invite@2x.png in Resources */,
 				45F3FD1B214BACEF007712EE /* video_share@3x.png in Resources */,
 				DBD4CE902141229400857DB3 /* home_browseCount@2x.png in Resources */,
+				45FEF8B0214D39310005AD43 /* videocall_default_head@2x.png in Resources */,
 				DB48742F2148DFFE00AB0805 /* FSTextTypeCell.xib in Resources */,
 				8730B1112148E5D1004331A9 /* fsfreshidle_icon5@2x.png in Resources */,
 				AD2244DC213D158800F2DC47 /* FSForumDetailListCell.xib in Resources */,
+				45FEF89A214D39310005AD43 /* videocall_chat_voice@2x.png in Resources */,
 				87426A59213135F0003C52F6 /* fstab_btn1_highIcon@2x.png in Resources */,
 				87741FE6214A132200F72427 /* user_qqicon@3x.png in Resources */,
 				87D209732137F399001EDD60 /* FSUserMainVC.xib in Resources */,
@@ -5495,28 +6087,34 @@
 				8742689E212E7E36003C52F6 /* steppersinput_minusicon@3x.png in Resources */,
 				87426A53213135F0003C52F6 /* fstab_btn2_highIcon@3x.png in Resources */,
 				8730B11D2148E5D1004331A9 /* fsfreshfreshing_icon6@2x.png in Resources */,
+				45FEF8A5214D39310005AD43 /* videocall_camera_switch@2x.png in Resources */,
 				8742689A212E7E36003C52F6 /* increase_taobao@3x.png in Resources */,
 				8730AD442140CC28004331A9 /* user_shareicon@2x.png in Resources */,
 				DB487449214B887700AB0805 /* scanfile_select@3x.png in Resources */,
 				45F3FD14214BA535007712EE /* video_person_icon@3x.png in Resources */,
 				45FEF765214D11060005AD43 /* LoadSDK.sh in Resources */,
+				45FEF7F5214D1A590005AD43 /* ZFPlayer.bundle in Resources */,
 				87426A55213135F0003C52F6 /* fstab_btn2_icon@2x.png in Resources */,
 				DBD4CDFE213FB2D800857DB3 /* FSMainToolCell.xib in Resources */,
 				8730B1132148E5D1004331A9 /* fsfreshidle_icon26@2x.png in Resources */,
+				45FEF8A3214D39310005AD43 /* videocall_start_record@2x.png in Resources */,
 				87426892212E7E36003C52F6 /* steppersinput_plusicon@3x.png in Resources */,
 				8730B1072148E5D1004331A9 /* fsfreshidle_icon10@2x.png in Resources */,
 				45F3FD15214BA535007712EE /* video_time_icon@2x.png in Resources */,
 				8730B11C2148E5D1004331A9 /* fsfreshidle_icon17@2x.png in Resources */,
+				45FEF88F214D39310005AD43 /* videocall_close_video@3x.png in Resources */,
 				DB2656D921466B0B002ED713 /* search_lawCount@3x.png in Resources */,
 				DB4874202148A90D00AB0805 /* search_icon@2x.png in Resources */,
 				874268A4212E7E36003C52F6 /* increase_meituan@3x.png in Resources */,
 				874268CE212E7E36003C52F6 /* bmtab_clear_line@2x.png in Resources */,
 				87D20B18213CD80D001EDD60 /* navigationbar_webclose_icon@2x.png in Resources */,
+				45FEF89C214D39310005AD43 /* chat_right_bg@3x.png in Resources */,
 				87426A58213135F0003C52F6 /* fstab_btn1_highIcon@3x.png in Resources */,
 				DB4874212148A90D00AB0805 /* search_icon@3x.png in Resources */,
 				8730B1272148E5D1004331A9 /* fsfreshidle_icon7@2x.png in Resources */,
 				DBD4CE8B2141229400857DB3 /* home_topics@3x.png in Resources */,
 				87D186AA213679F800037DDF /* login_error@3x.png in Resources */,
+				45FEF88E214D39310005AD43 /* videocall_default_minhead@2x.png in Resources */,
 				8730AD472140CC28004331A9 /* user_helpicon@2x.png in Resources */,
 				AD9325FA214B4FDA007F3A93 /* editor.html in Resources */,
 				8730B10A2148E5D1004331A9 /* fsfreshidle_icon23@2x.png in Resources */,
@@ -5531,6 +6129,7 @@
 				DB804FE121422539007F7B19 /* search_hotKey@2x.png in Resources */,
 				DB8D16132137CCAC00EB16E8 /* FSMainHeaderView.xib in Resources */,
 				87426897212E7E36003C52F6 /* decrease_meituan@3x.png in Resources */,
+				45FEF8AA214D39310005AD43 /* videocall_close_audio@2x.png in Resources */,
 				87426A04212F9657003C52F6 /* navigationbar_back_icon@3x.png in Resources */,
 				DB48745C214BB03400AB0805 /* FSFileScanImagePreviewVC.xib in Resources */,
 				874269FC212F9657003C52F6 /* navigationbar_help_icon@3x.png in Resources */,
@@ -5539,9 +6138,15 @@
 				87426899212E7E36003C52F6 /* decrease_meituan@2x.png in Resources */,
 				8730AD422140CC28004331A9 /* user_commenticon@2x.png in Resources */,
 				ADA1228C214614BE00CF0D87 /* FSTopicListVC.xib in Resources */,
+				45FEF896214D39310005AD43 /* videocall_default_head@3x.png in Resources */,
 				8742689D212E7E36003C52F6 /* increase_eleme@2x.png in Resources */,
+				45FEF8A0214D39310005AD43 /* videocall_voice_off@3x.png in Resources */,
+				45FEF889214D39310005AD43 /* videocall_end_record@2x.png in Resources */,
+				45FEF898214D39310005AD43 /* chat_message_text@2x.png in Resources */,
 				87D1869F213679F800037DDF /* login_openeye@3x.png in Resources */,
+				45FEF8A1214D39310005AD43 /* videocall_open_video@3x.png in Resources */,
 				87D1868D213678B400037DDF /* navigationbar_popback_icon@2x.png in Resources */,
+				45FEF8B1214D39310005AD43 /* videocall_end_record@3x.png in Resources */,
 				87426A5A213135F0003C52F6 /* fstab_btn1_icon@2x.png in Resources */,
 				8730B1212148E5D1004331A9 /* fsfreshidle_icon27@2x.png in Resources */,
 				AD1BE214214127180018AF2C /* FSForumSectionHeaderView.xib in Resources */,
@@ -5566,8 +6171,10 @@
 				DBD4CE8E2141229400857DB3 /* home_tools@3x.png in Resources */,
 				874268A5212E7E36003C52F6 /* increase_meituan@2x.png in Resources */,
 				87426A05212F9657003C52F6 /* navigationbar_setup_icon@2x.png in Resources */,
+				45FEF89E214D39310005AD43 /* videocall_close_video@2x.png in Resources */,
 				AD9325AD214B4FD9007F3A93 /* ZSSRichTextEditor.js in Resources */,
 				AD47EFDC2137EBF0004A345F /* Launch Screen.storyboard in Resources */,
+				45FEF892214D39310005AD43 /* chat_message_text@3x.png in Resources */,
 				874268B4212E7E36003C52F6 /* BMTableView_UIButtonBarArrowRight.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5593,10 +6200,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45FEF855214D1B970005AD43 /* SingleTextChatViewController.m in Sources */,
 				8730B0482140FFA2004331A9 /* default.css in Sources */,
 				45DC02C2214A6C4900FCE042 /* FSVideoInviteLitigantCell.m in Sources */,
 				87D20ABA213920E2001EDD60 /* FLEXIvarEditorViewController.m in Sources */,
 				8730B0252140FFA2004331A9 /* DTCoreTextLayoutLine.m in Sources */,
+				45FEF7F2214D1A590005AD43 /* ZFVolumeBrightnessView.m in Sources */,
 				87D1868721365BBB00037DDF /* FSLoginVC.m in Sources */,
 				8730B0912140FFA3004331A9 /* NSScanner+DTScripting.m in Sources */,
 				AD22449F213CD6C300F2DC47 /* NSArray+MASAdditions.m in Sources */,
@@ -5615,17 +6224,20 @@
 				874268FE212E7E36003C52F6 /* NSBundle+BMCategory.m in Sources */,
 				8730B0322140FFA2004331A9 /* DTImage+HTML.m in Sources */,
 				DBD4CE0C213FC32D00857DB3 /* FSImageJump.m in Sources */,
+				45FEF803214D1A980005AD43 /* VideoCallModel.m in Sources */,
 				8730B0782140FFA3004331A9 /* NSString+DTUtilities.m in Sources */,
 				8730B0892140FFA3004331A9 /* UIImage+DTFoundation.m in Sources */,
 				8730B0462140FFA2004331A9 /* DTCoreTextConstants.m in Sources */,
 				8730B0632140FFA3004331A9 /* DTZipArchiveNode.m in Sources */,
 				874268C0212E7E36003C52F6 /* BMSegmentItem.m in Sources */,
+				45FEF835214D1B4D0005AD43 /* MDTMeetingListViewController.m in Sources */,
 				874268C8212E7E36003C52F6 /* BMStepperInputItem.m in Sources */,
 				87426AB42133A32E003C52F6 /* FSAppInfo.m in Sources */,
 				87D20AD4213920E2001EDD60 /* FLEXSystemLogTableViewCell.m in Sources */,
 				87D209B52138F1E2001EDD60 /* UIImage+WebP.m in Sources */,
 				87D20ADC213920E2001EDD60 /* FLEXRealmDatabaseManager.m in Sources */,
 				87426A92213146A6003C52F6 /* XMRequest.m in Sources */,
+				45FEF83E214D1B580005AD43 /* VideoCallView.m in Sources */,
 				DB48742E2148DFFE00AB0805 /* FSTextTypeCell.m in Sources */,
 				874268EE212E7E36003C52F6 /* UIColor+BMCategory.m in Sources */,
 				8730B0B621464B56004331A9 /* BMCombineItem.m in Sources */,
@@ -5634,6 +6246,7 @@
 				8730AD352140B9BD004331A9 /* FSSetupVC.m in Sources */,
 				874268C3212E7E36003C52F6 /* BMTextItem.m in Sources */,
 				874268AA212E7E36003C52F6 /* BMTableViewBoolCell.m in Sources */,
+				45FEF81C214D1AEC0005AD43 /* MJProperty.m in Sources */,
 				AD51029F213E7771008CD74D /* FSPushVCManager.m in Sources */,
 				AD2244E2213D1FF900F2DC47 /* FSCommunityHeaderView.m in Sources */,
 				87D209E62138FF46001EDD60 /* CGGeometry+RSKImageCropper.m in Sources */,
@@ -5663,11 +6276,14 @@
 				8730B06D2140FFA3004331A9 /* NSDictionary+DTError.m in Sources */,
 				874269C6212E9B78003C52F6 /* BMFreshAutoContainerFooterView.m in Sources */,
 				874268FA212E7E36003C52F6 /* NSAttributedString+BMCategory.m in Sources */,
+				45FEF834214D1B4D0005AD43 /* VideoPlayerViewController.m in Sources */,
 				874268C4212E7E36003C52F6 /* BMLongTextItem.m in Sources */,
 				8730B0862140FFA3004331A9 /* DTCustomColoredAccessory.m in Sources */,
 				DBD4CDFD213FB2D800857DB3 /* FSMainToolCell.m in Sources */,
 				87426A5F21313940003C52F6 /* FSMainVC.m in Sources */,
 				AD9325FE214B4FDA007F3A93 /* ZSSFontsViewController.m in Sources */,
+				45FEF7F1214D1A590005AD43 /* UIView+ZFFrame.m in Sources */,
+				45FEF7E5214D1A590005AD43 /* ZFPlayerGestureControl.m in Sources */,
 				ADA1228B214614BE00CF0D87 /* FSTopicListVC.m in Sources */,
 				87D20AA2213920E2001EDD60 /* FLEXImageExplorerViewController.m in Sources */,
 				8730B08B2140FFA3004331A9 /* UIView+DTDebug.m in Sources */,
@@ -5675,6 +6291,7 @@
 				87426A9721314747003C52F6 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				87D20AD1213920E2001EDD60 /* FLEXFileBrowserFileOperationController.m in Sources */,
 				8730B0372140FFA2004331A9 /* DTCoreTextLayoutFrameAccessibilityElementGenerator.m in Sources */,
+				45FEF81F214D1AEC0005AD43 /* NSObject+MJProperty.m in Sources */,
 				874268C9212E7E36003C52F6 /* BMCheckBoxGroupItem.m in Sources */,
 				87426AED2135348D003C52F6 /* FMDatabase.m in Sources */,
 				8730B06E2140FFA3004331A9 /* NSString+DTUTI.m in Sources */,
@@ -5697,9 +6314,12 @@
 				8730B0992140FFA3004331A9 /* DTHTMLParser.m in Sources */,
 				8730B05C2140FFA3004331A9 /* NSString+Paragraphs.m in Sources */,
 				874268E7212E7E36003C52F6 /* UIView+BMPositioning.m in Sources */,
+				45FEF802214D1A980005AD43 /* MDTMeetingListModel.m in Sources */,
+				45FEF832214D1B4D0005AD43 /* MDTVideoRecordViewController.m in Sources */,
 				87D20AE0213920E2001EDD60 /* FLEXGlobalsTableViewController.m in Sources */,
 				87D20ABF213920E2001EDD60 /* FLEXArgumentInputJSONObjectView.m in Sources */,
 				874269BE212E9B78003C52F6 /* BMFreshTriangleDotHeader.m in Sources */,
+				45FEF7EF214D1A590005AD43 /* ZFAVPlayerManager.m in Sources */,
 				87426A91213146A6003C52F6 /* XMCenter.m in Sources */,
 				8730B04B2140FFA2004331A9 /* DTColorFunctions.m in Sources */,
 				AD22449C213CD6C300F2DC47 /* MASCompositeConstraint.m in Sources */,
@@ -5712,6 +6332,7 @@
 				874268F9212E7E36003C52F6 /* CALayer+BMSize.m in Sources */,
 				DB2656E321467396002ED713 /* FSTextSearchResultVC.m in Sources */,
 				8730B0212140FFA2004331A9 /* DTTextAttachment.m in Sources */,
+				45FEF821214D1AEC0005AD43 /* NSString+MJExtension.m in Sources */,
 				8730B0472140FFA2004331A9 /* NSScanner+HTML.m in Sources */,
 				8730B0582140FFA3004331A9 /* NSAttributedString+DTCoreText.m in Sources */,
 				8730B0382140FFA2004331A9 /* DTCoreTextLayoutFrame.m in Sources */,
@@ -5741,10 +6362,13 @@
 				87426A802131461F003C52F6 /* AFURLSessionManager.m in Sources */,
 				8730B0592140FFA3004331A9 /* NSAttributedString+DTDebug.m in Sources */,
 				8742690B212E7E36003C52F6 /* NSArray+BMCategory.m in Sources */,
+				45FEF7FA214D1A590005AD43 /* ZFSpeedLoadingView.m in Sources */,
 				8742690D212E7E36003C52F6 /* NSNumber+BMCategory.m in Sources */,
+				45FEF822214D1AEC0005AD43 /* MJPropertyKey.m in Sources */,
 				AD5102A8213E783E008CD74D /* FSSendTopicVC.m in Sources */,
 				87D20AC7213920E2001EDD60 /* FLEXArgumentInputViewFactory.m in Sources */,
 				87D20ACD213920E2001EDD60 /* FLEXObjectRef.m in Sources */,
+				45FEF83D214D1B580005AD43 /* MDTVideoRecordView.m in Sources */,
 				87D209C32138F1E2001EDD60 /* SDWebImageCoder.m in Sources */,
 				87426AB82133A504003C52F6 /* OpenUDID.m in Sources */,
 				87426AEE2135348D003C52F6 /* FMDatabasePool.m in Sources */,
@@ -5753,12 +6377,16 @@
 				4561391B2148E063007DF6A1 /* FSHeaderCommonSelector.m in Sources */,
 				4561393021490F83007DF6A1 /* FSVideoInviteLitigantVC.m in Sources */,
 				8730B09A2140FFA3004331A9 /* NSMutableArray+DTMoving.m in Sources */,
+				45FEF7F4214D1A590005AD43 /* ZFNetworkSpeedMonitor.m in Sources */,
 				DB4874292148DFE100AB0805 /* FSTextListCell.m in Sources */,
+				45FEF831214D1B4D0005AD43 /* VideoCallController.m in Sources */,
 				87426AA8213156D5003C52F6 /* FSPageBannerView.m in Sources */,
 				87426A7E2131461F003C52F6 /* AFURLResponseSerialization.m in Sources */,
+				45FEF7EA214D1A590005AD43 /* ZFFloatView.m in Sources */,
 				87D20ADB213920E2001EDD60 /* FLEXTableContentCell.m in Sources */,
 				87D20AC9213920E2001EDD60 /* FLEXFieldEditorView.m in Sources */,
 				874268F5212E7E36003C52F6 /* UIImage+BMAssets.m in Sources */,
+				45FEF85D214D278C0005AD43 /* FSVideoStartTool.m in Sources */,
 				8730B09B2140FFA3004331A9 /* NSString+DTFormatNumbers.m in Sources */,
 				AD93559F2137D24100735C2E /* TZImageCropManager.m in Sources */,
 				87D20AD7213920E2001EDD60 /* FLEXTableContentViewController.m in Sources */,
@@ -5766,10 +6394,13 @@
 				45613926214901F6007DF6A1 /* FSVideoMediateModel.m in Sources */,
 				874269D6212E9E21003C52F6 /* BMFreshBackFooterView.m in Sources */,
 				AD8B63FE21338E0C006DDC22 /* FSPreviewFileTool.m in Sources */,
+				45FEF7E1214D1A590005AD43 /* SRWebSocket.m in Sources */,
+				45FEF81E214D1AEC0005AD43 /* MJExtensionConst.m in Sources */,
 				874268E4212E7E36003C52F6 /* UIView+BMAnimation.m in Sources */,
 				87D20AC3213920E2001EDD60 /* FLEXArgumentInputFontView.m in Sources */,
 				AD1BE2122141238B0018AF2C /* FSForumSectionHeaderView.m in Sources */,
 				8730B09C2140FFA3004331A9 /* NSURL+DTAWS.m in Sources */,
+				45FEF833214D1B4D0005AD43 /* UIViewController+VideoCall.m in Sources */,
 				87D20ACB213920E2001EDD60 /* FLEXWindow.m in Sources */,
 				87D20AAB213920E2001EDD60 /* FLEXNetworkTransaction.m in Sources */,
 				87D20AAD213920E2001EDD60 /* FLEXNetworkRecorder.m in Sources */,
@@ -5781,7 +6412,11 @@
 				DBD4CDF8213FAA8800857DB3 /* FSApiRequest+HomePage.m in Sources */,
 				87741FF4214A42C800F72427 /* FSMyCollectionTabVC.m in Sources */,
 				8730B0932140FFA3004331A9 /* DTScriptVariable.m in Sources */,
+				45FEF859214D1B970005AD43 /* ChatTextModel.m in Sources */,
+				45FEF7F9214D1A590005AD43 /* ZFLoadingView.m in Sources */,
+				45FEF85A214D1B970005AD43 /* ChatTextView.m in Sources */,
 				87426901212E7E36003C52F6 /* NSData+BMEncrypt.m in Sources */,
+				45FEF7E8214D1A590005AD43 /* UIScrollView+ZFPlayer.m in Sources */,
 				87426909212E7E36003C52F6 /* NSString+BMRegEx.m in Sources */,
 				8730B09F2140FFA3004331A9 /* NSArray+DTError.m in Sources */,
 				4561393621491033007DF6A1 /* FSVideoAttendListVC.m in Sources */,
@@ -5832,6 +6467,8 @@
 				45DC02A1214A248900FCE042 /* FSCreateVideoMediateHeader.m in Sources */,
 				87D20ABC213920E2001EDD60 /* FLEXArgumentInputStringView.m in Sources */,
 				8730B0532140FFA2004331A9 /* DTImageTextAttachment.m in Sources */,
+				45FEF7EE214D1A590005AD43 /* UIViewController+ZFPlayerRotation.m in Sources */,
+				45FEF7E9214D1A590005AD43 /* ZFPlayerNotification.m in Sources */,
 				DBD4CE08213FBFA000857DB3 /* FSCourseModel.m in Sources */,
 				874269C4212E9B78003C52F6 /* BMFreshGifHeader.m in Sources */,
 				874268EF212E7E36003C52F6 /* UIDevice+BMCategory.m in Sources */,
@@ -5841,9 +6478,12 @@
 				DB2656C721461A9F002ED713 /* FSSearchResultVC.m in Sources */,
 				DB2656CD214664FF002ED713 /* FSLawSearchResultVC.m in Sources */,
 				8730B0812140FFA3004331A9 /* DTAnimatedGIF.m in Sources */,
+				45FEF858214D1B970005AD43 /* ChatTextViewModel.m in Sources */,
+				45FEF81D214D1AEC0005AD43 /* NSObject+MJCoding.m in Sources */,
 				874268CC212E7E36003C52F6 /* BMTableViewActionBar.m in Sources */,
 				AD2244A3213CD6C300F2DC47 /* MASViewAttribute.m in Sources */,
 				87D20AC4213920E2001EDD60 /* FLEXArgumentInputTextView.m in Sources */,
+				45FEF7F0214D1A590005AD43 /* ZFUtilities.m in Sources */,
 				8730B0752140FFA3004331A9 /* DTObjectBlockExecutor.m in Sources */,
 				87D20ACF213920E2001EDD60 /* FLEXInstancesTableViewController.m in Sources */,
 				874269DE212EB7C2003C52F6 /* TTGTextTagCollectionView.m in Sources */,
@@ -5867,7 +6507,9 @@
 				8730B0272140FFA2004331A9 /* DTTextAttachmentHTMLElement.m in Sources */,
 				87D20AD0213920E2001EDD60 /* FLEXFileBrowserTableViewController.m in Sources */,
 				AD9325FC214B4FDA007F3A93 /* ZSSBarButtonItem.m in Sources */,
+				45FEF7EB214D1A590005AD43 /* ZFPlayerView.m in Sources */,
 				87426907212E7E36003C52F6 /* NSString+BMURLEncode.m in Sources */,
+				45FEF7FD214D1A590005AD43 /* ASRManager.m in Sources */,
 				874269DD212EB7C2003C52F6 /* TTGTagCollectionView.m in Sources */,
 				8730B0262140FFA2004331A9 /* DTBreakHTMLElement.m in Sources */,
 				87D209C82138F1E2001EDD60 /* SDWebImageTransition.m in Sources */,
@@ -5878,9 +6520,11 @@
 				8730B0832140FFA3004331A9 /* DTProgressHUD.m in Sources */,
 				87426A3921313159003C52F6 /* FSTabBarController.m in Sources */,
 				874269C0212E9B78003C52F6 /* BMFreshCircleHeader.m in Sources */,
+				45FEF7F3214D1A590005AD43 /* ZFLandScapeControlView.m in Sources */,
 				874268EC212E7E36003C52F6 /* UILocalNotification+BMCategory.m in Sources */,
 				8730B0352140FFA2004331A9 /* NSDictionary+DTCoreText.m in Sources */,
 				87D20AA8213920E2001EDD60 /* FLEXLayerExplorerViewController.m in Sources */,
+				45FEF843214D1B720005AD43 /* UIAlertController+Blocks.m in Sources */,
 				874268D6212E7E36003C52F6 /* BMDatePicker.m in Sources */,
 				8730B03E2140FFA2004331A9 /* CTLineUtils.m in Sources */,
 				874268E6212E7E36003C52F6 /* UIView+BMOutSide.m in Sources */,
@@ -5928,6 +6572,7 @@
 				AD9355A32137D24100735C2E /* NSBundle+TZImagePicker.m in Sources */,
 				874268CD212E7E36003C52F6 /* BMTabBarController.m in Sources */,
 				874268FB212E7E36003C52F6 /* NSRegularExpression+BMRegEx.m in Sources */,
+				45FEF856214D1B970005AD43 /* TextChatHistoryViewController.m in Sources */,
 				87426906212E7E36003C52F6 /* NSString+BMCategory.m in Sources */,
 				874268F2212E7E36003C52F6 /* UIImage+BMCategory.m in Sources */,
 				874268E0212E7E36003C52F6 /* BMPlaceholderTextView.m in Sources */,
@@ -5943,6 +6588,7 @@
 				87D20AA7213920E2001EDD60 /* FLEXSetExplorerViewController.m in Sources */,
 				874268C1212E7E36003C52F6 /* BMBoolItem.m in Sources */,
 				8730B07F2140FFA3004331A9 /* DTActionSheet.m in Sources */,
+				45FEF857214D1B970005AD43 /* PublicTextChatViewController.m in Sources */,
 				ADE8689C21393469005359B5 /* FSForumListCell.m in Sources */,
 				8730B0AF21461456004331A9 /* FSRecommendListVC.m in Sources */,
 				87741FEE214A385700F72427 /* FSMyCommentVC.m in Sources */,
@@ -5961,7 +6607,9 @@
 				8730B07B2140FFA3004331A9 /* UIWebView+DTFoundation.m in Sources */,
 				DB2656E021467363002ED713 /* FSTextSearchResultView.m in Sources */,
 				87D20AB7213920E2001EDD60 /* FLEXPropertyEditorViewController.m in Sources */,
+				45FEF7F7214D1A590005AD43 /* ZFPlayerControlView.m in Sources */,
 				8730B08C2140FFA3004331A9 /* UIApplication+DTNetworkActivity.m in Sources */,
+				45FEF7E4214D1A590005AD43 /* SocketHelper.m in Sources */,
 				8730B0702140FFA3004331A9 /* unzip.c in Sources */,
 				87426A832131461F003C52F6 /* AFSecurityPolicy.m in Sources */,
 				874268DB212E7E36003C52F6 /* UIViewController+BMNavigationBar.m in Sources */,
@@ -5982,15 +6630,19 @@
 				AD932600214B4FDA007F3A93 /* HRColorPickerViewController.m in Sources */,
 				8730B02E2140FFA2004331A9 /* DTAccessibilityElement.m in Sources */,
 				87D20B032139492F001EDD60 /* WebViewJavascriptBridgeBase.m in Sources */,
+				45FEF7E7214D1A590005AD43 /* ZFOrientationObserver.m in Sources */,
+				45FEF7EC214D1A590005AD43 /* ZFKVOController.m in Sources */,
 				874268F8212E7E36003C52F6 /* UIImage+BMTint.m in Sources */,
 				874268E8212E7E36003C52F6 /* UIView+BMInnerShadow.m in Sources */,
 				87D20AB4213920E2001EDD60 /* FLEXToolbarItem.m in Sources */,
+				45FEF7F8214D1A590005AD43 /* ZFSmallFloatControlView.m in Sources */,
 				8730B0542140FFA3004331A9 /* DTHTMLAttributedStringBuilder.m in Sources */,
 				874268AD212E7E36003C52F6 /* BMTableViewMaskTextCell.m in Sources */,
 				AD9355A42137D24100735C2E /* UIView+Layout.m in Sources */,
 				AD2244A0213CD6C300F2DC47 /* View+MASAdditions.m in Sources */,
 				87D209ED2138FF46001EDD60 /* RSKImageScrollView.m in Sources */,
 				874268D4212E7E36003C52F6 /* BMCheckBox.m in Sources */,
+				45FEF830214D1B4D0005AD43 /* MDTVideoInviteViewController.m in Sources */,
 				87D20AEC213920E2001EDD60 /* FLEXMultilineTableViewCell.m in Sources */,
 				87D209CB2138F1E2001EDD60 /* NSImage+WebCache.m in Sources */,
 				8730B01F2140FFA2004331A9 /* DTCoreTextGlyphRun.m in Sources */,
@@ -6006,6 +6658,7 @@
 				874268F4212E7E36003C52F6 /* UITextField+BMCategory.m in Sources */,
 				8730B0222140FFA2004331A9 /* DTHorizontalRuleHTMLElement.m in Sources */,
 				8730B0362140FFA2004331A9 /* DTVideoTextAttachment.m in Sources */,
+				45FEF7E6214D1A590005AD43 /* ZFPlayerController.m in Sources */,
 				87D209722137F399001EDD60 /* FSUserMainVC.m in Sources */,
 				87426AC52133AA9D003C52F6 /* FSCoreStatus.m in Sources */,
 				8730B0662140FFA3004331A9 /* DTSQLiteFunctions.m in Sources */,
@@ -6014,12 +6667,14 @@
 				8730B02C2140FFA2004331A9 /* NSString+CSS.m in Sources */,
 				DB14A7AA2139247900E88798 /* FSCourseTableCell.m in Sources */,
 				874268E9212E7E36003C52F6 /* UIView+BMAnimationExtensions.m in Sources */,
+				45FEF7E2214D1A590005AD43 /* base64.m in Sources */,
 				AD510298213E560F008CD74D /* FSApiRequest+Community.m in Sources */,
 				8730B0772140FFA3004331A9 /* NSFileWrapper+DTCopying.m in Sources */,
 				87426AD12133D6CF003C52F6 /* FSTableView.m in Sources */,
 				87D20ACE213920E2001EDD60 /* FLEXWebViewController.m in Sources */,
 				87D20AB6213920E2001EDD60 /* FLEXManager.m in Sources */,
 				8730B0852140FFA3004331A9 /* DTSmartPagingScrollView.m in Sources */,
+				45FEF83C214D1B580005AD43 /* MDTMeetingListView.m in Sources */,
 				874269C2212E9B78003C52F6 /* BMFreshDotCircleHeader.m in Sources */,
 				87D20AE1213920E2001EDD60 /* FLEXLiveObjectsTableViewController.m in Sources */,
 				87D20AAF213920E2001EDD60 /* FLEXNetworkCurlLogger.m in Sources */,
@@ -6030,6 +6685,7 @@
 				8730B0412140FFA2004331A9 /* DTAttributedLabel.m in Sources */,
 				874269BD212E9B78003C52F6 /* BMFreshDotHeader.m in Sources */,
 				8730B0572140FFA3004331A9 /* DTCoreTextFontCollection.m in Sources */,
+				45FEF7ED214D1A590005AD43 /* ZFReachabilityManager.m in Sources */,
 				8730B0512140FFA2004331A9 /* DTColor+Compatibility.m in Sources */,
 				87D209C72138F1E2001EDD60 /* SDWebImageDownloaderOperation.m in Sources */,
 				87426AC42133AA9D003C52F6 /* FSLocation.m in Sources */,
@@ -6040,9 +6696,12 @@
 				8730B03A2140FFA2004331A9 /* DTAttributedTextCell.m in Sources */,
 				8730B0982140FFA3004331A9 /* DTASN1BitString.m in Sources */,
 				AD9355A92137D24100735C2E /* TZPhotoPickerController.m in Sources */,
+				45FEF820214D1AEC0005AD43 /* NSObject+MJClass.m in Sources */,
+				45FEF844214D1B720005AD43 /* UIButton+XQAdd.m in Sources */,
 				87D209C22138F1E2001EDD60 /* SDWebImagePrefetcher.m in Sources */,
 				87D20B1221394A5A001EDD60 /* FSWebViewController.m in Sources */,
 				874268DC212E7E36003C52F6 /* BMNavigationController.m in Sources */,
+				45FEF7FC214D1A590005AD43 /* UIImageView+ZFCache.m in Sources */,
 				87426A7F2131461F003C52F6 /* AFHTTPSessionManager.m in Sources */,
 				DB57223B2133A1D90065DC30 /* FSCommunityVC.m in Sources */,
 				87426AD72133F446003C52F6 /* FSSuperNetVC.m in Sources */,
@@ -6068,6 +6727,7 @@
 				8730B07D2140FFA3004331A9 /* DTAlertView.m in Sources */,
 				87D20AA6213920E2001EDD60 /* FLEXViewControllerExplorerViewController.m in Sources */,
 				45613929214908AA007DF6A1 /* FSCreateVideoMediateVC.m in Sources */,
+				45FEF81B214D1AEC0005AD43 /* NSObject+MJKeyValue.m in Sources */,
 				874268D8212E7E36003C52F6 /* BMAlertView.m in Sources */,
 				AD9CAAE4212EA0F40071B941 /* UIScrollView+BMEmpty.m in Sources */,
 				8730B0A6214255B7004331A9 /* FSEditorVC.m in Sources */,
@@ -6075,6 +6735,7 @@
 				874269C3212E9B78003C52F6 /* BMFreshHeaderView.m in Sources */,
 				AD2244DB213D158800F2DC47 /* FSForumDetailListCell.m in Sources */,
 				87D186B22136998E00037DDF /* FSLoginVerifyVC.m in Sources */,
+				45FEF7FB214D1A590005AD43 /* ZFPortraitControlView.m in Sources */,
 				874269E2212EB8A4003C52F6 /* BMSearchViewController.m in Sources */,
 				874268B1212E7E36003C52F6 /* BMTableViewCheckBoxGroupCell.m in Sources */,
 				8730B0972140FFA3004331A9 /* DTASN1Parser.m in Sources */,
@@ -6090,6 +6751,7 @@
 				8730B0242140FFA2004331A9 /* UIFont+DTCoreText.m in Sources */,
 				8730B0682140FFA3004331A9 /* DTLog.m in Sources */,
 				DB48743D214A5CCD00AB0805 /* FSFileScanVC.m in Sources */,
+				45FEF81A214D1AEC0005AD43 /* MJPropertyType.m in Sources */,
 				8730B0392140FFA2004331A9 /* NSAttributedString+SmallCaps.m in Sources */,
 				87D20AC2213920E2001EDD60 /* FLEXArgumentInputDateView.m in Sources */,
 				8730B0952140FFA3004331A9 /* NSURL+DTUnshorten.m in Sources */,
@@ -6105,8 +6767,10 @@
 				87426AF621353510003C52F6 /* FSDBVersionCheck.m in Sources */,
 				45869EAE214CAA2300FB2024 /* FSVideoHistoryCell.m in Sources */,
 				87426904212E7E36003C52F6 /* NSString+BMMandarinLatin.m in Sources */,
+				45FEF7F6214D1A590005AD43 /* ZFSliderView.m in Sources */,
 				87D209E72138FF46001EDD60 /* RSKInternalUtility.m in Sources */,
 				87741FF1214A387100F72427 /* FSMyTopicVC.m in Sources */,
+				45FEF823214D1AEC0005AD43 /* MJFoundation.m in Sources */,
 				87D209BB2138F1E2001EDD60 /* SDWebImageCodersManager.m in Sources */,
 				8730B0722140FFA3004331A9 /* ioapi.c in Sources */,
 				874268A8212E7E36003C52F6 /* BMTableViewTextCell.m in Sources */,
@@ -6312,6 +6976,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/fengshun/mainTab/VideoMediateTool/Meeting/Tool/ASRSDK",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lxml2",
@@ -6351,6 +7019,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/fengshun/mainTab/VideoMediateTool/Meeting/Tool/ASRSDK",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",

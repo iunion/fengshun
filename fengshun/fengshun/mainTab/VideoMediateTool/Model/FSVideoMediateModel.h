@@ -62,6 +62,8 @@ typedef NS_ENUM(NSInteger, FSMeetingDataType) {
 
 - (NSString *)getMeetingPersonnelNameList;
 
+- (FSMeetingPersonnelModel *)getMeetingMediator;
+
 @end
 
 

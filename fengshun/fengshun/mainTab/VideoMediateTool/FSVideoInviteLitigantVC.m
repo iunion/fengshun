@@ -45,6 +45,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    
     // 新页面默认申请人、被申请人
     if (_m_InviteList == nil) {
         _m_InviteList = [NSMutableArray array];

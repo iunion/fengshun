@@ -58,4 +58,20 @@
     return [FSApiRequest makeRequestWithURL:urlStr parameters:@{@"id":@(meetingId)}];
 }
 
++ (nullable NSMutableURLRequest *)startMeetingWithId:(NSInteger)meetingId
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/meeting/startMeeting", FS_URL_SERVER];
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:@{@"id":@(meetingId)}];
+}
+
++ (nullable NSMutableURLRequest *)getJoinMeetingToken:(NSString *)inviteCode phone:(NSString *)phone
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/meeting/inviteGetToken", FS_URL_SERVER];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:phone forKey:@"phone"];
+    [parameters setObject:inviteCode forKey:@"inviteCode"];
+
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
+}
+
 @end

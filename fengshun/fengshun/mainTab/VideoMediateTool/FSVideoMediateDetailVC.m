@@ -9,6 +9,8 @@
 #import "FSVideoMediateDetailVC.h"
 #import "FSEditVideoMediateView.h"
 #import "FSVideoAttendListVC.h"
+#import "VideoCallController.h"
+#import "FSVideoStartTool.h"
 
 @interface FSVideoMediateDetailVC () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) FSMeetingDetailModel *m_DetailModel;
@@ -228,12 +230,91 @@
 // 进入视频会议
 - (void)bottomButtonClickAction
 {
+    if ([_m_DetailModel.meetingStatus isEqualToString:@"MEETING_NOT_START"])
+    {
+        [self startMeeting];
+    }
+    else
+    {
+        [self joinRoom];
+    }
 }
+
+- (void)startMeeting
+{
+    [FSVideoStartTool startMeetingWithMeetingId:self.m_MeetingId completionHandler:^(NSURLResponse *response, id  _Nullable responseObject, NSError * _Nullable error) {
+        if (error)
+        {
+            BMLog(@"Error: %@", error);
+            [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        }
+        else
+        {
+            NSDictionary *resDic = responseObject;
+            if (![resDic bm_isNotEmptyDictionary])
+            {
+                [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                return;
+            }
+            
+            NSInteger statusCode = [resDic bm_intForKey:@"code"];
+            if (statusCode == 1000)
+            {
+                [_m_DetailModel.meetingStatus isEqualToString:@"MEETING_UNDERWAY"];
+                [self.m_ProgressHUD hideAnimated:NO];
+                [self joinRoom];
+                return;
+            }
+            
+            NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
+            [self.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        }
+    }];
+}
+
+
+- (void)joinRoom
+{
+    FSMeetingPersonnelModel *model = [_m_DetailModel getMeetingMediator];
+    BMWeakSelf
+    [FSVideoStartTool getJoinMeetingToken:model.inviteCode phone:model.mobilePhone completionHandler:^(NSURLResponse *response, id  _Nullable responseObject, NSError * _Nullable error) {
+        if (error)
+        {
+            BMLog(@"Error: %@", error);
+            [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        }
+        else
+        {
+            NSDictionary *resDic = responseObject;
+            if (![resDic bm_isNotEmptyDictionary])
+            {
+                [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                return;
+            }
+            
+            NSInteger statusCode = [resDic bm_intForKey:@"code"];
+            if (statusCode == 1000)
+            {
+                NSDictionary *data = [resDic bm_dictionaryForKey:@"data"];
+                VideoCallController *vc = [VideoCallController VCWithRoomId:_m_DetailModel.roomId meetingId:_m_DetailModel.meetingId token:data[@"token"]];
+                BMNavigationController *nav = [[BMNavigationController alloc] initWithRootViewController:vc];
+                [weakSelf presentViewController:nav animated:YES completion:nil];
+
+                return;
+            }
+            
+            NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
+            [self.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        }
+    }];
+}
+
 // 回放视频
 - (void)videoHistoryAction
 {
     
 }
+
 // 进入消息记录
 - (void)messageListAction
 {
