@@ -103,7 +103,7 @@
 
     UILabel *leftlabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 0, 150, 24)];
     leftlabel.backgroundColor = [UIColor clearColor];
-    leftlabel.text = [NSString stringWithFormat:@"ID：%ld",model.meetingId];
+    leftlabel.text = [NSString stringWithFormat:@"ID：%@",@(model.meetingId)];
     leftlabel.textColor = UI_COLOR_B4;
     leftlabel.font = UI_FONT_12;
     [contenView addSubview:leftlabel];
@@ -164,7 +164,11 @@
     personView.tapHandle = ^(FSEditVideoMediateBaseView *editView) {
         NSLog(@"参与人员列表");
         FSVideoAttendListVC *vc = [FSVideoAttendListVC alloc];
-        vc.m_AttendList = self.m_DetailModel.meetingPersonnelResponseDTO;
+        if (![weakSelf.m_DetailModel.meetingStatus isEqualToString:@"MEETING_END"])
+        {
+            vc.meetingId = weakSelf.m_DetailModel.meetingId;
+        }
+        vc.m_AttendList = weakSelf.m_DetailModel.meetingPersonnelResponseDTO;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     };
     
@@ -221,61 +225,19 @@
     return btn;
 }
 
+// 进入视频会议
 - (void)bottomButtonClickAction
 {
-    // 进入视频
 }
+// 回放视频
 - (void)videoHistoryAction
 {
     
 }
+// 进入消息记录
 - (void)messageListAction
 {
     
-}
-
-
-#pragma mark -
-#pragma mark Table Data Source Methods
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 0;
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 0;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 135.0f;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return nil;
-    //    static NSString *taskCellIdentifier = @"VideoMediateListCell";
-    //    VideoMediateListCell *cell = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
-    //
-    //    if (cell == nil)
-    //    {
-    //        cell = [[[NSBundle mainBundle] loadNibNamed:@"VideoMediateListCell" owner:self options:nil] lastObject];
-    //    }
-    //
-    //    [cell setModel:self.m_DataArray[indexPath.row]];
-    //
-    //    return cell;
-}
-
-
-#pragma mark -
-#pragma mark UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 

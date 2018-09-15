@@ -8,6 +8,7 @@
 
 #import "FSVideoAttendListVC.h"
 #import "FSVideoMediatePersonalCell.h"
+#import "FSVideoInviteLitigantVC.h"
 
 @interface FSVideoAttendListVC ()
 
@@ -19,8 +20,44 @@
     [super viewDidLoad];
 
     [self bm_setNavigationWithTitle:@"参与人员" barTintColor:[UIColor whiteColor] leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
+    
+    if (self.meetingId > 0) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self rightItemButton]];
+    }
 
     [self.m_TableView reloadData];
+}
+
+- (UIButton *)rightItemButton
+{
+    UIButton *btn = [UIButton bm_buttonWithFrame:CGRectMake(0, 0, 44, 44)];
+    btn.backgroundColor = [UIColor whiteColor];
+    [btn addTarget:self action:@selector(addLitigantAction) forControlEvents:UIControlEventTouchUpInside];
+    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:@"+  邀请"
+                                                                             attributes:@{NSForegroundColorAttributeName:UI_COLOR_BL1,
+                                                                                          NSFontAttributeName:UI_FONT_16
+                                                                                          }];
+    [attr addAttribute:NSFontAttributeName value:UI_BOLDFONT_18 range:NSMakeRange(0, 1)];
+    [btn setAttributedTitle:attr forState:UIControlStateNormal];
+
+    return btn;
+}
+
+- (void)addLitigantAction
+{
+    FSVideoInviteLitigantVC *vc = [FSVideoInviteLitigantVC new];
+    vc.meetingId = self.meetingId;
+    BMWeakSelf
+    vc.inviteComplete = ^(NSArray *litigantList) {
+        if (litigantList.count) {
+            NSMutableArray *newList = [NSMutableArray arrayWithArray:weakSelf.m_AttendList];
+            [newList addObjectsFromArray:litigantList];
+            weakSelf.m_AttendList = newList;
+            [weakSelf.m_TableView reloadData];
+        }
+    };
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark -
@@ -47,7 +84,7 @@
     view.backgroundColor = [UIColor clearColor];
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(14, 0, self.m_TableView.bm_width-28, 24)];
-    label.text = [NSString stringWithFormat:@"参与人员：%ld人",_m_AttendList.count];
+    label.text = [NSString stringWithFormat:@"参与人员：%@人",@(_m_AttendList.count)];
     label.textColor = UI_COLOR_B4;
     label.font = UI_FONT_12;
     [view addSubview:label];

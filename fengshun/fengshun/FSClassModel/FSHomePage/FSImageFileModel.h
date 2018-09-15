@@ -8,6 +8,7 @@
 
 #import "FSSuperModel.h"
 
+#define TOOLVIEW_HEIGHT 59.0f
 
 @interface FSImageFileModel : FSSuperModel
 

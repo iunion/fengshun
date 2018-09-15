@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class FSWebViewController;
+@class FSWebViewController, FSFileScanImagePreviewVC;
 @protocol FSWebViewControllerDelegate;
 
 // 跳转回调
@@ -50,4 +50,6 @@ typedef void (^PushVCCallBack)(id object);
 
 // 文件扫描
 + (void)homePagePushToFileScanVC:(UIViewController *)mainVC;
+// 文件扫描图片预览
++ (FSFileScanImagePreviewVC *)fileScanVC:(UIViewController *)fileCacnVC pushToImagePreviewWithSourceArray:(NSMutableArray *)sourceArray localArray:(NSMutableArray *)localArray selectIndex:(NSInteger)selectIndex;
 @end

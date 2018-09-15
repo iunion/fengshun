@@ -132,11 +132,10 @@
                                                  underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset
                                                      accessoryView:nil
                                                   selectionHandler:^(BMTableViewItem *item) {
-                                                      BMStrongSelf
-                                                      if (self.selectorBlock) {
-                                                          self.selectorBlock(tagModel, rowModel);
+                                                      if (weakSelf.selectorBlock) {
+                                                          weakSelf.selectorBlock(tagModel, rowModel);
                                                       }
-                                                      [self hideTableView];
+                                                      [weakSelf hideTableView];
                                                   }];
             item.cellStyle  = UITableViewCellStyleDefault;
             item.textFont   = [UIFont systemFontOfSize:14.0f];
