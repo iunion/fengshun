@@ -39,6 +39,8 @@ typedef NS_ENUM(NSInteger, FSMeetingDataType) {
 
 + (instancetype)userModel;
 
+- (NSDictionary *)formToParameters;
+
 @end
 
 // 会议列表简单类型

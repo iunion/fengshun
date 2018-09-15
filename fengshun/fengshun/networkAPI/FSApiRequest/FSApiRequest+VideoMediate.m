@@ -36,4 +36,14 @@
     return [FSApiRequest makeRequestWithURL:urlStr parameters:@{@"id":@(meetingId)}];
 }
 
++ (nullable NSMutableURLRequest *)inviteListPersonnelWithId:(NSInteger)meetingId personList:(NSArray *)list
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/meeting/inviteListPersonnel", FS_URL_SERVER];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters bm_setInteger:meetingId forKey:@"id"];
+    [parameters setObject:list forKey:@"meetingPersonnelRequestDTO"];
+
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
+}
+
 @end

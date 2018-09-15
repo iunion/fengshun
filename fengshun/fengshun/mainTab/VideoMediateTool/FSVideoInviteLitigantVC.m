@@ -45,11 +45,13 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    // 新页面默认俩
+    // 新页面默认申请人、被申请人
     if (_m_InviteList == nil) {
         _m_InviteList = [NSMutableArray array];
-        [self addLitigantAction];
-        [self addLitigantAction];
+        [self addApplicantLitigant];
+        if (self.meetingId == 0) {
+            [self addRespondentLitigant];
+        }
     }
 }
 
@@ -78,18 +80,91 @@
         model.selectState = 1;
     }
     
-    if (self.inviteComplete && self.m_InviteList.count) {
-        self.inviteComplete(self.m_InviteList);
+    if (self.meetingId == 0) {
+        if (self.inviteComplete && self.m_InviteList.count) {
+            self.inviteComplete(self.m_InviteList);
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        [self sendInviteRequest];
     }
-    [self.navigationController popViewControllerAnimated:YES];
+}
+
+// 添加申请人
+- (void)addApplicantLitigant
+{
+    FSMeetingPersonnelModel *model = [FSMeetingPersonnelModel new];
+    model.meetingIdentityTypeEnums = @"APPLICAT";
+    [_m_InviteList addObject:model];
+}
+
+// 添加被申请人
+- (void)addRespondentLitigant
+{
+    FSMeetingPersonnelModel *model = [FSMeetingPersonnelModel new];
+    model.meetingIdentityTypeEnums = @"RESPONDENT";
+    [_m_InviteList addObject:model];
 }
 
 - (void)addLitigantAction
 {
-    FSMeetingPersonnelModel *model = [FSMeetingPersonnelModel new];
-    [_m_InviteList addObject:model];
+    [self addApplicantLitigant];// 默认是申请人
     [self.m_TableView reloadData];
 }
+
+- (void)sendInviteRequest
+{
+    NSMutableArray *array = [NSMutableArray array];
+    for (FSMeetingPersonnelModel *model in _m_InviteList) {
+        [array addObject:[model formToParameters]];
+    }
+
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSMutableURLRequest *request = [FSApiRequest inviteListPersonnelWithId:self.meetingId personList:array];
+    if (request)
+    {
+        [self.m_ProgressHUD showAnimated:YES showBackground:NO];
+        NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+            if (error)
+            {
+                BMLog(@"Error: %@", error);
+                [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            }
+            else
+            {
+#if DEBUG
+                NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
+                BMLog(@"%@ %@", response, responseStr);
+#endif
+                
+                NSDictionary *resDic = responseObject;
+                if (![resDic bm_isNotEmptyDictionary])
+                {
+                    [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                    return;
+                }
+                
+                NSInteger statusCode = [resDic bm_intForKey:@"code"];
+                if (statusCode == 1000)
+                {
+                    if (self.inviteComplete && self.m_InviteList.count) {
+                        self.inviteComplete(self.m_InviteList);
+                    }
+                    [self.m_ProgressHUD hideAnimated:NO];
+                    [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:@"邀请成功！" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                    [self.navigationController popViewControllerAnimated:YES];
+                    return;
+                }
+                
+                NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
+                [self.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            }
+        }];
+        [task resume];
+    }
+}
+
+#pragma mark
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

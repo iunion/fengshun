@@ -12,5 +12,10 @@
 typedef void(^inviteLitigantCompleteBlock)(NSArray *litigantList);
 
 @interface FSVideoInviteLitigantVC : FSTableViewVC
+
+// 已存在会议的会议邀请人员需要请求API
+@property (nonatomic, assign) NSInteger meetingId;
+
 @property (nonatomic, copy) inviteLitigantCompleteBlock inviteComplete;
+
 @end
