@@ -7,6 +7,7 @@
 //
 
 #import "FSVideoMessageListVC.h"
+#import "FSVideoMessageCell.h"
 
 @interface FSVideoMessageListVC ()
 
@@ -46,6 +47,28 @@
     [self.m_TableView reloadData];
     
     return [super succeedLoadedRequestWithDic:data];
+}
+
+#pragma mark -
+#pragma mark Table Data Source Methods
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 135.0f;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *taskCellIdentifier = @"FSVideoMessageCell";
+    FSVideoMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
+    
+    if (cell == nil)
+    {
+        cell = [[FSVideoMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:taskCellIdentifier];
+    }
+    
+    
+    return cell;
 }
 
 

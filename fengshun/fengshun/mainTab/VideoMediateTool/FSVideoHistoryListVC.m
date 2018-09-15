@@ -7,6 +7,7 @@
 //
 
 #import "FSVideoHistoryListVC.h"
+#import "FSVideoHistoryCell.h"
 
 @interface FSVideoHistoryListVC ()
 
@@ -49,6 +50,27 @@
     return [super succeedLoadedRequestWithDic:data];
 }
 
+#pragma mark -
+#pragma mark Table Data Source Methods
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 135.0f;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *taskCellIdentifier = @"FSVideoHistoryCell";
+    FSVideoHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
+    
+    if (cell == nil)
+    {
+        cell = [[FSVideoHistoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:taskCellIdentifier];
+    }
+    
+    
+    return cell;
+}
 
 
 @end
