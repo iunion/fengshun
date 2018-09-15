@@ -49,6 +49,8 @@
     }];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveMessageListNoti:) name:kNotiReceiveHistoryPrivateMessageListName object:nil];
+    
+    [self freshDataWithTableView:self.m_TableView];
 }
 
 - (void)backAction:(id)sender
@@ -94,7 +96,8 @@
         self.pageIndex ++;
         [self.m_TableView resetFreshHeaderState];
     } else {
-        [self.m_TableView resetFreshFooterStateWithNoMoreData];
+        [self.m_TableView resetFreshHeaderState];
+        self.m_TableView.bm_freshHeaderView = nil;
     }
 }
 
