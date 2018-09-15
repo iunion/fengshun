@@ -280,7 +280,7 @@ static NSDictionary *FSMeetingPersonIdentityTypeDic;
             [string appendString:@"、"];
         }
 
-        [string appendString:[NSString stringWithFormat:@"等%ld人", count]];
+        [string appendString:[NSString stringWithFormat:@"等%@人", @(count)]];
     }
     else
     {

@@ -103,7 +103,7 @@
 
     UILabel *leftlabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 0, 150, 24)];
     leftlabel.backgroundColor = [UIColor clearColor];
-    leftlabel.text = [NSString stringWithFormat:@"ID：%ld",model.meetingId];
+    leftlabel.text = [NSString stringWithFormat:@"ID：%@",@(model.meetingId)];
     leftlabel.textColor = UI_COLOR_B4;
     leftlabel.font = UI_FONT_12;
     [contenView addSubview:leftlabel];

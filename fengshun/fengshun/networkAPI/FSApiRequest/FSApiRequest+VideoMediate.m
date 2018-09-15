@@ -46,4 +46,16 @@
     return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
 }
 
++ (nullable NSMutableURLRequest *)getRoomMessageRecordList:(NSInteger)roomId
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/meeting/getMessageRecord", FS_URL_SERVER];
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:@{@"roomId":@(roomId)}];
+}
+
++ (nullable NSMutableURLRequest *)getMeetingVideoList:(NSInteger)meetingId
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/meeting/getVideoList", FS_URL_SERVER];
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:@{@"id":@(meetingId)}];
+}
+
 @end

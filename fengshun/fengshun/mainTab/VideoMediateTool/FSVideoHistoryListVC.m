@@ -1,33 +1,34 @@
 //
-//  FSVideoMessageListVC.m
+//  FSVideoHistoryListVC.m
 //  fengshun
 //
-//  Created by ILLA on 2018/9/12.
+//  Created by ILLA on 2018/9/15.
 //  Copyright © 2018年 FS. All rights reserved.
 //
 
-#import "FSVideoMessageListVC.h"
+#import "FSVideoHistoryListVC.h"
 
-@interface FSVideoMessageListVC ()
+@interface FSVideoHistoryListVC ()
 
 @end
 
-@implementation FSVideoMessageListVC
+@implementation FSVideoHistoryListVC
 @synthesize m_FreshViewType = _m_FreshViewType;
 
 - (void)viewDidLoad {
+
     _m_FreshViewType = BMFreshViewType_NONE;
 
     [super viewDidLoad];
 
-    [self bm_setNavigationWithTitle:@"消息记录" barTintColor:[UIColor whiteColor] leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
-
+    [self bm_setNavigationWithTitle:@"视频回放" barTintColor:[UIColor whiteColor] leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
+   
     [self loadApiData];
 }
 
 - (NSMutableURLRequest *)setLoadDataRequest
 {
-    return [FSApiRequest getRoomMessageRecordList:0];
+    return [FSApiRequest getMeetingVideoList:0];
 }
 
 - (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)data
@@ -38,7 +39,7 @@
 //    if (array) {
 //        [self.m_DataArray addObjectsFromArray:array];
 //    }
-//    
+    
     if (self.m_DataArray.count == 0) {
         [self showEmptyViewWithStatus:BMEmptyViewStatus_NoData];
     }
@@ -47,6 +48,7 @@
     
     return [super succeedLoadedRequestWithDic:data];
 }
+
 
 
 @end
