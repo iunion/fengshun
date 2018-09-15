@@ -15,6 +15,19 @@
 
 #define FS_FILE_Adress      (@"/storm/file/download/")
 
+//开发环境配置
+//1400119577 32661
+//测试环境配置
+//1400119579 32662
+//生产环境配置
+//1400119581 32663
+
+// 腾讯RTC
+#define KILiveSDKAPPID     1400119577
+#define KILiveAccountType  32661
+#define KILiveControlRole  @"user"
+
+
 // 一般API超时时间
 #define FSAPI_TIMEOUT_SECONDS               (30.0f)
 // 数据上传超时时间
