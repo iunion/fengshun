@@ -43,8 +43,9 @@
 
 @implementation FSTopicListCell
 
-+ (CGFloat)cellHeight{
-    return 152;
++ (CGFloat)cellHeight
+{
+    return 154.0f;
 }
 
 - (void)dealloc
