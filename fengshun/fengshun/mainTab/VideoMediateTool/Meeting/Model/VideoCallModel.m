@@ -55,24 +55,9 @@
     model.userId                    = [params bm_stringForKey:@"userId"];
     model.userSig                   = [params bm_stringForKey:@"userSig"];
     model.privateMapKey             = [params bm_stringForKey:@"privateMapKey"];
-    model.caseStatus                = [params bm_intForKey:@"caseStatus"];
     model.roomModel                 = [VideoCallRoomModel modelWithParams:params];
     return model;
 }
 
 @end
 
-
-@implementation MDTVideoRecordModel
-
-+ (instancetype)modelWithParams:(NSDictionary *)params
-{
-    MDTVideoRecordModel *model = [[self alloc] init];
-    model.uploadTime                    = [params bm_longForKey:@"uploadTime"];
-    model.download                      = [params bm_stringForKey:@"download"];
-    model.joinUser                      = [params bm_stringForKey:@"joinUser"];
-    model.url                           = [params bm_stringForKey:@"url"];
-    return model;
-}
-
-@end

@@ -15,7 +15,6 @@
 - (void)vc_showMessage:(NSString *)msg {
     
     __block MASConstraint *labelTopMas;
-//    CGFloat padding = 10;
     
     UILabel *label = [UILabel new];
     label.text = msg;
@@ -23,21 +22,18 @@
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor whiteColor];
     label.backgroundColor = UI_COLOR_BL1;
-//    label.textContainerInset = UIEdgeInsetsMake(padding, padding, padding, padding);
-    [self.view insertSubview:label belowSubview:self.topBar];
+    [self.view addSubview:label];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.offset(35);
         make.left.right.equalTo(self.view);
-        labelTopMas = make.bottom.equalTo(self.topBar);
+        labelTopMas = make.top.equalTo(self.view).offset(-35);
     }];
-    
     
     [self.view layoutIfNeeded];
     [labelTopMas uninstall];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        labelTopMas = make.top.equalTo(self.topBar.mas_bottom);
+        labelTopMas = make.top.equalTo(self.view).offset(0);
     }];
-    
     
     [UIView animateWithDuration:0.5 animations:^{
         [self.view layoutIfNeeded];
@@ -45,7 +41,7 @@
         [self.view layoutIfNeeded];
         [labelTopMas uninstall];
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
-            labelTopMas = make.bottom.equalTo(self.topBar);
+            labelTopMas = make.top.equalTo(self.view).offset(-35);
         }];
         [UIView animateWithDuration:0.25 delay:1.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             [self.view layoutIfNeeded];
@@ -94,7 +90,7 @@
         option.controlRole = KILiveControlRole;
         
         [hud showAnimated:YES withText:@"正在加入房间"];
-        [[ILiveRoomManager getInstance] joinRoom:model.roomId option:option succ:^{
+        [[ILiveRoomManager getInstance] joinRoom:(int)model.roomId option:option succ:^{
             [hud hideAnimated:YES];
             handler();
         } failed:^(NSString *module, int errId, NSString *errMsg) {

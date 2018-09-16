@@ -10,10 +10,8 @@
 #import "UIAlertController+Blocks.h"
 #import "UIViewController+VideoCall.h"
 #import "ASRManager.h"
-#import "MDTVideoInviteViewController.h"
 #import "SingleTextChatViewController.h"
 #import "UIButton+BMContentRect.h"
-#import "MDTVideoInviteViewController.h"
 #import "PublicTextChatViewController.h"
 #import "FSVideoInviteLitigantVC.h"
 
@@ -76,7 +74,6 @@ VideoCallVideoViewDelegate>
     [self loginAndJoinRoomWithModel:model handler:^{
         handler();
         self.model = model;
-        self.model.caseStatus = CaseStatusOnGoing;
         if (model.roomModel) {
             if (model.roomModel.voiceDiscernSwitch) {
                 [[ASRManager defaultManager] start];

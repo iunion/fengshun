@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FSVideoMediateModel.h"
 
 @interface FSVideoHistoryCell : UITableViewCell
-
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *timeLabel;
+@property (nonatomic, strong) UIView *lineView;
+@property (nonatomic, strong) FSVideoRecordModel *model;
 @end

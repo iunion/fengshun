@@ -8,7 +8,7 @@
 
 #import "FSVideoMediateListVC.h"
 #import "FSHeaderCommonSelector.h"
-#import "VideoMediateListCell.h"
+#import "FSVideoMediateListCell.h"
 #import "FSCreateVideoMediateVC.h"
 #import "FSVideoMediateDetailVC.h"
 
@@ -117,11 +117,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *taskCellIdentifier = @"VideoMediateListCell";
-    VideoMediateListCell *cell = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
+    FSVideoMediateListCell *cell = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
     
     if (cell == nil)
     {
-        cell = [[VideoMediateListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:taskCellIdentifier];
+        cell = [[FSVideoMediateListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:taskCellIdentifier];
     }
     
     [cell setModel:self.m_DataArray[indexPath.row]];

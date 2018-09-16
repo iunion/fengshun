@@ -19,19 +19,6 @@ typedef NS_ENUM(NSInteger, VideoCallMemberStatus) {
     VideoCallMemberStatusOffline, ///< 离线
 };
 
-typedef NS_ENUM(NSInteger, CaseStatus) {
-    CaseStatusUnKnown, ///< 未知
-    CaseStatusSuccess, ///< 调解成功
-    CaseStatusFail, ///< 调解失败
-    CaseStatusOnGoing, ///< 正在调解
-    CaseStatusRetract, ///< 撤回调解
-    CaseStatusTransfer, ///< 已转移
-    CaseStatusWait, ///< 等待调解
-    CaseStatusRefuse, ///< 不受理
-    CaseStatusApply, ///< 提交申请
-};
-
-
 #import <Foundation/Foundation.h>
 
 @interface VideoCallMemberModel : FSSuperModel
@@ -55,19 +42,6 @@ typedef NS_ENUM(NSInteger, CaseStatus) {
 @property (nonatomic, copy) NSString *userSig;
 @property (nonatomic, copy) NSString *privateMapKey;
 @property (nonatomic, strong) VideoCallRoomModel *roomModel;
-@property (nonatomic, assign) CaseStatus caseStatus;
 @end
 
-
-
-@interface MDTVideoRecordModel : FSSuperModel
-// 媒体流ID
-@property (nonatomic, copy) NSString *download;
-@property (nonatomic, copy) NSString *joinUser;
-// 播放地址URL
-@property (nonatomic, copy) NSString *url;
-// 上传时间
-@property (nonatomic, assign) int64_t uploadTime;
-
-@end
 

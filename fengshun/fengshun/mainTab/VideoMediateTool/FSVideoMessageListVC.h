@@ -6,8 +6,10 @@
 //  Copyright © 2018年 FS. All rights reserved.
 //
 
-#import "FSTableViewVC.h"
+#import "FSSuperNetVC.h"
 
-@interface FSVideoMessageListVC : FSTableViewVC
+@interface FSVideoMessageListVC : FSSuperNetVC
+
+@property (nonatomic, copy) NSString *roomId;           // 房间id
 
 @end

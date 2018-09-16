@@ -263,7 +263,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable NSMutableURLRequest *)saveMeetingWithInfo:(NSDictionary *)dic;
 + (nullable NSMutableURLRequest *)getMeetingDetailWithId:(NSInteger)meetingId;
 + (nullable NSMutableURLRequest *)inviteListPersonnelWithId:(NSInteger)meetingId personList:(NSArray *)list;
-+ (nullable NSMutableURLRequest *)getRoomMessageRecordList:(NSInteger)roomId;
++ (nullable NSMutableURLRequest *)getRoomMessageRecordList:(NSString *)roomId;
 + (nullable NSMutableURLRequest *)getMeetingVideoList:(NSInteger)meetingId;
 + (nullable NSMutableURLRequest *)startMeetingWithId:(NSInteger)meetingId;
 + (nullable NSMutableURLRequest *)getJoinMeetingToken:(NSString *)inviteCode phone:(NSString *)phone;

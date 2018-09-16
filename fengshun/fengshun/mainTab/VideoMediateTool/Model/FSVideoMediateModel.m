@@ -354,3 +354,18 @@ static NSDictionary *FSMeetingPersonIdentityTypeDic;
 
 @end
 
+
+@implementation FSVideoRecordModel
+
++ (instancetype)modelWithParams:(NSDictionary *)params
+{
+    FSVideoRecordModel *model = [[self alloc] init];
+    model.uploadTime                    = [params bm_doubleForKey:@"uploadTime"];
+    model.download                      = [params bm_stringForKey:@"download"];
+    model.joinUser                      = [params bm_stringForKey:@"joinUser"];
+    model.preview                       = [params bm_stringForKey:@"preview"];
+    model.url                           = [params bm_stringForKey:@"url"];
+    return model;
+}
+@end
+

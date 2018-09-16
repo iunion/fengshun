@@ -11,6 +11,8 @@
 #import "FSVideoAttendListVC.h"
 #import "VideoCallController.h"
 #import "FSVideoStartTool.h"
+#import "FSVideoHistoryListVC.h"
+#import "FSVideoMessageListVC.h"
 
 @interface FSVideoMediateDetailVC () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) FSMeetingDetailModel *m_DetailModel;
@@ -98,7 +100,7 @@
 
     if (model == nil) { return; }
     
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:model.startTime/1000];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:model.startTime*0.001];
 
     UIView *contenView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 0)];
     contenView.backgroundColor = [UIColor clearColor];
@@ -312,13 +314,17 @@
 // 回放视频
 - (void)videoHistoryAction
 {
-    
+    FSVideoHistoryListVC *vc = [FSVideoHistoryListVC new];
+    vc.meetingId = _m_DetailModel.meetingId;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 // 进入消息记录
 - (void)messageListAction
 {
-    
+    FSVideoMessageListVC *vc = [FSVideoMessageListVC new];
+    vc.roomId = _m_DetailModel.roomId;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

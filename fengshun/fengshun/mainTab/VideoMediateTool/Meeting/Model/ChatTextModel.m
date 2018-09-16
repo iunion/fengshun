@@ -21,7 +21,9 @@
     model.messageResourceEnums      = [params bm_stringForKey:@"messageResourceEnums"];
     model.createTime                = [params bm_doubleForKey:@"createTime"];
     model.sender                    = [ChatTextMemberModel modelWithParams:params[@"sender"]];
-    model.receiver                  = [ChatTextMemberModel modelWithParams:params[@"receiver"]];
+    if (params[@"receiver"]) {
+        model.receiver                  = [ChatTextMemberModel modelWithParams:params[@"receiver"]];
+    }
     return model;
 }
 @end

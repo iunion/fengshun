@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4518E60C214DEA0700A3AF2A /* video_history_play@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4518E60A214DEA0600A3AF2A /* video_history_play@3x.png */; };
+		4518E60D214DEA0700A3AF2A /* video_history_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4518E60B214DEA0700A3AF2A /* video_history_play@2x.png */; };
 		45344496214D0DFA00EA7BFA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 45344495214D0DFA00EA7BFA /* libz.tbd */; };
 		45344498214D0DFA00EA7BFA /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 45344497214D0DFA00EA7BFA /* libstdc++.tbd */; };
 		4534449A214D0DFA00EA7BFA /* libstdc++.6.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 45344499214D0DFA00EA7BFA /* libstdc++.6.tbd */; };
@@ -32,7 +34,7 @@
 		453444C2214D0DFA00EA7BFA /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444C1214D0DFA00EA7BFA /* Accelerate.framework */; };
 		4561391B2148E063007DF6A1 /* FSHeaderCommonSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 4561391A2148E063007DF6A1 /* FSHeaderCommonSelector.m */; };
 		4561391E2148FA2B007DF6A1 /* FSApiRequest+VideoMediate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4561391D2148FA2B007DF6A1 /* FSApiRequest+VideoMediate.m */; };
-		45613923214901E5007DF6A1 /* VideoMediateListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 45613922214901E5007DF6A1 /* VideoMediateListCell.m */; };
+		45613923214901E5007DF6A1 /* FSVideoMediateListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 45613922214901E5007DF6A1 /* FSVideoMediateListCell.m */; };
 		45613926214901F6007DF6A1 /* FSVideoMediateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 45613925214901F6007DF6A1 /* FSVideoMediateModel.m */; };
 		45613929214908AA007DF6A1 /* FSCreateVideoMediateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 45613928214908AA007DF6A1 /* FSCreateVideoMediateVC.m */; };
 		4561392D21490E5D007DF6A1 /* FSVideoMediateDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4561392C21490E5D007DF6A1 /* FSVideoMediateDetailVC.m */; };
@@ -40,7 +42,6 @@
 		4561393321490FEC007DF6A1 /* FSVideoMessageListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4561393221490FEC007DF6A1 /* FSVideoMessageListVC.m */; };
 		4561393621491033007DF6A1 /* FSVideoAttendListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4561393521491033007DF6A1 /* FSVideoAttendListVC.m */; };
 		45869EA8214CA5EC00FB2024 /* FSVideoHistoryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 45869EA7214CA5EC00FB2024 /* FSVideoHistoryListVC.m */; };
-		45869EAB214CAA1000FB2024 /* FSVideoMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 45869EAA214CAA1000FB2024 /* FSVideoMessageCell.m */; };
 		45869EAE214CAA2300FB2024 /* FSVideoHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 45869EAD214CAA2300FB2024 /* FSVideoHistoryCell.m */; };
 		45A3BF8B2148AA2E0093278C /* FSVideoMediateListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A3BF8A2148AA2E0093278C /* FSVideoMediateListVC.m */; };
 		45DC029B214A1EB700FCE042 /* FSEditVideoMediateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DC029A214A1EB700FCE042 /* FSEditVideoMediateView.m */; };
@@ -109,7 +110,6 @@
 		45FEF7FB214D1A590005AD43 /* ZFPortraitControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7DC214D1A580005AD43 /* ZFPortraitControlView.m */; };
 		45FEF7FC214D1A590005AD43 /* UIImageView+ZFCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7DD214D1A580005AD43 /* UIImageView+ZFCache.m */; };
 		45FEF7FD214D1A590005AD43 /* ASRManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7E0214D1A590005AD43 /* ASRManager.m */; };
-		45FEF802214D1A980005AD43 /* MDTMeetingListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7FE214D1A980005AD43 /* MDTMeetingListModel.m */; };
 		45FEF803214D1A980005AD43 /* VideoCallModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF801214D1A980005AD43 /* VideoCallModel.m */; };
 		45FEF81A214D1AEC0005AD43 /* MJPropertyType.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF808214D1AEC0005AD43 /* MJPropertyType.m */; };
 		45FEF81B214D1AEC0005AD43 /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF80B214D1AEC0005AD43 /* NSObject+MJKeyValue.m */; };
@@ -121,14 +121,9 @@
 		45FEF821214D1AEC0005AD43 /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF814214D1AEC0005AD43 /* NSString+MJExtension.m */; };
 		45FEF822214D1AEC0005AD43 /* MJPropertyKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF815214D1AEC0005AD43 /* MJPropertyKey.m */; };
 		45FEF823214D1AEC0005AD43 /* MJFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF819214D1AEC0005AD43 /* MJFoundation.m */; };
-		45FEF830214D1B4D0005AD43 /* MDTVideoInviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF824214D1B4A0005AD43 /* MDTVideoInviteViewController.m */; };
 		45FEF831214D1B4D0005AD43 /* VideoCallController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF826214D1B4B0005AD43 /* VideoCallController.m */; };
-		45FEF832214D1B4D0005AD43 /* MDTVideoRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF828214D1B4B0005AD43 /* MDTVideoRecordViewController.m */; };
 		45FEF833214D1B4D0005AD43 /* UIViewController+VideoCall.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF829214D1B4B0005AD43 /* UIViewController+VideoCall.m */; };
 		45FEF834214D1B4D0005AD43 /* VideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF82A214D1B4C0005AD43 /* VideoPlayerViewController.m */; };
-		45FEF835214D1B4D0005AD43 /* MDTMeetingListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF82C214D1B4C0005AD43 /* MDTMeetingListViewController.m */; };
-		45FEF83C214D1B580005AD43 /* MDTMeetingListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF837214D1B580005AD43 /* MDTMeetingListView.m */; };
-		45FEF83D214D1B580005AD43 /* MDTVideoRecordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF83A214D1B580005AD43 /* MDTVideoRecordView.m */; };
 		45FEF83E214D1B580005AD43 /* VideoCallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF83B214D1B580005AD43 /* VideoCallView.m */; };
 		45FEF843214D1B720005AD43 /* UIAlertController+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF840214D1B710005AD43 /* UIAlertController+Blocks.m */; };
 		45FEF844214D1B720005AD43 /* UIButton+XQAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF841214D1B710005AD43 /* UIButton+XQAdd.m */; };
@@ -972,6 +967,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4518E60A214DEA0600A3AF2A /* video_history_play@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_history_play@3x.png"; sourceTree = "<group>"; };
+		4518E60B214DEA0700A3AF2A /* video_history_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_history_play@2x.png"; sourceTree = "<group>"; };
 		45344495214D0DFA00EA7BFA /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		45344497214D0DFA00EA7BFA /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		45344499214D0DFA00EA7BFA /* libstdc++.6.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.tbd"; path = "usr/lib/libstdc++.6.tbd"; sourceTree = SDKROOT; };
@@ -998,8 +995,8 @@
 		456139192148E063007DF6A1 /* FSHeaderCommonSelector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSHeaderCommonSelector.h; sourceTree = "<group>"; };
 		4561391A2148E063007DF6A1 /* FSHeaderCommonSelector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSHeaderCommonSelector.m; sourceTree = "<group>"; };
 		4561391D2148FA2B007DF6A1 /* FSApiRequest+VideoMediate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "FSApiRequest+VideoMediate.m"; sourceTree = "<group>"; };
-		45613921214901E5007DF6A1 /* VideoMediateListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoMediateListCell.h; sourceTree = "<group>"; };
-		45613922214901E5007DF6A1 /* VideoMediateListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoMediateListCell.m; sourceTree = "<group>"; };
+		45613921214901E5007DF6A1 /* FSVideoMediateListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVideoMediateListCell.h; sourceTree = "<group>"; };
+		45613922214901E5007DF6A1 /* FSVideoMediateListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoMediateListCell.m; sourceTree = "<group>"; };
 		45613924214901F6007DF6A1 /* FSVideoMediateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVideoMediateModel.h; sourceTree = "<group>"; };
 		45613925214901F6007DF6A1 /* FSVideoMediateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoMediateModel.m; sourceTree = "<group>"; };
 		45613927214908AA007DF6A1 /* FSCreateVideoMediateVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCreateVideoMediateVC.h; sourceTree = "<group>"; };
@@ -1014,8 +1011,6 @@
 		4561393521491033007DF6A1 /* FSVideoAttendListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoAttendListVC.m; sourceTree = "<group>"; };
 		45869EA6214CA5EC00FB2024 /* FSVideoHistoryListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVideoHistoryListVC.h; sourceTree = "<group>"; };
 		45869EA7214CA5EC00FB2024 /* FSVideoHistoryListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoHistoryListVC.m; sourceTree = "<group>"; };
-		45869EA9214CAA1000FB2024 /* FSVideoMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVideoMessageCell.h; sourceTree = "<group>"; };
-		45869EAA214CAA1000FB2024 /* FSVideoMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoMessageCell.m; sourceTree = "<group>"; };
 		45869EAC214CAA2300FB2024 /* FSVideoHistoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVideoHistoryCell.h; sourceTree = "<group>"; };
 		45869EAD214CAA2300FB2024 /* FSVideoHistoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoHistoryCell.m; sourceTree = "<group>"; };
 		45A3BF892148AA2E0093278C /* FSVideoMediateListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVideoMediateListVC.h; sourceTree = "<group>"; };
@@ -1123,9 +1118,7 @@
 		45FEF7DE214D1A580005AD43 /* ZFNetworkSpeedMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFNetworkSpeedMonitor.h; sourceTree = "<group>"; };
 		45FEF7DF214D1A580005AD43 /* ZFLandScapeControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFLandScapeControlView.h; sourceTree = "<group>"; };
 		45FEF7E0214D1A590005AD43 /* ASRManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASRManager.m; sourceTree = "<group>"; };
-		45FEF7FE214D1A980005AD43 /* MDTMeetingListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDTMeetingListModel.m; sourceTree = "<group>"; };
 		45FEF7FF214D1A980005AD43 /* VideoCallModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCallModel.h; sourceTree = "<group>"; };
-		45FEF800214D1A980005AD43 /* MDTMeetingListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDTMeetingListModel.h; sourceTree = "<group>"; };
 		45FEF801214D1A980005AD43 /* VideoCallModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCallModel.m; sourceTree = "<group>"; };
 		45FEF805214D1AEC0005AD43 /* MJPropertyKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPropertyKey.h; sourceTree = "<group>"; };
 		45FEF806214D1AEC0005AD43 /* NSObject+MJClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJClass.h"; sourceTree = "<group>"; };
@@ -1148,23 +1141,13 @@
 		45FEF817214D1AEC0005AD43 /* NSObject+MJKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJKeyValue.h"; sourceTree = "<group>"; };
 		45FEF818214D1AEC0005AD43 /* NSObject+MJCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJCoding.h"; sourceTree = "<group>"; };
 		45FEF819214D1AEC0005AD43 /* MJFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJFoundation.m; sourceTree = "<group>"; };
-		45FEF824214D1B4A0005AD43 /* MDTVideoInviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDTVideoInviteViewController.m; sourceTree = "<group>"; };
 		45FEF825214D1B4B0005AD43 /* UIViewController+VideoCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+VideoCall.h"; sourceTree = "<group>"; };
 		45FEF826214D1B4B0005AD43 /* VideoCallController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCallController.m; sourceTree = "<group>"; };
 		45FEF827214D1B4B0005AD43 /* VideoPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerViewController.h; sourceTree = "<group>"; };
-		45FEF828214D1B4B0005AD43 /* MDTVideoRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDTVideoRecordViewController.m; sourceTree = "<group>"; };
 		45FEF829214D1B4B0005AD43 /* UIViewController+VideoCall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+VideoCall.m"; sourceTree = "<group>"; };
 		45FEF82A214D1B4C0005AD43 /* VideoPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerViewController.m; sourceTree = "<group>"; };
-		45FEF82B214D1B4C0005AD43 /* MDTVideoRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDTVideoRecordViewController.h; sourceTree = "<group>"; };
-		45FEF82C214D1B4C0005AD43 /* MDTMeetingListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDTMeetingListViewController.m; sourceTree = "<group>"; };
 		45FEF82D214D1B4C0005AD43 /* VideoCallController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCallController.h; sourceTree = "<group>"; };
-		45FEF82E214D1B4C0005AD43 /* MDTVideoInviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDTVideoInviteViewController.h; sourceTree = "<group>"; };
-		45FEF82F214D1B4C0005AD43 /* MDTMeetingListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDTMeetingListViewController.h; sourceTree = "<group>"; };
-		45FEF836214D1B570005AD43 /* MDTVideoRecordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDTVideoRecordView.h; sourceTree = "<group>"; };
-		45FEF837214D1B580005AD43 /* MDTMeetingListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDTMeetingListView.m; sourceTree = "<group>"; };
-		45FEF838214D1B580005AD43 /* MDTMeetingListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDTMeetingListView.h; sourceTree = "<group>"; };
 		45FEF839214D1B580005AD43 /* VideoCallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCallView.h; sourceTree = "<group>"; };
-		45FEF83A214D1B580005AD43 /* MDTVideoRecordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDTVideoRecordView.m; sourceTree = "<group>"; };
 		45FEF83B214D1B580005AD43 /* VideoCallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCallView.m; sourceTree = "<group>"; };
 		45FEF83F214D1B710005AD43 /* UIAlertController+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Blocks.h"; sourceTree = "<group>"; };
 		45FEF840214D1B710005AD43 /* UIAlertController+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+Blocks.m"; sourceTree = "<group>"; };
@@ -2671,6 +2654,8 @@
 				45DC02B4214A61EE00FCE042 /* video_selected@3x.png */,
 				45DC02B0214A61EE00FCE042 /* video_unselect@2x.png */,
 				45DC02B2214A61EE00FCE042 /* video_unselect@3x.png */,
+				4518E60B214DEA0700A3AF2A /* video_history_play@2x.png */,
+				4518E60A214DEA0600A3AF2A /* video_history_play@3x.png */,
 			);
 			path = image;
 			sourceTree = "<group>";
@@ -2678,16 +2663,14 @@
 		45DC02BC214A645800FCE042 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				45613921214901E5007DF6A1 /* VideoMediateListCell.h */,
-				45613922214901E5007DF6A1 /* VideoMediateListCell.m */,
+				45613921214901E5007DF6A1 /* FSVideoMediateListCell.h */,
+				45613922214901E5007DF6A1 /* FSVideoMediateListCell.m */,
 				45DC02AC214A53FD00FCE042 /* FSVideoMediatePersonalCell.h */,
 				45DC02AD214A53FD00FCE042 /* FSVideoMediatePersonalCell.m */,
 				45DC029F214A248900FCE042 /* FSCreateVideoMediateHeader.h */,
 				45DC02A0214A248900FCE042 /* FSCreateVideoMediateHeader.m */,
 				45DC02C0214A6C4900FCE042 /* FSVideoInviteLitigantCell.h */,
 				45DC02C1214A6C4900FCE042 /* FSVideoInviteLitigantCell.m */,
-				45869EA9214CAA1000FB2024 /* FSVideoMessageCell.h */,
-				45869EAA214CAA1000FB2024 /* FSVideoMessageCell.m */,
 				45869EAC214CAA2300FB2024 /* FSVideoHistoryCell.h */,
 				45869EAD214CAA2300FB2024 /* FSVideoHistoryCell.m */,
 			);
@@ -2867,12 +2850,11 @@
 		45FEF770214D194E0005AD43 /* Meeting */ = {
 			isa = PBXGroup;
 			children = (
-				45FEF85E214D39140005AD43 /* Image */,
-				45FEF845214D1B970005AD43 /* Message */,
-				45FEF774214D199B0005AD43 /* Tool */,
 				45FEF771214D19600005AD43 /* Controller */,
 				45FEF772214D19650005AD43 /* Model */,
 				45FEF773214D196B0005AD43 /* View */,
+				45FEF774214D199B0005AD43 /* Tool */,
+				45FEF85E214D39140005AD43 /* Image */,
 			);
 			path = Meeting;
 			sourceTree = "<group>";
@@ -2884,14 +2866,14 @@
 				45FEF826214D1B4B0005AD43 /* VideoCallController.m */,
 				45FEF825214D1B4B0005AD43 /* UIViewController+VideoCall.h */,
 				45FEF829214D1B4B0005AD43 /* UIViewController+VideoCall.m */,
-				45FEF82F214D1B4C0005AD43 /* MDTMeetingListViewController.h */,
-				45FEF82C214D1B4C0005AD43 /* MDTMeetingListViewController.m */,
-				45FEF82E214D1B4C0005AD43 /* MDTVideoInviteViewController.h */,
-				45FEF824214D1B4A0005AD43 /* MDTVideoInviteViewController.m */,
-				45FEF82B214D1B4C0005AD43 /* MDTVideoRecordViewController.h */,
-				45FEF828214D1B4B0005AD43 /* MDTVideoRecordViewController.m */,
 				45FEF827214D1B4B0005AD43 /* VideoPlayerViewController.h */,
 				45FEF82A214D1B4C0005AD43 /* VideoPlayerViewController.m */,
+				45FEF847214D1B970005AD43 /* SingleTextChatViewController.h */,
+				45FEF84A214D1B970005AD43 /* SingleTextChatViewController.m */,
+				45FEF848214D1B970005AD43 /* PublicTextChatViewController.h */,
+				45FEF84C214D1B970005AD43 /* PublicTextChatViewController.m */,
+				45FEF849214D1B970005AD43 /* TextChatHistoryViewController.h */,
+				45FEF84B214D1B970005AD43 /* TextChatHistoryViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2899,10 +2881,12 @@
 		45FEF772214D19650005AD43 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				45FEF800214D1A980005AD43 /* MDTMeetingListModel.h */,
-				45FEF7FE214D1A980005AD43 /* MDTMeetingListModel.m */,
 				45FEF7FF214D1A980005AD43 /* VideoCallModel.h */,
 				45FEF801214D1A980005AD43 /* VideoCallModel.m */,
+				45FEF84E214D1B970005AD43 /* ChatTextModel.h */,
+				45FEF850214D1B970005AD43 /* ChatTextModel.m */,
+				45FEF851214D1B970005AD43 /* ChatTextViewModel.h */,
+				45FEF84F214D1B970005AD43 /* ChatTextViewModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2910,12 +2894,10 @@
 		45FEF773214D196B0005AD43 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				45FEF838214D1B580005AD43 /* MDTMeetingListView.h */,
-				45FEF837214D1B580005AD43 /* MDTMeetingListView.m */,
-				45FEF836214D1B570005AD43 /* MDTVideoRecordView.h */,
-				45FEF83A214D1B580005AD43 /* MDTVideoRecordView.m */,
 				45FEF839214D1B580005AD43 /* VideoCallView.h */,
 				45FEF83B214D1B580005AD43 /* VideoCallView.m */,
+				45FEF853214D1B970005AD43 /* ChatTextView.h */,
+				45FEF854214D1B970005AD43 /* ChatTextView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3064,49 +3046,6 @@
 				45FEF819214D1AEC0005AD43 /* MJFoundation.m */,
 			);
 			path = "MJExtension-3.0.13";
-			sourceTree = "<group>";
-		};
-		45FEF845214D1B970005AD43 /* Message */ = {
-			isa = PBXGroup;
-			children = (
-				45FEF846214D1B970005AD43 /* Controller */,
-				45FEF84D214D1B970005AD43 /* Model */,
-				45FEF852214D1B970005AD43 /* View */,
-			);
-			path = Message;
-			sourceTree = "<group>";
-		};
-		45FEF846214D1B970005AD43 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				45FEF847214D1B970005AD43 /* SingleTextChatViewController.h */,
-				45FEF84A214D1B970005AD43 /* SingleTextChatViewController.m */,
-				45FEF848214D1B970005AD43 /* PublicTextChatViewController.h */,
-				45FEF84C214D1B970005AD43 /* PublicTextChatViewController.m */,
-				45FEF849214D1B970005AD43 /* TextChatHistoryViewController.h */,
-				45FEF84B214D1B970005AD43 /* TextChatHistoryViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		45FEF84D214D1B970005AD43 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				45FEF84E214D1B970005AD43 /* ChatTextModel.h */,
-				45FEF850214D1B970005AD43 /* ChatTextModel.m */,
-				45FEF851214D1B970005AD43 /* ChatTextViewModel.h */,
-				45FEF84F214D1B970005AD43 /* ChatTextViewModel.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		45FEF852214D1B970005AD43 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				45FEF853214D1B970005AD43 /* ChatTextView.h */,
-				45FEF854214D1B970005AD43 /* ChatTextView.m */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		45FEF85E214D39140005AD43 /* Image */ = {
@@ -5900,6 +5839,7 @@
 				45DC02B6214A61EF00FCE042 /* video_unselect@2x.png in Resources */,
 				874269FF212F9657003C52F6 /* navigationbar_back_icon@2x.png in Resources */,
 				87426894212E7E36003C52F6 /* increase_eleme@3x.png in Resources */,
+				4518E60C214DEA0700A3AF2A /* video_history_play@3x.png in Resources */,
 				8730B1192148E5D1004331A9 /* fsfreshidle_icon19@2x.png in Resources */,
 				45FEF88D214D39310005AD43 /* video_bottom_message@3x.png in Resources */,
 				87D20AF321393B91001EDD60 /* navigationbar_collect_icon@2x.png in Resources */,
@@ -6164,6 +6104,7 @@
 				87426895212E7E36003C52F6 /* increase_baiduwaimai@3x.png in Resources */,
 				DB804FE021422539007F7B19 /* search_hotKey@3x.png in Resources */,
 				87426A23213100BB003C52F6 /* bmsearch_history@3x.png in Resources */,
+				4518E60D214DEA0700A3AF2A /* video_history_play@2x.png in Resources */,
 				87426A0D212F9657003C52F6 /* navigationbar_select_icon@2x.png in Resources */,
 				DB804FE421422548007F7B19 /* search_delKey@2x.png in Resources */,
 				45F3FD1A214BACEF007712EE /* video_share@2x.png in Resources */,
@@ -6230,7 +6171,6 @@
 				8730B0462140FFA2004331A9 /* DTCoreTextConstants.m in Sources */,
 				8730B0632140FFA3004331A9 /* DTZipArchiveNode.m in Sources */,
 				874268C0212E7E36003C52F6 /* BMSegmentItem.m in Sources */,
-				45FEF835214D1B4D0005AD43 /* MDTMeetingListViewController.m in Sources */,
 				874268C8212E7E36003C52F6 /* BMStepperInputItem.m in Sources */,
 				87426AB42133A32E003C52F6 /* FSAppInfo.m in Sources */,
 				87D20AD4213920E2001EDD60 /* FLEXSystemLogTableViewCell.m in Sources */,
@@ -6314,8 +6254,6 @@
 				8730B0992140FFA3004331A9 /* DTHTMLParser.m in Sources */,
 				8730B05C2140FFA3004331A9 /* NSString+Paragraphs.m in Sources */,
 				874268E7212E7E36003C52F6 /* UIView+BMPositioning.m in Sources */,
-				45FEF802214D1A980005AD43 /* MDTMeetingListModel.m in Sources */,
-				45FEF832214D1B4D0005AD43 /* MDTVideoRecordViewController.m in Sources */,
 				87D20AE0213920E2001EDD60 /* FLEXGlobalsTableViewController.m in Sources */,
 				87D20ABF213920E2001EDD60 /* FLEXArgumentInputJSONObjectView.m in Sources */,
 				874269BE212E9B78003C52F6 /* BMFreshTriangleDotHeader.m in Sources */,
@@ -6368,7 +6306,6 @@
 				AD5102A8213E783E008CD74D /* FSSendTopicVC.m in Sources */,
 				87D20AC7213920E2001EDD60 /* FLEXArgumentInputViewFactory.m in Sources */,
 				87D20ACD213920E2001EDD60 /* FLEXObjectRef.m in Sources */,
-				45FEF83D214D1B580005AD43 /* MDTVideoRecordView.m in Sources */,
 				87D209C32138F1E2001EDD60 /* SDWebImageCoder.m in Sources */,
 				87426AB82133A504003C52F6 /* OpenUDID.m in Sources */,
 				87426AEE2135348D003C52F6 /* FMDatabasePool.m in Sources */,
@@ -6460,7 +6397,6 @@
 				AD22449D213CD6C300F2DC47 /* MASConstraintMaker.m in Sources */,
 				8730B02D2140FFA2004331A9 /* NSMutableString+HTML.m in Sources */,
 				87D209CF2138F1E2001EDD60 /* UIView+WebCache.m in Sources */,
-				45869EAB214CAA1000FB2024 /* FSVideoMessageCell.m in Sources */,
 				87D209C42138F1E2001EDD60 /* NSButton+WebCache.m in Sources */,
 				87D20B1421394A5A001EDD60 /* FSWebViewProgressView.m in Sources */,
 				87426ACD2133D5E9003C52F6 /* MBProgressHUD.m in Sources */,
@@ -6620,7 +6556,7 @@
 				87D20AB8213920E2001EDD60 /* FLEXDefaultEditorViewController.m in Sources */,
 				45DC029B214A1EB700FCE042 /* FSEditVideoMediateView.m in Sources */,
 				874269C9212E9B78003C52F6 /* UIScrollView+BMFresh.m in Sources */,
-				45613923214901E5007DF6A1 /* VideoMediateListCell.m in Sources */,
+				45613923214901E5007DF6A1 /* FSVideoMediateListCell.m in Sources */,
 				8730B05B2140FFA3004331A9 /* DTListItemHTMLElement.m in Sources */,
 				874269C5212E9B78003C52F6 /* BMFreshAutoFooterView.m in Sources */,
 				DB48745B214BB03400AB0805 /* FSFileScanImagePreviewVC.m in Sources */,
@@ -6642,7 +6578,6 @@
 				AD2244A0213CD6C300F2DC47 /* View+MASAdditions.m in Sources */,
 				87D209ED2138FF46001EDD60 /* RSKImageScrollView.m in Sources */,
 				874268D4212E7E36003C52F6 /* BMCheckBox.m in Sources */,
-				45FEF830214D1B4D0005AD43 /* MDTVideoInviteViewController.m in Sources */,
 				87D20AEC213920E2001EDD60 /* FLEXMultilineTableViewCell.m in Sources */,
 				87D209CB2138F1E2001EDD60 /* NSImage+WebCache.m in Sources */,
 				8730B01F2140FFA2004331A9 /* DTCoreTextGlyphRun.m in Sources */,
@@ -6674,7 +6609,6 @@
 				87D20ACE213920E2001EDD60 /* FLEXWebViewController.m in Sources */,
 				87D20AB6213920E2001EDD60 /* FLEXManager.m in Sources */,
 				8730B0852140FFA3004331A9 /* DTSmartPagingScrollView.m in Sources */,
-				45FEF83C214D1B580005AD43 /* MDTMeetingListView.m in Sources */,
 				874269C2212E9B78003C52F6 /* BMFreshDotCircleHeader.m in Sources */,
 				87D20AE1213920E2001EDD60 /* FLEXLiveObjectsTableViewController.m in Sources */,
 				87D20AAF213920E2001EDD60 /* FLEXNetworkCurlLogger.m in Sources */,

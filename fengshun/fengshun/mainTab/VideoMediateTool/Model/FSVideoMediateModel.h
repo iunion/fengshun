@@ -74,13 +74,28 @@ typedef NS_ENUM(NSInteger, FSMeetingDataType) {
 - (instancetype)initWithName:(NSString *)name key:(NSString *)key;
 @end
 
+
 @interface FSHeaderCommonSelectorModel : NSObject
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *hiddenkey;  // 隐形key
 @property (nonatomic, strong) NSArray<FSSelectorListModel *> *list;
-
 + (instancetype)modelWithTitle:(NSString *)title hiddenkey:(NSString *)key list:(NSArray *)list;
 - (instancetype)initWithTitle:(NSString *)title hiddenkey:(NSString *)key list:(NSArray *)list;
+@end
+
+
+
+@interface FSVideoRecordModel : FSSuperModel
+// 媒体流ID
+@property (nonatomic, copy) NSString *download;
+@property (nonatomic, copy) NSString *joinUser;
+// 播放地址URL
+@property (nonatomic, copy) NSString *url;
+@property (nonatomic, copy) NSString *preview;
+
+// 上传时间
+@property (nonatomic, assign) NSTimeInterval uploadTime;
+
 @end
 
 

@@ -35,7 +35,7 @@
 + (ChatTextModel *)chatTextModelWithDict:(NSDictionary *)dic
 {
     ChatTextModel *model = [ChatTextModel modelWithParams:dic];
-    model.createTime = model.createTime/1000;
+    model.createTime = model.createTime*0.001;
     model.isMe = [model.sender.memberId isEqualToString:[[[FSUserInfoModle userInfo] m_UserBaseInfo] m_PhoneNum]];
 
     return model;

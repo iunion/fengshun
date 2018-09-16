@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FSVideoMediateModel.h"
 
-@interface VideoMediateListCell : UITableViewCell
+@interface FSVideoMediateListCell : UITableViewCell
 
 @property (nonatomic, strong) UIView *m_BGView;
 

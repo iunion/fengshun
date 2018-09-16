@@ -6,11 +6,11 @@
 //  Copyright © 2018年 FS. All rights reserved.
 //
 
-#import "VideoMediateListCell.h"
+#import "FSVideoMediateListCell.h"
 
 #define kMarginLeft 16
 
-@interface VideoMediateListCell ()
+@interface FSVideoMediateListCell ()
 @property (nonatomic, strong) UILabel *meetingNameLabel;        // 会议名称
 @property (nonatomic, strong) UILabel *meetingStatusLabel;      // 会议状态
 @property (nonatomic, strong) UILabel *meetingTypeLabel;        //会议类型
@@ -18,7 +18,7 @@
 @property (nonatomic, strong) UILabel *meetingPersonnelLabel;   // 参会人员
 @end
 
-@implementation VideoMediateListCell
+@implementation FSVideoMediateListCell
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -97,7 +97,7 @@
     
     self.meetingStatusLabel.text = [FSMeetingDataForm getValueForKey:model.meetingStatus type:FSMeetingDataType_AllMeetingStatus];
     
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:model.startTime/1000];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:model.startTime*0.001];
     NSString *realDate = [date bm_stringWithFormat:@"yyyy-MM-dd HH:mm"];
     self.startTimeLabel.text = [NSString stringWithFormat:@"预约时间：%@",realDate];
     NSMutableAttributedString *dAttributedString =[[NSMutableAttributedString alloc] initWithString:self.startTimeLabel.text];
