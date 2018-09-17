@@ -26,6 +26,7 @@
         self.textAlignment = NSTextAlignmentCenter;
         self.textColor = nil;//[UIColor whiteColor];
         self.tintColor = [UIColor whiteColor];
+        self.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
         self.bm_width = BMNAVIGATIONTITLE_WIDTH;
     }
     
