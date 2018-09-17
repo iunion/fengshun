@@ -727,6 +727,8 @@
 		ADEF1F6D214F9B6300FFE0C3 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEF1F6C214F9B6300FFE0C3 /* CoreTelephony.framework */; };
 		ADEF1F6F214F9B7500FFE0C3 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEF1F6E214F9B7500FFE0C3 /* ImageIO.framework */; };
 		ADEF1F71214F9C6500FFE0C3 /* UMCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEF1F70214F9C6500FFE0C3 /* UMCommon.framework */; };
+		ADEF1F76214F9F7B00FFE0C3 /* FSMoreViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF1F74214F9F7B00FFE0C3 /* FSMoreViewVC.m */; };
+		ADEF1F77214F9F7B00FFE0C3 /* FSMoreViewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADEF1F75214F9F7B00FFE0C3 /* FSMoreViewVC.xib */; };
 		ADF7AAD821490D1F00B550E6 /* FSTopicDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF7AAD721490D1E00B550E6 /* FSTopicDetailVC.m */; };
 		DB14A7AA2139247900E88798 /* FSCourseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB14A7A82139247900E88798 /* FSCourseTableCell.m */; };
 		DB14A7AB2139247900E88798 /* FSCourseTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB14A7A92139247900E88798 /* FSCourseTableCell.xib */; };
@@ -2128,6 +2130,9 @@
 		ADEF1F6C214F9B6300FFE0C3 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		ADEF1F6E214F9B7500FFE0C3 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		ADEF1F70214F9C6500FFE0C3 /* UMCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMCommon.framework; sourceTree = "<group>"; };
+		ADEF1F73214F9F7B00FFE0C3 /* FSMoreViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMoreViewVC.h; sourceTree = "<group>"; };
+		ADEF1F74214F9F7B00FFE0C3 /* FSMoreViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMoreViewVC.m; sourceTree = "<group>"; };
+		ADEF1F75214F9F7B00FFE0C3 /* FSMoreViewVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSMoreViewVC.xib; sourceTree = "<group>"; };
 		ADF7AAD621490D1E00B550E6 /* FSTopicDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTopicDetailVC.h; sourceTree = "<group>"; };
 		ADF7AAD721490D1E00B550E6 /* FSTopicDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTopicDetailVC.m; sourceTree = "<group>"; };
 		DB14A7A72139247900E88798 /* FSCourseTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCourseTableCell.h; sourceTree = "<group>"; };
@@ -4645,6 +4650,9 @@
 				AD1BE2102141238B0018AF2C /* FSForumSectionHeaderView.h */,
 				AD1BE2112141238B0018AF2C /* FSForumSectionHeaderView.m */,
 				AD1BE213214127180018AF2C /* FSForumSectionHeaderView.xib */,
+				ADEF1F73214F9F7B00FFE0C3 /* FSMoreViewVC.h */,
+				ADEF1F74214F9F7B00FFE0C3 /* FSMoreViewVC.m */,
+				ADEF1F75214F9F7B00FFE0C3 /* FSMoreViewVC.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5226,6 +5234,7 @@
 				8730B0C021465034004331A9 /* BMCombine_up@3x.png in Resources */,
 				DBD4CE8C2141229400857DB3 /* home_tools@2x.png in Resources */,
 				8730B0BF21465034004331A9 /* BMCombine_up@2x.png in Resources */,
+				ADEF1F77214F9F7B00FFE0C3 /* FSMoreViewVC.xib in Resources */,
 				8730AD462140CC28004331A9 /* user_serviceicon@2x.png in Resources */,
 				874268B9212E7E36003C52F6 /* BMTableView_UIButtonBarArrowLeft@2x.png in Resources */,
 				8742689B212E7E36003C52F6 /* decrease_eleme@2x.png in Resources */,
@@ -5719,6 +5728,7 @@
 				87D20B1521394A5A001EDD60 /* FSWebView.m in Sources */,
 				87D20AAC213920E2001EDD60 /* FLEXNetworkSettingsTableViewController.m in Sources */,
 				87D20ADD213920E2001EDD60 /* FLEXSQLiteDatabaseManager.m in Sources */,
+				ADEF1F76214F9F7B00FFE0C3 /* FSMoreViewVC.m in Sources */,
 				8730B07C2140FFA3004331A9 /* NSURL+DTAppLinks.m in Sources */,
 				874269BB212E9B78003C52F6 /* BMFreshNormalHeader.m in Sources */,
 				874268A6212E7E36003C52F6 /* BMStepperInputView.m in Sources */,
