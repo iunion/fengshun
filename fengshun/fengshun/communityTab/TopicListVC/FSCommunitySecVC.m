@@ -14,7 +14,7 @@
 #import "FSCommunityModel.h"
 #import "BMAlertView.h"
 #import "FSPushVCManager.h"
-#import "FSAlertVC.h"
+//#import "FSAlertVC.h"
 #import "FSAuthenticationVC.h"
 
 @interface
@@ -105,15 +105,15 @@ FSCommunitySecVC ()
 // 发帖
 - (void)pulishTopicAction{
     if (![FSUserInfoModle userInfo].m_UserBaseInfo.m_IsRealName) {
-        BMWeakSelf;
-        [FSAlertVC showAlertWithTitle:@"温馨提示" message:@"认证后才能发帖" cancelTitle:@"取消" otherTitle:@"去认证" completion:^(BOOL cancelled, NSInteger buttonIndex) {
-            if (!cancelled)
-            {
-                FSAuthenticationVC *vc = [[FSAuthenticationVC alloc] init];
-                vc.delegate = weakSelf;
-                [weakSelf.navigationController pushViewController:vc animated:YES];
-            }
-        }];
+//        BMWeakSelf;
+//        [FSAlertVC showAlertWithTitle:@"温馨提示" message:@"认证后才能发帖" cancelTitle:@"取消" otherTitle:@"去认证" completion:^(BOOL cancelled, NSInteger buttonIndex) {
+//            if (!cancelled)
+//            {
+//                FSAuthenticationVC *vc = [[FSAuthenticationVC alloc] init];
+//                vc.delegate = weakSelf;
+//                [weakSelf.navigationController pushViewController:vc animated:YES];
+//            }
+//        }];
         return;
     }
     [FSPushVCManager showSendPostWithPushVC:self isEdited:NO relatedId:self.m_FourmId callBack:^(id object) {

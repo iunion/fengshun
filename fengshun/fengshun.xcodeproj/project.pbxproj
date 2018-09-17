@@ -480,6 +480,7 @@
 		87742011214C9E1600F72427 /* FSNoticeMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8774200F214C9E1600F72427 /* FSNoticeMessageCell.m */; };
 		87742012214C9E1600F72427 /* FSNoticeMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87742010214C9E1600F72427 /* FSNoticeMessageCell.xib */; };
 		87742016214C9EB200F72427 /* FSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 87742015214C9EB200F72427 /* FSMessage.m */; };
+		8774201C214F523700F72427 /* FSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8774201B214F523700F72427 /* FSAlertView.m */; };
 		87C0134B212E7A5200D0AAC3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0134A212E7A5200D0AAC3 /* AppDelegate.m */; };
 		87C0134D212E7A5300D0AAC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87C0134C212E7A5300D0AAC3 /* Assets.xcassets */; };
 		87C01353212E7A5300D0AAC3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C01352212E7A5300D0AAC3 /* main.m */; };
@@ -1664,6 +1665,8 @@
 		87742010214C9E1600F72427 /* FSNoticeMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSNoticeMessageCell.xib; sourceTree = "<group>"; };
 		87742014214C9EB200F72427 /* FSMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMessage.h; sourceTree = "<group>"; };
 		87742015214C9EB200F72427 /* FSMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMessage.m; sourceTree = "<group>"; };
+		8774201A214F523700F72427 /* FSAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSAlertView.h; sourceTree = "<group>"; };
+		8774201B214F523700F72427 /* FSAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSAlertView.m; sourceTree = "<group>"; };
 		87C01346212E7A5200D0AAC3 /* fengshun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fengshun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87C01349212E7A5200D0AAC3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		87C0134A212E7A5200D0AAC3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -3618,8 +3621,6 @@
 				87426A6621313C1C003C52F6 /* FSSuperVC.m */,
 				87426AD52133F446003C52F6 /* FSSuperNetVC.h */,
 				87426AD62133F446003C52F6 /* FSSuperNetVC.m */,
-				ADEF1F17214F3FB200FFE0C3 /* FSAlertVC.h */,
-				ADEF1F18214F3FB200FFE0C3 /* FSAlertVC.m */,
 			);
 			path = FSSuperVC;
 			sourceTree = "<group>";
@@ -3687,6 +3688,7 @@
 		87426A9821314996003C52F6 /* FSTools */ = {
 			isa = PBXGroup;
 			children = (
+				87742019214F522100F72427 /* FSAlertView */,
 				DB4C7E3B21476426008CC6BB /* FSOCR */,
 				87426A9D213156D5003C52F6 /* FSBannerView */,
 				87426AF021353510003C52F6 /* FSDB */,
@@ -3899,6 +3901,15 @@
 				87742015214C9EB200F72427 /* FSMessage.m */,
 			);
 			path = FSMessage;
+			sourceTree = "<group>";
+		};
+		87742019214F522100F72427 /* FSAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				8774201A214F523700F72427 /* FSAlertView.h */,
+				8774201B214F523700F72427 /* FSAlertView.m */,
+			);
+			path = FSAlertView;
 			sourceTree = "<group>";
 		};
 		87C0133D212E7A5200D0AAC3 = {
@@ -5492,7 +5503,6 @@
 				AD1BE2122141238B0018AF2C /* FSForumSectionHeaderView.m in Sources */,
 				8730B09C2140FFA3004331A9 /* NSURL+DTAWS.m in Sources */,
 				87D20ACB213920E2001EDD60 /* FLEXWindow.m in Sources */,
-				ADEF1F19214F3FB200FFE0C3 /* FSAlertVC.m in Sources */,
 				87D20AAB213920E2001EDD60 /* FLEXNetworkTransaction.m in Sources */,
 				87D20AAD213920E2001EDD60 /* FLEXNetworkRecorder.m in Sources */,
 				87D20B042139492F001EDD60 /* WKWebViewJavascriptBridge.m in Sources */,
@@ -5702,6 +5712,7 @@
 				874268FF212E7E36003C52F6 /* NSURL+BMParameters.m in Sources */,
 				87742011214C9E1600F72427 /* FSNoticeMessageCell.m in Sources */,
 				AD932600214B4FDA007F3A93 /* HRColorPickerViewController.m in Sources */,
+				8774201C214F523700F72427 /* FSAlertView.m in Sources */,
 				8730B02E2140FFA2004331A9 /* DTAccessibilityElement.m in Sources */,
 				87D20B032139492F001EDD60 /* WebViewJavascriptBridgeBase.m in Sources */,
 				874268F8212E7E36003C52F6 /* UIImage+BMTint.m in Sources */,
