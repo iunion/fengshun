@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) id<BMTableViewActionBarDelegate> actionBarDelegate;
 
 - (instancetype)initWithDelegate:(id<BMTableViewActionBarDelegate>)delegate;
+- (void)setActionBarTitle:(NSString *)title;
 
 @end
 

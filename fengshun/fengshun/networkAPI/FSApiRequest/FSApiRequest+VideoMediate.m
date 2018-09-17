@@ -30,6 +30,12 @@
     return [FSApiRequest makeRequestWithURL:urlStr parameters:dic];
 }
 
++ (nullable NSMutableURLRequest *)editMeetingWithInfo:(NSDictionary *)dic
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/meeting/editorMeeting", FS_URL_SERVER];
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:dic];
+}
+
 + (nullable NSMutableURLRequest *)getMeetingDetailWithId:(NSInteger)meetingId
 {
     NSString *urlStr = [NSString stringWithFormat:@"%@/storm/meeting/meetingDetail", FS_URL_SERVER];
@@ -64,11 +70,23 @@
     return [FSApiRequest makeRequestWithURL:urlStr parameters:@{@"id":@(meetingId)}];
 }
 
-+ (nullable NSMutableURLRequest *)getJoinMeetingToken:(NSString *)inviteCode phone:(NSString *)phone
++ (nullable NSMutableURLRequest *)deleteMeetingWithId:(NSInteger)meetingId
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/meeting/deleteMeeting", FS_URL_SERVER];
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:@{@"id":@(meetingId)}];
+}
+
++ (nullable NSMutableURLRequest *)endMeetingWithId:(NSInteger)meetingId
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/meeting/endMeeting", FS_URL_SERVER];
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:@{@"id":@(meetingId)}];
+}
+
++ (nullable NSMutableURLRequest *)getJoinMeetingToken:(NSString *)inviteCode inviteName:(NSString *)name
 {
     NSString *urlStr = [NSString stringWithFormat:@"%@/storm/meeting/inviteGetToken", FS_URL_SERVER];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters setObject:phone forKey:@"phone"];
+    [parameters setObject:name forKey:@"inviteName"];
     [parameters setObject:inviteCode forKey:@"inviteCode"];
 
     return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];

@@ -31,6 +31,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, copy) NSString  * _Nullable (^formatPickerText)(BMPickerItem *item);
 
+@property (nonatomic, assign) NSInteger pickerFirstComponentRow;
+@property (nonatomic, assign) NSInteger pickerSeconComponentRow;
+
 + (instancetype)itemWithTitle:(nullable NSString *)title placeholder:(nullable NSString *)placeholder components:(NSArray *)components;
 + (instancetype)itemWithTitle:(nullable NSString *)title placeholder:(nullable NSString *)placeholder components:(NSArray *)components defaultPickerText:(nullable NSString *)defaultPickerText;
 - (instancetype)initWithTitle:(nullable NSString *)title placeholder:(nullable NSString *)placeholder components:(NSArray *)components;

@@ -26,13 +26,13 @@
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.offset(35);
         make.left.right.equalTo(self.view);
-        labelTopMas = make.top.equalTo(self.view).offset(-35);
+        labelTopMas = make.top.equalTo(self.topBar.mas_bottom).offset(-35);
     }];
     
     [self.view layoutIfNeeded];
     [labelTopMas uninstall];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        labelTopMas = make.top.equalTo(self.view).offset(0);
+        labelTopMas = make.top.equalTo(self.topBar.mas_bottom).offset(0);
     }];
     
     [UIView animateWithDuration:0.5 animations:^{
@@ -41,7 +41,7 @@
         [self.view layoutIfNeeded];
         [labelTopMas uninstall];
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
-            labelTopMas = make.top.equalTo(self.view).offset(-35);
+            labelTopMas = make.top.equalTo(self.topBar.mas_bottom).offset(-35);
         }];
         [UIView animateWithDuration:0.25 delay:1.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             [self.view layoutIfNeeded];

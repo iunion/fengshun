@@ -7,10 +7,14 @@
 //
 
 #import "FSVideoMediatePersonalCell.h"
+#import "FSMeetingPersonnelItem.h"
+
 #define kMarginLeft 16
 #define kCellHeight 70
 
 @interface FSVideoMediatePersonalCell ()
+
+@property (nonatomic, strong) FSMeetingPersonnelItem *item;
 
 @property (nonatomic, strong) UIButton *m_SelectButton;
 @property (nonatomic, strong) UILabel *m_FamilyNameLabel;
@@ -20,6 +24,7 @@
 @end
 
 @implementation FSVideoMediatePersonalCell
+@synthesize item = _item;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier selectEnable:(BOOL)enable
 {
@@ -32,6 +37,14 @@
     }
     
     return self;
+}
+
+- (void)cellDidLoad
+{
+    [super cellDidLoad];
+    self.textLabel.backgroundColor = [UIColor clearColor];
+    self.selectEnable = YES;
+    [self build];
 }
 
 - (void)build
@@ -69,20 +82,37 @@
     [self.contentView addSubview:_m_PhoneLabel];    
 }
 
--(void)setModel:(FSMeetingPersonnelModel *)model
+- (void)cellWillAppear
+{
+    [super cellWillAppear];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    [self setModel:self.item.personModel];
+}
+
+- (void)setModel:(FSMeetingPersonnelModel *)model
 {
     _model = model;
     _m_FamilyNameLabel.text = [model.userName substringWithRange:NSMakeRange(0, 1)];
     _m_FullNameLable.text = model.userName;
     _m_PhoneLabel.text = model.mobilePhone;
     
-    if (self.selectEnable) {
-        if ([_model.meetingIdentityTypeEnums isEqualToString:@"MEDIATOR"]) {
+    if (self.selectEnable)
+    {
+        if ([_model.meetingIdentityTypeEnums isEqualToString:@"MEDIATOR"])
+        {
             [_m_SelectButton setImage:[UIImage imageNamed:@"video_unselect"] forState:UIControlStateNormal] ;
-        } else {
-            if (_model.selectState == 0) {
+            _m_SelectButton.userInteractionEnabled = NO;
+        }
+        else
+        {
+            _m_SelectButton.userInteractionEnabled = YES;
+            if (_model.selectState == 0)
+            {
                 [_m_SelectButton setImage:[UIImage imageNamed:@"video_not_selected"] forState:UIControlStateNormal] ;
-            } else {
+            }
+            else
+            {
                 [_m_SelectButton setImage:[UIImage imageNamed:@"video_selected"] forState:UIControlStateNormal] ;
             }
         }
@@ -91,10 +121,13 @@
 
 - (void)selectAction
 {
-    if (_model.selectState == 0) {
+    if (_model.selectState == 0)
+    {
         _model.selectState = 1;
         [_m_SelectButton setImage:[UIImage imageNamed:@"video_selected"] forState:UIControlStateNormal] ;
-    } else if (_model.selectState == 1) {
+    }
+    else if (_model.selectState == 1)
+    {
         _model.selectState = 0;
         [_m_SelectButton setImage:[UIImage imageNamed:@"video_not_selected"] forState:UIControlStateNormal] ;
     }

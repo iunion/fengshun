@@ -13,9 +13,15 @@
 #import "FSVideoStartTool.h"
 #import "FSVideoHistoryListVC.h"
 #import "FSVideoMessageListVC.h"
+#import "FSVideoMediateSheetVC.h"
+#import "FSVideoInviteLitigantVC.h"
+#import "FSMakeVideoMediateVC.h"
 
 @interface FSVideoMediateDetailVC () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) FSMeetingDetailModel *m_DetailModel;
+
+@property (nonatomic, strong) UILabel *statusLabel;
+@property (nonatomic, strong) FSEditVideoMediateImageView *personView;
 
 @end
 
@@ -98,9 +104,16 @@
     _m_DetailModel = model;
     [self.m_TableView bm_removeAllSubviews];
 
+    UIBarButtonItem *rButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"video_more_btn"]
+                                                                    style:UIBarButtonItemStylePlain
+                                                                   target:self
+                                                                   action:@selector(moreAction)];
+    self.navigationItem.rightBarButtonItem = rButtonItem;
+
     if (model == nil) { return; }
     
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:model.startTime*0.001];
+    NSDate *startDate = [NSDate dateWithTimeIntervalSince1970:model.startTime*0.001];
+    NSDate *endDate = [NSDate dateWithTimeIntervalSince1970:model.endTime*0.001];
 
     UIView *contenView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 0)];
     contenView.backgroundColor = [UIColor clearColor];
@@ -114,7 +127,7 @@
 
     UILabel *rightlabel = [[UILabel alloc] initWithFrame:CGRectMake(UI_SCREEN_WIDTH - 150 - 16, 0, 150, 24)];
     rightlabel.backgroundColor = [UIColor clearColor];
-    rightlabel.text = [date bm_stringWithFormat:@"yyyy-MM-dd"];
+    rightlabel.text = [startDate bm_stringWithFormat:@"yyyy-MM-dd"];
     rightlabel.textAlignment = NSTextAlignmentRight;
     rightlabel.textColor = UI_COLOR_B4;
     rightlabel.font = UI_FONT_12;
@@ -127,7 +140,7 @@
     status.backgroundColor = [UIColor bm_colorWithHex:0xF0F0F0];
     status.text = [FSMeetingDataForm getValueForKey:model.meetingStatus type:FSMeetingDataType_AllMeetingStatus];
     [status bm_roundedRect:15];
-
+    self.statusLabel = status;
     FSEditVideoMediateCustomerView *statusView = [[FSEditVideoMediateCustomerView alloc] initWithFrame:CGRectMake(0, leftlabel.bm_bottom, contenView.bm_width, 0)];
     statusView.titleLabel.text = @"状态";
     statusView.titleLabel.textColor = UI_COLOR_B10;
@@ -152,31 +165,49 @@
     FSEditVideoMediateTextView *timeView = [[FSEditVideoMediateTextView alloc] initWithFrame:CGRectMake(0, typeView.bm_bottom, contenView.bm_width, 0)];
     timeView.titleLabel.text = @"时间";
     timeView.titleLabel.textColor = UI_COLOR_B10;
-    timeView.desLabel.text = [date bm_stringWithFormat:@"yyyy-MM-dd HH:mm"];
+
+    if ([startDate bm_isSameDayAsDate:endDate]) {
+        timeView.desLabel.text = [NSString stringWithFormat:@"%@ ~ %@",[startDate bm_stringWithFormat:@"M月d日 HH:mm"],[endDate bm_stringWithFormat:@"HH:mm"]];
+    } else {
+        timeView.desLabel.text = [NSString stringWithFormat:@"%@ ~ %@",[startDate bm_stringWithFormat:@"M月d日 HH:mm"],[endDate bm_stringWithFormat:@"M月d日 HH:mm"]];
+    }
+    
     [contenView addSubview:timeView];
     [timeView setEditEnabled:NO];
-    
 
-    FSEditVideoMediateImageView *personView = [[FSEditVideoMediateImageView alloc] initWithFrame:CGRectMake(0, timeView.bm_bottom, contenView.bm_width, 0) imageName:@"BMTableView_arrows_rightBlack"];
-    personView.titleLabel.text = @"参与人员";
-    personView.titleLabel.textColor = UI_COLOR_B10;
-    personView.line.hidden = YES;
-    personView.desLabel.text = [model getMeetingPersonnelNameList];
-    [contenView addSubview:personView];
-    [personView setEditEnabled:NO];
+    self.personView = [[FSEditVideoMediateImageView alloc] initWithFrame:CGRectMake(0, timeView.bm_bottom, contenView.bm_width, 0) imageName:@"BMTableView_arrows_rightBlack"];
+    self.personView.titleLabel.text = @"参与人员";
+    self.personView.titleLabel.textColor = UI_COLOR_B10;
+    self.personView.line.hidden = YES;
+    self.personView.desLabel.text = [model getMeetingPersonnelNameList];
+    [contenView addSubview:self.personView];
+    [self.personView setEditEnabled:NO];
     BMWeakSelf
-    personView.tapHandle = ^(FSEditVideoMediateBaseView *editView) {
-        NSLog(@"参与人员列表");
+    self.personView.tapHandle = ^(FSEditVideoMediateBaseView *editView) {
         FSVideoAttendListVC *vc = [FSVideoAttendListVC alloc];
-        if (![weakSelf.m_DetailModel.meetingStatus isEqualToString:@"MEETING_END"])
-        {
+        // 没有结束的会议可以邀请更多人
+        if (![weakSelf.m_DetailModel.meetingStatus isEqualToString:@"MEETING_END"]) {
             vc.meetingId = weakSelf.m_DetailModel.meetingId;
         }
         vc.m_AttendList = weakSelf.m_DetailModel.meetingPersonnelResponseDTO;
+        vc.inviteComplete = ^(NSArray *litigantList) {
+            if (litigantList.count) {
+                if ([litigantList bm_isNotEmpty]) {
+                    NSMutableArray *array = [NSMutableArray arrayWithArray:weakSelf.m_DetailModel.meetingPersonnelResponseDTO];
+                    [array addObjectsFromArray:litigantList];
+                    weakSelf.m_DetailModel.meetingPersonnelResponseDTO = [NSArray arrayWithArray:array];
+                    weakSelf.personView.desLabel.text = [weakSelf.m_DetailModel getMeetingPersonnelNameList];
+                    if (weakSelf.changedBlock) {
+                        weakSelf.changedBlock();
+                    }
+                }
+            }
+        };
+
         [weakSelf.navigationController pushViewController:vc animated:YES];
     };
     
-    FSEditVideoMediateContentView *content = [[FSEditVideoMediateContentView alloc] initWithFrame:CGRectMake(0, personView.bm_bottom + 9, contenView.bm_width, 0)];
+    FSEditVideoMediateContentView *content = [[FSEditVideoMediateContentView alloc] initWithFrame:CGRectMake(0, self.personView.bm_bottom + 9, contenView.bm_width, 0)];
     content.titleLabel.text = @"内容";
     content.titleLabel.textColor = UI_COLOR_B10;
     content.contentText.text = model.meetingContent;;
@@ -229,6 +260,125 @@
     return btn;
 }
 
+- (void)moreAction
+{
+    BMWeakSelf
+    FSVideoMediateSheetVC *sheetVC;
+    if ([_m_DetailModel.meetingStatus isEqualToString:@"MEETING_NOT_START"])
+    {
+        // 未开始 支持所有操作
+        sheetVC = [[FSVideoMediateSheetVC alloc] initWithTitleArray:@[@"添加人员", @"编辑", @"再次发起", @"删除"]];
+        __block FSVideoMediateSheetVC *blockVC = sheetVC;
+        sheetVC.m_ActionSheetDoneBlock = ^(NSInteger index, NSString *title) {
+            if (index == 0) {
+                [weakSelf inviteAction];
+            } else if (index == 1) {
+                [weakSelf editAction];
+            } else if (index == 2) {
+                [weakSelf resendAction];
+            } else {
+                blockVC.m_ActionSheetDismissBlock = ^{
+                    [weakSelf deleteAction];
+                };
+            }
+        };
+    }
+    else if ([_m_DetailModel.meetingStatus isEqualToString:@"MEETING_UNDERWAY"])
+    {
+        // 进行中 不能编辑不能删除
+        sheetVC = [[FSVideoMediateSheetVC alloc] initWithTitleArray:@[@"添加人员", @"再次发起"]];
+        sheetVC.m_ActionSheetDoneBlock = ^(NSInteger index, NSString *title) {
+            if (index == 0) {
+                [weakSelf inviteAction];
+            } else {
+                [weakSelf resendAction];
+            }
+        };
+    }
+    else
+    {
+        // 结束后不能添加人员不能编辑  可以删除
+        sheetVC = [[FSVideoMediateSheetVC alloc] initWithTitleArray:@[@"再次发起", @"删除"]];
+        __block FSVideoMediateSheetVC *blockVC = sheetVC;
+        sheetVC.m_ActionSheetDoneBlock = ^(NSInteger index, NSString *title) {
+            if (index == 0) {
+                [weakSelf resendAction];
+            } else {
+                blockVC.m_ActionSheetDismissBlock = ^{
+                    [weakSelf deleteAction];
+                };
+            }
+        };
+    }
+    
+    sheetVC.modalPresentationStyle = UIModalPresentationCustom;
+    sheetVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:sheetVC animated:YES completion:nil];
+}
+
+- (void)editAction
+{
+    BMWeakSelf
+    FSMakeVideoMediateVC *vc = [FSMakeVideoMediateVC makevideoMediateVCWithModel:FSMakeVideoMediateMode_Edit
+                                                                            data:self.m_DetailModel
+                                                                           block:^(FSMeetingDetailModel *model) {
+                                                                               weakSelf.m_DetailModel = model;
+                                                                               if (weakSelf.changedBlock) {
+                                                                                   weakSelf.changedBlock();
+                                                                               }
+                                                                           }];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)inviteAction
+{
+    // 邀请
+    FSVideoInviteLitigantVC *vc = [FSVideoInviteLitigantVC new];
+    vc.meetingId = self.m_DetailModel.meetingId;
+    BMWeakSelf
+    vc.inviteComplete = ^(NSArray *litigantList) {
+        if ([litigantList bm_isNotEmpty]) {
+            NSMutableArray *array = [NSMutableArray arrayWithArray:weakSelf.m_DetailModel.meetingPersonnelResponseDTO];
+            [array addObjectsFromArray:litigantList];
+            weakSelf.m_DetailModel.meetingPersonnelResponseDTO = [NSArray arrayWithArray:array];
+            weakSelf.personView.desLabel.text = [weakSelf.m_DetailModel getMeetingPersonnelNameList];
+            if (weakSelf.changedBlock) {
+                weakSelf.changedBlock();
+            }
+        }
+    };
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)resendAction
+{
+    BMWeakSelf
+    FSMakeVideoMediateVC *vc = [FSMakeVideoMediateVC makevideoMediateVCWithModel:FSMakeVideoMediateMode_ReSend
+                                                                            data:self.m_DetailModel
+                                                                           block:^(FSMeetingDetailModel *model) {
+                                                                               if (weakSelf.changedBlock) {
+                                                                                   weakSelf.changedBlock();
+                                                                               }
+                                                                           }];
+    [self.navigationController pushViewController:vc animated:YES];    
+}
+
+- (void)deleteAction
+{
+    UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"删除" message:@"确定要删除视频记录吗？删除后，相关记录不可恢复" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        [self sendDeleteRequest];
+    }];
+    [vc addAction:action];
+    
+    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    [vc addAction:action2];
+
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+
 // 进入视频会议
 - (void)bottomButtonClickAction
 {
@@ -236,44 +386,49 @@
     {
         [self startMeeting];
     }
+    else if ([_m_DetailModel.meetingStatus isEqualToString:@"MEETING_END"])
+    {
+        [self.m_ProgressHUD showAnimated:YES withText:@"视频已结束" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+    }
     else
     {
         [self joinRoom];
     }
 }
 
+- (void)sendDeleteRequest
+{
+    BMWeakSelf
+
+    [FSVideoStartTool deleteMeetingWithMeetingId:self.m_MeetingId progressHUD:self.m_ProgressHUD completionHandler:^(NSURLResponse *response, id  _Nullable responseObject, NSError * _Nullable error) {
+        NSDictionary *resDic = responseObject;
+        NSInteger statusCode = [resDic bm_intForKey:@"code"];
+        if (statusCode == 1000)
+        {
+            [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:@"删除成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+            if (weakSelf.changedBlock) {
+                weakSelf.changedBlock();
+            }
+            return;
+        }
+    }];
+}
+
 - (void)startMeeting
 {
-    [FSVideoStartTool startMeetingWithMeetingId:self.m_MeetingId completionHandler:^(NSURLResponse *response, id  _Nullable responseObject, NSError * _Nullable error) {
-        if (error)
+    [FSVideoStartTool startMeetingWithMeetingId:self.m_MeetingId progressHUD:self.m_ProgressHUD completionHandler:^(NSURLResponse *response, id  _Nullable responseObject, NSError * _Nullable error) {
+        NSDictionary *resDic = responseObject;
+        NSInteger statusCode = [resDic bm_intForKey:@"code"];
+        if (statusCode == 1000)
         {
-            BMLog(@"Error: %@", error);
-            [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-        }
-        else
-        {
-#if DEBUG
-            NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
-            BMLog(@"%@ %@", response, responseStr);
-#endif
-            NSDictionary *resDic = responseObject;
-            if (![resDic bm_isNotEmptyDictionary])
-            {
-                [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-                return;
+            _m_DetailModel.meetingStatus = @"MEETING_UNDERWAY";
+            self.statusLabel.text = [FSMeetingDataForm getValueForKey:_m_DetailModel.meetingStatus type:FSMeetingDataType_AllMeetingStatus];
+            [self.m_ProgressHUD hideAnimated:NO];
+            [self joinRoom];
+            if (self.changedBlock) {
+                self.changedBlock();
             }
-            
-            NSInteger statusCode = [resDic bm_intForKey:@"code"];
-            if (statusCode == 1000)
-            {
-                _m_DetailModel.meetingStatus = @"MEETING_UNDERWAY";
-                [self.m_ProgressHUD hideAnimated:NO];
-                [self joinRoom];
-                return;
-            }
-            
-            NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
-            [self.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         }
     }];
 }
@@ -283,39 +438,15 @@
 {
     FSMeetingPersonnelModel *model = [_m_DetailModel getMeetingMediator];
     BMWeakSelf
-    [FSVideoStartTool getJoinMeetingToken:model.inviteCode phone:model.mobilePhone completionHandler:^(NSURLResponse *response, id  _Nullable responseObject, NSError * _Nullable error) {
-        if (error)
+    [FSVideoStartTool getJoinMeetingToken:model.inviteCode name:model.userName progressHUD:self.m_ProgressHUD completionHandler:^(NSURLResponse *response, id  _Nullable responseObject, NSError * _Nullable error) {
+        NSDictionary *resDic = responseObject;
+        NSInteger statusCode = [resDic bm_intForKey:@"code"];
+        if (statusCode == 1000)
         {
-            BMLog(@"Error: %@", error);
-            [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-        }
-        else
-        {
-#if DEBUG
-            NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
-            BMLog(@"%@ %@", response, responseStr);
-#endif
-
-            NSDictionary *resDic = responseObject;
-            if (![resDic bm_isNotEmptyDictionary])
-            {
-                [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-                return;
-            }
-            
-            NSInteger statusCode = [resDic bm_intForKey:@"code"];
-            if (statusCode == 1000)
-            {
-                NSDictionary *data = [resDic bm_dictionaryForKey:@"data"];
-                VideoCallController *vc = [VideoCallController VCWithRoomId:_m_DetailModel.roomId meetingId:_m_DetailModel.meetingId token:data[@"token"]];
-                BMNavigationController *nav = [[BMNavigationController alloc] initWithRootViewController:vc];
-                [weakSelf presentViewController:nav animated:YES completion:nil];
-
-                return;
-            }
-            
-            NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
-            [self.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            NSDictionary *data = [resDic bm_dictionaryForKey:@"data"];
+            VideoCallController *vc = [VideoCallController VCWithRoomId:_m_DetailModel.roomId meetingId:_m_DetailModel.meetingId token:data[@"token"]];
+            BMNavigationController *nav = [[BMNavigationController alloc] initWithRootViewController:vc];
+            [weakSelf presentViewController:nav animated:YES completion:nil];
         }
     }];
 }

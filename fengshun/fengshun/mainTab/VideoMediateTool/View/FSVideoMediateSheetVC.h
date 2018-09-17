@@ -9,10 +9,12 @@
 #import "FSSuperVC.h"
 
 typedef void(^FSVideoMediateActionSheetDoneBlock)(NSInteger index, NSString *title);
+typedef void(^FSVideoMediateActionSheetDismissBlock)(void);
 
 @interface FSVideoMediateSheetVC : FSSuperVC
 
 @property (nonatomic, copy) FSVideoMediateActionSheetDoneBlock m_ActionSheetDoneBlock;
+@property (nonatomic, copy) FSVideoMediateActionSheetDismissBlock m_ActionSheetDismissBlock;
 
 - (instancetype)initWithTitleArray:(NSArray *)titles block:(FSVideoMediateActionSheetDoneBlock)block;
 

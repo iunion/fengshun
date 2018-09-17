@@ -9,7 +9,7 @@
 #import "FSVideoMediateListVC.h"
 #import "FSHeaderCommonSelector.h"
 #import "FSVideoMediateListCell.h"
-#import "FSCreateVideoMediateVC.h"
+#import "FSMakeVideoMediateVC.h"
 #import "FSVideoMediateDetailVC.h"
 
 @interface FSVideoMediateListVC ()
@@ -70,11 +70,13 @@
 
 - (void)createVideoMediate
 {
-    FSCreateVideoMediateVC *vc = [FSCreateVideoMediateVC new];
     BMWeakSelf
-    vc.successBlock = ^{
-        [weakSelf loadApiData];
-    };
+
+    FSMakeVideoMediateVC *vc = [FSMakeVideoMediateVC makevideoMediateVCWithModel:FSMakeVideoMediateMode_Create
+                                                                            data:nil
+                                                                           block:^(FSMeetingDetailModel *model) {
+                                                                               [weakSelf loadApiData];
+                                                                           }];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -136,6 +138,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FSVideoMediateDetailVC *vc = [FSVideoMediateDetailVC new];
+    BMWeakSelf
+    vc.changedBlock = ^{
+        [weakSelf loadApiData];
+    };
     FSMeetingDetailModel *model = self.m_DataArray[indexPath.row];
     vc.m_MeetingId = model.meetingId;
     [self.navigationController pushViewController:vc animated:YES];

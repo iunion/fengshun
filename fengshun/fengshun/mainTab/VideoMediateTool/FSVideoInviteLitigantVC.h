@@ -7,11 +7,11 @@
 //
 
 #import "FSSuperVC.h"
-#import "FSTableViewVC.h"
+#import "FSSetTableViewVC.h"
 
 typedef void(^inviteLitigantCompleteBlock)(NSArray *litigantList);
 
-@interface FSVideoInviteLitigantVC : FSTableViewVC
+@interface FSVideoInviteLitigantVC : FSSetTableViewVC
 
 // 已存在会议的会议邀请人员需要请求API
 @property (nonatomic, assign) NSInteger meetingId;

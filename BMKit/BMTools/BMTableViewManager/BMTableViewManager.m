@@ -139,6 +139,7 @@
 
 
     // add your Class here
+    self[@"FSMeetingPersonnelItem"] = @"FSVideoMediatePersonalCell";
 }
 
 - (Class)classForCellAtIndexPath:(NSIndexPath *)indexPath

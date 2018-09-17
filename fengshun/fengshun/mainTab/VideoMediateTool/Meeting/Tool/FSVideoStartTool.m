@@ -7,7 +7,6 @@
 //
 
 #import "FSVideoStartTool.h"
-#import "MBProgressHUD.h"
 
 @implementation FSVideoStartTool
 
@@ -21,16 +20,43 @@
     return window;
 }
 
-+ (BOOL)startMeetingWithMeetingId:(NSInteger)meetingId completionHandler:(nullable void (^)(NSURLResponse *response, id _Nullable responseObject,  NSError * _Nullable error))completionHandler
++ (BOOL)startMeetingWithMeetingId:(NSInteger)meetingId progressHUD:(MBProgressHUD *)hud completionHandler:(nullable void (^)(NSURLResponse *response, id _Nullable responseObject,  NSError * _Nullable error))completionHandler
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSMutableURLRequest *request = [FSApiRequest startMeetingWithId:meetingId];
+    NSMutableURLRequest *request = [FSApiRequest deleteMeetingWithId:meetingId];
     if (request)
     {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[self mainWindow] animated:YES];
+        [hud showAnimated:YES showBackground:YES];
         NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-            [hud hideAnimated:YES];
-            completionHandler(response, responseObject, error);
+            if (error)
+            {
+                BMLog(@"Error: %@", error);
+                [hud showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            }
+            else
+            {
+#if DEBUG
+                NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
+                BMLog(@"%@ %@", response, responseStr);
+#endif
+                NSDictionary *resDic = responseObject;
+                if (![resDic bm_isNotEmptyDictionary])
+                {
+                    [hud showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                    return;
+                }
+                
+                NSInteger statusCode = [resDic bm_intForKey:@"code"];
+                if (statusCode == 1000)
+                {
+                    [hud hideAnimated:YES];
+                    completionHandler(response, responseObject, error);
+                    return;
+                }
+                
+                NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
+                [hud showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            }
         }];
         [task resume];
         
@@ -40,16 +66,140 @@
     return YES;
 }
 
-+ (BOOL)getJoinMeetingToken:(NSString *)inviteCode phone:(NSString *)phone completionHandler:(nullable void (^)(NSURLResponse *response, id _Nullable responseObject,  NSError * _Nullable error))completionHandler
++ (BOOL)endMeetingWithMeetingId:(NSInteger)meetingId progressHUD:(MBProgressHUD *)hud completionHandler:(nullable void (^)(NSURLResponse *response, id _Nullable responseObject,  NSError * _Nullable error))completionHandler
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSMutableURLRequest *request = [FSApiRequest getJoinMeetingToken:inviteCode phone:phone];
+    NSMutableURLRequest *request = [FSApiRequest endMeetingWithId:meetingId];
     if (request)
     {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[self mainWindow] animated:YES];
+        [hud showAnimated:YES showBackground:YES];
         NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-            [hud hideAnimated:YES];
-            completionHandler(response, responseObject, error);
+            if (error)
+            {
+                BMLog(@"Error: %@", error);
+                [hud showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            }
+            else
+            {
+#if DEBUG
+                NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
+                BMLog(@"%@ %@", response, responseStr);
+#endif
+                NSDictionary *resDic = responseObject;
+                if (![resDic bm_isNotEmptyDictionary])
+                {
+                    [hud showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                    return;
+                }
+                
+                NSInteger statusCode = [resDic bm_intForKey:@"code"];
+                if (statusCode == 1000)
+                {
+                    [hud hideAnimated:YES];
+                    completionHandler(response, responseObject, error);
+                    return;
+                }
+                
+                NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
+                [hud showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            }
+        }];
+        [task resume];
+        
+        return NO;
+    }
+    
+    return YES;
+}
+
++ (BOOL)deleteMeetingWithMeetingId:(NSInteger)meetingId progressHUD:(MBProgressHUD *)hud completionHandler:(nullable void (^)(NSURLResponse *response, id _Nullable responseObject,  NSError * _Nullable error))completionHandler
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSMutableURLRequest *request = [FSApiRequest deleteMeetingWithId:meetingId];
+    if (request)
+    {
+        [hud showAnimated:YES showBackground:YES];
+        NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+            
+            if (error)
+            {
+                BMLog(@"Error: %@", error);
+                [hud showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            }
+            else
+            {
+#if DEBUG
+                NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
+                BMLog(@"%@ %@", response, responseStr);
+#endif
+                NSDictionary *resDic = responseObject;
+                if (![resDic bm_isNotEmptyDictionary])
+                {
+                    [hud showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                    return;
+                }
+                
+                NSInteger statusCode = [resDic bm_intForKey:@"code"];
+                if (statusCode == 1000)
+                {
+                    [hud hideAnimated:YES];
+                    completionHandler(response, responseObject, error);
+                    return;
+                }
+                
+                NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
+                [hud showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            }
+            
+        }];
+        [task resume];
+        
+        return NO;
+    }
+    
+    return YES;
+}
+
++ (BOOL)getJoinMeetingToken:(NSString *)inviteCode name:(NSString *)name progressHUD:(MBProgressHUD *)hud completionHandler:(nullable void (^)(NSURLResponse *response, id _Nullable responseObject,  NSError * _Nullable error))completionHandler
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSMutableURLRequest *request = [FSApiRequest getJoinMeetingToken:inviteCode inviteName:name];
+    if (request)
+    {
+        [hud showAnimated:YES showBackground:YES];
+        NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+            
+            if (error)
+            {
+                BMLog(@"Error: %@", error);
+                [hud showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            }
+            else
+            {
+#if DEBUG
+                NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
+                BMLog(@"%@ %@", response, responseStr);
+#endif
+                
+                NSDictionary *resDic = responseObject;
+                if (![resDic bm_isNotEmptyDictionary])
+                {
+                    [hud showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                    return;
+                }
+                
+                NSInteger statusCode = [resDic bm_intForKey:@"code"];
+                if (statusCode == 1000)
+                {
+                    [hud hideAnimated:YES];
+                    completionHandler(response, responseObject, error);
+                    
+                    return;
+                }
+                
+                NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
+                [hud showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            }
         }];
         [task resume];
         

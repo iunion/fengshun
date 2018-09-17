@@ -215,6 +215,11 @@ static NSDictionary *FSMeetingPersonIdentityTypeDic;
     [tempDic bm_setString:self.userName forKey:@"userName"];
     [tempDic bm_setString:self.mobilePhone forKey:@"mobilePhone"];
     [tempDic bm_setString:self.meetingIdentityTypeEnums forKey:@"meetingIdentityTypeEnums"];
+    
+    if (self.personnelId) {
+        [tempDic setObject:@(self.personnelId) forKey:@"id"];
+    }
+    
     return tempDic;
 }
 
@@ -249,11 +254,13 @@ static NSDictionary *FSMeetingPersonIdentityTypeDic;
     if (self.meetingContent) {
         [dic bm_setString:self.meetingContent forKey:@"meetingContent"];
     }
+    if (self.meetingId > 0) {
+        [dic setObject:@(self.meetingId) forKey:@"id"];
+    }
     [dic bm_setString:self.meetingName forKey:@"meetingName"];
     [dic bm_setString:self.meetingType forKey:@"meetingType"];
     [dic bm_setString:self.orderHour forKey:@"orderHour"];
-    NSString *time  = [NSString stringWithFormat:@"%.0f",self.startTime];
-    [dic setObject:[NSNumber numberWithDouble:[time doubleValue]]  forKey:@"startTime"];
+    [dic setObject:@(self.startTime)  forKey:@"startTime"];
 
     NSMutableArray *array = [NSMutableArray array];
     for (FSMeetingPersonnelModel *model in self.meetingPersonnelResponseDTO) {

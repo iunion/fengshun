@@ -49,6 +49,9 @@
     vc.meetingId = self.meetingId;
     BMWeakSelf
     vc.inviteComplete = ^(NSArray *litigantList) {
+        if (weakSelf.inviteComplete) {
+            weakSelf.inviteComplete(litigantList);
+        }
         if (litigantList.count) {
             NSMutableArray *newList = [NSMutableArray arrayWithArray:weakSelf.m_AttendList];
             [newList addObjectsFromArray:litigantList];

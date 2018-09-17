@@ -121,6 +121,7 @@
     self.placeholderLabel.textColor = self.item.pickerPlaceholderColor;
     self.placeholderLabel.font = self.item.pickerValueFont;
     self.placeholderLabel.textAlignment = self.item.pickerTextAlignment;
+    self.placeholderLabel.text = self.item.placeholder;
 
     self.pickerView.formateColor = self.item.formateColor;
     self.pickerView.formate = self.item.formate;
@@ -152,6 +153,8 @@
         }
     }
     
+    [self showPickerText];
+
     self.enabled = self.item.enabled;
 }
 
@@ -245,7 +248,6 @@
         }
     }
 
-    self.placeholderLabel.text = self.item.placeholder;
     self.placeholderLabel.hidden = [self.pickerTextLabel.text bm_isNotEmpty];
 }
 

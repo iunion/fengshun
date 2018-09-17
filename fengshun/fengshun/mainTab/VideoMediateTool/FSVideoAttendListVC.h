@@ -8,9 +8,14 @@
 
 #import "FSTableViewVC.h"
 
+typedef void(^inviteLitigantCompleteBlock)(NSArray *litigantList);
+
 @interface FSVideoAttendListVC : FSTableViewVC
+
+@property (nonatomic, copy) inviteLitigantCompleteBlock inviteComplete;
 
 @property (nonatomic, assign) NSInteger meetingId;
 @property (nonatomic, strong) NSArray *m_AttendList;
+
 
 @end

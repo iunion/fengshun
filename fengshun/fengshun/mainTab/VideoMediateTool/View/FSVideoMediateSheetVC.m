@@ -69,6 +69,10 @@
         [contentView addSubview:btn];
         btn.tag = index + BUTTON_TAG_OFFSET;
         index ++;
+        if ([title isEqualToString:@"删除"])
+        {
+            [btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        }
         if (index < count - 1) {
             UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 48*index-0.5, contentView.bm_width, 0.5)];
             line.backgroundColor = UI_COLOR_B6;
@@ -124,7 +128,11 @@
         _m_ContentView.bm_top = self.view.bm_bottom;
     } completion:^(BOOL finished) {
         if (finished) {
-            [self dismissViewControllerAnimated:NO completion:nil];
+            [self dismissViewControllerAnimated:NO completion:^{
+                if (self.m_ActionSheetDismissBlock) {
+                    self.m_ActionSheetDismissBlock();
+                }
+            }];
         }
     }];
 }
