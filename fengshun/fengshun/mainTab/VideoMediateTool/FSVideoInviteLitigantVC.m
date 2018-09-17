@@ -14,8 +14,10 @@
 @end
 
 @implementation FSVideoInviteLitigantVC
+@synthesize m_FreshViewType = _m_FreshViewType;
 
 - (void)viewDidLoad {
+    _m_FreshViewType = BMFreshViewType_NONE;
     [super viewDidLoad];
 
     [self bm_setNavigationWithTitle:@"邀请当事人" barTintColor:[UIColor whiteColor] leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:@"完成" rightItemImage:nil rightToucheEvent:@selector(doneAction)];
@@ -163,6 +165,17 @@
             }
         }];
         [task resume];
+    }
+}
+
+#pragma mark - 屏幕触摸事件
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
+#pragma mark - scorllView delegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView.tracking) {
+        [self.view endEditing:YES];
     }
 }
 

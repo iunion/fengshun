@@ -106,6 +106,7 @@
     _m_selectTimeView.hidden = YES;
     _m_selectTimeView.tapHandle = ^(FSEditVideoMediateBaseView *editView) {
         [weakSelf.m_selectTimeView.desLabel becomeFirstResponder];
+        weakSelf.m_DatePicker.minLimitDate = [NSDate date];
     };
     
     self.m_underTimeView = [[UIView alloc] initWithFrame:CGRectMake(0, _m_selectTimeView.bm_top, self.bm_width, 0)];
@@ -142,16 +143,13 @@
 {
     _m_Model = model;
     self.m_Model.meetingType = [FSMeetingDataForm getKeyForVlaue:_m_MeetingTypeView.desLabel.text type:FSMeetingDataType_MeetingType];
-    NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
-    self.m_Model.startTime = time * 1000;
 }
 
 -(void)setM_IsStartImmediately:(BOOL)startImmediately
 {
     _m_IsStartImmediately = startImmediately;
     if (startImmediately) {
-        NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
-        self.m_Model.startTime = time * 1000;
+        self.m_Model.startTime = 0;
     } else {
         self.m_Model.startTime = [self.m_DatePicker.pickerDate timeIntervalSince1970] * 1000;
     }
@@ -210,22 +208,19 @@
         _m_DatePicker = datePicker;
     }
 
-    _m_DatePicker.minLimitDate = [NSDate date];
     return _m_DatePicker;
 }
 
 #pragma mark UIPickerViewDataSource
-// returns the number of 'columns' to display.
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 2;
 }
 
-// returns the # of rows in each component..
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     if (component == 0) {
-        return 8;
+        return 10;
     }
     return 2;
 }
@@ -268,6 +263,10 @@
     if (!_m_IsStartImmediately && self.m_Model.startTime == 0) {
         [[self bm_tableviewController].m_ProgressHUD showAnimated:YES withDetailText:@"请选择开始时间" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         return NO;
+    } else if (_m_IsStartImmediately)
+    {
+        // 立即开始 设置为下一分钟API才容易成功
+        self.m_Model.startTime = [[NSDate bm_dateWithMinutesFromNow:1] timeIntervalSince1970] * 1000;
     }
 
     if (_m_Hour == 0) {
@@ -275,7 +274,11 @@
         return NO;
     }
     
-    self.m_Model.orderHour = [NSString stringWithFormat:@"%@",@(self.m_Hour)];
+    if (_m_Minute == 0) {
+        self.m_Model.orderHour = [NSString stringWithFormat:@"%@",@(self.m_Hour)];
+    } else {
+        self.m_Model.orderHour = [NSString stringWithFormat:@"%@.5",@(self.m_Hour)];
+    }
 
     return YES;
 }

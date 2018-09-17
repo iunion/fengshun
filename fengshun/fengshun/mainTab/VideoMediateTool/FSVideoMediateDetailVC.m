@@ -252,6 +252,10 @@
         }
         else
         {
+#if DEBUG
+            NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
+            BMLog(@"%@ %@", response, responseStr);
+#endif
             NSDictionary *resDic = responseObject;
             if (![resDic bm_isNotEmptyDictionary])
             {
@@ -262,7 +266,7 @@
             NSInteger statusCode = [resDic bm_intForKey:@"code"];
             if (statusCode == 1000)
             {
-                [_m_DetailModel.meetingStatus isEqualToString:@"MEETING_UNDERWAY"];
+                _m_DetailModel.meetingStatus = @"MEETING_UNDERWAY";
                 [self.m_ProgressHUD hideAnimated:NO];
                 [self joinRoom];
                 return;
@@ -287,6 +291,11 @@
         }
         else
         {
+#if DEBUG
+            NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
+            BMLog(@"%@ %@", response, responseStr);
+#endif
+
             NSDictionary *resDic = responseObject;
             if (![resDic bm_isNotEmptyDictionary])
             {

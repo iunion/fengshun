@@ -158,6 +158,17 @@
 }
 
 
+#pragma mark - 屏幕触摸事件
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
+#pragma mark - scorllView delegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView.tracking) {
+        [self.view endEditing:YES];
+    }
+}
+
 #pragma mark -
 #pragma mark Table Data Source Methods
 
