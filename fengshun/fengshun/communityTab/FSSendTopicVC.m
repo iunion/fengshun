@@ -16,10 +16,8 @@
 
 
 @interface
-FSSendTopicVC ()
-<
-TZImagePickerControllerDelegate
->
+FSSendTopicVC () <
+    TZImagePickerControllerDelegate>
 //相关的id
 @property (nonatomic, assign) NSInteger m_RelateId;
 //是否是编辑帖子
@@ -32,7 +30,8 @@ TZImagePickerControllerDelegate
 @implementation FSSendTopicVC
 
 
-- (instancetype)initWithIsEdited:(BOOL)isEdited relateId:(NSInteger )relateId{
+- (instancetype)initWithIsEdited:(BOOL)isEdited relateId:(NSInteger)relateId
+{
     if (self = [super init])
     {
         self.m_RelateId = relateId;
@@ -46,8 +45,7 @@ TZImagePickerControllerDelegate
     // Do any additional setup after loading the view from its nib.
     // Custom image button
     self.enabledToolbarItems = @[ ZSSRichTextEditorToolbarNone ];
-
-    UIButton *myButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 60.f, 28.0f)];
+    UIButton *myButton       = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 60.f, 28.0f)];
     [myButton setImage:[UIImage imageNamed:@"community_add_pic"] forState:UIControlStateNormal];
     [myButton addTarget:self
                   action:@selector(didTapCustomToolbarButton)
@@ -55,7 +53,6 @@ TZImagePickerControllerDelegate
     [self addCustomToolbarItemWithButton:myButton];
     self.placeholder        = @"请写下你的分享...";
     self.shouldShowKeyboard = NO;
-
 
     self.view.backgroundColor       = [UIColor whiteColor];
     self.bm_NavigationItemTintColor = UI_COLOR_B1;
@@ -68,10 +65,11 @@ TZImagePickerControllerDelegate
     self.m_TitleTextField.placeholder = @"添加标题";
     [self.view addSubview:self.m_TitleTextField];
 
-    UIView *singleLine         = [[UIView alloc] initWithFrame:CGRectMake(self.m_TitleTextField.bm_left, self.m_TitleTextField.bm_bottom, self.m_TitleTextField.bm_width, 1)];
-    singleLine.backgroundColor = UI_COLOR_B9;
+    BMSingleLineView *singleLine = [[BMSingleLineView alloc] initWithFrame:CGRectMake(self.m_TitleTextField.bm_left, self.m_TitleTextField.bm_bottom, self.m_TitleTextField.bm_width, 1) direction:SingleLineDirectionLandscape];
+    singleLine.needGap = YES;
+    singleLine.lineGap = 3.f;
+    singleLine.lineColor = UI_COLOR_B9;
     [self.view addSubview:singleLine];
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,36 +79,44 @@ TZImagePickerControllerDelegate
 }
 
 #pragma mark - Action
-
+// 退出
 - (void)popViewController
 {
     if ([self.m_TitleTextField.text bm_isNotEmpty] || [[self getHTML] bm_isNotEmpty])
     {
-        [FSAlertView showAlertWithTitle:@"退出编辑" message:@"您确定放弃当前编辑内容？" cancelTitle:@"取消" otherTitle:@"确定" completion:^(BOOL cancelled, NSInteger buttonIndex) {
-            if (!cancelled)
-            {
-                [self.navigationController popViewControllerAnimated:YES];
-            }
-        }];
+        [FSAlertView showAlertWithTitle:@"退出编辑"
+                                message:@"您确定放弃当前编辑内容？"
+                            cancelTitle:@"取消"
+                             otherTitle:@"确定"
+                             completion:^(BOOL cancelled, NSInteger buttonIndex) {
+                                 if (!cancelled)
+                                 {
+                                     [self.navigationController popViewControllerAnimated:YES];
+                                 }
+                             }];
     }
     else
     {
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
-
+// 发帖按钮
 - (void)pulishTopicAction
 {
-    BMLog(@"%@", [self getHTML]);
     if (![self.m_TitleTextField.text bm_isNotEmpty] || ![[self getHTML] bm_isNotEmpty])
     {
         return;
     }
-    [FSApiRequest sendPostsWithTitle:self.m_TitleTextField.text content:[self getHTML] forumId:self.m_RelateId isEdited:self.m_IsEdited success:^(id  _Nullable responseObject) {
-        [self.navigationController popViewControllerAnimated:YES];
-    } failure:^(NSError * _Nullable error) {
-        
-    }] ;
+    [FSApiRequest sendPostsWithTitle:self.m_TitleTextField.text
+                             content:[self getHTML]
+                             forumId:self.m_RelateId
+                            isEdited:self.m_IsEdited
+                             success:^(id _Nullable responseObject) {
+                                 [self.navigationController popViewControllerAnimated:YES];
+                             }
+                             failure:^(NSError *_Nullable error){
+
+                             }];
 }
 
 
@@ -146,16 +152,19 @@ TZImagePickerControllerDelegate
 
 - (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos
 {
-    if (![photos bm_isNotEmpty]) {
+    if (![photos bm_isNotEmpty])
+    {
         return;
     }
     UIImage *img = photos[0];
-    [FSApiRequest uploadImg:UIImageJPEGRepresentation(img, .8) success:^(id  _Nullable responseObject) {
-        NSString *url = [NSString stringWithFormat:@"%@%@%@",FS_URL_SERVER,FS_FILE_Adress,[responseObject bm_stringTrimForKey:@"fileId"]];
-        [self insertImage:url alt:@"123"];
-    } failure:^(NSError * _Nullable error) {
-        
-    }];
+    [FSApiRequest uploadImg:UIImageJPEGRepresentation(img, .8)
+                    success:^(id _Nullable responseObject) {
+                        NSString *url = [NSString stringWithFormat:@"%@%@%@", FS_URL_SERVER, FS_FILE_Adress, [responseObject bm_stringTrimForKey:@"fileId"]];
+                        [self insertImage:url alt:@"123"];
+                    }
+                    failure:^(NSError *_Nullable error){
+                        
+                    }];
 }
 
 /*

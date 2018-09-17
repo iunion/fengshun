@@ -14,8 +14,8 @@
 #import "FSCommunityModel.h"
 #import "BMAlertView.h"
 #import "FSPushVCManager.h"
-//#import "FSAlertVC.h"
 #import "FSAuthenticationVC.h"
+#import "FSAlertView.h"
 
 @interface
 FSCommunitySecVC ()
@@ -35,6 +35,8 @@ FSCommunitySecVC ()
 @property (nonatomic, strong) NSMutableArray *       m_dataArray;
 @property (nonatomic, strong) NSMutableArray *       m_vcArray;
 
+@property (nonatomic, strong) FSForumModel *m_ForumModel;
+
 @end
 
 @implementation FSCommunitySecVC
@@ -52,8 +54,9 @@ FSCommunitySecVC ()
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib
-    self.bm_NavigationBarHidden = YES;
-    [self bm_setNeedsUpdateNavigationBarAlpha];
+    [self bm_setNavigationWithTitle:@"" barTintColor:nil leftItemTitle:@"" leftItemImage:[UIImage imageNamed:@"community_white_back"] leftToucheEvent:@selector(popViewController) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
+    [self setBm_NavigationBarAlpha:0];
+    
     self.view.backgroundColor = FS_VIEW_BGCOLOR;
     self.m_dataArray          = [NSMutableArray arrayWithCapacity:0];
     self.m_vcArray            = [NSMutableArray array];
@@ -75,7 +78,7 @@ FSCommunitySecVC ()
     _m_HeaderView          = (FSCommunityHeaderView *)[[NSBundle mainBundle] loadNibNamed:@"FSCommunityHeaderView" owner:self options:nil].firstObject;
     _m_HeaderView.delegate = self;
     [self.view addSubview:_m_HeaderView];
-    _m_HeaderView.frame = CGRectMake(0, -64, UI_SCREEN_WIDTH, 200);
+    _m_HeaderView.frame = CGRectMake(0, -(UI_NAVIGATION_BAR_HEIGHT+20), UI_SCREEN_WIDTH, 200);
 
     // 切换视图
     self.m_SegmentBar = [[FSScrollPageSegment alloc] initWithFrame:CGRectMake(0, _m_HeaderView.bm_bottom + 8, UI_SCREEN_WIDTH, 44) titles:nil titleColor:nil selectTitleColor:nil showUnderLine:YES moveLineFrame:CGRectZero isEqualDivide:YES fresh:YES];
@@ -102,18 +105,22 @@ FSCommunitySecVC ()
 }
 
 #pragma mark - Action
+
+- (void)popViewController{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 // 发帖
 - (void)pulishTopicAction{
     if (![FSUserInfoModle userInfo].m_UserBaseInfo.m_IsRealName) {
-//        BMWeakSelf;
-//        [FSAlertVC showAlertWithTitle:@"温馨提示" message:@"认证后才能发帖" cancelTitle:@"取消" otherTitle:@"去认证" completion:^(BOOL cancelled, NSInteger buttonIndex) {
-//            if (!cancelled)
-//            {
-//                FSAuthenticationVC *vc = [[FSAuthenticationVC alloc] init];
-//                vc.delegate = weakSelf;
-//                [weakSelf.navigationController pushViewController:vc animated:YES];
-//            }
-//        }];
+        BMWeakSelf;
+        [FSAlertView showAlertWithTitle:@"温馨提示" message:@"认证后才能发帖" cancelTitle:@"取消" otherTitle:@"去认证" completion:^(BOOL cancelled, NSInteger buttonIndex) {
+            if (!cancelled)
+            {
+                FSAuthenticationVC *vc = [[FSAuthenticationVC alloc] init];
+                vc.delegate = weakSelf;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            }
+        }];
         return;
     }
     [FSPushVCManager showSendPostWithPushVC:self isEdited:NO relatedId:self.m_FourmId callBack:^(id object) {
@@ -121,7 +128,8 @@ FSCommunitySecVC ()
     }];
 }
 //认证完成
-- (void)authenticationFinished:(FSAuthenticationVC *)vc{
+- (void)authenticationFinished:(FSAuthenticationVC *)vc
+{
     BMLog(@"认证完成");
 }
 
@@ -150,6 +158,12 @@ FSCommunitySecVC ()
 
 - (void)followForumAction:(FSCommunityHeaderView *)aView
 {
+    FSForumFollowState state = self.m_ForumModel.m_AttentionFlag;
+    [FSApiRequest updateFourmAttentionStateWithFourmId:self.m_ForumModel.m_Id followStatus:!state success:^(id  _Nullable responseObject) {
+        [self getHeaderInfoMsg];
+    } failure:^(NSError * _Nullable error) {
+        
+    }];
 }
 
 #pragma mark - request
@@ -186,6 +200,7 @@ FSCommunitySecVC ()
         if ([responseObject bm_isNotEmptyDictionary])
         {
             FSForumModel *model = [FSForumModel forumModelWithServerDic:responseObject];
+            self.m_ForumModel = model;
             [_m_HeaderView updateHeaderViewWith:model];
         }
     } failure:^(NSError * _Nullable error) {
