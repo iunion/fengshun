@@ -68,13 +68,20 @@
             vc.m_CreateModel.orderHour = [NSString stringWithFormat:@"%@.5", @(hour)];
         }
         
-        vc.m_AttendedList = [NSMutableArray arrayWithArray:data.meetingPersonnelResponseDTO];
-        for (FSMeetingPersonnelModel *model in vc.m_AttendedList)
+        vc.m_AttendedList = [NSMutableArray array];
+        for (FSMeetingPersonnelModel *model in data.meetingPersonnelResponseDTO)
         {
+            FSMeetingPersonnelModel *newPerson = [FSMeetingPersonnelModel new];
+            newPerson.userName = model.userName;
+            newPerson.mobilePhone = model.mobilePhone;
+            newPerson.meetingIdentityTypeEnums = model.meetingIdentityTypeEnums;
+
+            [vc.m_AttendedList addObject:newPerson];
             if (mode == FSMakeVideoMediateMode_ReSend) {
-                model.personnelId = 0;
+                newPerson.personnelId = 0;
             } else {
-                model.selectState = 1;
+                newPerson.selectState = 1;
+                newPerson.personnelId = model.personnelId;
             }
         }
     }
