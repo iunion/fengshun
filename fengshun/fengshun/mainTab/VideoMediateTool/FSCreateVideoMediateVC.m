@@ -11,28 +11,26 @@
 #import "FSVideoMediatePersonalCell.h"
 #import "FSVideoInviteLitigantVC.h"
 
-@interface FSCreateVideoMediateVC () <UITableViewDelegate, UITableViewDataSource>
+@interface FSCreateVideoMediateVC ()
+<
+    UITableViewDelegate,
+    UITableViewDataSource
+>
 
-@property (nonatomic, strong) VideoMediateListModel *m_CreateModel;
-
-@property (nonatomic, strong) NSMutableArray *meetingAttendedList; // 参与人员列表
-
+@property (nonatomic, strong) FSMeetingDetailModel *m_CreateModel;
+@property (nonatomic, strong) NSMutableArray *m_AttendedList; // 参与人员列表
 @end
 
 @implementation FSCreateVideoMediateVC
 @synthesize m_FreshViewType = _m_FreshViewType;
 
 - (void)viewDidLoad {
-
     _m_FreshViewType = BMFreshViewType_NONE;
-    
     [super viewDidLoad];
 
-    self.bm_NavigationShadowHidden = NO;
-    self.bm_NavigationShadowColor = UI_COLOR_B6;
     [self bm_setNavigationWithTitle:@"新建视频调解" barTintColor:[UIColor whiteColor] leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
 
-    self.m_CreateModel = [VideoMediateListModel new];
+    self.m_CreateModel = [FSMeetingDetailModel new];
     [self buildUI];
 }
 
@@ -68,29 +66,95 @@
     self.m_TableView.tableFooterView = footer;
 }
 
-- (NSMutableArray *)meetingAttendedList
+- (NSMutableArray *)m_AttendedList
 {
-    if (_meetingAttendedList == nil) {
-        _meetingAttendedList = [NSMutableArray array];
-        [_meetingAttendedList addObject:[MeetingPersonnelModel userModel]];
-        
-        [_meetingAttendedList addObject:[MeetingPersonnelModel userModelWithState:0]];
-        [_meetingAttendedList addObject:[MeetingPersonnelModel userModelWithState:1]];
+    if (_m_AttendedList == nil) {
+        _m_AttendedList = [NSMutableArray array];
+        [_m_AttendedList addObject:[FSMeetingPersonnelModel userModel]];
     }
     
-    return _meetingAttendedList;
+    return _m_AttendedList;
 }
 
 - (void)inviteAction
 {
     FSVideoInviteLitigantVC *vc = [FSVideoInviteLitigantVC new];
-    vc.m_InviteList = self.meetingAttendedList;
+    BMWeakSelf
+    vc.inviteComplete = ^(NSArray *litigantList) {
+        [weakSelf.m_AttendedList addObjectsFromArray:litigantList];
+        [weakSelf.m_TableView reloadData];
+    };
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)bottomButtonClickAction
 {
+    FSCreateVideoMediateHeader *header = (FSCreateVideoMediateHeader *)self.m_TableView.tableHeaderView;
+    if (![header validMeetingInfo]) {
+        return;
+    }
+
+    if (self.m_AttendedList.count < 2) {
+        [self.m_ProgressHUD showAnimated:YES withDetailText:@"请邀请当事人" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        return;
+    }
     
+    self.m_CreateModel.meetingPersonnelResponseDTO = self.m_AttendedList;
+    [self sendSaveMeetingRequest];
+}
+
+- (void)sendSaveMeetingRequest
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSMutableURLRequest *request = [FSApiRequest saveMeetingWithInfo:[self.m_CreateModel formToParameters]];
+    if (request)
+    {
+        [self.m_ProgressHUD showAnimated:YES showBackground:NO];
+        NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+            if (error)
+            {
+                BMLog(@"Error: %@", error);
+                [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            }
+            else
+            {
+#if DEBUG
+                NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
+                BMLog(@"%@ %@", response, responseStr);
+#endif
+                [self saveRequestFinished:response responseDic:responseObject];
+            }
+        }];
+        [task resume];
+    }
+}
+
+- (void)saveRequestFinished:(NSURLResponse *)response responseDic:(NSDictionary *)resDic
+{
+    if (![resDic bm_isNotEmptyDictionary])
+    {
+        [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        return;
+    }
+    
+    NSInteger statusCode = [resDic bm_intForKey:@"code"];
+    if (statusCode == 1000)
+    {
+        [self.m_ProgressHUD hideAnimated:NO];
+        NSDictionary *dataDic = [resDic bm_dictionaryForKey:@"data"];
+        if ([dataDic bm_isNotEmptyDictionary])
+        {
+            if (self.successBlock) {
+                self.successBlock();
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+            return;
+        }
+    }
+    
+    NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
+    [self.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
 }
 
 
@@ -99,7 +163,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.meetingAttendedList.count;
+    return self.m_AttendedList.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -118,7 +182,7 @@
     view.backgroundColor = [UIColor clearColor];
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(14, 0, self.m_TableView.bm_width-28, 24)];
-    label.text = [NSString stringWithFormat:@"参与人员：%ld人",_meetingAttendedList.count];
+    label.text = [NSString stringWithFormat:@"参与人员：%@人",@(_m_AttendedList.count)];
     label.textColor = UI_COLOR_B4;
     label.font = UI_FONT_12;
     [view addSubview:label];
@@ -132,9 +196,9 @@
 
     FSVideoMediatePersonalCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (cell == nil) {
-        cell = [[FSVideoMediatePersonalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell = [[FSVideoMediatePersonalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID selectEnable:YES];
     }
-    MeetingPersonnelModel *model = self.meetingAttendedList[indexPath.row];
+    FSMeetingPersonnelModel *model = self.m_AttendedList[indexPath.row];
     [cell setModel:model];
     return cell;
 }

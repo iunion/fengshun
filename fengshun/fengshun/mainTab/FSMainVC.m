@@ -24,13 +24,15 @@
 #define SECTION_HEDER_HEIGHT 44.0f
 
 @interface
-FSMainVC () <
+FSMainVC ()
+<
     FSBannerViewDelegate,
     FSMainHeaderDelegate,
     UITableViewDelegate,
     UITableViewDataSource,
     UICollectionViewDelegateFlowLayout,
-    UICollectionViewDataSource>
+    UICollectionViewDataSource
+>
 
 @property (nonatomic, strong) FSMainHeaderView *                    m_headerView;
 @property (nonatomic, strong) NSArray<FSBannerModel *> *            m_banners;
@@ -49,6 +51,7 @@ FSMainVC () <
     [super viewWillAppear:animated];
     [self checkUnreadMessage];
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -57,9 +60,11 @@ FSMainVC () <
     [self setupUI];
     [self.m_TableView registerNib:[UINib nibWithNibName:@"FSCourseTableCell" bundle:nil] forCellReuseIdentifier:@"FSCourseTableCell"];
     [self.m_TableView registerNib:[UINib nibWithNibName:@"FSTopicListCell" bundle:nil] forCellReuseIdentifier:@"FSTopicListCell"];
+    
     [self loadApiData];
     [self moreNetWorking];
 }
+
 - (void)setupUI
 {
     self.bm_NavigationItemTintColor = UI_COLOR_B1;
@@ -82,9 +87,7 @@ FSMainVC () <
     self.m_TableView.tableHeaderView     = _m_headerView;
     self.m_TableView.sectionFooterHeight = 10;
     self.m_TableView.estimatedRowHeight  = COURSE_CELL_HEGHT;
-    
 }
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -94,6 +97,7 @@ FSMainVC () <
 
 
 #pragma mark - banner, header, scrollView delegate
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     CGFloat offsetY   = scrollView.contentOffset.y;
@@ -114,25 +118,37 @@ FSMainVC () <
         [self bm_setNeedsUpdateNavigationBarAlpha];
     }
 }
+
+
+#pragma mark -
+#pragma mark FSBannerViewDelegate
+
 - (void)bannerView:(UIView *)bannerView didScrollToIndex:(NSUInteger)index
 {
     _m_headerView.m_pageControl.currentPage = index;
 }
+
 - (void)AIButtonCliked
 {
     // 智能咨询
     
 }
+
+
 #pragma mark - view push
+
 - (void)jumpWithImageJumpModel:(FSImageJump *)imageJump
 {
-    if ([imageJump isKindOfClass:[FSHomePageToolModel class]]) {
+    if ([imageJump isKindOfClass:[FSHomePageToolModel class]])
+    {
         [self pushWithToolModel:(FSHomePageToolModel *)imageJump];
     }
 }
+
 - (void)pushWithToolModel:(FSHomePageToolModel *)tool
 {
-    switch (tool.m_toolType) {
+    switch (tool.m_toolType)
+    {
         // 视频调解
         case FSHomePageTooltype_VideoMediation:
             [FSPushVCManager pushVideoMediateList:self.navigationController];
@@ -151,30 +167,38 @@ FSMainVC () <
             break;
         // 文书扫描
         case FSHomePageTooltype_FileScanning:
-        {
-            [[FSOCRManager manager] ocr_getTextWithImage:@"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3685369849,2682466948&fm=26&gp=0.jpg" succeed:^(NSString *text) {
-                
-            } failed:^(NSError *error) {
-                
-            }];
-        }
+            [FSPushVCManager homePagePushToFileScanVC:self];
             break;
         default:
             break;
     }
 }
+
 - (void)popMessageVC:(id)sender
 {
+    if ([FSUserInfoModle isLogin])
+    {
+        [FSPushVCManager showMessageVC:self];
+    }
+    else
+    {
+        [self showLogin];
+    }
 }
+
+
 #pragma mark - tableViewDataSource & Delegate
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 2;
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return section ? _m_topics.count : _m_courses.count;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (!indexPath.section)
@@ -183,25 +207,31 @@ FSMainVC () <
     }
     return 152;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section) {
+    if (indexPath.section)
+    {
         FSTopicListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSTopicListCell"];
         [cell drawCellWithModle:_m_topics[indexPath.row]];
         return cell;
     }
+    
     FSCourseTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCourseTableCell"];
 
     cell.m_course = _m_courses[indexPath.row];
     return cell;
 }
+
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     return [UIView new];
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 0&&[_m_courses bm_isNotEmpty]) {
+    if (section == 0&&[_m_courses bm_isNotEmpty])
+    {
         return SECTION_HEDER_HEIGHT;
     }
     else if (section == 1&&[_m_topics bm_isNotEmpty])
@@ -210,6 +240,7 @@ FSMainVC () <
     }
     return 0;
 }
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *view         = [UIView new];
@@ -233,6 +264,8 @@ FSMainVC () <
     
     return view;
 }
+
+
 #pragma mark - collectionViewDataSource & Delegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -246,6 +279,7 @@ FSMainVC () <
 {
     return _m_tools.count;
 }
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     FSMainToolCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FSMainToolCell" forIndexPath:indexPath];
@@ -253,20 +287,26 @@ FSMainVC () <
     
     return cell;
 }
+
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
     return MAIN_TOOLCELL_GAP_V;
 }
+
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
     // 这儿是为了让plus每排也只能放3个
     return (UI_SCREEN_WIDTH > 375)?38:18;
 }
+
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return CGSizeMake(MAIN_TOOLCELL_WIDTH, MAIN_TOOLCELL_HEIGHT);
 }
+
+
 #pragma mark - NetWorking & freshUI
+
 - (void)moreNetWorking
 {
     // 获取案例检索的搜索热词
@@ -284,12 +324,13 @@ FSMainVC () <
     } failure:^(NSError * _Nullable error) {
         
     }];
-    
 }
+
 - (NSMutableURLRequest *)setLoadDataRequest
 {
     return [FSApiRequest loadHomePageData];
 }
+
 - (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)data
 {
     NSArray *banners = [data bm_arrayForKey:@"broadcastPictures"];
@@ -330,20 +371,32 @@ FSMainVC () <
 
     [self.m_TableView reloadData];
 }
+
 - (void)checkUnreadMessage
 {
-    [FSApiRequest getMessageUnReadFlagSuccess:^(id  _Nullable responseObject) {
-        [self showRedBadge:YES];
-    } failure:^(NSError * _Nullable error) {
-        [self showRedBadge:NO];
+    [FSApiRequest getMessageUnReadFlagSuccess:^(id responseObject) {
+        if ([responseObject isKindOfClass:[NSNumber class]])
+        {
+            BOOL show = ((NSNumber *)responseObject).boolValue;
+            [self showRedBadge:show];
+        }
+    } failure:^(NSError *error) {
     }];
 }
+
 - (void)showRedBadge:(BOOL)show
 {
     UIButton *btn = [self bm_getNavigationRightItemAtIndex:0];
-    [btn showRedDotBadge];
-    if (!show) {
+    if (show)
+    {
+        btn.badgeBgColor = UI_COLOR_R1;
+        btn.badgeBorderWidth = 0.0f;
+        [btn showRedDotBadge];
+    }
+    else
+    {
         [btn clearBadge];
     }
 }
+
 @end

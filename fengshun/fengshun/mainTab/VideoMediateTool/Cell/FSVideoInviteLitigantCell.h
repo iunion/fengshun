@@ -9,8 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "FSVideoMediateModel.h"
 
+@class FSVideoInviteLitigantCell;
+
+typedef void(^deleteLitigantCellBlock)(FSVideoInviteLitigantCell *cell);
+
 @interface FSVideoInviteLitigantCell : UITableViewCell
 
-@property (nonatomic, strong) MeetingPersonnelModel *m_Model;
+@property (nonatomic, copy) deleteLitigantCellBlock deleteBlock;
+
+@property (nonatomic, strong) FSMeetingPersonnelModel *m_Model;
 
 @end

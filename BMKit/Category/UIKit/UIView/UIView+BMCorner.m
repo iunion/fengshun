@@ -8,6 +8,7 @@
 
 #import "UIView+BMCorner.h"
 #import "UIView+BMSize.h"
+#import <objc/runtime.h>
 
 #pragma mark -
 #pragma mark UIView + Corner
@@ -124,6 +125,60 @@
     self.layer.cornerRadius = 0;
     self.layer.borderColor = nil;
     self.layer.masksToBounds = NO;
+    
+    if (self.bm_dashRectLayer.superlayer)
+    {
+        [self.bm_dashRectLayer removeFromSuperlayer];
+    }
 }
+
+- (CAShapeLayer *)bm_dashRectLayer
+{
+    CAShapeLayer *layer = objc_getAssociatedObject(self, _cmd);
+    return layer;
+}
+
+- (void)setBm_dashRectLayer:(CAShapeLayer *)layer
+{
+    objc_setAssociatedObject(self, @selector(bm_dashRectLayer), layer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (void)bm_roundedDashRect:(CGFloat)radius borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor
+{
+    [self bm_roundedDashRect:radius borderWidth:borderWidth borderColor:borderColor dashPattern:@[@4, @2]];
+}
+
+- (void)bm_roundedDashRect:(CGFloat)radius borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor dashPattern:(NSArray<NSNumber *> *)dashPattern
+{
+    if (!self.bm_dashRectLayer)
+    {
+        self.bm_dashRectLayer = [CAShapeLayer layer];
+    }
+
+    //虚线的颜色
+    self.bm_dashRectLayer.strokeColor = borderColor.CGColor;
+    //填充的颜色
+    self.bm_dashRectLayer.fillColor = [UIColor clearColor].CGColor;
+    
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:radius];
+    //设置路径
+    self.bm_dashRectLayer.path = path.CGPath;
+    self.bm_dashRectLayer.frame = self.bounds;
+    
+    //虚线的宽度
+    self.bm_dashRectLayer.lineWidth = borderWidth;
+    
+    //设置线条的样式
+    // self.bm_dashRectLayer.lineCap = @"square";
+    
+    //虚线的间隔
+    self.bm_dashRectLayer.lineDashPattern = dashPattern;
+    
+    self.layer.cornerRadius = radius;
+    self.layer.masksToBounds = YES;
+
+    [self.layer addSublayer:self.bm_dashRectLayer];
+}
+
 
 @end

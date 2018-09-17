@@ -160,7 +160,7 @@
             else
             {
                 // 返回的 Code 表示成功，对数据进行加工过滤，返回给上层业务
-                NSDictionary *resultData = responseObject[@"data"];
+                id resultData = responseObject[@"data"];
                 return resultData;
             }
         }

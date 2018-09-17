@@ -135,7 +135,8 @@ FSOCRManager ()
     NSArray *items = [data bm_arrayForKey:@"items"];
     NSString *text = @"";
     for (NSDictionary *item in items) {
-        text = [text stringByAppendingString:[item bm_stringForKey:@"itemstring\n"]];
+        text = [text stringByAppendingString:[NSString stringWithFormat:@"%@\n",[item bm_stringForKey:@"itemstring"]]];
+        
     }
     return [text bm_isNotEmpty]?text:nil;
 }

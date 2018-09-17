@@ -132,11 +132,10 @@
                                                  underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset
                                                      accessoryView:nil
                                                   selectionHandler:^(BMTableViewItem *item) {
-                                                      BMStrongSelf
-                                                      if (self.selectorBlock) {
-                                                          self.selectorBlock(tagModel, rowModel);
+                                                      if (weakSelf.selectorBlock) {
+                                                          weakSelf.selectorBlock(tagModel, rowModel);
                                                       }
-                                                      [self hideTableView];
+                                                      [weakSelf hideTableView];
                                                   }];
             item.cellStyle  = UITableViewCellStyleDefault;
             item.textFont   = [UIFont systemFontOfSize:14.0f];
@@ -167,50 +166,6 @@
         [_m_TableView reloadData];
         _m_SelectedTag = 0;
     }];
-}
-
-@end
-
-@implementation FSHeaderCommonSelectorModel
-
-+ (instancetype)modelWithTitle:(NSString *)title hiddenkey:(NSString *)key list:(NSArray *)array
-{
-    return [[FSHeaderCommonSelectorModel alloc] initWithTitle:title hiddenkey:key list:array];
-}
-
-- (instancetype)initWithTitle:(NSString *)title hiddenkey:(NSString *)key list:(NSArray *)array
-{
-    self = [super init];
-    
-    if (self) {
-        _title = title;
-        _hiddenkey = key;
-        _list = array;
-    }
-    
-    return self;
-}
-
-@end
-
-
-@implementation FSSelectorListModel
-
-+ (instancetype)modelWithName:(NSString *)name key:(NSString *)key
-{
-    return [[FSSelectorListModel alloc] initWithName:name key:key];
-}
-
-- (instancetype)initWithName:(NSString *)name key:(NSString *)key
-{
-    self = [super init];
-    
-    if (self) {
-        _showName = name;
-        _hiddenkey = key;
-    }
-    
-    return self;
 }
 
 @end

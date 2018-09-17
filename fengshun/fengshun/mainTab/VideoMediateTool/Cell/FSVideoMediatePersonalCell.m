@@ -21,12 +21,13 @@
 
 @implementation FSVideoMediatePersonalCell
 
--(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier selectEnable:(BOOL)enable
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 
     if (self) {
+        self.selectEnable = enable;
         [self build];
     }
     
@@ -35,10 +36,17 @@
 
 - (void)build
 {
-    self.m_SelectButton = [[UIButton alloc] initWithFrame:CGRectMake(kMarginLeft - 5, (kCellHeight-28)/2, 28, 28)];
-    self.m_FamilyNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(44, (kCellHeight-34)/2, 34, 34)];
-    self.m_FullNameLable = [[UILabel alloc] initWithFrame:CGRectMake(96, kCellHeight/2 - 17, UI_SCREEN_WIDTH - 96 - kMarginLeft, 20)];
-    self.m_PhoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(96, kCellHeight/2 ,  UI_SCREEN_WIDTH - 96 - kMarginLeft, 20)];
+    CGFloat left = kMarginLeft;
+    if (self.selectEnable) {
+        self.m_SelectButton = [[UIButton alloc] initWithFrame:CGRectMake(kMarginLeft - 5, (kCellHeight-28)/2, 28, 28)];
+        [_m_SelectButton addTarget:self action:@selector(selectAction) forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:_m_SelectButton];
+        left = 44;
+    }
+
+    self.m_FamilyNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(left, (kCellHeight-34)/2, 34, 34)];
+    self.m_FullNameLable = [[UILabel alloc] initWithFrame:CGRectMake(left + 52, kCellHeight/2 - 17, UI_SCREEN_WIDTH - 96 - kMarginLeft, 20)];
+    self.m_PhoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(left + 52, kCellHeight/2 ,  UI_SCREEN_WIDTH - 96 - kMarginLeft, 20)];
 
     [_m_FamilyNameLabel bm_circleView];
     _m_FamilyNameLabel.textColor = [UIColor whiteColor];
@@ -56,26 +64,28 @@
     line.backgroundColor = UI_COLOR_B6;
     
     [self.contentView addSubview:line];
-    [self.contentView addSubview:_m_SelectButton];
     [self.contentView addSubview:_m_FamilyNameLabel];
     [self.contentView addSubview:_m_FullNameLable];
-    [self.contentView addSubview:_m_PhoneLabel];
-    
-    [_m_SelectButton addTarget:self action:@selector(selectAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:_m_PhoneLabel];    
 }
 
--(void)setModel:(MeetingPersonnelModel *)model
+-(void)setModel:(FSMeetingPersonnelModel *)model
 {
     _model = model;
     _m_FamilyNameLabel.text = [model.userName substringWithRange:NSMakeRange(0, 1)];
     _m_FullNameLable.text = model.userName;
     _m_PhoneLabel.text = model.mobilePhone;
-    if (_model.selectState == -1) {
-        [_m_SelectButton setImage:[UIImage imageNamed:@"video_unselect"] forState:UIControlStateNormal] ;
-    } else if (_model.selectState == 0) {
-        [_m_SelectButton setImage:[UIImage imageNamed:@"video_not_selected"] forState:UIControlStateNormal] ;
-    } else {
-        [_m_SelectButton setImage:[UIImage imageNamed:@"video_selected"] forState:UIControlStateNormal] ;
+    
+    if (self.selectEnable) {
+        if ([_model.meetingIdentityTypeEnums isEqualToString:@"MEDIATOR"]) {
+            [_m_SelectButton setImage:[UIImage imageNamed:@"video_unselect"] forState:UIControlStateNormal] ;
+        } else {
+            if (_model.selectState == 0) {
+                [_m_SelectButton setImage:[UIImage imageNamed:@"video_not_selected"] forState:UIControlStateNormal] ;
+            } else {
+                [_m_SelectButton setImage:[UIImage imageNamed:@"video_selected"] forState:UIControlStateNormal] ;
+            }
+        }
     }
 }
 

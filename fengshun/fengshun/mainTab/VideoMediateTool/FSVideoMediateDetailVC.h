@@ -7,7 +7,11 @@
 //
 
 #import "FSSuperVC.h"
+#import "FSTableViewVC.h"
+#import "FSVideoMediateModel.h"
 
-@interface FSVideoMediateDetailVC : FSSuperVC
+@interface FSVideoMediateDetailVC : FSTableViewVC
+
+@property (nonatomic, assign) NSInteger m_MeetingId;
 
 @end

@@ -7,33 +7,69 @@
 //
 
 #import "FSVideoMessageListVC.h"
+#import "FSVideoMessageCell.h"
 
 @interface FSVideoMessageListVC ()
 
 @end
 
 @implementation FSVideoMessageListVC
+@synthesize m_FreshViewType = _m_FreshViewType;
 
 - (void)viewDidLoad {
+    _m_FreshViewType = BMFreshViewType_NONE;
+
     [super viewDidLoad];
 
     [self bm_setNavigationWithTitle:@"消息记录" barTintColor:[UIColor whiteColor] leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
 
+    [self loadApiData];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NSMutableURLRequest *)setLoadDataRequest
+{
+    return [FSApiRequest getRoomMessageRecordList:0];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)data
+{
+    NSLog(@"%@",data);
+//    NSArray *array = [FSMeetingDetailModel modelsWithDataArray:data[@"list"]];
+//
+//    if (array) {
+//        [self.m_DataArray addObjectsFromArray:array];
+//    }
+//    
+    if (self.m_DataArray.count == 0) {
+        [self showEmptyViewWithStatus:BMEmptyViewStatus_NoData];
+    }
+    
+    [self.m_TableView reloadData];
+    
+    return [super succeedLoadedRequestWithDic:data];
 }
-*/
+
+#pragma mark -
+#pragma mark Table Data Source Methods
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 135.0f;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *taskCellIdentifier = @"FSVideoMessageCell";
+    FSVideoMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
+    
+    if (cell == nil)
+    {
+        cell = [[FSVideoMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:taskCellIdentifier];
+    }
+    
+    
+    return cell;
+}
+
 
 @end

@@ -17,6 +17,10 @@
 #import "FSSearchViewController.h"
 #import "FSTextSplitVC.h"
 #import "FSTopicDetailVC.h"
+#import "FSFileScanVC.h"
+#import "FSFileScanImagePreviewVC.h"
+
+#import "FSMessageTabVC.h"
 
 @implementation FSPushVCManager
 
@@ -79,50 +83,79 @@
 + (void)homePage:(UIViewController *)mainVC pushToCaseSearchWithHotKeys:(NSArray *)hotKeys
 {
     // 搜索热词做份缓存,以应对网络添加较差的情况
-    if (!hotKeys) {
+    if (!hotKeys)
+    {
         hotKeys = [NSArray arrayWithContentsOfFile:SEARCH_CASEHOTKEY_CACHEFILE];
     }
     else
     {
         [hotKeys writeToFile:SEARCH_CASEHOTKEY_CACHEFILE atomically:NO];
     }
-    FSSearchViewController *searchViewController = [[FSSearchViewController alloc] initWithSearchKey:@"caseSearch" resultType:FSSearchResultType_case hotSearchTags:hotKeys searchHandler:nil];
+    FSSearchViewController *searchViewController  = [[FSSearchViewController alloc] initWithSearchKey:@"caseSearch" resultType:FSSearchResultType_case hotSearchTags:hotKeys searchHandler:nil];
     searchViewController.hidesBottomBarWhenPushed = YES;
     [mainVC.navigationController pushViewController:searchViewController animated:YES];
 }
+
 + (void)homePage:(UIViewController *)mainVC pushToLawSearchWithTopics:(NSArray *)topics
 {
     // 做个备份吧
-    if (!topics) {
+    if (!topics)
+    {
         topics = [NSArray arrayWithContentsOfFile:SEARCH_LAWTOPIC_CACHEFILE];
     }
     else
     {
         [topics writeToFile:SEARCH_LAWTOPIC_CACHEFILE atomically:NO];
     }
-    FSSearchViewController *searchViewController = [[FSSearchViewController alloc] initWithSearchKey:@"lawsSearch" resultType:FSSearchResultType_laws hotSearchTags:topics searchHandler:nil];
+    FSSearchViewController *searchViewController  = [[FSSearchViewController alloc] initWithSearchKey:@"lawsSearch" resultType:FSSearchResultType_laws hotSearchTags:topics searchHandler:nil];
     searchViewController.hidesBottomBarWhenPushed = YES;
     [mainVC.navigationController pushViewController:searchViewController animated:YES];
 }
 
 + (void)pushVideoMediateList:(UINavigationController *)nav;
 {
-    FSVideoMediateListVC *vc = [FSVideoMediateListVC new];
+    FSVideoMediateListVC *vc    = [FSVideoMediateListVC new];
     vc.hidesBottomBarWhenPushed = YES;
     [nav pushViewController:vc animated:YES];
 }
 
 + (void)homePagePushToTextSplitVC:(UIViewController *)mainVC
 {
-    FSTextSplitVC *splitVC = [[FSTextSplitVC alloc]initWithNibName:nil bundle:nil freshViewType:BMFreshViewType_NONE];
+    FSTextSplitVC *splitVC           = [[FSTextSplitVC alloc] initWithNibName:nil bundle:nil freshViewType:BMFreshViewType_NONE];
     splitVC.hidesBottomBarWhenPushed = YES;
     [mainVC.navigationController pushViewController:splitVC animated:YES];
-    
 }
+
 + (void)pushToTextSearchVC:(UIViewController *)showVC
 {
-    FSSearchViewController *searchViewController = [[FSSearchViewController alloc] initWithSearchKey:@"textSearch" resultType:FSSearchResultType_text hotSearchTags:nil searchHandler:nil];
+    FSSearchViewController *searchViewController  = [[FSSearchViewController alloc] initWithSearchKey:@"textSearch" resultType:FSSearchResultType_text hotSearchTags:nil searchHandler:nil];
     searchViewController.hidesBottomBarWhenPushed = YES;
     [showVC.navigationController pushViewController:searchViewController animated:YES];
 }
+
++ (void)homePagePushToFileScanVC:(UIViewController *)mainVC
+{
+    FSFileScanVC *vc            = [[FSFileScanVC alloc] initWithNibName:@"FSFileScanVC" bundle:nil];
+    vc.hidesBottomBarWhenPushed = YES;
+    [mainVC.navigationController pushViewController:vc animated:YES];
+}
+
++ (FSFileScanImagePreviewVC *)fileScanVC:(UIViewController *)fileCacnVC pushToImagePreviewWithSourceArray:(NSMutableArray *)sourceArray localArray:(NSMutableArray *)localArray selectIndex:(NSInteger)selectIndex
+{
+    FSFileScanImagePreviewVC *vc = [[FSFileScanImagePreviewVC alloc] initWithNibName:@"FSFileScanImagePreviewVC" bundle:nil];
+    vc.m_allImageFiles           = sourceArray;
+    vc.m_localImageFiles         = localArray;
+    vc.m_selectedImageFile       = [sourceArray objectAtIndex:selectIndex];
+    vc.hidesBottomBarWhenPushed  = YES;
+    [fileCacnVC.navigationController pushViewController:vc animated:YES];
+    return vc;
+}
+
++ (void)showMessageVC:(UIViewController *)pushVC
+{
+    FSMessageTabVC *vc = [[FSMessageTabVC alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [pushVC.navigationController pushViewController:vc animated:YES];
+}
+
 @end
