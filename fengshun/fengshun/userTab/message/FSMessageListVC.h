@@ -7,7 +7,13 @@
 //
 
 #import "FSTableViewVC.h"
+#import "FSMessage.h"
 
 @interface FSMessageListVC : FSTableViewVC
+
+// 使用FSScrollPageSegment加载时，用于push下级页面
+@property (nonatomic, weak) FSSuperVC *m_PushVC;
+
+- (instancetype)initWithMessageType:(FSMessageType)messageType;
 
 @end

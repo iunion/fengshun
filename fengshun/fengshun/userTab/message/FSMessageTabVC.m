@@ -21,8 +21,8 @@
 @property (nonatomic, strong) FSScrollPageSegment *m_SegmentBar;
 @property (nonatomic, strong) FSScrollPageView *m_ScrollPageView;
 
-@property (nonatomic, strong) FSTableViewVC *m_CommentMessageVC;
-@property (nonatomic, strong) FSTableViewVC *m_NoticeMessageVC;
+@property (nonatomic, strong) FSMessageListVC *m_CommentMessageVC;
+@property (nonatomic, strong) FSMessageListVC *m_NoticeMessageVC;
 
 @end
 
@@ -42,7 +42,7 @@
     self.bm_NavigationShadowHidden   = NO;
     self.bm_NavigationShadowColor    = [UIColor bm_colorWithHexString:@"D8D8D8"];
     
-    [self bm_setNavigationWithTitle:@"枫调理顺" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
+    [self bm_setNavigationWithTitle:@"消息" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
     
     [self setupUI];
 }
@@ -103,12 +103,14 @@
 {
     if (index == 0)
     {
-        self.m_CommentMessageVC = [[FSMessageListVC alloc] init];
+        self.m_CommentMessageVC = [[FSMessageListVC alloc] initWithMessageType:FSMessageType_COMMENT];
+        self.m_CommentMessageVC.m_PushVC = self;
         return self.m_CommentMessageVC.view;
     }
     else if (index == 1)
     {
-        self.m_NoticeMessageVC = [[FSMessageListVC alloc] init];
+        self.m_NoticeMessageVC = [[FSMessageListVC alloc] initWithMessageType:FSMessageType_NOTICE];
+        self.m_NoticeMessageVC.m_PushVC = self;
         return self.m_NoticeMessageVC.view;
     }
     return nil;

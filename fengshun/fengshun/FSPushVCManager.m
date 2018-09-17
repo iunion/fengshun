@@ -20,6 +20,8 @@
 #import "FSFileScanVC.h"
 #import "FSFileScanImagePreviewVC.h"
 
+#import "FSMessageTabVC.h"
+
 @implementation FSPushVCManager
 
 + (void)showCommunitySecVCPushVC:(UIViewController *)pushVC FourmId:(NSInteger)fourId
@@ -100,6 +102,7 @@
     searchViewController.hidesBottomBarWhenPushed = YES;
     [mainVC.navigationController pushViewController:searchViewController animated:YES];
 }
+
 + (void)homePage:(UIViewController *)mainVC pushToLawSearchWithTopics:(NSArray *)topics
 {
     // 做个备份吧
@@ -129,18 +132,21 @@
     splitVC.hidesBottomBarWhenPushed = YES;
     [mainVC.navigationController pushViewController:splitVC animated:YES];
 }
+
 + (void)pushToTextSearchVC:(UIViewController *)showVC
 {
     FSSearchViewController *searchViewController  = [[FSSearchViewController alloc] initWithSearchKey:@"textSearch" resultType:FSSearchResultType_text hotSearchTags:nil searchHandler:nil];
     searchViewController.hidesBottomBarWhenPushed = YES;
     [showVC.navigationController pushViewController:searchViewController animated:YES];
 }
+
 + (void)homePagePushToFileScanVC:(UIViewController *)mainVC
 {
     FSFileScanVC *vc            = [[FSFileScanVC alloc] initWithNibName:@"FSFileScanVC" bundle:nil];
     vc.hidesBottomBarWhenPushed = YES;
     [mainVC.navigationController pushViewController:vc animated:YES];
 }
+
 + (FSFileScanImagePreviewVC *)fileScanVC:(UIViewController *)fileCacnVC pushToImagePreviewWithSourceArray:(NSMutableArray *)sourceArray localArray:(NSMutableArray *)localArray selectIndex:(NSInteger)selectIndex
 {
     FSFileScanImagePreviewVC *vc = [[FSFileScanImagePreviewVC alloc] initWithNibName:@"FSFileScanImagePreviewVC" bundle:nil];
@@ -151,4 +157,12 @@
     [fileCacnVC.navigationController pushViewController:vc animated:YES];
     return vc;
 }
+
++ (void)showMessageVC:(UIViewController *)pushVC
+{
+    FSMessageTabVC *vc = [[FSMessageTabVC alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [pushVC.navigationController pushViewController:vc animated:YES];
+}
+
 @end
