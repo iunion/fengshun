@@ -26,5 +26,7 @@
 // 网络请求成功后,data是否可以为空, 默认不为空(NO)
 @property (nonatomic, assign) BOOL m_AllowEmptyJson;
 
+// 分享
+- (void)sendGetShareDataWithShareItemId:(NSString *)shareItemId shareType:(NSString *)shareType;
 
 @end

@@ -187,5 +187,16 @@
     return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
 }
 
+// 请求分享
++ (NSMutableURLRequest *)getShareDataWithShareItemId:(NSString *)shareItemId shareType:(NSString *)shareType
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/share/askShare", FS_URL_SERVER];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    
+    [parameters bm_setApiString:shareItemId forKey:@"id"];
+    [parameters bm_setApiString:shareType forKey:@"type"];
+
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
+}
 
 @end

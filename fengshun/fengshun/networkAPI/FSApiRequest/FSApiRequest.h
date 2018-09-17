@@ -74,6 +74,10 @@ NS_ASSUME_NONNULL_BEGIN
 // http://115.159.33.190:8121/swagger-ui.html#/%E5%AD%97%E5%85%B8/searchDictionaryInfoByTopLevelCodeUsingPOST
 + (nullable NSMutableURLRequest *)getDictionaryInfoWithLevelCode:(NSString *)levelCode;
 
+// 请求分享
+// http://115.159.33.190:8121/swagger-ui.html#/%E5%88%86%E4%BA%AB/askShareUsingPOST
++ (nullable NSMutableURLRequest *)getShareDataWithShareItemId:(NSString *)shareItemId shareType:(NSString *)shareType;
+
 @end
 
 
