@@ -11,6 +11,10 @@
 #import "FSCommunityVC.h"
 #import "FSUserMainVC.h"
 #import "FSH5DemoVC.h"
+//正常色
+#define ITEM_NOR_COLOR [UIColor bm_colorWithHex:0x000000]
+//选中色
+#define ITEM_SEL_COLOR [UIColor bm_colorWithHex:0xE14D4D]
 
 @interface FSTabBarController ()
 
@@ -23,29 +27,29 @@
 {
     BMTabItemClass *tab1 = [[BMTabItemClass alloc] init];
     tab1.title = @"首页";
-    tab1.normalColor = [UIColor bm_colorWithHex:0x666666];
-    tab1.selectedColor = [UIColor blueColor];
+    tab1.normalColor = ITEM_NOR_COLOR;
+    tab1.selectedColor = ITEM_SEL_COLOR;
     tab1.normalIcon = @"fstab_btn1_icon";
     tab1.selectedIcon = @"fstab_btn1_highIcon";
 
     BMTabItemClass *tab2 = [[BMTabItemClass alloc] init];
     tab2.title = @"课堂";
-    tab2.normalColor = [UIColor bm_colorWithHex:0x666666];
-    tab2.selectedColor = [UIColor blueColor];
+    tab2.normalColor = ITEM_NOR_COLOR;
+    tab2.selectedColor = ITEM_SEL_COLOR;
     tab2.normalIcon = @"fstab_btn2_icon";
     tab2.selectedIcon = @"fstab_btn2_highIcon";
 
     BMTabItemClass *tab3 = [[BMTabItemClass alloc] init];
     tab3.title = @"社区";
-    tab3.normalColor = [UIColor bm_colorWithHex:0x666666];
-    tab3.selectedColor = [UIColor blueColor];
+    tab3.normalColor = ITEM_NOR_COLOR;
+    tab3.selectedColor = ITEM_SEL_COLOR;
     tab3.normalIcon = @"fstab_btn3_icon";
     tab3.selectedIcon = @"fstab_btn3_highIcon";
 
     BMTabItemClass *tab4 = [[BMTabItemClass alloc] init];
     tab4.title = @"我的";
-    tab4.normalColor = [UIColor bm_colorWithHex:0x666666];
-    tab4.selectedColor = [UIColor blueColor];
+    tab4.normalColor = ITEM_NOR_COLOR;
+    tab4.selectedColor = ITEM_SEL_COLOR;
     tab4.normalIcon = @"fstab_btn4_icon";
     tab4.selectedIcon = @"fstab_btn4_highIcon";
     
