@@ -8,8 +8,9 @@
 
 #import "ZSSRichTextEditor.h"
 
-
 @interface FSSendTopicVC : ZSSRichTextEditor
+
+- (instancetype)initWithIsEdited:(BOOL)isEdited relateId:(NSInteger )relateId;
 
 @property (nonatomic , copy)void (^sendPostsCallBack)(id );
 

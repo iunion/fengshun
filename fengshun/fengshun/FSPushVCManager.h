@@ -21,11 +21,8 @@ typedef void (^PushVCCallBack)(id object);
 // 社区详情
 + (void)showPostDetailVCWithPushVC:(UIViewController *)pushVC url:(NSString *)url;
 
-// 发帖
-+ (void)showSendPostWithPushVC:(UIViewController *)pushVC callBack:(PushVCCallBack)callBack;
-
-// 编辑帖子
-+ (void)showEditPostWithPushVC:(UIViewController *)pushVC callBack:(PushVCCallBack)callBack;
+// 发帖|| 编辑帖子
++ (void)showSendPostWithPushVC:(UIViewController *)pushVC isEdited:(BOOL )isEdited relatedId:(NSInteger )relatedId callBack:(PushVCCallBack)callBack;
 
 //帖子详情
 + (void)showTopicDetail:(UIViewController *)pushVC  topicId:(NSString *)topicId;

@@ -99,7 +99,7 @@ FSCommunitySecVC () <
 #pragma mark - Action
 // 发帖
 - (void)pulishTopicAction{
-    [FSPushVCManager showSendPostWithPushVC:self callBack:^(id object) {
+    [FSPushVCManager showSendPostWithPushVC:self isEdited:NO relatedId:self.m_FourmId callBack:^(id object) {
         
     }];
 }
@@ -162,9 +162,9 @@ FSCommunitySecVC () <
 - (void)getHeaderInfoMsg
 {
     [FSApiRequest getTwoLevelFourmInfoWithId:self.m_FourmId success:^(id  _Nullable responseObject) {
-        if ([[responseObject bm_dictionaryForKey:@"communityForumDTO"] bm_isNotEmptyDictionary])
+        if ([responseObject bm_isNotEmptyDictionary])
         {
-            FSForumModel *model = [FSForumModel forumModelWithServerDic:[responseObject bm_dictionaryForKey:@"communityForumDTO"]];
+            FSForumModel *model = [FSForumModel forumModelWithServerDic:responseObject];
             [_m_HeaderView updateHeaderViewWith:model];
         }
     } failure:^(NSError * _Nullable error) {

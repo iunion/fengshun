@@ -692,6 +692,7 @@
 		ADE8689821392853005359B5 /* FSTopicListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADE8689621392853005359B5 /* FSTopicListCell.xib */; };
 		ADE8689C21393469005359B5 /* FSForumListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8689A21393469005359B5 /* FSForumListCell.m */; };
 		ADE8689D21393469005359B5 /* FSForumListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADE8689B21393469005359B5 /* FSForumListCell.xib */; };
+		ADEF1F19214F3FB200FFE0C3 /* FSAlertVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF1F18214F3FB200FFE0C3 /* FSAlertVC.m */; };
 		ADF7AAD821490D1F00B550E6 /* FSTopicDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF7AAD721490D1E00B550E6 /* FSTopicDetailVC.m */; };
 		DB14A7AA2139247900E88798 /* FSCourseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB14A7A82139247900E88798 /* FSCourseTableCell.m */; };
 		DB14A7AB2139247900E88798 /* FSCourseTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB14A7A92139247900E88798 /* FSCourseTableCell.xib */; };
@@ -2031,6 +2032,8 @@
 		ADE8689921393469005359B5 /* FSForumListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSForumListCell.h; sourceTree = "<group>"; };
 		ADE8689A21393469005359B5 /* FSForumListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSForumListCell.m; sourceTree = "<group>"; };
 		ADE8689B21393469005359B5 /* FSForumListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSForumListCell.xib; sourceTree = "<group>"; };
+		ADEF1F17214F3FB200FFE0C3 /* FSAlertVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSAlertVC.h; sourceTree = "<group>"; };
+		ADEF1F18214F3FB200FFE0C3 /* FSAlertVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSAlertVC.m; sourceTree = "<group>"; };
 		ADF7AAD621490D1E00B550E6 /* FSTopicDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTopicDetailVC.h; sourceTree = "<group>"; };
 		ADF7AAD721490D1E00B550E6 /* FSTopicDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTopicDetailVC.m; sourceTree = "<group>"; };
 		DB14A7A72139247900E88798 /* FSCourseTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCourseTableCell.h; sourceTree = "<group>"; };
@@ -3508,6 +3511,8 @@
 				87426A6621313C1C003C52F6 /* FSSuperVC.m */,
 				87426AD52133F446003C52F6 /* FSSuperNetVC.h */,
 				87426AD62133F446003C52F6 /* FSSuperNetVC.m */,
+				ADEF1F17214F3FB200FFE0C3 /* FSAlertVC.h */,
+				ADEF1F18214F3FB200FFE0C3 /* FSAlertVC.m */,
 			);
 			path = FSSuperVC;
 			sourceTree = "<group>";
@@ -4468,8 +4473,8 @@
 				AD932592214B4FD9007F3A93 /* ZSSBarButtonItem.m */,
 				AD93258E214B4FD9007F3A93 /* ZSSFontsViewController.h */,
 				AD932594214B4FD9007F3A93 /* ZSSFontsViewController.m */,
-				AD932540214B4FD9007F3A93 /* ZSSRichTextEditor.h */,
 				AD93253E214B4FD9007F3A93 /* ZSSRichTextEditor.js */,
+				AD932540214B4FD9007F3A93 /* ZSSRichTextEditor.h */,
 				AD932591214B4FD9007F3A93 /* ZSSRichTextEditor.m */,
 				AD932590214B4FD9007F3A93 /* ZSSTextView.h */,
 				AD9325AB214B4FD9007F3A93 /* ZSSTextView.m */,
@@ -5305,6 +5310,7 @@
 				AD1BE2122141238B0018AF2C /* FSForumSectionHeaderView.m in Sources */,
 				8730B09C2140FFA3004331A9 /* NSURL+DTAWS.m in Sources */,
 				87D20ACB213920E2001EDD60 /* FLEXWindow.m in Sources */,
+				ADEF1F19214F3FB200FFE0C3 /* FSAlertVC.m in Sources */,
 				87D20AAB213920E2001EDD60 /* FLEXNetworkTransaction.m in Sources */,
 				87D20AAD213920E2001EDD60 /* FLEXNetworkRecorder.m in Sources */,
 				87D20B042139492F001EDD60 /* WKWebViewJavascriptBridge.m in Sources */,
