@@ -12,7 +12,7 @@
 #import "ZSSBarButtonItem.h"
 #import "AppDelegate.h"
 #import "FSApiRequest.h"
-#import "FSAlertVC.h"
+#import "FSAlertView.h"
 
 
 @interface
@@ -86,7 +86,7 @@ TZImagePickerControllerDelegate
 {
     if ([self.m_TitleTextField.text bm_isNotEmpty] || [[self getHTML] bm_isNotEmpty])
     {
-        [FSAlertVC showAlertWithTitle:@"退出编辑" message:@"您确定放弃当前编辑内容？" cancelTitle:@"取消" otherTitle:@"确定" completion:^(BOOL cancelled, NSInteger buttonIndex) {
+        [FSAlertView showAlertWithTitle:@"退出编辑" message:@"您确定放弃当前编辑内容？" cancelTitle:@"取消" otherTitle:@"确定" completion:^(BOOL cancelled, NSInteger buttonIndex) {
             if (!cancelled)
             {
                 [self.navigationController popViewControllerAnimated:YES];
