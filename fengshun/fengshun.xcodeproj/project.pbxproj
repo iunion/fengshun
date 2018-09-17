@@ -745,6 +745,8 @@
 		DB5722362133A0FC0065DC30 /* FSScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5722332133A0FC0065DC30 /* FSScrollPageView.m */; };
 		DB57223B2133A1D90065DC30 /* FSCommunityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5722392133A1D90065DC30 /* FSCommunityVC.m */; };
 		DB57223C2133A1D90065DC30 /* FSCommunityVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB57223A2133A1D90065DC30 /* FSCommunityVC.xib */; };
+		DB7584A3214F4D200002A1FE /* FSOCRResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7584A1214F4D200002A1FE /* FSOCRResultVC.m */; };
+		DB7584A4214F4D200002A1FE /* FSOCRResultVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB7584A2214F4D200002A1FE /* FSOCRResultVC.xib */; };
 		DB804FE021422539007F7B19 /* search_hotKey@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB804FDE21422539007F7B19 /* search_hotKey@3x.png */; };
 		DB804FE121422539007F7B19 /* search_hotKey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB804FDF21422539007F7B19 /* search_hotKey@2x.png */; };
 		DB804FE421422548007F7B19 /* search_delKey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB804FE221422547007F7B19 /* search_delKey@2x.png */; };
@@ -2130,6 +2132,9 @@
 		DB5722382133A1D90065DC30 /* FSCommunityVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCommunityVC.h; sourceTree = "<group>"; };
 		DB5722392133A1D90065DC30 /* FSCommunityVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCommunityVC.m; sourceTree = "<group>"; };
 		DB57223A2133A1D90065DC30 /* FSCommunityVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSCommunityVC.xib; sourceTree = "<group>"; };
+		DB7584A0214F4D200002A1FE /* FSOCRResultVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSOCRResultVC.h; sourceTree = "<group>"; };
+		DB7584A1214F4D200002A1FE /* FSOCRResultVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSOCRResultVC.m; sourceTree = "<group>"; };
+		DB7584A2214F4D200002A1FE /* FSOCRResultVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSOCRResultVC.xib; sourceTree = "<group>"; };
 		DB804FDE21422539007F7B19 /* search_hotKey@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_hotKey@3x.png"; sourceTree = "<group>"; };
 		DB804FDF21422539007F7B19 /* search_hotKey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_hotKey@2x.png"; sourceTree = "<group>"; };
 		DB804FE221422547007F7B19 /* search_delKey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_delKey@2x.png"; sourceTree = "<group>"; };
@@ -3559,6 +3564,9 @@
 				DB487458214BB03400AB0805 /* FSFileScanImagePreviewVC.h */,
 				DB487459214BB03400AB0805 /* FSFileScanImagePreviewVC.m */,
 				DB48745A214BB03400AB0805 /* FSFileScanImagePreviewVC.xib */,
+				DB7584A0214F4D200002A1FE /* FSOCRResultVC.h */,
+				DB7584A1214F4D200002A1FE /* FSOCRResultVC.m */,
+				DB7584A2214F4D200002A1FE /* FSOCRResultVC.xib */,
 			);
 			path = mainTab;
 			sourceTree = "<group>";
@@ -5017,6 +5025,7 @@
 				87426A02212F9657003C52F6 /* navigationbar_close_icon@2x.png in Resources */,
 				8730B11F2148E5D1004331A9 /* fsfreshfreshing_icon2@2x.png in Resources */,
 				DB2656DC21466D06002ED713 /* search_openFilters@2x.png in Resources */,
+				DB7584A4214F4D200002A1FE /* FSOCRResultVC.xib in Resources */,
 				45F3FD13214BA535007712EE /* video_person_icon@2x.png in Resources */,
 				8730AD4A2140CC28004331A9 /* user_topicicon@3x.png in Resources */,
 				87426A4D213135F0003C52F6 /* fstab_btn3_highIcon@2x.png in Resources */,
@@ -5497,6 +5506,7 @@
 				AD9325FC214B4FDA007F3A93 /* ZSSBarButtonItem.m in Sources */,
 				87426907212E7E36003C52F6 /* NSString+BMURLEncode.m in Sources */,
 				874269DD212EB7C2003C52F6 /* TTGTagCollectionView.m in Sources */,
+				DB7584A3214F4D200002A1FE /* FSOCRResultVC.m in Sources */,
 				8730B0262140FFA2004331A9 /* DTBreakHTMLElement.m in Sources */,
 				87D209C82138F1E2001EDD60 /* SDWebImageTransition.m in Sources */,
 				AD22449A213CD6C300F2DC47 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,

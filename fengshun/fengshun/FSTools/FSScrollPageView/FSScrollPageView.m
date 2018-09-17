@@ -140,13 +140,11 @@
 - (void)reloadPage
 {
     self.m_PageCount = [self.datasource scrollPageViewNumberOfPages:self];
-    
+    [self.m_ScrollView bm_removeAllSubviews];
     if (self.m_PageCount == 0)
     {
         return;
     }
-    
-    [self.m_ScrollView bm_removeAllSubviews];
     self.m_ScrollView.contentSize = CGSizeMake(self.bm_width * self.m_PageCount, 0);
     self.m_ViewArray = [[NSMutableArray alloc] initWithCapacity:self.m_PageCount];
     self.m_TitleArray = [[NSMutableArray alloc] initWithCapacity:self.m_PageCount];

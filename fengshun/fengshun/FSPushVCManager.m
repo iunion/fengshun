@@ -19,6 +19,7 @@
 #import "FSTopicDetailVC.h"
 #import "FSFileScanVC.h"
 #import "FSFileScanImagePreviewVC.h"
+#import "FSOCRResultVC.h"
 
 @implementation FSPushVCManager
 
@@ -150,5 +151,12 @@
     vc.hidesBottomBarWhenPushed  = YES;
     [fileCacnVC.navigationController pushViewController:vc animated:YES];
     return vc;
+}
++ (void)viewController:(UIViewController *)vc pushToOCRResultVCWithImage:(UIImage *)image
+{
+    FSOCRResultVC *resultVC = [[FSOCRResultVC alloc]initWithNibName:@"FSOCRResultVC" bundle:nil];
+    resultVC.m_orcImage = image;
+    resultVC.hidesBottomBarWhenPushed = YES;
+    [vc.navigationController pushViewController:resultVC animated:YES];
 }
 @end

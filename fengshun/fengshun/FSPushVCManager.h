@@ -52,4 +52,5 @@ typedef void (^PushVCCallBack)(id object);
 + (void)homePagePushToFileScanVC:(UIViewController *)mainVC;
 // 文件扫描图片预览
 + (FSFileScanImagePreviewVC *)fileScanVC:(UIViewController *)fileCacnVC pushToImagePreviewWithSourceArray:(NSMutableArray *)sourceArray localArray:(NSMutableArray *)localArray selectIndex:(NSInteger)selectIndex;
++(void)viewController:(UIViewController *)vc pushToOCRResultVCWithImage:(UIImage *)image;
 @end

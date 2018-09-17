@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FSOCRResultVC">
+            <connections>
+                <outlet property="m_textView" destination="Ex8-wr-9bZ" id="tVl-xl-wQU"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outletCollection property="m_toolButtons" destination="0hE-R3-9mE" id="hYb-zI-bZU"/>
+                <outletCollection property="m_toolButtons" destination="9tu-XI-0bc" id="4q4-4w-tc0"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jba-c4-R9t">
+                    <rect key="frame" x="0.0" y="608" width="375" height="59"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hE-R3-9mE">
+                            <rect key="frame" x="15" y="10" width="75" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="75" id="ZiH-fv-gW4"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                            <state key="normal" title="分享">
+                                <color key="titleColor" red="0.3411764706" green="0.4941176471" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="toolButtonAction:" destination="-1" eventType="touchUpInside" id="cY1-w4-hP0"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9tu-XI-0bc">
+                            <rect key="frame" x="285" y="10" width="75" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="75" id="tlG-hk-tqd"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                            <state key="normal" title="复制全部">
+                                <color key="titleColor" red="0.3411764706" green="0.4941176471" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="toolButtonAction:" destination="-1" eventType="touchUpInside" id="aUI-A2-IBQ"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="0hE-R3-9mE" firstAttribute="height" secondItem="jba-c4-R9t" secondAttribute="height" multiplier="40:59" id="BM5-aM-dd8"/>
+                        <constraint firstItem="9tu-XI-0bc" firstAttribute="height" secondItem="0hE-R3-9mE" secondAttribute="height" id="NHk-JW-nIM"/>
+                        <constraint firstItem="9tu-XI-0bc" firstAttribute="width" secondItem="0hE-R3-9mE" secondAttribute="width" id="Zi5-q0-QSH"/>
+                        <constraint firstItem="9tu-XI-0bc" firstAttribute="centerY" secondItem="0hE-R3-9mE" secondAttribute="centerY" id="buj-n8-a0Z"/>
+                        <constraint firstItem="0hE-R3-9mE" firstAttribute="centerY" secondItem="jba-c4-R9t" secondAttribute="centerY" id="hn4-fa-GlZ"/>
+                        <constraint firstItem="0hE-R3-9mE" firstAttribute="leading" secondItem="jba-c4-R9t" secondAttribute="leading" constant="15" id="j8b-z3-t6D"/>
+                        <constraint firstAttribute="height" constant="59" id="maC-Yf-2NW"/>
+                        <constraint firstAttribute="trailing" secondItem="9tu-XI-0bc" secondAttribute="trailing" constant="15" id="oEh-kK-FHx"/>
+                    </constraints>
+                </view>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ex8-wr-9bZ">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="608"/>
+                    <color key="backgroundColor" red="0.96078431369999995" green="0.96470588239999999" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.70108011739999998" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="jba-c4-R9t" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="9F2-oQ-MYG"/>
+                <constraint firstAttribute="trailing" secondItem="Ex8-wr-9bZ" secondAttribute="trailing" id="MUo-Tw-072"/>
+                <constraint firstAttribute="trailing" secondItem="jba-c4-R9t" secondAttribute="trailing" id="XH0-tj-wqZ"/>
+                <constraint firstAttribute="bottom" secondItem="jba-c4-R9t" secondAttribute="bottom" id="d5g-II-Ezk"/>
+                <constraint firstItem="Ex8-wr-9bZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="d9v-m7-w8A"/>
+                <constraint firstItem="jba-c4-R9t" firstAttribute="top" secondItem="Ex8-wr-9bZ" secondAttribute="bottom" id="ob2-ol-9Ae"/>
+                <constraint firstItem="Ex8-wr-9bZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="z8I-Gk-Lx4"/>
+            </constraints>
+            <point key="canvasLocation" x="31.5" y="54.5"/>
+        </view>
+    </objects>
+</document>
