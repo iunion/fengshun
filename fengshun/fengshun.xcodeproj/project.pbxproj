@@ -715,6 +715,9 @@
 		ADE8689C21393469005359B5 /* FSForumListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8689A21393469005359B5 /* FSForumListCell.m */; };
 		ADE8689D21393469005359B5 /* FSForumListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADE8689B21393469005359B5 /* FSForumListCell.xib */; };
 		ADEF1F19214F3FB200FFE0C3 /* FSAlertVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF1F18214F3FB200FFE0C3 /* FSAlertVC.m */; };
+		ADEF1F32214F546800FFE0C3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEF1F31214F546800FFE0C3 /* libsqlite3.tbd */; };
+		ADEF1F34214F547D00FFE0C3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEF1F33214F547C00FFE0C3 /* SystemConfiguration.framework */; };
+		ADEF1F36214F549000FFE0C3 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEF1F35214F549000FFE0C3 /* Photos.framework */; };
 		ADF7AAD821490D1F00B550E6 /* FSTopicDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF7AAD721490D1E00B550E6 /* FSTopicDetailVC.m */; };
 		DB14A7AA2139247900E88798 /* FSCourseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB14A7A82139247900E88798 /* FSCourseTableCell.m */; };
 		DB14A7AB2139247900E88798 /* FSCourseTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB14A7A92139247900E88798 /* FSCourseTableCell.xib */; };
@@ -2097,6 +2100,9 @@
 		ADE8689B21393469005359B5 /* FSForumListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSForumListCell.xib; sourceTree = "<group>"; };
 		ADEF1F17214F3FB200FFE0C3 /* FSAlertVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSAlertVC.h; sourceTree = "<group>"; };
 		ADEF1F18214F3FB200FFE0C3 /* FSAlertVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSAlertVC.m; sourceTree = "<group>"; };
+		ADEF1F31214F546800FFE0C3 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		ADEF1F33214F547C00FFE0C3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		ADEF1F35214F549000FFE0C3 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		ADF7AAD621490D1E00B550E6 /* FSTopicDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTopicDetailVC.h; sourceTree = "<group>"; };
 		ADF7AAD721490D1E00B550E6 /* FSTopicDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTopicDetailVC.m; sourceTree = "<group>"; };
 		DB14A7A72139247900E88798 /* FSCourseTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCourseTableCell.h; sourceTree = "<group>"; };
@@ -2215,6 +2221,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADEF1F36214F549000FFE0C3 /* Photos.framework in Frameworks */,
+				ADEF1F34214F547D00FFE0C3 /* SystemConfiguration.framework in Frameworks */,
+				ADEF1F32214F546800FFE0C3 /* libsqlite3.tbd in Frameworks */,
 				AD9326DA214B66FD007F3A93 /* UIKit.framework in Frameworks */,
 				AD3B821E214A468100D72DE9 /* CoreText.framework in Frameworks */,
 				AD3B821C214A467900D72DE9 /* CoreGraphics.framework in Frameworks */,
@@ -3971,6 +3980,9 @@
 		87D18659213539EE00037DDF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ADEF1F35214F549000FFE0C3 /* Photos.framework */,
+				ADEF1F33214F547C00FFE0C3 /* SystemConfiguration.framework */,
+				ADEF1F31214F546800FFE0C3 /* libsqlite3.tbd */,
 				AD9326D9214B66FD007F3A93 /* UIKit.framework */,
 				AD3B821D214A468100D72DE9 /* CoreText.framework */,
 				AD3B821B214A467800D72DE9 /* CoreGraphics.framework */,
@@ -6016,6 +6028,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/thirdParty/UMShare/share_ios_6.9.4/SocialLibraries/Sina/libSocialSina.a",
+					"$(PROJECT_DIR)/thirdParty/UMShare/share_ios_6.9.4/SocialLibraries/QQ/libSocialQQ.a",
+					"$(PROJECT_DIR)/thirdParty/UMShare/share_ios_6.9.4/SocialLibraries/WeChat/libSocialWeChat.a",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lxml2",
@@ -6049,6 +6066,11 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/thirdParty/UMShare/share_ios_6.9.4/SocialLibraries/Sina/libSocialSina.a",
+					"$(PROJECT_DIR)/thirdParty/UMShare/share_ios_6.9.4/SocialLibraries/QQ/libSocialQQ.a",
+					"$(PROJECT_DIR)/thirdParty/UMShare/share_ios_6.9.4/SocialLibraries/WeChat/libSocialWeChat.a",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",

@@ -101,11 +101,11 @@ TZImagePickerControllerDelegate
 
 - (void)pulishTopicAction
 {
+    BMLog(@"%@", [self getHTML]);
     if (![self.m_TitleTextField.text bm_isNotEmpty] || ![[self getHTML] bm_isNotEmpty])
     {
         return;
     }
-    BMLog(@"%@", [self getHTML]);
     [FSApiRequest sendPostsWithTitle:self.m_TitleTextField.text content:[self getHTML] forumId:self.m_RelateId isEdited:self.m_IsEdited success:^(id  _Nullable responseObject) {
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSError * _Nullable error) {
