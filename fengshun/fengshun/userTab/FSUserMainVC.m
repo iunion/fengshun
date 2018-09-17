@@ -115,7 +115,14 @@
 
 - (void)messageAction:(id)sender
 {
-    NSLog(@"messageAction");
+    if ([FSUserInfoModle isLogin])
+    {
+        [FSPushVCManager showMessageVC:self];
+    }
+    else
+    {
+        [self showLogin];
+    }
 }
 
 - (void)interfaceSettings

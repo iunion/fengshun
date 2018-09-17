@@ -250,8 +250,8 @@ static CGFloat kDefaultScale = 0.5;
     self.enabledToolbarItems = [[NSArray alloc] init];
     
     //Frame for the source view and editor view
-    //CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-    CGRect frame = CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT);
+//    CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    CGRect frame = CGRectMake(15, 51, UI_SCREEN_WIDTH - 30, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - 51);
     
     //Source View
     [self createSourceViewWithFrame:frame];
@@ -1939,7 +1939,7 @@ static CGFloat kDefaultScale = 0.5;
     // Correct Curve
     UIViewAnimationOptions animationOptions = curve << 16;
     
-    const int extraHeight = 10;
+    const int extraHeight = 60;
     
     if ([notification.name isEqualToString:UIKeyboardWillShowNotification]) {
         

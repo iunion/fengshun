@@ -146,6 +146,17 @@ NS_ASSUME_NONNULL_BEGIN
 // http://115.159.33.190:8121/swagger-ui.html#/%E6%88%91%E7%9A%84%E7%9B%B8%E5%85%B3/getMyPostsUsingPOST
 + (nullable NSMutableURLRequest *)getMyTopicWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize;
 
+// 我的消息
+// http://115.159.33.190:8121/swagger-ui.html#/%E9%A6%96%E9%A1%B5%E7%9B%B8%E5%85%B3/getUserMessagesUsingPOST
++ (nullable NSMutableURLRequest *)getUserCommentMessagesWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize;
+
+// 公告
+// http://115.159.33.190:8121/swagger-ui.html#/%E9%A6%96%E9%A1%B5%E7%9B%B8%E5%85%B3/getNoticePushsUsingPOST
++ (nullable NSMutableURLRequest *)getUserNoticeMessagesWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize;
+
+// 公告详情
+// http://115.159.33.190:8121/swagger-ui.html#/%E9%A6%96%E9%A1%B5%E7%9B%B8%E5%85%B3/getNoticePushDetailUsingPOST
++ (nullable NSMutableURLRequest *)getUserNoticeMessageDetailWithId:(NSString *)messageId;
 
 
 // 刷新token
@@ -262,7 +273,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (nullable NSMutableURLRequest *)saveMeetingWithInfo:(NSDictionary *)dic;
 + (nullable NSMutableURLRequest *)getMeetingDetailWithId:(NSInteger)meetingId;
-
++ (nullable NSMutableURLRequest *)inviteListPersonnelWithId:(NSInteger)meetingId personList:(NSArray *)list;
++ (nullable NSMutableURLRequest *)getRoomMessageRecordList:(NSInteger)roomId;
++ (nullable NSMutableURLRequest *)getMeetingVideoList:(NSInteger)meetingId;
 @end
 
 NS_ASSUME_NONNULL_END

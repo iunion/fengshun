@@ -309,6 +309,41 @@
     return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
 }
 
+// 我的消息
++ (NSMutableURLRequest *)getUserCommentMessagesWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/home/getUserMessages", FS_URL_SERVER];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    
+    [parameters bm_setInteger:pageIndex forKey:@"pageIndex"];
+    [parameters bm_setInteger:pageSize forKey:@"pageSize"];
+    
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
+}
+
+// 公告
++ (NSMutableURLRequest *)getUserNoticeMessagesWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/home/getNoticePushs", FS_URL_SERVER];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    
+    [parameters bm_setInteger:pageIndex forKey:@"pageIndex"];
+    [parameters bm_setInteger:pageSize forKey:@"pageSize"];
+    
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
+}
+
+// 公告详情
++ (NSMutableURLRequest *)getUserNoticeMessageDetailWithId:(NSString *)messageId
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/home/getNoticePushDetail", FS_URL_SERVER];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    
+    [parameters bm_setApiString:messageId forKey:@"id"];
+    
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
+}
+
 // 刷新token
 + (NSMutableURLRequest *)updateUserToken:(NSString *)token
 {

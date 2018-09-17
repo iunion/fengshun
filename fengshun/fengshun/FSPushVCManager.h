@@ -21,11 +21,8 @@ typedef void (^PushVCCallBack)(id object);
 // 社区详情
 + (void)showPostDetailVCWithPushVC:(UIViewController *)pushVC url:(NSString *)url;
 
-// 发帖
-+ (void)showSendPostWithPushVC:(UIViewController *)pushVC callBack:(PushVCCallBack)callBack;
-
-// 编辑帖子
-+ (void)showEditPostWithPushVC:(UIViewController *)pushVC callBack:(PushVCCallBack)callBack;
+// 发帖|| 编辑帖子
++ (void)showSendPostWithPushVC:(UIViewController *)pushVC isEdited:(BOOL )isEdited relatedId:(NSInteger )relatedId callBack:(PushVCCallBack)callBack;
 
 //帖子详情
 + (void)showTopicDetail:(UIViewController *)pushVC  topicId:(NSString *)topicId;
@@ -52,5 +49,12 @@ typedef void (^PushVCCallBack)(id object);
 + (void)homePagePushToFileScanVC:(UIViewController *)mainVC;
 // 文件扫描图片预览
 + (FSFileScanImagePreviewVC *)fileScanVC:(UIViewController *)fileCacnVC pushToImagePreviewWithSourceArray:(NSMutableArray *)sourceArray localArray:(NSMutableArray *)localArray selectIndex:(NSInteger)selectIndex;
+
 +(void)viewController:(UIViewController *)vc pushToOCRResultVCWithImage:(UIImage *)image;
+
+
+// 显示个人信息
++ (void)showMessageVC:(UIViewController *)pushVC;
+
+
 @end

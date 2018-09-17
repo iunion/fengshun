@@ -10,6 +10,7 @@
 
 @interface FSVideoAttendListVC : FSTableViewVC
 
+@property (nonatomic, assign) NSInteger meetingId;
 @property (nonatomic, strong) NSArray *m_AttendList;
 
 @end

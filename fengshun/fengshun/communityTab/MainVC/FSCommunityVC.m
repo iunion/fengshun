@@ -15,12 +15,6 @@
 #import "FSForumListVC.h"
 
 
-
-
-static NSString *FSTopicListTableViewCellIdentifier = @"FSTopicListTableViewCellIdentifier";
-static NSString *FSForumListTableViewCellIdentifier = @"FSForumListTableViewCellIdentifier";
-static NSString *FSForumHeaderIdentifier            = @"FSForumHeaderIdentifier";
-
 @interface FSCommunityVC ()
 <
     FSScrollPageViewDelegate,

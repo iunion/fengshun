@@ -75,7 +75,8 @@
     self.m_LastReplyTime = [dic bm_doubleForKey:@"postsLastReplyTime"] / 1000;
     // 帖子评论数
     self.m_CommentCount = [dic bm_uintForKey:@"commentCount"];
-
+    // 跳转地址
+    self.m_JumpAddress = [dic bm_stringForKey:@"jumpAddress"];
     // 用户Id
     //self.m_UserId;
     // 用户昵称

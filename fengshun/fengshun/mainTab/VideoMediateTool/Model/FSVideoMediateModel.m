@@ -209,6 +209,15 @@ static NSDictionary *FSMeetingPersonIdentityTypeDic;
     return model;
 }
 
+- (NSDictionary *)formToParameters
+{
+    NSMutableDictionary *tempDic = [NSMutableDictionary dictionary];
+    [tempDic bm_setString:self.userName forKey:@"userName"];
+    [tempDic bm_setString:self.mobilePhone forKey:@"mobilePhone"];
+    [tempDic bm_setString:self.meetingIdentityTypeEnums forKey:@"meetingIdentityTypeEnums"];
+    return tempDic;
+}
+
 @end
 
 
@@ -252,11 +261,7 @@ static NSDictionary *FSMeetingPersonIdentityTypeDic;
         if (model.selectState != 1) {
             continue;
         }
-        NSMutableDictionary *tempDic = [NSMutableDictionary dictionary];
-        [tempDic bm_setString:model.userName forKey:@"userName"];
-        [tempDic bm_setString:model.mobilePhone forKey:@"mobilePhone"];
-        [tempDic bm_setString:model.meetingIdentityTypeEnums forKey:@"meetingIdentityTypeEnums"];
-        [array addObject:tempDic];
+        [array addObject:[model formToParameters]];
     }
     [dic setObject:array forKey:@"list"];
 
@@ -275,7 +280,7 @@ static NSDictionary *FSMeetingPersonIdentityTypeDic;
             [string appendString:@"、"];
         }
 
-        [string appendString:[NSString stringWithFormat:@"等%ld人", count]];
+        [string appendString:[NSString stringWithFormat:@"等%@人", @(count)]];
     }
     else
     {

@@ -120,7 +120,7 @@
     _m_TimeLengthView.tapHandle = ^(FSEditVideoMediateBaseView *editView) {
         if (weakSelf.m_Hour == 0) {
             weakSelf.m_Hour = 1;
-            weakSelf.m_TimeLengthView.desLabel.text = [NSString stringWithFormat:@"%ld小时%ld分钟", weakSelf.m_Hour,  weakSelf.m_Minute];
+            weakSelf.m_TimeLengthView.desLabel.text = [NSString stringWithFormat:@"%@小时%@分钟", @(weakSelf.m_Hour),  @(weakSelf.m_Minute)];
         }
         [weakSelf.m_TimeLengthView.desLabel becomeFirstResponder];
     };
@@ -233,7 +233,7 @@
 - (nullable NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     if (component == 0) {
-        return [NSString stringWithFormat:@"%ld小时",row+1];
+        return [NSString stringWithFormat:@"%@小时",@(row+1)];
     }
     
     if (row == 0) {
@@ -255,7 +255,7 @@
         }
     }
     
-    self.m_TimeLengthView.desLabel.text = [NSString stringWithFormat:@"%ld小时%ld分钟", _m_Hour,  _m_Minute];
+    self.m_TimeLengthView.desLabel.text = [NSString stringWithFormat:@"%@小时%@分钟", @(_m_Hour),  @(_m_Minute)];
 }
 
 - (BOOL)validMeetingInfo
@@ -275,7 +275,7 @@
         return NO;
     }
     
-    self.m_Model.orderHour = [NSString stringWithFormat:@"%ld",self.m_Hour];
+    self.m_Model.orderHour = [NSString stringWithFormat:@"%@",@(self.m_Hour)];
 
     return YES;
 }
