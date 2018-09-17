@@ -14,6 +14,7 @@
 #import "FSSetPhoneVC.h"
 
 typedef void(^FSSetupCalculateSizeBlock)(NSString *path, NSUInteger fileCount, NSUInteger totalSize, BOOL finished);
+typedef void(^FSSetupClearDiskBlock)(NSString *path, BOOL finished);
 
 @interface FSSetupVC ()
 
@@ -68,6 +69,8 @@ typedef void(^FSSetupCalculateSizeBlock)(NSString *path, NSUInteger fileCount, N
 {
     [super interfaceSettings];
     
+    BMWeakSelf
+    
     self.m_LoginSection = [BMTableViewSection section];
     self.m_BaseSection = [BMTableViewSection section];
 
@@ -92,6 +95,7 @@ typedef void(^FSSetupCalculateSizeBlock)(NSString *path, NSUInteger fileCount, N
     
     self.m_CacheItem = [BMTableViewItem itemWithTitle:@"清除缓存" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
+        [weakSelf clearCacheDisk];
     }];
     self.m_CacheItem.textFont = FS_CELLTITLE_TEXTFONT;
     self.m_CacheItem.highlightBgColor = UI_COLOR_BL1;
@@ -150,6 +154,58 @@ typedef void(^FSSetupCalculateSizeBlock)(NSString *path, NSUInteger fileCount, N
     [self freshViews];
 }
 
+- (void)clearCacheDisk
+{
+    UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [activityIndicatorView startAnimating];
+    self.m_CacheItem.accessoryView = activityIndicatorView;
+    self.m_CacheItem.enabled = NO;
+    
+    NSMutableArray *cachePathArray = [[NSMutableArray alloc] initWithCapacity:0];
+    
+    // SDWebImage cache
+    SDImageCache *cache = [SDImageCache sharedImageCache];
+    NSString *cachePath = [cache getDiskCachePath];
+    [cachePathArray addObject:cachePath];
+    
+    BMWeakSelf
+    [self clearDiskWithFilePathArray:cachePathArray completionBlock:^(NSString *path, BOOL finished) {
+        if (finished)
+        {
+            [weakSelf freshViews];
+        }
+    }];
+}
+
+- (void)calculateCacheDiskSize
+{
+    UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [activityIndicatorView startAnimating];
+    self.m_CacheItem.accessoryView = activityIndicatorView;
+    self.m_CacheItem.enabled = NO;
+    
+    NSMutableArray *cachePathArray = [[NSMutableArray alloc] initWithCapacity:0];
+    
+    // SDWebImage cache
+    SDImageCache *cache = [SDImageCache sharedImageCache];
+    NSString *cachePath = [cache getDiskCachePath];
+    [cachePathArray addObject:cachePath];
+    
+    BMWeakSelf
+    [self calculateSizeWithFilePathArray:cachePathArray completionBlock:^(NSString *path, NSUInteger fileCount, NSUInteger totalSize, BOOL finished) {
+        if (finished)
+        {
+            BMImageTextView *imageTextView = [[BMImageTextView alloc] initWithText:[NSString bm_storeStringWithBitSize:totalSize]];
+            imageTextView.textColor = UI_COLOR_B4;
+            imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
+            imageTextView.showTableCellAccessoryArrow = YES;
+            weakSelf.m_CacheItem.accessoryView = imageTextView;
+            weakSelf.m_CacheItem.enabled = YES;
+            [weakSelf.m_TableView reloadData];
+        }
+    }];
+}
+
 - (void)freshViews
 {
     [self.m_TableManager removeAllSections];
@@ -201,31 +257,8 @@ typedef void(^FSSetupCalculateSizeBlock)(NSString *path, NSUInteger fileCount, N
     {
         self.m_TableView.tableFooterView = nil;
     }
-
-    UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    [activityIndicatorView startAnimating];
-    self.m_CacheItem.accessoryView = activityIndicatorView;
-    self.m_CacheItem.enabled = NO;
     
-    NSMutableArray *cachePathArray = [[NSMutableArray alloc] initWithCapacity:0];
-
-    // SDWebImage cache
-    SDImageCache *cache = [SDImageCache sharedImageCache];
-    NSString *cachePath = [cache getDiskCachePath];
-    [cachePathArray addObject:cachePath];
-    
-    [self calculateSizeWithFileURLPathArray:cachePathArray completionBlock:^(NSString *path, NSUInteger fileCount, NSUInteger totalSize, BOOL finished) {
-        if (finished)
-        {
-            BMImageTextView *imageTextView = [[BMImageTextView alloc] initWithText:[NSString bm_storeStringWithBitSize:totalSize]];
-            imageTextView.textColor = UI_COLOR_B4;
-            imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
-            imageTextView.showTableCellAccessoryArrow = YES;
-            weakSelf.m_CacheItem.accessoryView = imageTextView;
-            weakSelf.m_CacheItem.enabled = YES;
-            [weakSelf.m_TableView reloadData];
-        }
-    }];
+    [self calculateCacheDiskSize];
     
     [self.m_TableManager addSection:self.m_BaseSection];
 
@@ -237,13 +270,13 @@ typedef void(^FSSetupCalculateSizeBlock)(NSString *path, NSUInteger fileCount, N
     [GetAppDelegate logOutWithApi];
 }
 
-- (void)calculateSizeWithFileURLPathArray:(NSArray *)fileURLPathArray completionBlock:(FSSetupCalculateSizeBlock)completionBlock
+- (void)calculateSizeWithFilePathArray:(NSArray *)filePathArray completionBlock:(FSSetupCalculateSizeBlock)completionBlock
 {
     dispatch_async(self.m_CacheQueue, ^{
         NSUInteger allFileCount = 0;
         NSUInteger allTotalSize = 0;
 
-        for (NSString *filPath in fileURLPathArray)
+        for (NSString *filPath in filePathArray)
         {
             NSURL *diskCacheURL = [NSURL fileURLWithPath:filPath isDirectory:YES];
             
@@ -278,6 +311,34 @@ typedef void(^FSSetupCalculateSizeBlock)(NSString *path, NSUInteger fileCount, N
         {
             dispatch_async(dispatch_get_main_queue(), ^{
                 completionBlock(nil, allFileCount, allTotalSize, YES);
+            });
+        }
+    });
+}
+
+- (void)clearDiskWithFilePathArray:(NSArray *)filePathArray completionBlock:(FSSetupClearDiskBlock)completion
+{
+    dispatch_async(self.m_CacheQueue, ^{
+        for (NSString *filPath in filePathArray)
+        {
+            [self.m_FileManager removeItemAtPath:filPath error:nil];
+            [self.m_FileManager createDirectoryAtPath:filPath
+                          withIntermediateDirectories:YES
+                                           attributes:nil
+                                                error:NULL];
+            
+            if (completion)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completion(filPath, NO);
+                });
+            }
+        }
+        
+        if (completion)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(nil, YES);
             });
         }
     });
