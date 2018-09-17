@@ -136,12 +136,7 @@
 }
 - (IBAction)pickImageFile:(id)sender
 {
-    TZImagePickerController *imagePickerVc  = [[TZImagePickerController alloc] initWithMaxImagesCount:0 delegate:self];
-    imagePickerVc.allowTakePicture          = NO;  // 在内部显示拍照按钮
-    imagePickerVc.allowPickingVideo         = NO;
-    imagePickerVc.alwaysEnableDoneBtn       = YES;
-    imagePickerVc.allowPickingOriginalPhoto = NO;
-    imagePickerVc.allowTakeVideo            = NO;
+    TZImagePickerController *imagePickerVc  = [TZImagePickerController fs_defaultPickerWithDelegate:self];
 
     [self presentViewController:imagePickerVc animated:YES completion:nil];
 }

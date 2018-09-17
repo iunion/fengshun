@@ -35,10 +35,11 @@ typedef void (^PushVCCallBack)(id object);
 #pragma mark - homePage push
 
 // 案例检索
-+(void)homePage:(UIViewController *)mainVC pushToCaseSearchWithHotKeys:(NSArray *)hotKeys;
-
++ (void)homePage:(UIViewController *)mainVC pushToCaseSearchWithHotKeys:(NSArray *)hotKeys;
++ (void)searchVCPushtToCaseOCrSearchVC:(UIViewController *)searchVC;
 // 法规检索
 + (void)homePage:(UIViewController *)mainVC pushToLawSearchWithTopics:(NSArray *)topics;
++ (void)searchVCPushtToLawsOCrSearchVC:(UIViewController *)searchVC;
 // 视频调解
 + (void)pushVideoMediateList:(UINavigationController *)nav;
 // 文书范本
@@ -49,7 +50,7 @@ typedef void (^PushVCCallBack)(id object);
 + (void)homePagePushToFileScanVC:(UIViewController *)mainVC;
 // 文件扫描图片预览
 + (FSFileScanImagePreviewVC *)fileScanVC:(UIViewController *)fileCacnVC pushToImagePreviewWithSourceArray:(NSMutableArray *)sourceArray localArray:(NSMutableArray *)localArray selectIndex:(NSInteger)selectIndex;
-
+// 文字识别结果
 +(void)viewController:(UIViewController *)vc pushToOCRResultVCWithImage:(UIImage *)image;
 
 

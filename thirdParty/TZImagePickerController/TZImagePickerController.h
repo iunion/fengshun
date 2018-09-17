@@ -30,6 +30,11 @@
 @interface TZImagePickerController : UINavigationController
 
 #pragma mark -
+
+// 为枫调理顺添加的默认配置
++ (instancetype)fs_defaultPickerWithDelegate:(id<TZImagePickerControllerDelegate>)delegate;
+
+
 /// Use this init method / 用这个初始化方法
 - (instancetype)initWithMaxImagesCount:(NSInteger)maxImagesCount delegate:(id<TZImagePickerControllerDelegate>)delegate;
 - (instancetype)initWithMaxImagesCount:(NSInteger)maxImagesCount columnNumber:(NSInteger)columnNumber delegate:(id<TZImagePickerControllerDelegate>)delegate;
@@ -38,6 +43,8 @@
 - (instancetype)initWithSelectedAssets:(NSMutableArray *)selectedAssets selectedPhotos:(NSMutableArray *)selectedPhotos index:(NSInteger)index;
 /// This init method for crop photo / 用这个初始化方法以裁剪图片
 - (instancetype)initCropTypeWithAsset:(PHAsset *)asset photo:(UIImage *)photo completion:(void (^)(UIImage *cropImage,PHAsset *asset))completion;
+
+
 
 #pragma mark -
 /// Default is 9 / 默认最大可选9张图片

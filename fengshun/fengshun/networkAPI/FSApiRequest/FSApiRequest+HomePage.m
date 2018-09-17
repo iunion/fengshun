@@ -52,7 +52,15 @@
     }
     return [FSApiRequest makeRequestWithURL:urlStr parameters:parames];
 }
-
+// 案例和法规提取关键字
++ (XMRequest *)getCaseKeywordsWithText:(NSString *)text success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
+{
+    return [XMRequestManager rm_requestWithApi:@"/search/ftls/util/cases/extractKeywords" parameters:@{@"keywords":text} success:successBlock failure:failureBlock];
+}
++ (XMRequest *)getLawsKeywordsWithText:(NSString *)text success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
+{
+    return [XMRequestManager rm_requestWithApi:@"/search/ftls/util/laws/extractKeywords" parameters:@{@"keywords":text} success:successBlock failure:failureBlock];
+}
 // 文书范本
 + (XMRequest *)loadTextIndexPageDataSuccess:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
 {

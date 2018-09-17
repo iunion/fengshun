@@ -20,6 +20,7 @@
 #define SearchBarGap            5.0f
 #define SearchBarFont           [UIFont systemFontOfSize:16.0f]
 #define SearchBarCornerRadius   5.0f
+#define OCRSearchButtonBottonGap 50.0f
 
 @interface FSSearchViewController ()
 <
@@ -47,6 +48,8 @@
 @property (nonatomic, strong) FSSearchResultView *resultView;
 
 @property (nonatomic, assign) FSSearchResultType resultType;
+
+@property (nonatomic, strong) UIButton *m_OCRButton;
 
 @end
 
@@ -101,7 +104,7 @@
 
     [self makeSearchHistoriesView];
 
-    if(_resultType)[self makeHeaderTagView];
+    [self moreUISetup];
     
     [self freshItems];
 }
@@ -176,7 +179,71 @@
     
     self.searchHistories = [NSMutableArray arrayWithArray:[self getSearchHistory]];
 }
-
+- (void)moreUISetup
+{
+    if (_resultType)
+    {
+        [self makeHeaderTagView];
+        self.m_OCRButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 135, 40)];
+        [_m_OCRButton bm_roundedRect:20];
+        _m_OCRButton.backgroundColor = UI_COLOR_BL1;
+        _m_OCRButton.bm_centerX      = self.view.bm_centerX;
+        CGFloat viewHeight           = UI_SCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT - UI_STATUS_BAR_HEIGHT;
+        _m_OCRButton.bm_bottom       = viewHeight - OCRSearchButtonBottonGap;
+        [self.view addSubview:_m_OCRButton];
+        UIImageView *buttonTag = [[UIImageView alloc] initWithFrame:CGRectMake(16, 12, 20, 15)];
+        buttonTag.image        = [UIImage imageNamed:@"scanfile_camera"];
+        [_m_OCRButton addSubview:buttonTag];
+        UIView *line         = [[UIView alloc] initWithFrame:CGRectMake(buttonTag.bm_right + 10, 10, 0.5, 20)];
+        line.backgroundColor = [UIColor whiteColor];
+        [_m_OCRButton addSubview:line];
+        UILabel *label   = [[UILabel alloc] initWithFrame:CGRectMake(line.bm_right + 9, 0, _m_OCRButton.bm_width - line.bm_right - 9, 20)];
+        label.bm_centerY = buttonTag.bm_centerY;
+        label.font       = [UIFont systemFontOfSize:16];
+        label.textColor  = [UIColor whiteColor];
+        label.text       = @"拍照识别";
+        [_m_OCRButton addSubview:label];
+        [_m_OCRButton addTarget:self action:@selector(pushToOCRSearchVC) forControlEvents:UIControlEventTouchUpInside];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    }
+}
+#pragma mark - OCR Search
+- (void)pushToOCRSearchVC
+{
+    if (_resultType == FSSearchResultType_case) {
+        [FSPushVCManager searchVCPushtToCaseOCrSearchVC:self];
+    }
+    else if (_resultType == FSSearchResultType_laws)
+    {
+        [FSPushVCManager searchVCPushtToLawsOCrSearchVC:self];
+    }
+}
+#pragma mark - keyboard notification
+- (void)keyBoardWillShow:(NSNotification *)sender
+{
+    NSValue *value      = sender.userInfo[UIKeyboardFrameEndUserInfoKey];
+    CGRect keyBoarFrame = [value CGRectValue];
+    CGFloat viewHeight  = UI_SCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT - UI_STATUS_BAR_HEIGHT;
+    [UIView animateWithDuration:[sender.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
+        self.m_OCRButton.bm_bottom = viewHeight - keyBoarFrame.size.height - OCRSearchButtonBottonGap +5;
+    }];
+    
+}
+-(void)keyBoardWillHide:(NSNotification *)sender
+{
+     CGFloat viewHeight  = UI_SCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT - UI_STATUS_BAR_HEIGHT;
+    [UIView animateWithDuration:[sender.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
+         self.m_OCRButton.bm_bottom = viewHeight - OCRSearchButtonBottonGap;
+    }];
+}
+- (void)dealloc
+{
+    if (_resultType) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    }
+}
 - (void)makeTagViewArray
 {
     self.tagViewArray = [NSMutableArray arrayWithCapacity:0];
@@ -196,7 +263,6 @@
         [self.tagViewArray addObject:label];
     }
 }
-
 - (void)makeHeaderTagView
 {
     [self makeTagViewArray];
@@ -387,6 +453,7 @@
 
 - (void)cancelSearch:(id)sender
 {
+    [_searchTextField resignFirstResponder];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

@@ -75,6 +75,7 @@
     self.m_searchResultModel.m_filterSegments = result.m_filterSegments;
     
     if (self.m_searchsucceed) self.m_searchsucceed(self.m_searchResultModel);
+    self.m_DataArray = [_m_searchResultModel.m_resultDataArray mutableCopy];
     [self.m_TableView reloadData];
     
     return [super succeedLoadedRequestWithDic:responseObject];

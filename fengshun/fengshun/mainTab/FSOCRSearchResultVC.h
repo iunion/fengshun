@@ -19,4 +19,5 @@ typedef NS_ENUM(NSUInteger, FSOCRSearchType)
 
 @property (nonatomic, assign)FSOCRSearchType m_ocrSearchType;
 
+
 @end
