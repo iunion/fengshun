@@ -762,6 +762,8 @@
 		DB57223C2133A1D90065DC30 /* FSCommunityVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB57223A2133A1D90065DC30 /* FSCommunityVC.xib */; };
 		DB7584A3214F4D200002A1FE /* FSOCRResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7584A1214F4D200002A1FE /* FSOCRResultVC.m */; };
 		DB7584A4214F4D200002A1FE /* FSOCRResultVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB7584A2214F4D200002A1FE /* FSOCRResultVC.xib */; };
+		DB7584A9214F5C630002A1FE /* FSOCRSearchResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7584A7214F5C630002A1FE /* FSOCRSearchResultVC.m */; };
+		DB7584AA214F5C630002A1FE /* FSOCRSearchResultVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB7584A8214F5C630002A1FE /* FSOCRSearchResultVC.xib */; };
 		DB804FE021422539007F7B19 /* search_hotKey@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB804FDE21422539007F7B19 /* search_hotKey@3x.png */; };
 		DB804FE121422539007F7B19 /* search_hotKey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB804FDF21422539007F7B19 /* search_hotKey@2x.png */; };
 		DB804FE421422548007F7B19 /* search_delKey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB804FE221422547007F7B19 /* search_delKey@2x.png */; };
@@ -2175,6 +2177,9 @@
 		DB7584A0214F4D200002A1FE /* FSOCRResultVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSOCRResultVC.h; sourceTree = "<group>"; };
 		DB7584A1214F4D200002A1FE /* FSOCRResultVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSOCRResultVC.m; sourceTree = "<group>"; };
 		DB7584A2214F4D200002A1FE /* FSOCRResultVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSOCRResultVC.xib; sourceTree = "<group>"; };
+		DB7584A6214F5C630002A1FE /* FSOCRSearchResultVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSOCRSearchResultVC.h; sourceTree = "<group>"; };
+		DB7584A7214F5C630002A1FE /* FSOCRSearchResultVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSOCRSearchResultVC.m; sourceTree = "<group>"; };
+		DB7584A8214F5C630002A1FE /* FSOCRSearchResultVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSOCRSearchResultVC.xib; sourceTree = "<group>"; };
 		DB804FDE21422539007F7B19 /* search_hotKey@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_hotKey@3x.png"; sourceTree = "<group>"; };
 		DB804FDF21422539007F7B19 /* search_hotKey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_hotKey@2x.png"; sourceTree = "<group>"; };
 		DB804FE221422547007F7B19 /* search_delKey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_delKey@2x.png"; sourceTree = "<group>"; };
@@ -3603,6 +3608,9 @@
 				DB2656C3214619A0002ED713 /* FSCaseSearchResultVC.m */,
 				DB2656CB214664FF002ED713 /* FSLawSearchResultVC.h */,
 				DB2656CC214664FF002ED713 /* FSLawSearchResultVC.m */,
+				DB7584A6214F5C630002A1FE /* FSOCRSearchResultVC.h */,
+				DB7584A7214F5C630002A1FE /* FSOCRSearchResultVC.m */,
+				DB7584A8214F5C630002A1FE /* FSOCRSearchResultVC.xib */,
 				DB2656E121467396002ED713 /* FSTextSearchResultVC.h */,
 				DB2656E221467396002ED713 /* FSTextSearchResultVC.m */,
 				DB4C7E432147C13A008CC6BB /* FSTextSplitVC.h */,
@@ -5294,6 +5302,7 @@
 				87D20AF721393B9A001EDD60 /* navigationbar_share_icon@3x.png in Resources */,
 				45DC02BB214A61EF00FCE042 /* video_selected@2x.png in Resources */,
 				87D186AB213679F800037DDF /* login_error@2x.png in Resources */,
+				DB7584AA214F5C630002A1FE /* FSOCRSearchResultVC.xib in Resources */,
 				8730B1152148E5D1004331A9 /* fsfreshidle_icon24@2x.png in Resources */,
 				8730B0C121465034004331A9 /* BMCombine_down@3x.png in Resources */,
 				ADE8689821392853005359B5 /* FSTopicListCell.xib in Resources */,
@@ -5481,6 +5490,7 @@
 				874268AE212E7E36003C52F6 /* BMTableViewPickerCell.m in Sources */,
 				87426A802131461F003C52F6 /* AFURLSessionManager.m in Sources */,
 				8730B0592140FFA3004331A9 /* NSAttributedString+DTDebug.m in Sources */,
+				DB7584A9214F5C630002A1FE /* FSOCRSearchResultVC.m in Sources */,
 				8742690B212E7E36003C52F6 /* NSArray+BMCategory.m in Sources */,
 				8742690D212E7E36003C52F6 /* NSNumber+BMCategory.m in Sources */,
 				AD5102A8213E783E008CD74D /* FSSendTopicVC.m in Sources */,
