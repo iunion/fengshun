@@ -19,6 +19,7 @@
 #import "FSTopicDetailVC.h"
 #import "FSFileScanVC.h"
 #import "FSFileScanImagePreviewVC.h"
+#import "FSOCRResultVC.h"
 
 #import "FSMessageTabVC.h"
 
@@ -151,11 +152,21 @@
     return vc;
 }
 
++ (void)viewController:(UIViewController *)vc pushToOCRResultVCWithImage:(UIImage *)image
+{
+    FSOCRResultVC *resultVC = [[FSOCRResultVC alloc]initWithNibName:@"FSOCRResultVC" bundle:nil];
+    resultVC.m_orcImage = image;
+    resultVC.hidesBottomBarWhenPushed = YES;
+    [vc.navigationController pushViewController:resultVC animated:YES];
+}
+
+
 + (void)showMessageVC:(UIViewController *)pushVC
 {
     FSMessageTabVC *vc = [[FSMessageTabVC alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [pushVC.navigationController pushViewController:vc animated:YES];
 }
+
 
 @end
