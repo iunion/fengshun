@@ -26,12 +26,14 @@
 
 + (nullable NSMutableURLRequest *)saveMeetingWithInfo:(NSDictionary *)dic
 {
+    NSLog(@"meeting/saveMeeting parameters = \n%@",dic);
     NSString *urlStr = [NSString stringWithFormat:@"%@/storm/meeting/saveMeeting", FS_URL_SERVER];
     return [FSApiRequest makeRequestWithURL:urlStr parameters:dic];
 }
 
 + (nullable NSMutableURLRequest *)editMeetingWithInfo:(NSDictionary *)dic
 {
+    NSLog(@"meeting/editorMeeting parameters = \n%@",dic);
     NSString *urlStr = [NSString stringWithFormat:@"%@/storm/meeting/editorMeeting", FS_URL_SERVER];
     return [FSApiRequest makeRequestWithURL:urlStr parameters:dic];
 }

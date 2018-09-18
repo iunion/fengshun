@@ -337,6 +337,9 @@
     else
     {
         self.m_CreateModel.meetingType = @"MEETING_MEDIATE";
+        self.m_CreateModel.orderHour = @"1";
+        NSString *value = [NSString stringWithFormat:@"%@小时", self.m_CreateModel.orderHour];
+        self.m_TimeLengthItem.values = @[value];
     }
 }
 
@@ -444,6 +447,10 @@
         long long longTimeInterval = [string longLongValue];
         NSTimeInterval remainder = longTimeInterval%(5*60);
         longTimeInterval -= remainder;
+        if (remainder > 4*60) {
+            // 接近下一个正5分钟，多加一个5分钟
+            longTimeInterval += 5*60;
+        }
         longTimeInterval += 5*60;
         
         self.m_CreateModel.startTime = longTimeInterval * 1000;

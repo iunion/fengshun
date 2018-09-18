@@ -15,6 +15,9 @@ typedef void(^inviteLitigantCompleteBlock)(NSArray *litigantList);
 
 // 已存在会议的会议邀请人员需要请求API
 @property (nonatomic, assign) NSInteger meetingId;
+
+@property (nonatomic, assign) NSInteger existingLitigantCount;
+
 // 之前已经存在的人员信息
 @property (nonatomic, strong) NSArray *existingLitigantList;
 

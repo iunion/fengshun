@@ -21,7 +21,7 @@
 
     [self bm_setNavigationWithTitle:@"参与人员" barTintColor:[UIColor whiteColor] leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
     
-    if (self.meetingId > 0) {
+    if (self.meetingId > 0 && self.m_AttendList.count < FSMEETING_PERSON_MAX_COUNT) {
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self rightItemButton]];
     }
 
@@ -47,6 +47,7 @@
 {
     FSVideoInviteLitigantVC *vc = [FSVideoInviteLitigantVC new];
     vc.meetingId = self.meetingId;
+    vc.existingLitigantCount = self.m_AttendList.count;
     BMWeakSelf
     vc.inviteComplete = ^(NSArray *litigantList) {
         if (weakSelf.inviteComplete) {
@@ -56,6 +57,9 @@
             NSMutableArray *newList = [NSMutableArray arrayWithArray:weakSelf.m_AttendList];
             [newList addObjectsFromArray:litigantList];
             weakSelf.m_AttendList = newList;
+            if (weakSelf.m_AttendList.count >= FSMEETING_PERSON_MAX_COUNT) {
+                self.navigationItem.rightBarButtonItem = nil;
+            }
             [weakSelf.m_TableView reloadData];
         }
     };

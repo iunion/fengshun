@@ -201,4 +201,9 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
+- (BMEmptyViewType)getNoDataEmptyViewType
+{
+    return BMEmptyViewType_Video;
+}
+
 @end

@@ -270,7 +270,7 @@ static NSDictionary *FSMeetingPersonIdentityTypeDic;
     NSMutableArray *array = [NSMutableArray array];
     for (FSMeetingPersonnelModel *model in self.meetingPersonnelResponseDTO) {
         
-        if (model.selectState != 1) {
+        if (model.selectState != 1 || [model isMediatorPerson]) {
             continue;
         }
         [array addObject:[model formToParametersWithPersonnelId:withID]];
