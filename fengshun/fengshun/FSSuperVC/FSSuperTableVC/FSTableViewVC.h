@@ -54,13 +54,18 @@
 - (void)setHeaderFreshTitles:(NSDictionary *)titles;
 - (void)setFooterFreshTitles:(NSDictionary *)titles;
 
-- (void)showEmptyViewWithStatus:(BMEmptyViewStatus)status;
-- (void)showEmptyViewWithStatus:(BMEmptyViewStatus)status action:(BMEmptyViewActionBlock)actionBlock;
+- (void)showEmptyViewWithType:(BMEmptyViewType)type;
+- (void)showEmptyViewWithType:(BMEmptyViewType)type action:(BMEmptyViewActionBlock)actionBlock;
+- (void)showEmptyViewWithType:(BMEmptyViewType)type customImageName:(NSString *)customImageName customMessage:(NSString *)customMessage customView:(UIView *)customView;
+- (void)showEmptyViewWithType:(BMEmptyViewType)type customImageName:(NSString *)customImageName customMessage:(NSString *)customMessage customView:(UIView *)customView action:(BMEmptyViewActionBlock)actionBlock;
 - (void)setEmptyViewActionBlock:(BMEmptyViewActionBlock)actionBlock;
 
 - (void)hideEmptyView;
 
 // 获取api成功时无数据类型
-- (BMEmptyViewStatus)getNoDataEmptyViewStatus;
+- (BMEmptyViewType)getNoDataEmptyViewType;
+- (NSString *)getNoDataEmptyViewCustomImageName;
+- (NSString *)getNoDataEmptyViewCustomMessage;
+- (UIView *)getNoDataEmptyViewCustomView;
 
 @end

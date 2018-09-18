@@ -108,4 +108,9 @@
     [FSPushVCManager showTopicDetail:self topicId:model.m_Id];
 }
 
+- (BMEmptyViewType)getNoDataEmptyViewType
+{
+    return BMEmptyViewType_Topic;
+}
+
 @end

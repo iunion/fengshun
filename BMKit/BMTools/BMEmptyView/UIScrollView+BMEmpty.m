@@ -33,12 +33,12 @@
     objc_setAssociatedObject(self, @selector(bm_emptyView), emptyView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (void)showEmptyViewWithStatus:(BMEmptyViewStatus)status
+- (void)showEmptyViewWithType:(BMEmptyViewType)type
 {
-    [self showEmptyViewWithStatus:status action:nil];
+    [self showEmptyViewWithType:type action:nil];
 }
 
-- (void)showEmptyViewWithStatus:(BMEmptyViewStatus)status action:(BMEmptyViewActionBlock)actionBlock
+- (void)showEmptyViewWithType:(BMEmptyViewType)type action:(BMEmptyViewActionBlock)actionBlock
 {
     if (!self.bm_showEmptyView)
     {
@@ -57,7 +57,41 @@
         }
     }
     
-    self.bm_emptyView.emptyViewStatus = status;
+    self.bm_emptyView.emptyViewType = type;
+    
+    self.bm_emptyView.hidden = NO;
+}
+
+- (void)showEmptyViewWithType:(BMEmptyViewType)type customImageName:(NSString *)customImageName customMessage:(NSString *)customMessage customView:(UIView *)customView
+{
+    [self showEmptyViewWithType:type customImageName:customImageName customMessage:customMessage customView:customView action:nil];
+}
+
+- (void)showEmptyViewWithType:(BMEmptyViewType)type customImageName:(NSString *)customImageName customMessage:(NSString *)customMessage customView:(UIView *)customView action:(BMEmptyViewActionBlock)actionBlock
+{
+    if (!self.bm_showEmptyView)
+    {
+        return;
+    }
+    
+    if (!self.bm_emptyView)
+    {
+        self.bm_emptyView = [BMEmptyView EmptyViewWith:self frame:self.bounds refreshBlock:actionBlock];
+    }
+    else
+    {
+        if (actionBlock)
+        {
+            [self.bm_emptyView setEmptyViewActionBlock:actionBlock];
+        }
+    }
+    
+    self.bm_emptyView.customImageName = customImageName;
+    self.bm_emptyView.customMessage = customMessage;
+    
+    self.bm_emptyView.emptyViewType = type;
+    
+    [self.bm_emptyView setCustomView:customView];
     
     self.bm_emptyView.hidden = NO;
 }

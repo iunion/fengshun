@@ -11,29 +11,43 @@
 
 @class BMEmptyView;
 
-typedef NS_ENUM(NSUInteger, BMEmptyViewStatus) {
-    BMEmptyViewStatus_Hidden = 0,   // 完全隐藏视图
-    BMEmptyViewStatus_SysError,     // 系统错误
-    BMEmptyViewStatus_Loading,      // 加载中状态，只在中心显示一个菊花
-    BMEmptyViewStatus_NoData,       // 显示无数据文本提示+刷新按钮
-    BMEmptyViewStatus_NetworkError, // 无网络连接，请检查网络+刷新按钮
-    BMEmptyViewStatus_ServerError,  // 服务器连接失败
-    BMEmptyViewStatus_DataError,    // 显示数据错误+刷新按钮
-    BMEmptyViewStatus_UnknownError, // 显示未知错误+刷新按钮
-    BMEmptyViewStatus_Custom        // 自定义
+typedef NS_ENUM(NSUInteger, BMEmptyViewType) {
+    BMEmptyViewType_NoData = 0,         // 显示无数据文本提示+刷新按钮
+    BMEmptyViewType_NetworkError,       // 无网络连接，请检查网络+刷新按钮
+    BMEmptyViewType_SysError,           // 系统错误
+    BMEmptyViewType_ServerError,        // 服务器连接失败
+    BMEmptyViewType_DataError,          // 显示数据错误
+    BMEmptyViewType_Video,              // 视频调解
+    BMEmptyViewType_Comment,            // 评论
+    BMEmptyViewType_Topic,              // 帖子
+    BMEmptyViewType_Search,             // 搜索结果
+    BMEmptyViewType_CollectCASE,        // 收藏案例
+    BMEmptyViewType_CollectSTATUTE,     // 收藏法规
+    BMEmptyViewType_CollectPOSTS,       // 收藏帖子
+    BMEmptyViewType_CollectDOCUMENT,    // 收藏文书范本
+    BMEmptyViewType_Ocr,                // 扫描
+    BMEmptyViewType_UnknownError,       // 显示未知错误+刷新按钮
+    BMEmptyViewType_Custom              // 自定义
 };
 
-typedef void (^BMEmptyViewActionBlock)(BMEmptyView *emptyView, BMEmptyViewStatus state);
+typedef void (^BMEmptyViewActionBlock)(BMEmptyView *emptyView, BMEmptyViewType type);
 
 @interface BMEmptyView : UIView
+
+@property (nonatomic, strong) NSString *customImageName;
+@property (nonatomic, strong) NSString *customMessage;
 
 + (instancetype)EmptyViewWith:(UIView *)superView
                         frame:(CGRect)frame
                  refreshBlock:(BMEmptyViewActionBlock)block;
 
-- (void)setEmptyViewStatus:(BMEmptyViewStatus)status;
+- (void)setEmptyViewLoading:(BOOL)loading;
+
+- (void)setEmptyViewType:(BMEmptyViewType)type;
 - (void)setEmptyViewActionBlock:(BMEmptyViewActionBlock)actionBlock;
 
 - (void)setFullViewTapEnable:(BOOL)enable;
+
+- (void)setCustomView:(UIView *)customView;
 
 @end

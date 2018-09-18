@@ -143,4 +143,22 @@
     [FSPushVCManager showTopicDetail:[self.view.superview bm_viewController] topicId:model.m_Id];
 }
 
+- (BMEmptyViewType)getNoDataEmptyViewType
+{
+    switch (self.m_CollectionType)
+    {
+        case FSCollectionType_POSTS:
+            return BMEmptyViewType_CollectPOSTS;
+        case FSCollectionType_STATUTE:
+            return BMEmptyViewType_CollectSTATUTE;
+        case FSCollectionType_CASE:
+            return BMEmptyViewType_CollectCASE;
+        case FSCollectionType_DOCUMENT:
+            return BMEmptyViewType_CollectDOCUMENT;
+        case FSCollectionType_COURSE:
+        default:
+            return BMEmptyViewType_NoData;
+    }
+}
+
 @end

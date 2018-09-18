@@ -155,10 +155,6 @@
         [self.m_DataArray addObjectsFromArray:array];
     }
     
-    if (self.m_DataArray.count == 0) {
-        [self showEmptyViewWithStatus:BMEmptyViewStatus_NoData];
-    }
-    
     [self.m_TableView reloadData];
     
     return [super succeedLoadedRequestWithDic:data];

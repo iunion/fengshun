@@ -113,43 +113,43 @@
     [self.m_TableView setFooterFreshTitles:titles];
 }
 
-- (void)showEmptyViewWithStatus:(BMEmptyViewStatus)status
+- (void)showEmptyViewWithType:(BMEmptyViewType)type
 {
     BMWeakSelf
-    [self showEmptyViewWithStatus:status action:^(BMEmptyView *emptyView, BMEmptyViewStatus state) {
+    [self showEmptyViewWithType:type action:^(BMEmptyView *emptyView, BMEmptyViewType state) {
         [weakSelf loadApiData];
     }];
 }
 
-- (void)showEmptyViewWithStatus:(BMEmptyViewStatus)status action:(BMEmptyViewActionBlock)actionBlock
+- (void)showEmptyViewWithType:(BMEmptyViewType)type action:(BMEmptyViewActionBlock)actionBlock
 {
     if (!self.m_showEmptyView)
     {
         return;
     }
     
-    if (status == BMEmptyViewStatus_SysError)
+    if (type == BMEmptyViewType_SysError)
     {
-        [self.m_TableView showEmptyViewWithStatus:status action:actionBlock];
+        [self.m_TableView showEmptyViewWithType:type action:actionBlock];
         return;
     }
     
     if (![self.m_DataArray bm_isNotEmpty])
     {
-        if (status == BMEmptyViewStatus_NetworkError)
+        if (type == BMEmptyViewType_NetworkError)
         {
             if ([FSCoreStatus currentNetWorkStatus] == FSCoreNetWorkStatusNone)
             {
-                [self.m_TableView showEmptyViewWithStatus:BMEmptyViewStatus_NetworkError action:actionBlock];
+                [self.m_TableView showEmptyViewWithType:BMEmptyViewType_NetworkError action:actionBlock];
             }
             else
             {
-                [self.m_TableView showEmptyViewWithStatus:BMEmptyViewStatus_ServerError action:actionBlock];
+                [self.m_TableView showEmptyViewWithType:BMEmptyViewType_ServerError action:actionBlock];
             }
         }
         else
         {
-            [self.m_TableView showEmptyViewWithStatus:status action:actionBlock];
+            [self.m_TableView showEmptyViewWithType:type action:actionBlock];
         }
     }
     else
@@ -168,10 +168,26 @@
     [self.m_TableView hideEmptyView];
 }
 
-- (BMEmptyViewStatus)getNoDataEmptyViewStatus
+- (BMEmptyViewType)getNoDataEmptyViewType
 {
-    return BMEmptyViewStatus_NoData;
+    return BMEmptyViewType_NoData;
 }
+
+- (NSString *)getNoDataEmptyViewCustomImageName
+{
+    return nil;
+}
+
+- (NSString *)getNoDataEmptyViewCustomMessage
+{
+    return nil;
+}
+
+- (UIView *)getNoDataEmptyViewCustomView
+{
+    return nil;
+}
+
 
 #pragma mark -
 #pragma mark Table Data Source Methods
@@ -390,7 +406,7 @@
             [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         }
         
-        [self showEmptyViewWithStatus:BMEmptyViewStatus_DataError];
+        [self showEmptyViewWithType:BMEmptyViewType_DataError];
         self.m_IsLoadNew = NO;
 
         return;
@@ -440,7 +456,7 @@
                 //
             }
 
-            [self showEmptyViewWithStatus:[self getNoDataEmptyViewStatus]];
+            [self showEmptyViewWithType:[self getNoDataEmptyViewType] customImageName:[self getNoDataEmptyViewCustomImageName] customMessage:[self getNoDataEmptyViewCustomMessage] customView:[self getNoDataEmptyViewCustomView]];
             
             // 无数据时隐藏上拉
             if (self.m_IsLoadNew)
@@ -484,7 +500,7 @@
             [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         }
         
-        [self showEmptyViewWithStatus:BMEmptyViewStatus_DataError];
+        [self showEmptyViewWithType:BMEmptyViewType_DataError];
         self.m_IsLoadNew = NO;
     }
     else
@@ -509,7 +525,7 @@
         [self.m_TableView resetFreshHeaderState];
         [self.m_TableView resetFreshFooterState];
         
-        [self showEmptyViewWithStatus:BMEmptyViewStatus_DataError];
+        [self showEmptyViewWithType:BMEmptyViewType_DataError];
 
         self.m_IsLoadNew = NO;
     }
@@ -523,7 +539,7 @@
             break;
             
         default:
-            [self showEmptyViewWithStatus:BMEmptyViewStatus_DataError];
+            [self showEmptyViewWithType:BMEmptyViewType_DataError];
             break;
     }
     
@@ -538,7 +554,7 @@
     [self.m_TableView resetFreshHeaderState];
     [self.m_TableView resetFreshFooterState];
     
-    [self showEmptyViewWithStatus:BMEmptyViewStatus_NetworkError];
+    [self showEmptyViewWithType:BMEmptyViewType_NetworkError];
     self.m_IsLoadNew = NO;
 }
 

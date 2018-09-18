@@ -107,4 +107,10 @@
     [FSPushVCManager showTopicDetail:[self.view.superview bm_viewController] topicId:model.m_Id];
 }
 
+- (BMEmptyViewType)getNoDataEmptyViewType
+{
+    return BMEmptyViewType_Comment;
+}
+
+
 @end
