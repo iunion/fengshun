@@ -3103,7 +3103,6 @@
 		87D20B22213F87A8001EDD60 /* FSCustomInfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCustomInfoVC.m; sourceTree = "<group>"; };
 		87D20B2B213FB7F7001EDD60 /* default_avatariconlarge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_avatariconlarge@2x.png"; sourceTree = "<group>"; };
 		87E7C61F21509AB000F7AB14 /* fengshun_video.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fengshun_video.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		87E7C62021509AB000F7AB14 /* fengshun copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "fengshun copy-Info.plist"; path = "/Users/jiangdeng/Documents/work/fengshun/fengshun/fengshun copy-Info.plist"; sourceTree = "<absolute>"; };
 		87E7C6652150A4E400F7AB14 /* TOCropViewConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCropViewConstants.h; sourceTree = "<group>"; };
 		87E7C6682150A4E400F7AB14 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TOCropViewControllerLocalizable.strings; sourceTree = "<group>"; };
 		87E7C6692150A4E400F7AB14 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/TOCropViewControllerLocalizable.strings; sourceTree = "<group>"; };
@@ -3145,6 +3144,7 @@
 		87E7C6902150A4E400F7AB14 /* UIImage+CropRotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CropRotate.m"; sourceTree = "<group>"; };
 		87E7C6912150A4E400F7AB14 /* UIImage+CropRotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CropRotate.h"; sourceTree = "<group>"; };
 		87E7C6922150A4E400F7AB14 /* TOCropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCropViewController.h; sourceTree = "<group>"; };
+		87E7C6A92150A6B000F7AB14 /* video-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "video-Info.plist"; sourceTree = "<group>"; };
 		AD1BE2102141238B0018AF2C /* FSForumSectionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSForumSectionHeaderView.h; sourceTree = "<group>"; };
 		AD1BE2112141238B0018AF2C /* FSForumSectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSForumSectionHeaderView.m; sourceTree = "<group>"; };
 		AD1BE213214127180018AF2C /* FSForumSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSForumSectionHeaderView.xib; sourceTree = "<group>"; };
@@ -5638,7 +5638,6 @@
 				87C01366212E7A5300D0AAC3 /* fengshunUITests */,
 				87C01347212E7A5200D0AAC3 /* Products */,
 				87D18659213539EE00037DDF /* Frameworks */,
-				87E7C62021509AB000F7AB14 /* fengshun copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -5700,6 +5699,7 @@
 			children = (
 				87426790212E7B2C003C52F6 /* fengshun-Prefix.pch */,
 				87C01351212E7A5300D0AAC3 /* Info.plist */,
+				87E7C6A92150A6B000F7AB14 /* video-Info.plist */,
 				87C01352212E7A5300D0AAC3 /* main.m */,
 				AD47EFDB2137EBF0004A345F /* Launch Screen.storyboard */,
 			);
