@@ -138,8 +138,10 @@
     self[@"BMCombineItem"] = @"BMTableViewCombineCell";
 
 
+#ifdef FSVIDEO_ON
     // add your Class here
     self[@"FSMeetingPersonnelItem"] = @"FSVideoMediatePersonalCell";
+#endif
 }
 
 - (Class)classForCellAtIndexPath:(NSIndexPath *)indexPath
