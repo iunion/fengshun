@@ -10,6 +10,8 @@
 #import "FSVideoMediateSheetVC.h"
 #import "FSMeetingPersonnelItem.h"
 #import "FSVideoInviteLitigantVC.h"
+#import "FSVideoMediateDetailVC.h"
+#import "FSVideoMediateListVC.h"
 
 #define FS_VIDEOPAGE_TEXTFONT UI_FONT_16
 
@@ -532,7 +534,35 @@
             if (self.successBlock) {
                 self.successBlock(mode);
             }
-            [self.navigationController popViewControllerAnimated:YES];
+            
+            if (self.m_IsStartImmediately)
+            {
+                // 立即开始 进入详情页面
+                FSVideoMediateDetailVC *vc = [FSVideoMediateDetailVC new];
+                vc.m_MeetingId = mode.meetingId;
+                BMWeakSelf
+                vc.changedBlock = ^{
+                    if (weakSelf.successBlock) {
+                        weakSelf.successBlock(mode);
+                    }
+                };
+                
+                NSArray *existVC = self.navigationController.viewControllers;
+                NSMutableArray *vcArray = [NSMutableArray array];
+                for (NSInteger index = 0; index< existVC.count; index++) {
+                    UIViewController *temp = existVC[index];
+                    [vcArray addObject:temp];
+                    if ([temp isKindOfClass:[FSVideoMediateListVC class]]) {
+                        break;
+                    }
+                }
+                [vcArray addObject:vc];
+                [self.navigationController setViewControllers:vcArray animated:YES];
+            }
+            else
+            {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
             return;
         }
     }
