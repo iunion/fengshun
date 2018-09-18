@@ -102,6 +102,7 @@
     nameItem.textFont = FS_VIDEOPAGE_TEXTFONT;
     nameItem.textFieldTextFont = FS_VIDEOPAGE_TEXTFONT;
     nameItem.textFieldAlignment = NSTextAlignmentRight;
+    nameItem.charactersLimit = 5;
     nameItem.value = model.userName;
     nameItem.placeholder = @"请输入姓名";
     nameItem.cellHeight = 50.0f;
@@ -120,6 +121,7 @@
     phoneItem.keyboardType = UIKeyboardTypeNumberPad;
     phoneItem.placeholder = @"请输入手机号";
     phoneItem.cellHeight = 50.0f;
+    phoneItem.charactersLimit = 11;
     phoneItem.onChange = ^(BMInputItem * _Nonnull item) {
         model.mobilePhone = item.value;
     };
@@ -153,7 +155,6 @@
     imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
     imageTextView.showTableCellAccessoryArrow = YES;
     identifyItem.accessoryView = imageTextView;
-
     
     [section addItem:nameItem];
     [section addItem:phoneItem];

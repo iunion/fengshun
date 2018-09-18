@@ -174,6 +174,7 @@
     self.m_TitleItem.textFieldAlignment = NSTextAlignmentRight;
     self.m_TitleItem.placeholder = @"请输入名称";
     self.m_TitleItem.cellHeight = 50.0f;
+    self.m_TitleItem.charactersLimit = 20;
     self.m_TitleItem.onChange = ^(BMInputItem * _Nonnull item) {
         weakSelf.m_CreateModel.meetingName = item.value;
     };
@@ -282,6 +283,7 @@
     self.m_ContentItem.textFont = FS_VIDEOPAGE_TEXTFONT;
     self.m_ContentItem.textViewFont = FS_VIDEOPAGE_TEXTFONT;
     self.m_ContentItem.underLineDrawType = BMTableViewCell_UnderLineDrawType_None;
+    self.m_ContentItem.charactersLimit = 100;
     self.m_ContentItem.onChange = ^(BMInputItem * _Nonnull item) {
         weakSelf.m_CreateModel.meetingContent = item.value;
     };
