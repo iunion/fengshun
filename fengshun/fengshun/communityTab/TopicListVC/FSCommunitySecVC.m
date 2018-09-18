@@ -14,12 +14,17 @@
 #import "FSCommunityModel.h"
 #import "BMAlertView.h"
 #import "FSPushVCManager.h"
+#import "FSAuthenticationVC.h"
+#import "FSAlertView.h"
 
 @interface
-FSCommunitySecVC () <
+FSCommunitySecVC ()
+<
     FSScrollPageViewDataSource,
     FSScrollPageViewDelegate,
-    FSCommunityHeaderViewDelegate>
+    FSCommunityHeaderViewDelegate,
+    FSAuthenticationDelegate
+>
 // 板块id
 @property (nonatomic, assign) NSInteger m_FourmId;
 // headerView
@@ -29,6 +34,8 @@ FSCommunitySecVC () <
 @property (nonatomic, strong) UIButton *m_PulishBtn;
 @property (nonatomic, strong) NSMutableArray *       m_dataArray;
 @property (nonatomic, strong) NSMutableArray *       m_vcArray;
+
+@property (nonatomic, strong) FSForumModel *m_ForumModel;
 
 @end
 
@@ -47,8 +54,9 @@ FSCommunitySecVC () <
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib
-    self.bm_NavigationBarHidden = YES;
-    [self bm_setNeedsUpdateNavigationBarAlpha];
+    [self bm_setNavigationWithTitle:@"" barTintColor:nil leftItemTitle:@"" leftItemImage:[UIImage imageNamed:@"community_white_back"] leftToucheEvent:@selector(popViewController) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
+    [self setBm_NavigationBarAlpha:0];
+    
     self.view.backgroundColor = FS_VIEW_BGCOLOR;
     self.m_dataArray          = [NSMutableArray arrayWithCapacity:0];
     self.m_vcArray            = [NSMutableArray array];
@@ -70,7 +78,7 @@ FSCommunitySecVC () <
     _m_HeaderView          = (FSCommunityHeaderView *)[[NSBundle mainBundle] loadNibNamed:@"FSCommunityHeaderView" owner:self options:nil].firstObject;
     _m_HeaderView.delegate = self;
     [self.view addSubview:_m_HeaderView];
-    _m_HeaderView.frame = CGRectMake(0, -64, UI_SCREEN_WIDTH, 200);
+    _m_HeaderView.frame = CGRectMake(0, -(UI_NAVIGATION_BAR_HEIGHT+20), UI_SCREEN_WIDTH, 200);
 
     // 切换视图
     self.m_SegmentBar = [[FSScrollPageSegment alloc] initWithFrame:CGRectMake(0, _m_HeaderView.bm_bottom + 8, UI_SCREEN_WIDTH, 44) titles:nil titleColor:nil selectTitleColor:nil showUnderLine:YES moveLineFrame:CGRectZero isEqualDivide:YES fresh:YES];
@@ -78,7 +86,7 @@ FSCommunitySecVC () <
     _m_SegmentBar.backgroundColor = [UIColor whiteColor];
 
     // 内容视图
-    self.m_ScrollPageView = [[FSScrollPageView alloc] initWithFrame:CGRectMake(0, _m_SegmentBar.bm_bottom, UI_SCREEN_WIDTH, self.view.bm_height - _m_SegmentBar.bm_bottom) titleColor:UI_COLOR_B1 selectTitleColor:UI_COLOR_B1 scrollPageSegment:_m_SegmentBar isSubViewPageSegment:NO];
+    self.m_ScrollPageView = [[FSScrollPageView alloc] initWithFrame:CGRectMake(0, _m_SegmentBar.bm_bottom, UI_SCREEN_WIDTH, self.view.bm_height - _m_SegmentBar.bm_bottom) titleColor:UI_COLOR_B1 selectTitleColor:UI_COLOR_BL1 scrollPageSegment:_m_SegmentBar isSubViewPageSegment:NO];
     [self.view addSubview:self.m_ScrollPageView];
     self.m_ScrollPageView.datasource = self;
     self.m_ScrollPageView.delegate   = self;
@@ -97,11 +105,32 @@ FSCommunitySecVC () <
 }
 
 #pragma mark - Action
+
+- (void)popViewController{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 // 发帖
 - (void)pulishTopicAction{
-    [FSPushVCManager showSendPostWithPushVC:self callBack:^(id object) {
+    if (![FSUserInfoModle userInfo].m_UserBaseInfo.m_IsRealName) {
+        BMWeakSelf;
+        [FSAlertView showAlertWithTitle:@"温馨提示" message:@"认证后才能发帖" cancelTitle:@"取消" otherTitle:@"去认证" completion:^(BOOL cancelled, NSInteger buttonIndex) {
+            if (!cancelled)
+            {
+                FSAuthenticationVC *vc = [[FSAuthenticationVC alloc] init];
+                vc.delegate = weakSelf;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            }
+        }];
+        return;
+    }
+    [FSPushVCManager showSendPostWithPushVC:self isEdited:NO relatedId:self.m_FourmId callBack:^(id object) {
         
     }];
+}
+//认证完成
+- (void)authenticationFinished:(FSAuthenticationVC *)vc
+{
+    BMLog(@"认证完成");
 }
 
 #pragma mark - FSScrollPageView Delegate & DataSource
@@ -129,6 +158,12 @@ FSCommunitySecVC () <
 
 - (void)followForumAction:(FSCommunityHeaderView *)aView
 {
+    FSForumFollowState state = self.m_ForumModel.m_AttentionFlag;
+    [FSApiRequest updateFourmAttentionStateWithFourmId:self.m_ForumModel.m_Id followStatus:!state success:^(id  _Nullable responseObject) {
+        [self getHeaderInfoMsg];
+    } failure:^(NSError * _Nullable error) {
+        
+    }];
 }
 
 #pragma mark - request
@@ -162,9 +197,10 @@ FSCommunitySecVC () <
 - (void)getHeaderInfoMsg
 {
     [FSApiRequest getTwoLevelFourmInfoWithId:self.m_FourmId success:^(id  _Nullable responseObject) {
-        if ([[responseObject bm_dictionaryForKey:@"communityForumDTO"] bm_isNotEmptyDictionary])
+        if ([responseObject bm_isNotEmptyDictionary])
         {
-            FSForumModel *model = [FSForumModel forumModelWithServerDic:[responseObject bm_dictionaryForKey:@"communityForumDTO"]];
+            FSForumModel *model = [FSForumModel forumModelWithServerDic:responseObject];
+            self.m_ForumModel = model;
             [_m_HeaderView updateHeaderViewWith:model];
         }
     } failure:^(NSError * _Nullable error) {

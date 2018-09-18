@@ -8,10 +8,15 @@
 
 #import "FSSuperNetVC.h"
 
+#import "FSAlertView.h"
+
 @interface FSSuperNetVC ()
 
 // 网络请求
 @property (nonatomic, strong) NSURLSessionDataTask *m_DataTask;
+
+// 分享数据获取
+@property (nonatomic, strong) NSURLSessionDataTask *m_ShareTask;
 
 @end
 
@@ -21,6 +26,9 @@
 {
     [_m_DataTask cancel];
     _m_DataTask = nil;
+
+    [_m_ShareTask cancel];
+    _m_ShareTask = nil;
 }
 
 - (void)viewDidLoad
@@ -250,6 +258,78 @@
 - (void)failLoadedResponse:(NSURLResponse *)response responseDic:(NSDictionary *)responseDic withErrorCode:(NSInteger)errorCode
 {
     return;
+}
+
+
+
+#pragma mark -
+#pragma mark share
+
+- (void)sendGetShareDataWithShareItemId:(NSString *)shareItemId shareType:(NSString *)shareType
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSMutableURLRequest *request = [FSApiRequest getShareDataWithShareItemId:shareItemId shareType:shareType];
+    if (request)
+    {
+        [self.m_ProgressHUD showAnimated:YES showBackground:NO];
+        
+        [self.m_ShareTask cancel];
+        self.m_ShareTask = nil;
+        
+        BMWeakSelf
+        self.m_ShareTask = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+            if (error)
+            {
+                BMLog(@"Error: %@", error);
+                [weakSelf getShareDataRequestFailed:response error:error];
+                
+            }
+            else
+            {
+#if DEBUG
+                NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
+                BMLog(@"%@ %@", response, responseStr);
+#endif
+                [weakSelf getShareDataRequestFinished:response responseDic:responseObject];
+            }
+        }];
+        [self.m_ShareTask resume];
+    }
+}
+
+- (void)getShareDataRequestFinished:(NSURLResponse *)response responseDic:(NSDictionary *)resDic
+{
+    if (![resDic bm_isNotEmptyDictionary])
+    {
+        [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        
+        return;
+    }
+    
+#if DEBUG
+    NSString *responseStr = [[NSString stringWithFormat:@"%@", resDic] bm_convertUnicode];
+    BMLog(@"获取分享返回数据是:+++++%@", responseStr);
+#endif
+    
+    [FSAlertView showAlertWithTitle:@"分项数据" message:[[NSString stringWithFormat:@"%@", resDic] bm_convertUnicode] cancelTitle:@"确定" otherTitle:nil completion:^(BOOL cancelled, NSInteger buttonIndex) {
+    }];
+
+    NSInteger statusCode = [resDic bm_intForKey:@"code"];
+    if (statusCode == 1000)
+    {
+        [self.m_ProgressHUD hideAnimated:NO];
+        
+    }
+    
+    NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
+    [self.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+}
+
+- (void)getShareDataRequestFailed:(NSURLResponse *)response error:(NSError *)error
+{
+    BMLog(@"获取分享失败的错误:++++%@", [FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE]);
+    
+    [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
 }
 
 @end

@@ -21,8 +21,8 @@
 @property (nonatomic, strong) FSScrollPageSegment *m_SegmentBar;
 @property (nonatomic, strong) FSScrollPageView *m_ScrollPageView;
 
-@property (nonatomic, strong) FSTableViewVC *m_CommentMessageVC;
-@property (nonatomic, strong) FSTableViewVC *m_NoticeMessageVC;
+@property (nonatomic, strong) FSMessageListVC *m_CommentMessageVC;
+@property (nonatomic, strong) FSMessageListVC *m_NoticeMessageVC;
 
 @end
 
@@ -42,7 +42,7 @@
     self.bm_NavigationShadowHidden   = NO;
     self.bm_NavigationShadowColor    = [UIColor bm_colorWithHexString:@"D8D8D8"];
     
-    [self bm_setNavigationWithTitle:@"枫调理顺" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
+    [self bm_setNavigationWithTitle:@"消息" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
     
     [self setupUI];
 }
@@ -53,12 +53,12 @@
 - (void)setupUI
 {
     // 切换视图
-    self.m_SegmentBar = [[FSScrollPageSegment alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 44) titles:nil titleColor:nil selectTitleColor:nil showUnderLine:NO moveLineFrame:CGRectZero isEqualDivide:YES fresh:YES];
+    self.m_SegmentBar = [[FSScrollPageSegment alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 44) titles:nil titleColor:nil selectTitleColor:nil showUnderLine:NO moveLineFrame:CGRectZero isEqualDivide:YES fresh:NO];
     [self.view addSubview:_m_SegmentBar];
     self.m_SegmentBar.backgroundColor = [UIColor whiteColor];
     
     // 内容视图
-    self.m_ScrollPageView = [[FSScrollPageView alloc] initWithFrame:CGRectMake(0, 44, UI_SCREEN_WIDTH, UI_MAINSCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT - UI_TAB_BAR_HEIGHT - 44) titleColor:UI_COLOR_B1 selectTitleColor:UI_COLOR_B1 scrollPageSegment:_m_SegmentBar isSubViewPageSegment:NO];
+    self.m_ScrollPageView = [[FSScrollPageView alloc] initWithFrame:CGRectMake(0, 44, UI_SCREEN_WIDTH, UI_MAINSCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT - UI_TAB_BAR_HEIGHT - 44) titleColor:UI_COLOR_B1 selectTitleColor:UI_COLOR_BL1 scrollPageSegment:_m_SegmentBar isSubViewPageSegment:NO];
     [self.view addSubview:self.m_ScrollPageView];
     self.m_ScrollPageView.datasource = self;
     self.m_ScrollPageView.delegate = self;
@@ -103,12 +103,14 @@
 {
     if (index == 0)
     {
-        self.m_CommentMessageVC = [[FSMessageListVC alloc] init];
+        self.m_CommentMessageVC = [[FSMessageListVC alloc] initWithMessageType:FSMessageType_COMMENT];
+        self.m_CommentMessageVC.m_PushVC = self;
         return self.m_CommentMessageVC.view;
     }
     else if (index == 1)
     {
-        self.m_NoticeMessageVC = [[FSMessageListVC alloc] init];
+        self.m_NoticeMessageVC = [[FSMessageListVC alloc] initWithMessageType:FSMessageType_NOTICE];
+        self.m_NoticeMessageVC.m_PushVC = self;
         return self.m_NoticeMessageVC.view;
     }
     return nil;

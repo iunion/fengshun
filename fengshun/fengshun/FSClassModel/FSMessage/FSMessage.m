@@ -68,11 +68,9 @@
     // 内容: content
     self.m_Content = [dic bm_stringTrimForKey:@"content"];
     
-    // 创建时间: createTime   "createTime": "2018-09-15T01:55:59.312Z",
-    NSString *createTimeStr = [dic bm_stringTrimForKey:@"createTime"];
-    NSDate *createTimeDate = [NSDate bm_dateFromString:createTimeStr withFormat:@"yyyy-MM-ddTHH:mm:ss.SSSZ"];
-    self.m_CreateTime = [createTimeDate timeIntervalSince1970];
-    
+    // 创建时间: createTime
+    self.m_CreateTime = [dic bm_doubleForKey:@"createTime"] / 1000;
+
     // 关联类型: detailType (课程图文COURSE、帖子POSTS、评论COMMENT)
     NSString *type = [dic bm_stringTrimForKey:@"detailType"];
     // 课程图文
@@ -191,10 +189,8 @@
     // 内容: content
     self.m_Content = [dic bm_stringTrimForKey:@"content"];
 
-    // 创建时间: createTime   "createTime": "2018-09-15T01:55:59.312Z",
-    NSString *createTimeStr = [dic bm_stringTrimForKey:@"createTime"];
-    NSDate *createTimeDate = [NSDate bm_dateFromString:createTimeStr withFormat:@"yyyy-MM-ddTHH:mm:ss.SSSZ"];
-    self.m_CreateTime = [createTimeDate timeIntervalSince1970];
+    // 创建时间: createTime
+    self.m_CreateTime = [dic bm_doubleForKey:@"createTime"] / 1000;
 
     // 跳转地址(H5为跳转URL、图文系列为系列ID): jumpAddress
     self.m_JumpAddress = [dic bm_stringTrimForKey:@"jumpAddress"];

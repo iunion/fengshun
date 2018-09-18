@@ -530,6 +530,23 @@
         [weakSelf showLogin];
     }];
     
+    // 分享
+    [self.m_WebView registerHandler:@"toShare" handler:^(id data, WVJBResponseCallback responseCallback) {
+        BMLog(@"share called: %@", data);
+        //responseCallback(@"Response from register");
+        
+        NSDictionary *shareDic = (NSDictionary *)data;
+        
+        NSString *shareItemId = [shareDic bm_stringTrimForKey:@"id"];
+        NSString *shareType = [shareDic bm_stringTrimForKey:@"type"];
+        
+        if ([shareItemId bm_isNotEmpty] && [shareType bm_isNotEmpty])
+        {
+            [weakSelf sendGetShareDataWithShareItemId:shareItemId shareType:shareType];
+        }
+        
+    }];
+
 #if 0
     // 分享
     [self.m_WebView registerHandler:@"toShare" handler:^(id data, WVJBResponseCallback responseCallback) {

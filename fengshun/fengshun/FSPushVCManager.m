@@ -19,6 +19,10 @@
 #import "FSTopicDetailVC.h"
 #import "FSFileScanVC.h"
 #import "FSFileScanImagePreviewVC.h"
+#import "FSOCRResultVC.h"
+
+#import "FSMessageTabVC.h"
+#import "FSOCRSearchResultVC.h"
 
 @implementation FSPushVCManager
 
@@ -35,16 +39,9 @@
     [pushVC.navigationController pushViewController:vc animated:YES];
 }
 
-+ (void)showEditPostWithPushVC:(UIViewController *)pushVC callBack:(PushVCCallBack)callBack
++ (void)showSendPostWithPushVC:(UIViewController *)pushVC isEdited:(BOOL )isEdited relatedId:(NSInteger )relatedId callBack:(PushVCCallBack)callBack
 {
-    FSSendTopicVC *vc = [[FSSendTopicVC alloc] init];
-    vc.sendPostsCallBack         = callBack;
-    [pushVC.navigationController pushViewController:vc animated:YES];
-}
-
-+ (void)showSendPostWithPushVC:(UIViewController *)pushVC callBack:(PushVCCallBack)callBack
-{
-    FSSendTopicVC *vc = [[FSSendTopicVC alloc] init];
+    FSSendTopicVC *vc = [[FSSendTopicVC alloc] initWithIsEdited:isEdited relateId:relatedId];
     vc.sendPostsCallBack         = callBack;
     [pushVC.navigationController pushViewController:vc animated:YES];
 }
@@ -100,6 +97,12 @@
     searchViewController.hidesBottomBarWhenPushed = YES;
     [mainVC.navigationController pushViewController:searchViewController animated:YES];
 }
++ (void)searchVCPushtToCaseOCrSearchVC:(UIViewController *)searchVC
+{
+    FSOCRSearchResultVC *vc = [[FSOCRSearchResultVC alloc]initWithNibName:@"FSOCRSearchResultVC" bundle:nil freshViewType:BMFreshViewType_Bottom];
+    vc.m_ocrSearchType = FSOCRSearchType_case;
+    [searchVC.navigationController pushViewController:vc animated:YES];
+}
 + (void)homePage:(UIViewController *)mainVC pushToLawSearchWithTopics:(NSArray *)topics
 {
     // 做个备份吧
@@ -115,7 +118,12 @@
     searchViewController.hidesBottomBarWhenPushed = YES;
     [mainVC.navigationController pushViewController:searchViewController animated:YES];
 }
-
++ (void)searchVCPushtToLawsOCrSearchVC:(UIViewController *)searchVC
+{
+    FSOCRSearchResultVC *vc = [[FSOCRSearchResultVC alloc]initWithNibName:@"FSOCRSearchResultVC" bundle:nil freshViewType:BMFreshViewType_Bottom];
+    vc.m_ocrSearchType = FSOCRSearchType_laws;
+    [searchVC.navigationController pushViewController:vc animated:YES];
+}
 + (void)pushVideoMediateList:(UINavigationController *)nav;
 {
     FSVideoMediateListVC *vc    = [FSVideoMediateListVC new];
@@ -129,18 +137,21 @@
     splitVC.hidesBottomBarWhenPushed = YES;
     [mainVC.navigationController pushViewController:splitVC animated:YES];
 }
+
 + (void)pushToTextSearchVC:(UIViewController *)showVC
 {
     FSSearchViewController *searchViewController  = [[FSSearchViewController alloc] initWithSearchKey:@"textSearch" resultType:FSSearchResultType_text hotSearchTags:nil searchHandler:nil];
     searchViewController.hidesBottomBarWhenPushed = YES;
     [showVC.navigationController pushViewController:searchViewController animated:YES];
 }
+
 + (void)homePagePushToFileScanVC:(UIViewController *)mainVC
 {
     FSFileScanVC *vc            = [[FSFileScanVC alloc] initWithNibName:@"FSFileScanVC" bundle:nil];
     vc.hidesBottomBarWhenPushed = YES;
     [mainVC.navigationController pushViewController:vc animated:YES];
 }
+
 + (FSFileScanImagePreviewVC *)fileScanVC:(UIViewController *)fileCacnVC pushToImagePreviewWithSourceArray:(NSMutableArray *)sourceArray localArray:(NSMutableArray *)localArray selectIndex:(NSInteger)selectIndex
 {
     FSFileScanImagePreviewVC *vc = [[FSFileScanImagePreviewVC alloc] initWithNibName:@"FSFileScanImagePreviewVC" bundle:nil];
@@ -151,4 +162,22 @@
     [fileCacnVC.navigationController pushViewController:vc animated:YES];
     return vc;
 }
+
++ (void)viewController:(UIViewController *)vc pushToOCRResultVCWithImage:(UIImage *)image
+{
+    FSOCRResultVC *resultVC = [[FSOCRResultVC alloc]initWithNibName:@"FSOCRResultVC" bundle:nil];
+    resultVC.m_orcImage = image;
+    resultVC.hidesBottomBarWhenPushed = YES;
+    [vc.navigationController pushViewController:resultVC animated:YES];
+}
+
+
++ (void)showMessageVC:(UIViewController *)pushVC
+{
+    FSMessageTabVC *vc = [[FSMessageTabVC alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [pushVC.navigationController pushViewController:vc animated:YES];
+}
+
+
 @end

@@ -29,6 +29,8 @@
 @property (nonatomic, assign) NSTimeInterval m_LastReplyTime;
 // 帖子评论数
 @property (nonatomic, assign) NSUInteger m_CommentCount;
+// 跳转地址
+@property (nonatomic, strong) NSString *m_JumpAddress;
 
 // 用户Id
 @property (nonatomic, strong) NSString *m_UserId;

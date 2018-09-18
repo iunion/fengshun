@@ -115,7 +115,14 @@
 
 - (void)messageAction:(id)sender
 {
-    NSLog(@"messageAction");
+    if ([FSUserInfoModle isLogin])
+    {
+        [FSPushVCManager showMessageVC:self];
+    }
+    else
+    {
+        [self showLogin];
+    }
 }
 
 - (void)interfaceSettings
@@ -126,10 +133,17 @@
     
     BMWeakSelf
     self.m_TopicItem = [BMTableViewItem itemWithTitle:@"我的帖子" imageName:@"user_topicicon" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
-
-        FSMyTopicVC *myTopicVC = [[FSMyTopicVC alloc] init];
-        myTopicVC.hidesBottomBarWhenPushed = YES;
-        [weakSelf.navigationController pushViewController:myTopicVC animated:YES];
+        
+        if ([FSUserInfoModle isLogin])
+        {
+            FSMyTopicVC *myTopicVC = [[FSMyTopicVC alloc] init];
+            myTopicVC.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:myTopicVC animated:YES];
+        }
+        else
+        {
+            [weakSelf showLogin];
+        }
     }];
     self.m_TopicItem.imageH = 16.0f;
     self.m_TopicItem.imageW = 16.0f;
@@ -139,9 +153,16 @@
 
     self.m_CommentItem = [BMTableViewItem itemWithTitle:@"我的评论" imageName:@"user_commenticon" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
-        FSMyCommentVC *myCommentVC = [[FSMyCommentVC alloc] init];
-        myCommentVC.hidesBottomBarWhenPushed = YES;
-        [weakSelf.navigationController pushViewController:myCommentVC animated:YES];
+        if ([FSUserInfoModle isLogin])
+        {
+            FSMyCommentVC *myCommentVC = [[FSMyCommentVC alloc] init];
+            myCommentVC.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:myCommentVC animated:YES];
+        }
+        else
+        {
+            [weakSelf showLogin];
+        }
     }];
     self.m_CommentItem.imageH = 16.0f;
     self.m_CommentItem.imageW = 16.0f;
@@ -151,9 +172,16 @@
 
     self.m_CollectItem = [BMTableViewItem itemWithTitle:@"我的收藏" imageName:@"user_collecticon" underLineDrawType:BMTableViewCell_UnderLineDrawType_None accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
-        FSMyCollectionTabVC *myCollectionTabVC = [[FSMyCollectionTabVC alloc] init];
-        myCollectionTabVC.hidesBottomBarWhenPushed = YES;
-        [weakSelf.navigationController pushViewController:myCollectionTabVC animated:YES];
+        if ([FSUserInfoModle isLogin])
+        {
+            FSMyCollectionTabVC *myCollectionTabVC = [[FSMyCollectionTabVC alloc] init];
+            myCollectionTabVC.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:myCollectionTabVC animated:YES];
+        }
+        else
+        {
+            [weakSelf showLogin];
+        }
     }];
     self.m_CollectItem.imageH = 16.0f;
     self.m_CollectItem.imageW = 16.0f;
@@ -169,6 +197,7 @@
     
     self.m_HelpItem = [BMTableViewItem itemWithTitle:@"帮助中心" imageName:@"user_helpicon" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
+        [FSPushVCManager showWebView:weakSelf url:[NSString stringWithFormat:@"%@/help", FS_H5_SERVER] title:nil];
     }];
     self.m_HelpItem.imageH = 16.0f;
     self.m_HelpItem.imageW = 16.0f;

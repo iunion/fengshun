@@ -21,7 +21,8 @@
     // Do any additional setup after loading the view.
     
     self.m_LoadDataType = FSAPILoadDataType_Page;
-    
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.m_TableView.bm_width, 8)];
+    self.m_TableView.tableHeaderView = headerView;
     [self loadApiData];
 }
 

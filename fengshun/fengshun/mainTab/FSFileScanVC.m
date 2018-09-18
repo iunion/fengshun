@@ -124,24 +124,19 @@
     }
     _m_toolView.hidden = !m_editing;
     _m_imagePickButton.hidden = m_editing;
-    [UIView animateWithDuration:0.2 animations:^{
+    [UIView animateWithDuration:DEFAULT_DELAY_TIME animations:^{
         self.m_toolViewHeight.constant = m_editing?TOOLVIEW_HEIGHT:0;
         [self.view layoutIfNeeded];
     }];
 }
 - (void)refreshView
 {
-    [self bm_setNavigationBarTitle:[NSString stringWithFormat:@"已选（%lu）",_m_selectedImageFiles.count]];
+    [self bm_setNavigationBarTitle:[NSString stringWithFormat:@"已选（%lu）",(unsigned long)_m_selectedImageFiles.count]];
     [_m_collectionView reloadData];
 }
 - (IBAction)pickImageFile:(id)sender
 {
-    TZImagePickerController *imagePickerVc  = [[TZImagePickerController alloc] initWithMaxImagesCount:0 delegate:self];
-    imagePickerVc.allowTakePicture          = NO;  // 在内部显示拍照按钮
-    imagePickerVc.allowPickingVideo         = NO;
-    imagePickerVc.alwaysEnableDoneBtn       = YES;
-    imagePickerVc.allowPickingOriginalPhoto = NO;
-    imagePickerVc.allowTakeVideo            = NO;
+    TZImagePickerController *imagePickerVc  = [TZImagePickerController fs_defaultPickerWithDelegate:self];
 
     [self presentViewController:imagePickerVc animated:YES completion:nil];
 }
@@ -214,7 +209,7 @@
     else
     {
         FSFileScanImagePreviewVC *preVC = [FSPushVCManager fileScanVC:self pushToImagePreviewWithSourceArray:_m_allImageFiles localArray:_m_localImageFiles selectIndex:indexPath.row];
-        preVC.SourceDataChanged = ^{
+        preVC.m_SourceDataChanged = ^{
             [collectionView reloadData];
         };
     }

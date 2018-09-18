@@ -74,6 +74,10 @@ NS_ASSUME_NONNULL_BEGIN
 // http://115.159.33.190:8121/swagger-ui.html#/%E5%AD%97%E5%85%B8/searchDictionaryInfoByTopLevelCodeUsingPOST
 + (nullable NSMutableURLRequest *)getDictionaryInfoWithLevelCode:(NSString *)levelCode;
 
+// 请求分享
+// http://115.159.33.190:8121/swagger-ui.html#/%E5%88%86%E4%BA%AB/askShareUsingPOST
++ (nullable NSMutableURLRequest *)getShareDataWithShareItemId:(NSString *)shareItemId shareType:(NSString *)shareType;
+
 @end
 
 
@@ -146,6 +150,17 @@ NS_ASSUME_NONNULL_BEGIN
 // http://115.159.33.190:8121/swagger-ui.html#/%E6%88%91%E7%9A%84%E7%9B%B8%E5%85%B3/getMyPostsUsingPOST
 + (nullable NSMutableURLRequest *)getMyTopicWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize;
 
+// 我的消息
+// http://115.159.33.190:8121/swagger-ui.html#/%E9%A6%96%E9%A1%B5%E7%9B%B8%E5%85%B3/getUserMessagesUsingPOST
++ (nullable NSMutableURLRequest *)getUserCommentMessagesWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize;
+
+// 公告
+// http://115.159.33.190:8121/swagger-ui.html#/%E9%A6%96%E9%A1%B5%E7%9B%B8%E5%85%B3/getNoticePushsUsingPOST
++ (nullable NSMutableURLRequest *)getUserNoticeMessagesWithPageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize;
+
+// 公告详情
+// http://115.159.33.190:8121/swagger-ui.html#/%E9%A6%96%E9%A1%B5%E7%9B%B8%E5%85%B3/getNoticePushDetailUsingPOST
++ (nullable NSMutableURLRequest *)getUserNoticeMessageDetailWithId:(NSString *)messageId;
 
 
 // 刷新token
@@ -177,6 +192,10 @@ NS_ASSUME_NONNULL_BEGIN
 // http://122.112.248.222:13000/swagger-ui.html#!/391183584329702390348212821226696203632562832034/searchCasesUsingPOST
 +(NSMutableURLRequest *)searchCaseWithKeywords:(NSArray *)keywords start:(NSUInteger)startLocation size:(NSUInteger)size filters:(NSArray *)filters;
 
+// 提取案例搜索关键字
+// http://122.112.248.222:13000/swagger-ui.html#!/3911835843297023903482128212256283203424037208552550921475/casesExtractKeywordsUsingPOST
++(XMRequest *)getCaseKeywordsWithText:(NSString *)text success:(nullable XMSuccessBlock)successBlock failure:(nullable XMFailureBlock)failureBlock;
+
 // 获取法规检索的法规专题
 // http://122.112.248.222:13000/swagger-ui.html#!/391183584329702390348212821227861352682562832034/casesHotKeywordsUsingGET_1
 + (XMRequest *)getLawTopicSuccess:(nullable XMSuccessBlock)successBlock
@@ -185,6 +204,10 @@ NS_ASSUME_NONNULL_BEGIN
 // 法规检索
 // http://122.112.248.222:13000/swagger-ui.html#!/391183584329702390348212821227861352682562832034/searchLawsUsingPOST
 +(NSMutableURLRequest *)searchLawsWithKeywords:(NSArray *)keywords start:(NSUInteger)startLocation size:(NSUInteger)size filters:(NSArray *)filters;
+
+// 提取法规搜索关键字
+// http://122.112.248.222:13000/swagger-ui.html#!/3911835843297023903482128212256283203424037208552550921475/lawsExtractKeywordsUsingPOST
++(XMRequest *)getLawsKeywordsWithText:(NSString *)text success:(nullable XMSuccessBlock)successBlock failure:(nullable XMFailureBlock)failureBlock;
 
 // 文书范本Index页数据
 // http://115.159.33.190:8121/swagger-ui.html#/%E6%96%87%E4%B9%A6%E8%8C%83%E6%9C%AC/getDocumentHomeUsingPOST
@@ -198,6 +221,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 文书搜索
 // http://115.159.33.190:8121/swagger-ui.html#/%E6%96%87%E4%B9%A6%E8%8C%83%E6%9C%AC/getDocumentListUsingPOST
 + (NSMutableURLRequest *)searchTextWithKeyword:(NSString *)keyword;
+
 @end
 
 #pragma mark - 社区模块

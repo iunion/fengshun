@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FSMessage.h"
 
 @interface FSNoticeMessageCell : UITableViewCell
+
+@property (nonatomic, strong, readonly) FSNoticeMessageModle *m_Modle;
+
+- (void)drawCellWithModle:(FSNoticeMessageModle *)model;
+
++ (CGFloat)cellHeight;
 
 @end

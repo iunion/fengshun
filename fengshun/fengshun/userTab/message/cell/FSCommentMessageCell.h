@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FSMessage.h"
 
 @interface FSCommentMessageCell : UITableViewCell
+
+@property (nonatomic, strong, readonly) FSCommentMessageModle *m_Modle;
+
+- (void)drawCellWithModle:(FSCommentMessageModle *)model;
+
++ (CGFloat)cellHeight;
 
 @end

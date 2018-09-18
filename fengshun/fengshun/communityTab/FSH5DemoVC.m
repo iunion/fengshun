@@ -57,23 +57,26 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.m_DataArray = [NSMutableArray arrayWithArray:@[
-  @[@"document",@"文书详情"],
-  @[@"comment/1",@"图文详情"],
-  @[@"note/1",@"帖子详情"],
   @[@"tooIndex",@"计算器首页"],
   @[@"lawyerFee",@"律师费计算器"],
   @[@"legalFee",@"诉讼费计算器"],
   @[@"Interest",@"利息及违约金计算器"],
   @[@"date",@"日期天数计算器"],
+  @[@"document",@"文书详情"],
+  @[@"comment/1",@"图文详情"],
+  @[@"note/1",@"帖子详情"],
+  @[@"help",@"帮助中心"],
+  @[@"agreement",@"用户协议"],
   @[@"Law?keywords=中华人民共和国公司法",@"法规专题"],
-  @[@"Law/lawDetail?ID=3ZCNrmUBN3_o1ImUCLgm&keywords=中华人民共和国公司法",@"法规详情"],
+  @[@"Law/lawDetail?ID=3ZCNrmUBN3_o1ImUCLgm&keywords=[中华人民共和国公司法]",@"法规详情"],
   @[@"Law/lawShare",@"法规分享"],
-  @[@"caseDetail?ID=3ZCNrmUBN3_o1ImUCLgm&keywords=中华人民共和国公司法",@"案件详情"],
-  @[@"caseGuide?ID=3ZCNrmUBN3_o1ImUCLgm&keywords=中华人民共和国公司法",@"指导案例详情"],
+  @[@"caseDetail?ID=3ZCNrmUBN3_o1ImUCLgm&keywords=[中华人民共和国公司法,第]",@"案件详情"],
+  @[@"caseGuide?ID=3ZCNrmUBN3_o1ImUCLgm&keywords=[中华人民共和国公司法]",@"指导案例详情"],
   @[@"caseShare",@"案件分享"],
   @[@"course?Ctype=\"IOS\"",@"课堂首页"],
   @[@"imgWordsSeries/1",@"图文系列"],
   @[@"hotRecommend",@"热门推荐"],
+  @[@"information",@"消息"],
   @[@"alllist",@"全部"]]];
     self.m_TableView.frame = CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - 49);
 }

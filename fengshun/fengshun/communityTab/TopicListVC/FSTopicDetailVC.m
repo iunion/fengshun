@@ -7,8 +7,9 @@
 //
 
 #import "FSTopicDetailVC.h"
+#import "FSMoreViewVC.h"
 
-@interface FSTopicDetailVC ()
+@interface FSTopicDetailVC ()<FSMoreViewVCDelegate>
 
 @end
 
@@ -27,7 +28,12 @@
 
 - (void)shareAction
 {
-    
+    [FSMoreViewVC showMore:self delegate:self];
+}
+
+- (void)moreViewClickWithType:(NSInteger)index
+{
+    BMLog(@"%ld",index);
 }
 
 /*

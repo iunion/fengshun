@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_OPTIONS(NSUInteger, FSMessageType)
+{
+    // 评论
+    FSMessageType_COMMENT,
+    // 通知
+    FSMessageType_NOTICE
+};
+
 typedef NS_OPTIONS(NSUInteger, FSCommentTargetType)
 {
     // 课程图文
