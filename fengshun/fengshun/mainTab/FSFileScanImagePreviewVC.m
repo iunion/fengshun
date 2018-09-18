@@ -182,9 +182,7 @@ FSFileScanImagePreviewVC ()
 
 - (void)pushToOCRResult
 {
-    if ([_m_selectedImageFile bm_isNotEmpty]) {
-        [FSPushVCManager viewController:self pushToOCRResultVCWithImage:_m_selectedImageFile.m_image];
-    }
+    [FSPushVCManager viewController:self pushToOCRResultVCWithImage:_m_selectedImageFile.m_image];
 }
 - (IBAction)toolButtonAction:(UIButton *)sender
 {
@@ -196,7 +194,8 @@ FSFileScanImagePreviewVC ()
     {
         // 分享PDF
         case 0:
-
+            
+            [FSImageFileModel shareImagefileModels:@[_m_selectedImageFile] atViewController:self];
             break;
         // 分享图片
         case 1:
@@ -207,8 +206,8 @@ FSFileScanImagePreviewVC ()
             if (![_m_localImageFiles containsObject:_m_selectedImageFile]) {
                 [_m_localImageFiles addObject:_m_selectedImageFile];
                 [FSImageFileModel asynRefreshLocalImageFileWithList:[_m_localImageFiles copy]];
-                [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:@"已保存到本地" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             }
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:@"已保存到本地" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         }
 
             break;

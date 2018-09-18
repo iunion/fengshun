@@ -179,6 +179,10 @@
             break;
             // 分享PDF
         case 1:
+            if ([_m_selectedImageFiles bm_isNotEmpty])
+            {
+                [FSImageFileModel shareImagefileModels:_m_selectedImageFiles atViewController:self];
+            }
             break;
             // 保存到相册
         case 2:

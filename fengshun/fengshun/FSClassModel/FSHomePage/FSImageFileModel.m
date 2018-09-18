@@ -7,6 +7,7 @@
 //
 
 #import "FSImageFileModel.h"
+#import "MBProgressHUD.h"
 
 @implementation FSImageFileModel
 
@@ -87,12 +88,45 @@
     NSArray *imageArray = [images copy];
     [imageArray writeToFile:[self p_imageFileListPath] atomically:NO];
 }
-+ (BOOL)convertPDFWithImages:(NSArray<UIImage *>*)images fileName:(NSString *)fileName{
++ (NSString *)pdfPathWithImagefileModels:(NSArray <FSImageFileModel *> *)models
+{
+    NSString *timeStamp = [@((long)[NSDate date].timeIntervalSince1970) stringValue];
+    NSString *fileName = [[NSString stringWithFormat:@"PDF分享-%@",timeStamp] stringByAppendingPathExtension:@"pdf"];
+    NSMutableArray *images = [NSMutableArray array];
+    for (FSImageFileModel *model in models) {
+        if ([model.m_image bm_isNotEmpty]) {
+            [images addObject:model.m_image];
+        }
+    }
+    return [self convertPDFWithImages:[images copy] fileName:fileName];
+}
++ (void)shareImagefileModels:(NSArray<FSImageFileModel *> *)models atViewController:(UIViewController *)vc
+{
+    NSString *pdfPath = [self pdfPathWithImagefileModels:models];
+    if (![pdfPath bm_isNotEmpty]) {
+        [MBProgressHUD showHUDAddedTo:vc.view animated:YES withText:@"生成PDF文件出错" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        return;
+    }
+    NSArray *activityItems = @[[NSURL fileURLWithPath:pdfPath]];
     
-    if (!images || images.count == 0) return NO;
+    UIActivityViewController *activityViewController =    [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+    [vc presentViewController:activityViewController animated:YES completion:nil];
     
+    [activityViewController setCompletionWithItemsHandler:^(NSString * __nullable activityType, BOOL completed, NSArray * __nullable returnedItems, NSError * __nullable activityError){
+        if([[NSFileManager defaultManager]fileExistsAtPath:pdfPath])
+        {
+            [[NSFileManager defaultManager]removeItemAtPath:pdfPath error:nil];
+        }
+    }];
+
+}
++ (NSString *)convertPDFWithImages:(NSArray<UIImage *>*)images fileName:(NSString *)fileName{
+    
+    if (!images || images.count == 0) return nil;
+
     // pdf文件存储路径
-    NSString *pdfPath = nil;
+     NSString *pdfPath      = [[NSString bm_temporaryPath] stringByAppendingPathComponent:fileName];
+   
     
     BOOL result = UIGraphicsBeginPDFContextToFile(pdfPath, CGRectZero, NULL);
     
@@ -139,6 +173,6 @@
     
     UIGraphicsEndPDFContext();
     
-    return result;
+    return result?pdfPath:nil;
 }
 @end

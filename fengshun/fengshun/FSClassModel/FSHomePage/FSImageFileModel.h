@@ -21,12 +21,14 @@
 @property (nonatomic, strong)UIImage *m_image;
 
 
-+(instancetype)imageFileWithSelectInfo:(NSDictionary *)info andImage:(UIImage *)image;
++ (instancetype)imageFileWithSelectInfo:(NSDictionary *)info andImage:(UIImage *)image;
 + (instancetype)imageFileWithOriginalImageFile:(FSImageFileModel *)originalImageFile andCropImage:(UIImage *)image;
 
 // 获取与更新本地保存的文件列表
-+(NSArray <FSImageFileModel *> *)localImageFileList;
++ (NSArray <FSImageFileModel *> *)localImageFileList;
 
-+(void)asynRefreshLocalImageFileWithList:(NSArray <FSImageFileModel *> *)imageList;
++ (void)asynRefreshLocalImageFileWithList:(NSArray <FSImageFileModel *> *)imageList;
+
++ (void)shareImagefileModels:(NSArray <FSImageFileModel *> *)models atViewController:(UIViewController *)vc;
 
 @end
