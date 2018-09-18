@@ -12,7 +12,7 @@
 #import "FSMakeVideoMediateVC.h"
 #import "FSVideoMediateDetailVC.h"
 
-@interface FSVideoMediateListVC ()
+@interface FSVideoMediateListVC () 
 @property (nonatomic, strong) NSString *meetingTypeEnums;
 @property (nonatomic, strong) NSString *meetingStatusEnums;
 @end
@@ -62,16 +62,34 @@
     bottom.backgroundColor = UI_COLOR_BL1;
     bottom.titleLabel.font = UI_FONT_17;
     [bottom setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [bottom addTarget:self action:@selector(createVideoMediate) forControlEvents:UIControlEventTouchUpInside];
+    [bottom addTarget:self action:@selector(createVideoMediateAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bottom];
     
     self.m_TableView.frame = CGRectMake(0, selector.bm_height, self.view.bm_width, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT-selector.bm_height-bottom.bm_height);
 }
 
-- (void)createVideoMediate
+- (void)createVideoMediateAction
+{
+    if (![FSUserInfoModle isLogin])
+    {
+        [self showLogin];
+        return;
+    }
+    
+    [self checkCertification];
+}
+
+- (void)checkCertification
+{
+    if (![self needCertification])
+    {
+        [self makeVideoMediate];
+    }
+}
+
+- (void)makeVideoMediate
 {
     BMWeakSelf
-
     FSMakeVideoMediateVC *vc = [FSMakeVideoMediateVC makevideoMediateVCWithModel:FSMakeVideoMediateMode_Create
                                                                             data:nil
                                                                            block:^(FSMeetingDetailModel *model) {
@@ -79,6 +97,44 @@
                                                                            }];
     [self.navigationController pushViewController:vc animated:YES];
 }
+
+- (BOOL)needCertification
+{
+    if ([FSUserInfoModle isCertification]) {
+        return NO;
+    }
+    
+    UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"实名认证" message:@"视频调解需要进行实名认证" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"立即认证" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self pushAuthentication];
+    }];
+    
+    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    [vc addAction:action2];
+    [vc addAction:action];
+
+    [self presentViewController:vc animated:YES completion:nil];
+
+    return YES;
+}
+
+- (void)loginFinished
+{
+    [self loadApiData];
+    if ([FSUserInfoModle isCertification]) {
+        [self makeVideoMediate];
+    } else {
+        // 登上一个文件dismiss以后才能再present
+        [self performSelector:@selector(checkCertification) withObject:nil afterDelay:0.5f];
+    }
+}
+
+- (void)authenticationFinished
+{
+    [self makeVideoMediate];
+}
+
 
 - (NSMutableURLRequest *)setLoadDataRequest
 {

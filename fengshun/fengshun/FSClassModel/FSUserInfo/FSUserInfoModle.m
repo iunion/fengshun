@@ -307,6 +307,20 @@
     GetAppDelegate.m_UserInfo = nil;
 }
 
+// 实名认证
++ (BOOL)isCertification
+{
+    if ([self isLogin])
+    {
+        FSUserInfoModle *currentUser = GetAppDelegate.m_UserInfo;
+        if ([currentUser.m_UserBaseInfo.m_RealName bm_isNotEmpty])
+        {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
 
 
 @end

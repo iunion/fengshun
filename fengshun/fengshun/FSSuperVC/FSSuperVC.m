@@ -8,9 +8,11 @@
 
 #import "FSSuperVC.h"
 #import "FSLoginVC.h"
+#import "FSAuthenticationVC.h"
 
 @interface FSSuperVC ()
 <
+    FSAuthenticationDelegate,
     FSLoginDelegate
 >
 
@@ -146,6 +148,21 @@
     }
 }
 
+// 弹出认证
+- (void)pushAuthentication
+{
+    if ([FSUserInfoModle isCertification])
+    {
+        return;
+    }
+
+    FSAuthenticationVC *vc = [[FSAuthenticationVC alloc] init];
+    vc.delegate = self;
+    BMNavigationController *nav = [[BMNavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:nav animated:YES completion:^{
+    }];
+}
+
 - (void)loginFinished
 {
     
@@ -157,6 +174,11 @@
 }
 
 - (void)loginClosed
+{
+    
+}
+
+- (void)authenticationFinished
 {
     
 }
@@ -183,5 +205,10 @@
     [self loginClosed];
 }
 
+#pragma mark FSAuthenticationDelegate
+- (void)authenticationFinished:(FSAuthenticationVC *)vc
+{
+    [self authenticationFinished];
+}
 
 @end

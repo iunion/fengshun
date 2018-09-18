@@ -95,7 +95,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (BOOL)isLogin;
 + (void)logOut;
-
+// 实名认证
++ (BOOL)isCertification;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -27,10 +27,14 @@
 - (BOOL)showLogin;
 // 隐藏登录
 - (void)hideLogin;
+// 弹出认证
+- (void)pushAuthentication;
+
 
 - (void)loginFinished;
 - (void)loginFailed;
 - (void)loginClosed;
+- (void)authenticationFinished;
 
 
 #pragma mark -

@@ -300,7 +300,7 @@ static NSDictionary *FSMeetingPersonIdentityTypeDic;
         for (FSMeetingPersonnelModel *model in self.meetingPersonnelResponseDTO) {
             [string appendString:model.userName];
             index ++;
-            if (index < count) {
+            if (index < allCount) {
                 [string appendString:@"、"];
             }
         }

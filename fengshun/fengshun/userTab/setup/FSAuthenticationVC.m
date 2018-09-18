@@ -49,6 +49,19 @@
     [self interfaceSettings];
 }
 
+- (void)backAction:(id)sender
+{
+    [self.view endEditing:YES];
+    if ([self isEqual:self.navigationController.topViewController])
+    {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    else
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
 - (BOOL)needKeyboardEvent
 {
     return YES;
