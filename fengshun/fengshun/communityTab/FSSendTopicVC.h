@@ -9,7 +9,7 @@
 #import "ZSSRichTextEditor.h"
 
 @interface FSSendTopicVC : ZSSRichTextEditor
-
+// isEdited = YES relateId:帖子id  /isEdited = NO relateId：板块id
 - (instancetype)initWithIsEdited:(BOOL)isEdited relateId:(NSInteger )relateId;
 
 @property (nonatomic , copy)void (^sendPostsCallBack)(id );

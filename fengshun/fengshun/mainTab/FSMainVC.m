@@ -267,6 +267,15 @@ FSMainVC ()
     return view;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section)
+    {
+        FSTopicModel *model = _m_topics[indexPath.row];
+        [FSPushVCManager showTopicDetail:self topicId:model.m_Id];
+    }
+}
+
 
 #pragma mark - collectionViewDataSource & Delegate
 

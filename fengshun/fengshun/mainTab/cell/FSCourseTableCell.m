@@ -16,6 +16,7 @@
     [super awakeFromNib];
     self.separatorInset = UIEdgeInsetsMake(0, 20, 0, 19);
     [_m_imageView bm_roundedRect:5];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

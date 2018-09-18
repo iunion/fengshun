@@ -21,8 +21,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fyS-dk-KRw">
-                    <rect key="frame" x="0.0" y="667" width="375" height="238"/>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fyS-dk-KRw">
+                    <rect key="frame" x="0.0" y="429" width="375" height="238"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wI0-by-V2X">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="183"/>
@@ -68,6 +68,7 @@
                                     <state key="normal" title="收藏" image="community_collect">
                                         <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
+                                    <state key="selected" title="取消收藏"/>
                                 </button>
                                 <button opaque="NO" tag="106" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nmE-LN-sIh">
                                     <rect key="frame" x="75" y="91.5" width="75" height="91.5"/>

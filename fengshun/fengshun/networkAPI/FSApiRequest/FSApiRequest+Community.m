@@ -43,7 +43,8 @@
     [parameters bm_setInteger:pageIndex forKey:@"pageIndex"];
     [parameters bm_setInteger:pageSize forKey:@"pageSize"];
     [parameters bm_setInteger:forumId forKey:@"forumId"];
-    if ([type bm_isNotEmpty]) {
+    if ([type bm_isNotEmpty])
+    {
         [parameters bm_setString:type forKey:@"postListType"];
     }
     return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
@@ -95,10 +96,57 @@
     [parameters bm_setInteger:topicId forKey:@"id"];
     return [XMRequestManager rm_requestWithApi:@"/storm/communityForum/twoLevelForumInfo" parameters:parameters success:successBlock failure:failureBlock];
 }
-
-+ (XMRequest *)uploadImg:(NSData *)imgData success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock{
-    
-    return [XMRequestManager rm_uploadFiles:@[[XMUploadFile uploadFileWithName:@"1" mimeType:@"image/jpeg" andData:imgData]] forAPI:@"/storm/file/upload" dataKey:@"file" parameters:nil success:successBlock failure:failureBlock];
+//上传图片
++ (XMRequest *)uploadImg:(NSData *)imgData success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
+{
+    return [XMRequestManager rm_uploadFiles:@[ [XMUploadFile uploadFileWithName:@"1" mimeType:@"image/jpeg" andData:imgData] ] forAPI:@"/storm/file/upload" dataKey:@"file" parameters:nil success:successBlock failure:failureBlock];
 }
+// 删除帖子
++ (XMRequest *)deleteTopicWithId:(NSInteger)topicId success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters bm_setInteger:topicId forKey:@"id"];
+    return [XMRequestManager rm_requestWithApi:@"/storm/postInfo/deletePost" parameters:parameters success:successBlock failure:failureBlock];
+}
+
+//收藏/取消收藏
+
++ (XMRequest *)collectionTopic:(BOOL)isCollection topicId:(NSString *)topicId success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters bm_setString:isCollection?@"COLLECTION":@"CANCEL_COLLECTION" forKey:@"collection"];
+    [parameters bm_setString:topicId forKey:@"id"];
+    [parameters bm_setString:@"POSTS" forKey:@"type"];
+    return [XMRequestManager rm_requestWithApi:@"/storm/user/collection" parameters:parameters success:successBlock failure:failureBlock];
+}
+
+// 举报帖子
++ (XMRequest *)addReportTopic:(NSString *)topicId content:(NSString *)content success:(nullable XMSuccessBlock)successBlock failure:(nullable XMFailureBlock)failureBlock
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters bm_setString:topicId forKey:@"detailId"];
+    [parameters bm_setString:@"POSTS" forKey:@"type"];
+    [parameters bm_setString:content forKey:@"content"];
+    return [XMRequestManager rm_requestWithApi:@"/storm/user/addReport" parameters:parameters success:successBlock failure:failureBlock];
+}
+// 添加评论
++ (XMRequest *)addComment:(NSString *)topicId content:(NSString *)content success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters bm_setString:topicId forKey:@"detailId"];
+    [parameters bm_setString:@"POSTS" forKey:@"type"];
+    [parameters bm_setString:content forKey:@"content"];
+    return [XMRequestManager rm_requestWithApi:@"/storm/user/addComment" parameters:parameters success:successBlock failure:failureBlock];
+}
+
+// 获取帖子详情
+
++ (XMRequest *)getTopicDetail:(NSInteger )topicId success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters bm_setInteger:topicId forKey:@"id"];
+    return [XMRequestManager rm_requestWithApi:@"/storm/postInfo/postDetail" parameters:parameters success:successBlock failure:failureBlock];
+}
+
 
 @end

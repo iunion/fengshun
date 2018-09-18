@@ -18,7 +18,7 @@
 
 @interface FSMoreViewVC : FSSuperVC
 
-+ (void)showMore:(UIViewController *)presentVC delegate:(id)delegate;
++ (void)showMore:(UIViewController *)presentVC  delegate:(id)delegate isOwner:(BOOL)isOwner isCollection:(BOOL)isCollection;
 
 @property (nonatomic, assign)id <FSMoreViewVCDelegate> delegate;
 

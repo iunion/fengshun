@@ -268,10 +268,35 @@ NS_ASSUME_NONNULL_BEGIN
                          isEdited:(BOOL)isEdited
                           success:(nullable XMSuccessBlock)successBlock
                           failure:(nullable XMFailureBlock)failureBlock;
-
+// 帖子详情/storm/postInfo/postDetail
++ (XMRequest *)getTopicDetail:(NSInteger )topicId
+                      success:(nullable XMSuccessBlock)successBlock
+                      failure:(nullable XMFailureBlock)failureBlock;
+// 添加评论
++ (XMRequest *)addComment:(NSString *)topicId
+                  content:(NSString *)content
+                  success:(nullable XMSuccessBlock)successBlock
+                  failure:(nullable XMFailureBlock)failureBlock;
+// 上传图片
 + (XMRequest *)uploadImg:(NSData *)imgData
                  success:(nullable XMSuccessBlock)successBlock
                  failure:(nullable XMFailureBlock)failureBlock;
+
+// 删除帖子
++ (XMRequest *)deleteTopicWithId:(NSInteger )topicId
+                         success:(nullable XMSuccessBlock)successBlock
+                         failure:(nullable XMFailureBlock)failureBlock;
+// 收藏、取消收藏帖子
++ (XMRequest *)collectionTopic:(BOOL )isCollection
+                       topicId:(NSString *)topicId
+                       success:(nullable XMSuccessBlock)successBlock
+                       failure:(nullable XMFailureBlock)failureBlock;
+// 举报帖子
++ (XMRequest *)addReportTopic:(NSString *)topicId
+                      content:(NSString *)content
+                      success:(nullable XMSuccessBlock)successBlock
+                      failure:(nullable XMFailureBlock)failureBlock;
+
 
 @end
 

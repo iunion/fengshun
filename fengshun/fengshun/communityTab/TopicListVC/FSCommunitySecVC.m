@@ -54,7 +54,7 @@ FSCommunitySecVC ()
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib
-    [self bm_setNavigationWithTitle:@"" barTintColor:nil leftItemTitle:@"" leftItemImage:[UIImage imageNamed:@"community_white_back"] leftToucheEvent:@selector(popViewController) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
+    [self bm_setNavigationWithTitle:@"" barTintColor:nil leftDicArray:@[ [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"community_white_back" toucheEvent:@"popViewController" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageRight imageTitleGap:0] ] rightDicArray:nil];
     [self setBm_NavigationBarAlpha:0];
     
     self.view.backgroundColor = FS_VIEW_BGCOLOR;
@@ -106,12 +106,14 @@ FSCommunitySecVC ()
 
 #pragma mark - Action
 
-- (void)popViewController{
+- (void)popViewController
+{
     [self.navigationController popViewControllerAnimated:YES];
 }
 // 发帖
 - (void)pulishTopicAction{
-    if (![FSUserInfoModle userInfo].m_UserBaseInfo.m_IsRealName) {
+    if (![FSUserInfoModle userInfo].m_UserBaseInfo.m_IsRealName)
+    {
         BMWeakSelf;
         [FSAlertView showAlertWithTitle:@"温馨提示" message:@"认证后才能发帖" cancelTitle:@"取消" otherTitle:@"去认证" completion:^(BOOL cancelled, NSInteger buttonIndex) {
             if (!cancelled)
