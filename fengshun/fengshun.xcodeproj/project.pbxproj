@@ -532,14 +532,6 @@
 		87D209D02138F1E2001EDD60 /* SDWebImageImageIOCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D209AE2138F1E2001EDD60 /* SDWebImageImageIOCoder.m */; };
 		87D209D12138F1E2001EDD60 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D209B22138F1E2001EDD60 /* UIButton+WebCache.m */; };
 		87D209D22138F1E2001EDD60 /* SDWebImageWebPCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D209B32138F1E2001EDD60 /* SDWebImageWebPCoder.m */; };
-		87D209E62138FF46001EDD60 /* CGGeometry+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D209D52138FF45001EDD60 /* CGGeometry+RSKImageCropper.m */; };
-		87D209E72138FF46001EDD60 /* RSKInternalUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D209D62138FF45001EDD60 /* RSKInternalUtility.m */; };
-		87D209E82138FF46001EDD60 /* RSKTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D209D72138FF45001EDD60 /* RSKTouchView.m */; };
-		87D209E92138FF46001EDD60 /* UIApplication+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D209D92138FF45001EDD60 /* UIApplication+RSKImageCropper.m */; };
-		87D209EA2138FF46001EDD60 /* RSKImageCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D209DA2138FF45001EDD60 /* RSKImageCropViewController.m */; };
-		87D209EB2138FF46001EDD60 /* UIImage+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D209DB2138FF45001EDD60 /* UIImage+RSKImageCropper.m */; };
-		87D209EC2138FF46001EDD60 /* RSKImageCropperStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 87D209E02138FF45001EDD60 /* RSKImageCropperStrings.bundle */; };
-		87D209ED2138FF46001EDD60 /* RSKImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D209E52138FF45001EDD60 /* RSKImageScrollView.m */; };
 		87D209F2213912ED001EDD60 /* default_avataricon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D209F1213912ED001EDD60 /* default_avataricon@2x.png */; };
 		87D20A9F213920E2001EDD60 /* FLEXArrayExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D209F7213920E2001EDD60 /* FLEXArrayExplorerViewController.m */; };
 		87D20AA0213920E2001EDD60 /* FLEXObjectExplorerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D209F8213920E2001EDD60 /* FLEXObjectExplorerFactory.m */; };
@@ -684,7 +676,6 @@
 		87E7C2A321509AB000F7AB14 /* MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF80C214D1AEC0005AD43 /* MJProperty.m */; };
 		87E7C2A421509AB000F7AB14 /* FSPushVCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD51029E213E7771008CD74D /* FSPushVCManager.m */; };
 		87E7C2A521509AB000F7AB14 /* FSCommunityHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2244E1213D1FF900F2DC47 /* FSCommunityHeaderView.m */; };
-		87E7C2A621509AB000F7AB14 /* CGGeometry+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D209D52138FF45001EDD60 /* CGGeometry+RSKImageCropper.m */; };
 		87E7C2A721509AB000F7AB14 /* FLEXNetworkTransactionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D20A16213920E2001EDD60 /* FLEXNetworkTransactionTableViewCell.m */; };
 		87E7C2A821509AB000F7AB14 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D209822138F1E2001EDD60 /* UIImageView+HighlightedWebCache.m */; };
 		87E7C2A921509AB000F7AB14 /* FSSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426A9B21314996003C52F6 /* FSSearchViewController.m */; };
@@ -756,7 +747,6 @@
 		87E7C2EB21509AB000F7AB14 /* XMCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426A87213146A6003C52F6 /* XMCenter.m */; };
 		87E7C2EC21509AB000F7AB14 /* DTColorFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730AF582140FFA2004331A9 /* DTColorFunctions.m */; };
 		87E7C2ED21509AB000F7AB14 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = AD22448E213CD6C300F2DC47 /* MASCompositeConstraint.m */; };
-		87E7C2EE21509AB000F7AB14 /* UIApplication+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D209D92138FF45001EDD60 /* UIApplication+RSKImageCropper.m */; };
 		87E7C2EF21509AB000F7AB14 /* DTSidePanelControllerSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730AFF02140FFA2004331A9 /* DTSidePanelControllerSegue.m */; };
 		87E7C2F021509AB000F7AB14 /* SDAnimatedImageRep.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D2099B2138F1E2001EDD60 /* SDAnimatedImageRep.m */; };
 		87E7C2F121509AB000F7AB14 /* FLEXObjectExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D20A0B213920E2001EDD60 /* FLEXObjectExplorerViewController.m */; };
@@ -773,7 +763,6 @@
 		87E7C2FC21509AB000F7AB14 /* FSSuperVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426A6621313C1C003C52F6 /* FSSuperVC.m */; };
 		87E7C2FD21509AB000F7AB14 /* DTReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730AFFC2140FFA2004331A9 /* DTReachability.m */; };
 		87E7C2FE21509AB000F7AB14 /* DTCoreTextLayouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730AF7E2140FFA2004331A9 /* DTCoreTextLayouter.m */; };
-		87E7C2FF21509AB000F7AB14 /* UIImage+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D209DB2138FF45001EDD60 /* UIImage+RSKImageCropper.m */; };
 		87E7C30021509AB000F7AB14 /* FLEXKeyboardShortcutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D20A97213920E2001EDD60 /* FLEXKeyboardShortcutManager.m */; };
 		87E7C30121509AB000F7AB14 /* NSDictionary+BMCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426883212E7E36003C52F6 /* NSDictionary+BMCategory.m */; };
 		87E7C30221509AB000F7AB14 /* DTZipArchiveGZip.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730AF892140FFA2004331A9 /* DTZipArchiveGZip.m */; };
@@ -863,7 +852,6 @@
 		87E7C35621509AB000F7AB14 /* FSVideoMediateSheetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DC02A3214A3B4400FCE042 /* FSVideoMediateSheetVC.m */; };
 		87E7C35721509AB000F7AB14 /* DTActivityTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730AFDC2140FFA2004331A9 /* DTActivityTitleView.m */; };
 		87E7C35821509AB000F7AB14 /* UIViewController+BMNavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426817212E7E35003C52F6 /* UIViewController+BMNavigationItem.m */; };
-		87E7C35921509AB000F7AB14 /* RSKImageCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D209DA2138FF45001EDD60 /* RSKImageCropViewController.m */; };
 		87E7C35A21509AB000F7AB14 /* DTWebVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730AF3F2140FFA2004331A9 /* DTWebVideoView.m */; };
 		87E7C35B21509AB000F7AB14 /* DTHTMLWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730AF612140FFA2004331A9 /* DTHTMLWriter.m */; };
 		87E7C35C21509AB000F7AB14 /* FSCaseSearchResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB804FED2142669E007F7B19 /* FSCaseSearchResultModel.m */; };
@@ -1013,7 +1001,6 @@
 		87E7C3EC21509AB000F7AB14 /* FSSetTableViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D1868221364E7D00037DDF /* FSSetTableViewVC.m */; };
 		87E7C3ED21509AB000F7AB14 /* NSAttributedString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730AF472140FFA2004331A9 /* NSAttributedString+HTML.m */; };
 		87E7C3EE21509AB000F7AB14 /* BMFreshFiveStarHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426996212E9B77003C52F6 /* BMFreshFiveStarHeader.m */; };
-		87E7C3EF21509AB000F7AB14 /* RSKTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D209D72138FF45001EDD60 /* RSKTouchView.m */; };
 		87E7C3F021509AB000F7AB14 /* BMFreshContainerHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8742699E212E9B78003C52F6 /* BMFreshContainerHeaderView.m */; };
 		87E7C3F121509AB000F7AB14 /* BMTableViewDateTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 874267AE212E7E35003C52F6 /* BMTableViewDateTimeCell.m */; };
 		87E7C3F221509AB000F7AB14 /* DTZipArchivePKZip.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730AF8A2140FFA2004331A9 /* DTZipArchivePKZip.m */; };
@@ -1075,7 +1062,6 @@
 		87E7C42A21509AB000F7AB14 /* BMTableViewMaskTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 874267BC212E7E35003C52F6 /* BMTableViewMaskTextCell.m */; };
 		87E7C42B21509AB000F7AB14 /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = AD93558C2137D24100735C2E /* UIView+Layout.m */; };
 		87E7C42C21509AB000F7AB14 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AD224492213CD6C300F2DC47 /* View+MASAdditions.m */; };
-		87E7C42D21509AB000F7AB14 /* RSKImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D209E52138FF45001EDD60 /* RSKImageScrollView.m */; };
 		87E7C42E21509AB000F7AB14 /* BMCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426806212E7E35003C52F6 /* BMCheckBox.m */; };
 		87E7C42F21509AB000F7AB14 /* FLEXMultilineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D20A9E213920E2001EDD60 /* FLEXMultilineTableViewCell.m */; };
 		87E7C43021509AB000F7AB14 /* NSImage+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D209A52138F1E2001EDD60 /* NSImage+WebCache.m */; };
@@ -1200,7 +1186,6 @@
 		87E7C4A821509AB000F7AB14 /* FSVideoHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 45869EAD214CAA2300FB2024 /* FSVideoHistoryCell.m */; };
 		87E7C4A921509AB000F7AB14 /* NSString+BMMandarinLatin.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426878212E7E36003C52F6 /* NSString+BMMandarinLatin.m */; };
 		87E7C4AA21509AB000F7AB14 /* ZFSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7D6214D1A580005AD43 /* ZFSliderView.m */; };
-		87E7C4AB21509AB000F7AB14 /* RSKInternalUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D209D62138FF45001EDD60 /* RSKInternalUtility.m */; };
 		87E7C4AC21509AB000F7AB14 /* FSMyTopicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87741FF0214A387100F72427 /* FSMyTopicVC.m */; };
 		87E7C4AD21509AB000F7AB14 /* MJFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF819214D1AEC0005AD43 /* MJFoundation.m */; };
 		87E7C4AE21509AB000F7AB14 /* SDWebImageCodersManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D209872138F1E2001EDD60 /* SDWebImageCodersManager.m */; };
@@ -1505,7 +1490,6 @@
 		87E7C5DC21509AB000F7AB14 /* user_helpicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730AD3B2140CC27004331A9 /* user_helpicon@2x.png */; };
 		87E7C5DD21509AB000F7AB14 /* editor.html in Resources */ = {isa = PBXBuildFile; fileRef = AD93258F214B4FD9007F3A93 /* editor.html */; };
 		87E7C5DE21509AB000F7AB14 /* fsfreshidle_icon23@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730B0E72148E5CC004331A9 /* fsfreshidle_icon23@2x.png */; };
-		87E7C5DF21509AB000F7AB14 /* RSKImageCropperStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 87D209E02138FF45001EDD60 /* RSKImageCropperStrings.bundle */; };
 		87E7C5E021509AB000F7AB14 /* BMTableView_arrows_rightBlack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 874267CC212E7E35003C52F6 /* BMTableView_arrows_rightBlack@2x.png */; };
 		87E7C5E121509AB000F7AB14 /* user_collecticon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730AD3D2140CC27004331A9 /* user_collecticon@3x.png */; };
 		87E7C5E221509AB000F7AB14 /* home_browseCount@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBD4CE832141229200857DB3 /* home_browseCount@3x.png */; };
@@ -1567,6 +1551,26 @@
 		87E7C61A21509AB000F7AB14 /* BMTableView_UIButtonBarArrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 874267CB212E7E35003C52F6 /* BMTableView_UIButtonBarArrowRight.png */; };
 		87E7C62121509AF600F7AB14 /* LoadSDK.sh in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF747214D11060005AD43 /* LoadSDK.sh */; };
 		87E7C62221509BAC00F7AB14 /* MJPropertyType.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF808214D1AEC0005AD43 /* MJPropertyType.m */; };
+		87E7C6932150A4E400F7AB14 /* TOCropViewControllerLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 87E7C6672150A4E400F7AB14 /* TOCropViewControllerLocalizable.strings */; };
+		87E7C6942150A4E400F7AB14 /* TOCropViewControllerLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 87E7C6672150A4E400F7AB14 /* TOCropViewControllerLocalizable.strings */; };
+		87E7C6952150A4E400F7AB14 /* TOActivityCroppedImageProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C67F2150A4E400F7AB14 /* TOActivityCroppedImageProvider.m */; };
+		87E7C6962150A4E400F7AB14 /* TOActivityCroppedImageProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C67F2150A4E400F7AB14 /* TOActivityCroppedImageProvider.m */; };
+		87E7C6972150A4E400F7AB14 /* TOCropViewControllerTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6802150A4E400F7AB14 /* TOCropViewControllerTransitioning.m */; };
+		87E7C6982150A4E400F7AB14 /* TOCropViewControllerTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6802150A4E400F7AB14 /* TOCropViewControllerTransitioning.m */; };
+		87E7C6992150A4E400F7AB14 /* TOCroppedImageAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6812150A4E400F7AB14 /* TOCroppedImageAttributes.m */; };
+		87E7C69A2150A4E400F7AB14 /* TOCroppedImageAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6812150A4E400F7AB14 /* TOCroppedImageAttributes.m */; };
+		87E7C69B2150A4E400F7AB14 /* TOCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6852150A4E400F7AB14 /* TOCropViewController.m */; };
+		87E7C69C2150A4E500F7AB14 /* TOCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6852150A4E400F7AB14 /* TOCropViewController.m */; };
+		87E7C69D2150A4E500F7AB14 /* TOCropScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C68A2150A4E400F7AB14 /* TOCropScrollView.m */; };
+		87E7C69E2150A4E500F7AB14 /* TOCropScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C68A2150A4E400F7AB14 /* TOCropScrollView.m */; };
+		87E7C69F2150A4E500F7AB14 /* TOCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C68B2150A4E400F7AB14 /* TOCropView.m */; };
+		87E7C6A02150A4E500F7AB14 /* TOCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C68B2150A4E400F7AB14 /* TOCropView.m */; };
+		87E7C6A12150A4E500F7AB14 /* TOCropOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C68C2150A4E400F7AB14 /* TOCropOverlayView.m */; };
+		87E7C6A22150A4E500F7AB14 /* TOCropOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C68C2150A4E400F7AB14 /* TOCropOverlayView.m */; };
+		87E7C6A32150A4E500F7AB14 /* TOCropToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C68D2150A4E400F7AB14 /* TOCropToolbar.m */; };
+		87E7C6A42150A4E500F7AB14 /* TOCropToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C68D2150A4E400F7AB14 /* TOCropToolbar.m */; };
+		87E7C6A52150A4E500F7AB14 /* UIImage+CropRotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6902150A4E400F7AB14 /* UIImage+CropRotate.m */; };
+		87E7C6A62150A4E500F7AB14 /* UIImage+CropRotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6902150A4E400F7AB14 /* UIImage+CropRotate.m */; };
 		AD1BE2122141238B0018AF2C /* FSForumSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1BE2112141238B0018AF2C /* FSForumSectionHeaderView.m */; };
 		AD1BE214214127180018AF2C /* FSForumSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD1BE213214127180018AF2C /* FSForumSectionHeaderView.xib */; };
 		AD22449A213CD6C300F2DC47 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AD224481213CD6C300F2DC47 /* NSLayoutConstraint+MASDebugAdditions.m */; };
@@ -2913,23 +2917,6 @@
 		87D209B22138F1E2001EDD60 /* UIButton+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+WebCache.m"; sourceTree = "<group>"; };
 		87D209B32138F1E2001EDD60 /* SDWebImageWebPCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageWebPCoder.m; sourceTree = "<group>"; };
 		87D209B42138F1E2001EDD60 /* UIImage+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+GIF.h"; sourceTree = "<group>"; };
-		87D209D52138FF45001EDD60 /* CGGeometry+RSKImageCropper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CGGeometry+RSKImageCropper.m"; sourceTree = "<group>"; };
-		87D209D62138FF45001EDD60 /* RSKInternalUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSKInternalUtility.m; sourceTree = "<group>"; };
-		87D209D72138FF45001EDD60 /* RSKTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSKTouchView.m; sourceTree = "<group>"; };
-		87D209D82138FF45001EDD60 /* RSKImageCropViewController+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RSKImageCropViewController+Protected.h"; sourceTree = "<group>"; };
-		87D209D92138FF45001EDD60 /* UIApplication+RSKImageCropper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+RSKImageCropper.m"; sourceTree = "<group>"; };
-		87D209DA2138FF45001EDD60 /* RSKImageCropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSKImageCropViewController.m; sourceTree = "<group>"; };
-		87D209DB2138FF45001EDD60 /* UIImage+RSKImageCropper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RSKImageCropper.m"; sourceTree = "<group>"; };
-		87D209DC2138FF45001EDD60 /* RSKImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKImageScrollView.h; sourceTree = "<group>"; };
-		87D209DD2138FF45001EDD60 /* RSKTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKTouchView.h; sourceTree = "<group>"; };
-		87D209DE2138FF45001EDD60 /* RSKInternalUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKInternalUtility.h; sourceTree = "<group>"; };
-		87D209DF2138FF45001EDD60 /* CGGeometry+RSKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGGeometry+RSKImageCropper.h"; sourceTree = "<group>"; };
-		87D209E02138FF45001EDD60 /* RSKImageCropperStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RSKImageCropperStrings.bundle; sourceTree = "<group>"; };
-		87D209E12138FF45001EDD60 /* UIImage+RSKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RSKImageCropper.h"; sourceTree = "<group>"; };
-		87D209E22138FF45001EDD60 /* RSKImageCropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKImageCropViewController.h; sourceTree = "<group>"; };
-		87D209E32138FF45001EDD60 /* UIApplication+RSKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+RSKImageCropper.h"; sourceTree = "<group>"; };
-		87D209E42138FF45001EDD60 /* RSKImageCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSKImageCropper.h; sourceTree = "<group>"; };
-		87D209E52138FF45001EDD60 /* RSKImageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSKImageScrollView.m; sourceTree = "<group>"; };
 		87D209F1213912ED001EDD60 /* default_avataricon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_avataricon@2x.png"; sourceTree = "<group>"; };
 		87D209F4213920E2001EDD60 /* FLEXManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXManager.h; sourceTree = "<group>"; };
 		87D209F5213920E2001EDD60 /* FLEX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEX.h; sourceTree = "<group>"; };
@@ -3117,6 +3104,47 @@
 		87D20B2B213FB7F7001EDD60 /* default_avatariconlarge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_avatariconlarge@2x.png"; sourceTree = "<group>"; };
 		87E7C61F21509AB000F7AB14 /* fengshun_video.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fengshun_video.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87E7C62021509AB000F7AB14 /* fengshun copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "fengshun copy-Info.plist"; path = "/Users/jiangdeng/Documents/work/fengshun/fengshun/fengshun copy-Info.plist"; sourceTree = "<absolute>"; };
+		87E7C6652150A4E400F7AB14 /* TOCropViewConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCropViewConstants.h; sourceTree = "<group>"; };
+		87E7C6682150A4E400F7AB14 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TOCropViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		87E7C6692150A4E400F7AB14 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/TOCropViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		87E7C66A2150A4E400F7AB14 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TOCropViewControllerLocalizable.strings"; sourceTree = "<group>"; };
+		87E7C66B2150A4E400F7AB14 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/TOCropViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		87E7C66C2150A4E400F7AB14 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/TOCropViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		87E7C66D2150A4E400F7AB14 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/TOCropViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		87E7C66E2150A4E400F7AB14 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/TOCropViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		87E7C66F2150A4E400F7AB14 /* ms */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/TOCropViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		87E7C6702150A4E400F7AB14 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/TOCropViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		87E7C6712150A4E400F7AB14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/TOCropViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		87E7C6722150A4E400F7AB14 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TOCropViewControllerLocalizable.strings"; sourceTree = "<group>"; };
+		87E7C6732150A4E400F7AB14 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/TOCropViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		87E7C6742150A4E400F7AB14 /* da-DK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-DK"; path = "da-DK.lproj/TOCropViewControllerLocalizable.strings"; sourceTree = "<group>"; };
+		87E7C6752150A4E400F7AB14 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/TOCropViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		87E7C6762150A4E400F7AB14 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/TOCropViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		87E7C6772150A4E400F7AB14 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/TOCropViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		87E7C6782150A4E400F7AB14 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/TOCropViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		87E7C6792150A4E400F7AB14 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/TOCropViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		87E7C67A2150A4E400F7AB14 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/TOCropViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		87E7C67B2150A4E400F7AB14 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/TOCropViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		87E7C67C2150A4E400F7AB14 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/TOCropViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		87E7C67D2150A4E400F7AB14 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/TOCropViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		87E7C67F2150A4E400F7AB14 /* TOActivityCroppedImageProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOActivityCroppedImageProvider.m; sourceTree = "<group>"; };
+		87E7C6802150A4E400F7AB14 /* TOCropViewControllerTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCropViewControllerTransitioning.m; sourceTree = "<group>"; };
+		87E7C6812150A4E400F7AB14 /* TOCroppedImageAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCroppedImageAttributes.m; sourceTree = "<group>"; };
+		87E7C6822150A4E400F7AB14 /* TOActivityCroppedImageProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOActivityCroppedImageProvider.h; sourceTree = "<group>"; };
+		87E7C6832150A4E400F7AB14 /* TOCropViewControllerTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCropViewControllerTransitioning.h; sourceTree = "<group>"; };
+		87E7C6842150A4E400F7AB14 /* TOCroppedImageAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCroppedImageAttributes.h; sourceTree = "<group>"; };
+		87E7C6852150A4E400F7AB14 /* TOCropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCropViewController.m; sourceTree = "<group>"; };
+		87E7C6872150A4E400F7AB14 /* TOCropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCropView.h; sourceTree = "<group>"; };
+		87E7C6882150A4E400F7AB14 /* TOCropOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCropOverlayView.h; sourceTree = "<group>"; };
+		87E7C6892150A4E400F7AB14 /* TOCropToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCropToolbar.h; sourceTree = "<group>"; };
+		87E7C68A2150A4E400F7AB14 /* TOCropScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCropScrollView.m; sourceTree = "<group>"; };
+		87E7C68B2150A4E400F7AB14 /* TOCropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCropView.m; sourceTree = "<group>"; };
+		87E7C68C2150A4E400F7AB14 /* TOCropOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCropOverlayView.m; sourceTree = "<group>"; };
+		87E7C68D2150A4E400F7AB14 /* TOCropToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCropToolbar.m; sourceTree = "<group>"; };
+		87E7C68E2150A4E400F7AB14 /* TOCropScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCropScrollView.h; sourceTree = "<group>"; };
+		87E7C6902150A4E400F7AB14 /* UIImage+CropRotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CropRotate.m"; sourceTree = "<group>"; };
+		87E7C6912150A4E400F7AB14 /* UIImage+CropRotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CropRotate.h"; sourceTree = "<group>"; };
+		87E7C6922150A4E400F7AB14 /* TOCropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCropViewController.h; sourceTree = "<group>"; };
 		AD1BE2102141238B0018AF2C /* FSForumSectionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSForumSectionHeaderView.h; sourceTree = "<group>"; };
 		AD1BE2112141238B0018AF2C /* FSForumSectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSForumSectionHeaderView.m; sourceTree = "<group>"; };
 		AD1BE213214127180018AF2C /* FSForumSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSForumSectionHeaderView.xib; sourceTree = "<group>"; };
@@ -5011,8 +5039,8 @@
 				87426ACA2133D5E9003C52F6 /* MBProgressHUD */,
 				87426AB52133A504003C52F6 /* OpenUDID */,
 				87426AC62133AC44003C52F6 /* Reachability */,
-				87D209D42138FF45001EDD60 /* RSKImageCropper */,
 				87D209762138F1E2001EDD60 /* SDWebImage */,
+				87E7C6632150A4E400F7AB14 /* TOCropViewController */,
 				874269D8212EB7C2003C52F6 /* TTGTagCollectionView */,
 				AD9355812137D24100735C2E /* TZImagePickerController */,
 				ADEF1F50214F8AF300FFE0C3 /* UMShare */,
@@ -5861,30 +5889,6 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
-		87D209D42138FF45001EDD60 /* RSKImageCropper */ = {
-			isa = PBXGroup;
-			children = (
-				87D209D52138FF45001EDD60 /* CGGeometry+RSKImageCropper.m */,
-				87D209D62138FF45001EDD60 /* RSKInternalUtility.m */,
-				87D209D72138FF45001EDD60 /* RSKTouchView.m */,
-				87D209D82138FF45001EDD60 /* RSKImageCropViewController+Protected.h */,
-				87D209D92138FF45001EDD60 /* UIApplication+RSKImageCropper.m */,
-				87D209DA2138FF45001EDD60 /* RSKImageCropViewController.m */,
-				87D209DB2138FF45001EDD60 /* UIImage+RSKImageCropper.m */,
-				87D209DC2138FF45001EDD60 /* RSKImageScrollView.h */,
-				87D209DD2138FF45001EDD60 /* RSKTouchView.h */,
-				87D209DE2138FF45001EDD60 /* RSKInternalUtility.h */,
-				87D209DF2138FF45001EDD60 /* CGGeometry+RSKImageCropper.h */,
-				87D209E02138FF45001EDD60 /* RSKImageCropperStrings.bundle */,
-				87D209E12138FF45001EDD60 /* UIImage+RSKImageCropper.h */,
-				87D209E22138FF45001EDD60 /* RSKImageCropViewController.h */,
-				87D209E32138FF45001EDD60 /* UIApplication+RSKImageCropper.h */,
-				87D209E42138FF45001EDD60 /* RSKImageCropper.h */,
-				87D209E52138FF45001EDD60 /* RSKImageScrollView.m */,
-			);
-			path = RSKImageCropper;
-			sourceTree = "<group>";
-		};
 		87D209F0213912ED001EDD60 /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -6270,6 +6274,73 @@
 				87D20B0F21394A59001EDD60 /* FSWebViewProgressView.m */,
 			);
 			path = FSWebViewProgress;
+			sourceTree = "<group>";
+		};
+		87E7C6632150A4E400F7AB14 /* TOCropViewController */ = {
+			isa = PBXGroup;
+			children = (
+				87E7C6642150A4E400F7AB14 /* Constants */,
+				87E7C6662150A4E400F7AB14 /* Resources */,
+				87E7C67E2150A4E400F7AB14 /* Models */,
+				87E7C6862150A4E400F7AB14 /* Views */,
+				87E7C68F2150A4E400F7AB14 /* Categories */,
+				87E7C6922150A4E400F7AB14 /* TOCropViewController.h */,
+				87E7C6852150A4E400F7AB14 /* TOCropViewController.m */,
+			);
+			path = TOCropViewController;
+			sourceTree = "<group>";
+		};
+		87E7C6642150A4E400F7AB14 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				87E7C6652150A4E400F7AB14 /* TOCropViewConstants.h */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		87E7C6662150A4E400F7AB14 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				87E7C6672150A4E400F7AB14 /* TOCropViewControllerLocalizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		87E7C67E2150A4E400F7AB14 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				87E7C6822150A4E400F7AB14 /* TOActivityCroppedImageProvider.h */,
+				87E7C67F2150A4E400F7AB14 /* TOActivityCroppedImageProvider.m */,
+				87E7C6842150A4E400F7AB14 /* TOCroppedImageAttributes.h */,
+				87E7C6812150A4E400F7AB14 /* TOCroppedImageAttributes.m */,
+				87E7C6832150A4E400F7AB14 /* TOCropViewControllerTransitioning.h */,
+				87E7C6802150A4E400F7AB14 /* TOCropViewControllerTransitioning.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		87E7C6862150A4E400F7AB14 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				87E7C6882150A4E400F7AB14 /* TOCropOverlayView.h */,
+				87E7C68C2150A4E400F7AB14 /* TOCropOverlayView.m */,
+				87E7C68E2150A4E400F7AB14 /* TOCropScrollView.h */,
+				87E7C68A2150A4E400F7AB14 /* TOCropScrollView.m */,
+				87E7C6892150A4E400F7AB14 /* TOCropToolbar.h */,
+				87E7C68D2150A4E400F7AB14 /* TOCropToolbar.m */,
+				87E7C6872150A4E400F7AB14 /* TOCropView.h */,
+				87E7C68B2150A4E400F7AB14 /* TOCropView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		87E7C68F2150A4E400F7AB14 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				87E7C6912150A4E400F7AB14 /* UIImage+CropRotate.h */,
+				87E7C6902150A4E400F7AB14 /* UIImage+CropRotate.m */,
+			);
+			path = Categories;
 			sourceTree = "<group>";
 		};
 		AD22447F213CD6C300F2DC47 /* Masonry */ = {
@@ -6817,6 +6888,26 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
+				ar,
+				"zh-Hans",
+				ja,
+				es,
+				it,
+				ms,
+				ko,
+				"zh-Hant",
+				hu,
+				"da-DK",
+				tr,
+				pl,
+				vi,
+				ru,
+				fr,
+				id,
+				nl,
+				pt,
+				ro,
 			);
 			mainGroup = 87C0133D212E7A5200D0AAC3;
 			productRefGroup = 87C01347212E7A5200D0AAC3 /* Products */;
@@ -6857,6 +6948,7 @@
 				87426894212E7E36003C52F6 /* increase_eleme@3x.png in Resources */,
 				8730B1192148E5D1004331A9 /* fsfreshidle_icon19@2x.png in Resources */,
 				87D20AF321393B91001EDD60 /* navigationbar_collect_icon@2x.png in Resources */,
+				87E7C6932150A4E400F7AB14 /* TOCropViewControllerLocalizable.strings in Resources */,
 				874268A1212E7E36003C52F6 /* decrease_taobao@2x.png in Resources */,
 				8730B1202148E5D1004331A9 /* fsfreshidle_icon25@2x.png in Resources */,
 				87426A6021313940003C52F6 /* FSMainVC.xib in Resources */,
@@ -7027,7 +7119,6 @@
 				8730AD472140CC28004331A9 /* user_helpicon@2x.png in Resources */,
 				AD9325FA214B4FDA007F3A93 /* editor.html in Resources */,
 				8730B10A2148E5D1004331A9 /* fsfreshidle_icon23@2x.png in Resources */,
-				87D209EC2138FF46001EDD60 /* RSKImageCropperStrings.bundle in Resources */,
 				874268B5212E7E36003C52F6 /* BMTableView_arrows_rightBlack@2x.png in Resources */,
 				8730AD492140CC28004331A9 /* user_collecticon@3x.png in Resources */,
 				DBD4CE912141229400857DB3 /* home_browseCount@3x.png in Resources */,
@@ -7186,6 +7277,7 @@
 				87E7C55221509AB000F7AB14 /* user_serviceicon@2x.png in Resources */,
 				87E7C55321509AB000F7AB14 /* BMTableView_UIButtonBarArrowLeft@2x.png in Resources */,
 				87E7C55421509AB000F7AB14 /* decrease_eleme@2x.png in Resources */,
+				87E7C6942150A4E400F7AB14 /* TOCropViewControllerLocalizable.strings in Resources */,
 				87E7C55521509AB000F7AB14 /* login_openeye@2x.png in Resources */,
 				87E7C55621509AB000F7AB14 /* user_topicicon@2x.png in Resources */,
 				87E7C55721509AB000F7AB14 /* videocall_privte_chat@2x.png in Resources */,
@@ -7323,7 +7415,6 @@
 				87E7C5DC21509AB000F7AB14 /* user_helpicon@2x.png in Resources */,
 				87E7C5DD21509AB000F7AB14 /* editor.html in Resources */,
 				87E7C5DE21509AB000F7AB14 /* fsfreshidle_icon23@2x.png in Resources */,
-				87E7C5DF21509AB000F7AB14 /* RSKImageCropperStrings.bundle in Resources */,
 				87E7C5E021509AB000F7AB14 /* BMTableView_arrows_rightBlack@2x.png in Resources */,
 				87E7C5E121509AB000F7AB14 /* user_collecticon@3x.png in Resources */,
 				87E7C5E221509AB000F7AB14 /* home_browseCount@3x.png in Resources */,
@@ -7404,6 +7495,7 @@
 				8730B02B2140FFA2004331A9 /* DTDictationPlaceholderView.m in Sources */,
 				87D209B92138F1E2001EDD60 /* SDWebImageFrame.m in Sources */,
 				87D20ABD213920E2001EDD60 /* FLEXArgumentInputColorView.m in Sources */,
+				87E7C6992150A4E400F7AB14 /* TOCroppedImageAttributes.m in Sources */,
 				874268B0212E7E36003C52F6 /* BMTableViewImageDetailCell.m in Sources */,
 				87D209C12138F1E2001EDD60 /* SDWebImageCompat.m in Sources */,
 				8730B03B2140FFA2004331A9 /* DTAttributedTextContentView.m in Sources */,
@@ -7435,7 +7527,6 @@
 				874268AA212E7E36003C52F6 /* BMTableViewBoolCell.m in Sources */,
 				AD51029F213E7771008CD74D /* FSPushVCManager.m in Sources */,
 				AD2244E2213D1FF900F2DC47 /* FSCommunityHeaderView.m in Sources */,
-				87D209E62138FF46001EDD60 /* CGGeometry+RSKImageCropper.m in Sources */,
 				87D20AAE213920E2001EDD60 /* FLEXNetworkTransactionTableViewCell.m in Sources */,
 				87D209B82138F1E2001EDD60 /* UIImageView+HighlightedWebCache.m in Sources */,
 				87426A9C21314996003C52F6 /* FSSearchViewController.m in Sources */,
@@ -7479,6 +7570,7 @@
 				8730B06E2140FFA3004331A9 /* NSString+DTUTI.m in Sources */,
 				8730B0552140FFA3004331A9 /* DTHTMLParserNode.m in Sources */,
 				87D20B052139492F001EDD60 /* WebViewJavascriptBridge.m in Sources */,
+				87E7C69D2150A4E500F7AB14 /* TOCropScrollView.m in Sources */,
 				8730B08A2140FFA3004331A9 /* UIColor+DTDebug.m in Sources */,
 				874268DA212E7E36003C52F6 /* BMNavigationBar.m in Sources */,
 				87D20AE6213920E2001EDD60 /* FLEXUtility.m in Sources */,
@@ -7490,6 +7582,7 @@
 				87741FEB214A381700F72427 /* FSMyCollectionVC.m in Sources */,
 				87D209B72138F1E2001EDD60 /* SDWebImageManager.m in Sources */,
 				87426AD42133F3C8003C52F6 /* FSTableViewVC.m in Sources */,
+				87E7C6A12150A4E500F7AB14 /* TOCropOverlayView.m in Sources */,
 				87D20AD3213920E2001EDD60 /* FLEXSystemLogMessage.m in Sources */,
 				874268F0212E7E36003C52F6 /* UILabel+BMCategory.m in Sources */,
 				8730B0992140FFA3004331A9 /* DTHTMLParser.m in Sources */,
@@ -7501,7 +7594,6 @@
 				87426A91213146A6003C52F6 /* XMCenter.m in Sources */,
 				8730B04B2140FFA2004331A9 /* DTColorFunctions.m in Sources */,
 				AD22449C213CD6C300F2DC47 /* MASCompositeConstraint.m in Sources */,
-				87D209E92138FF46001EDD60 /* UIApplication+RSKImageCropper.m in Sources */,
 				8730B08F2140FFA3004331A9 /* DTSidePanelControllerSegue.m in Sources */,
 				87D209C52138F1E2001EDD60 /* SDAnimatedImageRep.m in Sources */,
 				87D20AAA213920E2001EDD60 /* FLEXObjectExplorerViewController.m in Sources */,
@@ -7515,9 +7607,9 @@
 				8730B0382140FFA2004331A9 /* DTCoreTextLayoutFrame.m in Sources */,
 				87D20AA3213920E2001EDD60 /* FLEXClassExplorerViewController.m in Sources */,
 				87426A6821313C1D003C52F6 /* FSSuperVC.m in Sources */,
+				87E7C6952150A4E400F7AB14 /* TOActivityCroppedImageProvider.m in Sources */,
 				8730B0942140FFA3004331A9 /* DTReachability.m in Sources */,
 				8730B05D2140FFA3004331A9 /* DTCoreTextLayouter.m in Sources */,
-				87D209EB2138FF46001EDD60 /* UIImage+RSKImageCropper.m in Sources */,
 				87D20AE9213920E2001EDD60 /* FLEXKeyboardShortcutManager.m in Sources */,
 				8742690A212E7E36003C52F6 /* NSDictionary+BMCategory.m in Sources */,
 				8730B0612140FFA3004331A9 /* DTZipArchiveGZip.m in Sources */,
@@ -7589,7 +7681,6 @@
 				8730B04E2140FFA2004331A9 /* DTCSSStylesheet.m in Sources */,
 				8730B0842140FFA3004331A9 /* DTActivityTitleView.m in Sources */,
 				874268D9212E7E36003C52F6 /* UIViewController+BMNavigationItem.m in Sources */,
-				87D209EA2138FF46001EDD60 /* RSKImageCropViewController.m in Sources */,
 				8730B03C2140FFA2004331A9 /* DTWebVideoView.m in Sources */,
 				8730B0502140FFA2004331A9 /* DTHTMLWriter.m in Sources */,
 				DB804FEE2142669E007F7B19 /* FSCaseSearchResultModel.m in Sources */,
@@ -7599,6 +7690,7 @@
 				AD932605214B4FDA007F3A93 /* CYRTextStorage.m in Sources */,
 				DB2656D1214666C4002ED713 /* FSLawSearchResultCell.m in Sources */,
 				8730B05E2140FFA3004331A9 /* NSString+DTPaths.m in Sources */,
+				87E7C6972150A4E400F7AB14 /* TOCropViewControllerTransitioning.m in Sources */,
 				87D20AB9213920E2001EDD60 /* FLEXMethodCallingViewController.m in Sources */,
 				87D20ADF213920E2001EDD60 /* FLEXLibrariesTableViewController.m in Sources */,
 				AD9325FF214B4FDA007F3A93 /* HRCgUtil.m in Sources */,
@@ -7727,7 +7819,6 @@
 				87D1868321364E7D00037DDF /* FSSetTableViewVC.m in Sources */,
 				8730B0402140FFA2004331A9 /* NSAttributedString+HTML.m in Sources */,
 				874269BC212E9B78003C52F6 /* BMFreshFiveStarHeader.m in Sources */,
-				87D209E82138FF46001EDD60 /* RSKTouchView.m in Sources */,
 				874269BF212E9B78003C52F6 /* BMFreshContainerHeaderView.m in Sources */,
 				874268A7212E7E36003C52F6 /* BMTableViewDateTimeCell.m in Sources */,
 				8730B0622140FFA3004331A9 /* DTZipArchivePKZip.m in Sources */,
@@ -7780,7 +7871,6 @@
 				874268AD212E7E36003C52F6 /* BMTableViewMaskTextCell.m in Sources */,
 				AD9355A42137D24100735C2E /* UIView+Layout.m in Sources */,
 				AD2244A0213CD6C300F2DC47 /* View+MASAdditions.m in Sources */,
-				87D209ED2138FF46001EDD60 /* RSKImageScrollView.m in Sources */,
 				874268D4212E7E36003C52F6 /* BMCheckBox.m in Sources */,
 				87D20AEC213920E2001EDD60 /* FLEXMultilineTableViewCell.m in Sources */,
 				87D209CB2138F1E2001EDD60 /* NSImage+WebCache.m in Sources */,
@@ -7807,6 +7897,7 @@
 				874268E9212E7E36003C52F6 /* UIView+BMAnimationExtensions.m in Sources */,
 				AD510298213E560F008CD74D /* FSApiRequest+Community.m in Sources */,
 				8730B0772140FFA3004331A9 /* NSFileWrapper+DTCopying.m in Sources */,
+				87E7C69F2150A4E500F7AB14 /* TOCropView.m in Sources */,
 				87426AD12133D6CF003C52F6 /* FSTableView.m in Sources */,
 				87D20ACE213920E2001EDD60 /* FLEXWebViewController.m in Sources */,
 				87D20AB6213920E2001EDD60 /* FLEXManager.m in Sources */,
@@ -7856,6 +7947,7 @@
 				AD932603214B4FDA007F3A93 /* CYRLayoutManager.m in Sources */,
 				AD9355AD2137D24100735C2E /* TZGifPhotoPreviewController.m in Sources */,
 				8730B07D2140FFA3004331A9 /* DTAlertView.m in Sources */,
+				87E7C6A32150A4E500F7AB14 /* TOCropToolbar.m in Sources */,
 				87D20AA6213920E2001EDD60 /* FLEXViewControllerExplorerViewController.m in Sources */,
 				874268D8212E7E36003C52F6 /* BMAlertView.m in Sources */,
 				AD9CAAE4212EA0F40071B941 /* UIScrollView+BMEmpty.m in Sources */,
@@ -7866,6 +7958,7 @@
 				87D186B22136998E00037DDF /* FSLoginVerifyVC.m in Sources */,
 				874269E2212EB8A4003C52F6 /* BMSearchViewController.m in Sources */,
 				874268B1212E7E36003C52F6 /* BMTableViewCheckBoxGroupCell.m in Sources */,
+				87E7C69B2150A4E400F7AB14 /* TOCropViewController.m in Sources */,
 				8730B0972140FFA3004331A9 /* DTASN1Parser.m in Sources */,
 				DB5722352133A0FC0065DC30 /* FSScrollPageSegment.m in Sources */,
 				87D20AE8213920E2001EDD60 /* FLEXRuntimeUtility.m in Sources */,
@@ -7881,6 +7974,7 @@
 				DB48743D214A5CCD00AB0805 /* FSFileScanVC.m in Sources */,
 				8730B0392140FFA2004331A9 /* NSAttributedString+SmallCaps.m in Sources */,
 				87D20AC2213920E2001EDD60 /* FLEXArgumentInputDateView.m in Sources */,
+				87E7C6A52150A4E500F7AB14 /* UIImage+CropRotate.m in Sources */,
 				8730B0952140FFA3004331A9 /* NSURL+DTUnshorten.m in Sources */,
 				874268C5212E7E36003C52F6 /* BMImageDetailItem.m in Sources */,
 				DB2656CA214660ED002ED713 /* FSLawSearchResultView.m in Sources */,
@@ -7893,7 +7987,6 @@
 				AD4691DD2148BE34008CAF27 /* FSH5DemoVC.m in Sources */,
 				87426AF621353510003C52F6 /* FSDBVersionCheck.m in Sources */,
 				87426904212E7E36003C52F6 /* NSString+BMMandarinLatin.m in Sources */,
-				87D209E72138FF46001EDD60 /* RSKInternalUtility.m in Sources */,
 				87741FF1214A387100F72427 /* FSMyTopicVC.m in Sources */,
 				87D209BB2138F1E2001EDD60 /* SDWebImageCodersManager.m in Sources */,
 				8730B0722140FFA3004331A9 /* ioapi.c in Sources */,
@@ -7992,7 +8085,6 @@
 				87E7C2A321509AB000F7AB14 /* MJProperty.m in Sources */,
 				87E7C2A421509AB000F7AB14 /* FSPushVCManager.m in Sources */,
 				87E7C2A521509AB000F7AB14 /* FSCommunityHeaderView.m in Sources */,
-				87E7C2A621509AB000F7AB14 /* CGGeometry+RSKImageCropper.m in Sources */,
 				87E7C2A721509AB000F7AB14 /* FLEXNetworkTransactionTableViewCell.m in Sources */,
 				87E7C2A821509AB000F7AB14 /* UIImageView+HighlightedWebCache.m in Sources */,
 				87E7C2A921509AB000F7AB14 /* FSSearchViewController.m in Sources */,
@@ -8064,7 +8156,6 @@
 				87E7C2EB21509AB000F7AB14 /* XMCenter.m in Sources */,
 				87E7C2EC21509AB000F7AB14 /* DTColorFunctions.m in Sources */,
 				87E7C2ED21509AB000F7AB14 /* MASCompositeConstraint.m in Sources */,
-				87E7C2EE21509AB000F7AB14 /* UIApplication+RSKImageCropper.m in Sources */,
 				87E7C2EF21509AB000F7AB14 /* DTSidePanelControllerSegue.m in Sources */,
 				87E7C2F021509AB000F7AB14 /* SDAnimatedImageRep.m in Sources */,
 				87E7C2F121509AB000F7AB14 /* FLEXObjectExplorerViewController.m in Sources */,
@@ -8081,7 +8172,6 @@
 				87E7C2FC21509AB000F7AB14 /* FSSuperVC.m in Sources */,
 				87E7C2FD21509AB000F7AB14 /* DTReachability.m in Sources */,
 				87E7C2FE21509AB000F7AB14 /* DTCoreTextLayouter.m in Sources */,
-				87E7C2FF21509AB000F7AB14 /* UIImage+RSKImageCropper.m in Sources */,
 				87E7C30021509AB000F7AB14 /* FLEXKeyboardShortcutManager.m in Sources */,
 				87E7C30121509AB000F7AB14 /* NSDictionary+BMCategory.m in Sources */,
 				87E7C30221509AB000F7AB14 /* DTZipArchiveGZip.m in Sources */,
@@ -8106,6 +8196,7 @@
 				87E7C31521509AB000F7AB14 /* NSArray+BMCategory.m in Sources */,
 				87E7C31621509AB000F7AB14 /* ZFSpeedLoadingView.m in Sources */,
 				87E7C31721509AB000F7AB14 /* NSNumber+BMCategory.m in Sources */,
+				87E7C6A42150A4E500F7AB14 /* TOCropToolbar.m in Sources */,
 				87E7C31821509AB000F7AB14 /* MJPropertyKey.m in Sources */,
 				87E7C31921509AB000F7AB14 /* FSSendTopicVC.m in Sources */,
 				87E7C31A21509AB000F7AB14 /* FLEXArgumentInputViewFactory.m in Sources */,
@@ -8147,6 +8238,7 @@
 				87E7C33E21509AB000F7AB14 /* FLEXNetworkRecorder.m in Sources */,
 				87E7C33F21509AB000F7AB14 /* WKWebViewJavascriptBridge.m in Sources */,
 				87E7C34021509AB000F7AB14 /* FSListTextModel.m in Sources */,
+				87E7C6982150A4E400F7AB14 /* TOCropViewControllerTransitioning.m in Sources */,
 				87E7C34121509AB000F7AB14 /* UIButton+BMContentRect.m in Sources */,
 				87E7C34221509AB000F7AB14 /* FLEXArgumentInputView.m in Sources */,
 				87E7C34321509AB000F7AB14 /* FLEXArgumentInputSwitchView.m in Sources */,
@@ -8172,7 +8264,6 @@
 				87E7C62221509BAC00F7AB14 /* MJPropertyType.m in Sources */,
 				87E7C35721509AB000F7AB14 /* DTActivityTitleView.m in Sources */,
 				87E7C35821509AB000F7AB14 /* UIViewController+BMNavigationItem.m in Sources */,
-				87E7C35921509AB000F7AB14 /* RSKImageCropViewController.m in Sources */,
 				87E7C35A21509AB000F7AB14 /* DTWebVideoView.m in Sources */,
 				87E7C35B21509AB000F7AB14 /* DTHTMLWriter.m in Sources */,
 				87E7C35C21509AB000F7AB14 /* FSCaseSearchResultModel.m in Sources */,
@@ -8212,6 +8303,7 @@
 				87E7C37E21509AB000F7AB14 /* ZFPlayerNotification.m in Sources */,
 				87E7C37F21509AB000F7AB14 /* FSCourseModel.m in Sources */,
 				87E7C38021509AB000F7AB14 /* BMFreshGifHeader.m in Sources */,
+				87E7C6962150A4E400F7AB14 /* TOActivityCroppedImageProvider.m in Sources */,
 				87E7C38121509AB000F7AB14 /* UIDevice+BMCategory.m in Sources */,
 				87E7C38221509AB000F7AB14 /* FLEXArgumentInputStructView.m in Sources */,
 				87E7C38321509AB000F7AB14 /* BMFreshBackContainerFooterView.m in Sources */,
@@ -8308,6 +8400,7 @@
 				87E7C3DE21509AB000F7AB14 /* UIImageView+BMCategory.m in Sources */,
 				87E7C3DF21509AB000F7AB14 /* DTCoreTextFunctions.m in Sources */,
 				87E7C3E021509AB000F7AB14 /* BMTableViewSection.m in Sources */,
+				87E7C6A22150A4E500F7AB14 /* TOCropOverlayView.m in Sources */,
 				87E7C3E121509AB000F7AB14 /* BMTableViewCombineCell.m in Sources */,
 				87E7C3E221509AB000F7AB14 /* zip.c in Sources */,
 				87E7C3E321509AB000F7AB14 /* TZImagePickerController.m in Sources */,
@@ -8322,7 +8415,6 @@
 				87E7C3EC21509AB000F7AB14 /* FSSetTableViewVC.m in Sources */,
 				87E7C3ED21509AB000F7AB14 /* NSAttributedString+HTML.m in Sources */,
 				87E7C3EE21509AB000F7AB14 /* BMFreshFiveStarHeader.m in Sources */,
-				87E7C3EF21509AB000F7AB14 /* RSKTouchView.m in Sources */,
 				87E7C3F021509AB000F7AB14 /* BMFreshContainerHeaderView.m in Sources */,
 				87E7C3F121509AB000F7AB14 /* BMTableViewDateTimeCell.m in Sources */,
 				87E7C3F221509AB000F7AB14 /* DTZipArchivePKZip.m in Sources */,
@@ -8342,8 +8434,10 @@
 				87E7C40021509AB000F7AB14 /* BMCheckBoxGroup.m in Sources */,
 				87E7C40121509AB000F7AB14 /* DTProgressHUDWindow.m in Sources */,
 				87E7C40221509AB000F7AB14 /* SDWebImageImageIOCoder.m in Sources */,
+				87E7C69A2150A4E400F7AB14 /* TOCroppedImageAttributes.m in Sources */,
 				87E7C40321509AB000F7AB14 /* DTExtendedFileAttributes.m in Sources */,
 				87E7C40421509AB000F7AB14 /* HRColorPickerView.m in Sources */,
+				87E7C69E2150A4E500F7AB14 /* TOCropScrollView.m in Sources */,
 				87E7C40521509AB000F7AB14 /* BMInputItem.m in Sources */,
 				87E7C40621509AB000F7AB14 /* DTPieProgressIndicator.m in Sources */,
 				87E7C40721509AB000F7AB14 /* BMSingleLineView.m in Sources */,
@@ -8362,6 +8456,7 @@
 				87E7C41421509AB000F7AB14 /* AFNetworkReachabilityManager.m in Sources */,
 				87E7C41521509AB000F7AB14 /* FLEXDefaultEditorViewController.m in Sources */,
 				87E7C41621509AB000F7AB14 /* FSEditVideoMediateView.m in Sources */,
+				87E7C69C2150A4E500F7AB14 /* TOCropViewController.m in Sources */,
 				87E7C41721509AB000F7AB14 /* UIScrollView+BMFresh.m in Sources */,
 				87E7C41821509AB000F7AB14 /* FSVideoMediateListCell.m in Sources */,
 				87E7C41921509AB000F7AB14 /* DTListItemHTMLElement.m in Sources */,
@@ -8384,7 +8479,6 @@
 				87E7C42A21509AB000F7AB14 /* BMTableViewMaskTextCell.m in Sources */,
 				87E7C42B21509AB000F7AB14 /* UIView+Layout.m in Sources */,
 				87E7C42C21509AB000F7AB14 /* View+MASAdditions.m in Sources */,
-				87E7C42D21509AB000F7AB14 /* RSKImageScrollView.m in Sources */,
 				87E7C42E21509AB000F7AB14 /* BMCheckBox.m in Sources */,
 				87E7C42F21509AB000F7AB14 /* FLEXMultilineTableViewCell.m in Sources */,
 				87E7C43021509AB000F7AB14 /* NSImage+WebCache.m in Sources */,
@@ -8442,6 +8536,7 @@
 				87E7C46421509AB000F7AB14 /* NSObject+MJClass.m in Sources */,
 				87E7C46521509AB000F7AB14 /* UIButton+XQAdd.m in Sources */,
 				87E7C46621509AB000F7AB14 /* SDWebImagePrefetcher.m in Sources */,
+				87E7C6A02150A4E500F7AB14 /* TOCropView.m in Sources */,
 				87E7C46721509AB000F7AB14 /* FSWebViewController.m in Sources */,
 				87E7C46821509AB000F7AB14 /* BMNavigationController.m in Sources */,
 				87E7C46921509AB000F7AB14 /* UIImageView+ZFCache.m in Sources */,
@@ -8460,6 +8555,7 @@
 				87E7C47621509AB000F7AB14 /* HRColorCursor.m in Sources */,
 				87E7C47721509AB000F7AB14 /* FLEXHierarchyTableViewController.m in Sources */,
 				87E7C47821509AB000F7AB14 /* BMTableViewManager.m in Sources */,
+				87E7C6A62150A4E500F7AB14 /* UIImage+CropRotate.m in Sources */,
 				87E7C47921509AB000F7AB14 /* FMResultSet.m in Sources */,
 				87E7C47A21509AB000F7AB14 /* FSCommunityModel.m in Sources */,
 				87E7C47B21509AB000F7AB14 /* UIImage+ForceDecode.m in Sources */,
@@ -8509,7 +8605,6 @@
 				87E7C4A821509AB000F7AB14 /* FSVideoHistoryCell.m in Sources */,
 				87E7C4A921509AB000F7AB14 /* NSString+BMMandarinLatin.m in Sources */,
 				87E7C4AA21509AB000F7AB14 /* ZFSliderView.m in Sources */,
-				87E7C4AB21509AB000F7AB14 /* RSKInternalUtility.m in Sources */,
 				87E7C4AC21509AB000F7AB14 /* FSMyTopicVC.m in Sources */,
 				87E7C4AD21509AB000F7AB14 /* MJFoundation.m in Sources */,
 				87E7C4AE21509AB000F7AB14 /* SDWebImageCodersManager.m in Sources */,
@@ -8565,6 +8660,38 @@
 			targetProxy = 87E7C27421509AB000F7AB14 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		87E7C6672150A4E400F7AB14 /* TOCropViewControllerLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				87E7C6682150A4E400F7AB14 /* de */,
+				87E7C6692150A4E400F7AB14 /* ar */,
+				87E7C66A2150A4E400F7AB14 /* zh-Hans */,
+				87E7C66B2150A4E400F7AB14 /* ja */,
+				87E7C66C2150A4E400F7AB14 /* en */,
+				87E7C66D2150A4E400F7AB14 /* es */,
+				87E7C66E2150A4E400F7AB14 /* it */,
+				87E7C66F2150A4E400F7AB14 /* ms */,
+				87E7C6702150A4E400F7AB14 /* ko */,
+				87E7C6712150A4E400F7AB14 /* Base */,
+				87E7C6722150A4E400F7AB14 /* zh-Hant */,
+				87E7C6732150A4E400F7AB14 /* hu */,
+				87E7C6742150A4E400F7AB14 /* da-DK */,
+				87E7C6752150A4E400F7AB14 /* tr */,
+				87E7C6762150A4E400F7AB14 /* pl */,
+				87E7C6772150A4E400F7AB14 /* vi */,
+				87E7C6782150A4E400F7AB14 /* ru */,
+				87E7C6792150A4E400F7AB14 /* fr */,
+				87E7C67A2150A4E400F7AB14 /* id */,
+				87E7C67B2150A4E400F7AB14 /* nl */,
+				87E7C67C2150A4E400F7AB14 /* pt */,
+				87E7C67D2150A4E400F7AB14 /* ro */,
+			);
+			name = TOCropViewControllerLocalizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		87C0136A212E7A5300D0AAC3 /* Debug */ = {
