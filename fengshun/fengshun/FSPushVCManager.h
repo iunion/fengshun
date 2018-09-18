@@ -37,9 +37,13 @@ typedef void (^PushVCCallBack)(id object);
 // 案例检索
 + (void)homePage:(UIViewController *)mainVC pushToCaseSearchWithHotKeys:(NSArray *)hotKeys;
 + (void)searchVCPushtToCaseOCrSearchVC:(UIViewController *)searchVC;
+
+
 // 法规检索
 + (void)homePage:(UIViewController *)mainVC pushToLawSearchWithTopics:(NSArray *)topics;
 + (void)searchVCPushtToLawsOCrSearchVC:(UIViewController *)searchVC;
+// 法规专题
++ (void)viewController:(UIViewController *)vc pushToLawTopicVCWithLawTopic:(NSString *)lawTopic;
 #ifdef FSVIDEO_ON
 // 视频调解
 + (void)pushVideoMediateList:(UINavigationController *)nav;

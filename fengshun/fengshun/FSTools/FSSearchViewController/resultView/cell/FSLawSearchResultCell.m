@@ -13,7 +13,6 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.separatorInset = UIEdgeInsetsMake(0, 12, 0, 12);
-    [_m_tagView bm_roundedRect:11];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -30,7 +29,6 @@
     NSMutableAttributedString * attrStr = [[NSMutableAttributedString alloc] initWithData:[htmlStr dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
     
     _m_contentLabel.attributedText = attrStr;
-    _m_tagLabel.text = model.m_executeTag;
     NSString * detail = @"";
     if ([model.m_Organ bm_isNotEmpty]) {
         detail = [detail stringByAppendingString:[NSString stringWithFormat:@" | %@\n",model.m_Organ]];

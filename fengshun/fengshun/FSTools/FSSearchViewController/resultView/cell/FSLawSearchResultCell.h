@@ -13,8 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *m_titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *m_detailLabel;
 @property (weak, nonatomic) IBOutlet UILabel *m_contentLabel;
-@property (weak, nonatomic) IBOutlet UILabel *m_tagLabel;
-@property (weak, nonatomic) IBOutlet UIView *m_tagView;
 @property (weak, nonatomic) IBOutlet UILabel *m_matchLabel;
 
 

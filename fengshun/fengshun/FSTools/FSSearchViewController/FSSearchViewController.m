@@ -430,10 +430,15 @@
 
 - (void)tagCollectionView:(TTGTagCollectionView *)tagCollectionView didSelectTag:(UIView *)tagView atIndex:(NSUInteger)index
 {
-    BMLog(@"Tap tag: %@, at: %ld", tagView.class, (long)index);
-    
     UILabel *label = (UILabel *)tagView;
-    [self searchWithKey:label.text];
+    if (_resultType == FSSearchResultType_laws) {
+        [FSPushVCManager viewController:self pushToLawTopicVCWithLawTopic:[label.text bm_trim]];
+    }
+    else
+    {
+        
+        [self searchWithKey:label.text];
+    }
 }
 
 

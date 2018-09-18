@@ -140,15 +140,21 @@
     return self.statusBarStyle;
 }
 
-+ (instancetype)fs_defaultPickerWithDelegate:(id<TZImagePickerControllerDelegate>)delegate;
++(instancetype)fs_defaultPickerWithImagesCount:(NSUInteger)imagesCount delegate:(id<TZImagePickerControllerDelegate>)delegate
 {
-    TZImagePickerController *imagePickerVc  = [[self alloc] initWithMaxImagesCount:0 delegate:delegate];
-    imagePickerVc.allowTakePicture          = YES;  // 在内部显示拍照按钮
-    imagePickerVc.allowPickingVideo         = NO;
-    imagePickerVc.allowCrop                 = YES;
-    imagePickerVc.alwaysEnableDoneBtn       = YES;
+    TZImagePickerController *imagePickerVc  = [[self alloc] initWithMaxImagesCount:imagesCount delegate:delegate];
+    
+    imagePickerVc.sortAscendingByModificationDate = NO;
+    imagePickerVc.allowTakePicture = YES;
+    imagePickerVc.allowPickingVideo = NO;
+    imagePickerVc.allowPickingImage = YES;
     imagePickerVc.allowPickingOriginalPhoto = NO;
-    imagePickerVc.allowTakeVideo            = NO;
+    imagePickerVc.showSelectBtn = NO;
+    
+    [imagePickerVc setUiImagePickerControllerSettingBlock:^(UIImagePickerController *imagePickerController) {
+        imagePickerController.videoQuality = UIImagePickerControllerQualityTypeHigh;
+    }];
+    
     return imagePickerVc;
 }
 

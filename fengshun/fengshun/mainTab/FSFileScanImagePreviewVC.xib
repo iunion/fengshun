@@ -29,7 +29,7 @@
                     <rect key="frame" x="0.0" y="608" width="375" height="59"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vo8-Xj-04T">
-                            <rect key="frame" x="15" y="10" width="75" height="40"/>
+                            <rect key="frame" x="15" y="15" width="75" height="30"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                             <state key="normal" title="分享PDF">
                                 <color key="titleColor" red="0.3411764706" green="0.4941176471" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -39,7 +39,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dE4-cF-epG">
-                            <rect key="frame" x="105" y="9.5" width="75" height="40"/>
+                            <rect key="frame" x="105" y="14.5" width="75" height="30"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                             <state key="normal" title="分享图片">
                                 <color key="titleColor" red="0.3411764706" green="0.4941176471" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -49,7 +49,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="so9-8d-q1r">
-                            <rect key="frame" x="195" y="10" width="75" height="40"/>
+                            <rect key="frame" x="195" y="15" width="75" height="30"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                             <state key="normal" title="保存到相册">
                                 <color key="titleColor" red="0.3411764706" green="0.4941176471" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -59,7 +59,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vO5-aP-C3l">
-                            <rect key="frame" x="285" y="10" width="75" height="40"/>
+                            <rect key="frame" x="285" y="15" width="75" height="30"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                             <state key="normal" title="文字识别">
                                 <color key="titleColor" red="0.3411764706" green="0.4941176471" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -79,7 +79,7 @@
                         <constraint firstItem="dE4-cF-epG" firstAttribute="width" secondItem="vo8-Xj-04T" secondAttribute="width" id="NpF-sG-bRt"/>
                         <constraint firstItem="so9-8d-q1r" firstAttribute="centerY" secondItem="vo8-Xj-04T" secondAttribute="centerY" id="S9B-rN-39x"/>
                         <constraint firstItem="vO5-aP-C3l" firstAttribute="leading" secondItem="so9-8d-q1r" secondAttribute="trailing" constant="15" id="a5k-2P-cxL"/>
-                        <constraint firstItem="vo8-Xj-04T" firstAttribute="height" secondItem="3EV-1l-lWf" secondAttribute="height" multiplier="40:59" id="aHh-bl-2BV"/>
+                        <constraint firstItem="vo8-Xj-04T" firstAttribute="height" secondItem="3EV-1l-lWf" secondAttribute="height" multiplier="30:59" id="aHh-bl-2BV"/>
                         <constraint firstItem="so9-8d-q1r" firstAttribute="width" secondItem="dE4-cF-epG" secondAttribute="width" id="bjb-iC-lUa"/>
                         <constraint firstItem="vO5-aP-C3l" firstAttribute="centerY" secondItem="vo8-Xj-04T" secondAttribute="centerY" id="f8U-u3-c7T"/>
                         <constraint firstItem="dE4-cF-epG" firstAttribute="centerY" secondItem="vo8-Xj-04T" secondAttribute="centerY" id="fCU-PP-JfX"/>

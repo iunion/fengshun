@@ -10,12 +10,16 @@
 #import "FSImageFileModel.h"
 #import "FSScrollPageView.h"
 #import "MBProgressHUD.h"
+#import "TOCropViewController.h"
 
 
 @interface
-FSFileScanImagePreviewVC () <
+FSFileScanImagePreviewVC ()
+<
     FSScrollPageViewDelegate,
-    FSScrollPageViewDataSource>
+    FSScrollPageViewDataSource,
+    TOCropViewControllerDelegate
+>
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *m_toolButtons;
 @property (weak, nonatomic) IBOutlet UILabel *  m_pageContolLabel;
 @property (nonatomic, strong) FSScrollPageView *m_scrollPageView;
@@ -42,7 +46,7 @@ FSFileScanImagePreviewVC () <
     [self setBm_NavigationBarImage:[UIImage imageWithColor:[UIColor whiteColor]]];
     for (UIButton *toolButton in _m_toolButtons)
     {
-        [toolButton bm_roundedRect:20 borderWidth:0.5 borderColor:UI_COLOR_BL1];
+        [toolButton bm_roundedRect:15 borderWidth:0.5 borderColor:UI_COLOR_BL1];
     }
     
     // 内容视图
@@ -133,7 +137,28 @@ FSFileScanImagePreviewVC () <
         _m_SourceDataChanged();
     }
 }
-
+- (void)presentToImageCrop
+{
+    if (![_m_selectedImageFile bm_isNotEmpty])
+    {
+        return;
+    }
+    TOCropViewController *cropController = [[TOCropViewController alloc] initWithImage:_m_selectedImageFile.m_image];
+    cropController.delegate = self;
+    [self presentViewController:cropController animated:YES completion:nil];
+}
+#pragma mark - TOCropViewControllerDelegate
+- (void)cropViewController:(nonnull TOCropViewController *)cropViewController didCropToImage:(nonnull UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle
+{
+    FSImageFileModel *imageFileModel = [FSImageFileModel imageFileWithOriginalImageFile:_m_selectedImageFile andCropImage:image];
+    [_m_allImageFiles addObject:imageFileModel];
+    self.m_selectedImageFile = imageFileModel;
+    [self refreshUIIfNeedReload:YES];
+    if (_m_SourceDataChanged) {
+        _m_SourceDataChanged();
+    }
+     [cropViewController dismissViewControllerAnimated:YES completion:nil];
+}
 - (void)moreAction:(id)sender
 {
     // right item 事件
@@ -141,7 +166,7 @@ FSFileScanImagePreviewVC () <
     UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"调整"
                                                       style:UIAlertActionStyleDefault
                                                     handler:^(UIAlertAction *_Nonnull action){
-
+                                                        [self presentToImageCrop];
                                                     }];
     [av addAction:action1];
     UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"删除"
@@ -154,6 +179,7 @@ FSFileScanImagePreviewVC () <
     [av addAction:cancel];
     [self presentViewController:av animated:YES completion:nil];
 }
+
 - (void)pushToOCRResult
 {
     if ([_m_selectedImageFile bm_isNotEmpty]) {
@@ -181,6 +207,7 @@ FSFileScanImagePreviewVC () <
             if (![_m_localImageFiles containsObject:_m_selectedImageFile]) {
                 [_m_localImageFiles addObject:_m_selectedImageFile];
                 [FSImageFileModel asynRefreshLocalImageFileWithList:[_m_localImageFiles copy]];
+                [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:@"已保存到本地" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             }
         }
 

@@ -16,7 +16,8 @@
 
 @property(nonatomic, weak)FSLawSearchResultVC *m_lawResultVC;
 @property(nonatomic, strong)FSLawSearchResultModel *m_searchResultModel;
-
+@property(nonatomic, strong)FSSearchFilter * m_leftSelectedFilter;
+@property(nonatomic, strong)FSSearchFilter * m_rightSelectedFilter;
 @end
 
 @implementation FSLawSearchResultView
@@ -47,27 +48,32 @@
     self.m_tableView.estimatedRowHeight = 180;
 }
 
-- (NSArray *)setupButton:(UIButton *)bt withSegment:(FSSearchFilterSegment *)segment
+- (NSArray *)filtersWithSegment:(FSSearchFilterSegment *)segment
 {
-    bt.hidden = NO;
-    [bt setTitle:segment.m_title forState:UIControlStateNormal];
-    [bt bm_layoutButtonWithEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageRight imageTitleGap:7];
     NSMutableArray *filters = [NSMutableArray array];
     for (FSSearchFilter *filter in segment.m_filters) {
-        [filters addObject:filter.m_name];
+        [filters addObject:filter.m_value];
     }
     return [filters copy];
+}
+- (void)setupButton:(UIButton *)bt withTitle:(NSString *)title
+{
+    bt.hidden = NO;
+    [bt setTitle:title forState:UIControlStateNormal];
+    [bt bm_layoutButtonWithEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageRight imageTitleGap:7];
 }
 // 更新筛选条件
 - (void)setupFilterHeader
 {
     if (_m_searchResultModel.m_filterSegments.count >0) {
         FSSearchFilterSegment *segment = _m_searchResultModel.m_filterSegments[0];
-        self.m_leftFilters = [self setupButton:self.m_leftButton withSegment:segment];
+        [self setupButton:self.m_leftButton withTitle:_m_leftSelectedFilter?_m_leftSelectedFilter.m_value:segment.m_title];
+        self.m_leftFilters = [self filtersWithSegment: segment];
     }
     if (_m_searchResultModel.m_filterSegments.count >1) {
         FSSearchFilterSegment *segment = _m_searchResultModel.m_filterSegments[1];
-        self.m_rightFilters = [self setupButton:self.m_rightButton withSegment:segment];
+        [self setupButton:self.m_rightButton withTitle:_m_rightSelectedFilter?_m_rightSelectedFilter.m_value:segment.m_title];
+        self.m_rightFilters = [self filtersWithSegment: segment];
     }
     [self showFilterList];
 }
@@ -94,14 +100,19 @@
 }
 - (void)selectedRowAtIndex:(NSInteger)index isLeftfilter:(BOOL)isLeft
 {
-    if (isLeft) {
+    if (isLeft)
+    {
         FSSearchFilterSegment *segment = _m_searchResultModel.m_filterSegments[0];
-        _m_lawResultVC.m_leftFilter = index >= 0 ?segment.m_filters[index] :nil;
+        self.m_leftSelectedFilter  = index >= 0 ? segment.m_filters[index] : nil;
+        _m_lawResultVC.m_leftFilter   = _m_leftSelectedFilter;
+        [self setupButton:self.m_leftButton withTitle:_m_leftSelectedFilter ? _m_leftSelectedFilter.m_value : segment.m_title];
     }
     else
     {
         FSSearchFilterSegment *segment = _m_searchResultModel.m_filterSegments[1];
-        _m_lawResultVC.m_rightFilter = index >= 0 ?segment.m_filters[index] :nil;
+        self.m_rightSelectedFilter  = index >= 0 ? segment.m_filters[index] : nil;
+        _m_lawResultVC.m_rightFilter  = _m_rightSelectedFilter;
+        [self setupButton:self.m_rightButton withTitle:_m_rightSelectedFilter ? _m_rightSelectedFilter.m_value : segment.m_title];
     }
     _m_lawResultVC.m_searchResultModel = nil;
     self.m_searchResultModel = nil;

@@ -32,7 +32,7 @@
     [self setBm_NavigationBarImage:[UIImage imageWithColor:[UIColor whiteColor]]];
     for (UIButton *toolButton in _m_toolButtons)
     {
-        [toolButton bm_roundedRect:20 borderWidth:0.5 borderColor:UI_COLOR_BL1];
+        [toolButton bm_roundedRect:15 borderWidth:0.5 borderColor:UI_COLOR_BL1];
     }
     self.m_ProgressHUD = [[MBProgressHUD alloc] initWithView:self.view];
     self.m_ProgressHUD.animationType = MBProgressHUDAnimationFade;
@@ -60,6 +60,11 @@
 - (IBAction)toolButtonAction:(UIButton *)sender {
     if (sender.tag) {
         // 复制全部
+        if ([_m_textView.text bm_isNotEmpty]) {
+            UIPasteboard *pBoard = [UIPasteboard generalPasteboard];
+            pBoard.string = _m_textView.text;
+            [self.m_ProgressHUD showAnimated:YES withText:@"已复制到粘贴板" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        }
     }
     else
     {

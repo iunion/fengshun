@@ -90,6 +90,32 @@
     return mqSecurityPolicy;
 }
 
++ (NSDictionary *)generalHearder
+{
+    NSMutableDictionary *genearHeaers = [NSMutableDictionary dictionary];
+    // 时间戳
+    NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
+    NSString *tmp       = [NSString stringWithFormat:@"%@", @(time)];
+    [genearHeaers setValue:tmp forKey:@"timer"];
+
+    // GPS定位
+    [genearHeaers setValue:[NSString stringWithFormat:@"%f", [FSLocation userLocationLongitude]] forKey:FSAPI_GPS_LONGITUDE_KEY];
+    [genearHeaers setValue:[NSString stringWithFormat:@"%f", [FSLocation userLocationLatitude]] forKey:FSAPI_GPS_LATITUDE_KEY];
+
+    // 网络状态
+    [genearHeaers setValue:[FSCoreStatus currentFSNetWorkStatusString] forKey:@"netWorkStandard"];
+
+    // token
+    if ([FSUserInfoModle isLogin])
+    {
+        NSString *token = [FSUserInfoModle userInfo].m_Token;
+        if ([token bm_isNotEmpty])
+        {
+            [genearHeaers setValue:token forKey:@"JWTToken"];
+        }
+    }
+    return [genearHeaers copy];
+}
 
 + (void)setupNetworkConfig
 {
@@ -102,33 +128,11 @@
 
     // 设置公共的header和公共参数
     [XMCenter setupConfig:^(XMConfig *config) {
-        config.generalServer = FS_URL_SERVER;
-        config.callbackQueue = dispatch_get_main_queue();
-        //        config.generalHeaders = nil;
-        NSMutableDictionary *genearHeaers = [NSMutableDictionary dictionary];
-        // 时间戳
-        NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
-        NSString *tmp       = [NSString stringWithFormat:@"%@", @(time)];
-        [genearHeaers setValue:tmp forKey:@"timer"];
+        config.generalServer  = FS_URL_SERVER;
+        config.callbackQueue  = dispatch_get_main_queue();
+        config.generalHeaders = nil;
 
-        // GPS定位
-        [genearHeaers setValue:[NSString stringWithFormat:@"%f", [FSLocation userLocationLongitude]] forKey:FSAPI_GPS_LONGITUDE_KEY];
-        [genearHeaers setValue:[NSString stringWithFormat:@"%f", [FSLocation userLocationLatitude]] forKey:FSAPI_GPS_LATITUDE_KEY];
-
-        // 网络状态
-        [genearHeaers setValue:[FSCoreStatus currentFSNetWorkStatusString] forKey:@"netWorkStandard"];
-
-        // token
-        if ([FSUserInfoModle isLogin])
-        {
-            NSString *token = [FSUserInfoModle userInfo].m_Token;
-            if ([token bm_isNotEmpty])
-            {
-                [genearHeaers setValue:token forKey:@"JWTToken"];
-            }
-        }
-        config.generalHeaders = [genearHeaers copy];
-//        config.generalParameters = nil;
+        //        config.generalParameters = nil;
         config.consoleLog = NO;
     }];
 
@@ -141,8 +145,8 @@
     // 响应后统一处理插件
     [XMCenter setResponseProcessBlock:^id(XMRequest *request, id responseObject, NSError *__autoreleasing *error) {
 #if DEBUG
-        NSString *responseStr = [[NSString stringWithFormat:@"%@",responseObject] bm_convertUnicode];
-        BMLog(@"+++++++++++++[%@]原始返回:%@", request.url,responseStr);
+        NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
+        BMLog(@"+++++++++++++[%@]原始返回:%@", request.url, responseStr);
 #endif
 
         // 对所有请求的响应进行统一的处理,这儿有几点需要注意:
@@ -185,6 +189,7 @@
     request.api                   = api;
     request.parameters            = parameters;
     request.timeoutInterval       = timeoutInterval;
+    request.headers               = [self generalHearder];
 }
 
 + (XMRequest *)rm_requestWithApi:(NSString *)api parameters:(NSDictionary *)parameters success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
@@ -215,6 +220,7 @@
 + (void)p_setupUploadRequst:(XMRequest *)request withServer:(NSString *)server API:(NSString *)api parameters:(NSDictionary *)parameters dataKey:(NSString *)dataKey andFiles:(NSArray<XMUploadFile *> *)files
 {
     NSAssert(api.length && dataKey.length && files.count, @"文件、dataKey、API不能为空!");
+    request.headers         = [self generalHearder];
     request.requestType     = kXMRequestUpload;
     request.server          = server;
     request.api             = api;
@@ -254,7 +260,8 @@
 {
     __block XMRequest *r = nil;
     [[XMCenter defaultCenter] sendRequest:^(XMRequest * _Nonnull request) {
-        request.url = url;
+        request.headers = [self generalHearder];
+        request.url  = url;
         request.downloadSavePath = savePath;
         request.requestType = kXMRequestDownload;
         r = request;

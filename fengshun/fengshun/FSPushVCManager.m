@@ -129,7 +129,11 @@
     vc.m_ocrSearchType = FSOCRSearchType_laws;
     [searchVC.navigationController pushViewController:vc animated:YES];
 }
-
++ (void)viewController:(UIViewController *)vc pushToLawTopicVCWithLawTopic:(NSString *)lawTopic
+{
+    NSString *url = [NSString stringWithFormat:@"%@/Law?keywords=%@",FS_H5_SERVER,lawTopic];
+    [FSPushVCManager showWebView:vc url:url title:nil showLoadingBar:YES loadingBarColor:[UIColor greenColor] animated:YES];
+}
 #ifdef FSVIDEO_ON
 + (void)pushVideoMediateList:(UINavigationController *)nav;
 {

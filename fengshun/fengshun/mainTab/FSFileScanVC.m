@@ -10,6 +10,7 @@
 #import "TZImagePickerController.h"
 #import "FSImageFileCell.h"
 #import "FSFileScanImagePreviewVC.h"
+#import "MBProgressHUD.h"
 
 
 
@@ -136,7 +137,7 @@
 }
 - (IBAction)pickImageFile:(id)sender
 {
-    TZImagePickerController *imagePickerVc  = [TZImagePickerController fs_defaultPickerWithDelegate:self];
+    TZImagePickerController *imagePickerVc  = [TZImagePickerController fs_defaultPickerWithImagesCount:9 delegate:self];
 
     [self presentViewController:imagePickerVc animated:YES completion:nil];
 }
@@ -165,6 +166,7 @@
         }
     }
     [FSImageFileModel asynRefreshLocalImageFileWithList:_m_localImageFiles];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:@"已保存到本地" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
 }
 - (IBAction)toolButtonAction:(UIButton *)sender {
     if (![_m_selectedImageFiles bm_isNotEmpty]) {
@@ -259,4 +261,5 @@
 {
     return 10;
 }
+
 @end

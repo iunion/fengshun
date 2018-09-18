@@ -13,11 +13,13 @@
 #import "FSSearchResultView.h"
 #import "FSLawSearchResultCell.h"
 #import "FSCaseSearchResultCell.h"
+#import "TOCropViewController.h"
 
 @interface
 FSOCRSearchResultVC ()
 <
-    TZImagePickerControllerDelegate
+    TZImagePickerControllerDelegate,
+    TOCropViewControllerDelegate
 >
 
 @property (weak, nonatomic) IBOutlet UIImageView *m_imageView;
@@ -54,7 +56,6 @@ FSOCRSearchResultVC ()
     {
         [toolButton bm_roundedRect:16 borderWidth:0.5 borderColor:UI_COLOR_BL1];
     }
-    self.m_TableView.bm_showEmptyView   = NO;
     self.m_TableView.estimatedRowHeight = 180;
     self.m_TableView.tableFooterView    = [UIView new];
     self.m_TableView.separatorStyle     = UITableViewCellSeparatorStyleSingleLine;
@@ -82,7 +83,7 @@ FSOCRSearchResultVC ()
     if (sender.tag)
     {
         // 调整图片区域
-        [self pushToImageCrop];
+        [self presentToImageCrop];
     }
     else
     {
@@ -91,11 +92,21 @@ FSOCRSearchResultVC ()
     }
 }
 
-- (void)pushToImageCrop
+- (void)presentToImageCrop
 {
-    
+    TOCropViewController *cropController = [[TOCropViewController alloc] initWithImage:_m_imageView.image];
+    cropController.delegate = self;
+    [self presentViewController:cropController animated:YES completion:nil];
 }
-
+#pragma mark - TOCropViewControllerDelegate
+- (void)cropViewController:(nonnull TOCropViewController *)cropViewController didCropToImage:(nonnull UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle
+{
+    [cropViewController dismissViewControllerAnimated:YES completion:nil];
+    if ([image bm_isNotEmpty]) {
+        _m_imageView.image = image;
+        [self getOCRTextWithImage:image];
+    }
+}
 #pragma mark - TZImagePickerControllerDelegate
 - (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker
 {
@@ -123,8 +134,7 @@ FSOCRSearchResultVC ()
 
 - (void)presentToImagePickerWithAnimated:(BOOL)animated
 {
-    TZImagePickerController *imagePickerVc = [TZImagePickerController fs_defaultPickerWithDelegate:self];
-    imagePickerVc.maxImagesCount           = 1;
+    TZImagePickerController *imagePickerVc = [TZImagePickerController fs_defaultPickerWithImagesCount:1 delegate:self];
     [self presentViewController:imagePickerVc animated:animated completion:nil];
 }
 

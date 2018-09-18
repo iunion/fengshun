@@ -32,7 +32,7 @@
 #pragma mark -
 
 // 为枫调理顺添加的默认配置
-+ (instancetype)fs_defaultPickerWithDelegate:(id<TZImagePickerControllerDelegate>)delegate;
++ (instancetype)fs_defaultPickerWithImagesCount:(NSUInteger)imagesCount delegate:(id<TZImagePickerControllerDelegate>)delegate;
 
 
 /// Use this init method / 用这个初始化方法

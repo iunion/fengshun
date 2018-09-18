@@ -27,13 +27,23 @@
 }
 + (instancetype)creatImageFileWithUrlKey:(NSString *)urlKey fileName:(NSString *)fileName andImage:(UIImage *)image
 {
-    FSImageFileModel *model = [[self alloc]init];
-    model.m_imageUrlKey = urlKey;
-    model.m_fileName = fileName;
-    model.m_creatTime = [[NSDate date] bm_stringWithFormat:@"yyyy-MM-dd\nHH:mm"];
-    model.m_image = image;
-    model.m_isLocalSaved = NO;
+    FSImageFileModel *model = [[self alloc] init];
+    model.m_imageUrlKey     = urlKey;
+    model.m_fileName        = fileName;
+    model.m_creatTime       = [[NSDate date] bm_stringWithFormat:@"yyyy-MM-dd\nHH:mm"];
+    model.m_image           = image;
+    model.m_isLocalSaved    = NO;
     return model;
+}
++ (instancetype)imageFileWithOriginalImageFile:(FSImageFileModel *)originalImageFile andCropImage:(UIImage *)image
+{
+    NSString *urlKey    = [originalImageFile.m_imageUrlKey stringByDeletingLastPathComponent];
+    NSString *timeStamp = [@((long)[NSDate date].timeIntervalSince1970) stringValue];
+    NSString *realUrlKey = [urlKey stringByAppendingPathComponent:timeStamp];
+    NSString *extension  = [originalImageFile.m_fileName pathExtension];
+    NSString *name       = [originalImageFile.m_fileName stringByDeletingPathExtension];
+    NSString *fileName   = [[NSString stringWithFormat:@"%@-截取", name] stringByAppendingPathExtension:extension];
+    return [self creatImageFileWithUrlKey:realUrlKey fileName:fileName andImage:image];
 }
 + (NSArray<FSImageFileModel *> *)localImageFileList
 {
@@ -76,5 +86,59 @@
     }
     NSArray *imageArray = [images copy];
     [imageArray writeToFile:[self p_imageFileListPath] atomically:NO];
+}
++ (BOOL)convertPDFWithImages:(NSArray<UIImage *>*)images fileName:(NSString *)fileName{
+    
+    if (!images || images.count == 0) return NO;
+    
+    // pdf文件存储路径
+    NSString *pdfPath = nil;
+    
+    BOOL result = UIGraphicsBeginPDFContextToFile(pdfPath, CGRectZero, NULL);
+    
+    // pdf每一页的尺寸大小
+    
+    CGRect pdfBounds = UIGraphicsGetPDFContextBounds();
+    CGFloat pdfWidth = pdfBounds.size.width;
+    CGFloat pdfHeight = pdfBounds.size.height;
+    
+    [images enumerateObjectsUsingBlock:^(UIImage * _Nonnull image, NSUInteger idx, BOOL * _Nonnull stop) {
+        // 绘制PDF
+        UIGraphicsBeginPDFPage();
+        
+        // 获取每张图片的实际长宽
+        CGFloat imageW = image.size.width;
+        CGFloat imageH = image.size.height;
+        //        CGRect imageBounds = CGRectMake(0, 0, imageW, imageH);
+        //        NSLog(@"%@",NSStringFromCGRect(imageBounds));
+        
+        // 每张图片居中显示
+        // 如果图片宽高都小于PDF宽高
+        if (imageW <= pdfWidth && imageH <= pdfHeight) {
+            
+            CGFloat originX = (pdfWidth - imageW) * 0.5;
+            CGFloat originY = (pdfHeight - imageH) * 0.5;
+            [image drawInRect:CGRectMake(originX, originY, imageW, imageH)];
+            
+        }
+        else{
+            CGFloat w,h; // 先声明缩放之后的宽高
+            //            图片宽高比大于PDF
+            if ((imageW / imageH) > (pdfWidth / pdfHeight)){
+                w = pdfWidth - 20;
+                h = w * imageH / imageW;
+                
+            }else{
+                //             图片高宽比大于PDF
+                h = pdfHeight - 20;
+                w = h * imageW / imageH;
+            }
+            [image drawInRect:CGRectMake((pdfWidth - w) * 0.5, (pdfHeight - h) * 0.5, w, h)];
+        }
+    }];
+    
+    UIGraphicsEndPDFContext();
+    
+    return result;
 }
 @end
