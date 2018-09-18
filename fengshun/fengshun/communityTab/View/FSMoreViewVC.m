@@ -39,7 +39,6 @@ FSMoreViewVC ()
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     // Do any additional setup after loading the view from its nib.
     for (int i = 0; i < 10; i++)
     {
@@ -50,7 +49,6 @@ FSMoreViewVC ()
             [btn addTarget:self action:@selector(moreViewAction:) forControlEvents:UIControlEventTouchUpInside];
         }
     }
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated
