@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#ifdef FSVIDEO_ON
 #import <ILiveSDK/ILiveCoreHeader.h>
+#endif
 
 /**
  视屏窗口

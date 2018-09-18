@@ -11,7 +11,9 @@
 #import "FSCommunitySecVC.h"
 #import "FSSendTopicVC.h"
 
+#ifdef FSVIDEO_ON
 #import "FSVideoMediateListVC.h"
+#endif
 #import "FSWebViewController.h"
 
 #import "FSSearchViewController.h"
@@ -97,12 +99,14 @@
     searchViewController.hidesBottomBarWhenPushed = YES;
     [mainVC.navigationController pushViewController:searchViewController animated:YES];
 }
+
 + (void)searchVCPushtToCaseOCrSearchVC:(UIViewController *)searchVC
 {
     FSOCRSearchResultVC *vc = [[FSOCRSearchResultVC alloc]initWithNibName:@"FSOCRSearchResultVC" bundle:nil freshViewType:BMFreshViewType_Bottom];
     vc.m_ocrSearchType = FSOCRSearchType_case;
     [searchVC.navigationController pushViewController:vc animated:YES];
 }
+
 + (void)homePage:(UIViewController *)mainVC pushToLawSearchWithTopics:(NSArray *)topics
 {
     // 做个备份吧
@@ -118,18 +122,22 @@
     searchViewController.hidesBottomBarWhenPushed = YES;
     [mainVC.navigationController pushViewController:searchViewController animated:YES];
 }
+
 + (void)searchVCPushtToLawsOCrSearchVC:(UIViewController *)searchVC
 {
     FSOCRSearchResultVC *vc = [[FSOCRSearchResultVC alloc]initWithNibName:@"FSOCRSearchResultVC" bundle:nil freshViewType:BMFreshViewType_Bottom];
     vc.m_ocrSearchType = FSOCRSearchType_laws;
     [searchVC.navigationController pushViewController:vc animated:YES];
 }
+
+#ifdef FSVIDEO_ON
 + (void)pushVideoMediateList:(UINavigationController *)nav;
 {
     FSVideoMediateListVC *vc    = [FSVideoMediateListVC new];
     vc.hidesBottomBarWhenPushed = YES;
     [nav pushViewController:vc animated:YES];
 }
+#endif
 
 + (void)homePagePushToTextSplitVC:(UIViewController *)mainVC
 {

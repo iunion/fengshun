@@ -75,24 +75,24 @@
     dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0), 1.0 * NSEC_PER_SEC, 0);
     dispatch_source_set_event_handler(_timer, ^{
         BMStrongSelf
-        if (!self) return;
+        if (!strongSelf) return;
         // 倒计时结束，关闭
         if (timeOut <= 0) {
             dispatch_source_cancel(_timer);
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self setTitle:title forState:UIControlStateNormal];
-                [self setTitleColor:color forState:UIControlStateNormal];
-                self.titleLabel.font = font;
-                self.userInteractionEnabled = YES;
+                [strongSelf setTitle:title forState:UIControlStateNormal];
+                [strongSelf setTitleColor:color forState:UIControlStateNormal];
+                strongSelf.titleLabel.font = font;
+                strongSelf.userInteractionEnabled = YES;
             });
         }else{
             int seconds = timeOut % 60;
             NSString * timeStr = [NSString stringWithFormat:@"%0.2d",seconds];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self setTitle:[NSString stringWithFormat:@"%@ %@%@",subTitles.firstObject,timeStr,subTitles.lastObject] forState:UIControlStateNormal];
-                [self setTitleColor:color forState:UIControlStateNormal];
-                self.titleLabel.font = font;
-                self.userInteractionEnabled = NO;
+                [strongSelf setTitle:[NSString stringWithFormat:@"%@ %@%@",subTitles.firstObject,timeStr,subTitles.lastObject] forState:UIControlStateNormal];
+                [strongSelf setTitleColor:color forState:UIControlStateNormal];
+                strongSelf.titleLabel.font = font;
+                strongSelf.userInteractionEnabled = NO;
             });
             
             timeOut--;
@@ -127,28 +127,28 @@
     dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0), 1.0 * NSEC_PER_SEC, 0);
     dispatch_source_set_event_handler(_timer, ^{
         BMStrongSelf
-        if (!self) return;
+        if (!strongSelf) return;
         // 倒计时结束，关闭
         if (timeOut <= 0) {
             dispatch_source_cancel(_timer);
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self setTitle:title forState:UIControlStateNormal];
-                [self setTitleColor:color forState:UIControlStateNormal];
-                self.titleLabel.font = font;
-                self.layer.borderColor = mColor.CGColor;
-                self.userInteractionEnabled = YES;
-                [self setTitleColor:mColor forState:(UIControlStateNormal)];
+                [strongSelf setTitle:title forState:UIControlStateNormal];
+                [strongSelf setTitleColor:color forState:UIControlStateNormal];
+                strongSelf.titleLabel.font = font;
+                strongSelf.layer.borderColor = mColor.CGColor;
+                strongSelf.userInteractionEnabled = YES;
+                [strongSelf setTitleColor:mColor forState:(UIControlStateNormal)];
             });
         }else{
             NSInteger seconds = timeOut;
             NSString * timeStr = [NSString stringWithFormat:@"%0.2ld",seconds];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self setTitle:[NSString stringWithFormat:@"%@ %@%@",subTitles.firstObject,timeStr,subTitles.lastObject] forState:UIControlStateNormal];
-                [self setTitleColor:color forState:UIControlStateNormal];
-                self.titleLabel.font = font;
-                self.layer.borderColor = color.CGColor;
-                self.userInteractionEnabled = NO;
-                [self setTitleColor:color forState:(UIControlStateNormal)];
+                [strongSelf setTitle:[NSString stringWithFormat:@"%@ %@%@",subTitles.firstObject,timeStr,subTitles.lastObject] forState:UIControlStateNormal];
+                [strongSelf setTitleColor:color forState:UIControlStateNormal];
+                strongSelf.titleLabel.font = font;
+                strongSelf.layer.borderColor = color.CGColor;
+                strongSelf.userInteractionEnabled = NO;
+                [strongSelf setTitleColor:color forState:(UIControlStateNormal)];
             });
             
             timeOut--;
