@@ -245,6 +245,7 @@
     self.m_ChooseTimeItem.pickerValueFont = FS_CELLTITLE_TEXTFONT;
     self.m_ChooseTimeItem.pickerPlaceholderColor = UI_COLOR_B10;
     self.m_ChooseTimeItem.accessoryView = [BMTableViewItem DefaultAccessoryView];
+    self.m_ChooseTimeItem.showDoneBtn = NO;
     self.m_ChooseTimeItem.formatPickerText = ^NSString * _Nullable(BMDateTimeItem * _Nonnull item) {
         return [item.pickerDate bm_stringByFormatter:@"yyyy-MM-dd HH:mm"];
     };
@@ -253,13 +254,8 @@
         weakSelf.m_CreateModel.startTime = [item.pickerDate timeIntervalSince1970] * 1000;
     };
 
-    NSMutableArray *hourArray = [NSMutableArray array];
-    for (NSInteger i=1; i<9; i++) {
-        [hourArray addObject:[NSString stringWithFormat:@"%@小时", @(i)]];
-    }
-    NSArray *minute = @[@"0分钟", @"30分钟"];
-    NSArray *timeArray = @[hourArray, minute];
-    self.m_TimeLengthItem = [BMPickerItem itemWithTitle:@"时长" placeholder:@"请选择" components:timeArray];
+    NSArray *timeArray = @[@"1小时", @"1.5小时", @"2小时", @"2.5小时", @"3小时", @"3.5小时", @"4小时"];
+    self.m_TimeLengthItem = [BMPickerItem itemWithTitle:@"时长" placeholder:@"请选择" components:@[timeArray]];
     self.m_TimeLengthItem.textColor = UI_COLOR_B1;
     self.m_TimeLengthItem.textFont = FS_VIDEOPAGE_TEXTFONT;
     self.m_TimeLengthItem.pickerValueColor = UI_COLOR_B1;
@@ -273,11 +269,8 @@
         return [item.values componentsJoinedByString:@""];
     };
     self.m_TimeLengthItem.onChange = ^(BMPickerItem * _Nonnull item) {
-        if (item.pickerSeconComponentRow == 0) {
-            weakSelf.m_CreateModel.orderHour = [NSString stringWithFormat:@"%@",@(item.pickerFirstComponentRow+1)];
-        } else {
-            weakSelf.m_CreateModel.orderHour = [NSString stringWithFormat:@"%@.5",@(item.pickerFirstComponentRow+1)];
-        }
+        NSString *value = item.values.firstObject;
+        weakSelf.m_CreateModel.orderHour = [value substringToIndex:value.length-2];
     };
 
     self.m_ContentItem = [BMLongTextItem itemWithTitle:@"内容" value:nil placeholder:@"请输入内容"];
@@ -333,18 +326,11 @@
             self.m_ChooseTimeItem.pickerDate = [NSDate dateWithTimeIntervalSince1970:self.m_CreateModel.startTime*0.001];
             self.m_ChooseTimeItem.defaultPickerDate = [NSDate dateWithTimeIntervalSince1970:self.m_CreateModel.startTime*0.001];
         }
-
-        NSDate *startDate = [NSDate dateWithTimeIntervalSince1970:self.m_CreateModel.startTime*0.001];
-        NSDate *endDate = [NSDate dateWithTimeIntervalSince1970:self.m_CreateModel.endTime*0.001];
-        NSInteger minute = [startDate bm_minutesBeforeDate:endDate ];
-        NSInteger hour = [startDate bm_hoursBeforeDate:endDate];
-        minute = minute%60;
-        if (minute > 0) {
-            self.m_TimeLengthItem.pickerSeconComponentRow = 1;
+        
+        if ([self.m_CreateModel.orderHour bm_isNotEmpty]) {
+            NSString *value = [NSString stringWithFormat:@"%@小时", self.m_CreateModel.orderHour];
+            self.m_TimeLengthItem.values = @[value];
         }
-        self.m_TimeLengthItem.pickerFirstComponentRow = hour - 1;
-        self.m_TimeLengthItem.values = @[[NSString stringWithFormat:@"%@小时", @(hour)],
-                                         [NSString stringWithFormat:@"%@分钟", @(minute)]];
 
         self.m_ContentItem.value = self.m_CreateModel.meetingContent;
     }
@@ -452,8 +438,15 @@
 {
     if (_m_IsStartImmediately)
     {
-        // 立即开始 设置为下一分钟API才容易成功
-        self.m_CreateModel.startTime = [[[NSDate date] bm_dateByAddingMinutes:1] timeIntervalSince1970] * 1000;
+        // 立即开始 设置为下一个能被5分钟整除的时间
+        NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970];
+        NSString *string = [NSString stringWithFormat:@"%0.0lf",timeInterval];
+        long long longTimeInterval = [string longLongValue];
+        NSTimeInterval remainder = longTimeInterval%(5*60);
+        longTimeInterval -= remainder;
+        longTimeInterval += 5*60;
+        
+        self.m_CreateModel.startTime = longTimeInterval * 1000;
     }
     else
     {
