@@ -10,6 +10,8 @@
 #import "FSSuperModel.h"
 
 
+#define FSMEETING_PERSON_MAX_COUNT 8
+
 typedef NS_ENUM(NSInteger, FSMeetingDataType) {
     FSMeetingDataType_MeetingType = 1,      // 会议类型  不含全部
     FSMeetingDataType_AllMeetingType,       // 会议类型  含全部

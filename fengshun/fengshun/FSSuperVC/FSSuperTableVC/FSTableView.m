@@ -117,6 +117,15 @@
     self.bm_showEmptyView = YES;
 }
 
+- (void)setFrame:(CGRect)frame
+{
+    [super setFrame:frame];
+    
+    self.bm_emptyView.frame = self.bounds;
+    [self.bm_emptyView updateViewFrame];
+}
+
+
 - (void)bringSomeViewToFront
 {
     [self.bm_emptyView bm_bringToFront];

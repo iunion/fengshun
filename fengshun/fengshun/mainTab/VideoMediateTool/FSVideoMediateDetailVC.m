@@ -332,9 +332,14 @@
 
 - (void)inviteAction
 {
+    if (self.m_DetailModel.meetingPersonnelResponseDTO.count >= FSMEETING_PERSON_MAX_COUNT) {
+        [self.m_ProgressHUD showAnimated:YES withText:[NSString stringWithFormat:@"参会人员不能大于%@人(含调解员)",@(FSMEETING_PERSON_MAX_COUNT)] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        return;
+    }
     // 邀请
     FSVideoInviteLitigantVC *vc = [FSVideoInviteLitigantVC new];
     vc.meetingId = self.m_DetailModel.meetingId;
+    vc.existingLitigantCount = self.m_DetailModel.meetingPersonnelResponseDTO.count;
     BMWeakSelf
     vc.inviteComplete = ^(NSArray *litigantList) {
         if ([litigantList bm_isNotEmpty]) {

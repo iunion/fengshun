@@ -14,9 +14,7 @@
 
 @interface FSVideoInviteLitigantVC ()
 @property (nonatomic, strong) NSMutableArray *m_InviteList; // 参与人员列表
-
 @property (nonatomic, strong) NSMutableArray *m_CorrectList; // 经受住了检验的人员列表
-
 @end
 
 @implementation FSVideoInviteLitigantVC
@@ -69,7 +67,7 @@
     // 新页面默认申请人、被申请人
     if (_m_InviteList == nil) {
         _m_InviteList = [NSMutableArray array];
-        if (self.existingLitigantList.count)
+        if (self.meetingId == 0 && self.existingLitigantList.count)
         {
             [_m_InviteList addObjectsFromArray:self.existingLitigantList];
         }
@@ -266,6 +264,19 @@
 
 - (void)addLitigantAction
 {
+    if (self.meetingId > 0)
+    {
+        if (self.m_InviteList.count + self.existingLitigantCount >= FSMEETING_PERSON_MAX_COUNT)
+        {
+            [self.m_ProgressHUD showAnimated:YES withText:[NSString stringWithFormat:@"参会人员不能大于%@人(含调解员)",@(FSMEETING_PERSON_MAX_COUNT)] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            return;
+        }
+    }
+    else if (self.m_InviteList.count >= FSMEETING_PERSON_MAX_COUNT-1)
+    {
+        [self.m_ProgressHUD showAnimated:YES withText:[NSString stringWithFormat:@"参会人员不能大于%@人(含调解员)",@(FSMEETING_PERSON_MAX_COUNT)] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        return;
+    }
     [self addApplicantLitigant];// 默认是申请人
     [self freshViews];
 }

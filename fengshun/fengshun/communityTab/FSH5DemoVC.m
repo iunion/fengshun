@@ -67,7 +67,7 @@
   @[@"note/1",@"帖子详情"],
   @[@"help",@"帮助中心"],
   @[@"agreement",@"用户协议"],
-  @[@"Law?keywords=中华人民共和国公司法",@"法规专题"],
+  @[@"Law?keywords=婚姻继承",@"法规专题"],
   @[@"Law/lawDetail?ID=3ZCNrmUBN3_o1ImUCLgm&keywords=[中华人民共和国公司法]",@"法规详情"],
   @[@"Law/lawShare",@"法规分享"],
   @[@"caseDetail?ID=3ZCNrmUBN3_o1ImUCLgm&keywords=[中华人民共和国公司法,第]",@"案件详情"],
@@ -77,7 +77,8 @@
   @[@"imgWordsSeries/1",@"图文系列"],
   @[@"hotRecommend",@"热门推荐"],
   @[@"information",@"消息"],
-  @[@"alllist",@"全部"]]];
+  @[@"alllist",@"全部"],
+  @[@"baidu",@"百度"]]];
     self.m_TableView.frame = CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - 49);
 }
 
@@ -100,7 +101,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *url = self.m_DataArray[indexPath.row][0];
-    [FSPushVCManager showWebView:self url:[NSString stringWithFormat:@"%@/%@",FS_H5_SERVER,url] title:@""];
+    if ([url isEqualToString:@"baidu"])
+    {
+        [FSPushVCManager showWebView:self url:@"http://www.baidu.com" title:@"" showLoadingBar:YES loadingBarColor:[UIColor redColor] animated:YES];
+    }
+    else
+    {
+        [FSPushVCManager showWebView:self url:[NSString stringWithFormat:@"%@/%@",FS_H5_SERVER,url] title:@""];
+    }
 }
 
 /*
