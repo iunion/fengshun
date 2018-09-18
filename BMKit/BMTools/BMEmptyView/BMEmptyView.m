@@ -314,6 +314,22 @@
     self.customBgView.hidden = !showCustom;
 }
 
+- (void)setCustomView:(UIView *)customView
+{
+    if (customView == nil)
+    {
+        [self.customBgView bm_removeAllSubviews];
+        
+        return;
+    }
+    
+    CGFloat height = customView.bm_height;
+    
+    self.customBgView.frame = CGRectMake(0, self.bm_height-height, self.bm_width, height);
+    [self.customBgView addSubview:customView];
+    [customView bm_centerInSuperView];
+}
+
 - (void)setEmptyViewType:(BMEmptyViewType)type
 {
     if (self.indecator.isAnimating)

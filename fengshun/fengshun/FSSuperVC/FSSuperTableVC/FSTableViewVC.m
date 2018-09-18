@@ -123,6 +123,19 @@
 
 - (void)showEmptyViewWithType:(BMEmptyViewType)type action:(BMEmptyViewActionBlock)actionBlock
 {
+    [self showEmptyViewWithType:type customImageName:nil customMessage:nil customView:nil action:actionBlock];
+}
+
+- (void)showEmptyViewWithType:(BMEmptyViewType)type customImageName:(NSString *)customImageName customMessage:(NSString *)customMessage customView:(UIView *)customView
+{
+    BMWeakSelf
+    [self showEmptyViewWithType:type customImageName:customImageName customMessage:customMessage customView:customView action:^(BMEmptyView *emptyView, BMEmptyViewType state) {
+        [weakSelf loadApiData];
+    }];
+}
+
+- (void)showEmptyViewWithType:(BMEmptyViewType)type customImageName:(NSString *)customImageName customMessage:(NSString *)customMessage customView:(UIView *)customView action:(BMEmptyViewActionBlock)actionBlock
+{
     if (!self.m_showEmptyView)
     {
         return;
@@ -149,7 +162,7 @@
         }
         else
         {
-            [self.m_TableView showEmptyViewWithType:type action:actionBlock];
+            [self.m_TableView showEmptyViewWithType:type customImageName:customImageName customMessage:customMessage customView:customView action:actionBlock];
         }
     }
     else
