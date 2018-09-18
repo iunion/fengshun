@@ -76,7 +76,14 @@
             newPerson.mobilePhone = model.mobilePhone;
             newPerson.meetingIdentityTypeEnums = model.meetingIdentityTypeEnums;
 
-            [vc.m_AttendedList addObject:newPerson];
+            if ([newPerson isMediatorPerson])
+            {
+                [vc.m_AttendedList insertObject:newPerson atIndex:0];
+            }
+            else
+            {
+                [vc.m_AttendedList addObject:newPerson];
+            }
             if (mode == FSMakeVideoMediateMode_ReSend) {
                 newPerson.personnelId = 0;
             } else {

@@ -105,7 +105,7 @@
     self.startTimeLabel.attributedText = dAttributedString;
 
     
-    NSString *realPerson = model.getMeetingPersonnelNameList;
+    NSString *realPerson = [model getMeetingPersonnelNameListWithShowCount:4];
     self.meetingPersonnelLabel.text = [NSString stringWithFormat:@"参与人员：%@",realPerson];
     NSMutableAttributedString *pAttributedString =[[NSMutableAttributedString alloc] initWithString:self.meetingPersonnelLabel.text];
     [pAttributedString addAttribute:NSForegroundColorAttributeName value:UI_COLOR_B1 range:NSMakeRange(self.meetingPersonnelLabel.text.length - realPerson.length, realPerson.length)];

@@ -223,6 +223,11 @@ static NSDictionary *FSMeetingPersonIdentityTypeDic;
     return tempDic;
 }
 
+- (BOOL)isMediatorPerson
+{
+    return [self.meetingIdentityTypeEnums isEqualToString:@"MEDIATOR"];
+}
+
 @end
 
 
@@ -275,13 +280,13 @@ static NSDictionary *FSMeetingPersonIdentityTypeDic;
     return dic;
 }
 
-- (NSString *)getMeetingPersonnelNameList
+- (NSString *)getMeetingPersonnelNameListWithShowCount:(NSInteger)count;
 {
     NSMutableString *string = [NSMutableString string];
-    NSInteger count = self.meetingPersonnelResponseDTO.count;
-    if (count > 2)
+    NSInteger allCount = self.meetingPersonnelResponseDTO.count;
+    if (allCount > count)
     {
-        for (int index = 0; index < 2; index++) {
+        for (int index = 0; index < count; index++) {
             FSMeetingPersonnelModel *model = self.meetingPersonnelResponseDTO[index];
             [string appendString:model.userName];
             [string appendString:@"、"];
@@ -306,7 +311,7 @@ static NSDictionary *FSMeetingPersonIdentityTypeDic;
 - (FSMeetingPersonnelModel *)getMeetingMediator
 {
     for (FSMeetingPersonnelModel *model in self.meetingPersonnelResponseDTO) {
-        if ([model.meetingIdentityTypeEnums isEqualToString:@"MEDIATOR"]) {
+        if ([model isMediatorPerson]) {
             return model;
         }
     }

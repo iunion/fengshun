@@ -99,7 +99,7 @@
     
     if (self.selectEnable)
     {
-        if ([_model.meetingIdentityTypeEnums isEqualToString:@"MEDIATOR"])
+        if ([_model isMediatorPerson])
         {
             [_m_SelectButton setImage:[UIImage imageNamed:@"video_unselect"] forState:UIControlStateNormal] ;
             _m_SelectButton.userInteractionEnabled = NO;
