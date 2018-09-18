@@ -14,20 +14,26 @@
 @interface
 FSMoreViewVC ()
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bgViewBottomConstraint;
+// 是否是自己的帖子
+@property (nonatomic , assign) BOOL m_isOwner;
 
+// 是否收藏
+@property (nonatomic , assign) BOOL m_Collection;
 @end
 
 @implementation FSMoreViewVC
 
 
-+ (void)showMore:(UIViewController *)presentVC  delegate:(id)delegate
++ (void)showMore:(UIViewController *)presentVC  delegate:(id)delegate isOwner:(BOOL)isOwner isCollection:(BOOL)isCollection
 {
     FSMoreViewVC *moreVC = [[FSMoreViewVC alloc]init];
     moreVC.delegate = delegate;
+    moreVC.m_isOwner = isOwner;
+    moreVC.m_Collection = isCollection;
     presentVC.definesPresentationContext = YES;
     moreVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     [presentVC.navigationController presentViewController:moreVC animated:NO completion:^{
-        [UIView animateWithDuration:.3
+        [UIView animateWithDuration:DEFAULT_DELAY_TIME
                          animations:^{
                              moreVC.bgViewBottomConstraint.constant = 0;
                              [moreVC.view layoutIfNeeded];
@@ -50,12 +56,29 @@ FSMoreViewVC ()
             [btn addTarget:self action:@selector(moreViewAction:) forControlEvents:UIControlEventTouchUpInside];
         }
     }
+    // 编辑和删除按钮是否隐藏
+    if (!self.m_isOwner)
+    {
+        for (int i = 8; i < 10; i++)
+        {
+            UIButton *btn = [self.view viewWithTag:(i + 100)];
+            if (btn)
+            {
+                btn.hidden = YES;
+            }
+        }
+    }
+    // 收藏状态按钮
+    UIButton *collectionBtn = [self.view viewWithTag:105];
+    if (collectionBtn)
+    {
+        collectionBtn.selected = self.m_Collection;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,6 +93,7 @@ FSMoreViewVC ()
     if (self.delegate && [self.delegate respondsToSelector:@selector(moreViewClickWithType:)]) {
         [self.delegate moreViewClickWithType:sender.tag - 100];
     }
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 - (IBAction)cancelAction:(UIButton *)sender

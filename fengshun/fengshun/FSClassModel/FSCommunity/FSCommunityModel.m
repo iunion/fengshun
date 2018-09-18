@@ -65,12 +65,26 @@
     // m_ForumId;
     // 版块icon
     self.m_IconUrl = [dic bm_stringTrimForKey:@"iconUrl"];
+    if (![self.m_IconUrl bm_isNotEmpty])
+    {
+        self.m_IconUrl = [dic bm_stringTrimForKey:@"forumIconUrl"];
+    }
+    // 板块id
+    self.m_ForumId = [dic bm_stringForKey:@"forumId"];
     // 版块名称
     self.m_ForumName = [dic bm_stringTrimForKey:@"forumName"];
     // 帖子标题
     self.m_Title = [dic bm_stringTrimForKey:@"postsTitle"];
+    if (![self.m_Title bm_isNotEmpty])
+    {
+        self.m_Title = [dic bm_stringTrimForKey:@"title"];
+    }
     // 发贴时间
     self.m_CreateTime = [dic bm_doubleForKey:@"postsCreateTime"] / 1000;
+    if (self.m_CreateTime == 0)
+    {
+        self.m_CreateTime = [dic bm_doubleForKey:@"createTime"] / 1000;
+    }
     // 最后回贴时间
     self.m_LastReplyTime = [dic bm_doubleForKey:@"postsLastReplyTime"] / 1000;
     // 帖子评论数

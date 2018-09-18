@@ -49,7 +49,7 @@
 }
 
 + (void)showTopicDetail:(UIViewController *)pushVC topicId:(NSString *)topicId{
-    FSTopicDetailVC *vc = [[FSTopicDetailVC alloc] initWithTitle:@"" url:[NSString stringWithFormat:@"%@/note/%@",FS_H5_SERVER,topicId] showLoadingBar:NO  loadingBarColor:nil delegate:nil];
+    FSTopicDetailVC *vc = [[FSTopicDetailVC alloc] initWithTitle:@"" url:[NSString stringWithFormat:@"%@/note/%@",FS_H5_SERVER,topicId] showLoadingBar:NO  loadingBarColor:nil delegate:nil topicId:[topicId integerValue]];
     vc.hidesBottomBarWhenPushed = YES;
     [pushVC.navigationController pushViewController:vc animated:YES];
 }

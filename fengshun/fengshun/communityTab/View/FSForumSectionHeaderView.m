@@ -22,15 +22,18 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    
 }
 
 - (void)showWithFSCommunityForumModel:(FSCommunityForumModel *)aModel
 {
-    if ([aModel.m_IconUrl bm_isNotEmpty]) {
+    if ([aModel.m_IconUrl bm_isNotEmpty])
+    {
         [self.m_IconImgView sd_setImageWithURL:[aModel.m_IconUrl bm_toURL]];
-    }else{
-        if ([aModel.m_List bm_isNotEmpty]) {
+    }
+    else
+    {
+        if ([aModel.m_List bm_isNotEmpty])
+        {
             FSForumModel *model = aModel.m_List[0];
             [self.m_IconImgView sd_setImageWithURL:[model.m_IconUrlFirst bm_toURL]];
         }

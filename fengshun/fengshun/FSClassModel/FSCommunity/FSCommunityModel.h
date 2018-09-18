@@ -12,6 +12,19 @@
 
 #pragma mark - 帖子模型
 @interface FSTopicModel : NSObject
+/*
+ commentCount = 0;
+ createName = "<null>";
+ createTime = 1536741785000;
+ description = 14445522;
+ forumIconUrl = "http://mat1.gtimg.com/www/qq2018/imgs/qq_logo_2018x2.png";
+ forumId = 5;
+ forumName = "版块51";
+ jumpAddress = "https://devftlsh5.odrcloud.net/note/3";
+ postsId = 3;
+ thumbUrl = "<null>";
+ title = "特殊test";
+ */
 
 // 帖子id
 @property (nonatomic, strong) NSString *m_Id;

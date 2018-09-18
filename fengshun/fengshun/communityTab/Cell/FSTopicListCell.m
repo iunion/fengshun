@@ -171,7 +171,7 @@
 //    size = [self.m_TitleLabel sizeThatFits:CGSizeMake(self.m_TitleLabel.bm_width, 1000)];
 //    self.m_TitleLabel.bm_height = size.height;
     
-    self.m_TimeLabel.text = [NSDate hmStringDateFromTs:model.m_LastReplyTime];
+    self.m_TimeLabel.text = [NSDate hmStringDateFromTs:model.m_CreateTime];
     size = [self.m_TimeLabel sizeThatFits:CGSizeMake(1000, self.m_TimeLabel.bm_height)];
     self.m_UserNameLabel.bm_left = size.width + 6.0f;
 
