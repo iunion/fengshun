@@ -75,12 +75,19 @@
             newPerson.userName = model.userName;
             newPerson.mobilePhone = model.mobilePhone;
             newPerson.meetingIdentityTypeEnums = model.meetingIdentityTypeEnums;
+            newPerson.selectState = 1;
 
-            [vc.m_AttendedList addObject:newPerson];
+            if ([newPerson isMediatorPerson])
+            {
+                [vc.m_AttendedList insertObject:newPerson atIndex:0];
+            }
+            else
+            {
+                [vc.m_AttendedList addObject:newPerson];
+            }
             if (mode == FSMakeVideoMediateMode_ReSend) {
                 newPerson.personnelId = 0;
             } else {
-                newPerson.selectState = 1;
                 newPerson.personnelId = model.personnelId;
             }
         }
@@ -485,6 +492,7 @@
         NSDictionary *dataDic = [resDic bm_dictionaryForKey:@"data"];
         if ([dataDic bm_isNotEmptyDictionary])
         {
+            [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:@"提交成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             FSMeetingDetailModel *mode = [FSMeetingDetailModel modelWithParams:dataDic];
             if (self.successBlock) {
                 self.successBlock(mode);

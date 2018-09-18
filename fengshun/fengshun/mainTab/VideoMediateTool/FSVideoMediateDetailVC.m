@@ -179,7 +179,7 @@
     self.personView.titleLabel.text = @"参与人员";
     self.personView.titleLabel.textColor = UI_COLOR_B10;
     self.personView.line.hidden = YES;
-    self.personView.desLabel.text = [model getMeetingPersonnelNameList];
+    self.personView.desLabel.text = [model getMeetingPersonnelNameListWithShowCount:3];
     [contenView addSubview:self.personView];
     [self.personView setEditEnabled:NO];
     BMWeakSelf
@@ -196,7 +196,7 @@
                     NSMutableArray *array = [NSMutableArray arrayWithArray:weakSelf.m_DetailModel.meetingPersonnelResponseDTO];
                     [array addObjectsFromArray:litigantList];
                     weakSelf.m_DetailModel.meetingPersonnelResponseDTO = [NSArray arrayWithArray:array];
-                    weakSelf.personView.desLabel.text = [weakSelf.m_DetailModel getMeetingPersonnelNameList];
+                    weakSelf.personView.desLabel.text = [weakSelf.m_DetailModel getMeetingPersonnelNameListWithShowCount:3];
                     if (weakSelf.changedBlock) {
                         weakSelf.changedBlock();
                     }
@@ -341,7 +341,7 @@
             NSMutableArray *array = [NSMutableArray arrayWithArray:weakSelf.m_DetailModel.meetingPersonnelResponseDTO];
             [array addObjectsFromArray:litigantList];
             weakSelf.m_DetailModel.meetingPersonnelResponseDTO = [NSArray arrayWithArray:array];
-            weakSelf.personView.desLabel.text = [weakSelf.m_DetailModel getMeetingPersonnelNameList];
+            weakSelf.personView.desLabel.text = [weakSelf.m_DetailModel getMeetingPersonnelNameListWithShowCount:3];
             if (weakSelf.changedBlock) {
                 weakSelf.changedBlock();
             }

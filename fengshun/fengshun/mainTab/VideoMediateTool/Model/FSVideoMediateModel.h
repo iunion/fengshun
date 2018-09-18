@@ -41,6 +41,8 @@ typedef NS_ENUM(NSInteger, FSMeetingDataType) {
 
 - (NSDictionary *)formToParameters;
 
+- (BOOL)isMediatorPerson;
+
 @end
 
 // 会议列表简单类型
@@ -60,7 +62,7 @@ typedef NS_ENUM(NSInteger, FSMeetingDataType) {
 
 - (NSDictionary *)formToParameters;
 
-- (NSString *)getMeetingPersonnelNameList;
+- (NSString *)getMeetingPersonnelNameListWithShowCount:(NSInteger)count;
 
 - (FSMeetingPersonnelModel *)getMeetingMediator;
 
