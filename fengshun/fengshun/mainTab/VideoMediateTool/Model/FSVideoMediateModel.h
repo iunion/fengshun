@@ -39,7 +39,7 @@ typedef NS_ENUM(NSInteger, FSMeetingDataType) {
 
 + (instancetype)userModel;
 
-- (NSDictionary *)formToParameters;
+- (NSDictionary *)formToParametersWithPersonnelId:(BOOL)withID;
 
 - (BOOL)isMediatorPerson;
 
@@ -60,7 +60,7 @@ typedef NS_ENUM(NSInteger, FSMeetingDataType) {
 @property (nonatomic, copy) NSString *meetingInvite;//会议邀请链接
 @property (nonatomic, copy) NSString *orderHour;
 
-- (NSDictionary *)formToParameters;
+- (NSDictionary *)formToParametersWithPersonnelId:(BOOL)withID;
 
 - (NSString *)getMeetingPersonnelNameListWithShowCount:(NSInteger)count;
 

@@ -14,6 +14,9 @@
 
 @interface FSVideoInviteLitigantVC ()
 @property (nonatomic, strong) NSMutableArray *m_InviteList; // 参与人员列表
+
+@property (nonatomic, strong) NSMutableArray *m_CorrectList; // 经受住了检验的人员列表
+
 @end
 
 @implementation FSVideoInviteLitigantVC
@@ -66,9 +69,16 @@
     // 新页面默认申请人、被申请人
     if (_m_InviteList == nil) {
         _m_InviteList = [NSMutableArray array];
-        [self addApplicantLitigant];
-        if (self.meetingId == 0) {
-            [self addRespondentLitigant];
+        if (self.existingLitigantList.count)
+        {
+            [_m_InviteList addObjectsFromArray:self.existingLitigantList];
+        }
+        else
+        {
+            [self addApplicantLitigant];
+            if (self.meetingId == 0) {
+                [self addRespondentLitigant];
+            }
         }
     }
     
@@ -94,6 +104,7 @@
     nameItem.textFont = FS_VIDEOPAGE_TEXTFONT;
     nameItem.textFieldTextFont = FS_VIDEOPAGE_TEXTFONT;
     nameItem.textFieldAlignment = NSTextAlignmentRight;
+    nameItem.value = model.userName;
     nameItem.placeholder = @"请输入姓名";
     nameItem.cellHeight = 50.0f;
     nameItem.onChange = ^(BMInputItem * _Nonnull item) {
@@ -102,6 +113,7 @@
 
     BMTextItem *phoneItem = [BMTextItem itemWithTitle:@"手机号" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:nil selectionHandler:nil];
     phoneItem.textColor = UI_COLOR_B1;
+    phoneItem.value = model.mobilePhone;
     phoneItem.textFieldTextColor = UI_COLOR_B1;
     phoneItem.textFieldPlaceholderColor = UI_COLOR_B10;
     phoneItem.textFont = FS_VIDEOPAGE_TEXTFONT;
@@ -196,9 +208,12 @@
 
 - (void)doneAction
 {
-    for (FSMeetingPersonnelModel *model in _m_InviteList) {
-        model.selectState = 1;
-
+    NSMutableArray *correctArray = [NSMutableArray array];
+    for (FSMeetingPersonnelModel *model in self.m_InviteList) {
+        // 手机号和姓名可以同时为空
+        if ((![model.userName bm_isNotEmpty]) && (![model.mobilePhone bm_isNotEmpty])) {
+            continue;
+        }
         if (![model.userName bm_isNotEmpty]) {
             [self.m_ProgressHUD showAnimated:YES withDetailText:@"请输入姓名" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             return;
@@ -213,11 +228,17 @@
             [self.m_ProgressHUD showAnimated:YES withDetailText:@"请输入正确的手机号码" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             return;
         }
+        [correctArray addObject:model];
     }
     
+    if (correctArray.count == 0) {
+        [self.m_ProgressHUD showAnimated:YES withDetailText:@"请输入当事人信息" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        return;
+    }
+    self.m_CorrectList = correctArray;
     if (self.meetingId == 0) {
-        if (self.inviteComplete && self.m_InviteList.count) {
-            self.inviteComplete(self.m_InviteList);
+        if (self.inviteComplete && self.m_CorrectList.count) {
+            self.inviteComplete(self.m_CorrectList);
         }
         [self.navigationController popViewControllerAnimated:YES];
     } else {
@@ -230,6 +251,7 @@
 {
     FSMeetingPersonnelModel *model = [FSMeetingPersonnelModel new];
     model.meetingIdentityTypeEnums = @"APPLICAT";
+    model.selectState = 1;
     [_m_InviteList addObject:model];
 }
 
@@ -238,6 +260,7 @@
 {
     FSMeetingPersonnelModel *model = [FSMeetingPersonnelModel new];
     model.meetingIdentityTypeEnums = @"RESPONDENT";
+    model.selectState = 1;
     [_m_InviteList addObject:model];
 }
 
@@ -250,8 +273,8 @@
 - (void)sendInviteRequest
 {
     NSMutableArray *array = [NSMutableArray array];
-    for (FSMeetingPersonnelModel *model in _m_InviteList) {
-        [array addObject:[model formToParameters]];
+    for (FSMeetingPersonnelModel *model in self.m_CorrectList) {
+        [array addObject:[model formToParametersWithPersonnelId:NO]];
     }
 
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -282,8 +305,8 @@
                 NSInteger statusCode = [resDic bm_intForKey:@"code"];
                 if (statusCode == 1000)
                 {
-                    if (self.inviteComplete && self.m_InviteList.count) {
-                        self.inviteComplete(self.m_InviteList);
+                    if (self.inviteComplete && self.m_CorrectList.count) {
+                        self.inviteComplete(self.m_CorrectList);
                     }
                     [self.m_ProgressHUD hideAnimated:NO];
                     [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:@"邀请成功！" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];

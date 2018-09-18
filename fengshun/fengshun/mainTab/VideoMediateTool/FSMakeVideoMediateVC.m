@@ -402,13 +402,48 @@
     return _m_AttendedList;
 }
 
+- (NSArray *)litigantListWithoutMediator
+{
+    NSMutableArray *temp = [NSMutableArray array];
+    
+    for (FSMeetingPersonnelModel *model in self.m_AttendedList)
+    {
+        if ([model isMediatorPerson]) {
+            continue;
+        }
+        
+        FSMeetingPersonnelModel *newPerson = [FSMeetingPersonnelModel new];
+        newPerson.userName = model.userName;
+        newPerson.mobilePhone = model.mobilePhone;
+        newPerson.meetingIdentityTypeEnums = model.meetingIdentityTypeEnums;
+        newPerson.personnelId = model.personnelId;
+        newPerson.selectState = model.selectState;
+        [temp addObject:newPerson];
+    }
+
+    return [NSArray arrayWithArray:temp];
+}
+
+- (void)updateAttendedLitWithoutMediator:(NSArray *)list
+{
+    for (NSInteger index = self.m_AttendedList.count-1; index >= 0; index--) {
+        FSMeetingPersonnelModel *model = self.m_AttendedList[index];
+        if (![model isMediatorPerson]) {
+            [self.m_AttendedList removeObject:model];
+        }
+    }
+    
+    [self.m_AttendedList addObjectsFromArray:list];
+    [self freshViews];
+}
+
 - (void)inviteAction
 {
     FSVideoInviteLitigantVC *vc = [FSVideoInviteLitigantVC new];
+    vc.existingLitigantList = [self litigantListWithoutMediator];
     BMWeakSelf
     vc.inviteComplete = ^(NSArray *litigantList) {
-        [weakSelf.m_AttendedList addObjectsFromArray:litigantList];
-        [weakSelf freshViews];
+        [weakSelf updateAttendedLitWithoutMediator:litigantList];
     };
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -451,9 +486,9 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSMutableURLRequest *request;
     if (FSMakeVideoMediateMode_Edit == self.makeMode) {
-        request = [FSApiRequest editMeetingWithInfo:[self.m_CreateModel formToParameters]];
+        request = [FSApiRequest editMeetingWithInfo:[self.m_CreateModel formToParametersWithPersonnelId:YES]];
     } else {
-        request = [FSApiRequest saveMeetingWithInfo:[self.m_CreateModel formToParameters]];
+        request = [FSApiRequest saveMeetingWithInfo:[self.m_CreateModel formToParametersWithPersonnelId:NO]];
     }
     if (request)
     {
