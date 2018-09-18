@@ -58,38 +58,22 @@
 
 - (void)buildUI
 {
-    CGFloat top = 0;
-    if (IS_IPHONE6P)
-    {
-        top = 60.0f;
-    }
-    else if (IS_IPHONE6 || IS_IPHONEX)
-    {
-        top = 40.0f;
-    }
-    else
-    {
-        top = 30.0f;
-    }
-
-    _imageView = [[UIImageView alloc] initWithFrame:CGRectMake((UI_SCREEN_WIDTH-200.0f)*0.5f, top, 200.0f, 200.0f)];
+    _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 200.0f, 200.0f)];
     [self addSubview:_imageView];
     
-    _messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _imageView.bm_bottom+20.0f, UI_SCREEN_WIDTH, 40.0f)];
+    _messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 40.0f)];
     _messageLabel.textColor = [UIColor bm_colorWithHex:0x577EEE];
     _messageLabel.font = [UIFont systemFontOfSize:16.0f];
     _messageLabel.textAlignment = NSTextAlignmentCenter;
     _messageLabel.numberOfLines = 0;
     [self addSubview:_messageLabel];
 
-    
     _indecator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyleGray)];
     _indecator.hidesWhenStopped = YES;
     [self addSubview:_indecator];
-    [_indecator bm_centerHorizontallyInSuperViewWithTop:_messageLabel.bm_bottom+20.0f];
 
     // 全视图点击刷新功能
-    _refreshLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _messageLabel.bm_bottom+50.0f, UI_SCREEN_WIDTH, 20.0f)];
+    _refreshLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 20.0f)];
     _refreshLabel.textColor = [UIColor bm_colorWithHex:0x999999];
     _refreshLabel.font = [UIFont systemFontOfSize:14];
     _refreshLabel.textAlignment = NSTextAlignmentCenter;
@@ -106,10 +90,9 @@
     _freshButton.titleLabel.font = [UIFont systemFontOfSize:15.0f];
     [_freshButton addTarget:self action:@selector(refreshAction:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_freshButton];
-    [_freshButton bm_centerHorizontallyInSuperViewWithTop:_messageLabel.bm_bottom+30.0f];
     
     // 用户视图
-    _customBgView = [[UIView alloc] init];
+    _customBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 0)];
     _customBgView.backgroundColor = [UIColor clearColor];
     [self addSubview:_customBgView];
     
@@ -139,11 +122,6 @@
 - (void)setEmptyViewActionBlock:(BMEmptyViewActionBlock)actionBlock
 {
     self.actionBlock = actionBlock;
-}
-
-- (void)updateViewFrame
-{
-    
 }
 
 - (NSAttributedString *)messsageWithType:(BMEmptyViewType)type
@@ -325,9 +303,10 @@
     
     CGFloat height = customView.bm_height;
     
-    self.customBgView.frame = CGRectMake(0, self.bm_height-height, self.bm_width, height);
+    self.customBgView.frame = CGRectMake(0, 0, self.bm_width, height);
     [self.customBgView addSubview:customView];
-    [customView bm_centerInSuperView];
+    
+    [self updateViewFrame];
 }
 
 - (void)setEmptyViewType:(BMEmptyViewType)type
@@ -384,5 +363,23 @@
     
     _emptyViewType = type;
 }
+
+- (void)updateViewFrame
+{
+    self.imageView.bm_height = self.bm_height*0.25f;
+    self.imageView.bm_width = self.imageView.bm_height;
+    [self.imageView bm_centerHorizontallyInSuperViewWithTop:self.bm_height*0.15f];
+    
+    [self.messageLabel bm_centerInSuperView];
+    
+    [self.indecator bm_centerInSuperView];
+    
+    [self.freshButton bm_centerHorizontallyInSuperViewWithTop:self.messageLabel.bm_bottom+30.0f];
+    
+    [self.refreshLabel bm_centerHorizontallyInSuperViewWithTop:self.bm_height*0.75f];
+    
+    [self.customBgView bm_centerHorizontallyInSuperViewWithTop:(self.bm_height-self.customBgView.bm_height)];
+}
+
 
 @end

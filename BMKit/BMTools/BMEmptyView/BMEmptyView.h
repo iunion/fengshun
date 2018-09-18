@@ -41,6 +41,8 @@ typedef void (^BMEmptyViewActionBlock)(BMEmptyView *emptyView, BMEmptyViewType t
                         frame:(CGRect)frame
                  refreshBlock:(BMEmptyViewActionBlock)block;
 
+- (void)updateViewFrame;
+
 - (void)setEmptyViewLoading:(BOOL)loading;
 
 - (void)setEmptyViewType:(BMEmptyViewType)type;
