@@ -169,7 +169,6 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="fyS-dk-KRw" secondAttribute="trailing" id="S5F-8k-Mcv"/>
                 <constraint firstItem="fyS-dk-KRw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bRP-Rn-RKp"/>

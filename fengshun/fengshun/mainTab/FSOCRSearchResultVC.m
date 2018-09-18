@@ -15,8 +15,11 @@
 #import "FSCaseSearchResultCell.h"
 
 @interface
-FSOCRSearchResultVC () <
-    TZImagePickerControllerDelegate>
+FSOCRSearchResultVC ()
+<
+    TZImagePickerControllerDelegate
+>
+
 @property (weak, nonatomic) IBOutlet UIImageView *m_imageView;
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *m_toolButtons;
@@ -26,6 +29,7 @@ FSOCRSearchResultVC () <
 @property (nonatomic, strong) FSLawSearchResultModel * m_lawSearchResultModel;
 @property (nonatomic, strong) FSCaseSearchResultModel *m_caseSearchResultModel;
 @property (nonatomic, assign, readonly) NSInteger m_totalCount;
+
 @end
 
 @implementation FSOCRSearchResultVC
@@ -36,6 +40,7 @@ FSOCRSearchResultVC () <
     [self setupUI];
     [self presentToImagePickerWithAnimated:NO];
 }
+
 - (void)setupUI
 {
     self.m_LoadDataType = FSAPILoadDataType_Page;
@@ -65,16 +70,19 @@ FSOCRSearchResultVC () <
         [self.m_TableView registerNib:[UINib nibWithNibName:@"FSCaseSearchResultCell" bundle:nil] forCellReuseIdentifier:@"FSCaseSearchResultCell"];
     }
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 - (IBAction)toolButtonAction:(UIButton *)sender
 {
     if (sender.tag)
     {
         // 调整图片区域
+        [self pushToImageCrop];
     }
     else
     {
@@ -82,6 +90,12 @@ FSOCRSearchResultVC () <
         [self presentToImagePickerWithAnimated:YES];
     }
 }
+
+- (void)pushToImageCrop
+{
+    
+}
+
 #pragma mark - TZImagePickerControllerDelegate
 - (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker
 {
@@ -90,6 +104,7 @@ FSOCRSearchResultVC () <
         [self.navigationController popViewControllerAnimated:NO];
     }
 }
+
 - (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos
 {
     if ([photos bm_isNotEmpty])
@@ -105,13 +120,17 @@ FSOCRSearchResultVC () <
         }
     }
 }
+
 - (void)presentToImagePickerWithAnimated:(BOOL)animated
 {
     TZImagePickerController *imagePickerVc = [TZImagePickerController fs_defaultPickerWithDelegate:self];
     imagePickerVc.maxImagesCount           = 1;
     [self presentViewController:imagePickerVc animated:animated completion:nil];
 }
+
+
 #pragma mark - TableView
+
 - (NSInteger)m_totalCount
 {
     if (_m_ocrSearchType)
@@ -123,6 +142,7 @@ FSOCRSearchResultVC () <
         return _m_caseSearchResultModel.m_totalCount;
     }
 }
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *view         = [UIView new];
@@ -134,6 +154,7 @@ FSOCRSearchResultVC () <
     [view addSubview:label];
     return view;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if ([_m_lawSearchResultModel bm_isNotEmpty]||[_m_caseSearchResultModel bm_isNotEmpty])
@@ -142,6 +163,7 @@ FSOCRSearchResultVC () <
     }
     return 0;
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (_m_ocrSearchType) {
@@ -153,6 +175,7 @@ FSOCRSearchResultVC () <
     }
     
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (_m_ocrSearchType) {
@@ -170,7 +193,10 @@ FSOCRSearchResultVC () <
         return cell;
     }
 }
+
+
 #pragma mark - networking
+
 // 第一步,识别出文字
 - (void)getOCRTextWithImage:(UIImage *)image
 {
@@ -191,6 +217,7 @@ FSOCRSearchResultVC () <
             [self.m_ProgressHUD showAnimated:YES withText:@"文字识别出错" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         }];
 }
+
 // 第二步,根据文字提取关键字
 - (void)getkeywordsWithOCRText:(NSString *)ocrText
 {
@@ -219,8 +246,8 @@ FSOCRSearchResultVC () <
             }];
     }
 }
-// 第三步,根据关键字,搜索
 
+// 第三步,根据关键字,搜索
 - (void)searchWithKeywords:(NSArray *)keywords
 {
     self.m_keywords              = keywords;
@@ -228,6 +255,7 @@ FSOCRSearchResultVC () <
     self.m_caseSearchResultModel = nil;
     [self loadApiData];
 }
+
 - (BOOL)canLoadApiData
 {
     if (_m_ocrSearchType) {
@@ -239,6 +267,7 @@ FSOCRSearchResultVC () <
     }
    
 }
+
 - (NSMutableURLRequest *)setLoadDataRequest
 {
     if (_m_ocrSearchType)
@@ -250,6 +279,7 @@ FSOCRSearchResultVC () <
         return [FSApiRequest searchCaseWithKeywords:_m_keywords start:_m_caseSearchResultModel.m_resultDataArray.count size:self.m_CountPerPage filters:@[]];
     }
 }
+
 - (void)handleCaseSearchResult:(NSDictionary *)responseObject
 {
     FSCaseSearchResultModel *result = [FSCaseSearchResultModel modelWithParams:responseObject];
@@ -265,6 +295,7 @@ FSOCRSearchResultVC () <
     self.m_DataArray = [_m_caseSearchResultModel.m_resultDataArray mutableCopy];
     [self.m_TableView reloadData];
 }
+
 - (void)handleLawSearchResult:(NSDictionary *)responseObject
 {
     FSLawSearchResultModel *result = [FSLawSearchResultModel modelWithParams:responseObject];
@@ -280,6 +311,7 @@ FSOCRSearchResultVC () <
     self.m_DataArray = [_m_lawSearchResultModel.m_resultDataArray mutableCopy];
     [self.m_TableView reloadData];
 }
+
 - (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)responseObject
 {
     if (_m_ocrSearchType)
@@ -292,6 +324,7 @@ FSOCRSearchResultVC () <
     }
     return [super succeedLoadedRequestWithDic:responseObject];
 }
+
 - (BOOL)checkLoadFinish:(NSDictionary *)requestDic
 {
     if (_m_ocrSearchType)
@@ -303,4 +336,5 @@ FSOCRSearchResultVC () <
         return !_m_caseSearchResultModel.m_isMore;
     }
 }
+
 @end
