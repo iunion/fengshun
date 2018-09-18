@@ -5889,6 +5889,30 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
+		87D209D42138FF45001EDD60 /* RSKImageCropper */ = {
+			isa = PBXGroup;
+			children = (
+				87D209DF2138FF45001EDD60 /* CGGeometry+RSKImageCropper.h */,
+				87D209D52138FF45001EDD60 /* CGGeometry+RSKImageCropper.m */,
+				87D209E42138FF45001EDD60 /* RSKImageCropper.h */,
+				87D209E02138FF45001EDD60 /* RSKImageCropperStrings.bundle */,
+				87D209E22138FF45001EDD60 /* RSKImageCropViewController.h */,
+				87D209DA2138FF45001EDD60 /* RSKImageCropViewController.m */,
+				87D209D82138FF45001EDD60 /* RSKImageCropViewController+Protected.h */,
+				87D209DC2138FF45001EDD60 /* RSKImageScrollView.h */,
+				87D209E52138FF45001EDD60 /* RSKImageScrollView.m */,
+				87D209DE2138FF45001EDD60 /* RSKInternalUtility.h */,
+				87D209D62138FF45001EDD60 /* RSKInternalUtility.m */,
+				87D209DD2138FF45001EDD60 /* RSKTouchView.h */,
+				87D209D72138FF45001EDD60 /* RSKTouchView.m */,
+				87D209E32138FF45001EDD60 /* UIApplication+RSKImageCropper.h */,
+				87D209D92138FF45001EDD60 /* UIApplication+RSKImageCropper.m */,
+				87D209E12138FF45001EDD60 /* UIImage+RSKImageCropper.h */,
+				87D209DB2138FF45001EDD60 /* UIImage+RSKImageCropper.m */,
+			);
+			path = RSKImageCropper;
+			sourceTree = "<group>";
+		};
 		87D209F0213912ED001EDD60 /* images */ = {
 			isa = PBXGroup;
 			children = (
