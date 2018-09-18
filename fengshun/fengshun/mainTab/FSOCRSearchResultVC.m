@@ -15,8 +15,10 @@
 #import "FSCaseSearchResultCell.h"
 
 @interface
-FSOCRSearchResultVC () <
-    TZImagePickerControllerDelegate>
+FSOCRSearchResultVC ()
+<
+    TZImagePickerControllerDelegate
+>
 @property (weak, nonatomic) IBOutlet UIImageView *m_imageView;
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *m_toolButtons;
@@ -75,6 +77,7 @@ FSOCRSearchResultVC () <
     if (sender.tag)
     {
         // 调整图片区域
+        [self pushToImageCrop];
     }
     else
     {
@@ -82,6 +85,11 @@ FSOCRSearchResultVC () <
         [self presentToImagePickerWithAnimated:YES];
     }
 }
+- (void)pushToImageCrop
+{
+    
+}
+
 #pragma mark - TZImagePickerControllerDelegate
 - (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker
 {

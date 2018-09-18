@@ -36,7 +36,7 @@
                   moduleName = "fengshun"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aiwei/Desktop/fengshun/fengshun/fengshun/FSSuperVC/FSSuperTableVC/FSTableView.m"
-                  timestampString = "558871982.756466"
+                  timestampString = "558928820.667536"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "84"
@@ -51,7 +51,7 @@
                   moduleName = "fengshun"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aiwei/Desktop/fengshun/fengshun/fengshun/FSSuperVC/FSSuperTableVC/FSTableView.m"
-                  timestampString = "558871982.7586991"
+                  timestampString = "558928820.671193"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "84"
@@ -66,7 +66,7 @@
                   moduleName = "fengshun"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aiwei/Desktop/fengshun/fengshun/fengshun/FSSuperVC/FSSuperTableVC/FSTableView.m"
-                  timestampString = "558871982.7608531"
+                  timestampString = "558928820.676116"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "84"
@@ -74,22 +74,6 @@
                   offsetFromSymbolStart = "16">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "fengshun/FSSuperVC/FSSuperTableVC/FSTableViewVC.m"
-            timestampString = "558872590.518144"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "413"
-            endingLineNumber = "413"
-            landmarkName = "-loadDataResponseFinished:responseDic:"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
