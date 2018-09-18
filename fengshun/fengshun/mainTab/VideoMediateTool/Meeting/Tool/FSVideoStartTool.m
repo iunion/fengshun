@@ -23,7 +23,7 @@
 + (BOOL)startMeetingWithMeetingId:(NSInteger)meetingId progressHUD:(MBProgressHUD *)hud completionHandler:(nullable void (^)(NSURLResponse *response, id _Nullable responseObject,  NSError * _Nullable error))completionHandler
 {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSMutableURLRequest *request = [FSApiRequest deleteMeetingWithId:meetingId];
+    NSMutableURLRequest *request = [FSApiRequest startMeetingWithId:meetingId];
     if (request)
     {
         [hud showAnimated:YES showBackground:YES];
