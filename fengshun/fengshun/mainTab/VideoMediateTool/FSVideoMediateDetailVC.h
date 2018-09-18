@@ -10,7 +10,11 @@
 #import "FSTableViewVC.h"
 #import "FSVideoMediateModel.h"
 
+typedef void(^FSVideoMediateDetailChangedBlock)(void);
+
 @interface FSVideoMediateDetailVC : FSTableViewVC
+
+@property (nonatomic, copy) FSVideoMediateDetailChangedBlock changedBlock;
 
 @property (nonatomic, assign) NSInteger m_MeetingId;
 

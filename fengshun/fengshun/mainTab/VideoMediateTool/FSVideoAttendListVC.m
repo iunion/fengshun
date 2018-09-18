@@ -30,7 +30,7 @@
 
 - (UIButton *)rightItemButton
 {
-    UIButton *btn = [UIButton bm_buttonWithFrame:CGRectMake(0, 0, 44, 44)];
+    UIButton *btn = [UIButton bm_buttonWithFrame:CGRectMake(0, 0, 60, 44)];
     btn.backgroundColor = [UIColor whiteColor];
     [btn addTarget:self action:@selector(addLitigantAction) forControlEvents:UIControlEventTouchUpInside];
     NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:@"+  邀请"
@@ -49,6 +49,9 @@
     vc.meetingId = self.meetingId;
     BMWeakSelf
     vc.inviteComplete = ^(NSArray *litigantList) {
+        if (weakSelf.inviteComplete) {
+            weakSelf.inviteComplete(litigantList);
+        }
         if (litigantList.count) {
             NSMutableArray *newList = [NSMutableArray arrayWithArray:weakSelf.m_AttendList];
             [newList addObjectsFromArray:litigantList];

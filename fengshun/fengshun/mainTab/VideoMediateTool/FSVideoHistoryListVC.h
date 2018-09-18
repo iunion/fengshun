@@ -10,4 +10,6 @@
 
 @interface FSVideoHistoryListVC : FSTableViewVC
 
+@property (nonatomic, assign) NSInteger meetingId;
+
 @end

@@ -24,6 +24,11 @@
 #import "FSGlobleDataModle.h"
 #import "FSCustomInfoVC.h"
 
+#ifdef FSVIDEO_ON
+#import <ILiveSDK/ILiveSDK.h>
+#import <ILiveSDK/ILiveCoreHeader.h>
+#endif
+
 //#import "SDWebImageCodersManager.h"
 //#import "SDWebImageGIFCoder.h"
 
@@ -62,6 +67,19 @@
     [_m_UserAbilityTask cancel];
     _m_UserAbilityTask = nil;
 }
+
+#ifdef FSVIDEO_ON
+//#pragma mark - 配置iLiveSDK
+- (void)initILiveSDK {
+    // 初始化SDK
+    [[ILiveSDK getInstance] initSdk:KILiveSDKAPPID accountType:KILiveAccountType];
+    [[ILiveSDK getInstance] setChannelMode:E_ChannelIMSDK withHost:@""];
+    //    //获取版本号
+    NSLog(@"ILiveSDK version:%@",[[ILiveSDK getInstance] getVersion]);
+    NSLog(@"AVSDK version:%@",[QAVContext getVersion]);
+    NSLog(@"IMSDK version:%@",[[TIMManager sharedInstance] GetVersion]);
+}
+#endif
 
 - (void)setUpApp
 {
@@ -115,6 +133,10 @@
     
     // 检查数据库版本
     [FSDBVersionCheck checkDBVer];
+    
+#ifdef FSVIDEO_ON
+    [self initILiveSDK];
+#endif
 }
 
 

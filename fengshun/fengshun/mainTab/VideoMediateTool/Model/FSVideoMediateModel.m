@@ -215,7 +215,17 @@ static NSDictionary *FSMeetingPersonIdentityTypeDic;
     [tempDic bm_setString:self.userName forKey:@"userName"];
     [tempDic bm_setString:self.mobilePhone forKey:@"mobilePhone"];
     [tempDic bm_setString:self.meetingIdentityTypeEnums forKey:@"meetingIdentityTypeEnums"];
+    
+    if (self.personnelId) {
+        [tempDic setObject:@(self.personnelId) forKey:@"id"];
+    }
+    
     return tempDic;
+}
+
+- (BOOL)isMediatorPerson
+{
+    return [self.meetingIdentityTypeEnums isEqualToString:@"MEDIATOR"];
 }
 
 @end
@@ -249,11 +259,13 @@ static NSDictionary *FSMeetingPersonIdentityTypeDic;
     if (self.meetingContent) {
         [dic bm_setString:self.meetingContent forKey:@"meetingContent"];
     }
+    if (self.meetingId > 0) {
+        [dic setObject:@(self.meetingId) forKey:@"id"];
+    }
     [dic bm_setString:self.meetingName forKey:@"meetingName"];
     [dic bm_setString:self.meetingType forKey:@"meetingType"];
     [dic bm_setString:self.orderHour forKey:@"orderHour"];
-    NSString *time  = [NSString stringWithFormat:@"%.0f",self.startTime];
-    [dic setObject:[NSNumber numberWithDouble:[time doubleValue]]  forKey:@"startTime"];
+    [dic setObject:@(self.startTime)  forKey:@"startTime"];
 
     NSMutableArray *array = [NSMutableArray array];
     for (FSMeetingPersonnelModel *model in self.meetingPersonnelResponseDTO) {
@@ -268,13 +280,13 @@ static NSDictionary *FSMeetingPersonIdentityTypeDic;
     return dic;
 }
 
-- (NSString *)getMeetingPersonnelNameList
+- (NSString *)getMeetingPersonnelNameListWithShowCount:(NSInteger)count;
 {
     NSMutableString *string = [NSMutableString string];
-    NSInteger count = self.meetingPersonnelResponseDTO.count;
-    if (count > 2)
+    NSInteger allCount = self.meetingPersonnelResponseDTO.count;
+    if (allCount > count)
     {
-        for (int index = 0; index < 2; index++) {
+        for (int index = 0; index < count; index++) {
             FSMeetingPersonnelModel *model = self.meetingPersonnelResponseDTO[index];
             [string appendString:model.userName];
             [string appendString:@"、"];
@@ -294,6 +306,17 @@ static NSDictionary *FSMeetingPersonIdentityTypeDic;
         }
     }
     return string;
+}
+
+- (FSMeetingPersonnelModel *)getMeetingMediator
+{
+    for (FSMeetingPersonnelModel *model in self.meetingPersonnelResponseDTO) {
+        if ([model isMediatorPerson]) {
+            return model;
+        }
+    }
+
+    return nil;
 }
 
 @end
@@ -341,5 +364,20 @@ static NSDictionary *FSMeetingPersonIdentityTypeDic;
     return self;
 }
 
+@end
+
+
+@implementation FSVideoRecordModel
+
++ (instancetype)modelWithParams:(NSDictionary *)params
+{
+    FSVideoRecordModel *model = [[self alloc] init];
+    model.uploadTime                    = [params bm_doubleForKey:@"uploadTime"];
+    model.download                      = [params bm_stringForKey:@"download"];
+    model.joinUser                      = [params bm_stringForKey:@"joinUser"];
+    model.preview                       = [params bm_stringForKey:@"preview"];
+    model.url                           = [params bm_stringForKey:@"url"];
+    return model;
+}
 @end
 

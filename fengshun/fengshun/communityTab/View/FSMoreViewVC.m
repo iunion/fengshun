@@ -40,6 +40,7 @@ FSMoreViewVC ()
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
     for (int i = 0; i < 10; i++)
     {
         UIButton *btn = [self.view viewWithTag:(i + 100)];

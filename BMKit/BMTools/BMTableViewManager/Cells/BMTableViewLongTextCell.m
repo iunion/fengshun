@@ -136,7 +136,14 @@
     {
         self.textView.layer.cornerRadius = 4.0f;
         self.textView.layer.borderWidth = SINGLE_LINE_WIDTH;
-        self.textView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+        if (self.item.textViewBorderColor)
+        {
+            self.textView.layer.borderColor = [self.item.textViewBorderColor CGColor];
+        }
+        else
+        {
+            self.textView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+        }
         self.textView.layer.masksToBounds = YES;
     }
     else

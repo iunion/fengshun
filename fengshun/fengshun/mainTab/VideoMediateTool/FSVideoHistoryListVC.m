@@ -29,25 +29,60 @@
 
 - (NSMutableURLRequest *)setLoadDataRequest
 {
-    return [FSApiRequest getMeetingVideoList:0];
+    return [FSApiRequest getMeetingVideoList:self.meetingId];
 }
 
-- (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)data
+- (void)loadDataResponseFinished:(NSURLResponse *)response responseDic:(NSDictionary *)responseDic
 {
-    NSLog(@"%@",data);
-//    NSArray *array = [FSMeetingDetailModel modelsWithDataArray:data[@"list"]];
-//
-//    if (array) {
-//        [self.m_DataArray addObjectsFromArray:array];
-//    }
-    
-    if (self.m_DataArray.count == 0) {
-        [self showEmptyViewWithStatus:BMEmptyViewStatus_NoData];
+    [self.m_ProgressHUD hideAnimated:NO];
+
+    if (![responseDic bm_isNotEmptyDictionary])
+    {
+        [self failLoadedResponse:response responseDic:responseDic withErrorCode:FSAPI_JSON_ERRORCODE];
+        
+        if (self.m_ShowResultHUD)
+        {
+            [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        }
+        
+        return;
     }
     
-    [self.m_TableView reloadData];
+#if DEBUG
+    NSString *responseStr = [[NSString stringWithFormat:@"%@", responseDic] bm_convertUnicode];
+    BMLog(@"API返回数据是:+++++%@", responseStr);
+#endif
     
-    return [super succeedLoadedRequestWithDic:data];
+    NSInteger statusCode = [responseDic bm_intForKey:@"code"];
+    if (statusCode == 1000)
+    {
+        NSArray *array = responseDic[@"data"];
+        for (NSDictionary *dic in array) {
+            FSVideoRecordModel *model = [FSVideoRecordModel modelWithParams:dic];
+            [self.m_DataArray addObject:model];
+        }
+        [self.m_TableView reloadData];
+        
+        return;
+    }
+    else
+    {
+        [self failLoadedResponse:response responseDic:responseDic withErrorCode:statusCode];
+        
+        NSString *message = [responseDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
+        if ([self checkRequestStatus:statusCode message:message responseDic:responseDic])
+        {
+            [self.m_ProgressHUD hideAnimated:YES];
+        }
+        else if (self.m_ShowResultHUD)
+        {
+#if DEBUG
+            [self.m_ProgressHUD showAnimated:YES withDetailText:[NSString stringWithFormat:@"%@:%@", @(statusCode), message] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+#else
+            [self.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+#endif
+        }
+    }
 }
 
 #pragma mark -
@@ -55,7 +90,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 135.0f;
+    return 85.0f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -68,6 +103,7 @@
         cell = [[FSVideoHistoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:taskCellIdentifier];
     }
     
+    [cell setModel:self.m_DataArray[indexPath.row]];
     
     return cell;
 }

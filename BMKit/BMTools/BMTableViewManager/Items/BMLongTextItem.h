@@ -45,6 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat textViewLeftGap;
 
 @property (nonatomic, assign) BOOL showTextViewBorder;
+@property (nonatomic, strong) UIColor *textViewBorderColor;
 
 - (void)caleCellHeightWithTableView:(UITableView *)tableView;
 

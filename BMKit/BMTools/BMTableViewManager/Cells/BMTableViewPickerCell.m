@@ -79,7 +79,12 @@
     self.pickerView = [[UIPickerView alloc] init];
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
-    
+    if (self.item.pickerFirstComponentRow) {
+        [self.pickerView selectRow:self.item.pickerFirstComponentRow inComponent:0 animated:NO];
+    }
+    if (self.item.pickerSeconComponentRow) {
+        [self.pickerView selectRow:self.item.pickerSeconComponentRow inComponent:1 animated:NO];
+    }
     self.hidenTextField.inputView = self.pickerView;
 }
 
@@ -247,6 +252,15 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     [pickerView reloadAllComponents];
+    
+    if (component == 0)
+    {
+        self.item.pickerFirstComponentRow = row;
+    }
+    else
+    {
+        self.item.pickerSeconComponentRow = row;
+    }
     
     [self shouldUpdatePickerText];
     

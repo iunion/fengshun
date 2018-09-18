@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BMTableViewCell.h"
 #import "FSVideoMediateModel.h"
 
-@interface FSVideoMediatePersonalCell : UITableViewCell
+@interface FSVideoMediatePersonalCell : BMTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier selectEnable:(BOOL)enable;
 

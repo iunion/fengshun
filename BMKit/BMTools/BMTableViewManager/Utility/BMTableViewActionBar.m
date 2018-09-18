@@ -12,6 +12,7 @@
 @interface BMTableViewActionBar ()
 
 @property (strong, nonatomic) UISegmentedControl *navigationControl;
+@property (strong, nonatomic) UILabel *titleLabel;
 
 @end
 
@@ -47,12 +48,23 @@
     [self.navigationControl setWidth:40.0f forSegmentAtIndex:1];
     [self.navigationControl setContentOffset:CGSizeMake(-4, 0) forSegmentAtIndex:0];
     
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 0, self.bm_width - 200, self.bm_height)];
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.titleLabel.font = [UIFont systemFontOfSize:14];
+    self.titleLabel.textColor = [UIColor lightGrayColor];
+    [self addSubview:self.titleLabel];
+    
     UIBarButtonItem *prevNextWrapper = [[UIBarButtonItem alloc] initWithCustomView:self.navigationControl];
     UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     [self setItems:[NSArray arrayWithObjects:prevNextWrapper, flexible, doneButton, nil]];
     self.actionBarDelegate = delegate;
     
     return self;
+}
+
+- (void)setActionBarTitle:(NSString *)title
+{
+    self.titleLabel.text = title;
 }
 
 - (void)handleActionBarPreviousNext:(UISegmentedControl *)segmentedControl
