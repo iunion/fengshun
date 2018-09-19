@@ -31,6 +31,9 @@
 - (void)kickOut;
 // 退出登录
 - (void)logOut;
+// 是否退出到我的首页，是否显示登录
+- (void)logOutQuit:(BOOL)quit showLogin:(BOOL)show;
+
 // 使用API退出登录
 - (void)logOutWithApi;
 

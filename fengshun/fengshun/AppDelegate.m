@@ -365,11 +365,11 @@
 
 - (void)logOut
 {
-    [self logOutAndShowLogin:YES];
+    [self logOutQuit:NO showLogin:YES];
 }
 
 // 退出登录
-- (void)logOutAndShowLogin:(BOOL)show
+- (void)logOutQuit:(BOOL)quit showLogin:(BOOL)show
 {
     // 重置所有倒计时
     [[BMVerifiTimeManager manager] stopAllType];
@@ -377,17 +377,21 @@
     [FSUserInfoModle logOut];
     
     UIViewController *vc = [self.m_TabBarController getCurrentRootViewController];
-    if ([vc isKindOfClass:[FSUserMainVC class]])
+    
+    if (quit)
     {
-        if ([self.m_TabBarController getCurrentNavigationController].viewControllers.count != 1)
+        if ([vc isKindOfClass:[FSUserMainVC class]])
         {
-            [[self.m_TabBarController getCurrentNavigationController] popToRootViewControllerAnimated:NO];
+            if ([self.m_TabBarController getCurrentNavigationController].viewControllers.count != 1)
+            {
+                [[self.m_TabBarController getCurrentNavigationController] popToRootViewControllerAnimated:NO];
+            }
         }
-    }
-    else
-    {
-        [self.m_TabBarController selectedTabWithIndex:BMTabIndex_User];
-        vc = [self.m_TabBarController getCurrentRootViewController];
+        else
+        {
+            [self.m_TabBarController selectedTabWithIndex:BMTabIndex_User];
+            vc = [self.m_TabBarController getCurrentRootViewController];
+        }
     }
     
     if (show)
@@ -427,7 +431,7 @@
         [self.m_LoginOutTask resume];
     }
     
-    [self logOutAndShowLogin:NO];
+    [self logOutQuit:YES showLogin:NO];
 }
 
 - (void)loginOutRequestFinished:(NSURLResponse *)response responseDic:(NSDictionary *)resDic

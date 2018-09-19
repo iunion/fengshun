@@ -205,7 +205,7 @@
         [self failLoadedResponse:response responseDic:responseDic withErrorCode:statusCode];
         
         NSString *message = [responseDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
-        if ([self checkRequestStatus:statusCode message:message responseDic:responseDic])
+        if ([self checkRequestStatus:statusCode message:message responseDic:responseDic logOutQuit:YES showLogin:YES])
         {
             [self.m_ProgressHUD hideAnimated:YES];
         }

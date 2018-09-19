@@ -444,7 +444,7 @@
         
         if (self.m_VerificationType == BMVerificationCodeType_Type3)
         {
-            [GetAppDelegate logOut];
+            [GetAppDelegate logOutQuit:YES showLogin:YES];
         }
         else
         {
@@ -454,7 +454,7 @@
     }
     
     NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
-    if ([self checkRequestStatus:statusCode message:message responseDic:resDic])
+    if ([self checkRequestStatus:statusCode message:message responseDic:resDic logOutQuit:YES showLogin:YES])
     {
         [self.m_ProgressHUD hideAnimated:YES];
     }
