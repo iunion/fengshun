@@ -28,11 +28,12 @@
 
 @implementation FSPushVCManager
 
-+ (void)showCommunitySecVCPushVC:(UIViewController *)pushVC FourmId:(NSInteger)fourId
++ (FSCommunitySecVC *)showCommunitySecVCPushVC:(UIViewController *)pushVC FourmId:(NSInteger)fourId
 {
     FSCommunitySecVC *vc        = [[FSCommunitySecVC alloc] initWithFourmId:fourId];
     vc.hidesBottomBarWhenPushed = YES;
     [pushVC.navigationController pushViewController:vc animated:YES];
+    return vc;
 }
 
 + (void)showPostDetailVCWithPushVC:(UIViewController *)pushVC url:(NSString *)url

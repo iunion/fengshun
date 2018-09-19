@@ -1626,6 +1626,7 @@
 		AD2244E2213D1FF900F2DC47 /* FSCommunityHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2244E1213D1FF900F2DC47 /* FSCommunityHeaderView.m */; };
 		AD3B821C214A467900D72DE9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD3B821B214A467800D72DE9 /* CoreGraphics.framework */; };
 		AD3B821E214A468100D72DE9 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD3B821D214A468100D72DE9 /* CoreText.framework */; };
+		AD412AEA215221C800A9C12B /* FSReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD412AE9215221C800A9C12B /* FSReportView.m */; };
 		AD4691DD2148BE34008CAF27 /* FSH5DemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD4691DC2148BE34008CAF27 /* FSH5DemoVC.m */; };
 		AD47EFDC2137EBF0004A345F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD47EFDB2137EBF0004A345F /* Launch Screen.storyboard */; };
 		AD510298213E560F008CD74D /* FSApiRequest+Community.m in Sources */ = {isa = PBXBuildFile; fileRef = AD510297213E560F008CD74D /* FSApiRequest+Community.m */; };
@@ -3236,6 +3237,8 @@
 		AD2244E1213D1FF900F2DC47 /* FSCommunityHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCommunityHeaderView.m; sourceTree = "<group>"; };
 		AD3B821B214A467800D72DE9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		AD3B821D214A468100D72DE9 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		AD412AE8215221C800A9C12B /* FSReportView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSReportView.h; sourceTree = "<group>"; };
+		AD412AE9215221C800A9C12B /* FSReportView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSReportView.m; sourceTree = "<group>"; };
 		AD4691DB2148BE34008CAF27 /* FSH5DemoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSH5DemoVC.h; sourceTree = "<group>"; };
 		AD4691DC2148BE34008CAF27 /* FSH5DemoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSH5DemoVC.m; sourceTree = "<group>"; };
 		AD47EFDB2137EBF0004A345F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -6468,6 +6471,8 @@
 				ADEF1F73214F9F7B00FFE0C3 /* FSMoreViewVC.h */,
 				ADEF1F74214F9F7B00FFE0C3 /* FSMoreViewVC.m */,
 				ADEF1F75214F9F7B00FFE0C3 /* FSMoreViewVC.xib */,
+				AD412AE8215221C800A9C12B /* FSReportView.h */,
+				AD412AE9215221C800A9C12B /* FSReportView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7670,6 +7675,7 @@
 				874269C6212E9B78003C52F6 /* BMFreshAutoContainerFooterView.m in Sources */,
 				874268FA212E7E36003C52F6 /* NSAttributedString+BMCategory.m in Sources */,
 				874268C4212E7E36003C52F6 /* BMLongTextItem.m in Sources */,
+				AD412AEA215221C800A9C12B /* FSReportView.m in Sources */,
 				8730B0862140FFA3004331A9 /* DTCustomColoredAccessory.m in Sources */,
 				DBD4CDFD213FB2D800857DB3 /* FSMainToolCell.m in Sources */,
 				87426A5F21313940003C52F6 /* FSMainVC.m in Sources */,

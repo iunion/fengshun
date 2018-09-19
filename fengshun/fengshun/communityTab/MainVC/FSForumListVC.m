@@ -10,6 +10,7 @@
 #import "FSForumListCell.h"
 #import "FSForumSectionHeaderView.h"
 #import "FSPushVCManager.h"
+#import "FSCommunitySecVC.h"
 
 #define SECTION_HEADER_HEIGHT 58  //section高度
 
@@ -123,6 +124,10 @@ FSForumListVC ()
     }
     FSCommunityForumModel *model = self.m_DataArray[indexPath.section];
     [cell showWithFSCommunityForumListModel:model.m_List[indexPath.row]];
+    BMWeakSelf;
+    cell.attentionChangeBlock = ^(BOOL attentionFlag) {
+        [weakSelf loadApiData];
+    };
     return cell;
 }
 
@@ -130,7 +135,11 @@ FSForumListVC ()
 {
     FSCommunityForumModel *model      = self.m_DataArray[indexPath.section];
     FSForumModel *         forumModel = model.m_List[indexPath.row];
-    [FSPushVCManager showCommunitySecVCPushVC:[self.view.superview bm_viewController] FourmId:forumModel.m_Id];
+    FSCommunitySecVC *vc = [FSPushVCManager showCommunitySecVCPushVC:[self.view.superview bm_viewController] FourmId:forumModel.m_Id];
+    BMWeakSelf;
+    vc.m_AttentionChangeBlock = ^{
+        [weakSelf loadApiData];
+    };
 }
 
 

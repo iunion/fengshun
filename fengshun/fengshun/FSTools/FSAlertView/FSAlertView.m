@@ -29,7 +29,7 @@
     {
         self.alertBgColor       = [UIColor whiteColor];
         self.alertMarkBgColor   = [UIColor colorWithRed:0 green:0 blue:0 alpha:.5];
-        self.alertMarkBgEffect  = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+        self.alertMarkBgEffect  = nil;
         self.alertTitleFont     = [UIFont systemFontOfSize:18.f];
         self.alertTitleColor    = [UIColor bm_colorWithHexString:@"333333"];
         self.alertMessageFont   = [UIFont systemFontOfSize:14.f];
@@ -40,6 +40,8 @@
         self.otherBtnTextColor  = [UIColor bm_colorWithHexString:@"577EEE"];
         self.btnFont            = [UIFont systemFontOfSize:16.f];
         self.alertGapLineColor  = [UIColor bm_colorWithHexString:@"D8D8D8"];
+        self.showAnimationType  = BMAlertViewShowAnimationSlideInFromTop;
+        self.hideAnimationType  = BMAlertViewHideAnimationSlideOutToBottom;
     }
     
     return self;

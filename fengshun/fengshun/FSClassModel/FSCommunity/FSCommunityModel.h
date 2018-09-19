@@ -69,7 +69,7 @@
 // 板块图片
 @property (nonatomic, strong) NSString *m_IconUrl;
 // modelList
-@property (nonatomic, strong) NSArray<FSForumModel *> *m_List;
+@property (nonatomic, strong) NSMutableArray<FSForumModel *> *m_List;
 
 + (NSArray *)plateModelWithArr:(NSArray *)dataArray;
 
@@ -82,6 +82,10 @@
 @property (nonatomic, strong) NSString *m_IconUrlFirst;
 // 二级图片
 @property (nonatomic, strong) NSString *m_IconUrlSecond;
+// iconUrl
+@property (nonatomic, strong) NSString *m_IconUrl;
+// 背景图
+@property (nonatomic, strong) NSString *m_BackUrl;
 // 一级版块名称
 @property (nonatomic, strong) NSString *m_ForumNameFirst;
 // 版块介绍
@@ -111,6 +115,44 @@
 @property (nonatomic , strong) NSString *m_PostListType;
 
 + (instancetype)topicTypeModelWithDic:(NSDictionary *)dic;
+
+@end
+
+
+#pragma mark - 帖子详情
+
+@interface FSTopicDetailModel:NSObject
+/*
+     collection = 1;
+     content = "14445522<br><img src=\"https://devftls.odrcloud.net/storm/file/download/b22fae972f6a4ac19403a270bb1183f3.jpeg\" alt=\"图片\" style=\"max-width:100%\"><br><br><img src=\"https://devftls.odrcloud.net/storm/file/download/737fa25085fd4bbaae8d53374598a0ba.jpg\" alt=\"图片\" style=\"max-width:100%\"><br>";
+     createTime = 1536821218000;
+     headPortraitUrl = "https://devres.odrcloud.net/169/5/4036b96e736d4ecb95268ac0c0a41b32.jpeg";
+     nickName = gloggs;
+     readCount = 367;
+     report = 0;
+     title = test;
+     userId = 1000002;
+ */
+
+@property (nonatomic, assign) BOOL m_IsCollection;
+
+@property (nonatomic, strong) NSString *m_Content;
+
+@property (nonatomic, assign) NSTimeInterval m_CreateTime;
+
+@property (nonatomic, strong) NSString *m_HeadPortraitUrl;
+
+@property (nonatomic, strong) NSString *m_NickName;
+
+@property (nonatomic, assign) BOOL m_IsReport;
+
+@property (nonatomic, assign) NSInteger m_ReadCount;
+
+@property (nonatomic, strong) NSString *m_Title;
+
+@property (nonatomic, strong) NSString *m_UserId;
+
++ (instancetype)topicDetailModelWithDic:(NSDictionary *)dic;
 
 @end
 

@@ -10,6 +10,8 @@
 
 @interface FSCommunitySecVC : FSSuperNetVC
 
+@property (nonatomic, copy)void (^m_AttentionChangeBlock)(void);
+
 // 板块id
 - (instancetype)initWithFourmId:(NSInteger )fourmId;
 

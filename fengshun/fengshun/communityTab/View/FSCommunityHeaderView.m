@@ -45,13 +45,13 @@
 - (void)updateHeaderViewWith:(FSForumModel *)aModel
 {
     //https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=738208534,2753903060&fm=27&gp=0.jpg
-    [_m_HeaderBGView sd_setImageWithURL:[aModel.m_IconUrlFirst bm_toURL] placeholderImage:[UIImage imageNamed:@""] options:SDWebImageLowPriority | SDWebImageRetryFailed];
-    [_m_UserHeaderImgView sd_setImageWithURL:[aModel.m_IconUrlSecond bm_toURL] placeholderImage:[UIImage imageNamed:@""] options:SDWebImageLowPriority | SDWebImageRetryFailed];
+    [_m_HeaderBGView sd_setImageWithURL:[aModel.m_BackUrl bm_toURL] placeholderImage:[UIImage imageNamed:@""] options:SDWebImageLowPriority | SDWebImageRetryFailed];
+    [_m_UserHeaderImgView sd_setImageWithURL:[aModel.m_IconUrl bm_toURL] placeholderImage:[UIImage imageNamed:@""] options:SDWebImageLowPriority | SDWebImageRetryFailed];
     _m_CategoryTitleLab.text        = aModel.m_ForumNameSecond;
     _m_TitleLab.text                = aModel.m_Description;
     _m_AttentionNumLab.text         = [NSString stringWithFormat:@"%ld 关注", aModel.m_AttentionCount];
     _m_PostNumLab.text              = [NSString stringWithFormat:@"%ld 帖子", aModel.m_PostsCount];
-    _m_AttentionBtn.selected        = !aModel.m_AttentionFlag;
+    _m_AttentionBtn.selected        = aModel.m_AttentionFlag;
     _m_AttentionBtn.backgroundColor = [UIColor bm_colorWithHexString:aModel.m_AttentionFlag ? @"F5F6F7" : @"4E7CF6"];
     [_m_AttentionBtn setTitleColor:[UIColor bm_colorWithHexString:aModel.m_AttentionFlag ? @"999999" : @"ffffff"] forState:UIControlStateNormal];
     [_m_AttentionBtn setTitle:aModel.m_AttentionFlag ? @"已关注" : @"+ 关注" forState:UIControlStateNormal];

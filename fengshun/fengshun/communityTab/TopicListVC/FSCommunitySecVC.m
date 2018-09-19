@@ -162,6 +162,9 @@ FSCommunitySecVC ()
 {
     FSForumFollowState state = self.m_ForumModel.m_AttentionFlag;
     [FSApiRequest updateFourmAttentionStateWithFourmId:self.m_ForumModel.m_Id followStatus:!state success:^(id  _Nullable responseObject) {
+        if (self.m_AttentionChangeBlock) {
+            self.m_AttentionChangeBlock();
+        }
         [self getHeaderInfoMsg];
     } failure:^(NSError * _Nullable error) {
         
