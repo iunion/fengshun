@@ -26,16 +26,44 @@
 
 @end
 
+@implementation FSSearchResultModel
++ (instancetype)modelWithParams:(NSDictionary *)params
+{
+    FSSearchResultModel *model = [[self alloc] init];
+    model.m_isMore             = [params bm_boolForKey:@"isMore"];
+    model.m_totalCount         = [params bm_intForKey:@"size"];
+    model.m_keywordsStr        = [params bm_stringForKey:@"keywords"];
+    model.m_filterSegments     = [FSSearchFilterSegment modelsWithDataArray:[params bm_arrayForKey:@"aggs"]];
+    return model;
+}
++ (void)setTextLabel:(UILabel *)label withText:(NSString *)text fontSize:(CGFloat)fontSize textColor:(UIColor *)textColor attributed:(BOOL)attributed
+{
+    if (![text bm_isNotEmpty]) {
+        label.attributedText = nil;
+        label.text           = nil;
+        return;
+    }
+    if (attributed) {
+        NSMutableAttributedString *aString = [NSMutableAttributedString bm_attributedStringReplaceHTMLString:text fontSize:fontSize contentColor:textColor.hexStringFromColor tagColor:UI_COLOR_R1.hexStringFromColor starTag:@"<em>" endTag:@"</em>"];
+        [aString replaceCharactersInRange:NSMakeRange(aString.length-1, 1) withString:@""];
+        label.attributedText = aString;
+        
+    }
+    else
+    {
+        label.textColor = textColor;
+        label.font = [UIFont systemFontOfSize:fontSize];
+        label.text  = text;
+    }
+}
+@end
+
 @implementation FSCaseSearchResultModel
 
 + (instancetype)modelWithParams:(NSDictionary *)params
 {
-    FSCaseSearchResultModel *model = [[self alloc] init];
-    model.m_isMore                 = [params bm_boolForKey:@"isMore"];
-    model.m_totalCount             = [params bm_intForKey:@"size"];
-    model.m_keywordsStr            = [params bm_stringForKey:@"keywords"];
+    FSCaseSearchResultModel *model = [super modelWithParams:params];
     model.m_resultDataArray        = [FSCaseReultModel modelsWithDataArray:[params bm_arrayForKey:@"data"]];
-    model.m_filterSegments         = [FSSearchFilterSegment modelsWithDataArray:[params bm_arrayForKey:@"aggs"]];
     return model;
 }
 @end

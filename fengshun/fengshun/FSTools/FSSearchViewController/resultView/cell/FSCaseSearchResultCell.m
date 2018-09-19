@@ -8,6 +8,16 @@
 
 #import "FSCaseSearchResultCell.h"
 
+@interface FSCaseSearchResultCell()
+@property (weak, nonatomic) IBOutlet UILabel *m_titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *m_detailLabel;
+@property (weak, nonatomic) IBOutlet UILabel *m_contentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *m_tabLabel;
+@property (weak, nonatomic) IBOutlet UIView *m_tagView;
+
+
+@end
+
 @implementation FSCaseSearchResultCell
 
 - (void)awakeFromNib {
@@ -21,10 +31,11 @@
 
     // Configure the view for the selected state
 }
-- (void)setAttributedCaseResultModel:(FSCaseReultModel *)model
+
+- (void)setCaseResultModel:(FSCaseReultModel *)model attributed:(BOOL)attributed
 {
     _m_caseResultModel = model;
-    _m_titleLabel.attributedText = [NSMutableAttributedString bm_attributedStringReplaceHTMLString:model.m_title fontSize:18 contentColor:UI_COLOR_B1.hexStringFromColor tagColor:UI_COLOR_R1.hexStringFromColor starTag:@"<em>" endTag:@"</em>"];
+    [FSSearchResultModel setTextLabel:_m_titleLabel withText:model.m_title fontSize:18 textColor:UI_COLOR_B1 attributed:attributed];
     NSString * detail = @"";
     if ([model.m_court bm_isNotEmpty]) {
         detail = [detail stringByAppendingString:[NSString stringWithFormat:@" | %@",model.m_court]];
@@ -35,8 +46,9 @@
     if ([model.m_date bm_isNotEmpty]) {
         detail =  [detail stringByAppendingString:[NSString stringWithFormat:@" | %@",model.m_date]];
     }
-    _m_detailLabel.attributedText = [NSMutableAttributedString bm_attributedStringReplaceHTMLString:detail fontSize:12 contentColor:UI_COLOR_B4.hexStringFromColor tagColor:UI_COLOR_R1.hexStringFromColor starTag:@"<em>" endTag:@"</em>"];
-    _m_contentLabel.attributedText = [NSMutableAttributedString bm_attributedStringReplaceHTMLString:model.m_simpleContent fontSize:14 contentColor:UI_COLOR_B1.hexStringFromColor tagColor:UI_COLOR_R1.hexStringFromColor starTag:@"<em>" endTag:@"</em>"];
+    [FSSearchResultModel setTextLabel:_m_detailLabel withText:detail fontSize:12 textColor:UI_COLOR_B4 attributed:attributed];
+    [FSSearchResultModel setTextLabel:_m_contentLabel withText:model.m_simpleContent fontSize:14 textColor:UI_COLOR_B1 attributed:attributed];
+    _m_contentLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     _m_tabLabel.text = model.m_caseTag;
 }
 

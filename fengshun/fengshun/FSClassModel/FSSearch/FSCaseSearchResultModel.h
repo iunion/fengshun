@@ -26,7 +26,8 @@
 @end
 
 
-@interface FSCaseSearchResultModel : FSSuperModel
+
+@interface FSSearchResultModel : FSSuperModel
 
 @property (nonatomic, assign) BOOL      m_isMore;
 @property (nonatomic, assign) NSInteger m_totalCount;
@@ -35,7 +36,13 @@
 @property (nonatomic, copy) NSString *m_keywordsStr;
 
 @property (nonatomic, strong) NSArray<FSSearchFilterSegment *> *m_filterSegments;
-@property (nonatomic, strong) NSArray<FSCaseReultModel *> *     m_resultDataArray;
+@property (nonatomic, strong) NSArray *m_resultDataArray;
+
++ (void)setTextLabel:(UILabel *)label withText:(NSString *)text fontSize:(CGFloat)fontSize textColor:(UIColor *)textColor attributed:(BOOL)attributed;
+@end
+
+@interface FSCaseSearchResultModel : FSSearchResultModel
+
 
 
 @end

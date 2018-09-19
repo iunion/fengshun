@@ -34,8 +34,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FSLawSearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSLawSearchResultCell"];
-    
-    cell.m_lawResultModel = _m_searchResultModel.m_resultDataArray[indexPath.row];
+    FSLawResultModel *model = _m_searchResultModel.m_resultDataArray[indexPath.row];
+    [cell setLawResultModel:model attributed:YES];
     return cell;
 }
 - (BOOL)canLoadApiData

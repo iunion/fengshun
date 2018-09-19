@@ -17,5 +17,5 @@
 
 
 @property(nonatomic, strong)FSLawResultModel *m_lawResultModel;
-
+- (void)setLawResultModel:(FSLawResultModel *)model attributed:(BOOL)attributed;
 @end

@@ -20,15 +20,10 @@
 
     // Configure the view for the selected state
 }
-- (void)setM_lawResultModel:(FSLawResultModel *)model
+- (void)setLawResultModel:(FSLawResultModel *)model attributed:(BOOL)attributed
 {
     _m_lawResultModel = model;
-    _m_titleLabel.text = model.m_title;
-    NSString *htmlStr = [model.m_simpleContent stringByReplacingOccurrencesOfString:@"<em>" withString:@"<font color=\"red\">"];
-    htmlStr = [htmlStr stringByReplacingOccurrencesOfString:@"</em>" withString:@"</font>"];
-    NSMutableAttributedString * attrStr = [[NSMutableAttributedString alloc] initWithData:[htmlStr dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
-    
-    _m_contentLabel.attributedText = attrStr;
+    [FSSearchResultModel setTextLabel:_m_titleLabel withText:model.m_title fontSize:18 textColor:UI_COLOR_B1 attributed:attributed];
     NSString * detail = @"";
     if ([model.m_Organ bm_isNotEmpty]) {
         detail = [detail stringByAppendingString:[NSString stringWithFormat:@" | %@\n",model.m_Organ]];
@@ -39,7 +34,9 @@
     if ([model.m_executeDate bm_isNotEmpty]) {
         detail =  [detail stringByAppendingString:[NSString stringWithFormat:@" | %@ 实施",model.m_executeDate]];
     }
-    _m_detailLabel.text = [detail bm_isNotEmpty]?detail:nil;
+    [FSSearchResultModel setTextLabel:_m_detailLabel withText:detail fontSize:12 textColor:UI_COLOR_B4 attributed:attributed];
+    [FSSearchResultModel setTextLabel:_m_contentLabel withText:model.m_simpleContent fontSize:14 textColor:UI_COLOR_B1 attributed:attributed];
+    _m_contentLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     _m_matchLabel.text  = [NSString stringWithFormat:@"命中法条 %ld",model.m_matchCount];
 }
 

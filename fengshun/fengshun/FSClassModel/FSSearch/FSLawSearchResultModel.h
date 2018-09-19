@@ -30,7 +30,7 @@
 
 @end
 
-@interface FSLawSearchResultModel : FSSuperModel
+@interface FSLawSearchResultModel : FSSearchResultModel
 
 @property (nonatomic, assign) BOOL      m_isMore;
 @property (nonatomic, assign) NSInteger m_totalCount;

@@ -8,6 +8,11 @@
 
 #import "FSMyCollectionVC.h"
 #import "FSTopicListCell.h"
+#import "FSCourseTableCell.h"
+#import "FSLawSearchResultCell.h"
+#import "FSCaseSearchResultCell.h"
+#import "FSTextListCell.h"
+
 
 @interface FSMyCollectionVC ()
 
@@ -35,7 +40,24 @@
     // Do any additional setup after loading the view.
     
     self.m_LoadDataType = FSAPILoadDataType_Page;
-    
+    self.m_TableView.estimatedRowHeight = 180;
+    switch (self.m_CollectionType)
+    {
+        case FSCollectionType_POSTS:
+            break;
+        case FSCollectionType_STATUTE:
+            [self.m_TableView registerNib:[UINib nibWithNibName:@"FSLawSearchResultCell" bundle:nil] forCellReuseIdentifier:@"FSLawSearchResultCell"];
+            break;
+        case FSCollectionType_CASE:
+            [self.m_TableView registerNib:[UINib nibWithNibName:@"FSCaseSearchResultCell" bundle:nil] forCellReuseIdentifier:@"FSCaseSearchResultCell"];
+            break;
+        case FSCollectionType_DOCUMENT:
+            [self.m_TableView registerNib:[UINib nibWithNibName:@"FSTextListCell" bundle:nil] forCellReuseIdentifier:@"FSTextListCell"];
+            break;
+        case FSCollectionType_COURSE:
+            [self.m_TableView registerNib:[UINib nibWithNibName:@"FSCourseTableCell" bundle:nil] forCellReuseIdentifier:@"FSCourseTableCell"];
+            break;
+    }
     [self loadApiData];
 }
 
@@ -52,13 +74,12 @@
 
 - (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)requestDic
 {
-    NSArray *topicDicArray = [requestDic bm_arrayForKey:@"list"];
-    if ([topicDicArray bm_isNotEmpty])
+    NSArray *dicArray = [requestDic bm_arrayForKey:@"list"];
+    if ([dicArray bm_isNotEmpty])
     {
-        NSMutableArray *topicArray = [[NSMutableArray alloc] initWithCapacity:0];
-        
-#warning CollectionType
-        for (NSDictionary *dic in topicDicArray)
+        NSMutableArray *dataArray = [[NSMutableArray alloc] initWithCapacity:0];
+    
+        for (NSDictionary *dic in dicArray)
         {
             switch (self.m_CollectionType)
             {
@@ -67,21 +88,49 @@
                     FSTopicModel *topic = [FSTopicModel topicWithServerDic:dic];
                     if ([topic bm_isNotEmpty])
                     {
-                        [topicArray addObject:topic];
+                        [dataArray addObject:topic];
                     }
                 }
                     break;
                     
                 case FSCollectionType_STATUTE:
+                {
+                    // 法规
+                    FSLawResultModel *model = [FSLawResultModel modelWithParams:dic];
+                    if ([model bm_isNotEmpty]) {
+                        [dataArray addObject:model];
+                    }
+                }
                     break;
                     
                 case FSCollectionType_CASE:
+                {
+                    // 案例
+                    FSCaseSearchResultModel *model = [FSCaseSearchResultModel modelWithParams:dic];
+                    if ([model bm_isNotEmpty]) {
+                        [dataArray addObject:model];
+                    }
+                }
                     break;
                     
                 case FSCollectionType_DOCUMENT:
+                {
+                    // 文书
+                    FSListTextModel *model = [FSListTextModel modelWithParams:dic];
+                    if ([model bm_isNotEmpty]) {
+                        [dataArray addObject:model];
+                    }
+                }
                     break;
                     
                 case FSCollectionType_COURSE:
+                {
+                    // 课程
+                    FSCourseModel *model = [FSCourseModel modelWithParams:dic];
+                    if ([model bm_isNotEmpty]) {
+                        [dataArray addObject:model];
+                    }
+                }
                     break;
                     
                 default:
@@ -89,13 +138,13 @@
             }
         }
         
-        if ([topicArray bm_isNotEmpty])
+        if ([dataArray bm_isNotEmpty])
         {
             if (self.m_IsLoadNew)
             {
                 [self.m_DataArray removeAllObjects];
             }
-            [self.m_DataArray addObjectsFromArray:topicArray];
+            [self.m_DataArray addObjectsFromArray:dataArray];
             [self.m_TableView reloadData];
         }
     }
@@ -112,24 +161,58 @@
     return 8.0f;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return [FSTopicListCell cellHeight];
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *taskCellIdentifier = @"FSCell";
-    FSTopicListCell *cell = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
-    
-    if (cell == nil)
+    switch (self.m_CollectionType)
     {
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"FSTopicListCell" owner:self options:nil] lastObject];
+        case FSCollectionType_POSTS:
+        {
+            static NSString *taskCellIdentifier = @"FSCell";
+            FSTopicListCell *cell = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
+            
+            if (cell == nil)
+            {
+                cell = [[[NSBundle mainBundle] loadNibNamed:@"FSTopicListCell" owner:self options:nil] lastObject];
+            }
+            
+            [cell drawCellWithModle:self.m_DataArray[indexPath.row]];
+            
+            return cell;
+        }
+        case FSCollectionType_STATUTE:
+        {
+            FSLawSearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSLawSearchResultCell"];
+            
+            FSLawResultModel *model = self.m_DataArray[indexPath.row];
+            [cell setLawResultModel:model attributed:NO];
+            return cell;
+        }
+        case FSCollectionType_CASE:
+        {
+            FSCaseSearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCaseSearchResultCell"];
+            
+            FSCaseReultModel *model = self.m_DataArray[indexPath.row];
+            [cell setCaseResultModel:model attributed:NO];
+            return cell;
+        }
+        case FSCollectionType_DOCUMENT:
+        {
+            FSTextListCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"FSTextListCell"];
+            FSListTextModel *model = self.m_DataArray[indexPath.row];
+            [cell setTextModel:model colors:NO];
+            return cell;
+        }
+        case FSCollectionType_COURSE:
+        {
+            FSCourseTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCourseTableCell"];
+            
+            cell.m_course = self.m_DataArray[indexPath.row];
+            return cell;
+        }
+
     }
     
-    [cell drawCellWithModle:self.m_DataArray[indexPath.row]];
-    
-    return cell;
 }
 
 
@@ -139,8 +222,26 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    FSTopicModel *model = self.m_DataArray[indexPath.row];
-    [FSPushVCManager showTopicDetail:[self.view.superview bm_viewController] topicId:model.m_Id];
+    
+    switch (self.m_CollectionType)
+    {
+#warning CollectionType
+        case FSCollectionType_POSTS:
+        {
+            FSTopicModel *model = self.m_DataArray[indexPath.row];
+            [FSPushVCManager showTopicDetail:[self.view.superview bm_viewController] topicId:model.m_Id];
+        }
+            break;
+        case FSCollectionType_STATUTE:
+            break;
+        case FSCollectionType_CASE:
+            break;
+        case FSCollectionType_DOCUMENT:
+            break;
+        case FSCollectionType_COURSE:
+            break;
+    }
+    
 }
 
 - (BMEmptyViewType)getNoDataEmptyViewType

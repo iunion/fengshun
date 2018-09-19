@@ -5351,6 +5351,7 @@
 		87426A5B21313915003C52F6 /* mainTab */ = {
 			isa = PBXGroup;
 			children = (
+				DBF7E17621521715002CEDA4 /* controller */,
 				45A3BF882148A9C20093278C /* VideoMediateTool */,
 				DBD4CE7B2141224500857DB3 /* images */,
 				DB8D160D2137CC7100EB16E8 /* view */,
@@ -5358,26 +5359,6 @@
 				87426A5C21313940003C52F6 /* FSMainVC.h */,
 				87426A5D21313940003C52F6 /* FSMainVC.m */,
 				87426A5E21313940003C52F6 /* FSMainVC.xib */,
-				DB2656C2214619A0002ED713 /* FSCaseSearchResultVC.h */,
-				DB2656C3214619A0002ED713 /* FSCaseSearchResultVC.m */,
-				DB2656CB214664FF002ED713 /* FSLawSearchResultVC.h */,
-				DB2656CC214664FF002ED713 /* FSLawSearchResultVC.m */,
-				DB7584A6214F5C630002A1FE /* FSOCRSearchResultVC.h */,
-				DB7584A7214F5C630002A1FE /* FSOCRSearchResultVC.m */,
-				DB7584A8214F5C630002A1FE /* FSOCRSearchResultVC.xib */,
-				DB2656E121467396002ED713 /* FSTextSearchResultVC.h */,
-				DB2656E221467396002ED713 /* FSTextSearchResultVC.m */,
-				DB4C7E432147C13A008CC6BB /* FSTextSplitVC.h */,
-				DB4C7E442147C13A008CC6BB /* FSTextSplitVC.m */,
-				DB48743A214A5CCD00AB0805 /* FSFileScanVC.h */,
-				DB48743B214A5CCD00AB0805 /* FSFileScanVC.m */,
-				DB48743C214A5CCD00AB0805 /* FSFileScanVC.xib */,
-				DB487458214BB03400AB0805 /* FSFileScanImagePreviewVC.h */,
-				DB487459214BB03400AB0805 /* FSFileScanImagePreviewVC.m */,
-				DB48745A214BB03400AB0805 /* FSFileScanImagePreviewVC.xib */,
-				DB7584A0214F4D200002A1FE /* FSOCRResultVC.h */,
-				DB7584A1214F4D200002A1FE /* FSOCRResultVC.m */,
-				DB7584A2214F4D200002A1FE /* FSOCRResultVC.xib */,
 			);
 			path = mainTab;
 			sourceTree = "<group>";
@@ -6860,6 +6841,33 @@
 				DB48744C214B887F00AB0805 /* scanfile_camera@3x.png */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		DBF7E17621521715002CEDA4 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				DB2656C2214619A0002ED713 /* FSCaseSearchResultVC.h */,
+				DB2656C3214619A0002ED713 /* FSCaseSearchResultVC.m */,
+				DB2656CB214664FF002ED713 /* FSLawSearchResultVC.h */,
+				DB2656CC214664FF002ED713 /* FSLawSearchResultVC.m */,
+				DB7584A6214F5C630002A1FE /* FSOCRSearchResultVC.h */,
+				DB7584A7214F5C630002A1FE /* FSOCRSearchResultVC.m */,
+				DB7584A8214F5C630002A1FE /* FSOCRSearchResultVC.xib */,
+				DB2656E121467396002ED713 /* FSTextSearchResultVC.h */,
+				DB2656E221467396002ED713 /* FSTextSearchResultVC.m */,
+				DB4C7E432147C13A008CC6BB /* FSTextSplitVC.h */,
+				DB4C7E442147C13A008CC6BB /* FSTextSplitVC.m */,
+				DB48743A214A5CCD00AB0805 /* FSFileScanVC.h */,
+				DB48743B214A5CCD00AB0805 /* FSFileScanVC.m */,
+				DB48743C214A5CCD00AB0805 /* FSFileScanVC.xib */,
+				DB487458214BB03400AB0805 /* FSFileScanImagePreviewVC.h */,
+				DB487459214BB03400AB0805 /* FSFileScanImagePreviewVC.m */,
+				DB48745A214BB03400AB0805 /* FSFileScanImagePreviewVC.xib */,
+				DB7584A0214F4D200002A1FE /* FSOCRResultVC.h */,
+				DB7584A1214F4D200002A1FE /* FSOCRResultVC.m */,
+				DB7584A2214F4D200002A1FE /* FSOCRResultVC.xib */,
+			);
+			path = controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
