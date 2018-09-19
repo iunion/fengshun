@@ -14,6 +14,7 @@
 #import "UIButton+BMContentRect.h"
 #import "PublicTextChatViewController.h"
 #import "FSVideoInviteLitigantVC.h"
+#import "FSVideoStartTool.h"
 
 @interface VideoCallController ()
 <SocketHelperDelegate,
@@ -131,7 +132,9 @@ VideoCallVideoViewDelegate>
 
 #pragma mark - VideoCallTopBarDelegate
 - (void)videoCallTopBarDidClick:(VideoCallTopBar *)topBar index:(NSInteger)index {
-    if (index == 1) { /// 开始录制事件
+    if (index == 0) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else if (index == 1) { /// 开始录制事件
         // 获取按钮当前状态
         BOOL status = [topBar getBtnSelectedStatusWithIndex:1];
         [[SocketHelper shareHelper] sendRecordEventWithIsStartRecord:!status];
@@ -170,10 +173,36 @@ VideoCallVideoViewDelegate>
             [self.navigationController pushViewController:vc animated:YES];
         } else {
             // 结束视频
-            [self dismissViewControllerAnimated:YES completion:nil];
+            UIAlertController *vc = [UIAlertController alertControllerWithTitle:nil message:@"确定要现在结束视频吗？结束后，所有人离开视频不可再次进入" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"结束" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                [self sendEndMeetingRequest];
+            }];
+            [vc addAction:action];
+            
+            UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            }];
+            [vc addAction:action2];
+            
+            [self presentViewController:vc animated:YES completion:nil];
         }
 }
 
+- (void)sendEndMeetingRequest
+{
+    BMWeakSelf
+    [FSVideoStartTool endMeetingWithMeetingId:self.meetingId progressHUD:self.m_ProgressHUD completionHandler:^(NSURLResponse *response, id  _Nullable responseObject, NSError * _Nullable error) {
+        NSDictionary *resDic = responseObject;
+        NSInteger statusCode = [resDic bm_intForKey:@"code"];
+        if (statusCode == 1000)
+        {
+            if (weakSelf.endMeetingBlock) {
+                weakSelf.endMeetingBlock();
+            }
+            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+            return;
+        }
+    }];
+}
 
 #pragma mark - SingleTextChatViewControllerDelegate
 #pragma mark - 私聊界面退出事件
