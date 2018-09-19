@@ -93,7 +93,7 @@
 
 - (void)bringSomeViewToFront
 {
-    //[self.m_TableView bringSomeViewToFront];
+    [self.m_TableView bringSomeViewToFront];
 
     [super bringSomeViewToFront];    
 }
@@ -447,6 +447,11 @@
         {
             dataArray = [responseDic bm_arrayForKey:@"data"];
             succeed = [self succeedLoadedRequestWithArray:dataArray];
+            if (!succeed)
+            {
+                NSString *dataStr = [responseDic bm_stringTrimForKey:@"data"];
+                succeed = [self succeedLoadedRequestWithString:dataStr];
+            }
         }
         
         if (succeed)
@@ -521,7 +526,7 @@
         [self failLoadedResponse:response responseDic:responseDic withErrorCode:statusCode];
         
         NSString *message = [responseDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
-        if ([self checkRequestStatus:statusCode message:message responseDic:responseDic])
+        if ([self checkRequestStatus:statusCode message:message responseDic:responseDic logOutQuit:NO showLogin:YES])
         {
             [self.m_ProgressHUD hideAnimated:YES];
         }
@@ -544,7 +549,7 @@
     }
 }
 
-- (BOOL)checkRequestStatus:(NSInteger)statusCode message:(NSString *)message responseDic:(NSDictionary *)responseDic
+- (BOOL)checkRequestStatus:(NSInteger)statusCode message:(NSString *)message responseDic:(NSDictionary *)responseDic logOutQuit:(BOOL)quit showLogin:(BOOL)show
 {
     switch (statusCode)
     {
@@ -556,7 +561,7 @@
             break;
     }
     
-    return [super checkRequestStatus:statusCode message:message responseDic:responseDic];
+    return [super checkRequestStatus:statusCode message:message responseDic:responseDic logOutQuit:quit showLogin:show];
 }
 
 // API请求失败的代理方法，一般不需要重写
@@ -580,6 +585,11 @@
 - (BOOL)succeedLoadedRequestWithArray:(NSArray *)requestArray
 {
     return [super succeedLoadedRequestWithArray:requestArray];
+}
+
+- (BOOL)succeedLoadedRequestWithString:(NSString *)requestStr
+{
+    return [super succeedLoadedRequestWithString:requestStr];
 }
 
 // 全部失败情况适用

@@ -43,6 +43,7 @@
 // 处理成功的数据使用succeedLoadedRequestWithDic:
 - (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)requestDic;
 - (BOOL)succeedLoadedRequestWithArray:(NSArray *)requestArray;
+- (BOOL)succeedLoadedRequestWithString:(NSString *)requestStr;
 
 // 全部失败情况适用
 - (void)failLoadedResponse:(NSURLResponse *)response responseDic:(NSDictionary *)responseDic withErrorCode:(NSInteger)errorCode;

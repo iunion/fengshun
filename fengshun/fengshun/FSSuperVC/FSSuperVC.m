@@ -7,6 +7,7 @@
 //
 
 #import "FSSuperVC.h"
+#import "AppDelegate.h"
 #import "FSLoginVC.h"
 #import "FSAuthenticationVC.h"
 
@@ -95,13 +96,24 @@
 #pragma mark -
 #pragma mark checkRequestStatus
 
-- (BOOL)checkRequestStatus:(NSInteger)statusCode message:(NSString *)message responseDic:(NSDictionary *)responseDic
+- (BOOL)checkRequestStatus:(NSInteger)statusCode message:(NSString *)message responseDic:(NSDictionary *)responseDic logOutQuit:(BOOL)quit showLogin:(BOOL)show
 {
+    if (!quit && !show)
+    {
+        show = YES;
+    }
+    
     switch (statusCode)
     {
-        case 1000:
+        // 未登录
+        case 1001:
+            [GetAppDelegate logOutQuit:YES showLogin:show];
             break;
-            
+
+        case 1003:
+            [GetAppDelegate logOutQuit:NO showLogin:show];
+            break;
+
         default:
             break;
     }

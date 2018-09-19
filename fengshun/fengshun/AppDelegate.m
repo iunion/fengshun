@@ -24,6 +24,10 @@
 #import "FSGlobleDataModle.h"
 #import "FSCustomInfoVC.h"
 
+#if USE_TEST_HELP
+#import "FSTestHelper.h"
+#endif
+
 #ifdef FSVIDEO_ON
 #import <ILiveSDK/ILiveSDK.h>
 #import <ILiveSDK/ILiveCoreHeader.h>
@@ -70,14 +74,16 @@
 
 #ifdef FSVIDEO_ON
 //#pragma mark - 配置iLiveSDK
-- (void)initILiveSDK {
+- (void)initILiveSDK
+{
     // 初始化SDK
-    [[ILiveSDK getInstance] initSdk:KILiveSDKAPPID accountType:KILiveAccountType];
+    [[ILiveSDK getInstance] initSdk:FS_ILiveSDKAPPID accountType:FS_ILiveAccountType];
     [[ILiveSDK getInstance] setChannelMode:E_ChannelIMSDK withHost:@""];
-    //    //获取版本号
-    NSLog(@"ILiveSDK version:%@",[[ILiveSDK getInstance] getVersion]);
-    NSLog(@"AVSDK version:%@",[QAVContext getVersion]);
-    NSLog(@"IMSDK version:%@",[[TIMManager sharedInstance] GetVersion]);
+    
+    // 获取版本号
+    NSLog(@"ILiveSDK version:%@", [[ILiveSDK getInstance] getVersion]);
+    NSLog(@"AVSDK version:%@", [QAVContext getVersion]);
+    NSLog(@"IMSDK version:%@", [[TIMManager sharedInstance] GetVersion]);
 }
 #endif
 
@@ -152,7 +158,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+#if USE_TEST_HELP
+    self.window = [[iConsoleWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [FSTestHelper sharedInstance];
+#else
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+#endif
     // Override point for customization after application launch.
     // TODO: Substitute UIViewController with your own subclass.
 
@@ -173,11 +184,22 @@
     self.window.rootViewController = tabBarController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    
+#if USE_TEST_HELP
+    [self showFPS];
+#endif
+
     [self getUserAbilityInfoWithVc:nil];
     
     return YES;
 }
+
+#if USE_TEST_HELP
+- (void)showFPS
+{
+    iConsoleWindow *window = (iConsoleWindow *)self.window;
+    [window.fpsLabel bm_bringToFront];
+}
+#endif
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
 {
@@ -341,8 +363,13 @@
     [self logOut];
 }
 
-// 退出登录
 - (void)logOut
+{
+    [self logOutQuit:NO showLogin:YES];
+}
+
+// 退出登录
+- (void)logOutQuit:(BOOL)quit showLogin:(BOOL)show
 {
     // 重置所有倒计时
     [[BMVerifiTimeManager manager] stopAllType];
@@ -350,16 +377,27 @@
     [FSUserInfoModle logOut];
     
     UIViewController *vc = [self.m_TabBarController getCurrentRootViewController];
-    if ([vc isKindOfClass:[FSUserMainVC class]])
+    
+    if (quit)
     {
-        if ([self.m_TabBarController getCurrentNavigationController].viewControllers.count != 1)
+        if ([vc isKindOfClass:[FSUserMainVC class]])
         {
-            [[self.m_TabBarController getCurrentNavigationController] popToRootViewControllerAnimated:NO];
+            if ([self.m_TabBarController getCurrentNavigationController].viewControllers.count != 1)
+            {
+                [[self.m_TabBarController getCurrentNavigationController] popToRootViewControllerAnimated:NO];
+            }
+        }
+        else
+        {
+            [self.m_TabBarController selectedTabWithIndex:BMTabIndex_User];
+            vc = [self.m_TabBarController getCurrentRootViewController];
         }
     }
-    else
+    
+    if (show)
     {
-        [self.m_TabBarController selectedTabWithIndex:BMTabIndex_User];
+        FSSuperVC *superVC = (FSSuperVC *)vc;
+        [superVC showLogin];
     }
 }
 
@@ -393,7 +431,7 @@
         [self.m_LoginOutTask resume];
     }
     
-    [self logOut];
+    [self logOutQuit:YES showLogin:NO];
 }
 
 - (void)loginOutRequestFinished:(NSURLResponse *)response responseDic:(NSDictionary *)resDic
