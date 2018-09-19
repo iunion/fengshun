@@ -93,7 +93,7 @@
 
 - (void)bringSomeViewToFront
 {
-    //[self.m_TableView bringSomeViewToFront];
+    [self.m_TableView bringSomeViewToFront];
 
     [super bringSomeViewToFront];    
 }

@@ -32,58 +32,18 @@
     return [FSApiRequest getMeetingVideoList:self.meetingId];
 }
 
-- (void)loadDataResponseFinished:(NSURLResponse *)response responseDic:(NSDictionary *)responseDic
+- (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)requestDic
 {
-    [self.m_ProgressHUD hideAnimated:NO];
+    NSArray *array = requestDic[@"data"];
+    for (NSDictionary *dic in array) {
+        FSVideoRecordModel *model = [FSVideoRecordModel modelWithParams:dic];
+        [self.m_DataArray addObject:model];
+    }
+    [self.m_TableView reloadData];
 
-    if (![responseDic bm_isNotEmptyDictionary])
-    {
-        [self failLoadedResponse:response responseDic:responseDic withErrorCode:FSAPI_JSON_ERRORCODE];
-        
-        if (self.m_ShowResultHUD)
-        {
-            [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-        }
-        
-        return;
-    }
-    
-#if DEBUG
-    NSString *responseStr = [[NSString stringWithFormat:@"%@", responseDic] bm_convertUnicode];
-    BMLog(@"API返回数据是:+++++%@", responseStr);
-#endif
-    
-    NSInteger statusCode = [responseDic bm_intForKey:@"code"];
-    if (statusCode == 1000)
-    {
-        NSArray *array = responseDic[@"data"];
-        for (NSDictionary *dic in array) {
-            FSVideoRecordModel *model = [FSVideoRecordModel modelWithParams:dic];
-            [self.m_DataArray addObject:model];
-        }
-        [self.m_TableView reloadData];
-        
-        return;
-    }
-    else
-    {
-        [self failLoadedResponse:response responseDic:responseDic withErrorCode:statusCode];
-        
-        NSString *message = [responseDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
-        if ([self checkRequestStatus:statusCode message:message responseDic:responseDic])
-        {
-            [self.m_ProgressHUD hideAnimated:YES];
-        }
-        else if (self.m_ShowResultHUD)
-        {
-#if DEBUG
-            [self.m_ProgressHUD showAnimated:YES withDetailText:[NSString stringWithFormat:@"%@:%@", @(statusCode), message] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-#else
-            [self.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-#endif
-        }
-    }
+    return YES;
 }
+
 
 #pragma mark -
 #pragma mark Table Data Source Methods

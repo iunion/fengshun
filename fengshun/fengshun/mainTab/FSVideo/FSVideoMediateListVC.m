@@ -169,7 +169,7 @@
     
     [self.m_TableView reloadData];
     
-    return [super succeedLoadedRequestWithDic:data];
+    return YES;
 }
 
 #pragma mark -

@@ -20,6 +20,7 @@
 @interface FSVideoMediateDetailVC () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) FSMeetingDetailModel *m_DetailModel;
 
+@property (nonatomic, strong) UIButton *bottomBtn;
 @property (nonatomic, strong) UILabel *statusLabel;
 @property (nonatomic, strong) FSEditVideoMediateImageView *personView;
 
@@ -31,15 +32,13 @@
 - (void)viewDidLoad {
     _m_FreshViewType = BMFreshViewType_NONE;
     [super viewDidLoad];
-
+    self.m_showEmptyView = NO;
     [self bm_setNavigationWithTitle:@"视频详情" barTintColor:[UIColor whiteColor] leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
     
-    [self buildUI];
-    
-    [self sendMeetingDetailRequest];
+    [self loadApiData];
 }
 
--(void)buildUI
+-(void)buildBottom
 {
     UIButton *bottom = [UIButton bm_buttonWithFrame:CGRectMake(0, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - 48, self.view.bm_width, 48)
                                               title:@"进入视频"];
@@ -48,55 +47,29 @@
     [bottom setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [bottom addTarget:self action:@selector(bottomButtonClickAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bottom];
+    self.bottomBtn = bottom;
     
     self.m_TableView.frame = CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - 48);
 }
 
-- (void)sendMeetingDetailRequest
+- (NSMutableURLRequest *)setLoadDataRequest
 {
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSMutableURLRequest *request = [FSApiRequest getMeetingDetailWithId:self.m_MeetingId];
-    if (request)
-    {
-        [self.m_ProgressHUD showAnimated:YES showBackground:NO];
-        NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-            if (error)
-            {
-                BMLog(@"Error: %@", error);
-                [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-            }
-            else
-            {
-#if DEBUG
-                NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
-                BMLog(@"%@ %@", response, responseStr);
-#endif
+    return [FSApiRequest getMeetingDetailWithId:self.m_MeetingId];
+}
 
-                NSDictionary *resDic = responseObject;
-                if (![resDic bm_isNotEmptyDictionary])
-                {
-                    [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-                    return;
-                }
-                
-                NSInteger statusCode = [resDic bm_intForKey:@"code"];
-                if (statusCode == 1000)
-                {
-                    [self.m_ProgressHUD hideAnimated:NO];
-                    NSDictionary *dataDic = [resDic bm_dictionaryForKey:@"data"];
-                    if ([dataDic bm_isNotEmptyDictionary])
-                    {
-                        self.m_DetailModel = [FSMeetingDetailModel modelWithParams:dataDic];
-                        return;
-                    }
-                }
-                
-                NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
-                [self.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-            }
-        }];
-        [task resume];
+- (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)data
+{
+    if ([data bm_isNotEmptyDictionary])
+    {
+        if (self.bottomBtn == nil) {
+            [self buildBottom];
+        }
+        self.m_DetailModel = [FSMeetingDetailModel modelWithParams:data];
+        
+        return YES;
     }
+    
+    return NO;
 }
 
 -(void)setM_DetailModel:(FSMeetingDetailModel *)model
@@ -247,6 +220,8 @@
     contenView.bm_height = lastView.bm_bottom + 15;
     [self.m_TableView addSubview:contenView];
     self.m_TableView.contentSize = CGSizeMake(UI_SCREEN_WIDTH, contenView.bm_height);
+    
+    [self bringSomeViewToFront];
 }
 
 - (UIButton *)buttonWithFrame:(CGRect)frame Title:(NSString *)title image:(NSString *)imageName
