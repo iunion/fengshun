@@ -167,7 +167,7 @@
             break;
         case BMEmptyViewType_Topic:
         {
-            NSString *text = @"您还没有发不过帖子...";
+            NSString *text = @"您还没有发布过帖子...";
             atrText = [[NSMutableAttributedString alloc] initWithString:text];
         }
             break;
