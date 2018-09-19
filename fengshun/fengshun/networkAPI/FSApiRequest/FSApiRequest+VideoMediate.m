@@ -21,6 +21,7 @@
     [parameters bm_setInteger:pageSize forKey:@"pageSize"];
     [parameters bm_setString:meetingTypeEnums forKey:@"meetingTypeEnums"];
     [parameters bm_setString:meetingStatusEnums forKey:@"meetingStatusEnums"];
+    NSLog(@"meeting/getMeetingList parameters = \n%@",parameters);
     return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
 }
 
@@ -50,7 +51,7 @@
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters bm_setInteger:meetingId forKey:@"id"];
     [parameters setObject:list forKey:@"meetingPersonnelRequestDTO"];
-
+    NSLog(@"meeting/inviteListPersonnel parameters = \n%@",parameters);
     return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
 }
 
@@ -90,7 +91,7 @@
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:name forKey:@"inviteName"];
     [parameters setObject:inviteCode forKey:@"inviteCode"];
-
+    NSLog(@"meeting/inviteGetToken parameters = \n%@",parameters);
     return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
 }
 
