@@ -363,8 +363,13 @@
     [self logOut];
 }
 
-// 退出登录
 - (void)logOut
+{
+    [self logOutAndShowLogin:YES];
+}
+
+// 退出登录
+- (void)logOutAndShowLogin:(BOOL)show
 {
     // 重置所有倒计时
     [[BMVerifiTimeManager manager] stopAllType];
@@ -382,6 +387,13 @@
     else
     {
         [self.m_TabBarController selectedTabWithIndex:BMTabIndex_User];
+        vc = [self.m_TabBarController getCurrentRootViewController];
+    }
+    
+    if (show)
+    {
+        FSSuperVC *superVC = (FSSuperVC *)vc;
+        [superVC showLogin];
     }
 }
 
@@ -415,7 +427,7 @@
         [self.m_LoginOutTask resume];
     }
     
-    [self logOut];
+    [self logOutAndShowLogin:NO];
 }
 
 - (void)loginOutRequestFinished:(NSURLResponse *)response responseDic:(NSDictionary *)resDic
