@@ -7,6 +7,7 @@
 //
 
 #import "FSSuperVC.h"
+#import "AppDelegate.h"
 #import "FSLoginVC.h"
 #import "FSAuthenticationVC.h"
 
@@ -99,7 +100,8 @@
 {
     switch (statusCode)
     {
-        case 1000:
+        case 1001:
+            [GetAppDelegate logOut];
             break;
             
         default:
