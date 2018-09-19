@@ -11,6 +11,6 @@
 
 @interface FSCaseSearchResultCell : UITableViewCell
 
-@property (nonatomic, strong) FSCaseReultModel *m_caseResultModel;
-- (void)setCaseResultModel:(FSCaseReultModel *)model attributed:(BOOL)attributed;
+@property (nonatomic, strong) FSCaseResultModel *m_caseResultModel;
+- (void)setCaseResultModel:(FSCaseResultModel *)model attributed:(BOOL)attributed;
 @end
