@@ -33,7 +33,7 @@ typedef void(^FSEditVideoViewTextChangeHandler)(FSEditVideoMediateTextView *edit
 // 右侧输入单行文本 51
 @interface FSEditVideoMediateTextView : FSEditVideoMediateTitleView
 //@property (nonatomic, strong) ORDTextView *desLabel;
-@property (nonatomic, strong) UITextField *desLabel;
+@property (nonatomic, strong) UILabel *desLabel;
 @property (nonatomic, copy) FSEditVideoViewTextChangeHandler textChangeHandle;
 @end
 

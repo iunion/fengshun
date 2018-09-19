@@ -25,11 +25,15 @@
 
 + (NSArray *)modelListWithData:(NSArray *)data
 {
-    NSMutableArray *temp = [NSMutableArray array];
-    for (NSDictionary *dic in data) {
-        [temp addObject:[self chatTextModelWithDict:dic]];
+    if ([data bm_isNotEmpty]) {
+        NSMutableArray *temp = [NSMutableArray array];
+        for (NSDictionary *dic in data) {
+            [temp addObject:[self chatTextModelWithDict:dic]];
+        }
+        return temp;
     }
-    return temp;
+    
+    return nil;
 }
 
 + (ChatTextModel *)chatTextModelWithDict:(NSDictionary *)dic
@@ -37,7 +41,6 @@
     ChatTextModel *model = [ChatTextModel modelWithParams:dic];
     model.createTime = model.createTime*0.001;
     model.isMe = [model.sender.memberId isEqualToString:[[[FSUserInfoModle userInfo] m_UserBaseInfo] m_PhoneNum]];
-
     return model;
 }
 

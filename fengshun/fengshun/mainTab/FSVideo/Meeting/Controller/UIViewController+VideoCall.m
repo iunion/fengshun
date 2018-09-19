@@ -22,7 +22,7 @@
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor whiteColor];
     label.backgroundColor = UI_COLOR_BL1;
-    [self.view addSubview:label];
+    [self.view insertSubview:label belowSubview:self.topBar];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.offset(35);
         make.left.right.equalTo(self.view);

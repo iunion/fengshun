@@ -59,11 +59,11 @@
 }
 
 - (void)freshDataWithTableView:(FSTableView *)tableView {
-    if (self.memberModel) {
-        [[SocketHelper shareHelper] sentListMessageEvent:self.memberModel.memberId pageIndex:self.pageIndex pageSize:self.pageSize];
-    } else {
-        [[SocketHelper shareHelper] sentListMessageEvent:nil pageIndex:self.pageIndex pageSize:self.pageSize];
-    }
+//    if (self.memberModel) {
+//        [[SocketHelper shareHelper] sentListMessageEvent:self.memberModel.memberId pageIndex:self.pageIndex pageSize:self.pageSize];
+//    } else {
+//        [[SocketHelper shareHelper] sentListMessageEvent:nil pageIndex:self.pageIndex pageSize:self.pageSize];
+//    }
 }
 
 - (void)receiveMessageListNoti:(NSNotification *)noti {

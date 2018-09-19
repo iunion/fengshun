@@ -652,7 +652,6 @@
 		87D20B2C213FB7F8001EDD60 /* default_avatariconlarge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D20B2B213FB7F7001EDD60 /* default_avatariconlarge@2x.png */; };
 		87E7C27621509AB000F7AB14 /* SingleTextChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF84A214D1B970005AD43 /* SingleTextChatViewController.m */; };
 		87E7C27721509AB000F7AB14 /* default.css in Sources */ = {isa = PBXBuildFile; fileRef = 8730AF532140FFA2004331A9 /* default.css */; };
-		87E7C27821509AB000F7AB14 /* FSVideoInviteLitigantCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DC02C1214A6C4900FCE042 /* FSVideoInviteLitigantCell.m */; };
 		87E7C27921509AB000F7AB14 /* FLEXIvarEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D20A31213920E2001EDD60 /* FLEXIvarEditorViewController.m */; };
 		87E7C27A21509AB000F7AB14 /* DTCoreTextLayoutLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730AF0D2140FFA1004331A9 /* DTCoreTextLayoutLine.m */; };
 		87E7C27B21509AB000F7AB14 /* ZFVolumeBrightnessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF7CC214D1A580005AD43 /* ZFVolumeBrightnessView.m */; };
@@ -1916,8 +1915,6 @@
 		45DC02B3214A61EE00FCE042 /* video_not_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_not_selected@2x.png"; sourceTree = "<group>"; };
 		45DC02B4214A61EE00FCE042 /* video_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_selected@3x.png"; sourceTree = "<group>"; };
 		45DC02B5214A61EF00FCE042 /* video_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_selected@2x.png"; sourceTree = "<group>"; };
-		45DC02C0214A6C4900FCE042 /* FSVideoInviteLitigantCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVideoInviteLitigantCell.h; sourceTree = "<group>"; };
-		45DC02C1214A6C4900FCE042 /* FSVideoInviteLitigantCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoInviteLitigantCell.m; sourceTree = "<group>"; };
 		45DC02C3214A734700FCE042 /* video_invite@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_invite@3x.png"; sourceTree = "<group>"; };
 		45DC02C4214A734700FCE042 /* video_invite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_invite@2x.png"; sourceTree = "<group>"; };
 		45F3FD0B214B59B6007712EE /* video_delete_btn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_delete_btn@3x.png"; sourceTree = "<group>"; };
@@ -3634,7 +3631,7 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		45A3BF882148A9C20093278C /* VideoMediateTool */ = {
+		45A3BF882148A9C20093278C /* FSVideo */ = {
 			isa = PBXGroup;
 			children = (
 				45FEF770214D194E0005AD43 /* Meeting */,
@@ -3657,7 +3654,7 @@
 				4518E60E214F459500A3AF2A /* FSMakeVideoMediateVC.h */,
 				4518E60F214F459500A3AF2A /* FSMakeVideoMediateVC.m */,
 			);
-			path = VideoMediateTool;
+			path = FSVideo;
 			sourceTree = "<group>";
 		};
 		45DC02AF214A619700FCE042 /* image */ = {
@@ -3694,8 +3691,6 @@
 				45613922214901E5007DF6A1 /* FSVideoMediateListCell.m */,
 				45DC02AC214A53FD00FCE042 /* FSVideoMediatePersonalCell.h */,
 				45DC02AD214A53FD00FCE042 /* FSVideoMediatePersonalCell.m */,
-				45DC02C0214A6C4900FCE042 /* FSVideoInviteLitigantCell.h */,
-				45DC02C1214A6C4900FCE042 /* FSVideoInviteLitigantCell.m */,
 				45869EAC214CAA2300FB2024 /* FSVideoHistoryCell.h */,
 				45869EAD214CAA2300FB2024 /* FSVideoHistoryCell.m */,
 			);
@@ -5375,7 +5370,7 @@
 		87426A5B21313915003C52F6 /* mainTab */ = {
 			isa = PBXGroup;
 			children = (
-				45A3BF882148A9C20093278C /* VideoMediateTool */,
+				45A3BF882148A9C20093278C /* FSVideo */,
 				DBD4CE7B2141224500857DB3 /* images */,
 				DB8D160D2137CC7100EB16E8 /* view */,
 				DB4874252148DFB400AB0805 /* cell */,
@@ -8227,7 +8222,6 @@
 			files = (
 				87E7C27621509AB000F7AB14 /* SingleTextChatViewController.m in Sources */,
 				87E7C27721509AB000F7AB14 /* default.css in Sources */,
-				87E7C27821509AB000F7AB14 /* FSVideoInviteLitigantCell.m in Sources */,
 				87E7C27921509AB000F7AB14 /* FLEXIvarEditorViewController.m in Sources */,
 				87E7C27A21509AB000F7AB14 /* DTCoreTextLayoutLine.m in Sources */,
 				87E7C27B21509AB000F7AB14 /* ZFVolumeBrightnessView.m in Sources */,
@@ -9190,7 +9184,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/fengshun/mainTab/VideoMediateTool/Meeting/Tool/ASRSDK",
+					"$(PROJECT_DIR)/fengshun/mainTab/FSVideo/Meeting/Tool/ASRSDK",
 					"\"$(SRCROOT)/../thirdParty/UMShare/SocialLibraries/Sina/\"",
 					"\"$(SRCROOT)/../thirdParty/UMShare/SocialLibraries/WeChat/\"",
 					"\"$(SRCROOT)/../thirdParty/UMShare/SocialLibraries/QQ/\"",
@@ -9239,7 +9233,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/fengshun/mainTab/VideoMediateTool/Meeting/Tool/ASRSDK",
+					"$(PROJECT_DIR)/fengshun/mainTab/FSVideo/Meeting/Tool/ASRSDK",
 					"\"$(SRCROOT)/../thirdParty/UMShare/SocialLibraries/Sina/\"",
 					"\"$(SRCROOT)/../thirdParty/UMShare/SocialLibraries/WeChat/\"",
 					"\"$(SRCROOT)/../thirdParty/UMShare/SocialLibraries/QQ/\"",

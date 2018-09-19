@@ -9,13 +9,13 @@
 #import "SingleTextChatViewController.h"
 #import "ChatTextView.h"
 #import "SocketHelper.h"
-#import "TextChatHistoryViewController.h"
 
 @interface SingleTextChatViewController () <ChatTextImportViewDelegate>
 @property (nonatomic, strong) ChatTextImportView *improtView;
 @property (nonatomic, strong) MASConstraint *importViewBottomConstaint;
 @property (nonatomic, strong) VideoCallMemberModel *memberModel;
 @property (nonatomic, strong) ChatTextViewModel *viewModel;
+@property (nonatomic, strong) NSString *m_StartId;
 @end
 
 @implementation SingleTextChatViewController
@@ -50,19 +50,20 @@
     _m_FreshViewType = BMFreshViewType_Head;
     [super viewDidLoad];
 
+    self.m_CountPerPage = 10;
     [self setNavTitle];
     [self buildUI];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNewMessageNoti:) name:kNotiReceiveNewPrivateMessageName object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveMessageListNoti:) name:kNotiReceiveHistoryPrivateMessageListName object:nil];
 }
 
 - (void)freshDataWithTableView:(FSTableView *)tableView
 {
     [self.m_TableView resetFreshHeaderState];
 
-    TextChatHistoryViewController *vc = [TextChatHistoryViewController ChatTextVCWithMeetingModel:self.memberModel];
-    BMNavigationController *nav = [[BMNavigationController alloc] initWithRootViewController:vc];
-    [self presentViewController:nav animated:YES completion:nil];
+    [[SocketHelper shareHelper] sentListMessageEvent:self.memberModel.memberId startId:self.m_StartId pageSize:self.m_CountPerPage];
 }
 
 -(void)viewSafeAreaInsetsDidChange
@@ -91,7 +92,6 @@
     
     _improtView = [ChatTextImportView new];
     _improtView.delegate = self;
-    _improtView.maxRow = 4; // 最大行数
     [self.view addSubview:_improtView];
     [_improtView mas_makeConstraints:^(MASConstraintMaker *make) {
         self.importViewBottomConstaint = make.bottom.equalTo(self.view).offset(0);
@@ -115,6 +115,47 @@
         [textModel.receiver.memberId isEqualToString:self.memberModel.memberId]) {
         [_viewModel.chatList addObject:textModel];
         [self showMessages];
+        
+        if (self.m_StartId == nil) {
+            self.m_StartId = textModel.messageId;
+        }
+    }
+}
+
+- (void)receiveMessageListNoti:(NSNotification *)noti {
+    // 判断当前的
+    NSLog(@"%@", noti.userInfo);
+    [self.m_TableView resetFreshHeaderState];
+    
+    NSDictionary *dataDic = noti.userInfo[@"data"];
+    NSArray *array = [ChatTextViewModel modelListWithData:dataDic[@"list"]];
+    if (array.count) {
+        ChatTextModel *firstItem = array.firstObject;
+        ChatTextModel *lastItem = array.lastObject;
+        if ([firstItem.sender.memberId isEqualToString:self.memberModel.memberId] ||
+            [firstItem.receiver.memberId isEqualToString:self.memberModel.memberId]) {
+            NSInteger oldItem = [_viewModel.showList count];
+            [_viewModel.chatList addObjectsFromArray:array];
+            [_viewModel formatChatList];
+            [_viewModel convertToItemsFromChatList];
+            NSInteger newItem = [_viewModel.showList count];
+            
+            [self.m_TableView reloadData];
+            
+            self.m_StartId = lastItem.messageId;
+            
+            if (![dataDic[@"hasNextPage"] boolValue]) {
+                self.m_TableView.bm_freshHeaderView = nil;
+            }
+            
+            if (self.m_StartId == nil) {
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newItem - 1 inSection:0];
+                [self.m_TableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+            } else {
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newItem - oldItem inSection:0];
+                [self.m_TableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+            }
+        }
     }
 }
 

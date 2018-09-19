@@ -15,7 +15,7 @@
 + (instancetype)modelWithParams:(NSDictionary *)params
 {
     ChatTextModel *model = [[self alloc] init];
-    model.messageId                 = [params bm_intForKey:@"id"];
+    model.messageId                 = [params bm_stringForKey:@"id"];
     model.messageContent            = [params bm_stringForKey:@"messageContent"];
     model.messageType               = [params bm_stringForKey:@"messageType"];
     model.messageResourceEnums      = [params bm_stringForKey:@"messageResourceEnums"];

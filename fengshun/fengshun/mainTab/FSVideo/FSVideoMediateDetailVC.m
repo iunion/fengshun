@@ -179,6 +179,7 @@
     self.personView.titleLabel.text = @"参与人员";
     self.personView.titleLabel.textColor = UI_COLOR_B10;
     self.personView.line.hidden = YES;
+    self.personView.desLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
     self.personView.desLabel.text = [model getMeetingPersonnelNameListWithShowCount:3];
     [contenView addSubview:self.personView];
     [self.personView setEditEnabled:NO];

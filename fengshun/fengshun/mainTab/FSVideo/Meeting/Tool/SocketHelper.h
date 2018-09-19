@@ -52,7 +52,7 @@ FOUNDATION_EXPORT NSString * const kNotiReceiveHistoryPrivateMessageListName;
 /**
  查看聊天消息列表
   */
-- (void)sentListMessageEvent:(NSString *)senderId pageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize;
+- (void)sentListMessageEvent:(NSString *)senderId startId:(NSString *)startId pageSize:(NSInteger)pageSize;
 
 /**
  开启或关闭麦克风事件

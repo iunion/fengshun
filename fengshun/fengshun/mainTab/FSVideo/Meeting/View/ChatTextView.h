@@ -43,9 +43,11 @@
 @class PlaceHolderTextView;
 @interface ChatTextImportView : UIView <UITextViewDelegate>
 @property (nonatomic, strong) BMPlaceholderTextView *textView;
+@property (nonatomic, strong) BMPlaceholderTextView *puppet;
 @property (nonatomic, strong) MASConstraint *textViewHeightConstaint;
 @property (nonatomic, weak) id <ChatTextImportViewDelegate> delegate;
-@property (nonatomic, assign) NSInteger maxRow; ///< 最大行数
+@property (nonatomic, assign) CGFloat miniHeith;
+@property (nonatomic, assign) CGFloat maxHeith;
 @end
 
 @protocol ChatTextImportViewDelegate <NSObject>

@@ -15,6 +15,7 @@
 @interface FSVideoMediateListVC () 
 @property (nonatomic, strong) NSString *meetingTypeEnums;
 @property (nonatomic, strong) NSString *meetingStatusEnums;
+@property (nonatomic, strong) FSHeaderCommonSelectorView *headSelector;
 @end
 
 @implementation FSVideoMediateListVC
@@ -27,36 +28,19 @@
     [self bm_setNavigationWithTitle:@"视频调解" barTintColor:[UIColor whiteColor] leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
  
     [self buildUI];
-    [self loadApiData];
+
+    self.meetingTypeEnums = @"MEETING_TYPE_OR";
+    self.meetingStatusEnums = @"MEETING_STATUS_OR";
+
+    if ([FSUserInfoModle isLogin]) {
+        [self loadApiData];
+    } else {
+        [self showEmptyViewWithType:[self getNoDataEmptyViewType] customImageName:[self getNoDataEmptyViewCustomImageName] customMessage:[self getNoDataEmptyViewCustomMessage] customView:[self getNoDataEmptyViewCustomView]];
+    }
 }
 
 -(void)buildUI
 {
-    FSHeaderCommonSelectorModel *left =
-    [FSHeaderCommonSelectorModel modelWithTitle:@"类型"
-                                      hiddenkey:@"meetingTypeEnums"
-                                           list:[FSMeetingDataForm formMeetingDataToModelWithType:FSMeetingDataType_AllMeetingType]];
-
-    FSHeaderCommonSelectorModel *right =
-    [FSHeaderCommonSelectorModel modelWithTitle:@"状态"
-                                      hiddenkey:@"meetingStatusEnums"
-                                           list:[FSMeetingDataForm formMeetingDataToModelWithType:FSMeetingDataType_AllMeetingStatus]];
-
-    
-    FSHeaderCommonSelectorView *selector = [[FSHeaderCommonSelectorView alloc] initWithFrame:CGRectMake(0, 0, self.view.bm_width, 42)];
-    selector.m_DataArray = @[left, right];
-    selector.selectorBlock = ^(FSHeaderCommonSelectorModel *hModel, FSSelectorListModel *lmodel) {
-        NSLog(@"%@", hModel.title);
-        NSLog(@"%@", lmodel.showName);
-        [self setValue:lmodel.hiddenkey forKey:hModel.hiddenkey];
-        [self loadApiData];
-    };
-    
-    self.meetingTypeEnums = @"MEETING_TYPE_OR";
-    self.meetingStatusEnums = @"MEETING_STATUS_OR";
-
-    [self.view addSubview:selector];
-    
     UIButton *bottom = [UIButton bm_buttonWithFrame:CGRectMake(0, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - 48, self.view.bm_width, 48)
                                               title:@"发起视频调解"];
     bottom.backgroundColor = UI_COLOR_BL1;
@@ -65,7 +49,32 @@
     [bottom addTarget:self action:@selector(createVideoMediateAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:bottom];
     
-    self.m_TableView.frame = CGRectMake(0, selector.bm_height, self.view.bm_width, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT-selector.bm_height-bottom.bm_height);
+    self.m_TableView.frame = CGRectMake(0, 0, self.view.bm_width, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT-bottom.bm_height);
+}
+
+-(void)buildHeadSelector
+{
+    FSHeaderCommonSelectorModel *left =
+    [FSHeaderCommonSelectorModel modelWithTitle:@"类型"
+                                      hiddenkey:@"meetingTypeEnums"
+                                           list:[FSMeetingDataForm formMeetingDataToModelWithType:FSMeetingDataType_AllMeetingType]];
+    
+    FSHeaderCommonSelectorModel *right =
+    [FSHeaderCommonSelectorModel modelWithTitle:@"状态"
+                                      hiddenkey:@"meetingStatusEnums"
+                                           list:[FSMeetingDataForm formMeetingDataToModelWithType:FSMeetingDataType_AllMeetingStatus]];
+    
+    
+    FSHeaderCommonSelectorView *selector = [[FSHeaderCommonSelectorView alloc] initWithFrame:CGRectMake(0, 0, self.view.bm_width, 42)];
+    selector.m_DataArray = @[left, right];
+    selector.selectorBlock = ^(FSHeaderCommonSelectorModel *hModel, FSSelectorListModel *lmodel) {
+        [self setValue:lmodel.hiddenkey forKey:hModel.hiddenkey];
+        [self loadApiData];
+    };
+    self.headSelector = selector;
+    [self.view addSubview:selector];
+    
+    self.m_TableView.frame = CGRectMake(0, selector.bm_bottom, self.m_TableView.bm_width, self.m_TableView.bm_height - selector.bm_bottom);
 }
 
 - (void)createVideoMediateAction
@@ -152,6 +161,9 @@
         [self.m_DataArray removeAllObjects];
     }
     if (array) {
+        if (self.headSelector == nil) {
+            [self buildHeadSelector];
+        }
         [self.m_DataArray addObjectsFromArray:array];
     }
     

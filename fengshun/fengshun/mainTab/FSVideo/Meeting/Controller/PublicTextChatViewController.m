@@ -9,7 +9,6 @@
 #import "PublicTextChatViewController.h"
 #import "ChatTextView.h"
 #import "SocketHelper.h"
-#import "TextChatHistoryViewController.h"
 #import "ChatTextViewModel.h"
 
 @interface PublicTextChatViewController () <ChatTextImportViewDelegate >
@@ -17,6 +16,8 @@
 @property (nonatomic, strong) ChatTextImportView *improtView;
 @property (nonatomic, strong) MASConstraint *importViewBottomConstaint;
 @property (nonatomic, strong) RTCRoomInfoModel *roomInfoModel;
+@property (nonatomic, strong) NSString *m_StartId;
+
 @end
 
 @implementation PublicTextChatViewController
@@ -83,7 +84,17 @@
     _m_FreshViewType = BMFreshViewType_Head;
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor clearColor];
+    self.m_CountPerPage = 10;
 
+    [self buildUI];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNewMessageNoti:) name:kNotiReceiveNewPublicMessageName object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveMessageListNoti:) name:kNotiReceiveHistoryPrivateMessageListName object:nil];
+}
+
+- (void)buildUI
+{
     UIView *getsureView = [UIView new];
     [self.view addSubview:getsureView];
     getsureView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5f];
@@ -93,19 +104,11 @@
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapedSelf:)];
     tapGes.numberOfTapsRequired = 1;
     [getsureView addGestureRecognizer:tapGes];
-    
-    [self buildUI];
-}
-
-- (void)buildUI
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNewMessageNoti:) name:kNotiReceiveNewPublicMessageName object:nil];
 
     [self.view bringSubviewToFront:self.m_TableView];
     
     _improtView = [ChatTextImportView new];
     _improtView.delegate = self;
-    _improtView.maxRow = 4; // 最大行数
     [self.view addSubview:_improtView];
     [_improtView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
@@ -123,12 +126,56 @@
 
 - (void)freshDataWithTableView:(FSTableView *)tableView
 {
-    [self.m_TableView resetFreshHeaderState];
-
-    TextChatHistoryViewController *vc = [TextChatHistoryViewController ChatTextVCWithMeetingModel:nil];
-    BMNavigationController *nav = [[BMNavigationController alloc] initWithRootViewController:vc];
-    [self presentViewController:nav animated:YES completion:nil];
+    [[SocketHelper shareHelper] sentListMessageEvent:nil startId:self.m_StartId pageSize:self.m_CountPerPage];
 }
+
+- (void)receiveNewMessageNoti:(NSNotification *)noti {
+    NSLog(@"%@",noti.userInfo);
+    ChatTextModel *textModel = [ChatTextViewModel chatTextModelWithDict:noti.userInfo[@"data"]];
+    if (textModel.receiver == nil) {
+        [_viewModel.chatList addObject:textModel];
+        [self showMessages];
+        if (self.m_StartId == nil) {
+            self.m_StartId = textModel.messageId;
+        }
+    }
+}
+
+- (void)receiveMessageListNoti:(NSNotification *)noti {
+    // 判断当前的
+    NSLog(@"%@", noti.userInfo);
+    [self.m_TableView resetFreshHeaderState];
+    
+    NSDictionary *dataDic = noti.userInfo[@"data"];
+    NSArray *array = [ChatTextViewModel modelListWithData:dataDic[@"list"]];
+    if (array.count) {
+        ChatTextModel *firstItem = array.firstObject;
+        ChatTextModel *lastItem = array.lastObject;
+        if (firstItem.receiver == nil) {
+            NSInteger oldItem = [_viewModel.showList count];
+            [_viewModel.chatList addObjectsFromArray:array];
+            [_viewModel formatChatList];
+            [_viewModel convertToItemsFromChatList];
+            NSInteger newItem = [_viewModel.showList count];
+            
+            [self.m_TableView reloadData];
+            
+            if (self.m_StartId == nil) {
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newItem - 1 inSection:0];
+                [self.m_TableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+            } else {
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newItem - oldItem inSection:0];
+                [self.m_TableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+            }
+            
+            self.m_StartId = lastItem.messageId;
+            if (![dataDic[@"hasNextPage"] boolValue]) {
+                self.m_TableView.bm_freshHeaderView = nil;
+            }
+        }
+    }
+}
+
 
 /// 将tableView滚动到底部
 - (void)dh_scrollToBottomAnimatied:(BOOL)animatied {
@@ -136,13 +183,6 @@
     if (!count) return;
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:count - 1 inSection:0];
     [self.m_TableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:animatied];
-}
-
-- (void)receiveNewMessageNoti:(NSNotification *)noti {
-    NSLog(@"%@",noti.userInfo);
-    ChatTextModel *textModel = [ChatTextViewModel chatTextModelWithDict:noti.userInfo[@"data"]];
-    [_viewModel.chatList addObject:textModel];
-    [self showMessages];
 }
 
 - (void)showMessages

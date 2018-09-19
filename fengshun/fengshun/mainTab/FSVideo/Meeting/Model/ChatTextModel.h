@@ -14,7 +14,7 @@
 
 @property (nonatomic, assign) BOOL isOnlyTime; ///< 是否只显示时间
 
-@property (nonatomic, assign) NSInteger messageId;
+@property (nonatomic, copy) NSString *messageId;
 @property (nonatomic, copy) NSString *messageContent;
 @property (nonatomic, copy) NSString *messageType;
 @property (nonatomic, copy) NSString *messageResourceEnums;

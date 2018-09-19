@@ -199,6 +199,9 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor bm_colorWithHex:0xf2f2f2];
+        _miniHeith = 33;
+        _maxHeith = 85;
+
         _textView = [BMPlaceholderTextView new];
         _textView.backgroundColor = [UIColor whiteColor];
         _textView.font = UI_FONT_14;
@@ -213,8 +216,13 @@
             make.right.equalTo(self).offset(-8);
             make.top.equalTo(self).offset(6);
             make.bottom.equalTo(self).offset(-6);
-            self.textViewHeightConstaint = make.height.offset(29);
+            self.textViewHeightConstaint = make.height.offset(_miniHeith);
         }];
+        
+        self.puppet = [[BMPlaceholderTextView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH - 16, frame.size.height)];
+        _puppet.font = UI_FONT_14;
+        
+        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     }
@@ -242,23 +250,35 @@
         if ([self.delegate respondsToSelector:@selector(importView:senderBtnDidClick:)]) {
             [self.delegate importView:self senderBtnDidClick:textView.text];
             textView.text = nil;
+            _textViewHeightConstaint.offset = _miniHeith;
+            [_textView updateConstraintsIfNeeded];
         }
         return NO;
     } else {
+        
+        NSString *result = [textView.text stringByReplacingCharactersInRange:range withString:text];
+        _puppet.text = result;
+        float textViewHeight =  [_puppet sizeThatFits:CGSizeMake(_puppet.frame.size.width, MAXFLOAT)].height;
+
+        if (textViewHeight < _maxHeith) {
+            textView.scrollEnabled = NO;
+        } else {
+            textView.scrollEnabled = YES;
+        }
+        
         return YES;
     }
 }
 
 -(void)textViewDidChange:(UITextView *)textView {
-//    NSInteger lines = textView.textLayout.rowCount;
-//    CGFloat h = textView.textLayout.textBoundingSize.height;
-//    if (lines > _maxRow) {
-//        _textViewHeightConstaint.offset = _maxRow * textView.font.lineHeight;
-//        [_textView updateConstraintsIfNeeded];
-//    } else {
-//        _textViewHeightConstaint.offset = h;
-//        [_textView updateConstraintsIfNeeded];
-//    }
+    float textViewHeight =  [textView sizeThatFits:CGSizeMake(textView.frame.size.width, MAXFLOAT)].height;
+    if (textViewHeight > _maxHeith) {
+        _textViewHeightConstaint.offset = _maxHeith;
+        [_textView updateConstraintsIfNeeded];
+    } else {
+        _textViewHeightConstaint.offset = textViewHeight;
+        [_textView updateConstraintsIfNeeded];
+    }
 }
 // remove notification
 - (void)dealloc {

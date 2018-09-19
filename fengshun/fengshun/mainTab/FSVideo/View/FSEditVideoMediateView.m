@@ -71,7 +71,7 @@
 @implementation FSEditVideoMediateTextView
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        _desLabel = [[UITextField alloc] initWithFrame:CGRectMake(100, (self.bm_height - 18)/2, self.bm_width - 100 - kMarginLeft, 18)];
+        _desLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, (self.bm_height - 18)/2, self.bm_width - 100 - kMarginLeft, 18)];
         _desLabel.font = UI_FONT_16;
         _desLabel.textColor = UI_COLOR_B1;
         _desLabel.backgroundColor = [UIColor clearColor];

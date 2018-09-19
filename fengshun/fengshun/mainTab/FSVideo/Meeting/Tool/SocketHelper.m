@@ -198,12 +198,16 @@ static dispatch_once_t onceToken;
 }
 
 // 查看聊天消息列表
-- (void)sentListMessageEvent:(NSString *)senderId pageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize
+- (void)sentListMessageEvent:(NSString *)senderId startId:(NSString *)startId pageSize:(NSInteger)pageSize
 {
-    NSMutableDictionary *dataDic = @{@"pageIndex": @(pageIndex),
-                                     @"pageSize": @(pageSize)
-                                     }.mutableCopy;
-    
+    NSMutableDictionary *dataDic = @{}.mutableCopy;
+//    NSMutableDictionary *dataDic = @{@"pageIndex": @(1)}.mutableCopy;
+   if (pageSize) {
+        [dataDic setObject:@(pageSize) forKey:@"pageSize"];
+    }
+    if (startId) {
+        [dataDic setObject:startId forKey:@"startId"];
+    }
     if (senderId) {
         [dataDic setObject:senderId forKey:@"senderId"];
     }

@@ -71,6 +71,7 @@
     _meetingPersonnelLabel = [[UILabel alloc] initWithFrame:CGRectMake(38, 65, UI_SCREEN_WIDTH - 38 - kMarginLeft, 20)];
     _meetingPersonnelLabel.textColor =  UI_COLOR_B4;
     _meetingPersonnelLabel.font = UI_FONT_14;
+    _meetingPersonnelLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
     [_m_BGView addSubview:_meetingPersonnelLabel];
     
     _startTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(38, 90, UI_SCREEN_WIDTH - 38 - kMarginLeft, 20)];
