@@ -37,15 +37,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FSCaseSearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCaseSearchResultCell"];
-<<<<<<< HEAD:fengshun/fengshun/mainTab/FSCaseSearchResultVC.m
-    FSCaseReultModel *model = _m_searchResultModel.m_resultDataArray[indexPath.row];
-    [cell setAttributedCaseResultModel:model];
-=======
-
     FSCaseResultModel *model = _m_searchResultModel.m_resultDataArray[indexPath.row];
     [cell setCaseResultModel:model attributed:YES];
->>>>>>> a66391f3104288c98b67bc2adf9f5a9e6eb7a471:fengshun/fengshun/mainTab/controller/FSCaseSearchResultVC.m
+
     return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    FSCaseResultModel *model = _m_searchResultModel.m_resultDataArray[indexPath.row];
+    [FSPushVCManager showWebView:self url:[NSString stringWithFormat:@"%@/caseDetail?ID=%@&keywords=%@",FS_H5_SERVER,model.m_caseId,@""] title:@""];
 }
 
 

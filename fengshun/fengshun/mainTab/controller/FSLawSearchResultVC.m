@@ -38,6 +38,13 @@
     [cell setLawResultModel:model attributed:YES];
     return cell;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    FSLawResultModel *model = _m_searchResultModel.m_resultDataArray[indexPath.row];
+    [FSPushVCManager showWebView:self url:[NSString stringWithFormat:@"%@/Law/lawDetail?ID=%@&keywords=%@",FS_H5_SERVER,model.m_lawsId,@""] title:@""];
+    
+}
 
 
 - (BOOL)canLoadApiData
