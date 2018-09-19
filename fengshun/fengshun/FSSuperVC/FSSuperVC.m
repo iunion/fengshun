@@ -11,6 +11,8 @@
 #import "FSLoginVC.h"
 #import "FSAuthenticationVC.h"
 
+#import "FSAlertView.h"
+
 @interface FSSuperVC ()
 <
     FSAuthenticationDelegate,
@@ -111,7 +113,36 @@
         case 1001:
         case 1002:
             [GetAppDelegate logOutQuit:quit showLogin:show];
-            break;
+            return YES;
+
+        // 强制更新
+        case 1008:
+        {
+            NSDictionary *dataDic = [responseDic bm_dictionaryForKey:@"data"];
+            NSString *downString;
+            NSString *httpLink = [dataDic bm_stringTrimForKey:@"link"];
+            NSString *appId = [dataDic bm_stringTrimForKey:@"appId"];
+            if ([httpLink bm_isNotEmpty])
+            {
+                downString = httpLink;
+            }
+            else if ([appId bm_isNotEmpty])
+            {
+                downString = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/%@", appId];
+            }
+            else
+            {
+                downString = APPSTORE_DOWNLOADAPP_ADDRESS;
+            }
+            
+            FSAlertView *alertView = [FSAlertView showAlertWithTitle:message message:nil cancelTitle:@"立即更新" otherTitle:nil completion:^(BOOL cancelled, NSInteger buttonIndex) {
+                //NSString *downString = APPSTORE_DOWNLOADAPP_ADDRESS;
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:downString]];
+            }];
+            alertView.notDismissOnCancel = YES;
+
+            return YES;
+        }
 
         default:
             break;
