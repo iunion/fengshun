@@ -26,7 +26,7 @@
     model.m_jumpAddress = [params bm_stringForKey:@"jumpAddress"];
     model.m_coverThumbUrl = [params bm_stringForKey:@"coverThumbUrl"];
     model.bm_isSeries = [params bm_boolForKey:@"seriesFlag"];
-    
+
     return model;
 }
 @end

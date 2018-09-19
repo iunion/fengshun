@@ -42,7 +42,6 @@
 
     [self.m_tableView registerNib:[UINib nibWithNibName:@"FSTextListCell" bundle:nil] forCellReuseIdentifier:@"FSTextListCell"];
     self.m_tableView.estimatedRowHeight = 52;
-    self.m_tableView.bm_showEmptyView   = NO;
 }
 - (NSInteger)m_totalCount
 {
