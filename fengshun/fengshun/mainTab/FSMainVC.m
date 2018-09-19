@@ -171,6 +171,10 @@ FSMainVC ()
         case FSHomePageTooltype_FileScanning:
             [FSPushVCManager homePagePushToFileScanVC:self];
             break;
+        //计算器
+        case  FSHomePageTooltype_Calculator:
+            [FSPushVCManager showWebView:self url:[NSString stringWithFormat:@"%@/tooIndex",FS_H5_SERVER] title:@""];
+            break;
         default:
             break;
     }

@@ -37,11 +37,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FSCaseSearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCaseSearchResultCell"];
-
     FSCaseReultModel *model = _m_searchResultModel.m_resultDataArray[indexPath.row];
     [cell setAttributedCaseResultModel:model];
     return cell;
 }
+
+
 - (BOOL)canLoadApiData
 {
     return _m_searchResultModel?_m_searchResultModel.m_isMore:YES;

@@ -38,6 +38,8 @@
     cell.m_lawResultModel = _m_searchResultModel.m_resultDataArray[indexPath.row];
     return cell;
 }
+
+
 - (BOOL)canLoadApiData
 {
     return _m_searchResultModel?_m_searchResultModel.m_isMore:YES;
