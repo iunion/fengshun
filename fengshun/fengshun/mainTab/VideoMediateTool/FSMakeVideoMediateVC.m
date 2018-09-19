@@ -159,6 +159,9 @@
 {
     [super interfaceSettings];
     
+    //self[@"FSMeetingPersonnelItem"] = @"FSVideoMediatePersonalCell";
+    [self.m_TableManager registerClass:@"FSMeetingPersonnelItem" forCellWithReuseIdentifier:@"FSVideoMediatePersonalCell"];
+    
     self.m_MainSection = [BMTableViewSection section];
     self.m_ContentSection = [BMTableViewSection section];
     self.m_PersonSection = [BMTableViewSection section];

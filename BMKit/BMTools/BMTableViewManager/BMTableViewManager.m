@@ -137,11 +137,8 @@
     self[@"BMImageDetailItem"] = @"BMTableViewImageDetailCell";
     self[@"BMCombineItem"] = @"BMTableViewCombineCell";
 
+    // add your Class here or [registerClass:forCellWithReuseIdentifier:]
 
-#ifdef FSVIDEO_ON
-    // add your Class here
-    self[@"FSMeetingPersonnelItem"] = @"FSVideoMediatePersonalCell";
-#endif
 }
 
 - (Class)classForCellAtIndexPath:(NSIndexPath *)indexPath
