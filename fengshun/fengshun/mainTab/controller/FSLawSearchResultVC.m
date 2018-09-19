@@ -1,22 +1,21 @@
 //
-//  FSCaseSearchResultVC.m
+//  FSLawSearchResultVC.m
 //  fengshun
 //
 //  Created by Aiwei on 2018/9/10.
 //  Copyright © 2018 FS. All rights reserved.
 //
 
-#import "FSCaseSearchResultVC.h"
-#import "FSCaseSearchResultCell.h"
-#import "FSApiRequest.h"
-#import "FSSearchResultView.h"
+#import "FSLawSearchResultVC.h"
+#import "FSLawSearchResultView.h"
+#import "FSLawSearchResultCell.h"
 
-@interface FSCaseSearchResultVC ()
 
+@interface FSLawSearchResultVC ()
 
 @end
 
-@implementation FSCaseSearchResultVC
+@implementation FSLawSearchResultVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,18 +26,16 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 #pragma mark - tableViewDataSource
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return _m_searchResultModel.m_resultDataArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FSCaseSearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCaseSearchResultCell"];
-    FSCaseReultModel *model = _m_searchResultModel.m_resultDataArray[indexPath.row];
-    [cell setAttributedCaseResultModel:model];
+    FSLawSearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSLawSearchResultCell"];
+    FSLawResultModel *model = _m_searchResultModel.m_resultDataArray[indexPath.row];
+    [cell setLawResultModel:model attributed:YES];
     return cell;
 }
 
@@ -63,11 +60,12 @@
                              @"docCount":@(_m_rightFilter.m_docCount),
                              }];
     }
-    return [FSApiRequest searchCaseWithKeywords:self.m_resultView.m_searchKeys start:_m_searchResultModel.m_resultDataArray.count size:self.m_CountPerPage filters:filters];
+    
+    return [FSApiRequest searchLawsWithKeywords:self.m_resultView.m_searchKeys start:_m_searchResultModel.m_resultDataArray.count size:self.m_CountPerPage filters:filters];
 }
 - (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)responseObject
 {
-    FSCaseSearchResultModel *result = [FSCaseSearchResultModel modelWithParams:responseObject];
+    FSLawSearchResultModel *result = [FSLawSearchResultModel modelWithParams:responseObject];
     if (!_m_searchResultModel) {
         self.m_searchResultModel = result;
     }
@@ -77,7 +75,7 @@
     }
     self.m_searchResultModel.m_isMore         = result.m_isMore;
     self.m_searchResultModel.m_filterSegments = result.m_filterSegments;
-
+    
     if (self.m_searchsucceed) self.m_searchsucceed(self.m_searchResultModel);
     self.m_DataArray = [_m_searchResultModel.m_resultDataArray mutableCopy];
     [self.m_TableView reloadData];

@@ -425,10 +425,11 @@
         return;
     }
 
-#if DEBUG
-    NSString *responseStr = [[NSString stringWithFormat:@"%@", responseDic] bm_convertUnicode];
-    BMLog(@"API返回数据是:+++++%@", responseStr);
-#endif
+//#if DEBUG
+//    // 上面打印过了，此处打印重复
+//    NSString *responseStr = [[NSString stringWithFormat:@"%@", responseDic] bm_convertUnicode];
+//    BMLog(@"API返回数据是:+++++%@", responseStr);
+//#endif
 
     NSInteger statusCode = [responseDic bm_intForKey:@"code"];
     if (statusCode == 1000)

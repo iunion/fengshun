@@ -54,7 +54,7 @@
 - (void)showWithFSCommunityForumListModel:(FSForumModel *)aModel
 {
     self.m_ForumModel = aModel;
-    [self.m_ImgView sd_setImageWithURL:[aModel.m_IconUrlSecond bm_toURL]placeholderImage:nil options:SDWebImageRetryFailed | SDWebImageLowPriority];
+    [self.m_ImgView sd_setImageWithURL:[aModel.m_IconUrl bm_toURL]placeholderImage:nil options:SDWebImageRetryFailed | SDWebImageLowPriority];
     self.m_TitleLab.text        = aModel.m_ForumNameSecond;
     self.m_ContentLab.text      = aModel.m_Description;
     self.m_AttentionNumLab.text = [NSString stringWithFormat:@"%ld", aModel.m_AttentionCount];
@@ -64,11 +64,15 @@
     [self.m_DoBtn setTitleColor:[UIColor bm_colorWithHexString:aModel.m_AttentionFlag?@"999999":@"ffffff"] forState:UIControlStateNormal];
     [self.m_DoBtn setTitle:aModel.m_AttentionFlag?@"已关注":@"+ 关注" forState:UIControlStateNormal];
 }
-- (IBAction)doFollowAction:(UIButton *)sender {
+- (IBAction)doFollowAction:(UIButton *)sender
+{
     FSForumFollowState state = self.m_ForumModel.m_AttentionFlag;
     [FSApiRequest updateFourmAttentionStateWithFourmId:self.m_ForumModel.m_Id followStatus:!state success:^(id  _Nullable responseObject) {
         self.m_ForumModel.m_AttentionFlag = !self.m_ForumModel.m_AttentionFlag;
         [self showWithFSCommunityForumListModel:self.m_ForumModel];
+        if (self.attentionChangeBlock) {
+            self.attentionChangeBlock(!state) ;
+        }
     } failure:^(NSError * _Nullable error) {
         
     }];

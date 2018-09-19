@@ -18,6 +18,7 @@
 @property (nonatomic, assign) NSInteger     m_SelectedTag;
 @property (nonatomic, strong) NSArray       *m_TitleBtnArray;
 @property (nonatomic, strong) UITableView   *m_TableView;
+@property (nonatomic, strong) UIView        *m_GestureView;
 @property (nonatomic, strong) BMTableViewManager *m_manager;
 @property (nonatomic, strong) BMTableViewSection *m_section;
 
@@ -30,7 +31,7 @@
     self = [super initWithFrame:frame];
     
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor clearColor];
         if (self.bm_height == 0) {
             self.bm_height = FSSelectorDefaultHeaderHeight;
         }
@@ -65,6 +66,17 @@
     
     [self bm_removeAllSubviews];
     
+    self.m_GestureView = [[UIView alloc] initWithFrame:CGRectMake(0, FSSelectorDefaultHeaderHeight, self.bm_width, 0)];
+    [self addSubview:self.m_GestureView];
+    self.m_GestureView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.0f];
+
+    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapedSelf:)];
+    tapGes.numberOfTapsRequired = 1;
+    [self.m_GestureView addGestureRecognizer:tapGes];
+
+    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.bm_width, FSSelectorDefaultHeaderHeight)];
+    [self addSubview:header];
+    header.backgroundColor = [UIColor whiteColor];
     NSInteger index = 0;
     NSInteger count = _m_DataArray.count;
     CGFloat width = self.bm_width/count;
@@ -90,7 +102,7 @@
     self.m_TableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.bm_height, self.bm_width, 0) style:UITableViewStylePlain];
     self.m_TableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.m_TableView.rowHeight = FSSelectorDefaultCellHeight;
-    self.m_TableView.backgroundColor = [UIColor clearColor];
+    self.m_TableView.backgroundColor = [UIColor whiteColor];
     [self addSubview:self.m_TableView];
     
     self.m_manager = [[BMTableViewManager alloc] initWithTableView:_m_TableView];
@@ -142,18 +154,26 @@
             item.textColor  = UI_COLOR_B1;
             item.underLineColor = UI_COLOR_B6;
             item.cellHeight = FSSelectorDefaultCellHeight;
+            item.selectionStyle = UITableViewCellSelectionStyleGray;
             [self.m_section addItem:item];
         }
 
         BMTableViewItem *item = self.m_section.items.lastObject;
         item.underLineDrawType = BMTableViewCell_UnderLineDrawType_None;
         
+        self.m_GestureView.bm_height = UI_MAINSCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT - self.m_GestureView.bm_top;
         [UIView animateWithDuration:0.25 animations:^{
             self.m_TableView.bm_height = FSSelectorDefaultCellHeight * count;
-            self.bm_height = _m_HeaderHeight + self.m_TableView.bm_height;
+            self.bm_height = UI_MAINSCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT;
+            self.m_GestureView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.7f];
             [_m_TableView reloadData];
         }];
     }
+}
+
+- (void)tapedSelf:(id)sender
+{
+    [self hideTableView];
 }
 
 - (void)hideTableView
@@ -161,10 +181,12 @@
     [UIView animateWithDuration:0.25 animations:^{
         self.m_TableView.bm_height = 0;
         self.bm_height = _m_HeaderHeight;
+        self.m_GestureView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.0f];
     } completion:^(BOOL finished) {
         [_m_section removeAllItems];
         [_m_TableView reloadData];
         _m_SelectedTag = 0;
+        self.m_GestureView.bm_height = 0;
     }];
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "FSTextListCell.h"
+#import "FSCaseSearchResultModel.h"
 
 @implementation FSTextListCell
 
@@ -23,13 +24,7 @@
 - (void)setTextModel:(FSListTextModel *)textModel colors:(BOOL)colors
 {
     _m_textModel = textModel;
-    _m_titleLabel.text = textModel.m_title;
-    if ([textModel.m_subtitle bm_isNotEmpty]) {
-        _m_subTitleLabel.text = [NSString stringWithFormat:@"\n%@",textModel.m_subtitle];
-    }
-    else
-    {
-        _m_subTitleLabel.text = nil;
-    }
+    [FSSearchResultModel setTextLabel:_m_titleLabel withText:textModel.m_title fontSize:16 textColor:UI_COLOR_B1 attributed:colors];
+    [FSSearchResultModel setTextLabel:_m_subTitleLabel withText:textModel.m_subtitle fontSize:12 textColor:UI_COLOR_B4 attributed:colors];
 }
 @end

@@ -191,15 +191,16 @@ FSOCRSearchResultVC ()
     if (_m_ocrSearchType) {
         FSLawSearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSLawSearchResultCell"];
         
-        cell.m_lawResultModel = _m_lawSearchResultModel.m_resultDataArray[indexPath.row];
+        FSLawResultModel *model = _m_lawSearchResultModel.m_resultDataArray[indexPath.row];
+        [cell setLawResultModel:model attributed:YES];
         return cell;
     }
     else
     {
         FSCaseSearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCaseSearchResultCell"];
         
-        FSCaseReultModel *model = _m_caseSearchResultModel.m_resultDataArray[indexPath.row];
-        [cell setAttributedCaseResultModel:model];
+        FSCaseResultModel *model = _m_caseSearchResultModel.m_resultDataArray[indexPath.row];
+        [cell setCaseResultModel:model attributed:YES];
         return cell;
     }
 }

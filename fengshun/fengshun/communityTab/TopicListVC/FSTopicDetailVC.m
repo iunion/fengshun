@@ -10,13 +10,19 @@
 #import "FSMoreViewVC.h"
 #import "FSAlertView.h"
 #import "FSPushVCManager.h"
+#import "FSReportView.h"
+#import "FSCommunityModel.h"
 
 @interface
-FSTopicDetailVC () <FSMoreViewVCDelegate>
-{
-    BOOL _isCollection;// 用户是否收藏
-}
+FSTopicDetailVC ()
+<
+FSMoreViewVCDelegate,
+FSReportViewDelegate
+>
+
 @property (nonatomic, assign) NSInteger m_TopicId;
+// 帖子详情model
+@property (nonatomic, strong) FSTopicDetailModel *m_TopicDetailModel;
 
 @end
 
@@ -36,7 +42,11 @@ FSTopicDetailVC () <FSMoreViewVCDelegate>
 {
     [super viewDidLoad];
 
-    [self bm_setNavigationWithTitle:@"" barTintColor:nil leftDicArray:nil rightDicArray:@[ [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"community_more" toucheEvent:@"shareAction" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0] ]];
+    [self bm_setNavigationWithTitle:@"" barTintColor:nil leftDicArray:nil rightDicArray:@[ [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"community_more" toucheEvent:@"moreAction" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0]]];
+    
+    self.m_ProgressHUD = [[MBProgressHUD alloc] initWithView:self.view];
+    self.m_ProgressHUD.animationType = MBProgressHUDAnimationFade;
+    [self.view addSubview:self.m_ProgressHUD];
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,16 +57,19 @@ FSTopicDetailVC () <FSMoreViewVCDelegate>
 
 
 #pragma mark - 更多弹窗按钮
-- (void)shareAction
+- (void)moreAction
 {
-    
     [FSApiRequest getTopicDetail:self.m_TopicId success:^(id  _Nullable responseObject) {
+        self.m_TopicDetailModel = [FSTopicDetailModel topicDetailModelWithDic:responseObject];
+        if (self.m_TopicDetailModel == nil)
+        {
+            return ;
+        }
         // 根据帖子详情接口 userId判断是否是本人帖子
-        BOOL isOwner = [[responseObject bm_stringForKey:@"userId"] isEqualToString:[FSUserInfoModle userInfo].m_UserBaseInfo.m_UserId];
-        _isCollection = !([responseObject bm_intForKey:@"collection"] == 0);
-        [FSMoreViewVC showMore:self delegate:self isOwner:isOwner isCollection:_isCollection];
+        BOOL isOwner = [self.m_TopicDetailModel.m_UserId isEqualToString:[FSUserInfoModle userInfo].m_UserBaseInfo.m_UserId];
+        [FSMoreViewVC showMore:self delegate:self isOwner:isOwner isCollection:self.m_TopicDetailModel.m_IsCollection];
     } failure:^(NSError * _Nullable error) {
-        
+        [self.m_ProgressHUD showAnimated:YES withText:@"数据错误" delay:DEFAULT_DELAY_TIME];
     }];
 }
 
@@ -67,40 +80,37 @@ FSTopicDetailVC () <FSMoreViewVCDelegate>
     switch (index)
     {
         case 0:  //微信
-        {
-        }
-        break;
         case 1:  //朋友圈
-        {
-        }
-        break;
         case 2:  //QQ
-        {
-        }
-        break;
         case 3:  //QQ空间
-        {
-        }
-        break;
         case 4:  //微博
         {
+            [self.m_ProgressHUD showAnimated:YES withDetailText:[NSString stringWithFormat:@"分享:%ld",index] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         }
-        break;
+            break;
         case 5:  //收藏
         {
             [self collectionTopic];
         }
-        break;
+            break;
         case 6:  //复制
         {
-            [[UIPasteboard generalPasteboard] setString:self.m_UrlString];
-            [self.m_ProgressHUD showAnimated:YES withDetailText:@"复制成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            if ([self.m_UrlString bm_isNotEmpty])
+            {
+                [[UIPasteboard generalPasteboard] setString:self.m_UrlString];
+                [self.m_ProgressHUD showAnimated:YES withDetailText:@"复制成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            }
+            else
+            {
+                [self.m_ProgressHUD showAnimated:YES withDetailText:@"复制失败" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            }
         }
-        break;
-        case 7:  //举报
+            break;
+        case 7:  //举报弹窗
         {
+            [FSReportView showReportView:self];
         }
-        break;
+            break;
         case 8:  //编辑
         {
             [FSAlertView showAlertWithTitle:@"编辑帖子"
@@ -119,7 +129,7 @@ FSTopicDetailVC () <FSMoreViewVCDelegate>
                                      }
                                  }];
         }
-        break;
+            break;
         case 9:  //删除
         {
             [FSAlertView showAlertWithTitle:@"删除帖子"
@@ -133,10 +143,38 @@ FSTopicDetailVC () <FSMoreViewVCDelegate>
                                      }
                                  }];
         }
-        break;
+            break;
 
         default:
             break;
+    }
+}
+
+// 举报按钮点击
+- (void)alertViewClick:(FSReportView *)aView index:(NSInteger)index
+{
+    if (index == 0)// 举报
+    {
+        [aView removeFromSuperview];
+        UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 225, 70)];
+        
+        UILabel *cententLab = [[UILabel alloc]initWithFrame:CGRectMake(35/2, 0, 190, 40)];
+        cententLab.numberOfLines = 2;
+        cententLab.font = [UIFont systemFontOfSize:15.f];
+        cententLab.textColor = [UIColor bm_colorWithHexString:@"333333"];
+        cententLab.text = [NSString stringWithFormat:@"%@\n1231",self.m_TopicDetailModel.m_Title];
+        [contentView addSubview:cententLab];
+        
+        UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(35/2, cententLab.bm_bottom + 5, 190, 25)];
+        textField.backgroundColor = [UIColor bm_colorWithHexString:@"f6f6f6"];
+        textField.placeholder = @"请输入举报理由";
+        textField.font = [UIFont systemFontOfSize:14.f];
+        [contentView addSubview:textField];
+        
+        
+        [FSAlertView showAlertWithTitle:@"举报理由说明" message:nil contentView:contentView cancelTitle:@"取消" otherTitle:@"确定" completion:^(BOOL cancelled, NSInteger buttonIndex) {
+            BMLog(@"%@",textField.text);
+        }];
     }
 }
 
@@ -153,8 +191,8 @@ FSTopicDetailVC () <FSMoreViewVCDelegate>
 }
 
 - (void)collectionTopic{
-    [FSApiRequest collectionTopic:!_isCollection topicId:[NSString stringWithFormat:@"%ld",self.m_TopicId] success:^(id  _Nullable responseObject) {
-        [self.m_ProgressHUD showAnimated:YES withDetailText:_isCollection?@"取消收藏成功":@"收藏成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+    [FSApiRequest collectionTopic:!self.m_TopicDetailModel.m_IsCollection topicId:[NSString stringWithFormat:@"%ld",self.m_TopicId] success:^(id  _Nullable responseObject) {
+        [self.m_ProgressHUD showAnimated:YES withDetailText:self.m_TopicDetailModel.m_IsCollection?@"取消收藏成功":@"收藏成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     } failure:^(NSError * _Nullable error) {
         
     }];

@@ -15,6 +15,9 @@
 
 @property (nonatomic, strong)FSForumModel *m_ForumModel;
 
+// 关注状态变化
+@property (nonatomic, copy)void (^attentionChangeBlock)(BOOL );
+
 - (void)showWithFSCommunityForumListModel:(FSForumModel *)aModel;
 
 @end

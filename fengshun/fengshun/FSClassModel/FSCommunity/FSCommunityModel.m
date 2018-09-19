@@ -193,6 +193,8 @@
     // 第一板块图片
     self.m_IconUrlFirst = [data bm_stringForKey:@"iconUrlFirst"];
     self.m_IconUrlSecond = [data bm_stringForKey:@"iconUrlSecond"];
+    self.m_IconUrl = [data bm_stringForKey:@"iconUrl"];
+    self.m_BackUrl = [data bm_stringForKey:@"backUrl"];
     // 板块id
     self.m_Id = [data bm_intForKey:@"id"];
     // 发帖数
@@ -221,3 +223,27 @@
 }
 
 @end
+
+@implementation FSTopicDetailModel
+
++ (instancetype)topicDetailModelWithDic:(NSDictionary *)dic
+{
+    if ([dic bm_isNotEmptyDictionary])
+    {
+        FSTopicDetailModel *model = [FSTopicDetailModel new];
+        model.m_IsCollection = [dic bm_boolForKey:@"collection"];
+        model.m_Content = [dic bm_stringForKey:@"content"];
+        model.m_CreateTime = [dic bm_intForKey:@"createTime"]/1000;
+        model.m_HeadPortraitUrl = [dic bm_stringForKey:@"headPortraitUrl"];
+        model.m_NickName = [dic bm_stringForKey:@"nickName"];
+        model.m_ReadCount = [dic bm_intForKey:@"readCount"];
+        model.m_IsReport = [dic bm_boolForKey:@"report"];
+        model.m_Title = [dic bm_stringForKey:@"title"];
+        model.m_UserId = [dic bm_stringForKey:@"userId"];
+        return model;
+    }
+    return nil;
+}
+
+@end
+

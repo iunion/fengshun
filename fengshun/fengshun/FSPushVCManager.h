@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class FSWebViewController, FSFileScanImagePreviewVC;
+@class FSWebViewController, FSFileScanImagePreviewVC,FSCommunitySecVC;
 @protocol FSWebViewControllerDelegate;
 
 // 跳转回调
@@ -16,7 +16,7 @@ typedef void (^PushVCCallBack)(id object);
 
 @interface FSPushVCManager : NSObject
 // 社区二级页面
-+ (void)showCommunitySecVCPushVC:(UIViewController *)pushVC FourmId:(NSInteger)fourId;
++ (FSCommunitySecVC *)showCommunitySecVCPushVC:(UIViewController *)pushVC FourmId:(NSInteger)fourId;
 
 // 社区详情
 + (void)showPostDetailVCWithPushVC:(UIViewController *)pushVC url:(NSString *)url;
@@ -40,7 +40,7 @@ typedef void (^PushVCCallBack)(id object);
 
 
 // 法规检索
-+ (void)homePage:(UIViewController *)mainVC pushToLawSearchWithTopics:(NSArray *)topics;
++ (void)pushToLawSearch:(UIViewController *)mainVC;
 + (void)searchVCPushtToLawsOCrSearchVC:(UIViewController *)searchVC;
 // 法规专题
 + (void)viewController:(UIViewController *)vc pushToLawTopicVCWithLawTopic:(NSString *)lawTopic;

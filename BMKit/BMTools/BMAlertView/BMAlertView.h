@@ -39,6 +39,9 @@ typedef void (^BMAlertViewCompletionBlock)(BOOL cancelled, NSInteger buttonIndex
 
 @property (nonatomic, assign, readonly, getter=isVisible) BOOL visible;
 
+// 是否显示关闭按钮
+@property (nonatomic, assign) BOOL showClose;
+
 @property (nonatomic, assign) BOOL shouldDismissOnTapOutside;
 @property (nonatomic, assign) BOOL notDismissOnCancel;
 

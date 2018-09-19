@@ -426,12 +426,12 @@
             NSDictionary *data = [resDic bm_dictionaryForKey:@"data"];
             VideoCallController *vc = [VideoCallController VCWithRoomId:_m_DetailModel.roomId meetingId:_m_DetailModel.meetingId token:data[@"token"]];
             vc.endMeetingBlock = ^{
-                if (weakSelf.changedBlock) {
-                    weakSelf.changedBlock();
-                }
                 [weakSelf.m_ProgressHUD showAnimated:YES withText:@"视频已结束" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
                 weakSelf.m_DetailModel.meetingStatus = @"MEETING_END";
                 weakSelf.statusLabel.text = [FSMeetingDataForm getValueForKey:_m_DetailModel.meetingStatus type:FSMeetingDataType_AllMeetingStatus];
+                if (weakSelf.changedBlock) {
+                    weakSelf.changedBlock();
+                }
             };
             BMNavigationController *nav = [[BMNavigationController alloc] initWithRootViewController:vc];
             [weakSelf presentViewController:nav animated:YES completion:nil];

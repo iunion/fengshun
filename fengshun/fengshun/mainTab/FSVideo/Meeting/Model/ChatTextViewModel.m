@@ -51,11 +51,24 @@
     }
     // 首先根据时间戳排序
     [self.chatList sortUsingComparator:^NSComparisonResult(ChatTextModel * obj1, ChatTextModel * obj2) {
-        if (obj1.createTime > obj2.createTime) {
+        if (obj1.createTime > obj2.createTime)
+        {
             return NSOrderedDescending;
         }
-        else {
+        else if (obj1.createTime < obj2.createTime)
+        {
             return NSOrderedAscending;
+        }
+        else
+        {
+            if ([obj1.messageId integerValue] > [obj2.messageId integerValue])
+            {
+                return NSOrderedDescending;
+            }
+            else
+            {
+                return NSOrderedAscending;
+            }
         }
     }];
 }

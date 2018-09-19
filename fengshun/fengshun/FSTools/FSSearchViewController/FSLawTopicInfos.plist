@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>婚姻继承</string>
+		<key>iconName</key>
+		<string>search_lawTopic_1</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>借贷纠纷</string>
+		<key>iconName</key>
+		<string>search_lawTopic_2</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>物业相邻</string>
+		<key>iconName</key>
+		<string>search_lawTopic_3</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>交通事故</string>
+		<key>iconName</key>
+		<string>search_lawTopic_4</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>劳动争议</string>
+		<key>iconName</key>
+		<string>search_lawTopic_5</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>医疗纠纷</string>
+		<key>iconName</key>
+		<string>search_lawTopic_6</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>合同纠纷</string>
+		<key>iconName</key>
+		<string>search_lawTopic_7</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>侵权纠纷</string>
+		<key>iconName</key>
+		<string>search_lawTopic_8</string>
+	</dict>
+</array>
+</plist>

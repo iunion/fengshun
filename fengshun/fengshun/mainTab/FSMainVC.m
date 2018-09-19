@@ -40,7 +40,7 @@ FSMainVC ()
 @property (nonatomic, strong) NSArray<FSCourseRecommendModel *> *   m_courses;
 @property (nonatomic, strong) NSArray<FSTopicModel *> *             m_topics;
 @property (nonatomic, strong) NSArray *                             m_caseHotkeys;
-@property (nonatomic, strong) NSArray *                             m_lawTopics;
+//@property (nonatomic, strong) NSArray *                             m_lawTopics;
 
 @end
 
@@ -161,7 +161,7 @@ FSMainVC ()
             break;
         // 法规检索
         case FSHomePageTooltype_StatuteSearching:
-            [FSPushVCManager homePage:self pushToLawSearchWithTopics:self.m_lawTopics];
+            [FSPushVCManager pushToLawSearch:self];
             break;
         // 文书范本
         case FSHomePageTooltype_Document:
@@ -205,14 +205,6 @@ FSMainVC ()
     return section ? _m_topics.count : _m_courses.count;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (!indexPath.section)
-    {
-        return COURSE_CELL_HEGHT;
-    }
-    return 152;
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -269,6 +261,16 @@ FSMainVC ()
 //    [view addSubview:moreButton];
     
     return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section)
+    {
+        return [FSTopicListCell cellHeight];
+    }
+    
+    return UITableViewAutomaticDimension;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -333,12 +335,12 @@ FSMainVC ()
     }];
     
     // 获取法规检索的法规专题
-    [FSApiRequest getLawTopicSuccess:^(id  _Nullable responseObject) {
-        NSDictionary *data = responseObject;
-        self.m_lawTopics = [data bm_arrayForKey:@"thematic"];
-    } failure:^(NSError * _Nullable error) {
-        
-    }];
+//    [FSApiRequest getLawTopicSuccess:^(id  _Nullable responseObject) {
+//        NSDictionary *data = responseObject;
+//        self.m_lawTopics = [data bm_arrayForKey:@"thematic"];
+//    } failure:^(NSError * _Nullable error) {
+//        
+//    }];
 }
 
 - (NSMutableURLRequest *)setLoadDataRequest
