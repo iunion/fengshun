@@ -25,7 +25,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (NSInteger)m_totalCount
+{
+    return [_m_resultView m_totalCount];
+}
+-(BMEmptyViewType)getNoDataEmptyViewType
+{
+    return BMEmptyViewType_Search;
+}
 #pragma mark - tableViewDeleaget&DataSource
 
 
@@ -37,5 +44,23 @@
 {
     return nil;
 }
-
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view         = [UIView new];
+    view.backgroundColor = FS_VIEW_BGCOLOR;
+    UILabel *label       = [[UILabel alloc] initWithFrame:CGRectMake(16, 0, self.view.bm_width - 32, SEARCH_HEADER_HEIGHT)];
+    label.font           = [UIFont systemFontOfSize:12];
+    label.textColor      = UI_COLOR_B4;
+    label.text           = [NSString stringWithFormat:@"共%ld条", (long)[self m_totalCount]];
+    [view addSubview:label];
+    return view;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return SEARCH_HEADER_HEIGHT;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 @end

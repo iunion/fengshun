@@ -51,34 +51,12 @@ FSSearchResultView ()
 {
     _m_resultVC.view.frame = CGRectMake(0, 0, self.bm_width, self.bm_height);
     _m_tableView.tableFooterView   = [UIView new];
-    // 由resultVC管理结果列表的data,由resultView管理结果列表的交互
-    _m_tableView.delegate          = self;
     _m_tableView.separatorStyle    = UITableViewCellSeparatorStyleSingleLine;
 }
 
 - (NSArray *)m_searchKeys
 {
     return [_m_searchArray copy];
-}
-#pragma mark - tableViewDelegate
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *view         = [UIView new];
-    view.backgroundColor = FS_VIEW_BGCOLOR;
-    UILabel *label       = [[UILabel alloc] initWithFrame:CGRectMake(16, 0, self.bm_width - 32, SEARCH_HEADER_HEIGHT)];
-    label.font           = [UIFont systemFontOfSize:12];
-    label.textColor      = UI_COLOR_B4;
-    label.text           = [NSString stringWithFormat:@"共%ld条", (long)self.m_totalCount];
-    [view addSubview:label];
-    return view;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return SEARCH_HEADER_HEIGHT;
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 
