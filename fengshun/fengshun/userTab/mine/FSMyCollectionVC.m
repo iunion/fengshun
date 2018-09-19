@@ -161,6 +161,16 @@
     return 8.0f;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.m_CollectionType == FSCollectionType_POSTS)
+    {
+        return [FSTopicListCell cellHeight];
+    }
+    
+    return UITableViewAutomaticDimension;
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

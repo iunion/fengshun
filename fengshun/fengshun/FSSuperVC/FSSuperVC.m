@@ -103,15 +103,14 @@
         show = YES;
     }
     
+    // 1001     用户未登录
+    // 1002     认证令牌失效 注：出现该错误时，需要调用刷新令牌接口，重新 获得有效令牌
     switch (statusCode)
     {
         // 未登录
         case 1001:
-            [GetAppDelegate logOutQuit:YES showLogin:show];
-            break;
-
-        case 1003:
-            [GetAppDelegate logOutQuit:NO showLogin:show];
+        case 1002:
+            [GetAppDelegate logOutQuit:quit showLogin:show];
             break;
 
         default:
