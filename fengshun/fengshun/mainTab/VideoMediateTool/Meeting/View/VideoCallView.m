@@ -366,10 +366,10 @@ static CGFloat margin = 10;
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor clearColor];
+
         NSArray * data = @[@[@"开始录制",@"结束录制",@"videocall_start_record",@"videocall_end_record"],
                            @[@"识别语音",@"识别语音",@"videocall_voice_off", @"videocall_voice_open"],
                            @[@"翻转",@"翻转",@"videocall_camera_switch",@"videocall_camera_switch"]];
-        NSMutableArray *masonryArr = [NSMutableArray array];
         CGFloat left = 30;
         CGFloat width = (UI_SCREEN_WIDTH - left*2)/data.count;
         for (int i = 0; i < data.count; i ++) {
@@ -385,8 +385,13 @@ static CGFloat margin = 10;
             [topBtn setImage:[UIImage imageNamed:data[i][3]] forState:UIControlStateSelected];
             [topBtn bm_layoutButtonWithEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageTop imageTitleGap:3];
             [self addSubview:topBtn];
-            [masonryArr addObject:topBtn];
         }
+        
+        UIButton *backBtn = [UIButton bm_buttonWithFrame:CGRectMake(0, 10, 44, 50) image:[UIImage imageNamed:@"video_back_btn"]];
+        [backBtn addTarget:self action:@selector(topBtnClickAction:) forControlEvents:UIControlEventTouchUpInside];
+        backBtn.tag = 0;
+        [self addSubview:backBtn];
+
     }
     return self;
 }
@@ -420,7 +425,6 @@ static CGFloat margin = 10;
                                        @[@"结束视频",@"video_bottom_endbtn"]]];
         CGFloat left = 30;
         CGFloat width = (UI_SCREEN_WIDTH - left*2)/dataArr.count;
-        NSMutableArray *masonryArr = [NSMutableArray array];
         for (int i = 0; i < dataArr.count; i ++) {
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             button.frame = CGRectMake(left+ width*i, 0, width , 49);
@@ -432,7 +436,6 @@ static CGFloat margin = 10;
             [button setTitleColor:UI_COLOR_B4 forState:UIControlStateNormal];
             button.tag = i;
             [self addSubview:button];
-            [masonryArr addObject:button];
         }
     }
     return self;

@@ -31,6 +31,10 @@
 		453444C0214D0DFA00EA7BFA /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444BF214D0DFA00EA7BFA /* AssetsLibrary.framework */; };
 		453444C2214D0DFA00EA7BFA /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444C1214D0DFA00EA7BFA /* Accelerate.framework */; };
 		4561391E2148FA2B007DF6A1 /* FSApiRequest+VideoMediate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4561391D2148FA2B007DF6A1 /* FSApiRequest+VideoMediate.m */; };
+		458E181D2151E7690050590B /* video_back_btn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 458E181B2151E7670050590B /* video_back_btn@3x.png */; };
+		458E181E2151E7690050590B /* video_back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 458E181C2151E7680050590B /* video_back_btn@2x.png */; };
+		458E181F2151E9560050590B /* video_back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 458E181C2151E7680050590B /* video_back_btn@2x.png */; };
+		458E18202151E9560050590B /* video_back_btn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 458E181B2151E7670050590B /* video_back_btn@3x.png */; };
 		45F3FD21214BBF48007712EE /* video_history_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45F3FD1D214BBF46007712EE /* video_history_icon@2x.png */; };
 		45F3FD22214BBF48007712EE /* video_message_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45F3FD1E214BBF47007712EE /* video_message_icon@3x.png */; };
 		45F3FD23214BBF48007712EE /* video_message_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45F3FD1F214BBF47007712EE /* video_message_icon@2x.png */; };
@@ -1886,6 +1890,8 @@
 		45869EA7214CA5EC00FB2024 /* FSVideoHistoryListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoHistoryListVC.m; sourceTree = "<group>"; };
 		45869EAC214CAA2300FB2024 /* FSVideoHistoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVideoHistoryCell.h; sourceTree = "<group>"; };
 		45869EAD214CAA2300FB2024 /* FSVideoHistoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoHistoryCell.m; sourceTree = "<group>"; };
+		458E181B2151E7670050590B /* video_back_btn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_back_btn@3x.png"; sourceTree = "<group>"; };
+		458E181C2151E7680050590B /* video_back_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_back_btn@2x.png"; sourceTree = "<group>"; };
 		45A3BF892148AA2E0093278C /* FSVideoMediateListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVideoMediateListVC.h; sourceTree = "<group>"; };
 		45A3BF8A2148AA2E0093278C /* FSVideoMediateListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoMediateListVC.m; sourceTree = "<group>"; };
 		45DC0299214A1EB700FCE042 /* FSEditVideoMediateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSEditVideoMediateView.h; sourceTree = "<group>"; };
@@ -4054,6 +4060,8 @@
 		45FEF85E214D39140005AD43 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				458E181C2151E7680050590B /* video_back_btn@2x.png */,
+				458E181B2151E7670050590B /* video_back_btn@3x.png */,
 				45FEF87F214D392E0005AD43 /* chat_head_mediator@2x.png */,
 				45FEF86D214D392A0005AD43 /* chat_head_mediator@3x.png */,
 				45FEF860214D39280005AD43 /* chat_head_user@2x.png */,
@@ -7058,12 +7066,14 @@
 				8730B1052148E5D1004331A9 /* fsfreshidle_icon18@2x.png in Resources */,
 				87D186A4213679F800037DDF /* login_checked@3x.png in Resources */,
 				DBD4CE952141229400857DB3 /* home_robot@3x.png in Resources */,
+				458E181E2151E7690050590B /* video_back_btn@2x.png in Resources */,
 				87D186AD213679F800037DDF /* login_closeeye@2x.png in Resources */,
 				87D186AE213679F800037DDF /* login_logo@3x.png in Resources */,
 				8730B1172148E5D1004331A9 /* fsfreshidle_icon13@2x.png in Resources */,
 				87D20AD6213920E2001EDD60 /* LICENSE in Resources */,
 				87741FE5214A132200F72427 /* user_wechaticon@2x.png in Resources */,
 				AD5102A4213E77FC008CD74D /* FSCommunitySecVC.xib in Resources */,
+				458E181D2151E7690050590B /* video_back_btn@3x.png in Resources */,
 				DBD4CE922141229400857DB3 /* home_topics@2x.png in Resources */,
 				87426A50213135F0003C52F6 /* fstab_btn4_highIcon@3x.png in Resources */,
 				DBD4CE8D2141229400857DB3 /* home_arrow@3x.png in Resources */,
@@ -7311,6 +7321,7 @@
 				87E7C51121509AB000F7AB14 /* Assets.xcassets in Resources */,
 				87E7C51221509AB000F7AB14 /* video_bottom_endbtn@2x.png in Resources */,
 				87E7C51321509AB000F7AB14 /* chat_head_user@2x.png in Resources */,
+				458E181F2151E9560050590B /* video_back_btn@2x.png in Resources */,
 				87E7C51421509AB000F7AB14 /* navigationbar_popback_icon@3x.png in Resources */,
 				87E7C51521509AB000F7AB14 /* BMTableView_Transparent@2x.png in Resources */,
 				87E7C51621509AB000F7AB14 /* bmtab_bg@2x.png in Resources */,
@@ -7534,6 +7545,7 @@
 				87E7C5E421509AB000F7AB14 /* decrease_baiduwaimai@3x.png in Resources */,
 				87E7C5E521509AB000F7AB14 /* fsfreshidle_icon3@2x.png in Resources */,
 				87E7C5E621509AB000F7AB14 /* FSForumListCell.xib in Resources */,
+				458E18202151E9560050590B /* video_back_btn@3x.png in Resources */,
 				45F68F452150E58F00628DC8 /* empty_commenticon@3x.png in Resources */,
 				87E7C5E721509AB000F7AB14 /* search_hotKey@2x.png in Resources */,
 				87E7C5E821509AB000F7AB14 /* FSMainHeaderView.xib in Resources */,
