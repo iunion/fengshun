@@ -42,6 +42,6 @@
 
 // RequestStatus
 // 校验一些特殊全局状态码,比如:token失效,强制升级
-- (BOOL)checkRequestStatus:(NSInteger)statusCode message:(NSString *)message responseDic:(NSDictionary *)responseDic;
+- (BOOL)checkRequestStatus:(NSInteger)statusCode message:(NSString *)message responseDic:(NSDictionary *)responseDic logOutQuit:(BOOL)quit showLogin:(BOOL)show;
 
 @end

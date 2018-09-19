@@ -32,12 +32,8 @@
 
 + (instancetype)modelWithParams:(NSDictionary *)params
 {
-    FSLawSearchResultModel *model = [[self alloc] init];
-    model.m_isMore                 = [params bm_boolForKey:@"isMore"];
-    model.m_totalCount             = [params bm_intForKey:@"size"];
-    model.m_keywordsStr            = [params bm_stringForKey:@"keywords"];
-    model.m_resultDataArray        = [FSLawResultModel modelsWithDataArray:[params bm_arrayForKey:@"data"]];
-    model.m_filterSegments         = [FSSearchFilterSegment modelsWithDataArray:[params bm_arrayForKey:@"aggs"]];
+    FSLawSearchResultModel *model = [super modelWithParams:params];
+    model.m_resultDataArray       = [FSLawResultModel modelsWithDataArray:[params bm_arrayForKey:@"data"]];
     return model;
 }
 

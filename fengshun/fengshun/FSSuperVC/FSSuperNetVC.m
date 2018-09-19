@@ -177,6 +177,11 @@
         {
             dataArray = [responseDic bm_arrayForKey:@"data"];
             succeed = [self succeedLoadedRequestWithArray:dataArray];
+            if (!succeed)
+            {
+                NSString *requestStr = [responseDic bm_stringTrimForKey:@"data"];
+                succeed = [self succeedLoadedRequestWithString:requestStr];
+            }
         }
         
         if (succeed)
@@ -205,7 +210,7 @@
         [self failLoadedResponse:response responseDic:responseDic withErrorCode:statusCode];
         
         NSString *message = [responseDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
-        if ([self checkRequestStatus:statusCode message:message responseDic:responseDic])
+        if ([self checkRequestStatus:statusCode message:message responseDic:responseDic logOutQuit:NO showLogin:YES])
         {
             [self.m_ProgressHUD hideAnimated:YES];
         }
@@ -248,6 +253,16 @@
 - (BOOL)succeedLoadedRequestWithArray:(NSArray *)requestArray
 {
     if ([requestArray bm_isNotEmpty])
+    {
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (BOOL)succeedLoadedRequestWithString:(NSString *)requestStr
+{
+    if ([requestStr bm_isNotEmpty])
     {
         return YES;
     }

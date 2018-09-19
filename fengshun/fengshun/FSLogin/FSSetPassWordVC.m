@@ -444,7 +444,7 @@
         
         if (self.m_VerificationType == BMVerificationCodeType_Type3)
         {
-            [GetAppDelegate logOut];
+            [GetAppDelegate logOutQuit:YES showLogin:YES];
         }
         else
         {
@@ -454,8 +454,15 @@
     }
     
     NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
-    [self.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-    
+    if ([self checkRequestStatus:statusCode message:message responseDic:resDic logOutQuit:YES showLogin:YES])
+    {
+        [self.m_ProgressHUD hideAnimated:YES];
+    }
+    else
+    {
+        [self.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+    }
+
     if (self.delegate && [self.delegate respondsToSelector:@selector(loginFailedWithProgressState:)])
     {
         [self.delegate loginFailedWithProgressState:FSLoginProgress_ChangePassWord];

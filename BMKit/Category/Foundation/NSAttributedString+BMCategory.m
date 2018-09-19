@@ -408,6 +408,10 @@
     fullhtmlString = [fullhtmlString stringByReplacingOccurrencesOfString:endTag withString:@"</font>"];
     fullhtmlString = [NSString stringWithFormat:@"%@%@%@",styleHeaer,fullhtmlString,styleTrail];
     NSMutableAttributedString * attrStr = [[self alloc] initWithData:[fullhtmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    if (attrStr.length) {
+        // 去掉末尾的 '\n'
+        [attrStr replaceCharactersInRange:NSMakeRange(attrStr.length-1, 1) withString:@""];
+    }
     return attrStr;
 }
 

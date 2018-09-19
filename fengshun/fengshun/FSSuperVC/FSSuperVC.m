@@ -7,8 +7,11 @@
 //
 
 #import "FSSuperVC.h"
+#import "AppDelegate.h"
 #import "FSLoginVC.h"
 #import "FSAuthenticationVC.h"
+
+#import "FSAlertView.h"
 
 @interface FSSuperVC ()
 <
@@ -95,13 +98,52 @@
 #pragma mark -
 #pragma mark checkRequestStatus
 
-- (BOOL)checkRequestStatus:(NSInteger)statusCode message:(NSString *)message responseDic:(NSDictionary *)responseDic
+- (BOOL)checkRequestStatus:(NSInteger)statusCode message:(NSString *)message responseDic:(NSDictionary *)responseDic logOutQuit:(BOOL)quit showLogin:(BOOL)show
 {
+    if (!quit && !show)
+    {
+        show = YES;
+    }
+    
+    // 1001     用户未登录
+    // 1002     认证令牌失效 注：出现该错误时，需要调用刷新令牌接口，重新 获得有效令牌
     switch (statusCode)
     {
-        case 1000:
-            break;
+        // 未登录
+        case 1001:
+        case 1002:
+            [GetAppDelegate logOutQuit:quit showLogin:show];
+            return YES;
+
+        // 强制更新
+        case 1008:
+        {
+            NSDictionary *dataDic = [responseDic bm_dictionaryForKey:@"data"];
+            NSString *downString;
+            NSString *httpLink = [dataDic bm_stringTrimForKey:@"link"];
+            NSString *appId = [dataDic bm_stringTrimForKey:@"appId"];
+            if ([httpLink bm_isNotEmpty])
+            {
+                downString = httpLink;
+            }
+            else if ([appId bm_isNotEmpty])
+            {
+                downString = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/%@", appId];
+            }
+            else
+            {
+                downString = APPSTORE_DOWNLOADAPP_ADDRESS;
+            }
             
+            FSAlertView *alertView = [FSAlertView showAlertWithTitle:message message:nil cancelTitle:@"立即更新" otherTitle:nil completion:^(BOOL cancelled, NSInteger buttonIndex) {
+                //NSString *downString = APPSTORE_DOWNLOADAPP_ADDRESS;
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:downString]];
+            }];
+            alertView.notDismissOnCancel = YES;
+
+            return YES;
+        }
+
         default:
             break;
     }

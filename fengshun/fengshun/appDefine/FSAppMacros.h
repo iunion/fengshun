@@ -19,6 +19,16 @@
 #define FSPASSWORD_MAXLENGTH            16
 
 
+#pragma mark -
+#pragma mark - Func
+
+// 测试
+#ifdef __OPTIMIZE__
+#define USE_TEST_HELP           0
+#else
+#define USE_TEST_HELP           1
+#endif
+
 
 #pragma mark -
 #pragma mark 通知

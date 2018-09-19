@@ -201,14 +201,6 @@ FSMainVC ()
     return section ? _m_topics.count : _m_courses.count;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (!indexPath.section)
-    {
-        return COURSE_CELL_HEGHT;
-    }
-    return 152;
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -265,6 +257,16 @@ FSMainVC ()
 //    [view addSubview:moreButton];
     
     return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section)
+    {
+        return [FSTopicListCell cellHeight];
+    }
+    
+    return UITableViewAutomaticDimension;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

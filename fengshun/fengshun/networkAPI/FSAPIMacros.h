@@ -9,23 +9,43 @@
 #ifndef FSAPIMacros_h
 #define FSAPIMacros_h
 
+#if USE_TEST_HELP
+
+// 开发环境
+#define FS_URL_SERVER_DEV       (@"https://devftls.odrcloud.net")
+#define FS_H5_SERVER_DEV        (@"https://devftlsh5.odrcloud.net")
+#define FS_FILE_ADRESS_DEV      (@"/storm/file/download/")
+
+// 测试环境
+#define FS_URL_SERVER_TEST      (@"https://testapi.bjsjsadr.com")
+#define FS_H5_SERVER_TEST       (@"https://devftls.odrcloud.net")
+#define FS_FILE_ADRESS_TEST     (@"/storm/file/download/")
+
+// 线上环境
+#define FS_URL_SERVER_ONLINE    (@"https://devftls.odrcloud.net")
+#define FS_H5_SERVER_ONLINE     (@"https://devftlsh5.odrcloud.net")
+#define FS_FILE_ADRESS_ONLINE   (@"/storm/file/download/")
+
+#define FS_URL_SERVER_INIT      FS_URL_SERVER_DEV
+#define FS_H5_SERVER_INIT       FS_H5_SERVER_DEV
+#define FS_FILE_ADRESS_INIT     FS_FILE_ADRESS_DEV
+
+#define FS_URL_SERVER_KEY       (@"debug_api_server")
+#define FS_URL_SERVER           [[NSUserDefaults standardUserDefaults] objectForKey:FS_URL_SERVER_KEY]
+
+#define FS_H5_SERVER_KEY        (@"debug_h5_server")
+#define FS_H5_SERVER            [[NSUserDefaults standardUserDefaults] objectForKey:FS_H5_SERVER_KEY]
+
+#define FS_FILE_ADRESS_KEY      (@"debug_file_adress")
+#define FS_FILE_ADRESS          [[NSUserDefaults standardUserDefaults] objectForKey:FS_FILE_ADRESS_KEY]
+
+#else
+
 #define FS_URL_SERVER       (@"https://devftls.odrcloud.net")
-
 #define FS_H5_SERVER        (@"https://devftlsh5.odrcloud.net")
+#define FS_FILE_ADRESS      (@"/storm/file/download/")
 
-#define FS_FILE_Adress      (@"/storm/file/download/")
-
-//开发环境配置
-//1400119577 32661
-//测试环境配置
-//1400119579 32662
-//生产环境配置
-//1400119581 32663
-
-// 腾讯RTC
-#define KILiveSDKAPPID     1400119577
-#define KILiveAccountType  32661
-#define KILiveControlRole  @"user"
+#endif
 
 
 // 一般API超时时间
