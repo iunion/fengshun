@@ -105,10 +105,15 @@
     
     switch (statusCode)
     {
+        // 未登录
         case 1001:
-            [GetAppDelegate logOutQuit:quit showLogin:show];
+            [GetAppDelegate logOutQuit:YES showLogin:show];
             break;
-            
+
+        case 1003:
+            [GetAppDelegate logOutQuit:NO showLogin:show];
+            break;
+
         default:
             break;
     }

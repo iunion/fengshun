@@ -447,6 +447,11 @@
         {
             dataArray = [responseDic bm_arrayForKey:@"data"];
             succeed = [self succeedLoadedRequestWithArray:dataArray];
+            if (!succeed)
+            {
+                NSString *dataStr = [responseDic bm_stringTrimForKey:@"data"];
+                succeed = [self succeedLoadedRequestWithString:dataStr];
+            }
         }
         
         if (succeed)
@@ -580,6 +585,11 @@
 - (BOOL)succeedLoadedRequestWithArray:(NSArray *)requestArray
 {
     return [super succeedLoadedRequestWithArray:requestArray];
+}
+
+- (BOOL)succeedLoadedRequestWithString:(NSString *)requestStr
+{
+    return [super succeedLoadedRequestWithString:requestStr];
 }
 
 // 全部失败情况适用
