@@ -199,7 +199,7 @@ FSOCRSearchResultVC ()
     {
         FSCaseSearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCaseSearchResultCell"];
         
-        FSCaseReultModel *model = _m_caseSearchResultModel.m_resultDataArray[indexPath.row];
+        FSCaseResultModel *model = _m_caseSearchResultModel.m_resultDataArray[indexPath.row];
         [cell setCaseResultModel:model attributed:YES];
         return cell;
     }

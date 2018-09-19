@@ -8,11 +8,11 @@
 
 #import "FSCaseSearchResultModel.h"
 
-@implementation FSCaseReultModel
+@implementation FSCaseResultModel
 
 + (instancetype)modelWithParams:(NSDictionary *)params
 {
-    FSCaseReultModel *model = [[self alloc] init];
+    FSCaseResultModel *model = [[self alloc] init];
     model.m_caseId          = [params bm_stringForKey:@"id"];
     model.m_title           = [params bm_stringForKey:@"title"];
     model.m_simpleContent   = [params bm_stringForKey:@"simpleContent"];
@@ -63,7 +63,7 @@
 + (instancetype)modelWithParams:(NSDictionary *)params
 {
     FSCaseSearchResultModel *model = [super modelWithParams:params];
-    model.m_resultDataArray        = [FSCaseReultModel modelsWithDataArray:[params bm_arrayForKey:@"data"]];
+    model.m_resultDataArray        = [FSCaseResultModel modelsWithDataArray:[params bm_arrayForKey:@"data"]];
     return model;
 }
 @end

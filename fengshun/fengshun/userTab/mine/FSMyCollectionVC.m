@@ -106,7 +106,7 @@
                 case FSCollectionType_CASE:
                 {
                     // 案例
-                    FSCaseSearchResultModel *model = [FSCaseSearchResultModel modelWithParams:dic];
+                    FSCaseResultModel *model = [FSCaseResultModel modelWithParams:dic];
                     if ([model bm_isNotEmpty]) {
                         [dataArray addObject:model];
                     }
@@ -202,7 +202,7 @@
         {
             FSCaseSearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCaseSearchResultCell"];
             
-            FSCaseReultModel *model = self.m_DataArray[indexPath.row];
+            FSCaseResultModel *model = self.m_DataArray[indexPath.row];
             [cell setCaseResultModel:model attributed:NO];
             return cell;
         }

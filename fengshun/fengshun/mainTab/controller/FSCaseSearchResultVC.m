@@ -38,7 +38,7 @@
 {
     FSCaseSearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCaseSearchResultCell"];
 
-    FSCaseReultModel *model = _m_searchResultModel.m_resultDataArray[indexPath.row];
+    FSCaseResultModel *model = _m_searchResultModel.m_resultDataArray[indexPath.row];
     [cell setCaseResultModel:model attributed:YES];
     return cell;
 }

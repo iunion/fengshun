@@ -32,7 +32,7 @@
     // Configure the view for the selected state
 }
 
-- (void)setCaseResultModel:(FSCaseReultModel *)model attributed:(BOOL)attributed
+- (void)setCaseResultModel:(FSCaseResultModel *)model attributed:(BOOL)attributed
 {
     _m_caseResultModel = model;
     [FSSearchResultModel setTextLabel:_m_titleLabel withText:model.m_title fontSize:18 textColor:UI_COLOR_B1 attributed:attributed];

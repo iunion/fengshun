@@ -10,7 +10,7 @@
 
 @class FSSearchFilterSegment, FSSearchFilter;
 
-@interface FSCaseReultModel : FSSuperModel
+@interface FSCaseResultModel : FSSuperModel
 
 @property (nonatomic, copy) NSString *m_caseId;
 @property (nonatomic, copy) NSString *m_title;
