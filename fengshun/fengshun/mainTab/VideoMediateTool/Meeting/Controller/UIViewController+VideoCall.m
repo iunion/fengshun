@@ -87,7 +87,7 @@
         option.roomDisconnectListener = self;
         // 首帧到达监听
         //    option.firstFrameListener = toVC;
-        option.controlRole = KILiveControlRole;
+        option.controlRole = FS_ILiveControlRole;
         
         [hud showAnimated:YES withText:@"正在加入房间"];
         [[ILiveRoomManager getInstance] joinRoom:(int)model.roomId option:option succ:^{

@@ -1607,6 +1607,14 @@
 		87E7C6CE2150C10200F7AB14 /* empty_404icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87E7C6BC2150C10100F7AB14 /* empty_404icon@3x.png */; };
 		87E7C6CF2150C10200F7AB14 /* empty_ocricon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87E7C6BD2150C10100F7AB14 /* empty_ocricon@2x.png */; };
 		87E7C6D02150C10200F7AB14 /* empty_collecticon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87E7C6BE2150C10100F7AB14 /* empty_collecticon@3x.png */; };
+		87E7C6F22151F2C700F7AB14 /* iConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6E92151F2C700F7AB14 /* iConsole.m */; };
+		87E7C6F32151F2C700F7AB14 /* iConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6E92151F2C700F7AB14 /* iConsole.m */; };
+		87E7C6F42151F2C700F7AB14 /* FSTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6EA2151F2C700F7AB14 /* FSTestHelper.m */; };
+		87E7C6F52151F2C700F7AB14 /* FSTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6EA2151F2C700F7AB14 /* FSTestHelper.m */; };
+		87E7C6F62151F2C700F7AB14 /* YYFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6ED2151F2C700F7AB14 /* YYFPSLabel.m */; };
+		87E7C6F72151F2C700F7AB14 /* YYFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6ED2151F2C700F7AB14 /* YYFPSLabel.m */; };
+		87E7C6F82151F2C700F7AB14 /* GTMStackTrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6F02151F2C700F7AB14 /* GTMStackTrace.m */; };
+		87E7C6F92151F2C700F7AB14 /* GTMStackTrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6F02151F2C700F7AB14 /* GTMStackTrace.m */; };
 		AD1BE2122141238B0018AF2C /* FSForumSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1BE2112141238B0018AF2C /* FSForumSectionHeaderView.m */; };
 		AD1BE214214127180018AF2C /* FSForumSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD1BE213214127180018AF2C /* FSForumSectionHeaderView.xib */; };
 		AD22449A213CD6C300F2DC47 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AD224481213CD6C300F2DC47 /* NSLayoutConstraint+MASDebugAdditions.m */; };
@@ -3199,6 +3207,14 @@
 		87E7C6BC2150C10100F7AB14 /* empty_404icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "empty_404icon@3x.png"; sourceTree = "<group>"; };
 		87E7C6BD2150C10100F7AB14 /* empty_ocricon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "empty_ocricon@2x.png"; sourceTree = "<group>"; };
 		87E7C6BE2150C10100F7AB14 /* empty_collecticon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "empty_collecticon@3x.png"; sourceTree = "<group>"; };
+		87E7C6E82151F2C700F7AB14 /* iConsole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iConsole.h; sourceTree = "<group>"; };
+		87E7C6E92151F2C700F7AB14 /* iConsole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iConsole.m; sourceTree = "<group>"; };
+		87E7C6EA2151F2C700F7AB14 /* FSTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSTestHelper.m; sourceTree = "<group>"; };
+		87E7C6EC2151F2C700F7AB14 /* YYFPSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYFPSLabel.h; sourceTree = "<group>"; };
+		87E7C6ED2151F2C700F7AB14 /* YYFPSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYFPSLabel.m; sourceTree = "<group>"; };
+		87E7C6EF2151F2C700F7AB14 /* GTMStackTrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMStackTrace.h; sourceTree = "<group>"; };
+		87E7C6F02151F2C700F7AB14 /* GTMStackTrace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMStackTrace.m; sourceTree = "<group>"; };
+		87E7C6F12151F2C700F7AB14 /* FSTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSTestHelper.h; sourceTree = "<group>"; };
 		AD1BE2102141238B0018AF2C /* FSForumSectionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSForumSectionHeaderView.h; sourceTree = "<group>"; };
 		AD1BE2112141238B0018AF2C /* FSForumSectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSForumSectionHeaderView.m; sourceTree = "<group>"; };
 		AD1BE213214127180018AF2C /* FSForumSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSForumSectionHeaderView.xib; sourceTree = "<group>"; };
@@ -5458,6 +5474,7 @@
 		87426A9821314996003C52F6 /* FSTools */ = {
 			isa = PBXGroup;
 			children = (
+				87E7C6E62151F2C700F7AB14 /* FSTestHelp */,
 				87742019214F522100F72427 /* FSAlertView */,
 				DB4C7E3B21476426008CC6BB /* FSOCR */,
 				87426A9D213156D5003C52F6 /* FSBannerView */,
@@ -6421,6 +6438,45 @@
 				87E7C6BA2150C10100F7AB14 /* empty_videoicon@3x.png */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		87E7C6E62151F2C700F7AB14 /* FSTestHelp */ = {
+			isa = PBXGroup;
+			children = (
+				87E7C6EE2151F2C700F7AB14 /* GTM */,
+				87E7C6E72151F2C700F7AB14 /* iConsole */,
+				87E7C6EB2151F2C700F7AB14 /* YYFPSLabel */,
+				87E7C6F12151F2C700F7AB14 /* FSTestHelper.h */,
+				87E7C6EA2151F2C700F7AB14 /* FSTestHelper.m */,
+			);
+			path = FSTestHelp;
+			sourceTree = "<group>";
+		};
+		87E7C6E72151F2C700F7AB14 /* iConsole */ = {
+			isa = PBXGroup;
+			children = (
+				87E7C6E82151F2C700F7AB14 /* iConsole.h */,
+				87E7C6E92151F2C700F7AB14 /* iConsole.m */,
+			);
+			path = iConsole;
+			sourceTree = "<group>";
+		};
+		87E7C6EB2151F2C700F7AB14 /* YYFPSLabel */ = {
+			isa = PBXGroup;
+			children = (
+				87E7C6EC2151F2C700F7AB14 /* YYFPSLabel.h */,
+				87E7C6ED2151F2C700F7AB14 /* YYFPSLabel.m */,
+			);
+			path = YYFPSLabel;
+			sourceTree = "<group>";
+		};
+		87E7C6EE2151F2C700F7AB14 /* GTM */ = {
+			isa = PBXGroup;
+			children = (
+				87E7C6EF2151F2C700F7AB14 /* GTMStackTrace.h */,
+				87E7C6F02151F2C700F7AB14 /* GTMStackTrace.m */,
+			);
+			path = GTM;
 			sourceTree = "<group>";
 		};
 		AD22447F213CD6C300F2DC47 /* Masonry */ = {
@@ -7746,6 +7802,7 @@
 				874268AE212E7E36003C52F6 /* BMTableViewPickerCell.m in Sources */,
 				87426A802131461F003C52F6 /* AFURLSessionManager.m in Sources */,
 				8730B0592140FFA3004331A9 /* NSAttributedString+DTDebug.m in Sources */,
+				87E7C6F42151F2C700F7AB14 /* FSTestHelper.m in Sources */,
 				DB7584A9214F5C630002A1FE /* FSOCRSearchResultVC.m in Sources */,
 				8742690B212E7E36003C52F6 /* NSArray+BMCategory.m in Sources */,
 				8742690D212E7E36003C52F6 /* NSNumber+BMCategory.m in Sources */,
@@ -7764,6 +7821,7 @@
 				87D20ADB213920E2001EDD60 /* FLEXTableContentCell.m in Sources */,
 				87D20AC9213920E2001EDD60 /* FLEXFieldEditorView.m in Sources */,
 				874268F5212E7E36003C52F6 /* UIImage+BMAssets.m in Sources */,
+				87E7C6F62151F2C700F7AB14 /* YYFPSLabel.m in Sources */,
 				8730B09B2140FFA3004331A9 /* NSString+DTFormatNumbers.m in Sources */,
 				AD93559F2137D24100735C2E /* TZImageCropManager.m in Sources */,
 				87D20AD7213920E2001EDD60 /* FLEXTableContentViewController.m in Sources */,
@@ -7899,6 +7957,7 @@
 				DB487441214A6E5B00AB0805 /* FSImageFileModel.m in Sources */,
 				87D20AB5213920E2001EDD60 /* FLEXExplorerToolbar.m in Sources */,
 				87D20ACA213920E2001EDD60 /* FLEXExplorerViewController.m in Sources */,
+				87E7C6F82151F2C700F7AB14 /* GTMStackTrace.m in Sources */,
 				87426AF521353510003C52F6 /* FSDB.m in Sources */,
 				DB487445214B642600AB0805 /* FSImageFileCell.m in Sources */,
 				87D20AC8213920E2001EDD60 /* FLEXArgumentInputNotSupportedView.m in Sources */,
@@ -8107,6 +8166,7 @@
 				87D209BB2138F1E2001EDD60 /* SDWebImageCodersManager.m in Sources */,
 				8730B0722140FFA3004331A9 /* ioapi.c in Sources */,
 				874268A8212E7E36003C52F6 /* BMTableViewTextCell.m in Sources */,
+				87E7C6F22151F2C700F7AB14 /* iConsole.m in Sources */,
 				AD22449E213CD6C300F2DC47 /* MASLayoutConstraint.m in Sources */,
 				8730B0802140FFA3004331A9 /* UIView+DTFoundation.m in Sources */,
 				87426902212E7E36003C52F6 /* NSData+BMCategory.m in Sources */,
@@ -8400,6 +8460,7 @@
 				87E7C36B21509AB000F7AB14 /* BMVerifiTimeManager.m in Sources */,
 				87E7C36C21509AB000F7AB14 /* FLEXNetworkHistoryTableViewController.m in Sources */,
 				87E7C36D21509AB000F7AB14 /* NSData+DTCrypto.m in Sources */,
+				87E7C6F92151F2C700F7AB14 /* GTMStackTrace.m in Sources */,
 				87E7C36E21509AB000F7AB14 /* UIView+WebCacheOperation.m in Sources */,
 				87E7C36F21509AB000F7AB14 /* TZPhotoPreviewController.m in Sources */,
 				87E7C37021509AB000F7AB14 /* DTTextBlock.m in Sources */,
@@ -8597,6 +8658,7 @@
 				87E7C42C21509AB000F7AB14 /* View+MASAdditions.m in Sources */,
 				87E7C42E21509AB000F7AB14 /* BMCheckBox.m in Sources */,
 				87E7C42F21509AB000F7AB14 /* FLEXMultilineTableViewCell.m in Sources */,
+				87E7C6F32151F2C700F7AB14 /* iConsole.m in Sources */,
 				87E7C43021509AB000F7AB14 /* NSImage+WebCache.m in Sources */,
 				87E7C43121509AB000F7AB14 /* DTCoreTextGlyphRun.m in Sources */,
 				87E7C43221509AB000F7AB14 /* BMVerifyField.m in Sources */,
@@ -8663,6 +8725,7 @@
 				87E7C46E21509AB000F7AB14 /* DTAsyncFileDeleter.m in Sources */,
 				87E7C46F21509AB000F7AB14 /* DTFoundationConstants.m in Sources */,
 				87E7C47021509AB000F7AB14 /* MASViewConstraint.m in Sources */,
+				87E7C6F72151F2C700F7AB14 /* YYFPSLabel.m in Sources */,
 				87E7C47121509AB000F7AB14 /* TZImageManager.m in Sources */,
 				87E7C47221509AB000F7AB14 /* NSString+BMFormat.m in Sources */,
 				87E7C47321509AB000F7AB14 /* DTObjectTextAttachment.m in Sources */,
@@ -8694,6 +8757,7 @@
 				87E7C48C21509AB000F7AB14 /* BMTableViewCheckBoxGroupCell.m in Sources */,
 				87E7C48D21509AB000F7AB14 /* DTASN1Parser.m in Sources */,
 				87E7C48E21509AB000F7AB14 /* FSScrollPageSegment.m in Sources */,
+				87E7C6F52151F2C700F7AB14 /* FSTestHelper.m in Sources */,
 				87E7C48F21509AB000F7AB14 /* FLEXRuntimeUtility.m in Sources */,
 				87E7C49021509AB000F7AB14 /* FLEXTableColumnHeader.m in Sources */,
 				87E7C49121509AB000F7AB14 /* FSSearchResultView.m in Sources */,

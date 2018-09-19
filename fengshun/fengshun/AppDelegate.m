@@ -24,6 +24,10 @@
 #import "FSGlobleDataModle.h"
 #import "FSCustomInfoVC.h"
 
+#if USE_TEST_HELP
+#import "FSTestHelper.h"
+#endif
+
 #ifdef FSVIDEO_ON
 #import <ILiveSDK/ILiveSDK.h>
 #import <ILiveSDK/ILiveCoreHeader.h>
@@ -70,14 +74,16 @@
 
 #ifdef FSVIDEO_ON
 //#pragma mark - 配置iLiveSDK
-- (void)initILiveSDK {
+- (void)initILiveSDK
+{
     // 初始化SDK
-    [[ILiveSDK getInstance] initSdk:KILiveSDKAPPID accountType:KILiveAccountType];
+    [[ILiveSDK getInstance] initSdk:FS_ILiveSDKAPPID accountType:FS_ILiveAccountType];
     [[ILiveSDK getInstance] setChannelMode:E_ChannelIMSDK withHost:@""];
-    //    //获取版本号
-    NSLog(@"ILiveSDK version:%@",[[ILiveSDK getInstance] getVersion]);
-    NSLog(@"AVSDK version:%@",[QAVContext getVersion]);
-    NSLog(@"IMSDK version:%@",[[TIMManager sharedInstance] GetVersion]);
+    
+    // 获取版本号
+    NSLog(@"ILiveSDK version:%@", [[ILiveSDK getInstance] getVersion]);
+    NSLog(@"AVSDK version:%@", [QAVContext getVersion]);
+    NSLog(@"IMSDK version:%@", [[TIMManager sharedInstance] GetVersion]);
 }
 #endif
 
@@ -152,7 +158,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+#if USE_TEST_HELP
+    self.window = [[iConsoleWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [FSTestHelper sharedInstance];
+#else
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+#endif
     // Override point for customization after application launch.
     // TODO: Substitute UIViewController with your own subclass.
 
@@ -173,11 +184,22 @@
     self.window.rootViewController = tabBarController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    
+#if USE_TEST_HELP
+    [self showFPS];
+#endif
+
     [self getUserAbilityInfoWithVc:nil];
     
     return YES;
 }
+
+#if USE_TEST_HELP
+- (void)showFPS
+{
+    iConsoleWindow *window = (iConsoleWindow *)self.window;
+    [window.fpsLabel bm_bringToFront];
+}
+#endif
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
 {
