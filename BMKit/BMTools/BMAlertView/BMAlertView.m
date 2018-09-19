@@ -60,6 +60,8 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
 @property (nonatomic, strong) UIVisualEffectView *alertMarkBgEffectView;
 @property (nonatomic, strong) UIView *alertView;
 
+@property (nonatomic, strong) UIButton *topRightCloseBtn;
+
 @property (nonatomic, strong) UIView *contentView;
 
 @property (nonatomic, strong) UIImageView *iconImageView;
@@ -192,6 +194,13 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
         self.alertView.layer.opacity = 0.95;
         self.alertView.clipsToBounds = YES;
         [self.view addSubview:self.alertView];
+        
+        self.topRightCloseBtn = [UIButton bm_buttonWithFrame:CGRectMake(alertWidth-40.0f, 0, 40.0f, 40.0f) imageName:@"community_close"];
+        self.topRightCloseBtn.bm_imageRect = CGRectMake(15.0f, 5.0f, 15.0f, 15.0f);
+        [self.topRightCloseBtn addTarget:self action:@selector(dismiss:) forControlEvents:UIControlEventTouchUpInside];
+        [self.alertView addSubview:self.topRightCloseBtn];
+        
+        self.showClose = NO;
         
         // icon
         self.iconImageView = [[UIImageView alloc] init];
@@ -453,6 +462,8 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
     CGFloat space = BMAlertViewVerticalElementSpace;
     CGFloat alertWidth = self.alertView.bm_width;
     
+    self.topRightCloseBtn.bm_left = alertWidth-40.0f;
+    
     CGFloat iconWidth = 0;
     CGFloat iconHeight = 0;
     
@@ -682,6 +693,13 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
 #pragma mark -
 #pragma mark property
 
+- (void)setShowClose:(BOOL)showClose
+{
+    _showClose = showClose;
+    
+    self.topRightCloseBtn.hidden = !showClose;
+}
+
 - (void)setShouldDismissOnTapOutside:(BOOL)shouldDismissOnTapOutside
 {
     _shouldDismissOnTapOutside = shouldDismissOnTapOutside;
@@ -885,12 +903,12 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
 - (void)doCompletion:(id)sender
 {
     BOOL cancelled = NO;
-    if (sender == self.tapOutside || (self.buttonArray.count > 0 && sender == self.buttonArray[0]))
+    if (sender == self.tapOutside || self.topRightCloseBtn || (self.buttonArray.count > 0 && sender == self.buttonArray[0]))
     {
         cancelled = YES;
     }
     NSInteger buttonIndex = -1;
-    if (sender && sender != self.tapOutside && self.buttonArray.count)
+    if (sender && sender != self.tapOutside && sender != self.topRightCloseBtn && self.buttonArray.count)
     {
         NSUInteger index = [self.buttonArray indexOfObject:sender];
         if (index != NSNotFound)

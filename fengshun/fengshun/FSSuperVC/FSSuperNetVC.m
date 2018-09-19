@@ -326,7 +326,7 @@
     BMLog(@"获取分享返回数据是:+++++%@", responseStr);
 #endif
     
-    [FSAlertView showAlertWithTitle:@"分项数据" message:[[NSString stringWithFormat:@"%@", resDic] bm_convertUnicode] cancelTitle:@"确定" otherTitle:nil completion:^(BOOL cancelled, NSInteger buttonIndex) {
+    [FSAlertView showAlertWithTitle:@"分享数据" message:[[NSString stringWithFormat:@"%@", resDic] bm_convertUnicode] cancelTitle:@"确定" otherTitle:nil completion:^(BOOL cancelled, NSInteger buttonIndex) {
     }];
 
     NSInteger statusCode = [resDic bm_intForKey:@"code"];
