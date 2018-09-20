@@ -85,9 +85,9 @@
     _model = model;
     
     self.meetingNameLabel.text = model.meetingName;
-    self.meetingTypeLabel.text = [FSMeetingDataForm getValueForKey:model.meetingType type:FSMeetingDataType_AllMeetingType];
+    self.meetingTypeLabel.text = [FSMeetingDataEnum meetingTypeEnglishToChinese:model.meetingType];
     
-    if ([model.meetingType isEqualToString:@"MEETING_MEDIATE"]) {
+    if ([model.meetingType isEqualToString:[FSMeetingDataEnum meetingTypeMediateEnglish]]) {
         _meetingTypeLabel.backgroundColor = [UIColor bm_colorWithHex:0xE5ECFD];
         _meetingTypeLabel.textColor = UI_COLOR_BL1;
     } else
@@ -96,7 +96,7 @@
         _meetingTypeLabel.textColor = [UIColor bm_colorWithHex:0xFF9F17];
     }
     
-    self.meetingStatusLabel.text = [FSMeetingDataForm getValueForKey:model.meetingStatus type:FSMeetingDataType_AllMeetingStatus];
+    self.meetingStatusLabel.text = [FSMeetingDataEnum meetingStatusEnglishToChinese:model.meetingStatus];
     
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:model.startTime*0.001];
     NSString *realDate = [date bm_stringWithFormat:@"yyyy-MM-dd HH:mm"];

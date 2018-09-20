@@ -10,7 +10,7 @@
 #import "UIButton+BMContentRect.h"
 #import "VideoCallModel.h"
 #import "UIView+BMBadge.h"
-#import "FSVideoMediateModel.h"
+#import "FSMeetingDataEnum.h"
 
 static CGFloat scale = 1.33;
 static CGFloat margin = 10;
@@ -318,7 +318,7 @@ static CGFloat margin = 10;
 }
 
 - (void)reloadData {
-    NSString *identifyString = [FSMeetingDataForm getValueForKey:_model.memberType type:FSMeetingDataType_PersonIdentityType];
+    NSString *identifyString = [FSMeetingDataEnum meetingIdentityEnglishToChinese:_model.memberType];
     if (identifyString.length > 4) {
         identifyString = [NSString stringWithFormat:@"代理人(%@)",[identifyString substringToIndex:1]];
     }
@@ -327,7 +327,7 @@ static CGFloat margin = 10;
     _audioBtn.selected = !_model.memberVoiceStatus;
     _videoBtn.selected = !_model.memberVideoStatus;
 
-//    if ([_model.memberType isEqualToString:@"MEDIATOR"]) {
+//    if ([FSMeetingDataEnum isMediatorIdentity:_model.memberType]) {
 //        _pirChatBtn.hidden = YES;
 //    } else {
 //        _pirChatBtn.hidden = NO;
