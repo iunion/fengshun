@@ -515,11 +515,11 @@
 
 -(void)gotoLawDetail:(NSNotification *)notification
 {
-   [FSPushVCManager showWebView:self url:[NSString stringWithFormat:@"%@/caseDetail?ID=%@&keywords=%@",FS_H5_SERVER,notification.userInfo[@"lawsId"],notification.userInfo[@"caseId"]] title:@"keywords"];
+   [FSPushVCManager showWebView:self url:[NSString stringWithFormat:@"%@/caseDetail?ID=%@&keywords=%@",FS_H5_SERVER,notification.userInfo[@"lawsId"],notification.userInfo[@"keywords"]] title:@""];
 }
 -(void)gotoCaseDetail:(NSNotification *)notification
 {
-    [FSPushVCManager showWebView:self url:[NSString stringWithFormat:@"%@/caseDetail?ID=%@&keywords=%@",FS_H5_SERVER,notification.userInfo[@"caseId"],notification.userInfo[@"caseId"]] title:@"keywords"];
+    [FSPushVCManager showWebView:self url:[NSString stringWithFormat:@"%@/caseDetail?ID=%@&keywords=%@",FS_H5_SERVER,notification.userInfo[@"caseId"],notification.userInfo[@"keywords"]] title:@""];
 }
 
 
