@@ -14,6 +14,11 @@
 
 @implementation FSTableView
 
+- (void)dealloc
+{
+    
+}
+
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style
 {
     return [self initWithFrame:frame style:style freshViewType:BMFreshViewType_Head | BMFreshViewType_Bottom];
@@ -65,7 +70,7 @@
             [idleImages addObject:image];
         }
         // 设置普通状态的动画图片
-        [refreshHeaderView setImages:idleImages forState:BMFreshStateIdle];
+        //[refreshHeaderView setImages:idleImages forState:BMFreshStateIdle];
 
         NSMutableArray *willfreshingImages = [NSMutableArray array];
         [willfreshingImages addObject:[UIImage imageNamed:@"fsfreshidle_icon27"]];
@@ -82,7 +87,7 @@
         [refreshHeaderView setImages:refreshingImages forState:BMFreshStateRefreshing];
 
         refreshHeaderView.beginFreshingBlock = ^(BMFreshBaseView *freshView) {
-            [weakSelf.tableViewDelegate freshDataWithTableView:self];
+            [weakSelf.tableViewDelegate freshDataWithTableView:weakSelf];
         };
         refreshHeaderView.endFreshingBlock = ^(BMFreshBaseView *freshView) {
             if ([weakSelf.tableViewDelegate respondsToSelector:@selector(resetTableViewFreshState:)])
@@ -100,7 +105,7 @@
 
         refreshFooterView.containerSize = CGSizeMake(28.0f, 28.0f);
         refreshFooterView.beginFreshingBlock = ^(BMFreshBaseView *freshView) {
-            [weakSelf.tableViewDelegate loadNextDataWithTableView:self];
+            [weakSelf.tableViewDelegate loadNextDataWithTableView:weakSelf];
         };
         refreshFooterView.endFreshingBlock = ^(BMFreshBaseView *freshView) {
             if ([weakSelf.tableViewDelegate respondsToSelector:@selector(resetTableViewFreshState:)])

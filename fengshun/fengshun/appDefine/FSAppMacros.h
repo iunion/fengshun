@@ -34,7 +34,7 @@
 #endif
 
 // 使用内存检测
-#define LEAKS_ENABLED           0
+#define LEAKS_ENABLED           1
 
 
 #pragma mark -
