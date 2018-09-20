@@ -29,6 +29,13 @@
 #define USE_TEST_HELP           1
 #endif
 
+#if USE_TEST_HELP
+#define FLEX_FS                 1
+#endif
+
+// 使用内存检测
+#define LEAKS_ENABLED           0
+
 
 #pragma mark -
 #pragma mark 通知
