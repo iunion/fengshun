@@ -519,7 +519,7 @@
 }
 -(void)gotoCaseDetail:(NSNotification *)notification
 {
-    [FSPushVCManager showWebView:self url:[NSString stringWithFormat:@"%@/caseDetail?ID=%@&keywords=%@",FS_H5_SERVER,notification.userInfo[@"caseId"],notification.userInfo[@"keywords"]] title:@""];
+    [FSPushVCManager showWebView:self url:[NSString stringWithFormat:@"%@/Law/lawDetail?ID=%@&keywords=%@",FS_H5_SERVER,notification.userInfo[@"caseId"],notification.userInfo[@"keywords"]] title:@""];
 }
 
 
