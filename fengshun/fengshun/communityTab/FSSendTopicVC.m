@@ -77,12 +77,17 @@
     self.m_TitleTextField.textColor   = UI_COLOR_B1;
     self.m_TitleTextField.placeholder = @"添加标题";
     [self.view addSubview:self.m_TitleTextField];
-    
-    BMSingleLineView *singleLine = [[BMSingleLineView alloc] initWithFrame:CGRectMake(self.m_TitleTextField.bm_left, self.m_TitleTextField.bm_bottom, self.m_TitleTextField.bm_width, 1) direction:SingleLineDirectionLandscape];
-    singleLine.needGap           = YES;
-    singleLine.lineGap           = 3.f;
-    singleLine.lineColor         = UI_COLOR_B9;
+
+    BMSingleLineView *singleLine = [[BMSingleLineView alloc] initWithFrame:CGRectMake(self.m_TitleTextField.bm_left, self.m_TitleTextField.bm_bottom - 1, self.m_TitleTextField.bm_width, 1) direction:SingleLineDirectionLandscape];
+    singleLine.isDash            = YES;
+    singleLine.lineLength        = 3.f;
+    singleLine.lineSpacing       = 3.f;
+    singleLine.lineColor         = [UIColor blackColor];
     [self.view addSubview:singleLine];
+    
+    self.m_ProgressHUD = [[MBProgressHUD alloc] initWithView:self.view];
+    self.m_ProgressHUD.animationType = MBProgressHUDAnimationFade;
+    [self.view addSubview:self.m_ProgressHUD];
 }
 
 
@@ -104,7 +109,7 @@
                             cancelTitle:@"取消"
                              otherTitle:@"确定"
                              completion:^(BOOL cancelled, NSInteger buttonIndex) {
-                                 if (!cancelled)
+                                 if (buttonIndex == 1)
                                  {
                                      [self.navigationController popViewControllerAnimated:YES];
                                  }
@@ -120,6 +125,7 @@
 {
     if (![self.m_TitleTextField.text bm_isNotEmpty] || ![[self getHTML] bm_isNotEmpty])
     {
+        [self.m_ProgressHUD showAnimated:YES withText:@"请输入完整信息" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         return;
     }
     BMWeakSelf;
@@ -128,7 +134,7 @@
                         cancelTitle:@"取消"
                          otherTitle:@"确定"
                          completion:^(BOOL cancelled, NSInteger buttonIndex) {
-                             if (!cancelled)
+                             if (buttonIndex == 1)
                              {
                                  [weakSelf sendTopic];
                              }

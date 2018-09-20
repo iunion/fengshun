@@ -1618,6 +1618,7 @@
 		87E7C6F72151F2C700F7AB14 /* YYFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6ED2151F2C700F7AB14 /* YYFPSLabel.m */; };
 		87E7C6F82151F2C700F7AB14 /* GTMStackTrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6F02151F2C700F7AB14 /* GTMStackTrace.m */; };
 		87E7C6F92151F2C700F7AB14 /* GTMStackTrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6F02151F2C700F7AB14 /* GTMStackTrace.m */; };
+		AD1A5D4F21534BEA00ACADDF /* FSReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD412AE9215221C800A9C12B /* FSReportView.m */; };
 		AD1BE2122141238B0018AF2C /* FSForumSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1BE2112141238B0018AF2C /* FSForumSectionHeaderView.m */; };
 		AD1BE214214127180018AF2C /* FSForumSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD1BE213214127180018AF2C /* FSForumSectionHeaderView.xib */; };
 		AD22449A213CD6C300F2DC47 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AD224481213CD6C300F2DC47 /* NSLayoutConstraint+MASDebugAdditions.m */; };
@@ -5374,7 +5375,6 @@
 			isa = PBXGroup;
 			children = (
 				DBF7E17621521715002CEDA4 /* controller */,
-				45A3BF882148A9C20093278C /* VideoMediateTool */,
 				45A3BF882148A9C20093278C /* FSVideo */,
 				DBD4CE7B2141224500857DB3 /* images */,
 				DB8D160D2137CC7100EB16E8 /* view */,
@@ -8692,6 +8692,7 @@
 				87E7C43921509AB000F7AB14 /* FSBannerView.m in Sources */,
 				87E7C43A21509AB000F7AB14 /* BMTableViewSegmentCell.m in Sources */,
 				87E7C43B21509AB000F7AB14 /* UITextField+BMCategory.m in Sources */,
+				AD1A5D4F21534BEA00ACADDF /* FSReportView.m in Sources */,
 				87E7C43C21509AB000F7AB14 /* DTHorizontalRuleHTMLElement.m in Sources */,
 				87E7C43D21509AB000F7AB14 /* DTVideoTextAttachment.m in Sources */,
 				87E7C43E21509AB000F7AB14 /* ZFPlayerController.m in Sources */,

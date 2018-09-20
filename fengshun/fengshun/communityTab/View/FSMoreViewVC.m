@@ -13,12 +13,16 @@
 
 @interface
 FSMoreViewVC ()
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bgViewBottomConstraint;
 // 是否是自己的帖子
 @property (nonatomic , assign) BOOL m_isOwner;
 
 // 是否收藏
 @property (nonatomic , assign) BOOL m_Collection;
+
+@property (nonatomic, strong) UIView *m_BgView;
+
+@property (nonatomic, strong) UIButton *m_CancelBtn;
+
 @end
 
 @implementation FSMoreViewVC
@@ -35,8 +39,7 @@ FSMoreViewVC ()
     [presentVC.navigationController presentViewController:moreVC animated:NO completion:^{
         [UIView animateWithDuration:DEFAULT_DELAY_TIME
                          animations:^{
-                             moreVC.bgViewBottomConstraint.constant = 0;
-                             [moreVC.view layoutIfNeeded];
+                             moreVC.m_BgView.bm_top = UI_SCREEN_HEIGHT - moreVC.m_BgView.bm_height;
                          }];
     }];
     moreVC.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
@@ -46,40 +49,57 @@ FSMoreViewVC ()
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    CGFloat btnWid = UI_SCREEN_WIDTH /5;
+    CGFloat btnHeight = 90.f;
+    CGFloat space = 10.f;
+    CGFloat cacenlBtnHeight = 44.f;
     
-    for (int i = 0; i < 10; i++)
+    self.m_BgView = [[UIView alloc]initWithFrame:CGRectMake(0, UI_SCREEN_HEIGHT, UI_SCREEN_WIDTH, btnHeight*2 + space + cacenlBtnHeight)];
+    self.m_BgView.backgroundColor = [UIColor bm_colorWithHexString:@"f6f6f6"];
+    [self.view addSubview:self.m_BgView];
+    
+    self.m_CancelBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, btnHeight*2 + space, UI_SCREEN_WIDTH, cacenlBtnHeight)];
+    self.m_CancelBtn.titleLabel.font = [UIFont systemFontOfSize:15.f];
+    self.m_CancelBtn.backgroundColor = [ UIColor whiteColor];
+    [self.m_CancelBtn setTitleColor:[UIColor bm_colorWithHexString:@"333333"] forState:UIControlStateNormal];
+    [self.m_CancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+    [self.m_CancelBtn addTarget:self action:@selector(removeView) forControlEvents:UIControlEventTouchUpInside];
+    [self.m_BgView addSubview:self.m_CancelBtn];
+    
+    UIView *whiteView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, btnHeight *2)];
+    whiteView.backgroundColor = [UIColor whiteColor];
+    [self.m_BgView addSubview:whiteView];
+    
+    for (int i = 0; i < 2; i ++)
     {
-        UIButton *btn = [self.view viewWithTag:(i + 100)];
-        if (btn)
+        for (int j = 0; j < 5; j ++)
         {
-            [btn bm_layoutButtonWithEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageTop imageTitleGap:5];
+            UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(j*btnWid, i*btnHeight, btnWid, btnHeight)];
+            btn.backgroundColor = [UIColor whiteColor];
+            btn.titleLabel.font = [UIFont systemFontOfSize:11.f];
+            btn.titleLabel.textAlignment = NSTextAlignmentCenter;
+            [btn setTitle:@[@[@"微信",@"朋友圈",@"QQ",@"QQ空间",@"微博"],@[@"收藏",@"复制链接",@"举报",@"编辑",@"删除"]][i][j] forState:UIControlStateNormal];
+            [btn setImage:[UIImage imageNamed:@[@[@"community_wechat",@"community_friends_cycle",@"community_QQ",@"community_zone",@"community_weibo"],@[@"community_collect",@"community_copy",@"community_report",@"community_edit",@"community_delete"]][i][j]] forState:UIControlStateNormal];
+            [btn setTitleColor:[UIColor bm_colorWithHexString:@"333333"] forState:UIControlStateNormal];
             [btn addTarget:self action:@selector(moreViewAction:) forControlEvents:UIControlEventTouchUpInside];
-        }
-    }
-    // 编辑和删除按钮是否隐藏
-    if (!self.m_isOwner)
-    {
-        for (int i = 8; i < 10; i++)
-        {
-            UIButton *btn = [self.view viewWithTag:(i + 100)];
-            if (btn)
+            btn.tag = (i*5 + j) + 100;
+            // 收藏按钮
+            if (btn.tag == 105)
             {
-                btn.hidden = YES;
+                [btn setTitle:@"取消收藏" forState:UIControlStateSelected];
+                btn.selected = self.m_Collection;
             }
+            // 编辑和删除按钮是否隐藏
+            if (btn.tag == 108 || btn.tag == 109)
+            {
+                btn.hidden = !self.m_isOwner;
+            }
+            [btn bm_layoutButtonWithEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageTop imageTitleGap:5];
+            [self.m_BgView addSubview:btn];
         }
-    }
-    // 收藏状态按钮
-    UIButton *collectionBtn = [self.view viewWithTag:105];
-    if (collectionBtn)
-    {
-        collectionBtn.selected = self.m_Collection;
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -96,10 +116,11 @@ FSMoreViewVC ()
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 
-- (IBAction)cancelAction:(UIButton *)sender
+- (void)removeView
 {
     [self dismissViewControllerAnimated:NO completion:nil];
 }
+
 
 /*
 #pragma mark - Navigation

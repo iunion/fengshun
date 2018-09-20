@@ -47,6 +47,7 @@ FSReportViewDelegate
     self.m_ProgressHUD = [[MBProgressHUD alloc] initWithView:self.view];
     self.m_ProgressHUD.animationType = MBProgressHUDAnimationFade;
     [self.view addSubview:self.m_ProgressHUD];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,7 +60,9 @@ FSReportViewDelegate
 #pragma mark - 更多弹窗按钮
 - (void)moreAction
 {
+    [self.m_ProgressHUD showAnimated:YES];
     [FSApiRequest getTopicDetail:self.m_TopicId success:^(id  _Nullable responseObject) {
+        [self.m_ProgressHUD hideAnimated:NO];
         self.m_TopicDetailModel = [FSTopicDetailModel topicDetailModelWithDic:responseObject];
         if (self.m_TopicDetailModel == nil)
         {
@@ -69,7 +72,7 @@ FSReportViewDelegate
         BOOL isOwner = [self.m_TopicDetailModel.m_UserId isEqualToString:[FSUserInfoModle userInfo].m_UserBaseInfo.m_UserId];
         [FSMoreViewVC showMore:self delegate:self isOwner:isOwner isCollection:self.m_TopicDetailModel.m_IsCollection];
     } failure:^(NSError * _Nullable error) {
-        [self.m_ProgressHUD showAnimated:YES withText:@"数据错误" delay:DEFAULT_DELAY_TIME];
+        [self.m_ProgressHUD showAnimated:YES withText:@"数据错误" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     }];
 }
 
@@ -118,7 +121,7 @@ FSReportViewDelegate
                                 cancelTitle:@"取消"
                                  otherTitle:@"确定"
                                  completion:^(BOOL cancelled, NSInteger buttonIndex) {
-                                     if (!cancelled)
+                                     if (buttonIndex == 1)
                                      {
                                          [FSPushVCManager showSendPostWithPushVC:self
                                                                         isEdited:YES
@@ -137,7 +140,7 @@ FSReportViewDelegate
                                 cancelTitle:@"取消"
                                  otherTitle:@"确定"
                                  completion:^(BOOL cancelled, NSInteger buttonIndex) {
-                                     if (!cancelled)
+                                     if (buttonIndex == 1)
                                      {
                                          [weakSelf deleteTopic];
                                      }
@@ -162,7 +165,7 @@ FSReportViewDelegate
         cententLab.numberOfLines = 2;
         cententLab.font = [UIFont systemFontOfSize:15.f];
         cententLab.textColor = [UIColor bm_colorWithHexString:@"333333"];
-        cententLab.text = [NSString stringWithFormat:@"%@\n1231",self.m_TopicDetailModel.m_Title];
+        cententLab.text = self.m_TopicDetailModel.m_Title;
         [contentView addSubview:cententLab];
         
         UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(35/2, cententLab.bm_bottom + 5, 190, 25)];
@@ -171,9 +174,12 @@ FSReportViewDelegate
         textField.font = [UIFont systemFontOfSize:14.f];
         [contentView addSubview:textField];
         
-        
+        BMWeakSelf;
         [FSAlertView showAlertWithTitle:@"举报理由说明" message:nil contentView:contentView cancelTitle:@"取消" otherTitle:@"确定" completion:^(BOOL cancelled, NSInteger buttonIndex) {
             BMLog(@"%@",textField.text);
+            if (buttonIndex == 1) {
+                [weakSelf addReportContent:textField.text];
+            }
         }];
     }
 }
@@ -197,6 +203,16 @@ FSReportViewDelegate
         
     }];
 }
+
+- (void)addReportContent:(NSString *)content
+{
+    [FSApiRequest addReportTopic:[NSString stringWithFormat:@"%ld",self.m_TopicId] content:content success:^(id  _Nullable responseObject) {
+       [self.m_ProgressHUD showAnimated:YES withDetailText:@"已举报该帖子" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+    } failure:^(NSError * _Nullable error) {
+        
+    }];
+}
+
 /*
 #pragma mark - Navigation
 
