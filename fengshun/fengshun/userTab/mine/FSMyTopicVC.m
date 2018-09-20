@@ -15,6 +15,11 @@
 
 @implementation FSMyTopicVC
 
+- (void)dealloc
+{
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

@@ -13,6 +13,10 @@
 - (id)initWithURL:(NSURL *)url;
 - (id)initWithText:(NSString *)text;
 
+#if FLEX_FS
+- (id)initWithText:(NSString *)text filePath:(NSString *)filePath;
+#endif
+
 + (BOOL)supportsPathExtension:(NSString *)extension;
 
 @end

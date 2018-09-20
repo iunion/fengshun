@@ -169,6 +169,12 @@ VideoCallVideoViewDelegate>
         } else if (index == 1) {
             // 邀请
             FSVideoInviteLitigantVC *vc = [FSVideoInviteLitigantVC new];
+            BMWeakSelf
+            vc.inviteComplete = ^(NSArray *litigantList) {
+                if (weakSelf.inviteBlock) {
+                    weakSelf.inviteBlock(litigantList);
+                }
+            };
             vc.meetingId = self.meetingId;
             [self.navigationController pushViewController:vc animated:YES];
         } else {

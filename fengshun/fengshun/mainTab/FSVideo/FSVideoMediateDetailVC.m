@@ -244,7 +244,7 @@
     {
         // 未开始 支持所有操作
         sheetVC = [[FSVideoMediateSheetVC alloc] initWithTitleArray:@[@"添加人员", @"编辑", @"再次发起", @"删除"]];
-        __block FSVideoMediateSheetVC *blockVC = sheetVC;
+        BMWeakType(sheetVC)
         sheetVC.m_ActionSheetDoneBlock = ^(NSInteger index, NSString *title) {
             if (index == 0) {
                 [weakSelf inviteAction];
@@ -253,7 +253,7 @@
             } else if (index == 2) {
                 [weakSelf resendAction];
             } else {
-                blockVC.m_ActionSheetDismissBlock = ^{
+                weaksheetVC.m_ActionSheetDismissBlock = ^{
                     [weakSelf deleteAction];
                 };
             }
@@ -275,21 +275,23 @@
     {
         // 结束后不能添加人员不能编辑  可以删除
         sheetVC = [[FSVideoMediateSheetVC alloc] initWithTitleArray:@[@"再次发起", @"删除"]];
-        __block FSVideoMediateSheetVC *blockVC = sheetVC;
+        BMWeakType(sheetVC)
         sheetVC.m_ActionSheetDoneBlock = ^(NSInteger index, NSString *title) {
             if (index == 0) {
                 [weakSelf resendAction];
             } else {
-                blockVC.m_ActionSheetDismissBlock = ^{
+                weaksheetVC.m_ActionSheetDismissBlock = ^{
                     [weakSelf deleteAction];
                 };
             }
         };
     }
     
-    sheetVC.modalPresentationStyle = UIModalPresentationCustom;
-    sheetVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentViewController:sheetVC animated:YES completion:nil];
+    if (sheetVC) {
+        sheetVC.modalPresentationStyle = UIModalPresentationCustom;
+        sheetVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:sheetVC animated:YES completion:nil];
+    }
 }
 
 - (void)editAction
@@ -297,7 +299,7 @@
     BMWeakSelf
     FSMakeVideoMediateVC *vc = [FSMakeVideoMediateVC makevideoMediateVCWithModel:FSMakeVideoMediateMode_Edit
                                                                             data:self.m_DetailModel
-                                                                           block:^(FSMeetingDetailModel *model) {
+                                                                           block:^(FSMeetingDetailModel *model, BOOL startImmediately) {
                                                                                weakSelf.m_DetailModel = model;
                                                                                if (weakSelf.changedBlock) {
                                                                                    weakSelf.changedBlock();
@@ -336,7 +338,7 @@
     BMWeakSelf
     FSMakeVideoMediateVC *vc = [FSMakeVideoMediateVC makevideoMediateVCWithModel:FSMakeVideoMediateMode_ReSend
                                                                             data:self.m_DetailModel
-                                                                           block:^(FSMeetingDetailModel *model) {
+                                                                           block:^(FSMeetingDetailModel *model, BOOL startImmediately) {
                                                                                if (weakSelf.changedBlock) {
                                                                                    weakSelf.changedBlock();
                                                                                }
@@ -431,6 +433,19 @@
                 weakSelf.statusLabel.text = [FSMeetingDataForm getValueForKey:_m_DetailModel.meetingStatus type:FSMeetingDataType_AllMeetingStatus];
                 if (weakSelf.changedBlock) {
                     weakSelf.changedBlock();
+                }
+            };
+            vc.inviteBlock = ^(NSArray *litigantList) {
+                if (litigantList.count) {
+                    if ([litigantList bm_isNotEmpty]) {
+                        NSMutableArray *array = [NSMutableArray arrayWithArray:weakSelf.m_DetailModel.meetingPersonnelResponseDTO];
+                        [array addObjectsFromArray:litigantList];
+                        weakSelf.m_DetailModel.meetingPersonnelResponseDTO = [NSArray arrayWithArray:array];
+                        weakSelf.personView.desLabel.text = [weakSelf.m_DetailModel getMeetingPersonnelNameListWithShowCount:3];
+                        if (weakSelf.changedBlock) {
+                            weakSelf.changedBlock();
+                        }
+                    }
                 }
             };
             BMNavigationController *nav = [[BMNavigationController alloc] initWithRootViewController:vc];

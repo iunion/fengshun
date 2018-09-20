@@ -9,7 +9,7 @@
 #import "FSLawSearchResultVC.h"
 #import "FSLawSearchResultView.h"
 #import "FSLawSearchResultCell.h"
-
+#import "FSNotificationName.h"
 
 @interface FSLawSearchResultVC ()
 
@@ -38,6 +38,14 @@
     [cell setLawResultModel:model attributed:YES];
     return cell;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    FSLawResultModel *model = _m_searchResultModel.m_resultDataArray[indexPath.row];
+    [[NSNotificationCenter defaultCenter] postNotificationName:KLawDetailNotification object:nil userInfo:@{@"lawsId":model.m_lawsId,@"keywords":_m_searchResultModel.m_keywordsStr}];
+        
+}
+
+
 - (BOOL)canLoadApiData
 {
     return _m_searchResultModel?_m_searchResultModel.m_isMore:YES;

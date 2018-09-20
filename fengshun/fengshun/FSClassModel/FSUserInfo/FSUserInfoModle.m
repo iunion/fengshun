@@ -313,7 +313,7 @@
     if ([self isLogin])
     {
         FSUserInfoModle *currentUser = GetAppDelegate.m_UserInfo;
-        if ([currentUser.m_UserBaseInfo.m_RealName bm_isNotEmpty])
+        if (currentUser.m_UserBaseInfo.m_IsRealName)
         {
             return YES;
         }

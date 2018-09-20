@@ -108,17 +108,10 @@
     [searchVC.navigationController pushViewController:vc animated:YES];
 }
 
-+ (void)homePage:(UIViewController *)mainVC pushToLawSearchWithTopics:(NSArray *)topics
++ (void)pushToLawSearch:(UIViewController *)mainVC 
 {
-    // 做个备份吧
-    if (!topics)
-    {
-        topics = [NSArray arrayWithContentsOfFile:SEARCH_LAWTOPIC_CACHEFILE];
-    }
-    else
-    {
-        [topics writeToFile:SEARCH_LAWTOPIC_CACHEFILE atomically:NO];
-    }
+   NSArray *topics = [NSArray arrayWithContentsOfFile:SEARCH_LAWTOPIC_FILE];
+    
     FSSearchViewController *searchViewController  = [[FSSearchViewController alloc] initWithSearchKey:@"lawsSearch" resultType:FSSearchResultType_laws hotSearchTags:topics searchHandler:nil];
     searchViewController.hidesBottomBarWhenPushed = YES;
     [mainVC.navigationController pushViewController:searchViewController animated:YES];

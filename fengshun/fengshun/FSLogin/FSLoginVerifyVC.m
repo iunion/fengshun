@@ -804,7 +804,7 @@
     if ([urlStr isEqualToString:@"registerProtocol"])
     {
         //NSString *url = [NSString stringWithFormat:@"%@/Client/protocol/registerProtocol.html", MQ_H5_SERVER];
-        NSString *url = @"http://www.baidu.com";
+        NSString *url = [NSString stringWithFormat:@"%@/agreement", FS_H5_SERVER];
         [FSPushVCManager showWebView:self url:url title:nil];
     }
 }

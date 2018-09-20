@@ -40,7 +40,7 @@ typedef void (^PushVCCallBack)(id object);
 
 
 // 法规检索
-+ (void)homePage:(UIViewController *)mainVC pushToLawSearchWithTopics:(NSArray *)topics;
++ (void)pushToLawSearch:(UIViewController *)mainVC;
 + (void)searchVCPushtToLawsOCrSearchVC:(UIViewController *)searchVC;
 // 法规专题
 + (void)viewController:(UIViewController *)vc pushToLawTopicVCWithLawTopic:(NSString *)lawTopic;
@@ -59,9 +59,9 @@ typedef void (^PushVCCallBack)(id object);
 // 文字识别结果
 +(void)viewController:(UIViewController *)vc pushToOCRResultVCWithImage:(UIImage *)image;
 
-
 // 显示个人信息
 + (void)showMessageVC:(UIViewController *)pushVC;
+
 
 
 @end

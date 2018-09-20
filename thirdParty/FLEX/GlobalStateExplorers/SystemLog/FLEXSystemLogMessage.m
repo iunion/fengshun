@@ -31,7 +31,14 @@
 
     const char *messageText = asl_get(aslMessage, ASL_KEY_MSG);
     if (messageText) {
+#if FLEX_FS
+        NSString *text = [NSString stringWithUTF8String:messageText];
+        text = [NSString bm_convertUnicode:text];
+        
+        logMessage.messageText = text;//@(messageText);
+#else
         logMessage.messageText = @(messageText);
+#endif
     }
 
     const char *messageID = asl_get(aslMessage, ASL_KEY_MSG_ID);

@@ -11,6 +11,7 @@
 #import "FSImageFileCell.h"
 #import "FSFileScanImagePreviewVC.h"
 #import "MBProgressHUD.h"
+#import "UIScrollView+BMEmpty.h"
 
 
 
@@ -78,6 +79,7 @@
         self.m_localImageFiles  = [NSMutableArray array];
         self.m_allImageFiles = [NSMutableArray array];
     }
+    [self refreshViewAndSetTitle:NO];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -106,7 +108,7 @@
     {
         // 全选
         self.m_selectedImageFiles = [_m_allImageFiles mutableCopy];
-        [self refreshView];
+        [self refreshViewAndSetTitle:YES];
     }
 }
 - (void)setM_editing:(BOOL)m_editing
@@ -116,12 +118,12 @@
     [rightItem setTitle:_m_editing?@"全选":@"选择" forState:UIControlStateNormal];
     if (_m_editing) {
         self.m_selectedImageFiles = [NSMutableArray array];
-        [self refreshView];
+        [self refreshViewAndSetTitle:YES];
     }
     else
     {
         [self bm_setNavigationBarTitle:@"文件扫描"];
-        [_m_collectionView reloadData];
+        [self refreshViewAndSetTitle:NO];
     }
     _m_toolView.hidden = !m_editing;
     _m_imagePickButton.hidden = m_editing;
@@ -130,10 +132,19 @@
         [self.view layoutIfNeeded];
     }];
 }
-- (void)refreshView
+- (void)refreshViewAndSetTitle:(BOOL)setTitle
 {
-    [self bm_setNavigationBarTitle:[NSString stringWithFormat:@"已选（%lu）",(unsigned long)_m_selectedImageFiles.count]];
+    if (setTitle) {
+        [self bm_setNavigationBarTitle:[NSString stringWithFormat:@"已选（%lu）",(unsigned long)_m_selectedImageFiles.count]];
+    }
     [_m_collectionView reloadData];
+    if ([_m_allImageFiles bm_isNotEmpty]) {
+        [_m_collectionView hideEmptyView];
+    }
+    else
+    {
+        [_m_collectionView showEmptyViewWithType:BMEmptyViewType_Ocr];
+    }
 }
 - (IBAction)pickImageFile:(id)sender
 {
@@ -153,7 +164,7 @@
         }
     }
     [_m_selectedImageFiles removeAllObjects];
-    [self refreshView];
+    [self refreshViewAndSetTitle:YES];
     if (needSynLocal) {
         [FSImageFileModel asynRefreshLocalImageFileWithList:_m_localImageFiles];
     }
@@ -202,7 +213,7 @@
         [selectedImages addObject:model];
     }
     self.m_allImageFiles = [[_m_allImageFiles arrayByAddingObjectsFromArray:selectedImages]mutableCopy];
-    [_m_collectionView reloadData];
+    [self refreshViewAndSetTitle:NO];
 }
 #pragma mark - collectionView delegate & dataSource
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -210,13 +221,13 @@
     FSImageFileModel *model = _m_allImageFiles[indexPath.row];
     if (_m_editing&&![_m_selectedImageFiles containsObject:model]) {
         [_m_selectedImageFiles addObject:model];
-        [self refreshView];
+        [self refreshViewAndSetTitle:YES];
     }
     else
     {
         FSFileScanImagePreviewVC *preVC = [FSPushVCManager fileScanVC:self pushToImagePreviewWithSourceArray:_m_allImageFiles localArray:_m_localImageFiles selectIndex:indexPath.row];
         preVC.m_SourceDataChanged = ^{
-            [collectionView reloadData];
+            [self refreshViewAndSetTitle:NO];
         };
     }
 }
@@ -225,7 +236,7 @@
     FSImageFileModel *model = _m_allImageFiles[indexPath.row];
     if (_m_editing&&[_m_selectedImageFiles containsObject:model]) {
         [_m_selectedImageFiles removeObject:model];
-        [self refreshView];
+        [self refreshViewAndSetTitle:YES];
     }
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section

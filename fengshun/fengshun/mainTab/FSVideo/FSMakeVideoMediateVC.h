@@ -16,7 +16,7 @@ typedef NS_ENUM(NSInteger, FSMakeVideoMediateMode) {
 };
 
 
-typedef void(^makeVideoMediateSuccessBlock)(FSMeetingDetailModel *model);
+typedef void(^makeVideoMediateSuccessBlock)(FSMeetingDetailModel *model, BOOL startImmediately);
 
 @interface FSMakeVideoMediateVC : FSSetTableViewVC
 @property (nonatomic, assign) FSMakeVideoMediateMode makeMode;

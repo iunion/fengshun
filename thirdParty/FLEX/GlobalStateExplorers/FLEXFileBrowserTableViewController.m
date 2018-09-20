@@ -13,6 +13,11 @@
 #import "FLEXImagePreviewViewController.h"
 #import "FLEXTableListViewController.h"
 
+#if FLEX_FS
+#import "PLDictionaryTableViewController.h"
+#import "PLArrayTableViewController.h"
+#endif
+
 @interface FLEXFileBrowserTableViewCell : UITableViewCell
 @end
 
@@ -206,8 +211,31 @@
             } else if ([pathExtension isEqualToString:@"json"]) {
                 prettyString = [FLEXUtility prettyJSONStringFromData:[NSData dataWithContentsOfFile:fullPath]];
             } else if ([pathExtension isEqualToString:@"plist"]) {
+#if FLEX_FS
+                NSMutableArray *dataArray = [NSMutableArray arrayWithContentsOfFile:fullPath];
+                if (dataArray)
+                {
+                    drillInViewController = [[PLArrayTableViewController alloc] initWithArray:dataArray];
+                }
+                else
+                {
+                    NSDictionary *dataDic = [NSDictionary dictionaryWithContentsOfFile:fullPath];
+                    if (dataDic)
+                    {
+                        drillInViewController = [[PLDictionaryTableViewController alloc] initWithDictionary:dataDic];
+                    }
+                }
+                
+                if (drillInViewController) {
+                    drillInViewController.title = [subpath lastPathComponent];
+                    [self.navigationController pushViewController:drillInViewController animated:YES];
+                    
+                    return;
+                }
+#else
                 NSData *fileData = [NSData dataWithContentsOfFile:fullPath];
                 prettyString = [[NSPropertyListSerialization propertyListWithData:fileData options:0 format:NULL error:NULL] description];
+#endif
             }
 
             if ([prettyString length] > 0) {
@@ -220,7 +248,11 @@
             else {
                 NSString *fileString = [NSString stringWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:NULL];
                 if ([fileString length] > 0) {
+#if FLEX_FS
+                    drillInViewController = [[FLEXWebViewController alloc] initWithText:fileString filePath:fullPath];
+#else
                     drillInViewController = [[FLEXWebViewController alloc] initWithText:fileString];
+#endif
                 }
             }
         }

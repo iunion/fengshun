@@ -26,7 +26,7 @@
     self = [super initWithIcon:iconName title:title message:message contentView:contentView cancelTitle:cancelTitle otherTitles:otherTitles buttonsShouldStack:shouldStack completion:completion];
     
     if (self)
-    {
+    { 
         self.alertBgColor       = [UIColor whiteColor];
         self.alertMarkBgColor   = [UIColor colorWithRed:0 green:0 blue:0 alpha:.5];
         self.alertMarkBgEffect  = nil;

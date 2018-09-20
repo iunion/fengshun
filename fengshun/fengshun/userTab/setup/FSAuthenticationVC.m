@@ -48,11 +48,12 @@
     
     [self interfaceSettings];
 }
-
+ 
 - (void)backAction:(id)sender
 {
     [self.view endEditing:YES];
-    if ([self isEqual:self.navigationController.topViewController])
+    
+    if (self.presentingViewController)
     {
         [self dismissViewControllerAnimated:YES completion:nil];
     }

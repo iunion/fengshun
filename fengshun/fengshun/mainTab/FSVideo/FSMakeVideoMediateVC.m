@@ -190,7 +190,7 @@
         [weakSelf presentViewController:sheetVC animated:YES completion:nil];
         
         sheetVC.m_ActionSheetDoneBlock = ^(NSInteger index, NSString *title) {
-            BMImageTextView *accessoryView = (BMImageTextView *)self.m_TypeItem.accessoryView;
+            BMImageTextView *accessoryView = (BMImageTextView *)weakSelf.m_TypeItem.accessoryView;
             accessoryView.text = title;
             weakSelf.m_CreateModel.meetingType = [FSMeetingDataForm getKeyForVlaue:title type:FSMeetingDataType_MeetingType];
         };
@@ -215,7 +215,7 @@
         [weakSelf presentViewController:sheetVC animated:YES completion:nil];
         
         sheetVC.m_ActionSheetDoneBlock = ^(NSInteger index, NSString *title) {
-            BMImageTextView *accessoryView = (BMImageTextView *)self.m_TimeTypeItem.accessoryView;
+            BMImageTextView *accessoryView = (BMImageTextView *)weakSelf.m_TimeTypeItem.accessoryView;
             accessoryView.text = title;
             weakSelf.m_IsStartImmediately = !index;
             
@@ -474,16 +474,6 @@
     NSString *numStr = [NSString stringWithFormat:@"%0.0lf",self.m_CreateModel.startTime];
     self.m_CreateModel.startTime = [numStr doubleValue];
 
-    if (![self.m_CreateModel.orderHour bm_isNotEmpty]) {
-        [self.m_ProgressHUD showAnimated:YES withDetailText:@"请选择会议时长" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-        return;
-    }
-
-    if (self.m_AttendedList.count < 2) {
-        [self.m_ProgressHUD showAnimated:YES withDetailText:@"请邀请当事人" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-        return;
-    }
-    
     self.m_CreateModel.meetingPersonnelResponseDTO = self.m_AttendedList;
     [self sendSaveMeetingRequest];
 }
@@ -536,38 +526,20 @@
         {
             [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:@"提交成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             FSMeetingDetailModel *mode = [FSMeetingDetailModel modelWithParams:dataDic];
-            if (self.successBlock) {
-                self.successBlock(mode);
-            }
             
             if (self.m_IsStartImmediately)
             {
-                // 立即开始 进入详情页面
-                FSVideoMediateDetailVC *vc = [FSVideoMediateDetailVC new];
-                vc.m_MeetingId = mode.meetingId;
-                BMWeakSelf
-                vc.changedBlock = ^{
-                    if (weakSelf.successBlock) {
-                        weakSelf.successBlock(mode);
-                    }
-                };
-                
-                NSArray *existVC = self.navigationController.viewControllers;
-                NSMutableArray *vcArray = [NSMutableArray array];
-                for (NSInteger index = 0; index< existVC.count; index++) {
-                    UIViewController *temp = existVC[index];
-                    [vcArray addObject:temp];
-                    if ([temp isKindOfClass:[FSVideoMediateListVC class]]) {
-                        break;
-                    }
-                }
-                [vcArray addObject:vc];
-                [self.navigationController setViewControllers:vcArray animated:YES];
+                [self.navigationController popViewControllerAnimated:NO];
             }
             else
             {
                 [self.navigationController popViewControllerAnimated:YES];
             }
+            
+            if (self.successBlock) {
+                self.successBlock(mode,_m_IsStartImmediately);
+            }
+
             return;
         }
     }

@@ -17,14 +17,14 @@
 @property (nonatomic, copy) NSString *messageId;
 @property (nonatomic, copy) NSString *messageContent;
 @property (nonatomic, copy) NSString *messageType;
-@property (nonatomic, copy) NSString *messageResourceEnums;
+@property (nonatomic, copy) NSString *messageResource;
 @property (nonatomic, assign) NSTimeInterval createTime;
 @property (nonatomic, assign) BOOL isMe;
 @property (nonatomic, strong) ChatTextMemberModel *sender;
 @property (nonatomic, strong) ChatTextMemberModel *receiver;
 
 @property (nonatomic, assign) BOOL isVoice; ///< 文本来源于语音识别
-@property (nonatomic, assign) BOOL showMessageType; ///< 私聊和历史记录不显示文本来源于手动输入还是语音识别
+@property (nonatomic, assign) BOOL showMessageType; ///< 私聊不显示文本来源于手动输入还是语音识别
 
 @end
 

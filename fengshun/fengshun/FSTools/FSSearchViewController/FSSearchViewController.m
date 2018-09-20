@@ -12,7 +12,7 @@
 #import "FSCaseSearchResultView.h"
 #import "FSLawSearchResultView.h"
 #import "FSTextSearchResultView.h"
-
+#import "FSNotificationName.h"
 
 #define SEARCH_HISTORY_MAXCACHECOUNT        10
 #define SEARCH_HISTORY_CACHEFILE(searchKey) [[NSString bm_documentsPath] stringByAppendingPathComponent:[NSString stringWithFormat:@"searchhistory_%@.plist", searchKey]]
@@ -77,10 +77,12 @@
         switch (_resultType) {
             case FSSearchResultType_laws:
                 _resultView = [[FSLawSearchResultView alloc]initWithFrame:self.view.bounds];
+                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotoLawDetail:) name:KLawDetailNotification object:nil];
                 break;
 
             case FSSearchResultType_case:
                 _resultView = [[FSCaseSearchResultView alloc] initWithFrame:self.view.bounds];
+                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotoCaseDetail:) name:KCaseDetailNotification object:nil];
                 break;
             case FSSearchResultType_text:
                 _resultView = [[FSTextSearchResultView alloc] initWithFrame:self.view.bounds];
@@ -243,6 +245,8 @@
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     }
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:KLawDetailNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:KCaseDetailNotification object:nil];
 }
 - (void)makeTagViewArray
 {
@@ -250,17 +254,39 @@
 
 //    NSArray *tags = @[@"热门", @"热门搜索", @"热门搜", @"热门搜1", @"热门134索", @"热门", @"热门搜索", @"热门搜", @"热门搜1", @"热门134索"];
 //    self.hotTagArray = [NSMutableArray arrayWithArray:tags];
-    for (NSString *tag in self.hotTagArray)
+    if (_resultType == FSSearchResultType_case) {
+        for (NSString *tag in self.hotTagArray)
+        {
+            CGFloat width = [tag bm_widthToFitHeight:20 withFont:[UIFont systemFontOfSize:14.0f]] + 24.0f;
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, 28.0f)];
+            label.backgroundColor = FS_VIEW_BGCOLOR;
+            label.font = [UIFont systemFontOfSize:14.0f];
+            label.textColor = UI_COLOR_B1;
+            label.textAlignment = NSTextAlignmentCenter;
+            label.text = tag;
+            [label bm_roundedRect:14.0f];
+            [self.tagViewArray addObject:label];
+        }
+    }
+    else if (_resultType == FSSearchResultType_laws)
     {
-        CGFloat width = [tag bm_widthToFitHeight:20 withFont:[UIFont systemFontOfSize:14.0f]] + 24.0f;
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, 28.0f)];
-        label.backgroundColor = FS_VIEW_BGCOLOR;
-        label.font = [UIFont systemFontOfSize:14.0f];
-        label.textColor = UI_COLOR_B1;
-        label.textAlignment = NSTextAlignmentCenter;
-        label.text = tag;
-        [label bm_roundedRect:14.0f];
-        [self.tagViewArray addObject:label];
+        for (NSDictionary *lawTopicInfo in self.hotTagArray)
+        {
+            CGSize  itemSize = CGSizeMake(80, 66);
+            UIView *view     = [[UIView alloc] initWithFrame:CGRectMake(0, 0, itemSize.width, itemSize.height)];
+            UIImageView *iv  = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 34, 34)];
+            iv.image         = [UIImage imageNamed:[lawTopicInfo bm_stringForKey:@"iconName"]];
+            [view addSubview:iv];
+            iv.bm_centerX       = itemSize.width / 2;
+            UILabel *label      = [[UILabel alloc] initWithFrame:CGRectMake(0, itemSize.height - 16 - 5, itemSize.width, 16)];
+            label.textAlignment = NSTextAlignmentCenter;
+            label.font          = [UIFont systemFontOfSize:14];
+            label.textColor     = UI_COLOR_B1;
+            label.text          = [lawTopicInfo bm_stringForKey:@"name"];
+            [view addSubview:label];
+            [self.tagViewArray addObject:view];
+            
+        }
     }
 }
 - (void)makeHeaderTagView
@@ -275,7 +301,7 @@
     view.backgroundColor = [UIColor whiteColor];
     self.headerView      = view;
 
-    CGFloat topGap = 16.0f;
+    CGFloat topGap = 27.0f;
     if (_resultType == FSSearchResultType_case)
     {
         CGFloat labelHeight = 30.0f;
@@ -289,7 +315,7 @@
         label.textColor = [UIColor bm_colorWithHex:0x666666];
         label.text = @"热门关键词";
         [view addSubview:label];
-        topGap += labelHeight;
+        topGap += labelHeight - 11;
     }
     
    
@@ -298,7 +324,7 @@
     tagCollectionView.delegate = self;
     tagCollectionView.dataSource = self;
     tagCollectionView.horizontalSpacing = 7.0f;
-    tagCollectionView.verticalSpacing = 9.0f;
+    tagCollectionView.verticalSpacing = 10.0f;
     tagCollectionView.bm_height = tagCollectionView.contentSize.height;
     [view addSubview:tagCollectionView];
     view.bm_height = tagCollectionView.bm_bottom + 23.0f;
@@ -430,13 +456,14 @@
 
 - (void)tagCollectionView:(TTGTagCollectionView *)tagCollectionView didSelectTag:(UIView *)tagView atIndex:(NSUInteger)index
 {
-    UILabel *label = (UILabel *)tagView;
+    
     if (_resultType == FSSearchResultType_laws) {
-        [FSPushVCManager viewController:self pushToLawTopicVCWithLawTopic:[label.text bm_trim]];
+        NSDictionary *info = self.hotTagArray[index];
+        [FSPushVCManager viewController:self pushToLawTopicVCWithLawTopic:[info bm_stringForKey:@"name"]];
     }
     else
     {
-        
+        UILabel *label = (UILabel *)tagView;
         [self searchWithKey:label.text];
     }
 }
@@ -485,5 +512,15 @@
         
     }
 }
+
+-(void)gotoLawDetail:(NSNotification *)notification
+{
+   [FSPushVCManager showWebView:self url:[NSString stringWithFormat:@"%@/caseDetail?ID=%@&keywords=%@",FS_H5_SERVER,notification.userInfo[@"lawsId"],notification.userInfo[@"keywords"]] title:@""];
+}
+-(void)gotoCaseDetail:(NSNotification *)notification
+{
+    [FSPushVCManager showWebView:self url:[NSString stringWithFormat:@"%@/caseDetail?ID=%@&keywords=%@",FS_H5_SERVER,notification.userInfo[@"caseId"],notification.userInfo[@"keywords"]] title:@""];
+}
+
 
 @end

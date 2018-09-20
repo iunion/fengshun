@@ -35,6 +35,8 @@
 		458E181E2151E7690050590B /* video_back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 458E181C2151E7680050590B /* video_back_btn@2x.png */; };
 		458E181F2151E9560050590B /* video_back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 458E181C2151E7680050590B /* video_back_btn@2x.png */; };
 		458E18202151E9560050590B /* video_back_btn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 458E181B2151E7670050590B /* video_back_btn@3x.png */; };
+		458E182A215251440050590B /* FSReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD412AE9215221C800A9C12B /* FSReportView.m */; };
+		45D7D74B2153420C009E8E7A /* FSNotificationName.m in Sources */ = {isa = PBXBuildFile; fileRef = E473137C2152B15F00C56ED8 /* FSNotificationName.m */; };
 		45F3FD21214BBF48007712EE /* video_history_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45F3FD1D214BBF46007712EE /* video_history_icon@2x.png */; };
 		45F3FD22214BBF48007712EE /* video_message_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45F3FD1E214BBF47007712EE /* video_message_icon@3x.png */; };
 		45F3FD23214BBF48007712EE /* video_message_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45F3FD1F214BBF47007712EE /* video_message_icon@2x.png */; };
@@ -1015,7 +1017,6 @@
 		87E7C3E521509AB000F7AB14 /* NSBundle+TZImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9355892137D24100735C2E /* NSBundle+TZImagePicker.m */; };
 		87E7C3E621509AB000F7AB14 /* BMTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 874267F8212E7E35003C52F6 /* BMTabBarController.m */; };
 		87E7C3E721509AB000F7AB14 /* NSRegularExpression+BMRegEx.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426865212E7E35003C52F6 /* NSRegularExpression+BMRegEx.m */; };
-		87E7C3E821509AB000F7AB14 /* TextChatHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF84B214D1B970005AD43 /* TextChatHistoryViewController.m */; };
 		87E7C3E921509AB000F7AB14 /* NSString+BMCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8742687D212E7E36003C52F6 /* NSString+BMCategory.m */; };
 		87E7C3EA21509AB000F7AB14 /* UIImage+BMCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426853212E7E35003C52F6 /* UIImage+BMCategory.m */; };
 		87E7C3EB21509AB000F7AB14 /* BMPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426826212E7E35003C52F6 /* BMPlaceholderTextView.m */; };
@@ -1619,6 +1620,72 @@
 		87E7C6F82151F2C700F7AB14 /* GTMStackTrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6F02151F2C700F7AB14 /* GTMStackTrace.m */; };
 		87E7C6F92151F2C700F7AB14 /* GTMStackTrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6F02151F2C700F7AB14 /* GTMStackTrace.m */; };
 		AD1A5D4F21534BEA00ACADDF /* FSReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD412AE9215221C800A9C12B /* FSReportView.m */; };
+		87E7C70221532DA000F7AB14 /* FSApiErrorLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C70021532D9F00F7AB14 /* FSApiErrorLog.m */; };
+		87E7C70321532DA000F7AB14 /* FSApiErrorLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C70021532D9F00F7AB14 /* FSApiErrorLog.m */; };
+		87F6397121533ADB0035E730 /* PLArrayTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6396D21533ADB0035E730 /* PLArrayTableViewController.m */; };
+		87F6397221533ADB0035E730 /* PLArrayTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6396D21533ADB0035E730 /* PLArrayTableViewController.m */; };
+		87F6397321533ADB0035E730 /* PLDictionaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6397021533ADB0035E730 /* PLDictionaryTableViewController.m */; };
+		87F6397421533ADB0035E730 /* PLDictionaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6397021533ADB0035E730 /* PLDictionaryTableViewController.m */; };
+		87F639C821533C820035E730 /* UINavigationController+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6397621533C820035E730 /* UINavigationController+MemoryLeak.m */; };
+		87F639C921533C820035E730 /* UINavigationController+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6397621533C820035E730 /* UINavigationController+MemoryLeak.m */; };
+		87F639CA21533C820035E730 /* MLeakedObjectProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6397A21533C820035E730 /* MLeakedObjectProxy.m */; };
+		87F639CB21533C820035E730 /* MLeakedObjectProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6397A21533C820035E730 /* MLeakedObjectProxy.m */; };
+		87F639CC21533C820035E730 /* UIView+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6397C21533C820035E730 /* UIView+MemoryLeak.m */; };
+		87F639CD21533C820035E730 /* UIView+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6397C21533C820035E730 /* UIView+MemoryLeak.m */; };
+		87F639CE21533C820035E730 /* UITouch+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6397F21533C820035E730 /* UITouch+MemoryLeak.m */; };
+		87F639CF21533C820035E730 /* UITouch+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6397F21533C820035E730 /* UITouch+MemoryLeak.m */; };
+		87F639D021533C820035E730 /* UISplitViewController+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6398021533C820035E730 /* UISplitViewController+MemoryLeak.m */; };
+		87F639D121533C820035E730 /* UISplitViewController+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6398021533C820035E730 /* UISplitViewController+MemoryLeak.m */; };
+		87F639D221533C820035E730 /* rcd_fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = 87F6398221533C820035E730 /* rcd_fishhook.c */; };
+		87F639D321533C820035E730 /* rcd_fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = 87F6398221533C820035E730 /* rcd_fishhook.c */; };
+		87F639D421533C820035E730 /* UIPageViewController+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6398521533C820035E730 /* UIPageViewController+MemoryLeak.m */; };
+		87F639D521533C820035E730 /* UIPageViewController+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6398521533C820035E730 /* UIPageViewController+MemoryLeak.m */; };
+		87F639D621533C830035E730 /* UITabBarController+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6398721533C820035E730 /* UITabBarController+MemoryLeak.m */; };
+		87F639D721533C830035E730 /* UITabBarController+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6398721533C820035E730 /* UITabBarController+MemoryLeak.m */; };
+		87F639D821533C830035E730 /* MLeaksMessenger.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6398821533C820035E730 /* MLeaksMessenger.m */; };
+		87F639D921533C830035E730 /* MLeaksMessenger.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6398821533C820035E730 /* MLeaksMessenger.m */; };
+		87F639DA21533C830035E730 /* UIViewController+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6398A21533C820035E730 /* UIViewController+MemoryLeak.m */; };
+		87F639DB21533C830035E730 /* UIViewController+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6398A21533C820035E730 /* UIViewController+MemoryLeak.m */; };
+		87F639DC21533C830035E730 /* UIApplication+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6398D21533C820035E730 /* UIApplication+MemoryLeak.m */; };
+		87F639DD21533C830035E730 /* UIApplication+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6398D21533C820035E730 /* UIApplication+MemoryLeak.m */; };
+		87F639DE21533C830035E730 /* FBAssociationManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87F6399321533C820035E730 /* FBAssociationManager.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		87F639DF21533C830035E730 /* FBAssociationManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87F6399321533C820035E730 /* FBAssociationManager.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		87F639E021533C830035E730 /* FBStandardGraphEdgeFilters.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87F6399521533C820035E730 /* FBStandardGraphEdgeFilters.mm */; };
+		87F639E121533C830035E730 /* FBStandardGraphEdgeFilters.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87F6399521533C820035E730 /* FBStandardGraphEdgeFilters.mm */; };
+		87F639E221533C830035E730 /* FBObjectiveCNSCFTimer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87F6399B21533C820035E730 /* FBObjectiveCNSCFTimer.mm */; };
+		87F639E321533C830035E730 /* FBObjectiveCNSCFTimer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87F6399B21533C820035E730 /* FBObjectiveCNSCFTimer.mm */; };
+		87F639E421533C830035E730 /* FBBlockStrongRelationDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F639A121533C820035E730 /* FBBlockStrongRelationDetector.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		87F639E521533C830035E730 /* FBBlockStrongRelationDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F639A121533C820035E730 /* FBBlockStrongRelationDetector.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		87F639E621533C830035E730 /* FBBlockStrongLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F639A321533C820035E730 /* FBBlockStrongLayout.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		87F639E721533C830035E730 /* FBBlockStrongLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F639A321533C820035E730 /* FBBlockStrongLayout.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		87F639E821533C830035E730 /* Struct.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87F639A921533C820035E730 /* Struct.mm */; };
+		87F639E921533C830035E730 /* Struct.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87F639A921533C820035E730 /* Struct.mm */; };
+		87F639EA21533C830035E730 /* FBStructEncodingParser.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87F639AC21533C820035E730 /* FBStructEncodingParser.mm */; };
+		87F639EB21533C830035E730 /* FBStructEncodingParser.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87F639AC21533C820035E730 /* FBStructEncodingParser.mm */; };
+		87F639EC21533C830035E730 /* FBClassStrongLayout.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87F639AE21533C820035E730 /* FBClassStrongLayout.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		87F639ED21533C830035E730 /* FBClassStrongLayout.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87F639AE21533C820035E730 /* FBClassStrongLayout.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		87F639EE21533C830035E730 /* FBClassStrongLayoutHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F639B021533C820035E730 /* FBClassStrongLayoutHelpers.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		87F639EF21533C830035E730 /* FBClassStrongLayoutHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F639B021533C820035E730 /* FBClassStrongLayoutHelpers.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		87F639F021533C830035E730 /* FBObjectInStructReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F639B221533C820035E730 /* FBObjectInStructReference.m */; };
+		87F639F121533C830035E730 /* FBObjectInStructReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F639B221533C820035E730 /* FBObjectInStructReference.m */; };
+		87F639F221533C830035E730 /* FBIvarReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F639B621533C820035E730 /* FBIvarReference.m */; };
+		87F639F321533C830035E730 /* FBIvarReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F639B621533C820035E730 /* FBIvarReference.m */; };
+		87F639F421533C830035E730 /* FBObjectiveCGraphElement.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87F639B721533C820035E730 /* FBObjectiveCGraphElement.mm */; };
+		87F639F521533C830035E730 /* FBObjectiveCGraphElement.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87F639B721533C820035E730 /* FBObjectiveCGraphElement.mm */; };
+		87F639F621533C830035E730 /* FBObjectGraphConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F639BA21533C820035E730 /* FBObjectGraphConfiguration.m */; };
+		87F639F721533C830035E730 /* FBObjectGraphConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F639BA21533C820035E730 /* FBObjectGraphConfiguration.m */; };
+		87F639F821533C830035E730 /* FBObjectiveCBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F639BB21533C820035E730 /* FBObjectiveCBlock.m */; };
+		87F639F921533C830035E730 /* FBObjectiveCBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F639BB21533C820035E730 /* FBObjectiveCBlock.m */; };
+		87F639FA21533C830035E730 /* FBObjectiveCObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F639BC21533C820035E730 /* FBObjectiveCObject.m */; };
+		87F639FB21533C830035E730 /* FBObjectiveCObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F639BC21533C820035E730 /* FBObjectiveCObject.m */; };
+		87F639FC21533C830035E730 /* FBNodeEnumerator.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87F639C121533C820035E730 /* FBNodeEnumerator.mm */; };
+		87F639FD21533C830035E730 /* FBNodeEnumerator.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87F639C121533C820035E730 /* FBNodeEnumerator.mm */; };
+		87F639FE21533C830035E730 /* FBRetainCycleDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87F639C321533C820035E730 /* FBRetainCycleDetector.mm */; };
+		87F639FF21533C830035E730 /* FBRetainCycleDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 87F639C321533C820035E730 /* FBRetainCycleDetector.mm */; };
+		87F63A0021533C830035E730 /* FBRetainCycleUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F639C521533C820035E730 /* FBRetainCycleUtils.m */; };
+		87F63A0121533C830035E730 /* FBRetainCycleUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F639C521533C820035E730 /* FBRetainCycleUtils.m */; };
+		87F63A0221533C830035E730 /* NSObject+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F639C621533C820035E730 /* NSObject+MemoryLeak.m */; };
+		87F63A0321533C830035E730 /* NSObject+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F639C621533C820035E730 /* NSObject+MemoryLeak.m */; };
 		AD1BE2122141238B0018AF2C /* FSForumSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1BE2112141238B0018AF2C /* FSForumSectionHeaderView.m */; };
 		AD1BE214214127180018AF2C /* FSForumSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD1BE213214127180018AF2C /* FSForumSectionHeaderView.xib */; };
 		AD22449A213CD6C300F2DC47 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AD224481213CD6C300F2DC47 /* NSLayoutConstraint+MASDebugAdditions.m */; };
@@ -1783,6 +1850,41 @@
 		DBD4CE952141229400857DB3 /* home_robot@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBD4CE872141229300857DB3 /* home_robot@3x.png */; };
 		DBD4CE962141229400857DB3 /* home_courses@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBD4CE882141229300857DB3 /* home_courses@2x.png */; };
 		DBD4CE972141229400857DB3 /* home_message@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBD4CE892141229400857DB3 /* home_message@3x.png */; };
+		DBF7E17921523B73002CEDA4 /* FSLawTopicInfos.plist in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E17821523B73002CEDA4 /* FSLawTopicInfos.plist */; };
+		DBF7E18A21523CB6002CEDA4 /* search_lawTopic_1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E17A21523CAE002CEDA4 /* search_lawTopic_1@3x.png */; };
+		DBF7E18B21523CB6002CEDA4 /* search_lawTopic_3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E17B21523CAE002CEDA4 /* search_lawTopic_3@3x.png */; };
+		DBF7E18C21523CB6002CEDA4 /* search_lawTopic_8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E17C21523CAF002CEDA4 /* search_lawTopic_8@2x.png */; };
+		DBF7E18D21523CB6002CEDA4 /* search_lawTopic_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E17D21523CAF002CEDA4 /* search_lawTopic_2@2x.png */; };
+		DBF7E18E21523CB6002CEDA4 /* search_lawTopic_6@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E17E21523CB0002CEDA4 /* search_lawTopic_6@3x.png */; };
+		DBF7E18F21523CB6002CEDA4 /* search_lawTopic_7@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E17F21523CB0002CEDA4 /* search_lawTopic_7@3x.png */; };
+		DBF7E19021523CB6002CEDA4 /* search_lawTopic_5@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E18021523CB1002CEDA4 /* search_lawTopic_5@3x.png */; };
+		DBF7E19121523CB6002CEDA4 /* search_lawTopic_6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E18121523CB1002CEDA4 /* search_lawTopic_6@2x.png */; };
+		DBF7E19221523CB6002CEDA4 /* search_lawTopic_8@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E18221523CB2002CEDA4 /* search_lawTopic_8@3x.png */; };
+		DBF7E19321523CB6002CEDA4 /* search_lawTopic_4@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E18321523CB2002CEDA4 /* search_lawTopic_4@3x.png */; };
+		DBF7E19421523CB6002CEDA4 /* search_lawTopic_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E18421523CB3002CEDA4 /* search_lawTopic_4@2x.png */; };
+		DBF7E19521523CB6002CEDA4 /* search_lawTopic_7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E18521523CB3002CEDA4 /* search_lawTopic_7@2x.png */; };
+		DBF7E19621523CB6002CEDA4 /* search_lawTopic_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E18621523CB4002CEDA4 /* search_lawTopic_5@2x.png */; };
+		DBF7E19721523CB6002CEDA4 /* search_lawTopic_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E18721523CB4002CEDA4 /* search_lawTopic_1@2x.png */; };
+		DBF7E19821523CB6002CEDA4 /* search_lawTopic_2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E18821523CB5002CEDA4 /* search_lawTopic_2@3x.png */; };
+		DBF7E19921523CB6002CEDA4 /* search_lawTopic_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E18921523CB5002CEDA4 /* search_lawTopic_3@2x.png */; };
+		DBF7E19B21524ECE002CEDA4 /* FSLawTopicInfos.plist in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E17821523B73002CEDA4 /* FSLawTopicInfos.plist */; };
+		DBF7E19C21524EDB002CEDA4 /* search_lawTopic_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E18721523CB4002CEDA4 /* search_lawTopic_1@2x.png */; };
+		DBF7E19D21524EDB002CEDA4 /* search_lawTopic_1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E17A21523CAE002CEDA4 /* search_lawTopic_1@3x.png */; };
+		DBF7E19E21524EDB002CEDA4 /* search_lawTopic_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E17D21523CAF002CEDA4 /* search_lawTopic_2@2x.png */; };
+		DBF7E19F21524EDB002CEDA4 /* search_lawTopic_2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E18821523CB5002CEDA4 /* search_lawTopic_2@3x.png */; };
+		DBF7E1A021524EDB002CEDA4 /* search_lawTopic_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E18921523CB5002CEDA4 /* search_lawTopic_3@2x.png */; };
+		DBF7E1A121524EDB002CEDA4 /* search_lawTopic_3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E17B21523CAE002CEDA4 /* search_lawTopic_3@3x.png */; };
+		DBF7E1A221524EDB002CEDA4 /* search_lawTopic_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E18421523CB3002CEDA4 /* search_lawTopic_4@2x.png */; };
+		DBF7E1A321524EDB002CEDA4 /* search_lawTopic_4@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E18321523CB2002CEDA4 /* search_lawTopic_4@3x.png */; };
+		DBF7E1A421524EDB002CEDA4 /* search_lawTopic_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E18621523CB4002CEDA4 /* search_lawTopic_5@2x.png */; };
+		DBF7E1A521524EDB002CEDA4 /* search_lawTopic_5@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E18021523CB1002CEDA4 /* search_lawTopic_5@3x.png */; };
+		DBF7E1A621524EDB002CEDA4 /* search_lawTopic_6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E18121523CB1002CEDA4 /* search_lawTopic_6@2x.png */; };
+		DBF7E1A721524EDB002CEDA4 /* search_lawTopic_6@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E17E21523CB0002CEDA4 /* search_lawTopic_6@3x.png */; };
+		DBF7E1A821524EDB002CEDA4 /* search_lawTopic_7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E18521523CB3002CEDA4 /* search_lawTopic_7@2x.png */; };
+		DBF7E1A921524EDB002CEDA4 /* search_lawTopic_7@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E17F21523CB0002CEDA4 /* search_lawTopic_7@3x.png */; };
+		DBF7E1AA21524EDB002CEDA4 /* search_lawTopic_8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E17C21523CAF002CEDA4 /* search_lawTopic_8@2x.png */; };
+		DBF7E1AB21524EDB002CEDA4 /* search_lawTopic_8@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E18221523CB2002CEDA4 /* search_lawTopic_8@3x.png */; };
+		E473137D2152B15F00C56ED8 /* FSNotificationName.m in Sources */ = {isa = PBXBuildFile; fileRef = E473137C2152B15F00C56ED8 /* FSNotificationName.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -2039,9 +2141,7 @@
 		45FEF842214D1B710005AD43 /* UIButton+XQAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+XQAdd.h"; sourceTree = "<group>"; };
 		45FEF847214D1B970005AD43 /* SingleTextChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleTextChatViewController.h; sourceTree = "<group>"; };
 		45FEF848214D1B970005AD43 /* PublicTextChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicTextChatViewController.h; sourceTree = "<group>"; };
-		45FEF849214D1B970005AD43 /* TextChatHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextChatHistoryViewController.h; sourceTree = "<group>"; };
 		45FEF84A214D1B970005AD43 /* SingleTextChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleTextChatViewController.m; sourceTree = "<group>"; };
-		45FEF84B214D1B970005AD43 /* TextChatHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextChatHistoryViewController.m; sourceTree = "<group>"; };
 		45FEF84C214D1B970005AD43 /* PublicTextChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicTextChatViewController.m; sourceTree = "<group>"; };
 		45FEF84E214D1B970005AD43 /* ChatTextModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTextModel.h; sourceTree = "<group>"; };
 		45FEF84F214D1B970005AD43 /* ChatTextViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTextViewModel.m; sourceTree = "<group>"; };
@@ -3220,6 +3320,80 @@
 		87E7C6EF2151F2C700F7AB14 /* GTMStackTrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMStackTrace.h; sourceTree = "<group>"; };
 		87E7C6F02151F2C700F7AB14 /* GTMStackTrace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMStackTrace.m; sourceTree = "<group>"; };
 		87E7C6F12151F2C700F7AB14 /* FSTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSTestHelper.h; sourceTree = "<group>"; };
+		87E7C70021532D9F00F7AB14 /* FSApiErrorLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSApiErrorLog.m; sourceTree = "<group>"; };
+		87E7C70121532DA000F7AB14 /* FSApiErrorLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSApiErrorLog.h; sourceTree = "<group>"; };
+		87F6396D21533ADB0035E730 /* PLArrayTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLArrayTableViewController.m; sourceTree = "<group>"; };
+		87F6396E21533ADB0035E730 /* PLDictionaryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLDictionaryTableViewController.h; sourceTree = "<group>"; };
+		87F6396F21533ADB0035E730 /* PLArrayTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLArrayTableViewController.h; sourceTree = "<group>"; };
+		87F6397021533ADB0035E730 /* PLDictionaryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLDictionaryTableViewController.m; sourceTree = "<group>"; };
+		87F6397621533C820035E730 /* UINavigationController+MemoryLeak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+MemoryLeak.m"; sourceTree = "<group>"; };
+		87F6397721533C820035E730 /* MLeaksMessenger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLeaksMessenger.h; sourceTree = "<group>"; };
+		87F6397821533C820035E730 /* UITabBarController+MemoryLeak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarController+MemoryLeak.h"; sourceTree = "<group>"; };
+		87F6397921533C820035E730 /* UIPageViewController+MemoryLeak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIPageViewController+MemoryLeak.h"; sourceTree = "<group>"; };
+		87F6397A21533C820035E730 /* MLeakedObjectProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLeakedObjectProxy.m; sourceTree = "<group>"; };
+		87F6397B21533C820035E730 /* UIViewController+MemoryLeak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MemoryLeak.h"; sourceTree = "<group>"; };
+		87F6397C21533C820035E730 /* UIView+MemoryLeak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MemoryLeak.m"; sourceTree = "<group>"; };
+		87F6397D21533C820035E730 /* NSObject+MemoryLeak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MemoryLeak.h"; sourceTree = "<group>"; };
+		87F6397E21533C820035E730 /* UIApplication+MemoryLeak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+MemoryLeak.h"; sourceTree = "<group>"; };
+		87F6397F21533C820035E730 /* UITouch+MemoryLeak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITouch+MemoryLeak.m"; sourceTree = "<group>"; };
+		87F6398021533C820035E730 /* UISplitViewController+MemoryLeak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISplitViewController+MemoryLeak.m"; sourceTree = "<group>"; };
+		87F6398221533C820035E730 /* rcd_fishhook.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rcd_fishhook.c; sourceTree = "<group>"; };
+		87F6398321533C820035E730 /* rcd_fishhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rcd_fishhook.h; sourceTree = "<group>"; };
+		87F6398421533C820035E730 /* MLeaksFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLeaksFinder.h; sourceTree = "<group>"; };
+		87F6398521533C820035E730 /* UIPageViewController+MemoryLeak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIPageViewController+MemoryLeak.m"; sourceTree = "<group>"; };
+		87F6398621533C820035E730 /* MLeakedObjectProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLeakedObjectProxy.h; sourceTree = "<group>"; };
+		87F6398721533C820035E730 /* UITabBarController+MemoryLeak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarController+MemoryLeak.m"; sourceTree = "<group>"; };
+		87F6398821533C820035E730 /* MLeaksMessenger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLeaksMessenger.m; sourceTree = "<group>"; };
+		87F6398921533C820035E730 /* UINavigationController+MemoryLeak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+MemoryLeak.h"; sourceTree = "<group>"; };
+		87F6398A21533C820035E730 /* UIViewController+MemoryLeak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MemoryLeak.m"; sourceTree = "<group>"; };
+		87F6398B21533C820035E730 /* UISplitViewController+MemoryLeak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISplitViewController+MemoryLeak.h"; sourceTree = "<group>"; };
+		87F6398C21533C820035E730 /* UITouch+MemoryLeak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITouch+MemoryLeak.h"; sourceTree = "<group>"; };
+		87F6398D21533C820035E730 /* UIApplication+MemoryLeak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+MemoryLeak.m"; sourceTree = "<group>"; };
+		87F6399021533C820035E730 /* FBAssociationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBAssociationManager.h; sourceTree = "<group>"; };
+		87F6399221533C820035E730 /* FBAssociationManager+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBAssociationManager+Internal.h"; sourceTree = "<group>"; };
+		87F6399321533C820035E730 /* FBAssociationManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FBAssociationManager.mm; sourceTree = "<group>"; };
+		87F6399521533C820035E730 /* FBStandardGraphEdgeFilters.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FBStandardGraphEdgeFilters.mm; sourceTree = "<group>"; };
+		87F6399621533C820035E730 /* FBStandardGraphEdgeFilters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBStandardGraphEdgeFilters.h; sourceTree = "<group>"; };
+		87F6399821533C820035E730 /* FBObjectiveCBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBObjectiveCBlock.h; sourceTree = "<group>"; };
+		87F6399A21533C820035E730 /* FBObjectiveCNSCFTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBObjectiveCNSCFTimer.h; sourceTree = "<group>"; };
+		87F6399B21533C820035E730 /* FBObjectiveCNSCFTimer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FBObjectiveCNSCFTimer.mm; sourceTree = "<group>"; };
+		87F6399C21533C820035E730 /* FBObjectGraphConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBObjectGraphConfiguration.h; sourceTree = "<group>"; };
+		87F6399D21533C820035E730 /* FBObjectiveCObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBObjectiveCObject.h; sourceTree = "<group>"; };
+		87F639A021533C820035E730 /* FBBlockStrongLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBBlockStrongLayout.h; sourceTree = "<group>"; };
+		87F639A121533C820035E730 /* FBBlockStrongRelationDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBBlockStrongRelationDetector.m; sourceTree = "<group>"; };
+		87F639A221533C820035E730 /* FBBlockStrongRelationDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBBlockStrongRelationDetector.h; sourceTree = "<group>"; };
+		87F639A321533C820035E730 /* FBBlockStrongLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBBlockStrongLayout.m; sourceTree = "<group>"; };
+		87F639A421533C820035E730 /* FBBlockInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBBlockInterface.h; sourceTree = "<group>"; };
+		87F639A621533C820035E730 /* FBClassStrongLayoutHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBClassStrongLayoutHelpers.h; sourceTree = "<group>"; };
+		87F639A821533C820035E730 /* Type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Type.h; sourceTree = "<group>"; };
+		87F639A921533C820035E730 /* Struct.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Struct.mm; sourceTree = "<group>"; };
+		87F639AA21533C820035E730 /* FBStructEncodingParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBStructEncodingParser.h; sourceTree = "<group>"; };
+		87F639AB21533C820035E730 /* Struct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Struct.h; sourceTree = "<group>"; };
+		87F639AC21533C820035E730 /* FBStructEncodingParser.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FBStructEncodingParser.mm; sourceTree = "<group>"; };
+		87F639AD21533C820035E730 /* BaseType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseType.h; sourceTree = "<group>"; };
+		87F639AE21533C820035E730 /* FBClassStrongLayout.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FBClassStrongLayout.mm; sourceTree = "<group>"; };
+		87F639AF21533C820035E730 /* FBClassStrongLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBClassStrongLayout.h; sourceTree = "<group>"; };
+		87F639B021533C820035E730 /* FBClassStrongLayoutHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBClassStrongLayoutHelpers.m; sourceTree = "<group>"; };
+		87F639B221533C820035E730 /* FBObjectInStructReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBObjectInStructReference.m; sourceTree = "<group>"; };
+		87F639B321533C820035E730 /* FBIvarReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBIvarReference.h; sourceTree = "<group>"; };
+		87F639B421533C820035E730 /* FBObjectInStructReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBObjectInStructReference.h; sourceTree = "<group>"; };
+		87F639B521533C820035E730 /* FBObjectReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBObjectReference.h; sourceTree = "<group>"; };
+		87F639B621533C820035E730 /* FBIvarReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBIvarReference.m; sourceTree = "<group>"; };
+		87F639B721533C820035E730 /* FBObjectiveCGraphElement.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FBObjectiveCGraphElement.mm; sourceTree = "<group>"; };
+		87F639B921533C820035E730 /* FBObjectiveCGraphElement+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBObjectiveCGraphElement+Internal.h"; sourceTree = "<group>"; };
+		87F639BA21533C820035E730 /* FBObjectGraphConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBObjectGraphConfiguration.m; sourceTree = "<group>"; };
+		87F639BB21533C820035E730 /* FBObjectiveCBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBObjectiveCBlock.m; sourceTree = "<group>"; };
+		87F639BC21533C820035E730 /* FBObjectiveCObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBObjectiveCObject.m; sourceTree = "<group>"; };
+		87F639BD21533C820035E730 /* FBObjectiveCGraphElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBObjectiveCGraphElement.h; sourceTree = "<group>"; };
+		87F639BE21533C820035E730 /* FBRetainCycleUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBRetainCycleUtils.h; sourceTree = "<group>"; };
+		87F639C021533C820035E730 /* FBRetainCycleDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBRetainCycleDetector.h; sourceTree = "<group>"; };
+		87F639C121533C820035E730 /* FBNodeEnumerator.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FBNodeEnumerator.mm; sourceTree = "<group>"; };
+		87F639C221533C820035E730 /* FBNodeEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBNodeEnumerator.h; sourceTree = "<group>"; };
+		87F639C321533C820035E730 /* FBRetainCycleDetector.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FBRetainCycleDetector.mm; sourceTree = "<group>"; };
+		87F639C421533C820035E730 /* FBRetainCycleDetector+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBRetainCycleDetector+Internal.h"; sourceTree = "<group>"; };
+		87F639C521533C820035E730 /* FBRetainCycleUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBRetainCycleUtils.m; sourceTree = "<group>"; };
+		87F639C621533C820035E730 /* NSObject+MemoryLeak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MemoryLeak.m"; sourceTree = "<group>"; };
+		87F639C721533C820035E730 /* UIView+MemoryLeak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MemoryLeak.h"; sourceTree = "<group>"; };
 		AD1BE2102141238B0018AF2C /* FSForumSectionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSForumSectionHeaderView.h; sourceTree = "<group>"; };
 		AD1BE2112141238B0018AF2C /* FSForumSectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSForumSectionHeaderView.m; sourceTree = "<group>"; };
 		AD1BE213214127180018AF2C /* FSForumSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSForumSectionHeaderView.xib; sourceTree = "<group>"; };
@@ -3484,6 +3658,25 @@
 		DBD4CE872141229300857DB3 /* home_robot@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_robot@3x.png"; sourceTree = "<group>"; };
 		DBD4CE882141229300857DB3 /* home_courses@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_courses@2x.png"; sourceTree = "<group>"; };
 		DBD4CE892141229400857DB3 /* home_message@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_message@3x.png"; sourceTree = "<group>"; };
+		DBF7E17821523B73002CEDA4 /* FSLawTopicInfos.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = FSLawTopicInfos.plist; sourceTree = "<group>"; };
+		DBF7E17A21523CAE002CEDA4 /* search_lawTopic_1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_lawTopic_1@3x.png"; sourceTree = "<group>"; };
+		DBF7E17B21523CAE002CEDA4 /* search_lawTopic_3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_lawTopic_3@3x.png"; sourceTree = "<group>"; };
+		DBF7E17C21523CAF002CEDA4 /* search_lawTopic_8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_lawTopic_8@2x.png"; sourceTree = "<group>"; };
+		DBF7E17D21523CAF002CEDA4 /* search_lawTopic_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_lawTopic_2@2x.png"; sourceTree = "<group>"; };
+		DBF7E17E21523CB0002CEDA4 /* search_lawTopic_6@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_lawTopic_6@3x.png"; sourceTree = "<group>"; };
+		DBF7E17F21523CB0002CEDA4 /* search_lawTopic_7@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_lawTopic_7@3x.png"; sourceTree = "<group>"; };
+		DBF7E18021523CB1002CEDA4 /* search_lawTopic_5@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_lawTopic_5@3x.png"; sourceTree = "<group>"; };
+		DBF7E18121523CB1002CEDA4 /* search_lawTopic_6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_lawTopic_6@2x.png"; sourceTree = "<group>"; };
+		DBF7E18221523CB2002CEDA4 /* search_lawTopic_8@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_lawTopic_8@3x.png"; sourceTree = "<group>"; };
+		DBF7E18321523CB2002CEDA4 /* search_lawTopic_4@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_lawTopic_4@3x.png"; sourceTree = "<group>"; };
+		DBF7E18421523CB3002CEDA4 /* search_lawTopic_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_lawTopic_4@2x.png"; sourceTree = "<group>"; };
+		DBF7E18521523CB3002CEDA4 /* search_lawTopic_7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_lawTopic_7@2x.png"; sourceTree = "<group>"; };
+		DBF7E18621523CB4002CEDA4 /* search_lawTopic_5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_lawTopic_5@2x.png"; sourceTree = "<group>"; };
+		DBF7E18721523CB4002CEDA4 /* search_lawTopic_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_lawTopic_1@2x.png"; sourceTree = "<group>"; };
+		DBF7E18821523CB5002CEDA4 /* search_lawTopic_2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_lawTopic_2@3x.png"; sourceTree = "<group>"; };
+		DBF7E18921523CB5002CEDA4 /* search_lawTopic_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_lawTopic_3@2x.png"; sourceTree = "<group>"; };
+		E473137B2152B15F00C56ED8 /* FSNotificationName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSNotificationName.h; sourceTree = "<group>"; };
+		E473137C2152B15F00C56ED8 /* FSNotificationName.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSNotificationName.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3896,8 +4089,6 @@
 				45FEF84A214D1B970005AD43 /* SingleTextChatViewController.m */,
 				45FEF848214D1B970005AD43 /* PublicTextChatViewController.h */,
 				45FEF84C214D1B970005AD43 /* PublicTextChatViewController.m */,
-				45FEF849214D1B970005AD43 /* TextChatHistoryViewController.h */,
-				45FEF84B214D1B970005AD43 /* TextChatHistoryViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5111,9 +5302,11 @@
 				87426A6F2131461F003C52F6 /* AFNetworking */,
 				8730AEFB2140FFA1004331A9 /* DTCoreText */,
 				87D209F3213920E2001EDD60 /* FLEX */,
+				87F6396C21533ADB0035E730 /* PListNavigatorLibs */,
 				87426ADF2135348D003C52F6 /* fmdb */,
 				AD22447F213CD6C300F2DC47 /* Masonry */,
 				87426ACA2133D5E9003C52F6 /* MBProgressHUD */,
+				87F6397521533C820035E730 /* MLeaksFinder */,
 				87426AB52133A504003C52F6 /* OpenUDID */,
 				87426AC62133AC44003C52F6 /* Reachability */,
 				87D209762138F1E2001EDD60 /* SDWebImage */,
@@ -5407,6 +5600,8 @@
 				87426A6E213141CD003C52F6 /* FSAppUIDef.h */,
 				87426AB22133A32E003C52F6 /* FSAppInfo.h */,
 				87426AB32133A32E003C52F6 /* FSAppInfo.m */,
+				E473137B2152B15F00C56ED8 /* FSNotificationName.h */,
+				E473137C2152B15F00C56ED8 /* FSNotificationName.m */,
 			);
 			path = appDefine;
 			sourceTree = "<group>";
@@ -5478,6 +5673,7 @@
 		87426A9921314996003C52F6 /* FSSearchViewController */ = {
 			isa = PBXGroup;
 			children = (
+				DBF7E17821523B73002CEDA4 /* FSLawTopicInfos.plist */,
 				DB804FDD214224ED007F7B19 /* images */,
 				DBD4CDEA213E2F0B00857DB3 /* resultView */,
 				87426A9A21314996003C52F6 /* FSSearchViewController.h */,
@@ -5527,6 +5723,8 @@
 				87426AC12133AA9D003C52F6 /* FSLocation.m */,
 				87426ABF2133AA9D003C52F6 /* FSCoreStatus.h */,
 				87426AC22133AA9D003C52F6 /* FSCoreStatus.m */,
+				87E7C70121532DA000F7AB14 /* FSApiErrorLog.h */,
+				87E7C70021532D9F00F7AB14 /* FSApiErrorLog.m */,
 			);
 			path = networkAPI;
 			sourceTree = "<group>";
@@ -6467,6 +6665,204 @@
 			path = GTM;
 			sourceTree = "<group>";
 		};
+		87F6396C21533ADB0035E730 /* PListNavigatorLibs */ = {
+			isa = PBXGroup;
+			children = (
+				87F6396F21533ADB0035E730 /* PLArrayTableViewController.h */,
+				87F6396D21533ADB0035E730 /* PLArrayTableViewController.m */,
+				87F6396E21533ADB0035E730 /* PLDictionaryTableViewController.h */,
+				87F6397021533ADB0035E730 /* PLDictionaryTableViewController.m */,
+			);
+			path = PListNavigatorLibs;
+			sourceTree = "<group>";
+		};
+		87F6397521533C820035E730 /* MLeaksFinder */ = {
+			isa = PBXGroup;
+			children = (
+				87F6398E21533C820035E730 /* FBRetainCycleDetector */,
+				87F6398121533C820035E730 /* rcd_fishhook */,
+				87F6398621533C820035E730 /* MLeakedObjectProxy.h */,
+				87F6397A21533C820035E730 /* MLeakedObjectProxy.m */,
+				87F6398421533C820035E730 /* MLeaksFinder.h */,
+				87F6397721533C820035E730 /* MLeaksMessenger.h */,
+				87F6398821533C820035E730 /* MLeaksMessenger.m */,
+				87F6397D21533C820035E730 /* NSObject+MemoryLeak.h */,
+				87F639C621533C820035E730 /* NSObject+MemoryLeak.m */,
+				87F6397E21533C820035E730 /* UIApplication+MemoryLeak.h */,
+				87F6398D21533C820035E730 /* UIApplication+MemoryLeak.m */,
+				87F6398921533C820035E730 /* UINavigationController+MemoryLeak.h */,
+				87F6397621533C820035E730 /* UINavigationController+MemoryLeak.m */,
+				87F6397921533C820035E730 /* UIPageViewController+MemoryLeak.h */,
+				87F6398521533C820035E730 /* UIPageViewController+MemoryLeak.m */,
+				87F6398B21533C820035E730 /* UISplitViewController+MemoryLeak.h */,
+				87F6398021533C820035E730 /* UISplitViewController+MemoryLeak.m */,
+				87F6397821533C820035E730 /* UITabBarController+MemoryLeak.h */,
+				87F6398721533C820035E730 /* UITabBarController+MemoryLeak.m */,
+				87F6398C21533C820035E730 /* UITouch+MemoryLeak.h */,
+				87F6397F21533C820035E730 /* UITouch+MemoryLeak.m */,
+				87F639C721533C820035E730 /* UIView+MemoryLeak.h */,
+				87F6397C21533C820035E730 /* UIView+MemoryLeak.m */,
+				87F6397B21533C820035E730 /* UIViewController+MemoryLeak.h */,
+				87F6398A21533C820035E730 /* UIViewController+MemoryLeak.m */,
+			);
+			path = MLeaksFinder;
+			sourceTree = "<group>";
+		};
+		87F6398121533C820035E730 /* rcd_fishhook */ = {
+			isa = PBXGroup;
+			children = (
+				87F6398321533C820035E730 /* rcd_fishhook.h */,
+				87F6398221533C820035E730 /* rcd_fishhook.c */,
+			);
+			path = rcd_fishhook;
+			sourceTree = "<group>";
+		};
+		87F6398E21533C820035E730 /* FBRetainCycleDetector */ = {
+			isa = PBXGroup;
+			children = (
+				87F6398F21533C820035E730 /* Associations */,
+				87F639BF21533C820035E730 /* Detector */,
+				87F6399421533C820035E730 /* Filtering */,
+				87F6399721533C820035E730 /* Graph */,
+				87F639BE21533C820035E730 /* FBRetainCycleUtils.h */,
+				87F639C521533C820035E730 /* FBRetainCycleUtils.m */,
+			);
+			path = FBRetainCycleDetector;
+			sourceTree = "<group>";
+		};
+		87F6398F21533C820035E730 /* Associations */ = {
+			isa = PBXGroup;
+			children = (
+				87F6399121533C820035E730 /* Internal */,
+				87F6399021533C820035E730 /* FBAssociationManager.h */,
+				87F6399321533C820035E730 /* FBAssociationManager.mm */,
+			);
+			path = Associations;
+			sourceTree = "<group>";
+		};
+		87F6399121533C820035E730 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				87F6399221533C820035E730 /* FBAssociationManager+Internal.h */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
+		87F6399421533C820035E730 /* Filtering */ = {
+			isa = PBXGroup;
+			children = (
+				87F6399621533C820035E730 /* FBStandardGraphEdgeFilters.h */,
+				87F6399521533C820035E730 /* FBStandardGraphEdgeFilters.mm */,
+			);
+			path = Filtering;
+			sourceTree = "<group>";
+		};
+		87F6399721533C820035E730 /* Graph */ = {
+			isa = PBXGroup;
+			children = (
+				87F639B821533C820035E730 /* Internal */,
+				87F6399E21533C820035E730 /* Layout */,
+				87F6399921533C820035E730 /* Specialization */,
+				87F6399C21533C820035E730 /* FBObjectGraphConfiguration.h */,
+				87F639BA21533C820035E730 /* FBObjectGraphConfiguration.m */,
+				87F6399821533C820035E730 /* FBObjectiveCBlock.h */,
+				87F639BB21533C820035E730 /* FBObjectiveCBlock.m */,
+				87F639BD21533C820035E730 /* FBObjectiveCGraphElement.h */,
+				87F639B721533C820035E730 /* FBObjectiveCGraphElement.mm */,
+				87F6399D21533C820035E730 /* FBObjectiveCObject.h */,
+				87F639BC21533C820035E730 /* FBObjectiveCObject.m */,
+			);
+			path = Graph;
+			sourceTree = "<group>";
+		};
+		87F6399921533C820035E730 /* Specialization */ = {
+			isa = PBXGroup;
+			children = (
+				87F6399A21533C820035E730 /* FBObjectiveCNSCFTimer.h */,
+				87F6399B21533C820035E730 /* FBObjectiveCNSCFTimer.mm */,
+			);
+			path = Specialization;
+			sourceTree = "<group>";
+		};
+		87F6399E21533C820035E730 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				87F6399F21533C820035E730 /* Blocks */,
+				87F639A521533C820035E730 /* Classes */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
+		87F6399F21533C820035E730 /* Blocks */ = {
+			isa = PBXGroup;
+			children = (
+				87F639A421533C820035E730 /* FBBlockInterface.h */,
+				87F639A021533C820035E730 /* FBBlockStrongLayout.h */,
+				87F639A321533C820035E730 /* FBBlockStrongLayout.m */,
+				87F639A221533C820035E730 /* FBBlockStrongRelationDetector.h */,
+				87F639A121533C820035E730 /* FBBlockStrongRelationDetector.m */,
+			);
+			path = Blocks;
+			sourceTree = "<group>";
+		};
+		87F639A521533C820035E730 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				87F639A721533C820035E730 /* Parser */,
+				87F639B121533C820035E730 /* Reference */,
+				87F639AF21533C820035E730 /* FBClassStrongLayout.h */,
+				87F639AE21533C820035E730 /* FBClassStrongLayout.mm */,
+				87F639A621533C820035E730 /* FBClassStrongLayoutHelpers.h */,
+				87F639B021533C820035E730 /* FBClassStrongLayoutHelpers.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		87F639A721533C820035E730 /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				87F639AD21533C820035E730 /* BaseType.h */,
+				87F639AA21533C820035E730 /* FBStructEncodingParser.h */,
+				87F639AC21533C820035E730 /* FBStructEncodingParser.mm */,
+				87F639AB21533C820035E730 /* Struct.h */,
+				87F639A921533C820035E730 /* Struct.mm */,
+				87F639A821533C820035E730 /* Type.h */,
+			);
+			path = Parser;
+			sourceTree = "<group>";
+		};
+		87F639B121533C820035E730 /* Reference */ = {
+			isa = PBXGroup;
+			children = (
+				87F639B321533C820035E730 /* FBIvarReference.h */,
+				87F639B621533C820035E730 /* FBIvarReference.m */,
+				87F639B421533C820035E730 /* FBObjectInStructReference.h */,
+				87F639B221533C820035E730 /* FBObjectInStructReference.m */,
+				87F639B521533C820035E730 /* FBObjectReference.h */,
+			);
+			path = Reference;
+			sourceTree = "<group>";
+		};
+		87F639B821533C820035E730 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				87F639B921533C820035E730 /* FBObjectiveCGraphElement+Internal.h */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
+		87F639BF21533C820035E730 /* Detector */ = {
+			isa = PBXGroup;
+			children = (
+				87F639C221533C820035E730 /* FBNodeEnumerator.h */,
+				87F639C121533C820035E730 /* FBNodeEnumerator.mm */,
+				87F639C021533C820035E730 /* FBRetainCycleDetector.h */,
+				87F639C321533C820035E730 /* FBRetainCycleDetector.mm */,
+				87F639C421533C820035E730 /* FBRetainCycleDetector+Internal.h */,
+			);
+			path = Detector;
+			sourceTree = "<group>";
+		};
 		AD22447F213CD6C300F2DC47 /* Masonry */ = {
 			isa = PBXGroup;
 			children = (
@@ -6784,12 +7180,28 @@
 		DB804FDD214224ED007F7B19 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				DB48741E2148A90D00AB0805 /* search_icon@2x.png */,
-				DB48741F2148A90D00AB0805 /* search_icon@3x.png */,
-				DB804FDF21422539007F7B19 /* search_hotKey@2x.png */,
-				DB804FDE21422539007F7B19 /* search_hotKey@3x.png */,
 				DB804FE221422547007F7B19 /* search_delKey@2x.png */,
 				DB804FE321422548007F7B19 /* search_delKey@3x.png */,
+				DB804FDF21422539007F7B19 /* search_hotKey@2x.png */,
+				DB804FDE21422539007F7B19 /* search_hotKey@3x.png */,
+				DB48741E2148A90D00AB0805 /* search_icon@2x.png */,
+				DB48741F2148A90D00AB0805 /* search_icon@3x.png */,
+				DBF7E18721523CB4002CEDA4 /* search_lawTopic_1@2x.png */,
+				DBF7E17A21523CAE002CEDA4 /* search_lawTopic_1@3x.png */,
+				DBF7E17D21523CAF002CEDA4 /* search_lawTopic_2@2x.png */,
+				DBF7E18821523CB5002CEDA4 /* search_lawTopic_2@3x.png */,
+				DBF7E18921523CB5002CEDA4 /* search_lawTopic_3@2x.png */,
+				DBF7E17B21523CAE002CEDA4 /* search_lawTopic_3@3x.png */,
+				DBF7E18421523CB3002CEDA4 /* search_lawTopic_4@2x.png */,
+				DBF7E18321523CB2002CEDA4 /* search_lawTopic_4@3x.png */,
+				DBF7E18621523CB4002CEDA4 /* search_lawTopic_5@2x.png */,
+				DBF7E18021523CB1002CEDA4 /* search_lawTopic_5@3x.png */,
+				DBF7E18121523CB1002CEDA4 /* search_lawTopic_6@2x.png */,
+				DBF7E17E21523CB0002CEDA4 /* search_lawTopic_6@3x.png */,
+				DBF7E18521523CB3002CEDA4 /* search_lawTopic_7@2x.png */,
+				DBF7E17F21523CB0002CEDA4 /* search_lawTopic_7@3x.png */,
+				DBF7E17C21523CAF002CEDA4 /* search_lawTopic_8@2x.png */,
+				DBF7E18221523CB2002CEDA4 /* search_lawTopic_8@3x.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -7105,6 +7517,7 @@
 				874268A1212E7E36003C52F6 /* decrease_taobao@2x.png in Resources */,
 				8730B1202148E5D1004331A9 /* fsfreshidle_icon25@2x.png in Resources */,
 				87426A6021313940003C52F6 /* FSMainVC.xib in Resources */,
+				DBF7E18B21523CB6002CEDA4 /* search_lawTopic_3@3x.png in Resources */,
 				87D186A3213679F800037DDF /* login_checked@2x.png in Resources */,
 				DB48742A2148DFE100AB0805 /* FSTextListCell.xib in Resources */,
 				874268A2212E7E36003C52F6 /* decrease_baiduwaimai@2x.png in Resources */,
@@ -7114,16 +7527,19 @@
 				87E7C6CC2150C10200F7AB14 /* empty_videoicon@3x.png in Resources */,
 				87426A0E212F9657003C52F6 /* navigationbar_setup_icon@3x.png in Resources */,
 				87C0134D212E7A5300D0AAC3 /* Assets.xcassets in Resources */,
+				DBF7E19321523CB6002CEDA4 /* search_lawTopic_4@3x.png in Resources */,
 				87D1868C213678B400037DDF /* navigationbar_popback_icon@3x.png in Resources */,
 				874268B8212E7E36003C52F6 /* BMTableView_Transparent@2x.png in Resources */,
 				874268D0212E7E36003C52F6 /* bmtab_bg@2x.png in Resources */,
 				87E7C6CB2150C10200F7AB14 /* empty_404icon@2x.png in Resources */,
 				8730AD452140CC28004331A9 /* user_collecticon@2x.png in Resources */,
 				87D186AC213679F800037DDF /* login_unchecked@2x.png in Resources */,
+				DBF7E19221523CB6002CEDA4 /* search_lawTopic_8@3x.png in Resources */,
 				87426A01212F9657003C52F6 /* navigationbar_close_icon@3x.png in Resources */,
 				45F3FD21214BBF48007712EE /* video_history_icon@2x.png in Resources */,
 				8730B1162148E5D1004331A9 /* fsfreshidle_icon22@2x.png in Resources */,
 				87426A20213100BB003C52F6 /* bmsearch_close@3x.png in Resources */,
+				DBF7E18D21523CB6002CEDA4 /* search_lawTopic_2@2x.png in Resources */,
 				87426A06212F9657003C52F6 /* navigationbar_message_icon@2x.png in Resources */,
 				DB2656D42146678A002ED713 /* FSLawSearchResultCell.xib in Resources */,
 				874268BA212E7E36003C52F6 /* BMTableView_UIButtonBarArrowLeft.png in Resources */,
@@ -7173,15 +7589,18 @@
 				8730B0C221465034004331A9 /* BMCombine_down@2x.png in Resources */,
 				87426A07212F9657003C52F6 /* navigationbar_select_icon@3x.png in Resources */,
 				87426AA7213156D5003C52F6 /* banner_close@2x.png in Resources */,
+				DBF7E19821523CB6002CEDA4 /* search_lawTopic_2@3x.png in Resources */,
 				8730B0CE214772BC004331A9 /* user_mobileicon@3x.png in Resources */,
 				DB804FEA21425CE9007F7B19 /* FSCaseSearchResultCell.xib in Resources */,
 				87E7C6C52150C10200F7AB14 /* empty_topicicon@2x.png in Resources */,
+				DBF7E18C21523CB6002CEDA4 /* search_lawTopic_8@2x.png in Resources */,
 				87426A54213135F0003C52F6 /* fstab_btn4_icon@2x.png in Resources */,
 				87E7C6CE2150C10200F7AB14 /* empty_404icon@3x.png in Resources */,
 				87426A4B213135F0003C52F6 /* fstab_btn3_icon@3x.png in Resources */,
 				87E7C6C82150C10200F7AB14 /* empty_commenticon@3x.png in Resources */,
 				AD93260A214B4FDA007F3A93 /* jQuery.js in Resources */,
 				87426A4F213135F0003C52F6 /* fstab_btn4_icon@3x.png in Resources */,
+				DBF7E19121523CB6002CEDA4 /* search_lawTopic_6@2x.png in Resources */,
 				8730B1182148E5D1004331A9 /* fsfreshidle_icon9@2x.png in Resources */,
 				8730B1262148E5D1004331A9 /* fsfreshidle_icon4@2x.png in Resources */,
 				DB48744D214B887F00AB0805 /* scanfile_camera@2x.png in Resources */,
@@ -7190,6 +7609,7 @@
 				8730B11B2148E5D1004331A9 /* fsfreshidle_icon16@2x.png in Resources */,
 				DB48743E214A5CCD00AB0805 /* FSFileScanVC.xib in Resources */,
 				DBD4CE972141229400857DB3 /* home_message@3x.png in Resources */,
+				DBF7E18A21523CB6002CEDA4 /* search_lawTopic_1@3x.png in Resources */,
 				87E7C6C62150C10200F7AB14 /* empty_topicicon@3x.png in Resources */,
 				87426898212E7E36003C52F6 /* increase_taobao@2x.png in Resources */,
 				87E7C6C22150C10100F7AB14 /* empty_neticon@3x.png in Resources */,
@@ -7260,6 +7680,7 @@
 				DBD4CE932141229400857DB3 /* home_robot@2x.png in Resources */,
 				87426A25213100BB003C52F6 /* bmsearch_searchicon@2x.png in Resources */,
 				87426A18212FCB6A003C52F6 /* navigationbar_clearImage@2x.png in Resources */,
+				DBF7E19421523CB6002CEDA4 /* search_lawTopic_4@2x.png in Resources */,
 				87D186A2213679F800037DDF /* login_mobile@2x.png in Resources */,
 				8742689E212E7E36003C52F6 /* steppersinput_minusicon@3x.png in Resources */,
 				87426A53213135F0003C52F6 /* fstab_btn2_highIcon@3x.png in Resources */,
@@ -7268,6 +7689,7 @@
 				8742689A212E7E36003C52F6 /* increase_taobao@3x.png in Resources */,
 				8730AD442140CC28004331A9 /* user_shareicon@2x.png in Resources */,
 				DB487449214B887700AB0805 /* scanfile_select@3x.png in Resources */,
+				DBF7E18E21523CB6002CEDA4 /* search_lawTopic_6@3x.png in Resources */,
 				87426A55213135F0003C52F6 /* fstab_btn2_icon@2x.png in Resources */,
 				DBD4CDFE213FB2D800857DB3 /* FSMainToolCell.xib in Resources */,
 				8730B1132148E5D1004331A9 /* fsfreshidle_icon26@2x.png in Resources */,
@@ -7278,6 +7700,7 @@
 				DB4874202148A90D00AB0805 /* search_icon@2x.png in Resources */,
 				874268A4212E7E36003C52F6 /* increase_meituan@3x.png in Resources */,
 				874268CE212E7E36003C52F6 /* bmtab_clear_line@2x.png in Resources */,
+				DBF7E19721523CB6002CEDA4 /* search_lawTopic_1@2x.png in Resources */,
 				87D20B18213CD80D001EDD60 /* navigationbar_webclose_icon@2x.png in Resources */,
 				87426A58213135F0003C52F6 /* fstab_btn1_highIcon@3x.png in Resources */,
 				87E7C6CD2150C10200F7AB14 /* empty_videoicon@2x.png in Resources */,
@@ -7298,6 +7721,7 @@
 				ADE8689D21393469005359B5 /* FSForumListCell.xib in Resources */,
 				DB804FE121422539007F7B19 /* search_hotKey@2x.png in Resources */,
 				DB8D16132137CCAC00EB16E8 /* FSMainHeaderView.xib in Resources */,
+				DBF7E19521523CB6002CEDA4 /* search_lawTopic_7@2x.png in Resources */,
 				87426897212E7E36003C52F6 /* decrease_meituan@3x.png in Resources */,
 				87426A04212F9657003C52F6 /* navigationbar_back_icon@3x.png in Resources */,
 				DB48745C214BB03400AB0805 /* FSFileScanImagePreviewVC.xib in Resources */,
@@ -7306,6 +7730,7 @@
 				45F3FD22214BBF48007712EE /* video_message_icon@3x.png in Resources */,
 				87426899212E7E36003C52F6 /* decrease_meituan@2x.png in Resources */,
 				8730AD422140CC28004331A9 /* user_commenticon@2x.png in Resources */,
+				DBF7E19021523CB6002CEDA4 /* search_lawTopic_5@3x.png in Resources */,
 				ADA1228C214614BE00CF0D87 /* FSTopicListVC.xib in Resources */,
 				8742689D212E7E36003C52F6 /* increase_eleme@2x.png in Resources */,
 				87D1869F213679F800037DDF /* login_openeye@3x.png in Resources */,
@@ -7314,6 +7739,8 @@
 				8730B1212148E5D1004331A9 /* fsfreshidle_icon27@2x.png in Resources */,
 				AD1BE214214127180018AF2C /* FSForumSectionHeaderView.xib in Resources */,
 				8730B1122148E5D1004331A9 /* fsfreshfreshing_icon8@2x.png in Resources */,
+				DBF7E17921523B73002CEDA4 /* FSLawTopicInfos.plist in Resources */,
+				DBF7E18F21523CB6002CEDA4 /* search_lawTopic_7@3x.png in Resources */,
 				8742689C212E7E36003C52F6 /* increase_baiduwaimai@2x.png in Resources */,
 				874268B7212E7E36003C52F6 /* BMTableView_arrows_rightBlack@3x.png in Resources */,
 				87D186A1213679F800037DDF /* login_password@3x.png in Resources */,
@@ -7323,10 +7750,12 @@
 				87E7C6BF2150C10100F7AB14 /* empty_neticon@2x.png in Resources */,
 				DB7584AA214F5C630002A1FE /* FSOCRSearchResultVC.xib in Resources */,
 				8730B1152148E5D1004331A9 /* fsfreshidle_icon24@2x.png in Resources */,
+				DBF7E19921523CB6002CEDA4 /* search_lawTopic_3@2x.png in Resources */,
 				8730B0C121465034004331A9 /* BMCombine_down@3x.png in Resources */,
 				ADE8689821392853005359B5 /* FSTopicListCell.xib in Resources */,
 				87426895212E7E36003C52F6 /* increase_baiduwaimai@3x.png in Resources */,
 				DB804FE021422539007F7B19 /* search_hotKey@3x.png in Resources */,
+				DBF7E19621523CB6002CEDA4 /* search_lawTopic_5@2x.png in Resources */,
 				87E7C6C12150C10100F7AB14 /* empty_commonicon@3x.png in Resources */,
 				87426A23213100BB003C52F6 /* bmsearch_history@3x.png in Resources */,
 				87426A0D212F9657003C52F6 /* navigationbar_select_icon@2x.png in Resources */,
@@ -7369,6 +7798,7 @@
 				87E7C50221509AB000F7AB14 /* video_bottom_message@3x.png in Resources */,
 				87E7C50321509AB000F7AB14 /* navigationbar_collect_icon@2x.png in Resources */,
 				87E7C50421509AB000F7AB14 /* decrease_taobao@2x.png in Resources */,
+				DBF7E1A021524EDB002CEDA4 /* search_lawTopic_3@2x.png in Resources */,
 				87E7C50521509AB000F7AB14 /* fsfreshidle_icon25@2x.png in Resources */,
 				87E7C50621509AB000F7AB14 /* FSMainVC.xib in Resources */,
 				45F68F412150E58F00628DC8 /* empty_404icon@3x.png in Resources */,
@@ -7394,11 +7824,13 @@
 				87E7C51821509AB000F7AB14 /* login_unchecked@2x.png in Resources */,
 				87E7C51921509AB000F7AB14 /* navigationbar_close_icon@3x.png in Resources */,
 				87E7C51A21509AB000F7AB14 /* video_history_icon@2x.png in Resources */,
+				DBF7E1A721524EDB002CEDA4 /* search_lawTopic_6@3x.png in Resources */,
 				87E7C62121509AF600F7AB14 /* LoadSDK.sh in Resources */,
 				87E7C51B21509AB000F7AB14 /* fsfreshidle_icon22@2x.png in Resources */,
 				87E7C51C21509AB000F7AB14 /* video_delete_btn@3x.png in Resources */,
 				87E7C51D21509AB000F7AB14 /* chat_left_bg@2x.png in Resources */,
 				87E7C51E21509AB000F7AB14 /* video_more_btn@3x.png in Resources */,
+				DBF7E1A821524EDB002CEDA4 /* search_lawTopic_7@2x.png in Resources */,
 				87E7C51F21509AB000F7AB14 /* bmsearch_close@3x.png in Resources */,
 				87E7C52021509AB000F7AB14 /* navigationbar_message_icon@2x.png in Resources */,
 				87E7C52121509AB000F7AB14 /* FSLawSearchResultCell.xib in Resources */,
@@ -7446,6 +7878,7 @@
 				87E7C54821509AB000F7AB14 /* bmsearch_close@2x.png in Resources */,
 				45F68F4F2150E58F00628DC8 /* empty_topicicon@3x.png in Resources */,
 				87E7C54921509AB000F7AB14 /* navigationbar_webclose_icon@3x.png in Resources */,
+				DBF7E19D21524EDB002CEDA4 /* search_lawTopic_1@3x.png in Resources */,
 				87E7C54A21509AB000F7AB14 /* FSSendTopicVC.xib in Resources */,
 				87E7C54B21509AB000F7AB14 /* fsfreshidle_icon14@2x.png in Resources */,
 				87E7C54C21509AB000F7AB14 /* user_topbackgroud@2x.png in Resources */,
@@ -7467,10 +7900,12 @@
 				87E7C55B21509AB000F7AB14 /* user_mobileicon@3x.png in Resources */,
 				87E7C55C21509AB000F7AB14 /* videocall_voice_open@3x.png in Resources */,
 				87E7C55D21509AB000F7AB14 /* FSCaseSearchResultCell.xib in Resources */,
+				DBF7E1A321524EDB002CEDA4 /* search_lawTopic_4@3x.png in Resources */,
 				87E7C55E21509AB000F7AB14 /* video_not_selected@3x.png in Resources */,
 				87E7C55F21509AB000F7AB14 /* fstab_btn4_icon@2x.png in Resources */,
 				87E7C56021509AB000F7AB14 /* fstab_btn3_icon@3x.png in Resources */,
 				87E7C56121509AB000F7AB14 /* jQuery.js in Resources */,
+				DBF7E19E21524EDB002CEDA4 /* search_lawTopic_2@2x.png in Resources */,
 				87E7C56221509AB000F7AB14 /* fstab_btn4_icon@3x.png in Resources */,
 				87E7C56321509AB000F7AB14 /* fsfreshidle_icon9@2x.png in Resources */,
 				87E7C56421509AB000F7AB14 /* fsfreshidle_icon4@2x.png in Resources */,
@@ -7507,6 +7942,7 @@
 				45F68F442150E58F00628DC8 /* empty_commenticon@2x.png in Resources */,
 				87E7C58021509AB000F7AB14 /* navigationbar_help_icon@2x.png in Resources */,
 				87E7C58121509AB000F7AB14 /* user_mobileicon@2x.png in Resources */,
+				DBF7E1A221524EDB002CEDA4 /* search_lawTopic_4@2x.png in Resources */,
 				87E7C58221509AB000F7AB14 /* FSServiceVC.xib in Resources */,
 				87E7C58321509AB000F7AB14 /* login_logo@2x.png in Resources */,
 				87E7C58421509AB000F7AB14 /* fsfreshfreshing_icon3@2x.png in Resources */,
@@ -7525,6 +7961,7 @@
 				87E7C58F21509AB000F7AB14 /* videocall_voice_open@2x.png in Resources */,
 				87E7C59021509AB000F7AB14 /* navigationbar_collect_icon@3x.png in Resources */,
 				87E7C59121509AB000F7AB14 /* user_serviceicon@3x.png in Resources */,
+				DBF7E19F21524EDB002CEDA4 /* search_lawTopic_2@3x.png in Resources */,
 				87E7C59221509AB000F7AB14 /* navigationbar_message_icon@3x.png in Resources */,
 				87E7C59321509AB000F7AB14 /* videocall_camera_switch@3x.png in Resources */,
 				87E7C59421509AB000F7AB14 /* fsfreshidle_icon20@2x.png in Resources */,
@@ -7533,15 +7970,18 @@
 				87E7C59721509AB000F7AB14 /* scanfile_camera@3x.png in Resources */,
 				87E7C59821509AB000F7AB14 /* fstab_btn2_highIcon@2x.png in Resources */,
 				87E7C59921509AB000F7AB14 /* user_commenticon@3x.png in Resources */,
+				DBF7E1AB21524EDB002CEDA4 /* search_lawTopic_8@3x.png in Resources */,
 				45F68F402150E58F00628DC8 /* empty_404icon@2x.png in Resources */,
 				87E7C59A21509AB000F7AB14 /* login_closeeye@3x.png in Resources */,
 				87E7C59B21509AB000F7AB14 /* bmsearch_searchicon@3x.png in Resources */,
 				87E7C59C21509AB000F7AB14 /* user_verifyicon@3x.png in Resources */,
 				87E7C59D21509AB000F7AB14 /* fsfreshidle_icon15@2x.png in Resources */,
+				DBF7E1A621524EDB002CEDA4 /* search_lawTopic_6@2x.png in Resources */,
 				87E7C59E21509AB000F7AB14 /* fsfreshfreshing_icon7@2x.png in Resources */,
 				87E7C59F21509AB000F7AB14 /* user_helpicon@3x.png in Resources */,
 				87E7C5A021509AB000F7AB14 /* chat_head_user@3x.png in Resources */,
 				87E7C5A121509AB000F7AB14 /* fsfreshidle_icon11@2x.png in Resources */,
+				DBF7E19B21524ECE002CEDA4 /* FSLawTopicInfos.plist in Resources */,
 				87E7C5A221509AB000F7AB14 /* steppersinput_minusicon@2x.png in Resources */,
 				45F68F4C2150E58F00628DC8 /* empty_searchicon@2x.png in Resources */,
 				87E7C5A321509AB000F7AB14 /* fstab_btn4_highIcon@2x.png in Resources */,
@@ -7567,6 +8007,7 @@
 				87E7C5B721509AB000F7AB14 /* FSCommunityHeaderView.xib in Resources */,
 				87E7C5B821509AB000F7AB14 /* fsfreshidle_icon12@2x.png in Resources */,
 				87E7C5B921509AB000F7AB14 /* home_robot@2x.png in Resources */,
+				DBF7E1A521524EDB002CEDA4 /* search_lawTopic_5@3x.png in Resources */,
 				87E7C5BA21509AB000F7AB14 /* bmsearch_searchicon@2x.png in Resources */,
 				87E7C5BB21509AB000F7AB14 /* navigationbar_clearImage@2x.png in Resources */,
 				87E7C5BC21509AB000F7AB14 /* login_mobile@2x.png in Resources */,
@@ -7607,7 +8048,9 @@
 				87E7C5E121509AB000F7AB14 /* user_collecticon@3x.png in Resources */,
 				87E7C5E221509AB000F7AB14 /* home_browseCount@3x.png in Resources */,
 				87E7C5E321509AB000F7AB14 /* FSCommentMessageCell.xib in Resources */,
+				DBF7E1A921524EDB002CEDA4 /* search_lawTopic_7@3x.png in Resources */,
 				87E7C5E421509AB000F7AB14 /* decrease_baiduwaimai@3x.png in Resources */,
+				DBF7E19C21524EDB002CEDA4 /* search_lawTopic_1@2x.png in Resources */,
 				87E7C5E521509AB000F7AB14 /* fsfreshidle_icon3@2x.png in Resources */,
 				87E7C5E621509AB000F7AB14 /* FSForumListCell.xib in Resources */,
 				458E18202151E9560050590B /* video_back_btn@3x.png in Resources */,
@@ -7636,6 +8079,7 @@
 				87E7C5FB21509AB000F7AB14 /* videocall_end_record@3x.png in Resources */,
 				87E7C5FC21509AB000F7AB14 /* fstab_btn1_icon@2x.png in Resources */,
 				87E7C5FD21509AB000F7AB14 /* fsfreshidle_icon27@2x.png in Resources */,
+				DBF7E1A121524EDB002CEDA4 /* search_lawTopic_3@3x.png in Resources */,
 				87E7C5FE21509AB000F7AB14 /* FSForumSectionHeaderView.xib in Resources */,
 				87E7C5FF21509AB000F7AB14 /* fsfreshfreshing_icon8@2x.png in Resources */,
 				87E7C60021509AB000F7AB14 /* increase_baiduwaimai@2x.png in Resources */,
@@ -7649,6 +8093,7 @@
 				87E7C60721509AB000F7AB14 /* FSOCRSearchResultVC.xib in Resources */,
 				87E7C60821509AB000F7AB14 /* fsfreshidle_icon24@2x.png in Resources */,
 				87E7C60921509AB000F7AB14 /* BMCombine_down@3x.png in Resources */,
+				DBF7E1A421524EDB002CEDA4 /* search_lawTopic_5@2x.png in Resources */,
 				87E7C60A21509AB000F7AB14 /* FSTopicListCell.xib in Resources */,
 				87E7C60B21509AB000F7AB14 /* increase_baiduwaimai@3x.png in Resources */,
 				87E7C60C21509AB000F7AB14 /* search_hotKey@3x.png in Resources */,
@@ -7665,6 +8110,7 @@
 				87E7C61621509AB000F7AB14 /* videocall_close_video@2x.png in Resources */,
 				87E7C61721509AB000F7AB14 /* ZSSRichTextEditor.js in Resources */,
 				87E7C61821509AB000F7AB14 /* Launch Screen.storyboard in Resources */,
+				DBF7E1AA21524EDB002CEDA4 /* search_lawTopic_8@2x.png in Resources */,
 				87E7C61921509AB000F7AB14 /* chat_message_text@3x.png in Resources */,
 				87E7C61A21509AB000F7AB14 /* BMTableView_UIButtonBarArrowRight.png in Resources */,
 			);
@@ -7685,6 +8131,7 @@
 				AD22449F213CD6C300F2DC47 /* NSArray+MASAdditions.m in Sources */,
 				874268FC212E7E36003C52F6 /* NSDecimalNumber+BMCategory.m in Sources */,
 				874268DF212E7E36003C52F6 /* BMAlignedImageView.m in Sources */,
+				87F639E821533C830035E730 /* Struct.mm in Sources */,
 				8730B02B2140FFA2004331A9 /* DTDictationPlaceholderView.m in Sources */,
 				87D209B92138F1E2001EDD60 /* SDWebImageFrame.m in Sources */,
 				87D20ABD213920E2001EDD60 /* FLEXArgumentInputColorView.m in Sources */,
@@ -7709,6 +8156,7 @@
 				87D20AD4213920E2001EDD60 /* FLEXSystemLogTableViewCell.m in Sources */,
 				87D209B52138F1E2001EDD60 /* UIImage+WebP.m in Sources */,
 				87D20ADC213920E2001EDD60 /* FLEXRealmDatabaseManager.m in Sources */,
+				87F639FE21533C830035E730 /* FBRetainCycleDetector.mm in Sources */,
 				87426A92213146A6003C52F6 /* XMRequest.m in Sources */,
 				DB48742E2148DFFE00AB0805 /* FSTextTypeCell.m in Sources */,
 				874268EE212E7E36003C52F6 /* UIColor+BMCategory.m in Sources */,
@@ -7734,6 +8182,8 @@
 				87D20AA1213920E2001EDD60 /* FLEXGlobalsTableViewControllerEntry.m in Sources */,
 				8730B07A2140FFA3004331A9 /* DTStripedLayerTile.m in Sources */,
 				874268CA212E7E36003C52F6 /* BMPickerItem.m in Sources */,
+				87F639E221533C830035E730 /* FBObjectiveCNSCFTimer.mm in Sources */,
+				87F639C821533C820035E730 /* UINavigationController+MemoryLeak.m in Sources */,
 				8730B02A2140FFA2004331A9 /* DTAccessibilityViewProxy.m in Sources */,
 				87D20AE2213920E2001EDD60 /* FLEXClassesTableViewController.m in Sources */,
 				AD9355AC2137D24100735C2E /* TZLocationManager.m in Sources */,
@@ -7754,12 +8204,15 @@
 				AD9325FE214B4FDA007F3A93 /* ZSSFontsViewController.m in Sources */,
 				ADA1228B214614BE00CF0D87 /* FSTopicListVC.m in Sources */,
 				87D20AA2213920E2001EDD60 /* FLEXImageExplorerViewController.m in Sources */,
+				87F6397121533ADB0035E730 /* PLArrayTableViewController.m in Sources */,
 				8730B08B2140FFA3004331A9 /* UIView+DTDebug.m in Sources */,
 				8730B08D2140FFA3004331A9 /* DTSidePanelPanGestureRecognizer.m in Sources */,
 				87426A9721314747003C52F6 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				87F639D221533C820035E730 /* rcd_fishhook.c in Sources */,
 				87D20AD1213920E2001EDD60 /* FLEXFileBrowserFileOperationController.m in Sources */,
 				8730B0372140FFA2004331A9 /* DTCoreTextLayoutFrameAccessibilityElementGenerator.m in Sources */,
 				874268C9212E7E36003C52F6 /* BMCheckBoxGroupItem.m in Sources */,
+				87F639DC21533C830035E730 /* UIApplication+MemoryLeak.m in Sources */,
 				87426AED2135348D003C52F6 /* FMDatabase.m in Sources */,
 				8730B06E2140FFA3004331A9 /* NSString+DTUTI.m in Sources */,
 				8730B0552140FFA3004331A9 /* DTHTMLParserNode.m in Sources */,
@@ -7773,6 +8226,7 @@
 				8730B0732140FFA3004331A9 /* mztools.c in Sources */,
 				874268E3212E7E36003C52F6 /* UIWindow+BMCategory.m in Sources */,
 				87D20AD5213920E2001EDD60 /* FLEXTableLeftCell.m in Sources */,
+				87F639EC21533C830035E730 /* FBClassStrongLayout.mm in Sources */,
 				87741FEB214A381700F72427 /* FSMyCollectionVC.m in Sources */,
 				87D209B72138F1E2001EDD60 /* SDWebImageManager.m in Sources */,
 				87426AD42133F3C8003C52F6 /* FSTableViewVC.m in Sources */,
@@ -7786,6 +8240,7 @@
 				87D20ABF213920E2001EDD60 /* FLEXArgumentInputJSONObjectView.m in Sources */,
 				874269BE212E9B78003C52F6 /* BMFreshTriangleDotHeader.m in Sources */,
 				87426A91213146A6003C52F6 /* XMCenter.m in Sources */,
+				87F639CA21533C820035E730 /* MLeakedObjectProxy.m in Sources */,
 				8730B04B2140FFA2004331A9 /* DTColorFunctions.m in Sources */,
 				AD22449C213CD6C300F2DC47 /* MASCompositeConstraint.m in Sources */,
 				8730B08F2140FFA3004331A9 /* DTSidePanelControllerSegue.m in Sources */,
@@ -7793,6 +8248,7 @@
 				87D20AAA213920E2001EDD60 /* FLEXObjectExplorerViewController.m in Sources */,
 				8730B0792140FFA3004331A9 /* DTStripedLayer.m in Sources */,
 				874268BC212E7E36003C52F6 /* BMTableViewCell.m in Sources */,
+				87F639E421533C830035E730 /* FBBlockStrongRelationDetector.m in Sources */,
 				874268F9212E7E36003C52F6 /* CALayer+BMSize.m in Sources */,
 				DB2656E321467396002ED713 /* FSTextSearchResultVC.m in Sources */,
 				8730B0212140FFA2004331A9 /* DTTextAttachment.m in Sources */,
@@ -7801,19 +8257,25 @@
 				8730B0382140FFA2004331A9 /* DTCoreTextLayoutFrame.m in Sources */,
 				87D20AA3213920E2001EDD60 /* FLEXClassExplorerViewController.m in Sources */,
 				87426A6821313C1D003C52F6 /* FSSuperVC.m in Sources */,
+				87F639CE21533C820035E730 /* UITouch+MemoryLeak.m in Sources */,
 				87E7C6952150A4E400F7AB14 /* TOActivityCroppedImageProvider.m in Sources */,
 				8730B0942140FFA3004331A9 /* DTReachability.m in Sources */,
 				8730B05D2140FFA3004331A9 /* DTCoreTextLayouter.m in Sources */,
+				87F639F421533C830035E730 /* FBObjectiveCGraphElement.mm in Sources */,
 				87D20AE9213920E2001EDD60 /* FLEXKeyboardShortcutManager.m in Sources */,
 				8742690A212E7E36003C52F6 /* NSDictionary+BMCategory.m in Sources */,
 				8730B0612140FFA3004331A9 /* DTZipArchiveGZip.m in Sources */,
 				8730B05F2140FFA3004331A9 /* DTVersion.m in Sources */,
 				AD9355AA2137D24100735C2E /* TZPhotoPreviewCell.m in Sources */,
 				8730B0442140FFA2004331A9 /* NSCharacterSet+HTML.m in Sources */,
+				87F639D421533C820035E730 /* UIPageViewController+MemoryLeak.m in Sources */,
+				87F639D621533C830035E730 /* UITabBarController+MemoryLeak.m in Sources */,
 				8730B0332140FFA2004331A9 /* DTHTMLParserTextNode.m in Sources */,
 				87D209B62138F1E2001EDD60 /* MKAnnotationView+WebCache.m in Sources */,
 				8742690E212E7E36003C52F6 /* NSMutableArray+BMCategory.m in Sources */,
 				87D209CD2138F1E2001EDD60 /* SDImageCacheConfig.m in Sources */,
+				87F639F221533C830035E730 /* FBIvarReference.m in Sources */,
+				87F639EE21533C830035E730 /* FBClassStrongLayoutHelpers.m in Sources */,
 				87D20AEA213920E2001EDD60 /* FLEXKeyboardHelpViewController.m in Sources */,
 				87742004214C999100F72427 /* FSMessageTabVC.m in Sources */,
 				87426900212E7E36003C52F6 /* NSDate+BMCategory.m in Sources */,
@@ -7852,10 +8314,12 @@
 				AD8B63FE21338E0C006DDC22 /* FSPreviewFileTool.m in Sources */,
 				874268E4212E7E36003C52F6 /* UIView+BMAnimation.m in Sources */,
 				87D20AC3213920E2001EDD60 /* FLEXArgumentInputFontView.m in Sources */,
+				87F639DE21533C830035E730 /* FBAssociationManager.mm in Sources */,
 				AD1BE2122141238B0018AF2C /* FSForumSectionHeaderView.m in Sources */,
 				8730B09C2140FFA3004331A9 /* NSURL+DTAWS.m in Sources */,
 				87D20ACB213920E2001EDD60 /* FLEXWindow.m in Sources */,
 				87D20AAB213920E2001EDD60 /* FLEXNetworkTransaction.m in Sources */,
+				87F639DA21533C830035E730 /* UIViewController+MemoryLeak.m in Sources */,
 				87D20AAD213920E2001EDD60 /* FLEXNetworkRecorder.m in Sources */,
 				87D20B042139492F001EDD60 /* WKWebViewJavascriptBridge.m in Sources */,
 				DB4874242148BD3F00AB0805 /* FSListTextModel.m in Sources */,
@@ -7886,14 +8350,17 @@
 				AD932605214B4FDA007F3A93 /* CYRTextStorage.m in Sources */,
 				DB2656D1214666C4002ED713 /* FSLawSearchResultCell.m in Sources */,
 				8730B05E2140FFA3004331A9 /* NSString+DTPaths.m in Sources */,
+				87E7C70221532DA000F7AB14 /* FSApiErrorLog.m in Sources */,
 				87E7C6972150A4E400F7AB14 /* TOCropViewControllerTransitioning.m in Sources */,
 				87D20AB9213920E2001EDD60 /* FLEXMethodCallingViewController.m in Sources */,
 				87D20ADF213920E2001EDD60 /* FLEXLibrariesTableViewController.m in Sources */,
+				87F639E021533C830035E730 /* FBStandardGraphEdgeFilters.mm in Sources */,
 				AD9325FF214B4FDA007F3A93 /* HRCgUtil.m in Sources */,
 				87D20AE7213920E2001EDD60 /* FLEXHeapEnumerator.m in Sources */,
 				8730B0742140FFA3004331A9 /* NSObject+DTRuntime.m in Sources */,
 				ADE8689721392853005359B5 /* FSTopicListCell.m in Sources */,
 				8730B06C2140FFA3004331A9 /* DTFolderMonitor.m in Sources */,
+				87F639CC21533C820035E730 /* UIView+MemoryLeak.m in Sources */,
 				874268D5212E7E36003C52F6 /* BMVerifiTimeManager.m in Sources */,
 				87D20AB1213920E2001EDD60 /* FLEXNetworkHistoryTableViewController.m in Sources */,
 				8730B09E2140FFA3004331A9 /* NSData+DTCrypto.m in Sources */,
@@ -7982,6 +8449,7 @@
 				87E7C6F82151F2C700F7AB14 /* GTMStackTrace.m in Sources */,
 				87426AF521353510003C52F6 /* FSDB.m in Sources */,
 				DB487445214B642600AB0805 /* FSImageFileCell.m in Sources */,
+				87F6397321533ADB0035E730 /* PLDictionaryTableViewController.m in Sources */,
 				87D20AC8213920E2001EDD60 /* FLEXArgumentInputNotSupportedView.m in Sources */,
 				8730B0C6214758F0004331A9 /* FSSetPhoneVC.m in Sources */,
 				8730B07E2140FFA3004331A9 /* UIView+DTActionHandlers.m in Sources */,
@@ -8016,6 +8484,7 @@
 				87D1868321364E7D00037DDF /* FSSetTableViewVC.m in Sources */,
 				8730B0402140FFA2004331A9 /* NSAttributedString+HTML.m in Sources */,
 				874269BC212E9B78003C52F6 /* BMFreshFiveStarHeader.m in Sources */,
+				87F639FA21533C830035E730 /* FBObjectiveCObject.m in Sources */,
 				874269BF212E9B78003C52F6 /* BMFreshContainerHeaderView.m in Sources */,
 				874268A7212E7E36003C52F6 /* BMTableViewDateTimeCell.m in Sources */,
 				8730B0622140FFA3004331A9 /* DTZipArchivePKZip.m in Sources */,
@@ -8026,6 +8495,7 @@
 				8730B07F2140FFA3004331A9 /* DTActionSheet.m in Sources */,
 				ADE8689C21393469005359B5 /* FSForumListCell.m in Sources */,
 				8730B0AF21461456004331A9 /* FSRecommendListVC.m in Sources */,
+				87F639F621533C830035E730 /* FBObjectGraphConfiguration.m in Sources */,
 				87741FEE214A385700F72427 /* FSMyCommentVC.m in Sources */,
 				87D20B1321394A5A001EDD60 /* FSWebViewProgress.m in Sources */,
 				87D20AD2213920E2001EDD60 /* FLEXSystemLogTableViewController.m in Sources */,
@@ -8033,10 +8503,14 @@
 				874268D2212E7E36003C52F6 /* BMCheckBoxGroup.m in Sources */,
 				8730B0822140FFA3004331A9 /* DTProgressHUDWindow.m in Sources */,
 				87D209D02138F1E2001EDD60 /* SDWebImageImageIOCoder.m in Sources */,
+				87F639D021533C820035E730 /* UISplitViewController+MemoryLeak.m in Sources */,
 				8730B0602140FFA3004331A9 /* DTExtendedFileAttributes.m in Sources */,
 				AD932601214B4FDA007F3A93 /* HRColorPickerView.m in Sources */,
 				874268CB212E7E36003C52F6 /* BMInputItem.m in Sources */,
+				87F639E621533C830035E730 /* FBBlockStrongLayout.m in Sources */,
+				87F639EA21533C830035E730 /* FBStructEncodingParser.mm in Sources */,
 				8730B0882140FFA3004331A9 /* DTPieProgressIndicator.m in Sources */,
+				E473137D2152B15F00C56ED8 /* FSNotificationName.m in Sources */,
 				874268DE212E7E36003C52F6 /* BMSingleLineView.m in Sources */,
 				8730B07B2140FFA3004331A9 /* UIWebView+DTFoundation.m in Sources */,
 				DB2656E021467363002ED713 /* FSTextSearchResultView.m in Sources */,
@@ -8059,6 +8533,7 @@
 				87742011214C9E1600F72427 /* FSNoticeMessageCell.m in Sources */,
 				AD932600214B4FDA007F3A93 /* HRColorPickerViewController.m in Sources */,
 				8774201C214F523700F72427 /* FSAlertView.m in Sources */,
+				87F63A0221533C830035E730 /* NSObject+MemoryLeak.m in Sources */,
 				8730B02E2140FFA2004331A9 /* DTAccessibilityElement.m in Sources */,
 				87D20B032139492F001EDD60 /* WebViewJavascriptBridgeBase.m in Sources */,
 				874268F8212E7E36003C52F6 /* UIImage+BMTint.m in Sources */,
@@ -8086,6 +8561,7 @@
 				8730B0362140FFA2004331A9 /* DTVideoTextAttachment.m in Sources */,
 				87D209722137F399001EDD60 /* FSUserMainVC.m in Sources */,
 				87426AC52133AA9D003C52F6 /* FSCoreStatus.m in Sources */,
+				87F63A0021533C830035E730 /* FBRetainCycleUtils.m in Sources */,
 				8730B0662140FFA3004331A9 /* DTSQLiteFunctions.m in Sources */,
 				87D20B23213F87A8001EDD60 /* FSCustomInfoVC.m in Sources */,
 				874269B9212E9B78003C52F6 /* BMFreshBaseView.m in Sources */,
@@ -8117,6 +8593,7 @@
 				8730B05A2140FFA3004331A9 /* DTCoreTextLayoutFrame+Cursor.m in Sources */,
 				8730B03A2140FFA2004331A9 /* DTAttributedTextCell.m in Sources */,
 				8730B0982140FFA3004331A9 /* DTASN1BitString.m in Sources */,
+				87F639F821533C830035E730 /* FBObjectiveCBlock.m in Sources */,
 				AD9355A92137D24100735C2E /* TZPhotoPickerController.m in Sources */,
 				45FEF844214D1B720005AD43 /* UIButton+XQAdd.m in Sources */,
 				87D209C22138F1E2001EDD60 /* SDWebImagePrefetcher.m in Sources */,
@@ -8134,6 +8611,7 @@
 				87426AF9213536AC003C52F6 /* FSUserInfoDB.m in Sources */,
 				8730B0692140FFA3004331A9 /* NSString+DTURLEncoding.m in Sources */,
 				AD932608214B4FDA007F3A93 /* HRColorCursor.m in Sources */,
+				87F639F021533C830035E730 /* FBObjectInStructReference.m in Sources */,
 				87D20AE5213920E2001EDD60 /* FLEXHierarchyTableViewController.m in Sources */,
 				874268BE212E7E36003C52F6 /* BMTableViewManager.m in Sources */,
 				87426AEF2135348D003C52F6 /* FMResultSet.m in Sources */,
@@ -8150,6 +8628,7 @@
 				AD9CAAE4212EA0F40071B941 /* UIScrollView+BMEmpty.m in Sources */,
 				8730B0A6214255B7004331A9 /* FSEditorVC.m in Sources */,
 				87D209CC2138F1E2001EDD60 /* SDWebImageGIFCoder.m in Sources */,
+				87F639FC21533C830035E730 /* FBNodeEnumerator.mm in Sources */,
 				874269C3212E9B78003C52F6 /* BMFreshHeaderView.m in Sources */,
 				AD2244DB213D158800F2DC47 /* FSForumDetailListCell.m in Sources */,
 				87D186B22136998E00037DDF /* FSLoginVerifyVC.m in Sources */,
@@ -8188,6 +8667,7 @@
 				87D209BB2138F1E2001EDD60 /* SDWebImageCodersManager.m in Sources */,
 				8730B0722140FFA3004331A9 /* ioapi.c in Sources */,
 				874268A8212E7E36003C52F6 /* BMTableViewTextCell.m in Sources */,
+				87F639D821533C830035E730 /* MLeaksMessenger.m in Sources */,
 				87E7C6F22151F2C700F7AB14 /* iConsole.m in Sources */,
 				AD22449E213CD6C300F2DC47 /* MASLayoutConstraint.m in Sources */,
 				8730B0802140FFA3004331A9 /* UIView+DTFoundation.m in Sources */,
@@ -8256,11 +8736,14 @@
 				87E7C28921509AB000F7AB14 /* FLEXViewExplorerViewController.m in Sources */,
 				87E7C28A21509AB000F7AB14 /* TZVideoPlayerController.m in Sources */,
 				87E7C28B21509AB000F7AB14 /* NSBundle+BMCategory.m in Sources */,
+				87F639F321533C830035E730 /* FBIvarReference.m in Sources */,
 				87E7C28C21509AB000F7AB14 /* DTImage+HTML.m in Sources */,
 				87E7C28D21509AB000F7AB14 /* FSImageJump.m in Sources */,
+				87F639CF21533C820035E730 /* UITouch+MemoryLeak.m in Sources */,
 				87E7C28E21509AB000F7AB14 /* VideoCallModel.m in Sources */,
 				87E7C28F21509AB000F7AB14 /* NSString+DTUtilities.m in Sources */,
 				87E7C29021509AB000F7AB14 /* UIImage+DTFoundation.m in Sources */,
+				87F639E521533C830035E730 /* FBBlockStrongRelationDetector.m in Sources */,
 				87E7C29121509AB000F7AB14 /* DTCoreTextConstants.m in Sources */,
 				87E7C29221509AB000F7AB14 /* DTZipArchiveNode.m in Sources */,
 				87E7C29321509AB000F7AB14 /* BMSegmentItem.m in Sources */,
@@ -8276,6 +8759,7 @@
 				87E7C29D21509AB000F7AB14 /* BMCombineItem.m in Sources */,
 				87E7C29E21509AB000F7AB14 /* FLEXDefaultsExplorerViewController.m in Sources */,
 				87E7C29F21509AB000F7AB14 /* NSBundle+BMResource.m in Sources */,
+				87E7C70321532DA000F7AB14 /* FSApiErrorLog.m in Sources */,
 				87E7C2A021509AB000F7AB14 /* FSSetupVC.m in Sources */,
 				87E7C2A121509AB000F7AB14 /* BMTextItem.m in Sources */,
 				87E7C2A221509AB000F7AB14 /* BMTableViewBoolCell.m in Sources */,
@@ -8290,6 +8774,7 @@
 				87E7C2AC21509AB000F7AB14 /* FSMessageListVC.m in Sources */,
 				87E7C2AD21509AB000F7AB14 /* FSSetPassWordVC.m in Sources */,
 				87E7C2AE21509AB000F7AB14 /* FSTopicDetailVC.m in Sources */,
+				87F639F121533C830035E730 /* FBObjectInStructReference.m in Sources */,
 				87E7C2AF21509AB000F7AB14 /* DTAttributedTextView.m in Sources */,
 				87E7C2B021509AB000F7AB14 /* SDWebImageCoderHelper.m in Sources */,
 				87E7C2B121509AB000F7AB14 /* SDWebImageWebPCoder.m in Sources */,
@@ -8298,6 +8783,7 @@
 				87E7C2B421509AB000F7AB14 /* BMPickerItem.m in Sources */,
 				87E7C2B521509AB000F7AB14 /* DTAccessibilityViewProxy.m in Sources */,
 				87E7C2B621509AB000F7AB14 /* FLEXClassesTableViewController.m in Sources */,
+				87F639E321533C830035E730 /* FBObjectiveCNSCFTimer.mm in Sources */,
 				87E7C2B721509AB000F7AB14 /* TZLocationManager.m in Sources */,
 				87E7C2B821509AB000F7AB14 /* DTDictationPlaceholderTextAttachment.m in Sources */,
 				87E7C2B921509AB000F7AB14 /* FSApiRequest+VideoMediate.m in Sources */,
@@ -8332,6 +8818,7 @@
 				87E7C2D621509AB000F7AB14 /* UIColor+DTDebug.m in Sources */,
 				87E7C2D721509AB000F7AB14 /* BMNavigationBar.m in Sources */,
 				87E7C2D821509AB000F7AB14 /* FLEXUtility.m in Sources */,
+				87F639DF21533C830035E730 /* FBAssociationManager.mm in Sources */,
 				87E7C2D921509AB000F7AB14 /* UIView+BMCorner.m in Sources */,
 				87E7C2DA21509AB000F7AB14 /* FLEXArgumentInputNumberView.m in Sources */,
 				87E7C2DB21509AB000F7AB14 /* mztools.c in Sources */,
@@ -8386,6 +8873,7 @@
 				87E7C30E21509AB000F7AB14 /* BMDateTimeItem.m in Sources */,
 				87E7C30F21509AB000F7AB14 /* main.m in Sources */,
 				87E7C31021509AB000F7AB14 /* UIViewController+DTSidePanelController.m in Sources */,
+				87F6397221533ADB0035E730 /* PLArrayTableViewController.m in Sources */,
 				87E7C31121509AB000F7AB14 /* BMTableViewPickerCell.m in Sources */,
 				87E7C31221509AB000F7AB14 /* AFURLSessionManager.m in Sources */,
 				87E7C31321509AB000F7AB14 /* NSAttributedString+DTDebug.m in Sources */,
@@ -8395,6 +8883,7 @@
 				87E7C31721509AB000F7AB14 /* NSNumber+BMCategory.m in Sources */,
 				87E7C6A42150A4E500F7AB14 /* TOCropToolbar.m in Sources */,
 				87E7C31821509AB000F7AB14 /* MJPropertyKey.m in Sources */,
+				87F639D521533C820035E730 /* UIPageViewController+MemoryLeak.m in Sources */,
 				87E7C31921509AB000F7AB14 /* FSSendTopicVC.m in Sources */,
 				87E7C31A21509AB000F7AB14 /* FLEXArgumentInputViewFactory.m in Sources */,
 				87E7C31B21509AB000F7AB14 /* FLEXObjectRef.m in Sources */,
@@ -8408,6 +8897,7 @@
 				87E7C32321509AB000F7AB14 /* NSMutableArray+DTMoving.m in Sources */,
 				87E7C32421509AB000F7AB14 /* ZFNetworkSpeedMonitor.m in Sources */,
 				87E7C32521509AB000F7AB14 /* FSTextListCell.m in Sources */,
+				87F639CB21533C820035E730 /* MLeakedObjectProxy.m in Sources */,
 				87E7C32621509AB000F7AB14 /* VideoCallController.m in Sources */,
 				87E7C32721509AB000F7AB14 /* FSPageBannerView.m in Sources */,
 				87E7C32821509AB000F7AB14 /* AFURLResponseSerialization.m in Sources */,
@@ -8475,6 +8965,7 @@
 				87E7C36521509AB000F7AB14 /* FLEXLibrariesTableViewController.m in Sources */,
 				87E7C36621509AB000F7AB14 /* HRCgUtil.m in Sources */,
 				87E7C36721509AB000F7AB14 /* FLEXHeapEnumerator.m in Sources */,
+				87F639F721533C830035E730 /* FBObjectGraphConfiguration.m in Sources */,
 				87E7C36821509AB000F7AB14 /* NSObject+DTRuntime.m in Sources */,
 				87E7C36921509AB000F7AB14 /* FSTopicListCell.m in Sources */,
 				87E7C36A21509AB000F7AB14 /* DTFolderMonitor.m in Sources */,
@@ -8493,10 +8984,12 @@
 				87E7C37621509AB000F7AB14 /* NSMutableString+HTML.m in Sources */,
 				87E7C37721509AB000F7AB14 /* UIView+WebCache.m in Sources */,
 				87E7C37821509AB000F7AB14 /* NSButton+WebCache.m in Sources */,
+				87F639D921533C830035E730 /* MLeaksMessenger.m in Sources */,
 				87E7C37921509AB000F7AB14 /* FSWebViewProgressView.m in Sources */,
 				87E7C37A21509AB000F7AB14 /* MBProgressHUD.m in Sources */,
 				87E7C37B21509AB000F7AB14 /* FLEXArgumentInputStringView.m in Sources */,
 				87E7C37C21509AB000F7AB14 /* DTImageTextAttachment.m in Sources */,
+				87F639EF21533C830035E730 /* FBClassStrongLayoutHelpers.m in Sources */,
 				87E7C37D21509AB000F7AB14 /* UIViewController+ZFPlayerRotation.m in Sources */,
 				87E7C37E21509AB000F7AB14 /* ZFPlayerNotification.m in Sources */,
 				87E7C37F21509AB000F7AB14 /* FSCourseModel.m in Sources */,
@@ -8505,10 +8998,12 @@
 				87E7C38121509AB000F7AB14 /* UIDevice+BMCategory.m in Sources */,
 				87E7C38221509AB000F7AB14 /* FLEXArgumentInputStructView.m in Sources */,
 				87E7C38321509AB000F7AB14 /* BMFreshBackContainerFooterView.m in Sources */,
+				87F639DD21533C830035E730 /* UIApplication+MemoryLeak.m in Sources */,
 				87E7C38421509AB000F7AB14 /* UIView+BMNibLoading.m in Sources */,
 				87E7C38521509AB000F7AB14 /* FSSearchResultVC.m in Sources */,
 				87E7C38621509AB000F7AB14 /* FSLawSearchResultVC.m in Sources */,
 				87E7C38721509AB000F7AB14 /* DTAnimatedGIF.m in Sources */,
+				45D7D74B2153420C009E8E7A /* FSNotificationName.m in Sources */,
 				87E7C38821509AB000F7AB14 /* ChatTextViewModel.m in Sources */,
 				87E7C38921509AB000F7AB14 /* NSObject+MJCoding.m in Sources */,
 				87E7C38A21509AB000F7AB14 /* BMTableViewActionBar.m in Sources */,
@@ -8519,10 +9014,12 @@
 				87E7C38F21509AB000F7AB14 /* FLEXInstancesTableViewController.m in Sources */,
 				87E7C39021509AB000F7AB14 /* TTGTextTagCollectionView.m in Sources */,
 				87E7C39121509AB000F7AB14 /* XMRequestManager.m in Sources */,
+				87F639D121533C820035E730 /* UISplitViewController+MemoryLeak.m in Sources */,
 				87E7C39221509AB000F7AB14 /* DTAnchorHTMLElement.m in Sources */,
 				87E7C39321509AB000F7AB14 /* TZProgressView.m in Sources */,
 				87E7C39421509AB000F7AB14 /* NSData+ImageContentType.m in Sources */,
 				87E7C39521509AB000F7AB14 /* FSVideoHistoryListVC.m in Sources */,
+				87F639C921533C820035E730 /* UINavigationController+MemoryLeak.m in Sources */,
 				87E7C39621509AB000F7AB14 /* BMNumberTextItem.m in Sources */,
 				87E7C39721509AB000F7AB14 /* SDWebImageDownloader.m in Sources */,
 				87E7C39821509AB000F7AB14 /* ZSSRichTextEditor.m in Sources */,
@@ -8537,6 +9034,7 @@
 				87E7C3A121509AB000F7AB14 /* FLEXArgumentInputFontsPickerView.m in Sources */,
 				87E7C3A221509AB000F7AB14 /* DTTextAttachmentHTMLElement.m in Sources */,
 				87E7C3A321509AB000F7AB14 /* FLEXFileBrowserTableViewController.m in Sources */,
+				87F639EB21533C830035E730 /* FBStructEncodingParser.mm in Sources */,
 				87E7C3A421509AB000F7AB14 /* ZSSBarButtonItem.m in Sources */,
 				87E7C3A521509AB000F7AB14 /* ZFPlayerView.m in Sources */,
 				87E7C3A621509AB000F7AB14 /* NSString+BMURLEncode.m in Sources */,
@@ -8555,10 +9053,13 @@
 				87E7C3B321509AB000F7AB14 /* ZFLandScapeControlView.m in Sources */,
 				87E7C3B421509AB000F7AB14 /* UILocalNotification+BMCategory.m in Sources */,
 				87E7C3B521509AB000F7AB14 /* NSDictionary+DTCoreText.m in Sources */,
+				87F639FF21533C830035E730 /* FBRetainCycleDetector.mm in Sources */,
 				87E7C3B621509AB000F7AB14 /* FLEXLayerExplorerViewController.m in Sources */,
 				87E7C3B721509AB000F7AB14 /* UIAlertController+Blocks.m in Sources */,
+				87F639D721533C830035E730 /* UITabBarController+MemoryLeak.m in Sources */,
 				87E7C3B821509AB000F7AB14 /* BMDatePicker.m in Sources */,
 				87E7C3B921509AB000F7AB14 /* CTLineUtils.m in Sources */,
+				87F6397421533ADB0035E730 /* PLDictionaryTableViewController.m in Sources */,
 				87E7C3BA21509AB000F7AB14 /* UIView+BMOutSide.m in Sources */,
 				87E7C3BB21509AB000F7AB14 /* BMEmptyView.m in Sources */,
 				87E7C3BC21509AB000F7AB14 /* FSWebView.m in Sources */,
@@ -8590,6 +9091,7 @@
 				87E7C3D621509AB000F7AB14 /* CYRTextView.m in Sources */,
 				87E7C3D721509AB000F7AB14 /* NSAttributedStringRunDelegates.m in Sources */,
 				87E7C3D821509AB000F7AB14 /* FSSuperModel.m in Sources */,
+				87F639F921533C830035E730 /* FBObjectiveCBlock.m in Sources */,
 				87E7C3D921509AB000F7AB14 /* NSNumber+RomanNumerals.m in Sources */,
 				87E7C3DA21509AB000F7AB14 /* FLEXHierarchyTableViewCell.m in Sources */,
 				87E7C3DB21509AB000F7AB14 /* FLEXArrayExplorerViewController.m in Sources */,
@@ -8597,6 +9099,7 @@
 				87E7C3DD21509AB000F7AB14 /* BMApp.m in Sources */,
 				87E7C3DE21509AB000F7AB14 /* UIImageView+BMCategory.m in Sources */,
 				87E7C3DF21509AB000F7AB14 /* DTCoreTextFunctions.m in Sources */,
+				87F639ED21533C830035E730 /* FBClassStrongLayout.mm in Sources */,
 				87E7C3E021509AB000F7AB14 /* BMTableViewSection.m in Sources */,
 				87E7C6A22150A4E500F7AB14 /* TOCropOverlayView.m in Sources */,
 				87E7C3E121509AB000F7AB14 /* BMTableViewCombineCell.m in Sources */,
@@ -8606,10 +9109,10 @@
 				87E7C3E521509AB000F7AB14 /* NSBundle+TZImagePicker.m in Sources */,
 				87E7C3E621509AB000F7AB14 /* BMTabBarController.m in Sources */,
 				87E7C3E721509AB000F7AB14 /* NSRegularExpression+BMRegEx.m in Sources */,
-				87E7C3E821509AB000F7AB14 /* TextChatHistoryViewController.m in Sources */,
 				87E7C3E921509AB000F7AB14 /* NSString+BMCategory.m in Sources */,
 				87E7C3EA21509AB000F7AB14 /* UIImage+BMCategory.m in Sources */,
 				87E7C3EB21509AB000F7AB14 /* BMPlaceholderTextView.m in Sources */,
+				87F639E921533C830035E730 /* Struct.mm in Sources */,
 				87E7C3EC21509AB000F7AB14 /* FSSetTableViewVC.m in Sources */,
 				87E7C3ED21509AB000F7AB14 /* NSAttributedString+HTML.m in Sources */,
 				87E7C3EE21509AB000F7AB14 /* BMFreshFiveStarHeader.m in Sources */,
@@ -8641,11 +9144,13 @@
 				87E7C40721509AB000F7AB14 /* BMSingleLineView.m in Sources */,
 				87E7C40821509AB000F7AB14 /* UIWebView+DTFoundation.m in Sources */,
 				87E7C40921509AB000F7AB14 /* FSTextSearchResultView.m in Sources */,
+				87F639FB21533C830035E730 /* FBObjectiveCObject.m in Sources */,
 				87E7C40A21509AB000F7AB14 /* FLEXPropertyEditorViewController.m in Sources */,
 				87E7C40B21509AB000F7AB14 /* ZFPlayerControlView.m in Sources */,
 				87E7C40C21509AB000F7AB14 /* UIApplication+DTNetworkActivity.m in Sources */,
 				87E7C40D21509AB000F7AB14 /* SocketHelper.m in Sources */,
 				87E7C40E21509AB000F7AB14 /* unzip.c in Sources */,
+				87F639F521533C830035E730 /* FBObjectiveCGraphElement.mm in Sources */,
 				87E7C40F21509AB000F7AB14 /* AFSecurityPolicy.m in Sources */,
 				87E7C41021509AB000F7AB14 /* UIViewController+BMNavigationBar.m in Sources */,
 				87E7C41121509AB000F7AB14 /* DTZipArchive.m in Sources */,
@@ -8659,9 +9164,11 @@
 				87E7C41821509AB000F7AB14 /* FSVideoMediateListCell.m in Sources */,
 				87E7C41921509AB000F7AB14 /* DTListItemHTMLElement.m in Sources */,
 				87E7C41A21509AB000F7AB14 /* BMFreshAutoFooterView.m in Sources */,
+				87F63A0321533C830035E730 /* NSObject+MemoryLeak.m in Sources */,
 				87E7C41B21509AB000F7AB14 /* FSFileScanImagePreviewVC.m in Sources */,
 				87E7C41C21509AB000F7AB14 /* HRColorUtil.m in Sources */,
 				87E7C41D21509AB000F7AB14 /* NSURL+BMParameters.m in Sources */,
+				87F639D321533C820035E730 /* rcd_fishhook.c in Sources */,
 				87E7C41E21509AB000F7AB14 /* FSNoticeMessageCell.m in Sources */,
 				87E7C41F21509AB000F7AB14 /* HRColorPickerViewController.m in Sources */,
 				87E7C42021509AB000F7AB14 /* FSAlertView.m in Sources */,
@@ -8702,9 +9209,11 @@
 				87E7C44221509AB000F7AB14 /* FSCustomInfoVC.m in Sources */,
 				87E7C44321509AB000F7AB14 /* BMFreshBaseView.m in Sources */,
 				87E7C44421509AB000F7AB14 /* NSString+CSS.m in Sources */,
+				87F63A0121533C830035E730 /* FBRetainCycleUtils.m in Sources */,
 				87E7C44521509AB000F7AB14 /* FSCourseTableCell.m in Sources */,
 				87E7C44621509AB000F7AB14 /* UIView+BMAnimationExtensions.m in Sources */,
 				87E7C44721509AB000F7AB14 /* base64.m in Sources */,
+				87F639E121533C830035E730 /* FBStandardGraphEdgeFilters.mm in Sources */,
 				87E7C44821509AB000F7AB14 /* FSApiRequest+Community.m in Sources */,
 				87E7C44921509AB000F7AB14 /* NSFileWrapper+DTCopying.m in Sources */,
 				87E7C44A21509AB000F7AB14 /* FSTableView.m in Sources */,
@@ -8749,6 +9258,7 @@
 				87E7C47021509AB000F7AB14 /* MASViewConstraint.m in Sources */,
 				87E7C6F72151F2C700F7AB14 /* YYFPSLabel.m in Sources */,
 				87E7C47121509AB000F7AB14 /* TZImageManager.m in Sources */,
+				87F639FD21533C830035E730 /* FBNodeEnumerator.mm in Sources */,
 				87E7C47221509AB000F7AB14 /* NSString+BMFormat.m in Sources */,
 				87E7C47321509AB000F7AB14 /* DTObjectTextAttachment.m in Sources */,
 				87E7C47421509AB000F7AB14 /* FSUserInfoDB.m in Sources */,
@@ -8764,6 +9274,7 @@
 				87E7C47D21509AB000F7AB14 /* NSCoder+DTCompatibility.m in Sources */,
 				87E7C47E21509AB000F7AB14 /* CYRLayoutManager.m in Sources */,
 				87E7C47F21509AB000F7AB14 /* TZGifPhotoPreviewController.m in Sources */,
+				87F639E721533C830035E730 /* FBBlockStrongLayout.m in Sources */,
 				87E7C48021509AB000F7AB14 /* DTAlertView.m in Sources */,
 				87E7C48121509AB000F7AB14 /* FLEXViewControllerExplorerViewController.m in Sources */,
 				87E7C48221509AB000F7AB14 /* NSObject+MJKeyValue.m in Sources */,
@@ -8779,6 +9290,7 @@
 				87E7C48C21509AB000F7AB14 /* BMTableViewCheckBoxGroupCell.m in Sources */,
 				87E7C48D21509AB000F7AB14 /* DTASN1Parser.m in Sources */,
 				87E7C48E21509AB000F7AB14 /* FSScrollPageSegment.m in Sources */,
+				87F639DB21533C830035E730 /* UIViewController+MemoryLeak.m in Sources */,
 				87E7C6F52151F2C700F7AB14 /* FSTestHelper.m in Sources */,
 				87E7C48F21509AB000F7AB14 /* FLEXRuntimeUtility.m in Sources */,
 				87E7C49021509AB000F7AB14 /* FLEXTableColumnHeader.m in Sources */,
@@ -8786,6 +9298,7 @@
 				87E7C49221509AB000F7AB14 /* UIButton+BMCategory.m in Sources */,
 				87E7C49321509AB000F7AB14 /* NSString+BMEncrypt.m in Sources */,
 				87E7C49421509AB000F7AB14 /* DTBase64Coding.m in Sources */,
+				87F639CD21533C820035E730 /* UIView+MemoryLeak.m in Sources */,
 				87E7C49521509AB000F7AB14 /* FLEXNetworkTransactionDetailTableViewController.m in Sources */,
 				87E7C49621509AB000F7AB14 /* FSManualBannerView.m in Sources */,
 				87E7C49721509AB000F7AB14 /* UIFont+DTCoreText.m in Sources */,
@@ -9060,7 +9573,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5V3CUNZ42F;
 				ENABLE_BITCODE = NO;
-				EXCLUDED_SOURCE_FILE_NAMES = "FLEX*";
+				EXCLUDED_SOURCE_FILE_NAMES = (
+					"FLEX*",
+					"iConsole*",
+					"FSTest*",
+					"YYFPS*",
+					"GTMStackTrace*",
+					"PLArray*",
+					"PLDictionaryT*",
+				);
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(SRCROOT)/../thirdParty/UMShare",
@@ -9226,7 +9747,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5V3CUNZ42F;
 				ENABLE_BITCODE = NO;
-				EXCLUDED_SOURCE_FILE_NAMES = "FLEX*";
+				EXCLUDED_SOURCE_FILE_NAMES = (
+					"FLEX*",
+					"iConsole*",
+					"FSTest*",
+					"YYFPS*",
+					"GTMStackTrace*",
+					"PLArray*",
+					"PLDictionaryT*",
+				);
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/ILiveSDKT/IMSDK",
