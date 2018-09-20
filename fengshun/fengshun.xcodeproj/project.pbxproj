@@ -3850,11 +3850,6 @@
 		45A3BF882148A9C20093278C /* FSVideo */ = {
 			isa = PBXGroup;
 			children = (
-				45FEF770214D194E0005AD43 /* Meeting */,
-				45DC02BC214A645800FCE042 /* Cell */,
-				45DC02AF214A619700FCE042 /* image */,
-				45613920214901B2007DF6A1 /* Model */,
-				4561391F2149019B007DF6A1 /* View */,
 				45A3BF892148AA2E0093278C /* FSVideoMediateListVC.h */,
 				45A3BF8A2148AA2E0093278C /* FSVideoMediateListVC.m */,
 				4561392B21490E5D007DF6A1 /* FSVideoMediateDetailVC.h */,
@@ -3869,6 +3864,11 @@
 				45869EA7214CA5EC00FB2024 /* FSVideoHistoryListVC.m */,
 				4518E60E214F459500A3AF2A /* FSMakeVideoMediateVC.h */,
 				4518E60F214F459500A3AF2A /* FSMakeVideoMediateVC.m */,
+				45FEF770214D194E0005AD43 /* Meeting */,
+				45DC02BC214A645800FCE042 /* Cell */,
+				45DC02AF214A619700FCE042 /* image */,
+				45613920214901B2007DF6A1 /* Model */,
+				4561391F2149019B007DF6A1 /* View */,
 			);
 			path = FSVideo;
 			sourceTree = "<group>";
@@ -4086,18 +4086,6 @@
 		45FEF770214D194E0005AD43 /* Meeting */ = {
 			isa = PBXGroup;
 			children = (
-				45FEF771214D19600005AD43 /* Controller */,
-				45FEF772214D19650005AD43 /* Model */,
-				45FEF773214D196B0005AD43 /* View */,
-				45FEF774214D199B0005AD43 /* Tool */,
-				45FEF85E214D39140005AD43 /* Image */,
-			);
-			path = Meeting;
-			sourceTree = "<group>";
-		};
-		45FEF771214D19600005AD43 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
 				45FEF82D214D1B4C0005AD43 /* VideoCallController.h */,
 				45FEF826214D1B4B0005AD43 /* VideoCallController.m */,
 				45FEF825214D1B4B0005AD43 /* UIViewController+VideoCall.h */,
@@ -4108,8 +4096,12 @@
 				45FEF84A214D1B970005AD43 /* SingleTextChatViewController.m */,
 				45FEF848214D1B970005AD43 /* PublicTextChatViewController.h */,
 				45FEF84C214D1B970005AD43 /* PublicTextChatViewController.m */,
+				45FEF772214D19650005AD43 /* Model */,
+				45FEF773214D196B0005AD43 /* View */,
+				45FEF774214D199B0005AD43 /* Tool */,
+				45FEF85E214D39140005AD43 /* Image */,
 			);
-			path = Controller;
+			path = Meeting;
 			sourceTree = "<group>";
 		};
 		45FEF772214D19650005AD43 /* Model */ = {
