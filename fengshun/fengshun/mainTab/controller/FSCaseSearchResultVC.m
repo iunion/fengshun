@@ -46,7 +46,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FSCaseResultModel *model = _m_searchResultModel.m_resultDataArray[indexPath.row];
-    [[NSNotificationCenter defaultCenter] postNotificationName:KCaseDetailNotification object:nil userInfo:@{@"caseId":model.m_caseId}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:KCaseDetailNotification object:nil userInfo:@{@"caseId":model.m_caseId,@"keywords":_m_searchResultModel.m_keywordsStr}];
 }
 
 
