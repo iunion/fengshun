@@ -8,8 +8,7 @@
 
 #import "FSLawSearchResultView.h"
 #import "FSLawSearchresultVC.h"
-#import "FSLawSearchResultModel.h"
-#import "FSCaseSearchResultModel.h"
+#import "FSSearchResultModel.h"
 
 
 @interface FSLawSearchResultView()
@@ -44,7 +43,7 @@
 - (void)configTableView
 {
     [super configTableView];
-    [self.m_tableView registerNib:[UINib nibWithNibName:@"FSLawSearchResultCell" bundle:nil] forCellReuseIdentifier:@"FSLawSearchResultCell"];
+    [self.m_tableView registerNib:[UINib nibWithNibName:@"FSLawCell" bundle:nil] forCellReuseIdentifier:@"FSLawCell"];
     self.m_tableView.estimatedRowHeight = 180;
 }
 

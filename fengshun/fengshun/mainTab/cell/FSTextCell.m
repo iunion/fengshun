@@ -1,15 +1,15 @@
 //
-//  FSTextListCell.m
+//  FSTextCell.m
 //  fengshun
 //
 //  Created by Aiwei on 2018/9/12.
 //  Copyright © 2018 FS. All rights reserved.
 //
 
-#import "FSTextListCell.h"
-#import "FSCaseSearchResultModel.h"
+#import "FSTextCell.h"
+#import "FSSearchResultModel.h"
 
-@implementation FSTextListCell
+@implementation FSTextCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -25,6 +25,12 @@
 {
     _m_textModel = textModel;
     [FSSearchResultModel setTextLabel:_m_titleLabel withText:textModel.m_title fontSize:16 textColor:UI_COLOR_B1 attributed:colors];
-    [FSSearchResultModel setTextLabel:_m_subTitleLabel withText:textModel.m_subtitle fontSize:12 textColor:UI_COLOR_B4 attributed:colors];
+}
+- (void)setCollectionTextModel:(FSCollectionTextModel *)model
+{
+    _m_textModel = model;
+    self.accessoryType   = UITableViewCellAccessoryNone;
+    self.contentView.frame = CGRectMake(0, 0, self.bm_width, self.bm_height -10);
+    _m_titleLabel.text = model.m_title;
 }
 @end

@@ -40,7 +40,7 @@
 {
     [super configTableView];
 
-    [self.m_tableView registerNib:[UINib nibWithNibName:@"FSTextListCell" bundle:nil] forCellReuseIdentifier:@"FSTextListCell"];
+    [self.m_tableView registerNib:[UINib nibWithNibName:@"FSTextCell" bundle:nil] forCellReuseIdentifier:@"FSTextCell"];
     self.m_tableView.estimatedRowHeight = 52;
 }
 - (NSInteger)m_totalCount

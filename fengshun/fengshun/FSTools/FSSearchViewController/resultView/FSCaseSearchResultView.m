@@ -7,7 +7,7 @@
 //
 
 #import "FSCaseSearchResultView.h"
-#import "FSCaseSearchResultModel.h"
+#import "FSSearchResultModel.h"
 #import "FSCaseSearchResultVC.h"
 
 @interface FSCaseSearchResultView()
@@ -45,7 +45,7 @@
 - (void)configTableView
 {
     [super configTableView];
-    [self.m_tableView registerNib:[UINib nibWithNibName:@"FSCaseSearchResultCell" bundle:nil] forCellReuseIdentifier:@"FSCaseSearchResultCell"];
+    [self.m_tableView registerNib:[UINib nibWithNibName:@"FSCaseCell" bundle:nil] forCellReuseIdentifier:@"FSCaseCell"];
     self.m_tableView.estimatedRowHeight = 180;
 }
 

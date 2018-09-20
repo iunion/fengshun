@@ -8,10 +8,10 @@
 
 #import "FSMyCollectionVC.h"
 #import "FSTopicListCell.h"
-#import "FSCourseTableCell.h"
-#import "FSLawSearchResultCell.h"
-#import "FSCaseSearchResultCell.h"
-#import "FSTextListCell.h"
+#import "FSCollectionCourseCell.h"
+#import "FSLawCell.h"
+#import "FSCaseCell.h"
+#import "FSTextCell.h"
 
 
 @interface FSMyCollectionVC ()
@@ -40,22 +40,24 @@
     // Do any additional setup after loading the view.
     
     self.m_LoadDataType = FSAPILoadDataType_Page;
+    self.m_TableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.m_TableView.tableFooterView = [UIView new];
     self.m_TableView.estimatedRowHeight = 180;
     switch (self.m_CollectionType)
     {
         case FSCollectionType_POSTS:
             break;
         case FSCollectionType_STATUTE:
-            [self.m_TableView registerNib:[UINib nibWithNibName:@"FSLawSearchResultCell" bundle:nil] forCellReuseIdentifier:@"FSLawSearchResultCell"];
+            [self.m_TableView registerNib:[UINib nibWithNibName:@"FSLawCell" bundle:nil] forCellReuseIdentifier:@"FSLawCell"];
             break;
         case FSCollectionType_CASE:
-            [self.m_TableView registerNib:[UINib nibWithNibName:@"FSCaseSearchResultCell" bundle:nil] forCellReuseIdentifier:@"FSCaseSearchResultCell"];
+            [self.m_TableView registerNib:[UINib nibWithNibName:@"FSCaseCell" bundle:nil] forCellReuseIdentifier:@"FSCaseCell"];
             break;
         case FSCollectionType_DOCUMENT:
-            [self.m_TableView registerNib:[UINib nibWithNibName:@"FSTextListCell" bundle:nil] forCellReuseIdentifier:@"FSTextListCell"];
+            [self.m_TableView registerNib:[UINib nibWithNibName:@"FSTextCell" bundle:nil] forCellReuseIdentifier:@"FSTextCell"];
             break;
         case FSCollectionType_COURSE:
-            [self.m_TableView registerNib:[UINib nibWithNibName:@"FSCourseTableCell" bundle:nil] forCellReuseIdentifier:@"FSCourseTableCell"];
+            [self.m_TableView registerNib:[UINib nibWithNibName:@"FSCollectionCourseCell" bundle:nil] forCellReuseIdentifier:@"FSCollectionCourseCell"];
             break;
     }
     [self loadApiData];
@@ -96,17 +98,16 @@
                 case FSCollectionType_STATUTE:
                 {
                     // 法规
-                    FSLawResultModel *model = [FSLawResultModel modelWithParams:dic];
+                    FSLawCollectionModel *model = [FSLawCollectionModel modelWithParams:dic];
                     if ([model bm_isNotEmpty]) {
                         [dataArray addObject:model];
                     }
                 }
                     break;
-                    
                 case FSCollectionType_CASE:
                 {
                     // 案例
-                    FSCaseResultModel *model = [FSCaseResultModel modelWithParams:dic];
+                    FSCaseCollectionModel *model = [FSCaseCollectionModel modelWithParams:dic];
                     if ([model bm_isNotEmpty]) {
                         [dataArray addObject:model];
                     }
@@ -116,17 +117,16 @@
                 case FSCollectionType_DOCUMENT:
                 {
                     // 文书
-                    FSListTextModel *model = [FSListTextModel modelWithParams:dic];
+                    FSCollectionTextModel *model = [FSCollectionTextModel modelWithParams:dic];
                     if ([model bm_isNotEmpty]) {
                         [dataArray addObject:model];
                     }
                 }
                     break;
-                    
                 case FSCollectionType_COURSE:
                 {
                     // 课程
-                    FSCourseModel *model = [FSCourseModel modelWithParams:dic];
+                    FSCourseCollectionModel *model = [FSCourseCollectionModel modelWithParams:dic];
                     if ([model bm_isNotEmpty]) {
                         [dataArray addObject:model];
                     }
@@ -158,9 +158,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 8.0f;
+    return 9.0f;
 }
-
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    return [UIView new];
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.m_CollectionType == FSCollectionType_POSTS)
@@ -192,30 +195,30 @@
         }
         case FSCollectionType_STATUTE:
         {
-            FSLawSearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSLawSearchResultCell"];
+            FSLawCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSLawCell"];
             
-            FSLawResultModel *model = self.m_DataArray[indexPath.row];
-            [cell setLawResultModel:model attributed:NO];
+            FSLawCollectionModel *model = self.m_DataArray[indexPath.row];
+            [cell setLawCollectionModel:model];
             return cell;
         }
         case FSCollectionType_CASE:
         {
-            FSCaseSearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCaseSearchResultCell"];
+            FSCaseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCaseCell"];
             
-            FSCaseResultModel *model = self.m_DataArray[indexPath.row];
-            [cell setCaseResultModel:model attributed:NO];
+            FSCaseCollectionModel *model = self.m_DataArray[indexPath.row];
+            [cell setCaseCollectionModel:model];
             return cell;
         }
         case FSCollectionType_DOCUMENT:
         {
-            FSTextListCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"FSTextListCell"];
-            FSListTextModel *model = self.m_DataArray[indexPath.row];
-            [cell setTextModel:model colors:NO];
+            FSTextCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"FSTextCell"];
+            FSCollectionTextModel *model = self.m_DataArray[indexPath.row];
+            [cell setCollectionTextModel:model];
             return cell;
         }
         case FSCollectionType_COURSE:
         {
-            FSCourseTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCourseTableCell"];
+            FSCollectionCourseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCollectionCourseCell"];
             
             cell.m_course = self.m_DataArray[indexPath.row];
             return cell;

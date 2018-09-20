@@ -9,10 +9,10 @@
 #import "FSOCRSearchResultVC.h"
 #import "TZImagePickerController.h"
 #import "FSOCRManager.h"
-#import "FSLawSearchResultModel.h"
+#import "FSSearchResultModel.h"
 #import "FSSearchResultView.h"
-#import "FSLawSearchResultCell.h"
-#import "FSCaseSearchResultCell.h"
+#import "FSLawCell.h"
+#import "FSCaseCell.h"
 #import "TOCropViewController.h"
 
 @interface
@@ -64,11 +64,11 @@ FSOCRSearchResultVC ()
     self.m_TableView.frame = CGRectMake(0, 75, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT - topGap);
     if (_m_ocrSearchType)
     {
-        [self.m_TableView registerNib:[UINib nibWithNibName:@"FSLawSearchResultCell" bundle:nil] forCellReuseIdentifier:@"FSLawSearchResultCell"];
+        [self.m_TableView registerNib:[UINib nibWithNibName:@"FSLawCell" bundle:nil] forCellReuseIdentifier:@"FSLawCell"];
     }
     else
     {
-        [self.m_TableView registerNib:[UINib nibWithNibName:@"FSCaseSearchResultCell" bundle:nil] forCellReuseIdentifier:@"FSCaseSearchResultCell"];
+        [self.m_TableView registerNib:[UINib nibWithNibName:@"FSCaseCell" bundle:nil] forCellReuseIdentifier:@"FSCaseCell"];
     }
 }
 
@@ -189,7 +189,7 @@ FSOCRSearchResultVC ()
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (_m_ocrSearchType) {
-        FSLawSearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSLawSearchResultCell"];
+        FSLawCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSLawCell"];
         
         FSLawResultModel *model = _m_lawSearchResultModel.m_resultDataArray[indexPath.row];
         [cell setLawResultModel:model attributed:YES];
@@ -197,7 +197,7 @@ FSOCRSearchResultVC ()
     }
     else
     {
-        FSCaseSearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCaseSearchResultCell"];
+        FSCaseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCaseCell"];
         
         FSCaseResultModel *model = _m_caseSearchResultModel.m_resultDataArray[indexPath.row];
         [cell setCaseResultModel:model attributed:YES];

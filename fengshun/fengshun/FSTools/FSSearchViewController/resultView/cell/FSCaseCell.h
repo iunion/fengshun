@@ -1,5 +1,5 @@
 //
-//  FSCaseSearchResultCell.h
+//  FSCaseCell.h
 //  fengshun
 //
 //  Created by Aiwei on 2018/9/7.
@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FSCaseSearchResultModel.h"
+#import "FSSearchResultModel.h"
 
-@interface FSCaseSearchResultCell : UITableViewCell
+@interface FSCaseCell : UITableViewCell
 
-@property (nonatomic, strong) FSCaseResultModel *m_caseResultModel;
+@property (nonatomic, strong) FSCaseModel *m_caseModel;
 - (void)setCaseResultModel:(FSCaseResultModel *)model attributed:(BOOL)attributed;
+- (void)setCaseCollectionModel:(FSCaseCollectionModel *)model;
 @end

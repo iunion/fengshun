@@ -8,13 +8,24 @@
 
 #import "FSSuperModel.h"
 
-@interface FSListTextModel : FSSuperModel
+@interface FSTextModel : FSSuperModel
 
 @property (nonatomic, copy)NSString *m_title;
-@property (nonatomic, copy)NSString *m_subtitle; // 暂缺
-@property (nonatomic, copy)NSString *m_typeCode; // 与FSTextTypeModel对应
 @property (nonatomic, copy)NSString *m_fileId;
-@property (nonatomic, copy)NSString *m_previewUrl; // 详情页Url?
+
+@property (nonatomic, copy)NSString *m_previewUrl; // 详情页Url
+
+
+@end
+
+@interface FSCollectionTextModel : FSTextModel
+
+@property (nonatomic, copy)NSString *m_collectionId;
+@end
+
+@interface FSListTextModel : FSTextModel
+
+@property (nonatomic, copy)NSString *m_typeCode; // 与FSTextTypeModel对应
 
 @end
 

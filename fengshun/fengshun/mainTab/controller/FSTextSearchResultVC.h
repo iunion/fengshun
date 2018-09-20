@@ -7,7 +7,7 @@
 //
 
 #import "FSSearchResultVC.h"
-#import "FSTextListCell.h"
+#import "FSTextCell.h"
 
 @interface FSTextSearchResultVC : FSSearchResultVC
 
