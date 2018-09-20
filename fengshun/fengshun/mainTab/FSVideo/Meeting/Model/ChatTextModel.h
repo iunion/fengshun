@@ -17,7 +17,7 @@
 @property (nonatomic, copy) NSString *messageId;
 @property (nonatomic, copy) NSString *messageContent;
 @property (nonatomic, copy) NSString *messageType;
-@property (nonatomic, copy) NSString *messageResourceEnums;
+@property (nonatomic, copy) NSString *messageResource;
 @property (nonatomic, assign) NSTimeInterval createTime;
 @property (nonatomic, assign) BOOL isMe;
 @property (nonatomic, strong) ChatTextMemberModel *sender;
