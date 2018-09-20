@@ -75,11 +75,12 @@ FSMainVC ()
     [self setBm_NavigationBarImage:[UIImage imageWithColor:[UIColor whiteColor]]];
     [self setBm_NavigationBarAlpha:0];
 
-    //self.edgesForExtendedLayout                   = UIRectEdgeTop;
+    self.automaticallyAdjustsScrollViewInsets     = NO;
+    self.edgesForExtendedLayout                   = UIRectEdgeTop;
     self.m_TableView.showsVerticalScrollIndicator = NO;
     self.m_TableView.bm_showEmptyView             = NO;
-    //self.m_TableView.frame                        = CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT - UI_TAB_BAR_HEIGHT);
-    self.m_TableView.frame = CGRectMake(0, -(UI_NAVIGATION_BAR_HEIGHT+UI_STATUS_BAR_HEIGHT), UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT-UI_TAB_BAR_HEIGHT);
+    self.m_TableView.frame                        = CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT - UI_TAB_BAR_HEIGHT);
+    //self.m_TableView.frame = CGRectMake(0, -(UI_NAVIGATION_BAR_HEIGHT+UI_STATUS_BAR_HEIGHT), UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT-UI_TAB_BAR_HEIGHT);
     self.m_TableView.separatorStyle               = UITableViewCellSeparatorStyleSingleLine;
 
     self.m_headerView = [[FSMainHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.bm_width, HEADER_CONST_HEIGHT + 190) andDelegate:self];
