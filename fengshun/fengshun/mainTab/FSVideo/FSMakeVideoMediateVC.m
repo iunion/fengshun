@@ -259,6 +259,14 @@
     self.m_ChooseTimeItem.onChange = ^(BMDateTimeItem * _Nonnull item) {
         weakSelf.m_CreateModel.startTime = [item.pickerDate timeIntervalSince1970] * 1000;
     };
+    self.m_ChooseTimeItem.actionBarDoneButtonTapHandler = ^(BMDateTimeItem * _Nonnull item) {
+        if (weakSelf.m_CreateModel.startTime == 0) {
+            if (item.pickerDate == nil) {
+                item.pickerDate = [NSDate date];
+            }
+            weakSelf.m_CreateModel.startTime = [item.pickerDate timeIntervalSince1970] * 1000;
+        }
+    };
 
     NSArray *timeArray = @[@"1小时", @"1.5小时", @"2小时", @"2.5小时", @"3小时", @"3.5小时", @"4小时"];
     self.m_TimeLengthItem = [BMPickerItem itemWithTitle:@"时长" placeholder:@"请选择" components:@[timeArray]];

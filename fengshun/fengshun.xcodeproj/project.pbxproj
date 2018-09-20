@@ -36,7 +36,6 @@
 		458E181F2151E9560050590B /* video_back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 458E181C2151E7680050590B /* video_back_btn@2x.png */; };
 		458E18202151E9560050590B /* video_back_btn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 458E181B2151E7670050590B /* video_back_btn@3x.png */; };
 		45D7D74B2153420C009E8E7A /* FSNotificationName.m in Sources */ = {isa = PBXBuildFile; fileRef = E473137C2152B15F00C56ED8 /* FSNotificationName.m */; };
-		45D7D75321538239009E8E7A /* FSMeetingDataEnum.m in Sources */ = {isa = PBXBuildFile; fileRef = 45D7D75221538239009E8E7A /* FSMeetingDataEnum.m */; };
 		45D7D75421538239009E8E7A /* FSMeetingDataEnum.m in Sources */ = {isa = PBXBuildFile; fileRef = 45D7D75221538239009E8E7A /* FSMeetingDataEnum.m */; };
 		45F3FD21214BBF48007712EE /* video_history_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45F3FD1D214BBF46007712EE /* video_history_icon@2x.png */; };
 		45F3FD22214BBF48007712EE /* video_message_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45F3FD1E214BBF47007712EE /* video_message_icon@3x.png */; };
@@ -8203,7 +8202,6 @@
 				AD2244E2213D1FF900F2DC47 /* FSCommunityHeaderView.m in Sources */,
 				87D20AAE213920E2001EDD60 /* FLEXNetworkTransactionTableViewCell.m in Sources */,
 				87D209B82138F1E2001EDD60 /* UIImageView+HighlightedWebCache.m in Sources */,
-				45D7D75321538239009E8E7A /* FSMeetingDataEnum.m in Sources */,
 				87426A9C21314996003C52F6 /* FSSearchViewController.m in Sources */,
 				87D20AB3213920E2001EDD60 /* FLEXNetworkObserver.m in Sources */,
 				874268E2212E7E36003C52F6 /* BMImageTextView.m in Sources */,
