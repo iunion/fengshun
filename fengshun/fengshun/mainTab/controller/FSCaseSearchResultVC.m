@@ -10,6 +10,7 @@
 #import "FSCaseSearchResultCell.h"
 #import "FSApiRequest.h"
 #import "FSSearchResultView.h"
+#import "FSNotificationName.h"
 
 @interface FSCaseSearchResultVC ()
 
@@ -45,7 +46,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FSCaseResultModel *model = _m_searchResultModel.m_resultDataArray[indexPath.row];
-    [FSPushVCManager showWebView:self url:[NSString stringWithFormat:@"%@/caseDetail?ID=%@&keywords=%@",FS_H5_SERVER,model.m_caseId,@""] title:@""];
+    [[NSNotificationCenter defaultCenter] postNotificationName:KCaseDetailNotification object:nil userInfo:@{@"caseId":model.m_caseId}];
 }
 
 

@@ -145,7 +145,7 @@ FSTextSplitVC ()
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
      FSListTextModel *model = _m_selectedType.m_textList[indexPath.row];
-    [FSPushVCManager showWebView:self url:model.m_previewUrl title:@""];
+    [FSPushVCManager showWebView:self url:model.m_previewUrl title:model.m_title];
 }
 
 #pragma mark - NetWorking

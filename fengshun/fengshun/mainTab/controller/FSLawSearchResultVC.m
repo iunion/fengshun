@@ -9,7 +9,7 @@
 #import "FSLawSearchResultVC.h"
 #import "FSLawSearchResultView.h"
 #import "FSLawSearchResultCell.h"
-
+#import "FSNotificationName.h"
 
 @interface FSLawSearchResultVC ()
 
@@ -40,9 +40,11 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     FSLawResultModel *model = _m_searchResultModel.m_resultDataArray[indexPath.row];
-    [FSPushVCManager showWebView:self url:[NSString stringWithFormat:@"%@/Law/lawDetail?ID=%@&keywords=%@",FS_H5_SERVER,model.m_lawsId,@""] title:@""];
+    [[NSNotificationCenter defaultCenter] postNotificationName:KLawDetailNotification object:nil userInfo:@{@"lawsId":model.m_lawsId}];
+    
+//    FSLawResultModel *model = _m_searchResultModel.m_resultDataArray[indexPath.row];
+//    [FSPushVCManager showWebView:self url:[NSString stringWithFormat:@"%@/Law/lawDetail?ID=%@&keywords=%@",FS_H5_SERVER,model.m_lawsId,@""] title:@""];
     
 }
 

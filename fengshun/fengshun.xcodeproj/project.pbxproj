@@ -1816,6 +1816,7 @@
 		DBF7E1A921524EDB002CEDA4 /* search_lawTopic_7@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E17F21523CB0002CEDA4 /* search_lawTopic_7@3x.png */; };
 		DBF7E1AA21524EDB002CEDA4 /* search_lawTopic_8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E17C21523CAF002CEDA4 /* search_lawTopic_8@2x.png */; };
 		DBF7E1AB21524EDB002CEDA4 /* search_lawTopic_8@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E18221523CB2002CEDA4 /* search_lawTopic_8@3x.png */; };
+		E473137D2152B15F00C56ED8 /* FSNotificationName.m in Sources */ = {isa = PBXBuildFile; fileRef = E473137C2152B15F00C56ED8 /* FSNotificationName.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -3534,6 +3535,8 @@
 		DBF7E18721523CB4002CEDA4 /* search_lawTopic_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_lawTopic_1@2x.png"; sourceTree = "<group>"; };
 		DBF7E18821523CB5002CEDA4 /* search_lawTopic_2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_lawTopic_2@3x.png"; sourceTree = "<group>"; };
 		DBF7E18921523CB5002CEDA4 /* search_lawTopic_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_lawTopic_3@2x.png"; sourceTree = "<group>"; };
+		E473137B2152B15F00C56ED8 /* FSNotificationName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSNotificationName.h; sourceTree = "<group>"; };
+		E473137C2152B15F00C56ED8 /* FSNotificationName.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSNotificationName.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -5457,6 +5460,8 @@
 				87426A6E213141CD003C52F6 /* FSAppUIDef.h */,
 				87426AB22133A32E003C52F6 /* FSAppInfo.h */,
 				87426AB32133A32E003C52F6 /* FSAppInfo.m */,
+				E473137B2152B15F00C56ED8 /* FSNotificationName.h */,
+				E473137C2152B15F00C56ED8 /* FSNotificationName.m */,
 			);
 			path = appDefine;
 			sourceTree = "<group>";
@@ -8138,6 +8143,7 @@
 				AD932601214B4FDA007F3A93 /* HRColorPickerView.m in Sources */,
 				874268CB212E7E36003C52F6 /* BMInputItem.m in Sources */,
 				8730B0882140FFA3004331A9 /* DTPieProgressIndicator.m in Sources */,
+				E473137D2152B15F00C56ED8 /* FSNotificationName.m in Sources */,
 				874268DE212E7E36003C52F6 /* BMSingleLineView.m in Sources */,
 				8730B07B2140FFA3004331A9 /* UIWebView+DTFoundation.m in Sources */,
 				DB2656E021467363002ED713 /* FSTextSearchResultView.m in Sources */,
