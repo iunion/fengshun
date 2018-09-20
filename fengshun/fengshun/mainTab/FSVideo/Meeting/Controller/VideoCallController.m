@@ -137,7 +137,7 @@ VideoCallVideoViewDelegate>
     } else if (index == 1) { /// 开始录制事件
         // 获取按钮当前状态
         BOOL status = [topBar getBtnSelectedStatusWithIndex:1];
-        if (!status && ![[SocketHelper shareHelper] sendRecordEventWithIsStartRecord:!status]) {
+        if (![[SocketHelper shareHelper] sendRecordEventWithIsStartRecord:!status] && !status ) {
             [self vc_showMessage:@"当前在线用户小于2人，无法开启录制"];
         }
     } else if (index == 2) { /// 语音识别事件
