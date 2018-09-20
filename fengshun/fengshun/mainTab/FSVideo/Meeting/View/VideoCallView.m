@@ -10,6 +10,7 @@
 #import "UIButton+BMContentRect.h"
 #import "VideoCallModel.h"
 #import "UIView+BMBadge.h"
+#import "FSVideoMediateModel.h"
 
 static CGFloat scale = 1.33;
 static CGFloat margin = 10;
@@ -317,7 +318,12 @@ static CGFloat margin = 10;
 }
 
 - (void)reloadData {
-    _nameLabel.text = _model.memberName;
+    NSString *identifyString = [FSMeetingDataForm getValueForKey:_model.memberType type:FSMeetingDataType_PersonIdentityType];
+    if (identifyString.length > 4) {
+        identifyString = [NSString stringWithFormat:@"代理人(%@)",[identifyString substringToIndex:1]];
+    }
+    _nameLabel.text = [NSString stringWithFormat:@"%@:%@", identifyString, _model.memberName];
+    
     _audioBtn.selected = !_model.memberVoiceStatus;
     _videoBtn.selected = !_model.memberVideoStatus;
 
