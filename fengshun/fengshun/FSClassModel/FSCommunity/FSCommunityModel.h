@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BMTableViewManagerDefine.h"
 
 @class FSForumModel;
 
@@ -25,6 +26,8 @@
  thumbUrl = "<null>";
  title = "特殊test";
  */
+
+@property (nonatomic, assign) BMTableViewCell_PositionType m_PositionType;
 
 // 帖子id
 @property (nonatomic, strong) NSString *m_Id;
