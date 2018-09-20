@@ -100,12 +100,8 @@
 
 // 将服务器返回的模型字典转化为界面可用的item
 - (ChatTextModel *)textItemFromModel:(ChatTextModel *)model {
-    model.showMessageType = model.receiver ? YES:NO;
-    if (model.messageResourceEnums == nil) {
-        model.showMessageType = YES;
-    } else {
-        model.isVoice = [model.messageResourceEnums isEqualToString:@"VOICE_DISCERN"];
-    }
+    model.showMessageType = model.receiver ? NO:YES;
+    model.isVoice = [model.messageResource isEqualToString:@"VOICE_DISCERN"];
     return model;
 }
 

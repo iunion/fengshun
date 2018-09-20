@@ -12,7 +12,11 @@
 #import "FSMakeVideoMediateVC.h"
 #import "FSVideoMediateDetailVC.h"
 
-@interface FSVideoMediateListVC () 
+@interface FSVideoMediateListVC ()
+{
+    BOOL loginAndCreate;
+}
+
 @property (nonatomic, strong) NSString *meetingTypeEnums;
 @property (nonatomic, strong) NSString *meetingStatusEnums;
 @property (nonatomic, strong) FSHeaderCommonSelectorView *headSelector;
@@ -81,6 +85,7 @@
 {
     if (![FSUserInfoModle isLogin])
     {
+        loginAndCreate = YES;
         [self showLogin];
         return;
     }
@@ -131,11 +136,15 @@
 - (void)loginFinished
 {
     [self loadApiData];
-    if ([FSUserInfoModle isCertification]) {
-        [self makeVideoMediate];
-    } else {
-        // 登上一个文件dismiss以后才能再present
-        [self performSelector:@selector(checkCertification) withObject:nil afterDelay:0.5f];
+    
+    if (loginAndCreate) {
+        loginAndCreate = NO;
+        if ([FSUserInfoModle isCertification]) {
+            [self makeVideoMediate];
+        } else {
+            // 登上一个文件dismiss以后才能再present
+            [self performSelector:@selector(checkCertification) withObject:nil afterDelay:0.5f];
+        }
     }
 }
 
