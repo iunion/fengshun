@@ -24,7 +24,7 @@
 @property (nonatomic, strong) ChatTextMemberModel *receiver;
 
 @property (nonatomic, assign) BOOL isVoice; ///< 文本来源于语音识别
-@property (nonatomic, assign) BOOL showMessageType; ///< 私聊和历史记录不显示文本来源于手动输入还是语音识别
+@property (nonatomic, assign) BOOL showMessageType; ///< 私聊不显示文本来源于手动输入还是语音识别
 
 @end
 

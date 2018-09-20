@@ -125,7 +125,7 @@
     _articleLabel.text = model.messageContent;
     _nameLabel.text = model.sender.memberName;
 
-    if (model.showMessageType) {
+    if (!model.showMessageType) {
         _yuyinView.hidden = YES;
     } else  {
         [_yuyinView setMessageType:model.isVoice];
@@ -148,7 +148,7 @@
         [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
           self.nameLabelLeftConstraint = make.right.equalTo(self.iconImgView.mas_left).offset(-NameLabelLeftOffset);
         }];
-        if (!model.showMessageType) {
+        if (model.showMessageType) {
             [_yuyinView mas_makeConstraints:^(MASConstraintMaker *make) {
                 self.yuyinViewLeftConstraint = make.right.equalTo(self.nameLabel.mas_left).offset(-YuyinViewLeftOffset);
             }];
@@ -168,7 +168,7 @@
         [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             self.nameLabelLeftConstraint = make.left.equalTo(self.iconImgView.mas_right).offset(NameLabelLeftOffset);
         }];
-        if (!model.showMessageType) {
+        if (model.showMessageType) {
             [_yuyinView mas_makeConstraints:^(MASConstraintMaker *make) {
                 self.yuyinViewLeftConstraint = make.left.equalTo(self.nameLabel.mas_right).offset(YuyinViewLeftOffset);
             }];
