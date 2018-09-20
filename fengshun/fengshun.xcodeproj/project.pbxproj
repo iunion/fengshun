@@ -36,6 +36,7 @@
 		458E181F2151E9560050590B /* video_back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 458E181C2151E7680050590B /* video_back_btn@2x.png */; };
 		458E18202151E9560050590B /* video_back_btn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 458E181B2151E7670050590B /* video_back_btn@3x.png */; };
 		458E182A215251440050590B /* FSReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD412AE9215221C800A9C12B /* FSReportView.m */; };
+		45D7D74B2153420C009E8E7A /* FSNotificationName.m in Sources */ = {isa = PBXBuildFile; fileRef = E473137C2152B15F00C56ED8 /* FSNotificationName.m */; };
 		45F3FD21214BBF48007712EE /* video_history_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45F3FD1D214BBF46007712EE /* video_history_icon@2x.png */; };
 		45F3FD22214BBF48007712EE /* video_message_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45F3FD1E214BBF47007712EE /* video_message_icon@3x.png */; };
 		45F3FD23214BBF48007712EE /* video_message_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45F3FD1F214BBF47007712EE /* video_message_icon@2x.png */; };
@@ -8617,6 +8618,7 @@
 				87E7C38521509AB000F7AB14 /* FSSearchResultVC.m in Sources */,
 				87E7C38621509AB000F7AB14 /* FSLawSearchResultVC.m in Sources */,
 				87E7C38721509AB000F7AB14 /* DTAnimatedGIF.m in Sources */,
+				45D7D74B2153420C009E8E7A /* FSNotificationName.m in Sources */,
 				87E7C38821509AB000F7AB14 /* ChatTextViewModel.m in Sources */,
 				87E7C38921509AB000F7AB14 /* NSObject+MJCoding.m in Sources */,
 				87E7C38A21509AB000F7AB14 /* BMTableViewActionBar.m in Sources */,
