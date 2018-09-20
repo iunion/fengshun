@@ -7,14 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FSVideoMediateModel.h"
 
-typedef void (^FSHeaderCommonSelectorBlock)(FSHeaderCommonSelectorModel *hModel, FSSelectorListModel *lmodel);
+@class FSHeaderCommonSelectorModel;
 
+typedef void (^FSHeaderCommonSelectorBlock)(NSInteger index, NSString *selectedItem);
 
 @interface FSHeaderCommonSelectorView : UIView
+@property (nonatomic, strong) NSArray<FSHeaderCommonSelectorModel *> *m_SelectorArray;
 @property (nonatomic, copy) FSHeaderCommonSelectorBlock selectorBlock;
-@property (nonatomic, strong) NSArray<FSHeaderCommonSelectorModel *> *m_DataArray;
 - (instancetype)initWithFrame:(CGRect)frame data:(NSArray *)dataArray;
 @end
 
+
+
+@interface FSHeaderCommonSelectorModel : NSObject
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSArray<NSString *> *list;
++ (instancetype)modelWithTitle:(NSString *)title list:(NSArray *)list;
+- (instancetype)initWithTitle:(NSString *)title list:(NSArray *)list;
+@end

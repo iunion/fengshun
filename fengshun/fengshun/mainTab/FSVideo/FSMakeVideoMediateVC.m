@@ -184,7 +184,7 @@
 
     self.m_TypeItem = [BMTableViewItem itemWithTitle:@"类型" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:nil selectionHandler:^(BMTableViewItem * _Nonnull item) {
         // 选择类型
-        FSVideoMediateSheetVC *sheetVC = [[FSVideoMediateSheetVC alloc] initWithTitleArray:[FSMeetingDataForm getMeetingDataAllValuesWithType:FSMeetingDataType_MeetingType]];
+        FSVideoMediateSheetVC *sheetVC = [[FSVideoMediateSheetVC alloc] initWithTitleArray:[FSMeetingDataEnum meetingTypeChineseArrayContainAll:NO]];
         sheetVC.modalPresentationStyle = UIModalPresentationCustom;
         sheetVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         [weakSelf presentViewController:sheetVC animated:YES completion:nil];
@@ -192,7 +192,7 @@
         sheetVC.m_ActionSheetDoneBlock = ^(NSInteger index, NSString *title) {
             BMImageTextView *accessoryView = (BMImageTextView *)weakSelf.m_TypeItem.accessoryView;
             accessoryView.text = title;
-            weakSelf.m_CreateModel.meetingType = [FSMeetingDataForm getKeyForVlaue:title type:FSMeetingDataType_MeetingType];
+            weakSelf.m_CreateModel.meetingType = [FSMeetingDataEnum meetingTypeChineseToEnglish:title];
         };
     }];
     self.m_TypeItem.textColor = UI_COLOR_B1;
@@ -323,7 +323,7 @@
         self.m_TitleItem.value = self.m_CreateModel.meetingName;
         
         BMImageTextView *accessoryView = (BMImageTextView *)self.m_TypeItem.accessoryView;
-        accessoryView.text = [FSMeetingDataForm getValueForKey:self.m_CreateModel.meetingType type:FSMeetingDataType_MeetingType];
+        accessoryView.text = [FSMeetingDataEnum meetingTypeEnglishToChinese:self.m_CreateModel.meetingType];
 
 
         if (self.makeMode == FSMakeVideoMediateMode_Edit) {
@@ -343,7 +343,7 @@
     }
     else
     {
-        self.m_CreateModel.meetingType = @"MEETING_MEDIATE";
+        self.m_CreateModel.meetingType = [FSMeetingDataEnum meetingTypeMediateEnglish];
         self.m_CreateModel.orderHour = @"1";
         NSString *value = [NSString stringWithFormat:@"%@小时", self.m_CreateModel.orderHour];
         self.m_TimeLengthItem.values = @[value];

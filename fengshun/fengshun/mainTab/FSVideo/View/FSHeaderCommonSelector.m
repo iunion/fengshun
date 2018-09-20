@@ -46,21 +46,21 @@
     self = [self initWithFrame:frame];
     
     if (self) {
-        self.m_DataArray = dataArray;
+        self.m_SelectorArray = dataArray;
     }
     
     return self;
 }
 
--(void)setM_DataArray:(NSArray<FSHeaderCommonSelectorModel *> *)m_DataArray
+- (void)setM_SelectorArray:(NSArray *)array
 {
-    _m_DataArray = m_DataArray;
+    _m_SelectorArray = array;
     [self buildUI];
 }
 
 - (void)buildUI
 {
-    if (![_m_DataArray bm_isNotEmpty]) {
+    if (![_m_SelectorArray bm_isNotEmpty]) {
         return;
     }
     
@@ -78,9 +78,9 @@
     [self addSubview:header];
     header.backgroundColor = [UIColor whiteColor];
     NSInteger index = 0;
-    NSInteger count = _m_DataArray.count;
+    NSInteger count = _m_SelectorArray.count;
     CGFloat width = self.bm_width/count;
-    for (FSHeaderCommonSelectorModel *model in _m_DataArray) {
+    for (FSHeaderCommonSelectorModel *model in _m_SelectorArray) {
         UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(width*index, 0, width, self.bm_height)];
         [self addSubview:btn];
         [btn setImage:[UIImage imageNamed:@"search_openFilters"] forState:UIControlStateNormal];
@@ -131,21 +131,21 @@
     {
         [_m_section removeAllItems];
         
-        FSHeaderCommonSelectorModel *tagModel = self.m_DataArray[_m_SelectedTag-1];
+        FSHeaderCommonSelectorModel *tagModel = self.m_SelectorArray[_m_SelectedTag-1];
         NSInteger count = tagModel.list.count;
         for (int index = 0; index < count; index++)
         {
-            FSSelectorListModel *rowModel = tagModel.list[index];
+            NSString *title = tagModel.list[index];
             
             BMWeakSelf
-            BMTableViewItem *item = [BMTableViewItem itemWithTitle:rowModel.showName
+            BMTableViewItem *item = [BMTableViewItem itemWithTitle:title
                                                           subTitle:nil
                                                          imageName:nil
                                                  underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset
                                                      accessoryView:nil
                                                   selectionHandler:^(BMTableViewItem *item) {
                                                       if (weakSelf.selectorBlock) {
-                                                          weakSelf.selectorBlock(tagModel, rowModel);
+                                                          weakSelf.selectorBlock(weakSelf.m_SelectedTag-1, item.title);
                                                       }
                                                       [weakSelf hideTableView];
                                                   }];
@@ -188,6 +188,27 @@
         _m_SelectedTag = 0;
         self.m_GestureView.bm_height = 0;
     }];
+}
+
+@end
+
+@implementation FSHeaderCommonSelectorModel
+
++ (instancetype)modelWithTitle:(NSString *)title list:(NSArray *)list
+{
+    return [[FSHeaderCommonSelectorModel alloc] initWithTitle:title list:list];
+}
+
+- (instancetype)initWithTitle:(NSString *)title list:(NSArray *)list
+{
+    self = [super init];
+    
+    if (self) {
+        _title = title;
+        _list = list;
+    }
+    
+    return self;
 }
 
 @end

@@ -15,6 +15,7 @@
 #import "PublicTextChatViewController.h"
 #import "FSVideoInviteLitigantVC.h"
 #import "FSVideoStartTool.h"
+#import "FSMeetingDataEnum.h"
 
 @interface VideoCallController ()
 <SocketHelperDelegate,
@@ -279,7 +280,7 @@ VideoCallVideoViewDelegate>
 
     [[SocketHelper shareHelper] sendAudioEventWithUserId:model.memberId enable:!model.memberVoiceStatus];
     model.memberVoiceStatus = !model.memberVoiceStatus;
-    if ([model.memberType isEqualToString:@"MEDIATOR"]) {
+    if ([FSMeetingDataEnum isMediatorIdentity:model.memberType]) {
         // 关闭自己的麦克风
         BOOL curMicState = [[ILiveRoomManager getInstance] getCurMicState];
         if (curMicState != model.memberVoiceStatus) {
@@ -303,7 +304,7 @@ VideoCallVideoViewDelegate>
 - (void)videoControlWithModel:(VideoCallMemberModel *)model {
     [[SocketHelper shareHelper] sendVideoEventWithUserId:model.memberId enable:!model.memberVoiceStatus];
     model.memberVideoStatus = !model.memberVideoStatus;
-    if ([model.memberType isEqualToString:@"MEDIATOR"]) {
+    if ([FSMeetingDataEnum isMediatorIdentity:model.memberType]) {
         // 关闭自己视屏
         BOOL curCameraState = [[ILiveRoomManager getInstance] getCurCameraState];
         if (curCameraState != model.memberVideoStatus) {
