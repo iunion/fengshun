@@ -263,28 +263,29 @@ static CGFloat margin = 10;
             btn;
         });
         
-        _pirChatBtn = ({
-            UIButton *btn = [UIButton new];
-            [btn setImage:[UIImage imageNamed:@"videocall_privte_chat"] forState:UIControlStateNormal];
-            [btn addTarget:self action:@selector(priChatBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
-            [self addSubview:btn];
-            [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.centerY.equalTo(_avPackView);
-                make.right.equalTo(self).offset(-5);
-            }];
-            btn;
-        });
-        
-        _redPointImgView = ({
-            UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"videocall_red_dot"]];
-            img.hidden = YES;
-            [_pirChatBtn addSubview:img];
-            [img mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.right.equalTo(_pirChatBtn).offset(-2);
-                make.top.equalTo(_pirChatBtn).offset(2);
-            }];
-            img;
-        });
+        // 这个版本小程序不支持私聊
+//        _pirChatBtn = ({
+//            UIButton *btn = [UIButton new];
+//            [btn setImage:[UIImage imageNamed:@"videocall_privte_chat"] forState:UIControlStateNormal];
+//            [btn addTarget:self action:@selector(priChatBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
+//            [self addSubview:btn];
+//            [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.centerY.equalTo(_avPackView);
+//                make.right.equalTo(self).offset(-5);
+//            }];
+//            btn;
+//        });
+//
+//        _redPointImgView = ({
+//            UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"videocall_red_dot"]];
+//            img.hidden = YES;
+//            [_pirChatBtn addSubview:img];
+//            [img mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.right.equalTo(_pirChatBtn).offset(-2);
+//                make.top.equalTo(_pirChatBtn).offset(2);
+//            }];
+//            img;
+//        });
         
         _shadowView = ({
             UIView *v = [UIView new];
@@ -320,11 +321,11 @@ static CGFloat margin = 10;
     _audioBtn.selected = !_model.memberVoiceStatus;
     _videoBtn.selected = !_model.memberVideoStatus;
 
-    if ([_model.memberType isEqualToString:@"MEDIATOR"]) {
-        _pirChatBtn.hidden = YES;
-    } else {
-        _pirChatBtn.hidden = NO;
-    }
+//    if ([_model.memberType isEqualToString:@"MEDIATOR"]) {
+//        _pirChatBtn.hidden = YES;
+//    } else {
+//        _pirChatBtn.hidden = NO;
+//    }
     
     _videoClosedView.hidden = _model.memberVideoStatus;
     _renderView.hidden = !_model.memberVideoStatus;
