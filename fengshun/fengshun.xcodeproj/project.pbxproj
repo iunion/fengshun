@@ -1894,6 +1894,7 @@
 		DBF7E1BF2153759D002CEDA4 /* FSLawModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF7E1B2215333F9002CEDA4 /* FSLawModel.m */; };
 		DBF7E1C02153759E002CEDA4 /* FSLawModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF7E1B2215333F9002CEDA4 /* FSLawModel.m */; };
 		DBF7E1C1215375D5002CEDA4 /* FSNotificationName.m in Sources */ = {isa = PBXBuildFile; fileRef = E473137C2152B15F00C56ED8 /* FSNotificationName.m */; };
+		DBF7E1C821539F45002CEDA4 /* FSCourseHomePageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF7E1C721539F45002CEDA4 /* FSCourseHomePageVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -3694,6 +3695,8 @@
 		DBF7E1B521536C07002CEDA4 /* FSCollectionCourseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCollectionCourseCell.h; sourceTree = "<group>"; };
 		DBF7E1B621536C07002CEDA4 /* FSCollectionCourseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCollectionCourseCell.m; sourceTree = "<group>"; };
 		DBF7E1B721536C07002CEDA4 /* FSCollectionCourseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSCollectionCourseCell.xib; sourceTree = "<group>"; };
+		DBF7E1C621539F45002CEDA4 /* FSCourseHomePageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCourseHomePageVC.h; sourceTree = "<group>"; };
+		DBF7E1C721539F45002CEDA4 /* FSCourseHomePageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCourseHomePageVC.m; sourceTree = "<group>"; };
 		E473137B2152B15F00C56ED8 /* FSNotificationName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSNotificationName.h; sourceTree = "<group>"; };
 		E473137C2152B15F00C56ED8 /* FSNotificationName.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSNotificationName.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -5914,6 +5917,7 @@
 				87426ADA2135272B003C52F6 /* FSClassModel */,
 				87D1868021364D9600037DDF /* FSLogin */,
 				87426A5B21313915003C52F6 /* mainTab */,
+				DBF7E1C421539D0C002CEDA4 /* courseTab */,
 				DB5722372133A1830065DC30 /* communityTab */,
 				87D2096E2137F371001EDD60 /* userTab */,
 				87426ABA2133AA9D003C52F6 /* networkAPI */,
@@ -7368,6 +7372,15 @@
 			path = controller;
 			sourceTree = "<group>";
 		};
+		DBF7E1C421539D0C002CEDA4 /* courseTab */ = {
+			isa = PBXGroup;
+			children = (
+				DBF7E1C621539F45002CEDA4 /* FSCourseHomePageVC.h */,
+				DBF7E1C721539F45002CEDA4 /* FSCourseHomePageVC.m */,
+			);
+			path = courseTab;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -8310,6 +8323,7 @@
 				87D209C62138F1E2001EDD60 /* SDImageCache.m in Sources */,
 				874268C6212E7E36003C52F6 /* BMDateTimeItem.m in Sources */,
 				87C01353212E7A5300D0AAC3 /* main.m in Sources */,
+				DBF7E1C821539F45002CEDA4 /* FSCourseHomePageVC.m in Sources */,
 				8730B0902140FFA3004331A9 /* UIViewController+DTSidePanelController.m in Sources */,
 				874268AE212E7E36003C52F6 /* BMTableViewPickerCell.m in Sources */,
 				87426A802131461F003C52F6 /* AFURLSessionManager.m in Sources */,
