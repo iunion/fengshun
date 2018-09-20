@@ -36,6 +36,7 @@
 		458E181F2151E9560050590B /* video_back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 458E181C2151E7680050590B /* video_back_btn@2x.png */; };
 		458E18202151E9560050590B /* video_back_btn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 458E181B2151E7670050590B /* video_back_btn@3x.png */; };
 		45D7D74B2153420C009E8E7A /* FSNotificationName.m in Sources */ = {isa = PBXBuildFile; fileRef = E473137C2152B15F00C56ED8 /* FSNotificationName.m */; };
+		45D7D75421538239009E8E7A /* FSMeetingDataEnum.m in Sources */ = {isa = PBXBuildFile; fileRef = 45D7D75221538239009E8E7A /* FSMeetingDataEnum.m */; };
 		45F3FD21214BBF48007712EE /* video_history_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45F3FD1D214BBF46007712EE /* video_history_icon@2x.png */; };
 		45F3FD22214BBF48007712EE /* video_message_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45F3FD1E214BBF47007712EE /* video_message_icon@3x.png */; };
 		45F3FD23214BBF48007712EE /* video_message_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45F3FD1F214BBF47007712EE /* video_message_icon@2x.png */; };
@@ -1894,6 +1895,7 @@
 		DBF7E1BF2153759D002CEDA4 /* FSLawModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF7E1B2215333F9002CEDA4 /* FSLawModel.m */; };
 		DBF7E1C02153759E002CEDA4 /* FSLawModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF7E1B2215333F9002CEDA4 /* FSLawModel.m */; };
 		DBF7E1C1215375D5002CEDA4 /* FSNotificationName.m in Sources */ = {isa = PBXBuildFile; fileRef = E473137C2152B15F00C56ED8 /* FSNotificationName.m */; };
+		DBF7E1C821539F45002CEDA4 /* FSCourseHomePageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF7E1C721539F45002CEDA4 /* FSCourseHomePageVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -2014,6 +2016,8 @@
 		458E181C2151E7680050590B /* video_back_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_back_btn@2x.png"; sourceTree = "<group>"; };
 		45A3BF892148AA2E0093278C /* FSVideoMediateListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSVideoMediateListVC.h; sourceTree = "<group>"; };
 		45A3BF8A2148AA2E0093278C /* FSVideoMediateListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSVideoMediateListVC.m; sourceTree = "<group>"; };
+		45D7D75121538239009E8E7A /* FSMeetingDataEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMeetingDataEnum.h; sourceTree = "<group>"; };
+		45D7D75221538239009E8E7A /* FSMeetingDataEnum.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMeetingDataEnum.m; sourceTree = "<group>"; };
 		45DC0299214A1EB700FCE042 /* FSEditVideoMediateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSEditVideoMediateView.h; sourceTree = "<group>"; };
 		45DC029A214A1EB700FCE042 /* FSEditVideoMediateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSEditVideoMediateView.m; sourceTree = "<group>"; };
 		45DC029C214A1EED00FCE042 /* ORDTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORDTextView.h; sourceTree = "<group>"; };
@@ -3694,6 +3698,8 @@
 		DBF7E1B521536C07002CEDA4 /* FSCollectionCourseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCollectionCourseCell.h; sourceTree = "<group>"; };
 		DBF7E1B621536C07002CEDA4 /* FSCollectionCourseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCollectionCourseCell.m; sourceTree = "<group>"; };
 		DBF7E1B721536C07002CEDA4 /* FSCollectionCourseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSCollectionCourseCell.xib; sourceTree = "<group>"; };
+		DBF7E1C621539F45002CEDA4 /* FSCourseHomePageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCourseHomePageVC.h; sourceTree = "<group>"; };
+		DBF7E1C721539F45002CEDA4 /* FSCourseHomePageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCourseHomePageVC.m; sourceTree = "<group>"; };
 		E473137B2152B15F00C56ED8 /* FSNotificationName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSNotificationName.h; sourceTree = "<group>"; };
 		E473137C2152B15F00C56ED8 /* FSNotificationName.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSNotificationName.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -3839,6 +3845,8 @@
 		45613920214901B2007DF6A1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				45D7D75121538239009E8E7A /* FSMeetingDataEnum.h */,
+				45D7D75221538239009E8E7A /* FSMeetingDataEnum.m */,
 				45613924214901F6007DF6A1 /* FSVideoMediateModel.h */,
 				45613925214901F6007DF6A1 /* FSVideoMediateModel.m */,
 				4518E611214F772000A3AF2A /* FSMeetingPersonnelItem.h */,
@@ -5914,6 +5922,7 @@
 				87426ADA2135272B003C52F6 /* FSClassModel */,
 				87D1868021364D9600037DDF /* FSLogin */,
 				87426A5B21313915003C52F6 /* mainTab */,
+				DBF7E1C421539D0C002CEDA4 /* courseTab */,
 				DB5722372133A1830065DC30 /* communityTab */,
 				87D2096E2137F371001EDD60 /* userTab */,
 				87426ABA2133AA9D003C52F6 /* networkAPI */,
@@ -7368,6 +7377,15 @@
 			path = controller;
 			sourceTree = "<group>";
 		};
+		DBF7E1C421539D0C002CEDA4 /* courseTab */ = {
+			isa = PBXGroup;
+			children = (
+				DBF7E1C621539F45002CEDA4 /* FSCourseHomePageVC.h */,
+				DBF7E1C721539F45002CEDA4 /* FSCourseHomePageVC.m */,
+			);
+			path = courseTab;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -8310,6 +8328,7 @@
 				87D209C62138F1E2001EDD60 /* SDImageCache.m in Sources */,
 				874268C6212E7E36003C52F6 /* BMDateTimeItem.m in Sources */,
 				87C01353212E7A5300D0AAC3 /* main.m in Sources */,
+				DBF7E1C821539F45002CEDA4 /* FSCourseHomePageVC.m in Sources */,
 				8730B0902140FFA3004331A9 /* UIViewController+DTSidePanelController.m in Sources */,
 				874268AE212E7E36003C52F6 /* BMTableViewPickerCell.m in Sources */,
 				87426A802131461F003C52F6 /* AFURLSessionManager.m in Sources */,
@@ -9255,6 +9274,7 @@
 				87E7C44F21509AB000F7AB14 /* FLEXLiveObjectsTableViewController.m in Sources */,
 				87E7C45021509AB000F7AB14 /* FLEXNetworkCurlLogger.m in Sources */,
 				87E7C45121509AB000F7AB14 /* FSEditorAbilityVC.m in Sources */,
+				45D7D75421538239009E8E7A /* FSMeetingDataEnum.m in Sources */,
 				87E7C45221509AB000F7AB14 /* BMSliderItem.m in Sources */,
 				87E7C45321509AB000F7AB14 /* ORDTextView.m in Sources */,
 				87E7C45421509AB000F7AB14 /* DTCoreTextFontDescriptor.m in Sources */,

@@ -7,28 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FSMeetingDataEnum.h"
 #import "FSSuperModel.h"
 
-
 #define FSMEETING_PERSON_MAX_COUNT 8
-
-typedef NS_ENUM(NSInteger, FSMeetingDataType) {
-    FSMeetingDataType_MeetingType = 1,      // 会议类型  不含全部
-    FSMeetingDataType_AllMeetingType,       // 会议类型  含全部
-    FSMeetingDataType_MeetingStatus,        // 会议状态  不含全部
-    FSMeetingDataType_AllMeetingStatus,     // 会议状态  含全部
-    FSMeetingDataType_PersonIdentityType    // 人员身份
-};
-
-
-@interface FSMeetingDataForm : NSObject
-
-+ (NSArray *)getMeetingDataAllValuesWithType:(FSMeetingDataType)type;
-+ (NSString *)getValueForKey:(NSString *)key type:(FSMeetingDataType)type;
-+ (NSString *)getKeyForVlaue:(NSString *)value type:(FSMeetingDataType)type;
-+ (NSArray *)formMeetingDataToModelWithType:(FSMeetingDataType)type;
-
-@end
 
 // 参会人员model
 @interface FSMeetingPersonnelModel : FSSuperModel
@@ -63,42 +45,18 @@ typedef NS_ENUM(NSInteger, FSMeetingDataType) {
 @property (nonatomic, copy) NSString *orderHour;
 
 - (NSDictionary *)formToParametersWithPersonnelId:(BOOL)withID;
-
 - (NSString *)getMeetingPersonnelNameListWithShowCount:(NSInteger)count;
-
 - (FSMeetingPersonnelModel *)getMeetingMediator;
-
 @end
-
-
-@interface FSSelectorListModel : NSObject
-@property (nonatomic, strong) NSString *showName;   // 表现出来的名称
-@property (nonatomic, strong) NSString *hiddenkey;  // 隐形key
-+ (instancetype)modelWithName:(NSString *)name key:(NSString *)key;
-- (instancetype)initWithName:(NSString *)name key:(NSString *)key;
-@end
-
-
-@interface FSHeaderCommonSelectorModel : NSObject
-@property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *hiddenkey;  // 隐形key
-@property (nonatomic, strong) NSArray<FSSelectorListModel *> *list;
-+ (instancetype)modelWithTitle:(NSString *)title hiddenkey:(NSString *)key list:(NSArray *)list;
-- (instancetype)initWithTitle:(NSString *)title hiddenkey:(NSString *)key list:(NSArray *)list;
-@end
-
 
 
 @interface FSVideoRecordModel : FSSuperModel
-// 媒体流ID
-@property (nonatomic, copy) NSString *download;
-@property (nonatomic, copy) NSString *joinUser;
-// 播放地址URL
-@property (nonatomic, copy) NSString *url;
-@property (nonatomic, copy) NSString *preview;
 
-// 上传时间
-@property (nonatomic, assign) NSTimeInterval uploadTime;
+@property (nonatomic, copy) NSString *download;// 媒体流ID
+@property (nonatomic, copy) NSString *joinUser;
+@property (nonatomic, copy) NSString *url;      // 播放地址URL
+@property (nonatomic, copy) NSString *preview;
+@property (nonatomic, assign) NSTimeInterval uploadTime;// 上传时间
 
 @end
 

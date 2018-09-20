@@ -132,7 +132,7 @@
     __weak typeof(BMTableViewItem *) weakIdentifyItem = identifyItem;
     identifyItem.selectionHandler = ^(id  _Nonnull item) {
         // 选择类型
-        FSVideoMediateSheetVC *sheetVC = [[FSVideoMediateSheetVC alloc] initWithTitleArray:[FSMeetingDataForm getMeetingDataAllValuesWithType:FSMeetingDataType_PersonIdentityType]];
+        FSVideoMediateSheetVC *sheetVC = [[FSVideoMediateSheetVC alloc] initWithTitleArray:[FSMeetingDataEnum meetingIdentityChineseArrayContainMediator:NO]];
         sheetVC.modalPresentationStyle = UIModalPresentationCustom;
         sheetVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         [weakSelf presentViewController:sheetVC animated:YES completion:nil];
@@ -140,7 +140,7 @@
         sheetVC.m_ActionSheetDoneBlock = ^(NSInteger index, NSString *title) {
             BMImageTextView *accessoryView = (BMImageTextView *)weakIdentifyItem.accessoryView;
             accessoryView.text = title;
-            model.meetingIdentityTypeEnums = [FSMeetingDataForm getKeyForVlaue:title type:FSMeetingDataType_PersonIdentityType];
+            model.meetingIdentityTypeEnums = [FSMeetingDataEnum meetingIdentityChineseToEnglish:title];
         };
     };
     
@@ -150,7 +150,7 @@
     identifyItem.detailTextFont = FS_VIDEOPAGE_TEXTFONT;
     identifyItem.cellHeight = 50.0f;
     identifyItem.isShowHighlightBg = NO;
-    BMImageTextView *imageTextView = [[BMImageTextView alloc] initWithText:[FSMeetingDataForm getValueForKey:model.meetingIdentityTypeEnums type:FSMeetingDataType_PersonIdentityType]];
+    BMImageTextView *imageTextView = [[BMImageTextView alloc] initWithText:[FSMeetingDataEnum meetingIdentityEnglishToChinese:model.meetingIdentityTypeEnums]];
     imageTextView.textColor = UI_COLOR_B1;
     imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
     imageTextView.showTableCellAccessoryArrow = YES;
@@ -249,7 +249,7 @@
 - (void)addApplicantLitigant
 {
     FSMeetingPersonnelModel *model = [FSMeetingPersonnelModel new];
-    model.meetingIdentityTypeEnums = @"APPLICAT";
+    model.meetingIdentityTypeEnums = [FSMeetingDataEnum meetingApplicatenglish];
     model.selectState = 1;
     [_m_InviteList addObject:model];
 }
@@ -258,7 +258,7 @@
 - (void)addRespondentLitigant
 {
     FSMeetingPersonnelModel *model = [FSMeetingPersonnelModel new];
-    model.meetingIdentityTypeEnums = @"RESPONDENT";
+    model.meetingIdentityTypeEnums = [FSMeetingDataEnum meetingRespondentenglish];
     model.selectState = 1;
     [_m_InviteList addObject:model];
 }

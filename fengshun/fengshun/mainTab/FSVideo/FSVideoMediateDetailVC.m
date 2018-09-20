@@ -111,7 +111,7 @@
     status.font = UI_FONT_16;
     status.textColor = UI_COLOR_B4;
     status.backgroundColor = [UIColor bm_colorWithHex:0xF0F0F0];
-    status.text = [FSMeetingDataForm getValueForKey:model.meetingStatus type:FSMeetingDataType_AllMeetingStatus];
+    status.text = [FSMeetingDataEnum meetingStatusEnglishToChinese:model.meetingStatus];
     [status bm_roundedRect:15];
     self.statusLabel = status;
     FSEditVideoMediateCustomerView *statusView = [[FSEditVideoMediateCustomerView alloc] initWithFrame:CGRectMake(0, leftlabel.bm_bottom, contenView.bm_width, 0)];
@@ -131,7 +131,7 @@
     FSEditVideoMediateTextView *typeView = [[FSEditVideoMediateTextView alloc] initWithFrame:CGRectMake(0, nameView.bm_bottom, contenView.bm_width, 0)];
     typeView.titleLabel.text = @"类型";
     typeView.titleLabel.textColor = UI_COLOR_B10;
-    typeView.desLabel.text = [FSMeetingDataForm getValueForKey:model.meetingType type:FSMeetingDataType_AllMeetingType];
+    typeView.desLabel.text = [FSMeetingDataEnum meetingTypeEnglishToChinese:model.meetingType];
     [contenView addSubview:typeView];
     [typeView setEditEnabled:NO];
     
@@ -160,7 +160,7 @@
     self.personView.tapHandle = ^(FSEditVideoMediateBaseView *editView) {
         FSVideoAttendListVC *vc = [FSVideoAttendListVC alloc];
         // 没有结束的会议可以邀请更多人
-        if (![weakSelf.m_DetailModel.meetingStatus isEqualToString:@"MEETING_END"]) {
+        if (![weakSelf.m_DetailModel.meetingStatus isEqualToString:[FSMeetingDataEnum meetingStatusEndEnglish]]) {
             vc.meetingId = weakSelf.m_DetailModel.meetingId;
         }
         vc.m_AttendList = weakSelf.m_DetailModel.meetingPersonnelResponseDTO;
@@ -240,7 +240,7 @@
 {
     BMWeakSelf
     FSVideoMediateSheetVC *sheetVC;
-    if ([_m_DetailModel.meetingStatus isEqualToString:@"MEETING_NOT_START"])
+    if ([_m_DetailModel.meetingStatus isEqualToString:[FSMeetingDataEnum meetingStatusNoStartEnglish]])
     {
         // 未开始 支持所有操作
         sheetVC = [[FSVideoMediateSheetVC alloc] initWithTitleArray:@[@"添加人员", @"编辑", @"再次发起", @"删除"]];
@@ -259,7 +259,7 @@
             }
         };
     }
-    else if ([_m_DetailModel.meetingStatus isEqualToString:@"MEETING_UNDERWAY"])
+    else if ([_m_DetailModel.meetingStatus isEqualToString:[FSMeetingDataEnum meetingStatusUnderwayEnglish]])
     {
         // 进行中 不能编辑不能删除
         sheetVC = [[FSVideoMediateSheetVC alloc] initWithTitleArray:@[@"添加人员", @"再次发起"]];
@@ -365,11 +365,11 @@
 // 进入视频会议
 - (void)bottomButtonClickAction
 {
-    if ([_m_DetailModel.meetingStatus isEqualToString:@"MEETING_NOT_START"])
+    if ([_m_DetailModel.meetingStatus isEqualToString:[FSMeetingDataEnum meetingStatusNoStartEnglish]])
     {
         [self startMeeting];
     }
-    else if ([_m_DetailModel.meetingStatus isEqualToString:@"MEETING_END"])
+    else if ([_m_DetailModel.meetingStatus isEqualToString:[FSMeetingDataEnum meetingStatusEndEnglish]])
     {
         [self.m_ProgressHUD showAnimated:YES withText:@"视频已结束" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     }
@@ -405,8 +405,8 @@
         NSInteger statusCode = [resDic bm_intForKey:@"code"];
         if (statusCode == 1000)
         {
-            _m_DetailModel.meetingStatus = @"MEETING_UNDERWAY";
-            self.statusLabel.text = [FSMeetingDataForm getValueForKey:_m_DetailModel.meetingStatus type:FSMeetingDataType_AllMeetingStatus];
+            _m_DetailModel.meetingStatus = [FSMeetingDataEnum meetingStatusUnderwayEnglish];
+            self.statusLabel.text = [FSMeetingDataEnum meetingStatusEnglishToChinese:_m_DetailModel.meetingStatus];
             [self.m_ProgressHUD hideAnimated:NO];
             [self joinRoom];
             if (self.changedBlock) {
@@ -429,8 +429,8 @@
             VideoCallController *vc = [VideoCallController VCWithRoomId:_m_DetailModel.roomId meetingId:_m_DetailModel.meetingId token:data[@"token"]];
             vc.endMeetingBlock = ^{
                 [weakSelf.m_ProgressHUD showAnimated:YES withText:@"视频已结束" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-                weakSelf.m_DetailModel.meetingStatus = @"MEETING_END";
-                weakSelf.statusLabel.text = [FSMeetingDataForm getValueForKey:_m_DetailModel.meetingStatus type:FSMeetingDataType_AllMeetingStatus];
+                weakSelf.m_DetailModel.meetingStatus = [FSMeetingDataEnum meetingStatusEndEnglish];
+                weakSelf.statusLabel.text = [FSMeetingDataEnum meetingStatusEnglishToChinese:_m_DetailModel.meetingStatus];
                 if (weakSelf.changedBlock) {
                     weakSelf.changedBlock();
                 }
