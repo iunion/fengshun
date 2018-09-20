@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.0.0</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -32,34 +32,34 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>sinaweibohd</string>
-        <string>sinaweibo</string>
-        <string>weibosdk2.5</string>
-        <string>weibosdk</string>
-        <string>weibo</string>
-        <string>sinaweibosso</string>
-        <string>weixin</string>
-        <string>mpsharesdk11</string>
-        <string>mpsharesdk10</string>
-        <string>mtmv</string>
-        <string>mqqopensdkapiV4</string>
-        <string>mqzone</string>
-        <string>mqqwpa</string>
-        <string>wtloginmqq2</string>
-        <string>mqzoneopensdkapiV2</string>
-        <string>mqzoneopensdkapi19</string>
-        <string>mqzoneopensdkapi</string>
-        <string>mqzoneopensdk</string>
-        <string>mqqopensdkapiV3</string>
-        <string>mqqopensdkapiV2</string>
-        <string>mqq</string>
-        <string>mqqOpensdkSSoLogin</string>
-        <string>mqqapi</string>
-        <string>wechat</string>
-    </array>
+	<string>1.0.0.0</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>sinaweibohd</string>
+		<string>sinaweibo</string>
+		<string>weibosdk2.5</string>
+		<string>weibosdk</string>
+		<string>weibo</string>
+		<string>sinaweibosso</string>
+		<string>weixin</string>
+		<string>mpsharesdk11</string>
+		<string>mpsharesdk10</string>
+		<string>mtmv</string>
+		<string>mqqopensdkapiV4</string>
+		<string>mqzone</string>
+		<string>mqqwpa</string>
+		<string>wtloginmqq2</string>
+		<string>mqzoneopensdkapiV2</string>
+		<string>mqzoneopensdkapi19</string>
+		<string>mqzoneopensdkapi</string>
+		<string>mqzoneopensdk</string>
+		<string>mqqopensdkapiV3</string>
+		<string>mqqopensdkapiV2</string>
+		<string>mqq</string>
+		<string>mqqOpensdkSSoLogin</string>
+		<string>mqqapi</string>
+		<string>wechat</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

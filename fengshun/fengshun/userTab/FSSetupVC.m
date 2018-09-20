@@ -13,6 +13,8 @@
 #import "FSLoginVerifyVC.h"
 #import "FSSetPhoneVC.h"
 
+#import "FSAboutVC.h"
+
 typedef void(^FSSetupCalculateSizeBlock)(NSString *path, NSUInteger fileCount, NSUInteger totalSize, BOOL finished);
 typedef void(^FSSetupClearDiskBlock)(NSString *path, BOOL finished);
 
@@ -112,6 +114,8 @@ typedef void(^FSSetupClearDiskBlock)(NSString *path, BOOL finished);
     
     self.m_AboutItem = [BMTableViewItem itemWithTitle:@"关于我们" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_None accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
+        FSAboutVC *vc = [[FSAboutVC alloc] initWithNibName:@"FSAboutVC" bundle:nil];
+        [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
     self.m_AboutItem.textFont = FS_CELLTITLE_TEXTFONT;
     self.m_AboutItem.highlightBgColor = UI_COLOR_BL1;
