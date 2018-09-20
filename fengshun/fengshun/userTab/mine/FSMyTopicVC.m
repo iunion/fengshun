@@ -123,7 +123,6 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     FSTopicModel *model = self.m_DataArray[indexPath.row];
-//    [FSPushVCManager showWebView:self url:model.m_JumpAddress title:@""];
     [FSPushVCManager showTopicDetail:self topicId:model.m_Id];
 }
 

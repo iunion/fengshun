@@ -39,6 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 调用js函数
 - (void)callJsHandler:(NSString *)jsFunc withData:(id)data;
+// 刷新web
+- (void)refreshWebView;
 
 @end
 

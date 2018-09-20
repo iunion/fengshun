@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FSTopicDetailVC.h"
 
 @class FSWebViewController, FSFileScanImagePreviewVC,FSCommunitySecVC;
 @protocol FSWebViewControllerDelegate;
 
 // 跳转回调
-typedef void (^PushVCCallBack)(id object);
+typedef void (^PushVCCallBack)(void);
 
 @interface FSPushVCManager : NSObject
 // 社区二级页面
@@ -25,7 +26,7 @@ typedef void (^PushVCCallBack)(id object);
 + (void)showSendPostWithPushVC:(UIViewController *)pushVC isEdited:(BOOL )isEdited relatedId:(NSInteger )relatedId callBack:(PushVCCallBack)callBack;
 
 //帖子详情
-+ (void)showTopicDetail:(UIViewController *)pushVC  topicId:(NSString *)topicId;
++ (FSTopicDetailVC *)showTopicDetail:(UIViewController *)pushVC  topicId:(NSString *)topicId;
 
 + (FSWebViewController *)showWebView:(UIViewController *)pushVC url:(NSString *)url title:(NSString *)title;
 + (FSWebViewController *)showWebView:(UIViewController *)pushVC url:(NSString *)url title:(NSString *)title animated:(BOOL)animated;

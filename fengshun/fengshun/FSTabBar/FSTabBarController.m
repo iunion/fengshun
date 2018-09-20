@@ -14,7 +14,7 @@
 #import "FSWebViewController.h"
 
 //正常色
-#define ITEM_NOR_COLOR [UIColor bm_colorWithHex:0x000000]
+#define ITEM_NOR_COLOR [UIColor bm_colorWithHex:0x979797]
 //选中色
 #define ITEM_SEL_COLOR [UIColor bm_colorWithHex:UI_NAVIGATION_BGCOLOR_VALU]
 

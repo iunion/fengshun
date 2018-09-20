@@ -87,6 +87,7 @@ FSMoreViewVC ()
             if (btn.tag == 105)
             {
                 [btn setTitle:@"取消收藏" forState:UIControlStateSelected];
+                [btn setImage:[UIImage imageNamed:@"community_collect_selected"] forState:UIControlStateSelected];
                 btn.selected = self.m_Collection;
             }
             // 编辑和删除按钮是否隐藏

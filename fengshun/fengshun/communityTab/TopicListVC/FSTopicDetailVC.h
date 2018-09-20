@@ -12,4 +12,7 @@
 
 - (instancetype)initWithTitle:(NSString *)title url:(NSString *)url showLoadingBar:(BOOL)showLoadingBar loadingBarColor:(nullable UIColor *)color delegate:(nullable id<FSWebViewControllerDelegate>)delegate topicId:(NSInteger )topicId;
 
+// 删除帖子回调
+@property (nonatomic, copy)void (^m_DeleteTopicBlock)(void);
+
 @end
