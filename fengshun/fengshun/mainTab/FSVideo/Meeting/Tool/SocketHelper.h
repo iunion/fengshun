@@ -75,7 +75,7 @@ FOUNDATION_EXPORT NSString * const kNotiReceiveHistoryPrivateMessageListName;
 
  @param isStart 1:停止， 
  */
-- (void)sendRecordEventWithIsStartRecord:(BOOL)isStart;
+- (BOOL)sendRecordEventWithIsStartRecord:(BOOL)isStart;
 
 /**
  发送语音识别开启或关闭事件
