@@ -75,9 +75,10 @@
 
 @interface NSMutableAttributedString (BMHTML)
 
-+(instancetype)bm_attributedStringReplaceHTMLString:(NSString *)htmlString fontSize:(NSInteger)fontSize contentColor:(NSString *)contentHexColor tagColor:(NSString *)tagHexColor starTag:(NSString *)starTag endTag:(NSString *)endTag;
++ (nullable instancetype)bm_attributedStringReplaceHTMLString:(nonnull NSString *)htmlString fontSize:(NSInteger)fontSize contentColor:(nonnull NSString *)contentHexColor tagColor:(nonnull NSString *)tagHexColor starTag:(nonnull NSString *)starTag endTag:(nonnull NSString *)endTag;
 
 @end
+
 //@interface NSMutableAttributedString (MQ)
 //
 //

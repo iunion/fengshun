@@ -103,6 +103,8 @@ typedef void(^FSSetupClearDiskBlock)(NSString *path, BOOL finished);
     
     self.m_UserAgreementItem = [BMTableViewItem itemWithTitle:@"用户协议" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
+        NSString *url = [NSString stringWithFormat:@"%@/agreement", FS_H5_SERVER];
+        [FSPushVCManager showWebView:weakSelf url:url title:nil];
     }];
     self.m_UserAgreementItem.textFont = FS_CELLTITLE_TEXTFONT;
     self.m_UserAgreementItem.highlightBgColor = UI_COLOR_BL1;

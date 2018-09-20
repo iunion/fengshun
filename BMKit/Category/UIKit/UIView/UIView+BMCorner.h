@@ -66,9 +66,9 @@ typedef NS_ENUM(NSInteger, UIViewLinearGradientDirection)
 
 - (void)bm_circleView;
 
-- (void)bm_roundedDashRect:(CGFloat)radius borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor;
+- (void)bm_roundedDashRect:(CGFloat)radius borderWidth:(CGFloat)borderWidth borderColor:(nullable UIColor *)borderColor;
 
-- (void)bm_roundedDashRect:(CGFloat)radius borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor dashPattern:(NSArray<NSNumber *> *)dashPattern;
+- (void)bm_roundedDashRect:(CGFloat)radius borderWidth:(CGFloat)borderWidth borderColor:(nullable UIColor *)borderColor dashPattern:(nullable NSArray<NSNumber *> *)dashPattern;
 
 /**
  *  Remove the borders around the UIView
