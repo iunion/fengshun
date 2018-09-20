@@ -22,6 +22,11 @@ extern NSString *const BMFreshKeyPathPanState;
 
 static const NSTimeInterval BMFreshAnimationDuration = 0.25f;
 
+#ifdef DEBUG
+#define BMFRESH_SHOWPULLINGPERCENT      0
+#endif
+
+
 #define BMFRESH_DEFAULT_NORMALHEADERTEXT        @"下拉可以刷新"
 #define BMFRESH_DEFAULT_WILLLOADHEADERTEXT      @"松开立即刷新"
 #define BMFRESH_DEFAULT_LOADINGHEADERTEXT       @"正在刷新数据中..."
