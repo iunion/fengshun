@@ -62,7 +62,7 @@ FSMainVC ()
     [self.m_TableView registerNib:[UINib nibWithNibName:@"FSTopicListCell" bundle:nil] forCellReuseIdentifier:@"FSTopicListCell"];
     
     [self loadApiData];
-    [self moreNetWorking];
+    
 }
 
 - (void)setupUI
@@ -348,17 +348,11 @@ FSMainVC ()
         
     }];
     
-    // 获取法规检索的法规专题
-//    [FSApiRequest getLawTopicSuccess:^(id  _Nullable responseObject) {
-//        NSDictionary *data = responseObject;
-//        self.m_lawTopics = [data bm_arrayForKey:@"thematic"];
-//    } failure:^(NSError * _Nullable error) {
-//        
-//    }];
 }
 
 - (NSMutableURLRequest *)setLoadDataRequest
 {
+    [self moreNetWorking];
     return [FSApiRequest loadHomePageData];
 }
 

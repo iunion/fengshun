@@ -74,7 +74,7 @@
 
 - (void)addViewControllers
 {
-    BMNavigationController *nav1 = [[BMNavigationController alloc] initWithRootViewController:[[FSMainVC alloc] initWithNibName:@"FSMainVC" bundle:nil freshViewType:BMFreshViewType_NONE]];
+    BMNavigationController *nav1 = [[BMNavigationController alloc] initWithRootViewController:[[FSMainVC alloc] initWithNibName:@"FSMainVC" bundle:nil freshViewType:BMFreshViewType_Head]];
     nav1.popOnBackButtonHandler = [self getPopOnBackButtonHandler];
     
     FSWebViewController *class=[[FSWebViewController alloc] initWithTitle:@"" url:[NSString stringWithFormat:@"%@/course?Ctype=\"IOS\"",FS_H5_SERVER]];
