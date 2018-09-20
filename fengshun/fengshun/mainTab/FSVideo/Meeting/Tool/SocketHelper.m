@@ -138,7 +138,7 @@ static dispatch_once_t onceToken;
     }
     
     // 聊天消息列表数据
-    if([event isEqualToString:@"LIST_MESSAGE"]) {
+    if([event isEqualToString:@"STREAM_MESSAGE"]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotiReceiveHistoryPrivateMessageListName object:nil userInfo:messageDic];
         return;
     }
@@ -211,7 +211,7 @@ static dispatch_once_t onceToken;
     if (senderId) {
         [dataDic setObject:senderId forKey:@"senderId"];
     }
-    NSDictionary *dic = @{@"event": @"LIST_MESSAGE",
+    NSDictionary *dic = @{@"event": @"STREAM_MESSAGE",
                           @"data" : dataDic
                           };
     

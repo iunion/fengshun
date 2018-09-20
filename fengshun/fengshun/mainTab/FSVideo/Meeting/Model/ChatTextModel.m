@@ -18,7 +18,7 @@
     model.messageId                 = [params bm_stringForKey:@"id"];
     model.messageContent            = [params bm_stringForKey:@"messageContent"];
     model.messageType               = [params bm_stringForKey:@"messageType"];
-    model.messageResourceEnums      = [params bm_stringForKey:@"messageResourceEnums"];
+    model.messageResource      = [params bm_stringForKey:@"messageResource"];
     model.createTime                = [params bm_doubleForKey:@"createTime"];
     model.sender                    = [ChatTextMemberModel modelWithParams:params[@"sender"]];
     if (params[@"receiver"]) {
