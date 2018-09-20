@@ -190,7 +190,7 @@
         [weakSelf presentViewController:sheetVC animated:YES completion:nil];
         
         sheetVC.m_ActionSheetDoneBlock = ^(NSInteger index, NSString *title) {
-            BMImageTextView *accessoryView = (BMImageTextView *)self.m_TypeItem.accessoryView;
+            BMImageTextView *accessoryView = (BMImageTextView *)weakSelf.m_TypeItem.accessoryView;
             accessoryView.text = title;
             weakSelf.m_CreateModel.meetingType = [FSMeetingDataForm getKeyForVlaue:title type:FSMeetingDataType_MeetingType];
         };
@@ -215,7 +215,7 @@
         [weakSelf presentViewController:sheetVC animated:YES completion:nil];
         
         sheetVC.m_ActionSheetDoneBlock = ^(NSInteger index, NSString *title) {
-            BMImageTextView *accessoryView = (BMImageTextView *)self.m_TimeTypeItem.accessoryView;
+            BMImageTextView *accessoryView = (BMImageTextView *)weakSelf.m_TimeTypeItem.accessoryView;
             accessoryView.text = title;
             weakSelf.m_IsStartImmediately = !index;
             

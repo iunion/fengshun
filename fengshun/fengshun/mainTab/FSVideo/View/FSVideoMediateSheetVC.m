@@ -128,9 +128,10 @@
         _m_ContentView.bm_top = self.view.bm_bottom;
     } completion:^(BOOL finished) {
         if (finished) {
-            [self dismissViewControllerAnimated:NO completion:^{
-                if (self.m_ActionSheetDismissBlock) {
-                    self.m_ActionSheetDismissBlock();
+            BMWeakSelf
+            [weakSelf dismissViewControllerAnimated:NO completion:^{
+                if (weakSelf.m_ActionSheetDismissBlock) {
+                    weakSelf.m_ActionSheetDismissBlock();
                 }
             }];
         }

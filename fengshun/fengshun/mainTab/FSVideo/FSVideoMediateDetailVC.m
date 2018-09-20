@@ -244,7 +244,7 @@
     {
         // 未开始 支持所有操作
         sheetVC = [[FSVideoMediateSheetVC alloc] initWithTitleArray:@[@"添加人员", @"编辑", @"再次发起", @"删除"]];
-        __block FSVideoMediateSheetVC *blockVC = sheetVC;
+       __weak typeof(FSVideoMediateSheetVC *) weakSheetVC = sheetVC;
         sheetVC.m_ActionSheetDoneBlock = ^(NSInteger index, NSString *title) {
             if (index == 0) {
                 [weakSelf inviteAction];
@@ -253,7 +253,7 @@
             } else if (index == 2) {
                 [weakSelf resendAction];
             } else {
-                blockVC.m_ActionSheetDismissBlock = ^{
+                weakSheetVC.m_ActionSheetDismissBlock = ^{
                     [weakSelf deleteAction];
                 };
             }
@@ -275,21 +275,23 @@
     {
         // 结束后不能添加人员不能编辑  可以删除
         sheetVC = [[FSVideoMediateSheetVC alloc] initWithTitleArray:@[@"再次发起", @"删除"]];
-        __block FSVideoMediateSheetVC *blockVC = sheetVC;
+        __weak typeof(FSVideoMediateSheetVC *) weakSheetVC = sheetVC;
         sheetVC.m_ActionSheetDoneBlock = ^(NSInteger index, NSString *title) {
             if (index == 0) {
                 [weakSelf resendAction];
             } else {
-                blockVC.m_ActionSheetDismissBlock = ^{
+                weakSheetVC.m_ActionSheetDismissBlock = ^{
                     [weakSelf deleteAction];
                 };
             }
         };
     }
     
-    sheetVC.modalPresentationStyle = UIModalPresentationCustom;
-    sheetVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentViewController:sheetVC animated:YES completion:nil];
+    if (sheetVC) {
+        sheetVC.modalPresentationStyle = UIModalPresentationCustom;
+        sheetVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:sheetVC animated:YES completion:nil];
+    }
 }
 
 - (void)editAction

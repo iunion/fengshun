@@ -1017,7 +1017,6 @@
 		87E7C3E521509AB000F7AB14 /* NSBundle+TZImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9355892137D24100735C2E /* NSBundle+TZImagePicker.m */; };
 		87E7C3E621509AB000F7AB14 /* BMTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 874267F8212E7E35003C52F6 /* BMTabBarController.m */; };
 		87E7C3E721509AB000F7AB14 /* NSRegularExpression+BMRegEx.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426865212E7E35003C52F6 /* NSRegularExpression+BMRegEx.m */; };
-		87E7C3E821509AB000F7AB14 /* TextChatHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF84B214D1B970005AD43 /* TextChatHistoryViewController.m */; };
 		87E7C3E921509AB000F7AB14 /* NSString+BMCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8742687D212E7E36003C52F6 /* NSString+BMCategory.m */; };
 		87E7C3EA21509AB000F7AB14 /* UIImage+BMCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426853212E7E35003C52F6 /* UIImage+BMCategory.m */; };
 		87E7C3EB21509AB000F7AB14 /* BMPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426826212E7E35003C52F6 /* BMPlaceholderTextView.m */; };
@@ -2141,9 +2140,7 @@
 		45FEF842214D1B710005AD43 /* UIButton+XQAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+XQAdd.h"; sourceTree = "<group>"; };
 		45FEF847214D1B970005AD43 /* SingleTextChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleTextChatViewController.h; sourceTree = "<group>"; };
 		45FEF848214D1B970005AD43 /* PublicTextChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicTextChatViewController.h; sourceTree = "<group>"; };
-		45FEF849214D1B970005AD43 /* TextChatHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextChatHistoryViewController.h; sourceTree = "<group>"; };
 		45FEF84A214D1B970005AD43 /* SingleTextChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleTextChatViewController.m; sourceTree = "<group>"; };
-		45FEF84B214D1B970005AD43 /* TextChatHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextChatHistoryViewController.m; sourceTree = "<group>"; };
 		45FEF84C214D1B970005AD43 /* PublicTextChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicTextChatViewController.m; sourceTree = "<group>"; };
 		45FEF84E214D1B970005AD43 /* ChatTextModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTextModel.h; sourceTree = "<group>"; };
 		45FEF84F214D1B970005AD43 /* ChatTextViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTextViewModel.m; sourceTree = "<group>"; };
@@ -4091,8 +4088,6 @@
 				45FEF84A214D1B970005AD43 /* SingleTextChatViewController.m */,
 				45FEF848214D1B970005AD43 /* PublicTextChatViewController.h */,
 				45FEF84C214D1B970005AD43 /* PublicTextChatViewController.m */,
-				45FEF849214D1B970005AD43 /* TextChatHistoryViewController.h */,
-				45FEF84B214D1B970005AD43 /* TextChatHistoryViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -9113,7 +9108,6 @@
 				87E7C3E521509AB000F7AB14 /* NSBundle+TZImagePicker.m in Sources */,
 				87E7C3E621509AB000F7AB14 /* BMTabBarController.m in Sources */,
 				87E7C3E721509AB000F7AB14 /* NSRegularExpression+BMRegEx.m in Sources */,
-				87E7C3E821509AB000F7AB14 /* TextChatHistoryViewController.m in Sources */,
 				87E7C3E921509AB000F7AB14 /* NSString+BMCategory.m in Sources */,
 				87E7C3EA21509AB000F7AB14 /* UIImage+BMCategory.m in Sources */,
 				87E7C3EB21509AB000F7AB14 /* BMPlaceholderTextView.m in Sources */,
