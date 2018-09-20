@@ -35,6 +35,7 @@
 		458E181E2151E7690050590B /* video_back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 458E181C2151E7680050590B /* video_back_btn@2x.png */; };
 		458E181F2151E9560050590B /* video_back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 458E181C2151E7680050590B /* video_back_btn@2x.png */; };
 		458E18202151E9560050590B /* video_back_btn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 458E181B2151E7670050590B /* video_back_btn@3x.png */; };
+		458E182A215251440050590B /* FSReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD412AE9215221C800A9C12B /* FSReportView.m */; };
 		45F3FD21214BBF48007712EE /* video_history_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45F3FD1D214BBF46007712EE /* video_history_icon@2x.png */; };
 		45F3FD22214BBF48007712EE /* video_message_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45F3FD1E214BBF47007712EE /* video_message_icon@3x.png */; };
 		45F3FD23214BBF48007712EE /* video_message_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45F3FD1F214BBF47007712EE /* video_message_icon@2x.png */; };
@@ -8793,6 +8794,7 @@
 				87E7C43921509AB000F7AB14 /* FSBannerView.m in Sources */,
 				87E7C43A21509AB000F7AB14 /* BMTableViewSegmentCell.m in Sources */,
 				87E7C43B21509AB000F7AB14 /* UITextField+BMCategory.m in Sources */,
+				458E182A215251440050590B /* FSReportView.m in Sources */,
 				87E7C43C21509AB000F7AB14 /* DTHorizontalRuleHTMLElement.m in Sources */,
 				87E7C43D21509AB000F7AB14 /* DTVideoTextAttachment.m in Sources */,
 				87E7C43E21509AB000F7AB14 /* ZFPlayerController.m in Sources */,
