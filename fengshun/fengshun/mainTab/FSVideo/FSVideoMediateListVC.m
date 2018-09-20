@@ -24,11 +24,6 @@
 
 @implementation FSVideoMediateListVC
 
--(void)dealloc
-{
-    NSLog(@"FSVideoMediateListVC dealloc");
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];

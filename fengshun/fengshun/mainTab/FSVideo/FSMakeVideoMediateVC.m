@@ -474,16 +474,6 @@
     NSString *numStr = [NSString stringWithFormat:@"%0.0lf",self.m_CreateModel.startTime];
     self.m_CreateModel.startTime = [numStr doubleValue];
 
-    if (![self.m_CreateModel.orderHour bm_isNotEmpty]) {
-        [self.m_ProgressHUD showAnimated:YES withDetailText:@"请选择会议时长" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-        return;
-    }
-
-    if (self.m_AttendedList.count < 2) {
-        [self.m_ProgressHUD showAnimated:YES withDetailText:@"请邀请当事人" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-        return;
-    }
-    
     self.m_CreateModel.meetingPersonnelResponseDTO = self.m_AttendedList;
     [self sendSaveMeetingRequest];
 }
