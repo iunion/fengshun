@@ -1,24 +1,25 @@
 //
-//  FSCaseSearchResultCell.m
+//  FSCaseCell.m
 //  fengshun
 //
 //  Created by Aiwei on 2018/9/7.
 //  Copyright © 2018 FS. All rights reserved.
 //
 
-#import "FSCaseSearchResultCell.h"
+#import "FSCaseCell.h"
 
-@interface FSCaseSearchResultCell()
+@interface FSCaseCell()
 @property (weak, nonatomic) IBOutlet UILabel *m_titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *m_detailLabel;
 @property (weak, nonatomic) IBOutlet UILabel *m_contentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *m_tabLabel;
 @property (weak, nonatomic) IBOutlet UIView *m_tagView;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomSpace;
 
 @end
 
-@implementation FSCaseSearchResultCell
+@implementation FSCaseCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -34,7 +35,7 @@
 
 - (void)setCaseResultModel:(FSCaseResultModel *)model attributed:(BOOL)attributed
 {
-    _m_caseResultModel = model;
+    _m_caseModel = model;
     [FSSearchResultModel setTextLabel:_m_titleLabel withText:model.m_title fontSize:18 textColor:UI_COLOR_B1 attributed:attributed];
     NSString * detail = @"";
     if ([model.m_court bm_isNotEmpty]) {
@@ -51,5 +52,14 @@
     _m_contentLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     _m_tabLabel.text = model.m_caseTag;
 }
-
+- (void)setCaseCollectionModel:(FSCaseCollectionModel *)model
+{
+    _m_caseModel          = model;
+    _m_tagView.hidden     = YES;
+    _m_tabLabel.hidden    = YES;
+    _m_contentLabel.text  = nil;
+    _bottomSpace.constant = 0;
+    _m_titleLabel.text    = model.m_title;
+    _m_detailLabel.text   = model.m_source;
+}
 @end

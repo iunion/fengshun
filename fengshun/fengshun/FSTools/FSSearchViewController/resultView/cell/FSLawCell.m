@@ -1,14 +1,14 @@
 //
-//  FSLawSearchResultCell.m
+//  FSLawCell.m
 //  fengshun
 //
 //  Created by Aiwei on 2018/9/10.
 //  Copyright © 2018 FS. All rights reserved.
 //
 
-#import "FSLawSearchResultCell.h"
+#import "FSLawCell.h"
 
-@implementation FSLawSearchResultCell
+@implementation FSLawCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -22,7 +22,7 @@
 }
 - (void)setLawResultModel:(FSLawResultModel *)model attributed:(BOOL)attributed
 {
-    _m_lawResultModel = model;
+    _m_lawModel = model;
     [FSSearchResultModel setTextLabel:_m_titleLabel withText:model.m_title fontSize:18 textColor:UI_COLOR_B1 attributed:attributed];
     NSString * detail = @"";
     if ([model.m_Organ bm_isNotEmpty]) {
@@ -39,5 +39,14 @@
     _m_contentLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     _m_matchLabel.text  = [NSString stringWithFormat:@"命中法条 %ld",model.m_matchCount];
 }
-
+- (void)setLawCollectionModel:(FSLawCollectionModel *)model
+{
+    _m_lawModel           = model;
+    _m_matchTag.hidden    = YES;
+    _m_matchLabel.hidden  = YES;
+    _m_contentLabel.text  = nil;
+    _bottomSpace.constant = 10;
+    _m_titleLabel.text    = model.m_title;
+    _m_detailLabel.text   = model.m_source;
+}
 @end

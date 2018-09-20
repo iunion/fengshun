@@ -259,16 +259,31 @@ static dispatch_once_t onceToken;
 }
 
 
-- (void)sendRecordEventWithIsStartRecord:(BOOL)isStart {
+- (BOOL)sendRecordEventWithIsStartRecord:(BOOL)isStart {
     NSDictionary *dic;
     if (isStart) {
+        NSInteger onlineCount = 0;
+        for (int i = 0; i < _roomModel.members.count; i ++) {
+            VideoCallMemberModel *model = _roomModel.members[i];
+            if (model.memberStatus == VideoCallMemberStatusOnline) {
+                onlineCount ++;
+            }
+        }
+        
+        if (onlineCount < 2) {
+            return NO;
+        }
+
         dic = @{@"event" : @"START_RECORD", @"data" : @{}};
     } else {
         dic = @{@"event" : @"STOP_RECORD", @"data" : @{}};
     }
+    
     if (_socket.readyState == SR_OPEN) {
         [_socket send:[dic mj_JSONString]];
     }
+    
+    return YES;
 }
 
 @end

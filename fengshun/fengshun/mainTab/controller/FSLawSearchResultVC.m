@@ -8,7 +8,7 @@
 
 #import "FSLawSearchResultVC.h"
 #import "FSLawSearchResultView.h"
-#import "FSLawSearchResultCell.h"
+#import "FSLawCell.h"
 #import "FSNotificationName.h"
 
 @interface FSLawSearchResultVC ()
@@ -33,7 +33,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FSLawSearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSLawSearchResultCell"];
+    FSLawCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSLawCell"];
     FSLawResultModel *model = _m_searchResultModel.m_resultDataArray[indexPath.row];
     [cell setLawResultModel:model attributed:YES];
     return cell;

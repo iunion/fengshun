@@ -1,31 +1,25 @@
 //
-//  FSCourseTableCell.m
+//  FSCollectionCourseCell.m
 //  fengshun
 //
-//  Created by Aiwei on 2018/8/31.
+//  Created by Aiwei on 2018/9/20.
 //  Copyright © 2018 FS. All rights reserved.
 //
 
-#import "FSCourseTableCell.h"
+#import "FSCollectionCourseCell.h"
 
+@implementation FSCollectionCourseCell
 
-@implementation FSCourseTableCell
-
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
     [super awakeFromNib];
     self.separatorInset = UIEdgeInsetsMake(0, 20, 0, 19);
-    [_m_imageView bm_roundedRect:5];
-//    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
 }
-
 - (void)setM_course:(FSCourseModel *)m_course
 {
     _m_course = m_course;

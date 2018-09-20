@@ -194,7 +194,7 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
         self.alertView.layer.opacity = 0.95;
         self.alertView.clipsToBounds = YES;
         [self.view addSubview:self.alertView];
-        
+
         self.topRightCloseBtn = [UIButton bm_buttonWithFrame:CGRectMake(alertWidth-40.0f, 6.0f, 40.0f, 40.0f) imageName:@"community_close"];
         self.topRightCloseBtn.bm_imageRect = CGRectMake(15.0f, 5.0f, 15.0f, 15.0f);
         [self.topRightCloseBtn addTarget:self action:@selector(dismiss:) forControlEvents:UIControlEventTouchUpInside];

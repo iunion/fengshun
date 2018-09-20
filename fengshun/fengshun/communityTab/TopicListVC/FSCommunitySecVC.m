@@ -116,7 +116,7 @@ FSCommunitySecVC ()
     {
         BMWeakSelf;
         [FSAlertView showAlertWithTitle:@"温馨提示" message:@"认证后才能发帖" cancelTitle:@"取消" otherTitle:@"去认证" completion:^(BOOL cancelled, NSInteger buttonIndex) {
-            if (!cancelled)
+            if (buttonIndex == 1)
             {
                 FSAuthenticationVC *vc = [[FSAuthenticationVC alloc] init];
                 vc.delegate = weakSelf;

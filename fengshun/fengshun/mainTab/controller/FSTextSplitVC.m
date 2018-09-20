@@ -7,7 +7,7 @@
 //
 
 #import "FSTextSplitVC.h"
-#import "FSTextListCell.h"
+#import "FSTextCell.h"
 #import "FSTextTypeCell.h"
 
 #define LEFT_HEADER_HEIGHT 18.0f
@@ -90,7 +90,7 @@ FSTextSplitVC ()
     self.m_TableView.bm_showEmptyView             = NO;
 
     self.m_TableView.separatorStyle     = UITableViewCellSeparatorStyleSingleLine;
-    [self.m_TableView registerNib:[UINib nibWithNibName:@"FSTextListCell" bundle:nil] forCellReuseIdentifier:@"FSTextListCell"];
+    [self.m_TableView registerNib:[UINib nibWithNibName:@"FSTextCell" bundle:nil] forCellReuseIdentifier:@"FSTextCell"];
 
     self.m_textTypeListView              = [[FSTableView alloc] initWithFrame:CGRectMake(0, 0, realLeftWidth, self.view.bm_height) style:UITableViewStylePlain freshViewType:BMFreshViewType_NONE];
     [_m_textTypeListView registerNib:[UINib nibWithNibName:@"FSTextTypeCell" bundle:nil] forCellReuseIdentifier:@"FSTextTypeCell"];
@@ -137,7 +137,7 @@ FSTextSplitVC ()
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FSTextListCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"FSTextListCell"];
+    FSTextCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"FSTextCell"];
     FSListTextModel *model = _m_selectedType.m_textList[indexPath.row];
     [cell setTextModel:model colors:NO];
     return cell;

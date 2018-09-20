@@ -152,28 +152,42 @@ FSMainVC ()
 #ifdef FSVIDEO_ON
         // 视频调解
         case FSHomePageTooltype_VideoMediation:
+        {
+            [self isLogined];
             [FSPushVCManager pushVideoMediateList:self.navigationController];
+        }
             break;
 #endif
         // 案例检索
         case FSHomePageTooltype_CaseSearching:
+        {
             [FSPushVCManager homePage:self pushToCaseSearchWithHotKeys:self.m_caseHotkeys];
+        }
             break;
         // 法规检索
         case FSHomePageTooltype_StatuteSearching:
+        {
             [FSPushVCManager pushToLawSearch:self];
+        }
             break;
         // 文书范本
         case FSHomePageTooltype_Document:
+        {
             [FSPushVCManager homePagePushToTextSplitVC:self];
+        }
             break;
         // 文书扫描
         case FSHomePageTooltype_FileScanning:
+        {
+             [self isLogined];
             [FSPushVCManager homePagePushToFileScanVC:self];
+        }
             break;
         //计算器
         case  FSHomePageTooltype_Calculator:
+        {
             [FSPushVCManager showWebView:self url:[NSString stringWithFormat:@"%@/tooIndex",FS_H5_SERVER] title:@""];
+        }
             break;
         default:
             break;
@@ -416,4 +430,12 @@ FSMainVC ()
     }
 }
 
+-(void)isLogined
+{
+    if (![FSUserInfoModle isLogin])
+    {
+        [self showLogin];
+        return;
+    }
+}
 @end

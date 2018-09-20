@@ -605,6 +605,11 @@
         }
     }];
     
+    [self.m_WebView registerHandler:@"toReport" handler:^(id data, WVJBResponseCallback responseCallback) {
+        BMLog(@"toReport called: %@", data);
+
+    }];
+    
     // 跳转客服
 //    [self.m_WebView registerHandler:@"contactCustomerService" handler:^(id data, WVJBResponseCallback responseCallback) {
 //

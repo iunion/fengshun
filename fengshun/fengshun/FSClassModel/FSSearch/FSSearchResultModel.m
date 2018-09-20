@@ -6,25 +6,8 @@
 //  Copyright © 2018 FS. All rights reserved.
 //
 
-#import "FSCaseSearchResultModel.h"
+#import "FSSearchResultModel.h"
 
-@implementation FSCaseResultModel
-
-+ (instancetype)modelWithParams:(NSDictionary *)params
-{
-    FSCaseResultModel *model = [[self alloc] init];
-    model.m_caseId          = [params bm_stringForKey:@"id"];
-    model.m_title           = [params bm_stringForKey:@"title"];
-    model.m_simpleContent   = [params bm_stringForKey:@"simpleContent"];
-    model.m_caseNo          = [params bm_stringForKey:@"caseNo"];
-    model.m_court           = [params bm_stringForKey:@"court"];
-    model.m_caseTag         = [params bm_stringForKey:@"docType"];
-
-
-    return model;
-}
-
-@end
 
 @implementation FSSearchResultModel
 + (instancetype)modelWithParams:(NSDictionary *)params
@@ -66,6 +49,17 @@
     model.m_resultDataArray        = [FSCaseResultModel modelsWithDataArray:[params bm_arrayForKey:@"data"]];
     return model;
 }
+@end
+
+@implementation FSLawSearchResultModel
+
++ (instancetype)modelWithParams:(NSDictionary *)params
+{
+    FSLawSearchResultModel *model = [super modelWithParams:params];
+    model.m_resultDataArray       = [FSLawResultModel modelsWithDataArray:[params bm_arrayForKey:@"data"]];
+    return model;
+}
+
 @end
 
 @implementation FSSearchFilterSegment

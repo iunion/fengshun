@@ -19,13 +19,19 @@
 @property (nonatomic, assign) NSInteger m_readCount;
 @property (nonatomic, copy) NSString *  m_jumpAddress;
 
-// 是否属于某个系列
-@property (nonatomic, assign) BOOL bm_isSeries;
 
+
+
+@end
+
+@interface FSCourseCollectionModel : FSCourseModel
+
+@property (nonatomic, copy)NSString *m_collectionId;
 
 @end
 
 @interface FSCourseRecommendModel : FSCourseModel
 
-
+// 是否属于某个系列
+@property (nonatomic, assign) BOOL m_isSeries;
 @end

@@ -7,24 +7,10 @@
 //
 
 #import "FSSuperModel.h"
+#import "FSCaseModel.h"
+#import "FSLawModel.h"
 
 @class FSSearchFilterSegment, FSSearchFilter;
-
-@interface FSCaseResultModel : FSSuperModel
-
-@property (nonatomic, copy) NSString *m_caseId;
-@property (nonatomic, copy) NSString *m_title;
-@property (nonatomic, copy) NSString *m_simpleContent;
-@property (nonatomic, copy) NSString *m_caseNo;
-@property (nonatomic, copy) NSString *m_court;
-
-// 欠缺
-@property (nonatomic, copy) NSString *m_caseTag;
-@property (nonatomic, copy) NSString *m_jumpUrl;
-@property (nonatomic, copy) NSString *m_date;
-
-@end
-
 
 
 @interface FSSearchResultModel : FSSuperModel
@@ -41,8 +27,14 @@
 + (void)setTextLabel:(UILabel *)label withText:(NSString *)text fontSize:(CGFloat)fontSize textColor:(UIColor *)textColor attributed:(BOOL)attributed;
 @end
 
+// 案例检索
 @interface FSCaseSearchResultModel : FSSearchResultModel
 
+@end
+
+
+// 法规检索
+@interface FSLawSearchResultModel : FSSearchResultModel
 
 
 @end

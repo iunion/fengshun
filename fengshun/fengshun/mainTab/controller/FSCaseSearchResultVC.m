@@ -7,7 +7,7 @@
 //
 
 #import "FSCaseSearchResultVC.h"
-#import "FSCaseSearchResultCell.h"
+#import "FSCaseCell.h"
 #import "FSApiRequest.h"
 #import "FSSearchResultView.h"
 #import "FSNotificationName.h"
@@ -37,7 +37,8 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FSCaseSearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCaseSearchResultCell"];
+    FSCaseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCaseCell"];
+
     FSCaseResultModel *model = _m_searchResultModel.m_resultDataArray[indexPath.row];
     [cell setCaseResultModel:model attributed:YES];
 

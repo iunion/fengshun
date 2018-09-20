@@ -7,7 +7,7 @@
 //
 
 #import "FSTextSearchResultVC.h"
-#import "FSListTextModel.h"
+#import "FSTextModel.h"
 
 @interface FSTextSearchResultVC ()
 @property(nonatomic, strong)NSArray <FSListTextModel *>* m_textList;
@@ -31,7 +31,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FSTextListCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"FSTextListCell"];
+    FSTextCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"FSTextCell"];
     FSListTextModel *model =_m_textList[indexPath.row];
     [cell setTextModel:model colors:YES];
     return cell;
