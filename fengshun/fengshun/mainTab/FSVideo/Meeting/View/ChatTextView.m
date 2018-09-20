@@ -8,6 +8,7 @@
 
 #import "ChatTextView.h"
 #import "ChatTextModel.h"
+#import "FSVideoMediateModel.h"
 //#import "PlaceHolderTextView.h"
 //#import <YYTextView.h>
 
@@ -123,7 +124,7 @@
 - (void)setModel:(ChatTextModel *)model {
     _model = model;
     _articleLabel.text = model.messageContent;
-    _nameLabel.text = model.sender.memberName;
+    _nameLabel.text = [NSString stringWithFormat:@"%@%@", [FSMeetingDataForm getValueForKey:model.sender.memberType type:FSMeetingDataType_PersonIdentityType], model.sender.memberName];
 
     if (!model.showMessageType) {
         _yuyinView.hidden = YES;
@@ -198,9 +199,17 @@
 @implementation ChatTextImportView
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = [UIColor bm_colorWithHex:0xf2f2f2];
+        self.backgroundColor = [UIColor bm_colorWithHex:0xf5f5f7];
         _miniHeith = 33;
         _maxHeith = 85;
+        
+        UIView *topline = [UIView new];
+        topline.backgroundColor = UI_COLOR_B5;
+        [self addSubview:topline];
+        [topline mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.top.equalTo(self).offset(0);
+            make.height.mas_equalTo(0.5);
+        }];
 
         _textView = [BMPlaceholderTextView new];
         _textView.backgroundColor = [UIColor whiteColor];
@@ -209,6 +218,7 @@
         _textView.returnKeyType = UIReturnKeySend;
         _textView.enablesReturnKeyAutomatically = YES;
         _textView.placeholder = @"请输入文字";
+        _textView.textContainerInset = UIEdgeInsetsMake(8, 5, 8, 5);
         _textView.placeholderColor = [UIColor bm_colorWithHex:0xcdcdcd];
         [self addSubview:_textView];
         [_textView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -218,10 +228,10 @@
             make.bottom.equalTo(self).offset(-6);
             self.textViewHeightConstaint = make.height.offset(_miniHeith);
         }];
+        [_textView bm_roundedRect:_miniHeith/2];
         
         self.puppet = [[BMPlaceholderTextView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH - 16, frame.size.height)];
         _puppet.font = UI_FONT_14;
-        
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];

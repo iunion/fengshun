@@ -536,38 +536,20 @@
         {
             [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:@"提交成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             FSMeetingDetailModel *mode = [FSMeetingDetailModel modelWithParams:dataDic];
-            if (self.successBlock) {
-                self.successBlock(mode);
-            }
             
             if (self.m_IsStartImmediately)
             {
-                // 立即开始 进入详情页面
-                FSVideoMediateDetailVC *vc = [FSVideoMediateDetailVC new];
-                vc.m_MeetingId = mode.meetingId;
-                BMWeakSelf
-                vc.changedBlock = ^{
-                    if (weakSelf.successBlock) {
-                        weakSelf.successBlock(mode);
-                    }
-                };
-                
-                NSArray *existVC = self.navigationController.viewControllers;
-                NSMutableArray *vcArray = [NSMutableArray array];
-                for (NSInteger index = 0; index< existVC.count; index++) {
-                    UIViewController *temp = existVC[index];
-                    [vcArray addObject:temp];
-                    if ([temp isKindOfClass:[FSVideoMediateListVC class]]) {
-                        break;
-                    }
-                }
-                [vcArray addObject:vc];
-                [self.navigationController setViewControllers:vcArray animated:YES];
+                [self.navigationController popViewControllerAnimated:NO];
             }
             else
             {
                 [self.navigationController popViewControllerAnimated:YES];
             }
+            
+            if (self.successBlock) {
+                self.successBlock(mode,_m_IsStartImmediately);
+            }
+
             return;
         }
     }

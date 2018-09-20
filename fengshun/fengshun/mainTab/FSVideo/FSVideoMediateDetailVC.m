@@ -297,7 +297,7 @@
     BMWeakSelf
     FSMakeVideoMediateVC *vc = [FSMakeVideoMediateVC makevideoMediateVCWithModel:FSMakeVideoMediateMode_Edit
                                                                             data:self.m_DetailModel
-                                                                           block:^(FSMeetingDetailModel *model) {
+                                                                           block:^(FSMeetingDetailModel *model, BOOL startImmediately) {
                                                                                weakSelf.m_DetailModel = model;
                                                                                if (weakSelf.changedBlock) {
                                                                                    weakSelf.changedBlock();
@@ -336,7 +336,7 @@
     BMWeakSelf
     FSMakeVideoMediateVC *vc = [FSMakeVideoMediateVC makevideoMediateVCWithModel:FSMakeVideoMediateMode_ReSend
                                                                             data:self.m_DetailModel
-                                                                           block:^(FSMeetingDetailModel *model) {
+                                                                           block:^(FSMeetingDetailModel *model, BOOL startImmediately) {
                                                                                if (weakSelf.changedBlock) {
                                                                                    weakSelf.changedBlock();
                                                                                }
@@ -431,6 +431,19 @@
                 weakSelf.statusLabel.text = [FSMeetingDataForm getValueForKey:_m_DetailModel.meetingStatus type:FSMeetingDataType_AllMeetingStatus];
                 if (weakSelf.changedBlock) {
                     weakSelf.changedBlock();
+                }
+            };
+            vc.inviteBlock = ^(NSArray *litigantList) {
+                if (litigantList.count) {
+                    if ([litigantList bm_isNotEmpty]) {
+                        NSMutableArray *array = [NSMutableArray arrayWithArray:weakSelf.m_DetailModel.meetingPersonnelResponseDTO];
+                        [array addObjectsFromArray:litigantList];
+                        weakSelf.m_DetailModel.meetingPersonnelResponseDTO = [NSArray arrayWithArray:array];
+                        weakSelf.personView.desLabel.text = [weakSelf.m_DetailModel getMeetingPersonnelNameListWithShowCount:3];
+                        if (weakSelf.changedBlock) {
+                            weakSelf.changedBlock();
+                        }
+                    }
                 }
             };
             BMNavigationController *nav = [[BMNavigationController alloc] initWithRootViewController:vc];

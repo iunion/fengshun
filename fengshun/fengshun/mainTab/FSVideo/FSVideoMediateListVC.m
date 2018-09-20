@@ -24,13 +24,18 @@
 
 @implementation FSVideoMediateListVC
 
+-(void)dealloc
+{
+    NSLog(@"FSVideoMediateListVC dealloc");
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.m_LoadDataType = FSAPILoadDataType_Page;
 
     [self bm_setNavigationWithTitle:@"视频调解" barTintColor:[UIColor whiteColor] leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
- 
+
     [self buildUI];
 
     self.meetingTypeEnums = @"MEETING_TYPE_OR";
@@ -68,12 +73,12 @@
                                       hiddenkey:@"meetingStatusEnums"
                                            list:[FSMeetingDataForm formMeetingDataToModelWithType:FSMeetingDataType_AllMeetingStatus]];
     
-    
+    BMWeakSelf
     FSHeaderCommonSelectorView *selector = [[FSHeaderCommonSelectorView alloc] initWithFrame:CGRectMake(0, 0, self.view.bm_width, 42)];
     selector.m_DataArray = @[left, right];
     selector.selectorBlock = ^(FSHeaderCommonSelectorModel *hModel, FSSelectorListModel *lmodel) {
-        [self setValue:lmodel.hiddenkey forKey:hModel.hiddenkey];
-        [self loadApiData];
+        [weakSelf setValue:lmodel.hiddenkey forKey:hModel.hiddenkey];
+        [weakSelf loadApiData];
     };
     self.headSelector = selector;
     [self.view addSubview:selector];
@@ -106,8 +111,20 @@
     BMWeakSelf
     FSMakeVideoMediateVC *vc = [FSMakeVideoMediateVC makevideoMediateVCWithModel:FSMakeVideoMediateMode_Create
                                                                             data:nil
-                                                                           block:^(FSMeetingDetailModel *model) {
+                                                                           block:^(FSMeetingDetailModel *model, BOOL startImmediately) {
                                                                                [weakSelf loadApiData];
+                                                                               
+                                                                               if (startImmediately) {
+                                                                                   // 立即开始 进入详情页面
+                                                                                   FSVideoMediateDetailVC *vc = [FSVideoMediateDetailVC new];
+                                                                                   vc.m_MeetingId = model.meetingId;
+                                                                                   BMWeakSelf
+                                                                                   vc.changedBlock = ^{
+                                                                                       [weakSelf loadApiData];
+                                                                                   };
+                                                                                   
+                                                                                   [weakSelf.navigationController pushViewController:vc animated:YES];
+                                                                               }
                                                                            }];
     [self.navigationController pushViewController:vc animated:YES];
 }

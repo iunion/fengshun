@@ -14,12 +14,14 @@
 #import "VideoCallModel.h"
 
 typedef void(^FSVideoMediateEndMeetingBlock)(void);
+typedef void(^FSVideoMediateInviteBlock)(NSArray *litigantList);
 
 @interface VideoCallController : FSSuperNetVC <ILiveRoomDisconnectListener>
 @property (nonatomic, strong) VideoCallTopBar *topBar;
 @property (nonatomic, strong) VideoCallPackView *packView;
 @property (nonatomic, strong) RTCRoomInfoModel *model;
 @property (nonatomic, copy) FSVideoMediateEndMeetingBlock endMeetingBlock;
+@property (nonatomic, copy) FSVideoMediateInviteBlock inviteBlock;
 + (instancetype)VCWithRoomId:(NSString *)roomId meetingId:(NSInteger)meetingId token:(NSString *)token;
 @end
 
