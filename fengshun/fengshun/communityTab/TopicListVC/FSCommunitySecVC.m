@@ -125,7 +125,7 @@ FSCommunitySecVC ()
         }];
         return;
     }
-    [FSPushVCManager showSendPostWithPushVC:self isEdited:NO relatedId:self.m_FourmId callBack:^(id object) {
+    [FSPushVCManager showSendPostWithPushVC:self isEdited:NO relatedId:self.m_FourmId callBack:^ {
         
     }];
 }

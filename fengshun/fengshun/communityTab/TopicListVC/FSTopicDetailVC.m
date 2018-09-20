@@ -126,8 +126,8 @@ FSReportViewDelegate
                                          [FSPushVCManager showSendPostWithPushVC:self
                                                                         isEdited:YES
                                                                        relatedId:self.m_TopicId
-                                                                        callBack:^(id object){
-
+                                                                        callBack:^{
+                                                                            [weakSelf refreshWebView];
                                                                         }];
                                      }
                                  }];
@@ -189,6 +189,9 @@ FSReportViewDelegate
 - (void)deleteTopic
 {
     [FSApiRequest deleteTopicWithId:self.m_TopicId success:^(id _Nullable responseObject){
+        if (self.m_DeleteTopicBlock) {
+            self.m_DeleteTopicBlock();
+        }
         [self.m_ProgressHUD showAnimated:YES withDetailText:@"删除成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSError *_Nullable error){

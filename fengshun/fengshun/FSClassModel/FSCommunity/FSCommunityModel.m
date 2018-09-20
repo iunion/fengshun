@@ -110,6 +110,7 @@
             FSTopicModel *model = [FSTopicModel topicWithServerDic:dic];
             if (model)
             {
+                model.m_PositionType |= BMTableViewCell_PositionType_Last;
                 [data addObject:model];
             }
         }

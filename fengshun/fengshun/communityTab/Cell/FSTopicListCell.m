@@ -160,6 +160,8 @@
 
 - (void)drawCellWithModle:(FSTopicModel *)model
 {
+    self.m_TopicModel = model;
+    
     [self.m_HeaderImageView sd_setImageWithURL:[model.m_IconUrl bm_toURL] placeholderImage:[UIImage imageNamed:@"default_avataricon"] options:SDWebImageRetryFailed|SDWebImageLowPriority];
     
     self.m_ForumLabel.text = model.m_ForumName;
@@ -178,6 +180,8 @@
     self.m_UserNameLabel.text = model.m_NickName;
     [self.m_CommentBtn setTitle:[NSString stringWithFormat:@"%@", @(model.m_CommentCount)] forState:UIControlStateNormal];
     self.m_StickBgView.hidden = !model.m_TopFlag;
+    
+    self.m_UnderLineView.hidden = self.m_TopicModel.m_PositionType & BMTableViewCell_PositionType_Last;
 }
 
 @end

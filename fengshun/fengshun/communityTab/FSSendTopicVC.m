@@ -69,7 +69,7 @@
     
     self.view.backgroundColor       = [UIColor whiteColor];
     self.bm_NavigationItemTintColor = UI_COLOR_B1;
-    [self bm_setNavigationWithTitle:@"热门推荐" barTintColor:nil leftItemTitle:nil leftItemImage:[UIImage imageNamed:@"community_return_black"] leftToucheEvent:@selector(popViewController) rightItemTitle:@"发送" rightItemImage:nil rightToucheEvent:@selector(pulishTopicAction)];
+    [self bm_setNavigationWithTitle:@"发帖" barTintColor:nil leftItemTitle:nil leftItemImage:[UIImage imageNamed:@"community_return_black"] leftToucheEvent:@selector(popViewController) rightItemTitle:@"发送" rightItemImage:nil rightToucheEvent:@selector(pulishTopicAction)];
     [GetAppDelegate.m_TabBarController hideOriginTabBar];
     
     self.m_TitleTextField             = [[UITextField alloc] initWithFrame:CGRectMake(25.f, 0, UI_SCREEN_WIDTH - 50.f, 50.f)];
@@ -196,6 +196,9 @@
                              forumId:self.m_RelateId
                             isEdited:self.m_IsEdited
                              success:^(id _Nullable responseObject) {
+                                 if (self.sendPostsCallBack) {
+                                     self.sendPostsCallBack();
+                                 }
                                  [self.navigationController popViewControllerAnimated:YES];
                              }
                              failure:^(NSError *_Nullable error){

@@ -8,9 +8,7 @@
 
 #import "ChatTextView.h"
 #import "ChatTextModel.h"
-#import "FSVideoMediateModel.h"
-//#import "PlaceHolderTextView.h"
-//#import <YYTextView.h>
+#import "FSMeetingDataEnum.h"
 
 
 #define NameLabelLeftOffset 10
@@ -124,7 +122,7 @@
 - (void)setModel:(ChatTextModel *)model {
     _model = model;
     _articleLabel.text = model.messageContent;
-    _nameLabel.text = [NSString stringWithFormat:@"%@%@", [FSMeetingDataForm getValueForKey:model.sender.memberType type:FSMeetingDataType_PersonIdentityType], model.sender.memberName];
+    _nameLabel.text = [NSString stringWithFormat:@"%@%@", [FSMeetingDataEnum meetingIdentityEnglishToChinese:model.sender.memberType], model.sender.memberName];
 
     if (!model.showMessageType) {
         _yuyinView.hidden = YES;

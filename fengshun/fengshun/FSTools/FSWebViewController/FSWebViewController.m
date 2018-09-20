@@ -493,6 +493,11 @@
 #endif
 }
 
+- (void)refreshWebView
+{
+    [self.m_WebView reload];
+}
+
 
 #pragma mark -
 #pragma mark JS

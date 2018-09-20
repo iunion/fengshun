@@ -13,7 +13,7 @@
 @property (nonatomic, weak) UIView *containerView;
 @property (nonatomic, weak) UILabel *messageLabel;
 
-#ifdef DEBUG
+#if BMFRESH_SHOWPULLINGPERCENT
 @property (nonatomic, weak) UILabel *pullingPercentLabel;
 #endif
 
@@ -51,7 +51,7 @@
     return _messageLabel;
 }
 
-#ifdef DEBUG
+#if BMFRESH_SHOWPULLINGPERCENT
 - (UILabel *)pullingPercentLabel
 {
     if (!_pullingPercentLabel)
@@ -72,7 +72,7 @@
 {
     [super setPullingPercent:pullingPercent];
     
-#ifdef DEBUG
+#if BMFRESH_SHOWPULLINGPERCENT
     self.pullingPercentLabel.text = [NSString stringWithFormat:@"%@", @(self.pullingPercent)];
 #endif
 }
@@ -160,7 +160,7 @@
     self.messageLabel.userInteractionEnabled = YES;
     [self.messageLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(messageLabelClick)]];
 
-#ifdef DEBUG
+#if BMFRESH_SHOWPULLINGPERCENT
     self.pullingPercentLabel.frame = CGRectMake(20, self.bm_height-24, 50, 20);
 #endif
 }

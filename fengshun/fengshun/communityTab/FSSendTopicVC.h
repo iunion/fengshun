@@ -12,6 +12,6 @@
 // isEdited = YES relateId:帖子id  /isEdited = NO relateId：板块id
 - (instancetype)initWithIsEdited:(BOOL)isEdited relateId:(NSInteger )relateId;
 
-@property (nonatomic , copy)void (^sendPostsCallBack)(id );
+@property (nonatomic , copy)void (^sendPostsCallBack)(void);
 
 @end

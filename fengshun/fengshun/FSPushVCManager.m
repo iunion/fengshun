@@ -49,10 +49,11 @@
     [pushVC.navigationController pushViewController:vc animated:YES];
 }
 
-+ (void)showTopicDetail:(UIViewController *)pushVC topicId:(NSString *)topicId{
-    FSTopicDetailVC *vc = [[FSTopicDetailVC alloc] initWithTitle:@"" url:[NSString stringWithFormat:@"%@/note/%@",FS_H5_SERVER,topicId] showLoadingBar:NO  loadingBarColor:nil delegate:nil topicId:[topicId integerValue]];
++ (FSTopicDetailVC *)showTopicDetail:(UIViewController *)pushVC topicId:(NSString *)topicId{
+    FSTopicDetailVC *vc = [[FSTopicDetailVC alloc] initWithTitle:@"" url:[NSString stringWithFormat:@"%@/note/%@/0/0",FS_H5_SERVER,topicId] showLoadingBar:NO  loadingBarColor:nil delegate:nil topicId:[topicId integerValue]];
     vc.hidesBottomBarWhenPushed = YES;
     [pushVC.navigationController pushViewController:vc animated:YES];
+    return vc;
 }
 
 + (FSWebViewController *)showWebView:(UIViewController *)pushVC url:(NSString *)url title:(NSString *)title

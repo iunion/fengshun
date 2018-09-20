@@ -11,12 +11,12 @@
 #import "FSCommunityVC.h"
 #import "FSUserMainVC.h"
 //#import "FSH5DemoVC.h"
-#import "FSWebViewController.h"
+#import "FSCourseHomePageVC.h"
 
 //正常色
-#define ITEM_NOR_COLOR [UIColor bm_colorWithHex:0x000000]
+#define ITEM_NOR_COLOR [UIColor bm_colorWithHex:0x979797]
 //选中色
-#define ITEM_SEL_COLOR [UIColor bm_colorWithHex:0xE14D4D]
+#define ITEM_SEL_COLOR [UIColor bm_colorWithHex:UI_NAVIGATION_BGCOLOR_VALU]
 
 @interface FSTabBarController ()
 
@@ -74,11 +74,11 @@
 
 - (void)addViewControllers
 {
-    BMNavigationController *nav1 = [[BMNavigationController alloc] initWithRootViewController:[[FSMainVC alloc] initWithNibName:@"FSMainVC" bundle:nil freshViewType:BMFreshViewType_NONE]];
+    BMNavigationController *nav1 = [[BMNavigationController alloc] initWithRootViewController:[[FSMainVC alloc] initWithNibName:@"FSMainVC" bundle:nil freshViewType:BMFreshViewType_Head]];
     nav1.popOnBackButtonHandler = [self getPopOnBackButtonHandler];
     
-    FSWebViewController *class=[[FSWebViewController alloc] initWithTitle:@"" url:[NSString stringWithFormat:@"%@/course?Ctype=\"IOS\"",FS_H5_SERVER]];
-    BMNavigationController *nav2 = [[BMNavigationController alloc] initWithRootViewController:class];//[[FSH5DemoVC alloc] init]
+    FSCourseHomePageVC *course =[[FSCourseHomePageVC alloc] initWithTitle:@"课堂" url:[NSString stringWithFormat:@"%@/course?Ctype=\"IOS\"",FS_H5_SERVER]];
+    BMNavigationController *nav2 = [[BMNavigationController alloc] initWithRootViewController:course];//[[FSH5DemoVC alloc] init]
     nav2.popOnBackButtonHandler = [self getPopOnBackButtonHandler];
     
     BMNavigationController *nav3 = [[BMNavigationController alloc] initWithRootViewController:[[FSCommunityVC alloc] initWithNibName:@"FSCommunityVC" bundle:nil]];

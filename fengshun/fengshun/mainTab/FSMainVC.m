@@ -62,21 +62,25 @@ FSMainVC ()
     [self.m_TableView registerNib:[UINib nibWithNibName:@"FSTopicListCell" bundle:nil] forCellReuseIdentifier:@"FSTopicListCell"];
     
     [self loadApiData];
-    [self moreNetWorking];
+    
 }
 
 - (void)setupUI
 {
+    self.m_TableView.bm_freshHeaderView.backgroundColor = [UIColor whiteColor];
+    
     self.bm_NavigationItemTintColor = UI_COLOR_B1;
     [self bm_setNavigationWithTitle:@"主页" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:nil rightItemImage:[UIImage imageNamed:@"home_message"] rightToucheEvent:@selector(popMessageVC:)];
     [GetAppDelegate.m_TabBarController hideOriginTabBar];
     [self setBm_NavigationBarImage:[UIImage imageWithColor:[UIColor whiteColor]]];
     [self setBm_NavigationBarAlpha:0];
 
+    self.automaticallyAdjustsScrollViewInsets     = NO;
     self.edgesForExtendedLayout                   = UIRectEdgeTop;
     self.m_TableView.showsVerticalScrollIndicator = NO;
     self.m_TableView.bm_showEmptyView             = NO;
     self.m_TableView.frame                        = CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT - UI_TAB_BAR_HEIGHT);
+    //self.m_TableView.frame = CGRectMake(0, -(UI_NAVIGATION_BAR_HEIGHT+UI_STATUS_BAR_HEIGHT), UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT-UI_TAB_BAR_HEIGHT);
     self.m_TableView.separatorStyle               = UITableViewCellSeparatorStyleSingleLine;
 
     self.m_headerView = [[FSMainHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.bm_width, HEADER_CONST_HEIGHT + 190) andDelegate:self];
@@ -106,16 +110,22 @@ FSMainVC ()
     {
         self.bm_NavigationBarAlpha = 0;
         [self bm_setNeedsUpdateNavigationBarAlpha];
+        self.bm_NavigationTitleAlpha = 0;
+        [self bm_setNeedsUpdateNavigationTitleAlpha];
     }
     else if (offsetY >= maxOffset)
     {
         self.bm_NavigationBarAlpha = 1.0;
         [self bm_setNeedsUpdateNavigationBarAlpha];
+        self.bm_NavigationTitleAlpha = 1.0;
+        [self bm_setNeedsUpdateNavigationTitleAlpha];
     }
     else
     {
         self.bm_NavigationBarAlpha = offsetY / maxOffset;
         [self bm_setNeedsUpdateNavigationBarAlpha];
+        self.bm_NavigationTitleAlpha = offsetY / maxOffset;
+        [self bm_setNeedsUpdateNavigationTitleAlpha];
     }
 }
 
@@ -362,17 +372,11 @@ FSMainVC ()
         
     }];
     
-    // 获取法规检索的法规专题
-//    [FSApiRequest getLawTopicSuccess:^(id  _Nullable responseObject) {
-//        NSDictionary *data = responseObject;
-//        self.m_lawTopics = [data bm_arrayForKey:@"thematic"];
-//    } failure:^(NSError * _Nullable error) {
-//        
-//    }];
 }
 
 - (NSMutableURLRequest *)setLoadDataRequest
 {
+    [self moreNetWorking];
     return [FSApiRequest loadHomePageData];
 }
 

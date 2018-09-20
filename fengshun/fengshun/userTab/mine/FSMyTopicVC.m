@@ -64,7 +64,21 @@
             {
                 [self.m_DataArray removeAllObjects];
             }
+            
+            FSTopicModel *firstTopic = [self.m_DataArray firstObject];
+            if (!firstTopic)
+            {
+                firstTopic = [topicArray firstObject];
+            }
+            FSTopicModel *oldLastTopic = [self.m_DataArray lastObject];
+            firstTopic.m_PositionType |= BMTableViewCell_PositionType_First;
+            oldLastTopic.m_PositionType &= !BMTableViewCell_PositionType_Last;
+            
             [self.m_DataArray addObjectsFromArray:topicArray];
+            
+            FSTopicModel *lastTopic = [self.m_DataArray lastObject];
+            lastTopic.m_PositionType |= BMTableViewCell_PositionType_Last;
+
             [self.m_TableView reloadData];
         }
     }
@@ -109,7 +123,6 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     FSTopicModel *model = self.m_DataArray[indexPath.row];
-//    [FSPushVCManager showWebView:self url:model.m_JumpAddress title:@""];
     [FSPushVCManager showTopicDetail:self topicId:model.m_Id];
 }
 

@@ -70,7 +70,7 @@
             [idleImages addObject:image];
         }
         // 设置普通状态的动画图片
-        //[refreshHeaderView setImages:idleImages forState:BMFreshStateIdle];
+        [refreshHeaderView setImages:idleImages forState:BMFreshStateIdle];
 
         NSMutableArray *willfreshingImages = [NSMutableArray array];
         [willfreshingImages addObject:[UIImage imageNamed:@"fsfreshidle_icon27"]];
