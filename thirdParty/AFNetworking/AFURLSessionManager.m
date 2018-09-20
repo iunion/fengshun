@@ -22,6 +22,10 @@
 #import "AFURLSessionManager.h"
 #import <objc/runtime.h>
 
+#ifdef DEBUG
+#import "FSApiErrorLog.h"
+#endif
+
 #ifndef NSFoundationVersionNumber_iOS_8_0
 #define NSFoundationVersionNumber_With_Fixed_5871104061079552_bug 1140.11
 #else
@@ -238,6 +242,10 @@ didCompleteWithError:(NSError *)error
             if (self.completionHandler) {
                 self.completionHandler(task.response, responseObject, error);
             }
+            
+#ifdef DEBUG
+            [FSApiErrorLog insertAndUpdateErrorLogWithURLRequest:task.originalRequest error:error];
+#endif
 
             dispatch_async(dispatch_get_main_queue(), ^{
                 [[NSNotificationCenter defaultCenter] postNotificationName:AFNetworkingTaskDidCompleteNotification object:task userInfo:userInfo];
@@ -264,6 +272,13 @@ didCompleteWithError:(NSError *)error
                 if (self.completionHandler) {
                     self.completionHandler(task.response, responseObject, serializationError);
                 }
+                
+#ifdef DEBUG
+                if (serializationError)
+                {
+                    [FSApiErrorLog insertAndUpdateErrorLogWithURLRequest:task.originalRequest error:serializationError];
+                }
+#endif
 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [[NSNotificationCenter defaultCenter] postNotificationName:AFNetworkingTaskDidCompleteNotification object:task userInfo:userInfo];

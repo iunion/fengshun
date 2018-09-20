@@ -376,10 +376,9 @@
     
     [FSUserInfoModle logOut];
     
-    UIViewController *vc = [self.m_TabBarController getCurrentRootViewController];
-    
     if (quit)
     {
+        UIViewController *vc = [self.m_TabBarController getCurrentRootViewController];
         if ([vc isKindOfClass:[FSUserMainVC class]])
         {
             if ([self.m_TabBarController getCurrentNavigationController].viewControllers.count != 1)
@@ -390,12 +389,12 @@
         else
         {
             [self.m_TabBarController selectedTabWithIndex:BMTabIndex_User];
-            vc = [self.m_TabBarController getCurrentRootViewController];
         }
     }
     
     if (show)
     {
+        UIViewController *vc = [self.m_TabBarController getCurrentViewController];
         FSSuperVC *superVC = (FSSuperVC *)vc;
         [superVC showLogin];
     }

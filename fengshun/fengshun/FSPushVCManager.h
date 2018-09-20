@@ -59,9 +59,9 @@ typedef void (^PushVCCallBack)(id object);
 // 文字识别结果
 +(void)viewController:(UIViewController *)vc pushToOCRResultVCWithImage:(UIImage *)image;
 
-
 // 显示个人信息
 + (void)showMessageVC:(UIViewController *)pushVC;
+
 
 
 @end

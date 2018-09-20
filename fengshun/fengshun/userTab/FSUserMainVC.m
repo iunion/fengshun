@@ -17,6 +17,7 @@
 
 #import "FSSetupVC.h"
 #import "FSCustomInfoVC.h"
+#import "FSAuthenticationVC.h"
 
 #import "FSServiceVC.h"
 
@@ -354,6 +355,9 @@
 - (void)approveAction:(id)sender
 {
     NSLog(@"approveAction");
+    
+    FSAuthenticationVC *vc = [[FSAuthenticationVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

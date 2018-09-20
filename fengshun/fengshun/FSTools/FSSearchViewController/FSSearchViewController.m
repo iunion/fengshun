@@ -12,7 +12,7 @@
 #import "FSCaseSearchResultView.h"
 #import "FSLawSearchResultView.h"
 #import "FSTextSearchResultView.h"
-
+#import "FSNotificationName.h"
 
 #define SEARCH_HISTORY_MAXCACHECOUNT        10
 #define SEARCH_HISTORY_CACHEFILE(searchKey) [[NSString bm_documentsPath] stringByAppendingPathComponent:[NSString stringWithFormat:@"searchhistory_%@.plist", searchKey]]
@@ -77,10 +77,12 @@
         switch (_resultType) {
             case FSSearchResultType_laws:
                 _resultView = [[FSLawSearchResultView alloc]initWithFrame:self.view.bounds];
+                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotoLawDetail:) name:KLawDetailNotification object:nil];
                 break;
 
             case FSSearchResultType_case:
                 _resultView = [[FSCaseSearchResultView alloc] initWithFrame:self.view.bounds];
+                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotoCaseDetail:) name:KCaseDetailNotification object:nil];
                 break;
             case FSSearchResultType_text:
                 _resultView = [[FSTextSearchResultView alloc] initWithFrame:self.view.bounds];
@@ -243,6 +245,8 @@
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     }
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:KLawDetailNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:KCaseDetailNotification object:nil];
 }
 - (void)makeTagViewArray
 {
@@ -508,5 +512,15 @@
         
     }
 }
+
+-(void)gotoLawDetail:(NSNotification *)notification
+{
+   [FSPushVCManager showWebView:self url:[NSString stringWithFormat:@"%@/caseDetail?ID=%@&keywords=%@",FS_H5_SERVER,notification.userInfo[@"lawsId"],notification.userInfo[@"keywords"]] title:@""];
+}
+-(void)gotoCaseDetail:(NSNotification *)notification
+{
+    [FSPushVCManager showWebView:self url:[NSString stringWithFormat:@"%@/caseDetail?ID=%@&keywords=%@",FS_H5_SERVER,notification.userInfo[@"caseId"],notification.userInfo[@"keywords"]] title:@""];
+}
+
 
 @end
