@@ -25,6 +25,8 @@
 
 @property (nonatomic, strong) UITextField *m_TitleTextField;
 
+@property (nonatomic, strong) UILabel *m_PlaceHolderLab;
+
 @end
 
 @implementation FSSendTopicVC
@@ -72,13 +74,22 @@
     [self bm_setNavigationWithTitle:@"发帖" barTintColor:nil leftItemTitle:nil leftItemImage:[UIImage imageNamed:@"community_return_black"] leftToucheEvent:@selector(popViewController) rightItemTitle:@"发送" rightItemImage:nil rightToucheEvent:@selector(pulishTopicAction)];
     [GetAppDelegate.m_TabBarController hideOriginTabBar];
     
-    self.m_TitleTextField             = [[UITextField alloc] initWithFrame:CGRectMake(25.f, 0, UI_SCREEN_WIDTH - 50.f, 50.f)];
+    self.m_TitleTextField             = [[UITextField alloc] initWithFrame:CGRectMake(25.f, 0, UI_SCREEN_WIDTH - 100.f, 50.f)];
     self.m_TitleTextField.font        = [UIFont systemFontOfSize:16.f];
     self.m_TitleTextField.textColor   = UI_COLOR_B1;
     self.m_TitleTextField.placeholder = @"添加标题";
+    [self.m_TitleTextField addTarget:self action:@selector(titleTextChange:) forControlEvents:UIControlEventEditingChanged];
     [self.view addSubview:self.m_TitleTextField];
+    
+    self.m_PlaceHolderLab = [[UILabel alloc]initWithFrame:CGRectMake(self.m_TitleTextField.bm_right, 0, 50.f, 50.f)];
+    self.m_PlaceHolderLab.text = @"32个字";
+    self.m_PlaceHolderLab.font = [UIFont systemFontOfSize:12.f];
+    self.m_PlaceHolderLab.textAlignment = NSTextAlignmentRight;
+    self.m_PlaceHolderLab.textColor = UI_COLOR_B1;
+    [self.view addSubview:_m_PlaceHolderLab];
+    
 
-    BMSingleLineView *singleLine = [[BMSingleLineView alloc] initWithFrame:CGRectMake(self.m_TitleTextField.bm_left, self.m_TitleTextField.bm_bottom - 1, self.m_TitleTextField.bm_width, 1) direction:SingleLineDirectionLandscape];
+    BMSingleLineView *singleLine = [[BMSingleLineView alloc] initWithFrame:CGRectMake(self.m_TitleTextField.bm_left, self.m_TitleTextField.bm_bottom - 1, self.m_TitleTextField.bm_width + 50, 1) direction:SingleLineDirectionLandscape];
     singleLine.isDash            = YES;
     singleLine.lineLength        = 3.f;
     singleLine.lineSpacing       = 3.f;
@@ -99,6 +110,41 @@
 }
 
 #pragma mark - Action
+
+- (void)titleTextChange:(UITextField *)sender
+{
+    if (sender != self.m_TitleTextField)
+    {
+        return;
+    }
+    NSString *lang = [[sender textInputMode] primaryLanguage];
+    if ([lang isEqualToString:@"zh-Hans"])
+    {
+        //判断markedTextRange是不是为Nil，如果为Nil的话就说明你现在没有未选中的字符，
+        //可以计算文字长度。否则此时计算出来的字符长度可能不正确
+        UITextRange *selectedRange = [sender markedTextRange];
+        //获取高亮部分(感觉输入中文的时候才有)
+        UITextPosition *position = [sender positionFromPosition:selectedRange.start offset:0];
+        // 没有高亮选择的字，则对已输入的文字进行字数统计和限制
+        if (!position)
+        {
+            if (self.m_TitleTextField.text.length > 32)
+            {
+                self.m_TitleTextField.text = [self.m_TitleTextField.text substringToIndex:32];
+            }
+            self.m_PlaceHolderLab.text = [NSString stringWithFormat:@"%ld个字",32 - self.m_TitleTextField.text.length];
+        }
+    }else{
+        if (self.m_TitleTextField.text.length > 32)
+        {
+            self.m_TitleTextField.text = [self.m_TitleTextField.text substringToIndex:32];
+        }
+        self.m_PlaceHolderLab.text = [NSString stringWithFormat:@"%ld个字",32 - self.m_TitleTextField.text.length];
+    }
+    
+    
+}
+
 // 退出
 - (void)popViewController
 {
