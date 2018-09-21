@@ -42,13 +42,9 @@
 
 -(void)buildBottom
 {
-    UIView *bottomBgView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.bm_height - 48, self.view.bm_width, 48)];
+    UIView *bottomBgView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.bm_height - 48 - UI_HOME_INDICATOR_HEIGHT, self.view.bm_width, 48 + UI_HOME_INDICATOR_HEIGHT)];
     bottomBgView.backgroundColor = UI_COLOR_BL1;
     [self.view addSubview:bottomBgView];
-    if (@available(iOS 11.0, *)) {
-        bottomBgView.bm_height = 48 + self.view.safeAreaInsets.bottom;
-        bottomBgView.bm_top = self.view.bm_height - bottomBgView.bm_height;
-    }
     
     UIButton *bottom = [UIButton bm_buttonWithFrame:CGRectMake(0, 0, self.view.bm_width, 48)
                                               title:@"进入视频"];
