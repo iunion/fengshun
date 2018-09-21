@@ -179,9 +179,6 @@
                     [array addObjectsFromArray:litigantList];
                     weakSelf.m_DetailModel.meetingPersonnelResponseDTO = [NSArray arrayWithArray:array];
                     weakSelf.personView.desLabel.text = [weakSelf.m_DetailModel getMeetingPersonnelNameListWithShowCount:3];
-                    if (weakSelf.changedBlock) {
-                        weakSelf.changedBlock();
-                    }
                 }
             }
         };
@@ -304,15 +301,8 @@
 
 - (void)editAction
 {
-    BMWeakSelf
     FSMakeVideoMediateVC *vc = [FSMakeVideoMediateVC makevideoMediateVCWithModel:FSMakeVideoMediateMode_Edit
-                                                                            data:self.m_DetailModel
-                                                                           block:^(FSMeetingDetailModel *model, BOOL startImmediately) {
-                                                                               weakSelf.m_DetailModel = model;
-                                                                               if (weakSelf.changedBlock) {
-                                                                                   weakSelf.changedBlock();
-                                                                               }
-                                                                           }];
+                                                                            data:self.m_DetailModel];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -333,9 +323,6 @@
             [array addObjectsFromArray:litigantList];
             weakSelf.m_DetailModel.meetingPersonnelResponseDTO = [NSArray arrayWithArray:array];
             weakSelf.personView.desLabel.text = [weakSelf.m_DetailModel getMeetingPersonnelNameListWithShowCount:3];
-            if (weakSelf.changedBlock) {
-                weakSelf.changedBlock();
-            }
         }
     };
     [self.navigationController pushViewController:vc animated:YES];
@@ -343,14 +330,8 @@
 
 - (void)resendAction
 {
-    BMWeakSelf
     FSMakeVideoMediateVC *vc = [FSMakeVideoMediateVC makevideoMediateVCWithModel:FSMakeVideoMediateMode_ReSend
-                                                                            data:self.m_DetailModel
-                                                                           block:^(FSMeetingDetailModel *model, BOOL startImmediately) {
-                                                                               if (weakSelf.changedBlock) {
-                                                                                   weakSelf.changedBlock();
-                                                                               }
-                                                                           }];
+                                                                            data:self.m_DetailModel];
     [self.navigationController pushViewController:vc animated:YES];    
 }
 
@@ -397,10 +378,8 @@
         if (statusCode == 1000)
         {
             [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:@"删除成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            [[NSNotificationCenter defaultCenter] postNotificationName:FSVideoMediateChangedNotification object:nil userInfo:nil];
             [weakSelf.navigationController popViewControllerAnimated:YES];
-            if (weakSelf.changedBlock) {
-                weakSelf.changedBlock();
-            }
             return;
         }
     }];
@@ -417,9 +396,7 @@
             self.statusLabel.text = [FSMeetingDataEnum meetingStatusEnglishToChinese:_m_DetailModel.meetingStatus];
             [self.m_ProgressHUD hideAnimated:NO];
             [self joinRoom];
-            if (self.changedBlock) {
-                self.changedBlock();
-            }
+            [[NSNotificationCenter defaultCenter] postNotificationName:FSVideoMediateChangedNotification object:nil userInfo:nil];
         }
     }];
 }
@@ -439,9 +416,6 @@
                 [weakSelf.m_ProgressHUD showAnimated:YES withText:@"视频已结束" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
                 weakSelf.m_DetailModel.meetingStatus = [FSMeetingDataEnum meetingStatusEndEnglish];
                 weakSelf.statusLabel.text = [FSMeetingDataEnum meetingStatusEnglishToChinese:_m_DetailModel.meetingStatus];
-                if (weakSelf.changedBlock) {
-                    weakSelf.changedBlock();
-                }
             };
             vc.inviteBlock = ^(NSArray *litigantList) {
                 if (litigantList.count) {
@@ -450,12 +424,10 @@
                         [array addObjectsFromArray:litigantList];
                         weakSelf.m_DetailModel.meetingPersonnelResponseDTO = [NSArray arrayWithArray:array];
                         weakSelf.personView.desLabel.text = [weakSelf.m_DetailModel getMeetingPersonnelNameListWithShowCount:3];
-                        if (weakSelf.changedBlock) {
-                            weakSelf.changedBlock();
-                        }
                     }
                 }
             };
+            [[NSNotificationCenter defaultCenter] postNotificationName:FSMakeVideoMediateSuccessNotification object:nil userInfo:nil];
             BMNavigationController *nav = [[BMNavigationController alloc] initWithRootViewController:vc];
             [weakSelf presentViewController:nav animated:YES completion:nil];
         }

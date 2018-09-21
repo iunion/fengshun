@@ -11,7 +11,6 @@
 #import "FSVideoMediateListCell.h"
 #import "FSMakeVideoMediateVC.h"
 #import "FSVideoMediateDetailVC.h"
-#import "FSMeetingDataEnum.h"
 
 @interface FSVideoMediateListVC ()
 {
@@ -22,9 +21,16 @@
 @property (nonatomic, strong) NSString *meetingStatusEnums;
 @property (nonatomic, strong) FSHeaderCommonSelectorView *headSelector;
 @property (nonatomic, strong) UIView *BottomBgView;
+
+
 @end
 
 @implementation FSVideoMediateListVC
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (void)viewDidLoad
 {
@@ -45,6 +51,9 @@
     } else {
         [self showEmptyViewWithType:[self getNoDataEmptyViewType] customImageName:[self getNoDataEmptyViewCustomImageName] customMessage:[self getNoDataEmptyViewCustomMessage] customView:[self getNoDataEmptyViewCustomView]];
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadApiData) name:FSMakeVideoMediateSuccessNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadApiData) name:FSVideoMediateChangedNotification object:nil];
 }
 
 -(void)buildUI
@@ -113,23 +122,7 @@
 
 - (void)makeVideoMediate
 {
-    BMWeakSelf
-    FSMakeVideoMediateVC *vc = [FSMakeVideoMediateVC makevideoMediateVCWithModel:FSMakeVideoMediateMode_Create
-                                                                            data:nil
-                                                                           block:nil];
-    vc.successBlock = ^(FSMeetingDetailModel *model, BOOL startImmediately) {
-        [weakSelf loadApiData];
-        if (startImmediately) {
-            // 立即开始 进入详情页面
-            FSVideoMediateDetailVC *vc = [FSVideoMediateDetailVC new];
-            vc.m_MeetingId = model.meetingId;
-            vc.changedBlock = ^{
-                [weakSelf loadApiData];
-            };
-            [weakSelf.navigationController pushViewController:vc animated:YES];
-        }
-    };
-    
+    FSMakeVideoMediateVC *vc = [FSMakeVideoMediateVC makevideoMediateVCWithModel:FSMakeVideoMediateMode_Create data:nil];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

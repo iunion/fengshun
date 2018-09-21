@@ -26,7 +26,7 @@
     NSMutableURLRequest *request = [FSApiRequest startMeetingWithId:meetingId];
     if (request)
     {
-        [hud showAnimated:YES showBackground:YES];
+        [hud showAnimated:YES showBackground:NO];
         NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
             if (error)
             {
@@ -72,7 +72,7 @@
     NSMutableURLRequest *request = [FSApiRequest endMeetingWithId:meetingId];
     if (request)
     {
-        [hud showAnimated:YES showBackground:YES];
+        [hud showAnimated:YES showBackground:NO];
         NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
             if (error)
             {
@@ -118,7 +118,7 @@
     NSMutableURLRequest *request = [FSApiRequest deleteMeetingWithId:meetingId];
     if (request)
     {
-        [hud showAnimated:YES showBackground:YES];
+        [hud showAnimated:YES showBackground:NO];
         NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
             
             if (error)
@@ -166,7 +166,7 @@
     NSMutableURLRequest *request = [FSApiRequest getJoinMeetingToken:inviteCode inviteName:name];
     if (request)
     {
-        [hud showAnimated:YES showBackground:YES];
+        [hud showAnimated:YES showBackground:NO];
         NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
             
             if (error)

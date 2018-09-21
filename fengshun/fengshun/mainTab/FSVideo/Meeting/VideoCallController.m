@@ -207,6 +207,8 @@ VideoCallVideoViewDelegate>
             if (weakSelf.endMeetingBlock) {
                 weakSelf.endMeetingBlock();
             }
+            [[NSNotificationCenter defaultCenter] postNotificationName:FSVideoMediateChangedNotification object:nil userInfo:nil];
+
             [weakSelf dismissViewControllerAnimated:YES completion:nil];
             return;
         }

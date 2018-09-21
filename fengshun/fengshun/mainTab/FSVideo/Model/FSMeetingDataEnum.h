@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#define FSMakeVideoMediateSuccessNotification               @"FSMakeVideoMediateSuccessNotification"
+#define FSVideoMediateChangedNotification                   @"FSVideoMediateChangedNotification"
+
 #define FSMEETING_PERSON_MAX_COUNT 8
 
 // 视频会议相关的枚举类型数据

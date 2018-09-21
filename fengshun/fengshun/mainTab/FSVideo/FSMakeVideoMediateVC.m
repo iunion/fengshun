@@ -12,6 +12,9 @@
 #import "FSVideoInviteLitigantVC.h"
 #import "FSVideoMediateDetailVC.h"
 #import "FSVideoMediateListVC.h"
+#import "VideoCallController.h"
+#import "FSMeetingDataEnum.h"
+#import "FSVideoStartTool.h"
 
 #define FS_VIDEOPAGE_TEXTFONT UI_FONT_16
 
@@ -36,13 +39,14 @@
 @property (nonatomic, assign) BOOL m_IsStartImmediately;
 @property (nonatomic, strong) NSMutableArray *m_AttendedList; // 参与人员列表
 
+@property (nonatomic, strong) FSMeetingDetailModel *m_DetailModel;
+
 @end
 
 @implementation FSMakeVideoMediateVC
 
 + (instancetype)makevideoMediateVCWithModel:(FSMakeVideoMediateMode)mode
                                        data:(FSMeetingDetailModel *)data
-                                      block:(makeVideoMediateSuccessBlock)block
 {
     FSMakeVideoMediateVC *vc = [FSMakeVideoMediateVC new];
     vc.makeMode = mode;
@@ -99,7 +103,6 @@
         }
     }
 
-    vc.successBlock = block;
     return vc;
 }
 
@@ -515,7 +518,7 @@
     }
     if (request)
     {
-        [self.m_ProgressHUD showAnimated:YES showBackground:YES];
+        [self.m_ProgressHUD showAnimated:YES showBackground:NO];
         NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
             if (error)
             {
@@ -559,19 +562,16 @@
                 [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:@"提交成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             }
             
-            if (self.m_IsStartImmediately)
-            {
-                [self.navigationController popViewControllerAnimated:NO];
-            }
-            else
-            {
-                [self.navigationController popViewControllerAnimated:YES];
+            [[NSNotificationCenter defaultCenter] postNotificationName:FSMakeVideoMediateSuccessNotification object:nil userInfo:nil];
+
+            if (_m_IsStartImmediately) {
+                self.m_DetailModel = mode;
+                self.view.userInteractionEnabled = NO;
+                [self startMeeting];
+            } else {
+                [self backToVideoMediateList];
             }
             
-            if (self.successBlock) {
-                self.successBlock(mode,_m_IsStartImmediately);
-            }
-
             return;
         }
     }
@@ -580,6 +580,114 @@
     [self.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
 }
 
+- (void)backToVideoMediateList
+{
+    [self.m_ProgressHUD hideAnimated:NO];
+    NSArray *listVC = [self.navigationController.viewControllers subarrayWithRange:NSMakeRange(0, 2)];
+    [self.navigationController setViewControllers:listVC animated:YES];
+}
+
+#pragma mark -
+#pragma mark  直接进入会议
+
+- (void)startMeeting
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSMutableURLRequest *request = [FSApiRequest startMeetingWithId:self.m_DetailModel.meetingId];
+    if (request)
+    {
+        [self.m_ProgressHUD showAnimated:YES showBackground:NO];
+        NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+            if (error)
+            {
+                [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                [self backToVideoMediateList];
+            }
+            else
+            {
+#if DEBUG
+                NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
+                BMLog(@"%@ %@", response, responseStr);
+#endif
+                NSDictionary *resDic = responseObject;
+                if (![resDic bm_isNotEmptyDictionary])
+                {
+                    [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                    [self backToVideoMediateList];
+
+                    return;
+                }
+                
+                NSInteger statusCode = [resDic bm_intForKey:@"code"];
+                if (statusCode == 1000)
+                {
+                    [self joinRoom];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:FSVideoMediateChangedNotification object:nil userInfo:nil];
+                    return;
+                }
+                
+                NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
+                [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                [self backToVideoMediateList];
+            }
+        }];
+        [task resume];
+    }
+}
+
+- (void)joinRoom
+{
+    FSMeetingPersonnelModel *model = [_m_DetailModel getMeetingMediator];
+    BMWeakSelf
+    {
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        NSMutableURLRequest *request = [FSApiRequest getJoinMeetingToken:model.inviteCode inviteName:model.userName];
+        if (request)
+        {
+            [self.m_ProgressHUD showAnimated:YES showBackground:NO];
+            NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+                if (error)
+                {
+                    [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                    [self backToVideoMediateList];
+                }
+                else
+                {
+#if DEBUG
+                    NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
+                    BMLog(@"%@ %@", response, responseStr);
+#endif
+                    NSDictionary *resDic = responseObject;
+                    if (![resDic bm_isNotEmptyDictionary])
+                    {
+                        [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                        [self backToVideoMediateList];
+                        
+                        return;
+                    }
+                    
+
+                    NSInteger statusCode = [resDic bm_intForKey:@"code"];
+                    if (statusCode == 1000)
+                    {
+                        NSDictionary *data = [resDic bm_dictionaryForKey:@"data"];
+                        VideoCallController *vc = [VideoCallController VCWithRoomId:_m_DetailModel.roomId meetingId:_m_DetailModel.meetingId token:data[@"token"]];
+                        BMNavigationController *nav = [[BMNavigationController alloc] initWithRootViewController:vc];
+                        [weakSelf presentViewController:nav animated:YES completion:nil];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:FSVideoMediateChangedNotification object:nil userInfo:nil];
+                        [self backToVideoMediateList];
+                        return;
+                    }
+                    
+                    NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
+                    [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                    [self backToVideoMediateList];
+                }
+            }];
+            [task resume];
+        }
+    }
+}
 
 #pragma mark - 屏幕触摸事件
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
