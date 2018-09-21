@@ -41,6 +41,11 @@ FSCommunitySecVC ()
 
 @implementation FSCommunitySecVC
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:userInfoChangedNotification object:nil];
+}
+
 - (instancetype)initWithFourmId:(NSInteger)fourmId
 {
     if (self = [super init])
@@ -64,6 +69,9 @@ FSCommunitySecVC ()
     [self createUI];
     [self loadApiData];
     [self getHeaderInfoMsg];
+    
+    // 登录状态改变刷新数据
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getHeaderInfoMsg) name:userInfoChangedNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -165,6 +173,11 @@ FSCommunitySecVC ()
 
 - (void)followForumAction:(FSCommunityHeaderView *)aView
 {
+    if (![FSUserInfoModle isLogin])
+    {
+        [self showLogin];
+        return ;
+    }
     FSForumFollowState state = self.m_ForumModel.m_AttentionFlag;
     [FSApiRequest updateFourmAttentionStateWithFourmId:self.m_ForumModel.m_Id followStatus:!state success:^(id  _Nullable responseObject) {
         if (self.m_AttentionChangeBlock) {

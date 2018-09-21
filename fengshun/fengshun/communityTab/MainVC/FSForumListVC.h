@@ -8,6 +8,9 @@
 
 #import "FSTableViewVC.h"
 
+
 @interface FSForumListVC : FSTableViewVC
+
+@property (nonatomic, copy) void (^m_ShowLoginBlock)(void);
 
 @end
