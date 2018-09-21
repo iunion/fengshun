@@ -281,17 +281,16 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
     {
         window = [UIApplication sharedApplication].keyWindow;
     }
-    if (IS_IPHONEX || IS_IPHONEXP)
+    
+    if (window)
     {
         return window.bounds;
     }
-    else
-    {
-        if ([[window subviews] count] > 0)
-        {
-            return [[[window subviews] objectAtIndex:0] bounds];
-        }
-    }
+//    if ([[window subviews] count] > 0)
+//    {
+//        return [[[window subviews] objectAtIndex:0] bounds];
+//    }
+
     return [[self windowWithLevel:UIWindowLevelNormal] bounds];
 }
 
