@@ -139,6 +139,7 @@
                 //NSString *downString = APPSTORE_DOWNLOADAPP_ADDRESS;
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:downString]];
             }];
+            alertView.showClose = NO;
             alertView.notDismissOnCancel = YES;
 
             return YES;
