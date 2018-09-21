@@ -15,6 +15,7 @@
 #import "PublicTextChatViewController.h"
 #import "FSVideoInviteLitigantVC.h"
 #import "FSVideoStartTool.h"
+#import "FSMeetingDataEnum.h"
 
 @interface VideoCallController ()
 <SocketHelperDelegate,
@@ -279,7 +280,7 @@ VideoCallVideoViewDelegate>
 
     [[SocketHelper shareHelper] sendAudioEventWithUserId:model.memberId enable:!model.memberVoiceStatus];
     model.memberVoiceStatus = !model.memberVoiceStatus;
-    if ([model.memberType isEqualToString:@"MEDIATOR"]) {
+    if ([FSMeetingDataEnum isMediatorIdentity:model.memberType]) {
         // 关闭自己的麦克风
         BOOL curMicState = [[ILiveRoomManager getInstance] getCurMicState];
         if (curMicState != model.memberVoiceStatus) {
@@ -303,7 +304,7 @@ VideoCallVideoViewDelegate>
 - (void)videoControlWithModel:(VideoCallMemberModel *)model {
     [[SocketHelper shareHelper] sendVideoEventWithUserId:model.memberId enable:!model.memberVoiceStatus];
     model.memberVideoStatus = !model.memberVideoStatus;
-    if ([model.memberType isEqualToString:@"MEDIATOR"]) {
+    if ([FSMeetingDataEnum isMediatorIdentity:model.memberType]) {
         // 关闭自己视屏
         BOOL curCameraState = [[ILiveRoomManager getInstance] getCurCameraState];
         if (curCameraState != model.memberVideoStatus) {
@@ -339,13 +340,9 @@ VideoCallVideoViewDelegate>
         vcbb.delegate = self;
         [self.view addSubview:vcbb];
         [vcbb mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.height.offset(49);
             make.left.right.equalTo(self.view);
-            if (@available(iOS 11.0, *)) {
-                make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
-            } else {
-                make.bottom.equalTo(self.view);
-            }
+            make.height.offset(49);
+            make.bottom.equalTo(self.view);
         }];
         vcbb;
     });
@@ -383,6 +380,16 @@ VideoCallVideoViewDelegate>
     });
     
 }
+
+- (void)viewSafeAreaInsetsDidChange
+{
+    [super viewSafeAreaInsetsDidChange];
+    
+    [_bottomBar  mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.offset(49 + self.view.safeAreaInsets.bottom);
+    }];
+}
+
 
 @end
 

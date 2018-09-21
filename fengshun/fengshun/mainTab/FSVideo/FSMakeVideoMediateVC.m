@@ -17,6 +17,8 @@
 
 @interface FSMakeVideoMediateVC ()
 
+@property (nonatomic, strong) UIView *BottomBgView;
+
 @property (nonatomic, strong) BMTableViewSection *m_MainSection;
 @property (nonatomic, strong) BMTextItem *m_TitleItem;
 @property (nonatomic, strong) BMTableViewItem *m_TypeItem;
@@ -126,15 +128,19 @@
 
 -(void)buildUI
 {
-    UIButton *bottom = [UIButton bm_buttonWithFrame:CGRectMake(0, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - 48, self.view.bm_width, 48)
+    self.BottomBgView = [[UIView alloc] initWithFrame:CGRectMake(0, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - 48, self.view.bm_width, 48)];
+    self.BottomBgView.backgroundColor = UI_COLOR_BL1;
+    [self.view addSubview:self.BottomBgView];
+
+    UIButton *bottom = [UIButton bm_buttonWithFrame:CGRectMake(0, 0, self.view.bm_width, 48)
                                               title:@"确定"];
     bottom.backgroundColor = UI_COLOR_BL1;
     bottom.titleLabel.font = UI_FONT_17;
     [bottom setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [bottom addTarget:self action:@selector(bottomButtonClickAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:bottom];
+    [self.BottomBgView addSubview:bottom];
     
-    self.m_TableView.frame = CGRectMake(0, 0, self.view.bm_width, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - 48);
+    self.m_TableView.frame = CGRectMake(0, 0, self.view.bm_width, self.BottomBgView.bm_top);
     
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.m_TableView.bm_width, 24+44)];
     UIButton *btn = [UIButton bm_buttonWithFrame:CGRectMake(0, 0, self.m_TableView.bm_width, 44)];
@@ -159,7 +165,6 @@
 {
     [super interfaceSettings];
     
-    //self[@"FSMeetingPersonnelItem"] = @"FSVideoMediatePersonalCell";
     [self.m_TableManager registerClass:@"FSMeetingPersonnelItem" forCellWithReuseIdentifier:@"FSVideoMediatePersonalCell"];
     
     self.m_MainSection = [BMTableViewSection section];
@@ -184,7 +189,7 @@
 
     self.m_TypeItem = [BMTableViewItem itemWithTitle:@"类型" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:nil selectionHandler:^(BMTableViewItem * _Nonnull item) {
         // 选择类型
-        FSVideoMediateSheetVC *sheetVC = [[FSVideoMediateSheetVC alloc] initWithTitleArray:[FSMeetingDataForm getMeetingDataAllValuesWithType:FSMeetingDataType_MeetingType]];
+        FSVideoMediateSheetVC *sheetVC = [[FSVideoMediateSheetVC alloc] initWithTitleArray:[FSMeetingDataEnum meetingTypeChineseArrayContainAll:NO]];
         sheetVC.modalPresentationStyle = UIModalPresentationCustom;
         sheetVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         [weakSelf presentViewController:sheetVC animated:YES completion:nil];
@@ -192,7 +197,7 @@
         sheetVC.m_ActionSheetDoneBlock = ^(NSInteger index, NSString *title) {
             BMImageTextView *accessoryView = (BMImageTextView *)weakSelf.m_TypeItem.accessoryView;
             accessoryView.text = title;
-            weakSelf.m_CreateModel.meetingType = [FSMeetingDataForm getKeyForVlaue:title type:FSMeetingDataType_MeetingType];
+            weakSelf.m_CreateModel.meetingType = [FSMeetingDataEnum meetingTypeChineseToEnglish:title];
         };
     }];
     self.m_TypeItem.textColor = UI_COLOR_B1;
@@ -259,6 +264,14 @@
     self.m_ChooseTimeItem.onChange = ^(BMDateTimeItem * _Nonnull item) {
         weakSelf.m_CreateModel.startTime = [item.pickerDate timeIntervalSince1970] * 1000;
     };
+    self.m_ChooseTimeItem.actionBarDoneButtonTapHandler = ^(BMDateTimeItem * _Nonnull item) {
+        if (weakSelf.m_CreateModel.startTime == 0) {
+            if (item.pickerDate == nil) {
+                item.pickerDate = [NSDate date];
+            }
+            weakSelf.m_CreateModel.startTime = [item.pickerDate timeIntervalSince1970] * 1000;
+        }
+    };
 
     NSArray *timeArray = @[@"1小时", @"1.5小时", @"2小时", @"2.5小时", @"3小时", @"3.5小时", @"4小时"];
     self.m_TimeLengthItem = [BMPickerItem itemWithTitle:@"时长" placeholder:@"请选择" components:@[timeArray]];
@@ -323,7 +336,7 @@
         self.m_TitleItem.value = self.m_CreateModel.meetingName;
         
         BMImageTextView *accessoryView = (BMImageTextView *)self.m_TypeItem.accessoryView;
-        accessoryView.text = [FSMeetingDataForm getValueForKey:self.m_CreateModel.meetingType type:FSMeetingDataType_MeetingType];
+        accessoryView.text = [FSMeetingDataEnum meetingTypeEnglishToChinese:self.m_CreateModel.meetingType];
 
 
         if (self.makeMode == FSMakeVideoMediateMode_Edit) {
@@ -343,7 +356,7 @@
     }
     else
     {
-        self.m_CreateModel.meetingType = @"MEETING_MEDIATE";
+        self.m_CreateModel.meetingType = [FSMeetingDataEnum meetingTypeMediateEnglish];
         self.m_CreateModel.orderHour = @"1";
         NSString *value = [NSString stringWithFormat:@"%@小时", self.m_CreateModel.orderHour];
         self.m_TimeLengthItem.values = @[value];
@@ -558,6 +571,16 @@
     if (scrollView.tracking) {
         [self.view endEditing:YES];
     }
+}
+
+
+- (void)viewSafeAreaInsetsDidChange
+{
+    [super viewSafeAreaInsetsDidChange];
+    
+    self.BottomBgView.bm_height = 48 + self.view.safeAreaInsets.bottom;
+    self.BottomBgView.bm_bottom = self.view.bm_bottom;
+    self.m_TableView.frame = CGRectMake(0, 0, self.view.bm_width, self.BottomBgView.bm_top);
 }
 
 @end

@@ -64,7 +64,7 @@
     
     [self bm_setNavigationWithTitle:@"" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_close_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
 
-    if (IS_IPHONE6P)
+    if (IS_IPHONE6P || IS_IPHONEXP)
     {
         self.m_TableView.bm_left = 40.0f;
         self.m_TableView.bm_width = UI_SCREEN_WIDTH-80.0f;
@@ -197,7 +197,7 @@
     footerView.backgroundColor = [UIColor clearColor];
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     CGRect frame;
-    if (IS_IPHONE6P)
+    if (IS_IPHONE6P || IS_IPHONEXP)
     {
         frame = CGRectMake(0, 0, self.m_TableView.bm_width-60.0f, 44);
     }

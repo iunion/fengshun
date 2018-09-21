@@ -163,8 +163,15 @@ FSMainVC ()
         // 视频调解
         case FSHomePageTooltype_VideoMediation:
         {
-            [self isLogined];
-            [FSPushVCManager pushVideoMediateList:self.navigationController];
+            if ([FSUserInfoModle isLogin])
+            {
+                 [FSPushVCManager pushVideoMediateList:self.navigationController];
+            }
+            else
+            {
+                [self showLogin];
+            }
+          
         }
             break;
 #endif
@@ -189,8 +196,15 @@ FSMainVC ()
         // 文书扫描
         case FSHomePageTooltype_FileScanning:
         {
-             [self isLogined];
-            [FSPushVCManager homePagePushToFileScanVC:self];
+            if ([FSUserInfoModle isLogin])
+            {
+                [FSPushVCManager homePagePushToFileScanVC:self];
+            }
+            else
+            {
+                [self showLogin];
+            }
+           
         }
             break;
         //计算器
@@ -434,12 +448,4 @@ FSMainVC ()
     }
 }
 
--(void)isLogined
-{
-    if (![FSUserInfoModle isLogin])
-    {
-        [self showLogin];
-        return;
-    }
-}
 @end

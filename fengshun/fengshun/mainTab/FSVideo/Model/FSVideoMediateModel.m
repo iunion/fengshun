@@ -9,180 +9,6 @@
 #import "FSVideoMediateModel.h"
 #import "FSUserInfoModle.h"
 
-
-static NSDictionary *FSMeetingSimpleTypeDic;
-static NSDictionary *FSMeetingSimpleStatusDic;
-static NSDictionary *FSMeetingAllTypeDic;
-static NSDictionary *FSMeetingAllStatusDic;
-static NSDictionary *FSMeetingPersonIdentityTypeDic;
-
-@implementation FSMeetingDataForm
-
-+ (NSDictionary *)getMeetingDataDicWithType:(FSMeetingDataType)type
-{
-    switch (type) {
-        case FSMeetingDataType_MeetingType:
-            return [self sharedMeetingSimpleTypeDic];
-            break;
-            
-        case FSMeetingDataType_AllMeetingType:
-            return [self sharedMeetingAllTypeDic];
-            break;
-            
-        case FSMeetingDataType_MeetingStatus:
-            return [self sharedMeetingSimpleStatusDic];
-            break;
-            
-        case FSMeetingDataType_AllMeetingStatus:
-            return [self sharedMeetingAllStatusDic];
-            break;
-            
-        case FSMeetingDataType_PersonIdentityType:
-            return [self sharedMeetingPersonIdentityTypeDic];
-            break;
-    }
-    
-    return nil;
-}
-
-+ (NSArray *)getMeetingDataAllValuesWithType:(FSMeetingDataType)type
-{
-    switch (type) {
-        case FSMeetingDataType_MeetingType:
-            return @[@"调解", @"调查"];
-            break;
-            
-        case FSMeetingDataType_AllMeetingType:
-            return @[@"全部", @"调解", @"调查"];
-            break;
-            
-        case FSMeetingDataType_MeetingStatus:
-            return @[@"未开始", @"进行中", @"已结束"];
-            break;
-            
-        case FSMeetingDataType_AllMeetingStatus:
-            return @[@"全部", @"未开始", @"进行中", @"已结束"];
-            break;
-            
-        case FSMeetingDataType_PersonIdentityType:
-            return @[@"申请人", @"被申请人", @"申请人一般代理人", @"被申请人一般代理人", @"申请人特别授权代理人", @"被申请人特别授权代理人"];
-            break;
-    }
-    
-    return nil;
-}
-
-+ (NSString *)getValueForKey:(NSString *)key type:(FSMeetingDataType)type
-{
-    NSDictionary *dic = [self getMeetingDataDicWithType:type];
-    return [dic valueForKey:key];
-}
-
-+ (NSString *)getKeyForVlaue:(NSString *)value type:(FSMeetingDataType)type
-{
-    NSDictionary *dic = [self getMeetingDataDicWithType:type];
-
-    for (NSString *key in [dic allKeys]) {
-        if ([[dic valueForKey:key] isEqualToString:value]) {
-            return key;
-        }
-    }
-    
-    return nil;
-}
-
-+ (NSArray *)formMeetingDataToModelWithType:(FSMeetingDataType)type
-{
-    NSMutableArray *temp = [NSMutableArray array];
-    NSArray *allVlaues = [self getMeetingDataAllValuesWithType:type];
-    for (NSString *value in allVlaues) {
-        NSString *key = [self getKeyForVlaue:value type:type];
-        FSSelectorListModel *model = [FSSelectorListModel modelWithName:value key:key];
-        [temp addObject:model];
-    }
-    
-    return [NSArray arrayWithArray:temp];
-}
-
-+ (NSDictionary *)sharedMeetingSimpleTypeDic
-{
-    static dispatch_once_t oneToken;
-    
-    dispatch_once(&oneToken, ^{
-        FSMeetingSimpleTypeDic = @{@"MEETING_MEDIATE":@"调解",
-                                   @"MEETING_SURVEY":@"调查",
-                                   };
-    });
-    
-    return FSMeetingSimpleTypeDic;
-}
-
-+(NSDictionary *)sharedMeetingAllTypeDic
-{
-    static dispatch_once_t oneToken;
-    
-    dispatch_once(&oneToken, ^{
-        FSMeetingAllTypeDic = @{@"MEETING_TYPE_OR":@"全部",
-                                @"MEETING_MEDIATE":@"调解",
-                                @"MEETING_SURVEY":@"调查",
-                                };
-    });
-    
-    return FSMeetingAllTypeDic;
-}
-
-+(NSDictionary *)sharedMeetingSimpleStatusDic
-{
-    static dispatch_once_t oneToken;
-    
-    dispatch_once(&oneToken, ^{
-        FSMeetingSimpleStatusDic = @{@"MEETING_NOT_START":@"未开始",
-                                     @"MEETING_UNDERWAY":@"进行中",
-                                     @"MEETING_END":@"已结束",
-                                     };
-    });
-    
-    return FSMeetingSimpleStatusDic;
-}
-
-+(NSDictionary *)sharedMeetingAllStatusDic
-{
-    static dispatch_once_t oneToken;
-    
-    dispatch_once(&oneToken, ^{
-        FSMeetingAllStatusDic = @{@"MEETING_STATUS_OR":@"全部",
-                                  @"MEETING_NOT_START":@"未开始",
-                                  @"MEETING_UNDERWAY":@"进行中",
-                                  @"MEETING_END":@"已结束",
-                                  };
-    });
-    
-    return FSMeetingAllStatusDic;
-}
-
-+(NSDictionary *)sharedMeetingPersonIdentityTypeDic
-{
-    static dispatch_once_t oneToken;
-    
-    dispatch_once(&oneToken, ^{
-        
-        FSMeetingPersonIdentityTypeDic = @{@"APPLICAT":@"申请人",
-                                           @"RESPONDENT":@"被申请人",
-                                           @"APPLICAT_GENERAL_AGENT":@"申请人一般代理人",
-                                           @"APPLICAT_ESPECIALLY_IMPOWER_AGENTAPPLICAT":@"申请人特别授权代理人",
-                                           @"RESPONDENT_GENERAL_AGENT":@"被申请人一般代理人",
-                                           @"RESPONDENT_ESPECIALLY_IMPOWER_AGENT":@"被申请人特别授权代理人",
-                                           @"MEDIATOR":@"调解员",
-                                           };
-        
-    });
-
-    return FSMeetingPersonIdentityTypeDic;
-}
-
-@end
-
-
 @implementation FSMeetingPersonnelModel
 
 + (instancetype)modelWithParams:(NSDictionary *)params
@@ -204,7 +30,7 @@ static NSDictionary *FSMeetingPersonIdentityTypeDic;
     model.personnelId = [user.m_UserBaseInfo.m_UserId integerValue];
     model.mobilePhone = user.m_UserBaseInfo.m_PhoneNum;
     model.userName = user.m_UserBaseInfo.m_RealName;
-    model.meetingIdentityTypeEnums = @"MEDIATOR";
+    model.meetingIdentityTypeEnums = [FSMeetingDataEnum meetingMediatorEnglish];
 
     return model;
 }
@@ -225,7 +51,7 @@ static NSDictionary *FSMeetingPersonIdentityTypeDic;
 
 - (BOOL)isMediatorPerson
 {
-    return [self.meetingIdentityTypeEnums isEqualToString:@"MEDIATOR"];
+    return [FSMeetingDataEnum isMediatorIdentity:self.meetingIdentityTypeEnums];
 }
 
 @end
@@ -317,51 +143,6 @@ static NSDictionary *FSMeetingPersonIdentityTypeDic;
     }
 
     return nil;
-}
-
-@end
-
-
-@implementation FSHeaderCommonSelectorModel
-
-+ (instancetype)modelWithTitle:(NSString *)title hiddenkey:(NSString *)key list:(NSArray *)list
-{
-    return [[FSHeaderCommonSelectorModel alloc] initWithTitle:title hiddenkey:key list:list];
-}
-
-- (instancetype)initWithTitle:(NSString *)title hiddenkey:(NSString *)key list:(NSArray *)list
-{
-    self = [super init];
-    
-    if (self) {
-        _title = title;
-        _hiddenkey = key;
-        _list = list;
-    }
-    
-    return self;
-}
-
-@end
-
-
-@implementation FSSelectorListModel
-
-+ (instancetype)modelWithName:(NSString *)name key:(NSString *)key
-{
-    return [[FSSelectorListModel alloc] initWithName:name key:key];
-}
-
-- (instancetype)initWithName:(NSString *)name key:(NSString *)key
-{
-    self = [super init];
-    
-    if (self) {
-        _showName = name;
-        _hiddenkey = key;
-    }
-    
-    return self;
 }
 
 @end

@@ -32,7 +32,7 @@
 - (void)viewDidLoad {
     _m_FreshViewType = BMFreshViewType_NONE;
     [super viewDidLoad];
-    self.m_showEmptyView = NO;
+
     [self bm_setNavigationWithTitle:@"视频详情" barTintColor:[UIColor whiteColor] leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
     
     [self loadApiData];
@@ -40,16 +40,24 @@
 
 -(void)buildBottom
 {
-    UIButton *bottom = [UIButton bm_buttonWithFrame:CGRectMake(0, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - 48, self.view.bm_width, 48)
+    UIView *bottomBgView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.bm_height - 48, self.view.bm_width, 48)];
+    bottomBgView.backgroundColor = UI_COLOR_BL1;
+    [self.view addSubview:bottomBgView];
+    if (@available(iOS 11.0, *)) {
+        bottomBgView.bm_height = 48 + self.view.safeAreaInsets.bottom;
+        bottomBgView.bm_top = self.view.bm_height - bottomBgView.bm_height;
+    }
+    
+    UIButton *bottom = [UIButton bm_buttonWithFrame:CGRectMake(0, 0, self.view.bm_width, 48)
                                               title:@"进入视频"];
     bottom.backgroundColor = UI_COLOR_BL1;
     bottom.titleLabel.font = UI_FONT_17;
     [bottom setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [bottom addTarget:self action:@selector(bottomButtonClickAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:bottom];
+    [bottomBgView addSubview:bottom];
     self.bottomBtn = bottom;
     
-    self.m_TableView.frame = CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - 48);
+    self.m_TableView.frame = CGRectMake(0, 0, self.view.bm_width, bottomBgView.bm_top);
 }
 
 - (NSMutableURLRequest *)setLoadDataRequest
@@ -61,6 +69,8 @@
 {
     if ([data bm_isNotEmptyDictionary])
     {
+        self.m_showEmptyView = NO;
+
         if (self.bottomBtn == nil) {
             [self buildBottom];
         }
@@ -111,7 +121,7 @@
     status.font = UI_FONT_16;
     status.textColor = UI_COLOR_B4;
     status.backgroundColor = [UIColor bm_colorWithHex:0xF0F0F0];
-    status.text = [FSMeetingDataForm getValueForKey:model.meetingStatus type:FSMeetingDataType_AllMeetingStatus];
+    status.text = [FSMeetingDataEnum meetingStatusEnglishToChinese:model.meetingStatus];
     [status bm_roundedRect:15];
     self.statusLabel = status;
     FSEditVideoMediateCustomerView *statusView = [[FSEditVideoMediateCustomerView alloc] initWithFrame:CGRectMake(0, leftlabel.bm_bottom, contenView.bm_width, 0)];
@@ -131,7 +141,7 @@
     FSEditVideoMediateTextView *typeView = [[FSEditVideoMediateTextView alloc] initWithFrame:CGRectMake(0, nameView.bm_bottom, contenView.bm_width, 0)];
     typeView.titleLabel.text = @"类型";
     typeView.titleLabel.textColor = UI_COLOR_B10;
-    typeView.desLabel.text = [FSMeetingDataForm getValueForKey:model.meetingType type:FSMeetingDataType_AllMeetingType];
+    typeView.desLabel.text = [FSMeetingDataEnum meetingTypeEnglishToChinese:model.meetingType];
     [contenView addSubview:typeView];
     [typeView setEditEnabled:NO];
     
@@ -160,7 +170,7 @@
     self.personView.tapHandle = ^(FSEditVideoMediateBaseView *editView) {
         FSVideoAttendListVC *vc = [FSVideoAttendListVC alloc];
         // 没有结束的会议可以邀请更多人
-        if (![weakSelf.m_DetailModel.meetingStatus isEqualToString:@"MEETING_END"]) {
+        if (![weakSelf.m_DetailModel.meetingStatus isEqualToString:[FSMeetingDataEnum meetingStatusEndEnglish]]) {
             vc.meetingId = weakSelf.m_DetailModel.meetingId;
         }
         vc.m_AttendList = weakSelf.m_DetailModel.meetingPersonnelResponseDTO;
@@ -189,18 +199,18 @@
     [contenView addSubview:content];
     [content setEditEnabled:NO];
     
-    FSEditVideoMediateImageView *shareView = [[FSEditVideoMediateImageView alloc] initWithFrame:CGRectMake(0, content.bm_bottom + 9, contenView.bm_width, 0) imageName:@"video_share"];
-    shareView.titleLabel.text = @"地址";
-    shareView.titleLabel.textColor = UI_COLOR_B10;
-    shareView.desLabel.text = model.meetingInvite;
-    shareView.line.hidden = YES;
-    [shareView setEditEnabled:NO];
-    [contenView addSubview:shareView];
-    shareView.tapHandle = ^(FSEditVideoMediateBaseView *editView) {
-        NSLog(@"分享");
-    };
+//    FSEditVideoMediateImageView *shareView = [[FSEditVideoMediateImageView alloc] initWithFrame:CGRectMake(0, content.bm_bottom + 9, contenView.bm_width, 0) imageName:@"video_share"];
+//    shareView.titleLabel.text = @"地址";
+//    shareView.titleLabel.textColor = UI_COLOR_B10;
+//    shareView.desLabel.text = model.meetingInvite;
+//    shareView.line.hidden = YES;
+//    [shareView setEditEnabled:NO];
+//    [contenView addSubview:shareView];
+//    shareView.tapHandle = ^(FSEditVideoMediateBaseView *editView) {
+//        NSLog(@"分享");
+//    };
 
-    UIView *lastView = [[UIView alloc] initWithFrame:CGRectMake(0, shareView.bm_bottom + 9, UI_SCREEN_WIDTH, 58)];
+    UIView *lastView = [[UIView alloc] initWithFrame:CGRectMake(0, content.bm_bottom + 9, UI_SCREEN_WIDTH, 58)];
     lastView.backgroundColor = [UIColor whiteColor];
     [contenView addSubview:lastView];
     
@@ -240,7 +250,7 @@
 {
     BMWeakSelf
     FSVideoMediateSheetVC *sheetVC;
-    if ([_m_DetailModel.meetingStatus isEqualToString:@"MEETING_NOT_START"])
+    if ([_m_DetailModel.meetingStatus isEqualToString:[FSMeetingDataEnum meetingStatusNoStartEnglish]])
     {
         // 未开始 支持所有操作
         sheetVC = [[FSVideoMediateSheetVC alloc] initWithTitleArray:@[@"添加人员", @"编辑", @"再次发起", @"删除"]];
@@ -259,7 +269,7 @@
             }
         };
     }
-    else if ([_m_DetailModel.meetingStatus isEqualToString:@"MEETING_UNDERWAY"])
+    else if ([_m_DetailModel.meetingStatus isEqualToString:[FSMeetingDataEnum meetingStatusUnderwayEnglish]])
     {
         // 进行中 不能编辑不能删除
         sheetVC = [[FSVideoMediateSheetVC alloc] initWithTitleArray:@[@"添加人员", @"再次发起"]];
@@ -365,11 +375,11 @@
 // 进入视频会议
 - (void)bottomButtonClickAction
 {
-    if ([_m_DetailModel.meetingStatus isEqualToString:@"MEETING_NOT_START"])
+    if ([_m_DetailModel.meetingStatus isEqualToString:[FSMeetingDataEnum meetingStatusNoStartEnglish]])
     {
         [self startMeeting];
     }
-    else if ([_m_DetailModel.meetingStatus isEqualToString:@"MEETING_END"])
+    else if ([_m_DetailModel.meetingStatus isEqualToString:[FSMeetingDataEnum meetingStatusEndEnglish]])
     {
         [self.m_ProgressHUD showAnimated:YES withText:@"视频已结束" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     }
@@ -405,8 +415,8 @@
         NSInteger statusCode = [resDic bm_intForKey:@"code"];
         if (statusCode == 1000)
         {
-            _m_DetailModel.meetingStatus = @"MEETING_UNDERWAY";
-            self.statusLabel.text = [FSMeetingDataForm getValueForKey:_m_DetailModel.meetingStatus type:FSMeetingDataType_AllMeetingStatus];
+            _m_DetailModel.meetingStatus = [FSMeetingDataEnum meetingStatusUnderwayEnglish];
+            self.statusLabel.text = [FSMeetingDataEnum meetingStatusEnglishToChinese:_m_DetailModel.meetingStatus];
             [self.m_ProgressHUD hideAnimated:NO];
             [self joinRoom];
             if (self.changedBlock) {
@@ -429,8 +439,8 @@
             VideoCallController *vc = [VideoCallController VCWithRoomId:_m_DetailModel.roomId meetingId:_m_DetailModel.meetingId token:data[@"token"]];
             vc.endMeetingBlock = ^{
                 [weakSelf.m_ProgressHUD showAnimated:YES withText:@"视频已结束" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-                weakSelf.m_DetailModel.meetingStatus = @"MEETING_END";
-                weakSelf.statusLabel.text = [FSMeetingDataForm getValueForKey:_m_DetailModel.meetingStatus type:FSMeetingDataType_AllMeetingStatus];
+                weakSelf.m_DetailModel.meetingStatus = [FSMeetingDataEnum meetingStatusEndEnglish];
+                weakSelf.statusLabel.text = [FSMeetingDataEnum meetingStatusEnglishToChinese:_m_DetailModel.meetingStatus];
                 if (weakSelf.changedBlock) {
                     weakSelf.changedBlock();
                 }
@@ -469,6 +479,5 @@
     vc.roomId = _m_DetailModel.roomId;
     [self.navigationController pushViewController:vc animated:YES];
 }
-
 
 @end

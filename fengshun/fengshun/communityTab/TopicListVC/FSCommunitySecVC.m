@@ -112,6 +112,11 @@ FSCommunitySecVC ()
 }
 // 发帖
 - (void)pulishTopicAction{
+    if (![FSUserInfoModle isLogin])
+    {
+        [self showLogin];
+        return;
+    }
     if (![FSUserInfoModle userInfo].m_UserBaseInfo.m_IsRealName)
     {
         BMWeakSelf;
@@ -125,7 +130,7 @@ FSCommunitySecVC ()
         }];
         return;
     }
-    [FSPushVCManager showSendPostWithPushVC:self isEdited:NO relatedId:self.m_FourmId callBack:^(id object) {
+    [FSPushVCManager showSendPostWithPushVC:self isEdited:NO relatedId:self.m_FourmId callBack:^ {
         
     }];
 }

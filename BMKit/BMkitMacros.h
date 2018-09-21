@@ -17,6 +17,10 @@
 #define IS_IPHONE6  (CGSizeEqualToSize(CGSizeMake(375.0f, 667.0f), [[UIScreen mainScreen] bounds].size) ? YES : NO)
 #define IS_IPHONE6P (CGSizeEqualToSize(CGSizeMake(414.0f, 736.0f), [[UIScreen mainScreen] bounds].size) ? YES : NO)
 #define IS_IPHONEX  (CGSizeEqualToSize(CGSizeMake(375.0f, 812.0f), [[UIScreen mainScreen] bounds].size) ? YES : NO)
+#define IS_IPHONEXP (CGSizeEqualToSize(CGSizeMake(414.0f, 896.0f), [[UIScreen mainScreen] bounds].size) ? YES : NO)
+
+#define IS_IPHONEXANDP (IS_IPHONEX | IS_IPHONEXP)
+
 
 // 获取系统版本
 #define CURRENT_SYSTEMVERSION [[UIDevice currentDevice] systemVersion]
@@ -135,9 +139,9 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define UI_NAVIGATION_BAR_DEFAULTHEIGHT 44
 #define UI_NAVIGATION_BAR_HEIGHT        44
 #define UI_TOOL_BAR_HEIGHT              44
-#define UI_HOME_INDICATOR_HEIGHT        (IS_IPHONEX ? 34 : 0.0f)
-#define UI_TAB_BAR_HEIGHT               (IS_IPHONEX ? (49+UI_HOME_INDICATOR_HEIGHT) : 49)
-#define UI_STATUS_BAR_HEIGHT            (IS_IPHONEX ? 44 : 20)
+#define UI_HOME_INDICATOR_HEIGHT        (IS_IPHONEXANDP ? 34 : 0.0f)
+#define UI_TAB_BAR_HEIGHT               (IS_IPHONEXANDP ? (49+UI_HOME_INDICATOR_HEIGHT) : 49)
+#define UI_STATUS_BAR_HEIGHT            (IS_IPHONEXANDP ? 44 : 20)
 
 #define UI_SCREEN_WIDTH                 ([[UIScreen mainScreen] bounds].size.width)
 #define UI_SCREEN_HEIGHT                ([[UIScreen mainScreen] bounds].size.height)
