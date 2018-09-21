@@ -12,6 +12,7 @@
 #import "FSUserMainVC.h"
 //#import "FSH5DemoVC.h"
 #import "FSCourseHomePageVC.h"
+#import "WebViewVC.h"
 
 //正常色
 #define ITEM_NOR_COLOR [UIColor bm_colorWithHex:0x000000]
@@ -78,7 +79,7 @@
     nav1.popOnBackButtonHandler = [self getPopOnBackButtonHandler];
     
     FSCourseHomePageVC *course =[[FSCourseHomePageVC alloc] initWithTitle:@"课堂" url:[NSString stringWithFormat:@"%@/course?Ctype=\"IOS\"",FS_H5_SERVER]];
-    BMNavigationController *nav2 = [[BMNavigationController alloc] initWithRootViewController:course];//[[FSH5DemoVC alloc] init]
+    BMNavigationController *nav2 = [[BMNavigationController alloc] initWithRootViewController:[[WebViewVC alloc]initWithNibName:@"WebViewVC" bundle:nil]];//[[FSH5DemoVC alloc] init]
     nav2.popOnBackButtonHandler = [self getPopOnBackButtonHandler];
     
     BMNavigationController *nav3 = [[BMNavigationController alloc] initWithRootViewController:[[FSCommunityVC alloc] initWithNibName:@"FSCommunityVC" bundle:nil]];

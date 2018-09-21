@@ -383,7 +383,7 @@
     {
         return NO;
     }
-    
+
     BOOL resultBOOL = [self callback_webViewShouldStartLoadWithRequest:request navigationType:navigationType];
     return resultBOOL;
 }

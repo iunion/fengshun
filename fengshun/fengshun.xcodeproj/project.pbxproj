@@ -35,7 +35,6 @@
 		458E181E2151E7690050590B /* video_back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 458E181C2151E7680050590B /* video_back_btn@2x.png */; };
 		458E181F2151E9560050590B /* video_back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 458E181C2151E7680050590B /* video_back_btn@2x.png */; };
 		458E18202151E9560050590B /* video_back_btn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 458E181B2151E7670050590B /* video_back_btn@3x.png */; };
-		45D7D74B2153420C009E8E7A /* FSNotificationName.m in Sources */ = {isa = PBXBuildFile; fileRef = E473137C2152B15F00C56ED8 /* FSNotificationName.m */; };
 		45F3FD21214BBF48007712EE /* video_history_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45F3FD1D214BBF46007712EE /* video_history_icon@2x.png */; };
 		45F3FD22214BBF48007712EE /* video_message_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45F3FD1E214BBF47007712EE /* video_message_icon@3x.png */; };
 		45F3FD23214BBF48007712EE /* video_message_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45F3FD1F214BBF47007712EE /* video_message_icon@2x.png */; };
@@ -1893,8 +1892,9 @@
 		DBF7E1BE2153759A002CEDA4 /* FSCaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF7E1AE215333D5002CEDA4 /* FSCaseModel.m */; };
 		DBF7E1BF2153759D002CEDA4 /* FSLawModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF7E1B2215333F9002CEDA4 /* FSLawModel.m */; };
 		DBF7E1C02153759E002CEDA4 /* FSLawModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF7E1B2215333F9002CEDA4 /* FSLawModel.m */; };
-		DBF7E1C1215375D5002CEDA4 /* FSNotificationName.m in Sources */ = {isa = PBXBuildFile; fileRef = E473137C2152B15F00C56ED8 /* FSNotificationName.m */; };
 		DBF7E1C821539F45002CEDA4 /* FSCourseHomePageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF7E1C721539F45002CEDA4 /* FSCourseHomePageVC.m */; };
+		DBF7E1CC2153A9F9002CEDA4 /* WebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF7E1CA2153A9F9002CEDA4 /* WebViewVC.m */; };
+		DBF7E1CD2153A9F9002CEDA4 /* WebViewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E1CB2153A9F9002CEDA4 /* WebViewVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -3697,8 +3697,9 @@
 		DBF7E1B721536C07002CEDA4 /* FSCollectionCourseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSCollectionCourseCell.xib; sourceTree = "<group>"; };
 		DBF7E1C621539F45002CEDA4 /* FSCourseHomePageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCourseHomePageVC.h; sourceTree = "<group>"; };
 		DBF7E1C721539F45002CEDA4 /* FSCourseHomePageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCourseHomePageVC.m; sourceTree = "<group>"; };
-		E473137B2152B15F00C56ED8 /* FSNotificationName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSNotificationName.h; sourceTree = "<group>"; };
-		E473137C2152B15F00C56ED8 /* FSNotificationName.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSNotificationName.m; sourceTree = "<group>"; };
+		DBF7E1C92153A9F9002CEDA4 /* WebViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewVC.h; sourceTree = "<group>"; };
+		DBF7E1CA2153A9F9002CEDA4 /* WebViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewVC.m; sourceTree = "<group>"; };
+		DBF7E1CB2153A9F9002CEDA4 /* WebViewVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebViewVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -5594,8 +5595,6 @@
 				87426A6E213141CD003C52F6 /* FSAppUIDef.h */,
 				87426AB22133A32E003C52F6 /* FSAppInfo.h */,
 				87426AB32133A32E003C52F6 /* FSAppInfo.m */,
-				E473137B2152B15F00C56ED8 /* FSNotificationName.h */,
-				E473137C2152B15F00C56ED8 /* FSNotificationName.m */,
 			);
 			path = appDefine;
 			sourceTree = "<group>";
@@ -7377,6 +7376,9 @@
 			children = (
 				DBF7E1C621539F45002CEDA4 /* FSCourseHomePageVC.h */,
 				DBF7E1C721539F45002CEDA4 /* FSCourseHomePageVC.m */,
+				DBF7E1C92153A9F9002CEDA4 /* WebViewVC.h */,
+				DBF7E1CA2153A9F9002CEDA4 /* WebViewVC.m */,
+				DBF7E1CB2153A9F9002CEDA4 /* WebViewVC.xib */,
 			);
 			path = courseTab;
 			sourceTree = "<group>";
@@ -7686,6 +7688,7 @@
 				8730B1222148E5D1004331A9 /* fsfreshidle_icon20@2x.png in Resources */,
 				874268CF212E7E36003C52F6 /* bmtab_bg@3x.png in Resources */,
 				8730B1232148E5D1004331A9 /* fsfreshfreshing_icon5@2x.png in Resources */,
+				DBF7E1CD2153A9F9002CEDA4 /* WebViewVC.xib in Resources */,
 				DB48744E214B887F00AB0805 /* scanfile_camera@3x.png in Resources */,
 				8730AD482140CC28004331A9 /* user_commenticon@3x.png in Resources */,
 				87D186A8213679F800037DDF /* login_closeeye@3x.png in Resources */,
@@ -8315,7 +8318,6 @@
 				8742690E212E7E36003C52F6 /* NSMutableArray+BMCategory.m in Sources */,
 				87D209CD2138F1E2001EDD60 /* SDImageCacheConfig.m in Sources */,
 				87F639F221533C830035E730 /* FBIvarReference.m in Sources */,
-				DBF7E1C1215375D5002CEDA4 /* FSNotificationName.m in Sources */,
 				87F639EE21533C830035E730 /* FBClassStrongLayoutHelpers.m in Sources */,
 				87D20AEA213920E2001EDD60 /* FLEXKeyboardHelpViewController.m in Sources */,
 				87742004214C999100F72427 /* FSMessageTabVC.m in Sources */,
@@ -8414,6 +8416,7 @@
 				874268DD212E7E36003C52F6 /* BMNavigationTitleLabel.m in Sources */,
 				87D20AA0213920E2001EDD60 /* FLEXObjectExplorerFactory.m in Sources */,
 				AD22449D213CD6C300F2DC47 /* MASConstraintMaker.m in Sources */,
+				DBF7E1CC2153A9F9002CEDA4 /* WebViewVC.m in Sources */,
 				8730B02D2140FFA2004331A9 /* NSMutableString+HTML.m in Sources */,
 				87D209CF2138F1E2001EDD60 /* UIView+WebCache.m in Sources */,
 				87D209C42138F1E2001EDD60 /* NSButton+WebCache.m in Sources */,
@@ -9046,7 +9049,6 @@
 				87E7C38521509AB000F7AB14 /* FSSearchResultVC.m in Sources */,
 				87E7C38621509AB000F7AB14 /* FSLawSearchResultVC.m in Sources */,
 				87E7C38721509AB000F7AB14 /* DTAnimatedGIF.m in Sources */,
-				45D7D74B2153420C009E8E7A /* FSNotificationName.m in Sources */,
 				87E7C38821509AB000F7AB14 /* ChatTextViewModel.m in Sources */,
 				87E7C38921509AB000F7AB14 /* NSObject+MJCoding.m in Sources */,
 				87E7C38A21509AB000F7AB14 /* BMTableViewActionBar.m in Sources */,
@@ -9603,6 +9605,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bmsoft.FS.fengshun;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -9655,6 +9658,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bmsoft.FS.fengshun;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

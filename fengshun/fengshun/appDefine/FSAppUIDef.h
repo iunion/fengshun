@@ -149,6 +149,8 @@
 
 #define FS_VIEW_BGCOLOR                     UI_COLOR_B8
 
+#define FS_LOADINGBAR_COLOR                 UI_COLOR_BL1
+
 // 导航条背景颜色 (确定)
 #define FS_NAVIGATION_BGCOLOR_VALUE         UI_NAVIGATION_BGCOLOR_VALU
 #define FS_NAVIGATION_BGCOLOR               [UIColor whiteColor]
