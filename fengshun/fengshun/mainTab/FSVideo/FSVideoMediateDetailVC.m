@@ -32,7 +32,7 @@
 - (void)viewDidLoad {
     _m_FreshViewType = BMFreshViewType_NONE;
     [super viewDidLoad];
-    self.m_showEmptyView = NO;
+
     [self bm_setNavigationWithTitle:@"视频详情" barTintColor:[UIColor whiteColor] leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
     
     [self loadApiData];
@@ -61,6 +61,8 @@
 {
     if ([data bm_isNotEmptyDictionary])
     {
+        self.m_showEmptyView = NO;
+
         if (self.bottomBtn == nil) {
             [self buildBottom];
         }
@@ -189,18 +191,18 @@
     [contenView addSubview:content];
     [content setEditEnabled:NO];
     
-    FSEditVideoMediateImageView *shareView = [[FSEditVideoMediateImageView alloc] initWithFrame:CGRectMake(0, content.bm_bottom + 9, contenView.bm_width, 0) imageName:@"video_share"];
-    shareView.titleLabel.text = @"地址";
-    shareView.titleLabel.textColor = UI_COLOR_B10;
-    shareView.desLabel.text = model.meetingInvite;
-    shareView.line.hidden = YES;
-    [shareView setEditEnabled:NO];
-    [contenView addSubview:shareView];
-    shareView.tapHandle = ^(FSEditVideoMediateBaseView *editView) {
-        NSLog(@"分享");
-    };
+//    FSEditVideoMediateImageView *shareView = [[FSEditVideoMediateImageView alloc] initWithFrame:CGRectMake(0, content.bm_bottom + 9, contenView.bm_width, 0) imageName:@"video_share"];
+//    shareView.titleLabel.text = @"地址";
+//    shareView.titleLabel.textColor = UI_COLOR_B10;
+//    shareView.desLabel.text = model.meetingInvite;
+//    shareView.line.hidden = YES;
+//    [shareView setEditEnabled:NO];
+//    [contenView addSubview:shareView];
+//    shareView.tapHandle = ^(FSEditVideoMediateBaseView *editView) {
+//        NSLog(@"分享");
+//    };
 
-    UIView *lastView = [[UIView alloc] initWithFrame:CGRectMake(0, shareView.bm_bottom + 9, UI_SCREEN_WIDTH, 58)];
+    UIView *lastView = [[UIView alloc] initWithFrame:CGRectMake(0, content.bm_bottom + 9, UI_SCREEN_WIDTH, 58)];
     lastView.backgroundColor = [UIColor whiteColor];
     [contenView addSubview:lastView];
     
