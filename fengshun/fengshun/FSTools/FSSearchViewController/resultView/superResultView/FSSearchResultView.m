@@ -59,7 +59,11 @@ FSSearchResultView ()
     return [_m_searchArray copy];
 }
 
-
+- (void)setM_masterVC:(UIViewController *)m_masterVC
+{
+    _m_masterVC = m_masterVC;
+    _m_resultVC.m_masterVC = m_masterVC;
+}
 #pragma mark - search protocol
 
 - (void)keysRemoveKey:(NSString *)key

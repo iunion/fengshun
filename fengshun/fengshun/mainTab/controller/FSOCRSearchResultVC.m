@@ -141,6 +141,12 @@ FSOCRSearchResultVC ()
 
 #pragma mark - TableView
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+# warning H5跳转
+}
+
 - (NSInteger)m_totalCount
 {
     if (_m_ocrSearchType)
