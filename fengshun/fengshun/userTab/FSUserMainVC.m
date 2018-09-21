@@ -104,7 +104,18 @@
 {
     [super viewWillAppear:animated];
     
+    self.bm_NavigationBarStyle = UIBarStyleBlack;
+    [self bm_setNeedsUpdateNavigationBarStyle];
+    
     [self checkUnreadMessage];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    self.bm_NavigationBarStyle = UIBarStyleDefault;
+    [self bm_setNeedsUpdateNavigationBarStyle];
 }
 
 - (void)setUpAction:(id)sender
