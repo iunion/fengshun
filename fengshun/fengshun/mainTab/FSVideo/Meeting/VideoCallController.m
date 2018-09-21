@@ -340,13 +340,9 @@ VideoCallVideoViewDelegate>
         vcbb.delegate = self;
         [self.view addSubview:vcbb];
         [vcbb mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.height.offset(49);
             make.left.right.equalTo(self.view);
-            if (@available(iOS 11.0, *)) {
-                make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
-            } else {
-                make.bottom.equalTo(self.view);
-            }
+            make.height.offset(49);
+            make.bottom.equalTo(self.view);
         }];
         vcbb;
     });
@@ -384,6 +380,16 @@ VideoCallVideoViewDelegate>
     });
     
 }
+
+- (void)viewSafeAreaInsetsDidChange
+{
+    [super viewSafeAreaInsetsDidChange];
+    
+    [_bottomBar  mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.offset(49 + self.view.safeAreaInsets.bottom);
+    }];
+}
+
 
 @end
 

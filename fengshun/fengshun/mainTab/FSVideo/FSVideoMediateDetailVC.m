@@ -40,16 +40,24 @@
 
 -(void)buildBottom
 {
-    UIButton *bottom = [UIButton bm_buttonWithFrame:CGRectMake(0, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - 48, self.view.bm_width, 48)
+    UIView *bottomBgView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.bm_height - 48, self.view.bm_width, 48)];
+    bottomBgView.backgroundColor = UI_COLOR_BL1;
+    [self.view addSubview:bottomBgView];
+    if (@available(iOS 11.0, *)) {
+        bottomBgView.bm_height = 48 + self.view.safeAreaInsets.bottom;
+        bottomBgView.bm_top = self.view.bm_height - bottomBgView.bm_height;
+    }
+    
+    UIButton *bottom = [UIButton bm_buttonWithFrame:CGRectMake(0, 0, self.view.bm_width, 48)
                                               title:@"进入视频"];
     bottom.backgroundColor = UI_COLOR_BL1;
     bottom.titleLabel.font = UI_FONT_17;
     [bottom setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [bottom addTarget:self action:@selector(bottomButtonClickAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:bottom];
+    [bottomBgView addSubview:bottom];
     self.bottomBtn = bottom;
     
-    self.m_TableView.frame = CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - 48);
+    self.m_TableView.frame = CGRectMake(0, 0, self.view.bm_width, bottomBgView.bm_top);
 }
 
 - (NSMutableURLRequest *)setLoadDataRequest
@@ -471,6 +479,5 @@
     vc.roomId = _m_DetailModel.roomId;
     [self.navigationController pushViewController:vc animated:YES];
 }
-
 
 @end

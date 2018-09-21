@@ -17,6 +17,8 @@
 
 @interface FSMakeVideoMediateVC ()
 
+@property (nonatomic, strong) UIView *BottomBgView;
+
 @property (nonatomic, strong) BMTableViewSection *m_MainSection;
 @property (nonatomic, strong) BMTextItem *m_TitleItem;
 @property (nonatomic, strong) BMTableViewItem *m_TypeItem;
@@ -126,15 +128,19 @@
 
 -(void)buildUI
 {
-    UIButton *bottom = [UIButton bm_buttonWithFrame:CGRectMake(0, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - 48, self.view.bm_width, 48)
+    self.BottomBgView = [[UIView alloc] initWithFrame:CGRectMake(0, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - 48, self.view.bm_width, 48)];
+    self.BottomBgView.backgroundColor = UI_COLOR_BL1;
+    [self.view addSubview:self.BottomBgView];
+
+    UIButton *bottom = [UIButton bm_buttonWithFrame:CGRectMake(0, 0, self.view.bm_width, 48)
                                               title:@"确定"];
     bottom.backgroundColor = UI_COLOR_BL1;
     bottom.titleLabel.font = UI_FONT_17;
     [bottom setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [bottom addTarget:self action:@selector(bottomButtonClickAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:bottom];
+    [self.BottomBgView addSubview:bottom];
     
-    self.m_TableView.frame = CGRectMake(0, 0, self.view.bm_width, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - 48);
+    self.m_TableView.frame = CGRectMake(0, 0, self.view.bm_width, self.BottomBgView.bm_top);
     
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.m_TableView.bm_width, 24+44)];
     UIButton *btn = [UIButton bm_buttonWithFrame:CGRectMake(0, 0, self.m_TableView.bm_width, 44)];
@@ -159,7 +165,6 @@
 {
     [super interfaceSettings];
     
-    //self[@"FSMeetingPersonnelItem"] = @"FSVideoMediatePersonalCell";
     [self.m_TableManager registerClass:@"FSMeetingPersonnelItem" forCellWithReuseIdentifier:@"FSVideoMediatePersonalCell"];
     
     self.m_MainSection = [BMTableViewSection section];
@@ -566,6 +571,16 @@
     if (scrollView.tracking) {
         [self.view endEditing:YES];
     }
+}
+
+
+- (void)viewSafeAreaInsetsDidChange
+{
+    [super viewSafeAreaInsetsDidChange];
+    
+    self.BottomBgView.bm_height = 48 + self.view.safeAreaInsets.bottom;
+    self.BottomBgView.bm_bottom = self.view.bm_bottom;
+    self.m_TableView.frame = CGRectMake(0, 0, self.view.bm_width, self.BottomBgView.bm_top);
 }
 
 @end
