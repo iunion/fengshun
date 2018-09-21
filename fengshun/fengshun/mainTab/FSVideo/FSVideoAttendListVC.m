@@ -109,6 +109,12 @@
     }
     FSMeetingPersonnelModel *model = self.m_AttendList[indexPath.row];
     [cell setModel:model];
+    
+    if (indexPath.row == self.m_AttendList.count -1) {
+        [cell showCellLine:NO];
+    } else {
+        [cell showCellLine:YES];
+    }
     return cell;
 }
 
