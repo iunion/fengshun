@@ -530,7 +530,7 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
     {
         margin *= 2;
     }
-    else if (IS_IPHONE6P)
+    else if (IS_IPHONE6P || IS_IPHONEXP)
     {
         margin *= 3;
     }

@@ -529,6 +529,8 @@
 		87BC9E5021549153000F2011 /* fsintroguide_1242x2688_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87BC9E2021548E0D000F2011 /* fsintroguide_1242x2688_2@2x.png */; };
 		87BC9E5121549153000F2011 /* fsintroguide_1242x2688_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87BC9E1E21548E0D000F2011 /* fsintroguide_1242x2688_3@2x.png */; };
 		87BC9E5221549153000F2011 /* fsintroguide_1242x2688_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87BC9E2121548E0D000F2011 /* fsintroguide_1242x2688_4@2x.png */; };
+		87BC9E57215491F1000F2011 /* FSFirstGuideVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87BC9E56215491F1000F2011 /* FSFirstGuideVC.m */; };
+		87BC9E58215491F1000F2011 /* FSFirstGuideVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87BC9E56215491F1000F2011 /* FSFirstGuideVC.m */; };
 		87C0134B212E7A5200D0AAC3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C0134A212E7A5200D0AAC3 /* AppDelegate.m */; };
 		87C0134D212E7A5300D0AAC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87C0134C212E7A5300D0AAC3 /* Assets.xcassets */; };
 		87C01353212E7A5300D0AAC3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C01352212E7A5300D0AAC3 /* main.m */; };
@@ -3029,6 +3031,8 @@
 		87BC9E1F21548E0D000F2011 /* fsintroguide_1242x2688_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fsintroguide_1242x2688_1@2x.png"; sourceTree = "<group>"; };
 		87BC9E2021548E0D000F2011 /* fsintroguide_1242x2688_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fsintroguide_1242x2688_2@2x.png"; sourceTree = "<group>"; };
 		87BC9E2121548E0D000F2011 /* fsintroguide_1242x2688_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fsintroguide_1242x2688_4@2x.png"; sourceTree = "<group>"; };
+		87BC9E55215491F1000F2011 /* FSFirstGuideVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSFirstGuideVC.h; sourceTree = "<group>"; };
+		87BC9E56215491F1000F2011 /* FSFirstGuideVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSFirstGuideVC.m; sourceTree = "<group>"; };
 		87C01346212E7A5200D0AAC3 /* fengshun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fengshun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87C01349212E7A5200D0AAC3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		87C0134A212E7A5200D0AAC3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -6033,6 +6037,23 @@
 			path = 1242x2688;
 			sourceTree = "<group>";
 		};
+		87BC9E53215491DD000F2011 /* FSStartOpen */ = {
+			isa = PBXGroup;
+			children = (
+				87BC9E54215491DD000F2011 /* FSFirstGuideVC */,
+			);
+			path = FSStartOpen;
+			sourceTree = "<group>";
+		};
+		87BC9E54215491DD000F2011 /* FSFirstGuideVC */ = {
+			isa = PBXGroup;
+			children = (
+				87BC9E55215491F1000F2011 /* FSFirstGuideVC.h */,
+				87BC9E56215491F1000F2011 /* FSFirstGuideVC.m */,
+			);
+			path = FSFirstGuideVC;
+			sourceTree = "<group>";
+		};
 		87C0133D212E7A5200D0AAC3 = {
 			isa = PBXGroup;
 			children = (
@@ -6066,6 +6087,7 @@
 				87C0134A212E7A5200D0AAC3 /* AppDelegate.m */,
 				AD51029D213E7771008CD74D /* FSPushVCManager.h */,
 				AD51029E213E7771008CD74D /* FSPushVCManager.m */,
+				87BC9E53215491DD000F2011 /* FSStartOpen */,
 				87426A6521313C1C003C52F6 /* FSSuperVC */,
 				87426A362131313E003C52F6 /* FSTabBar */,
 				87426ADA2135272B003C52F6 /* FSClassModel */,
@@ -8606,6 +8628,7 @@
 				874268D5212E7E36003C52F6 /* BMVerifiTimeManager.m in Sources */,
 				87D20AB1213920E2001EDD60 /* FLEXNetworkHistoryTableViewController.m in Sources */,
 				8730B09E2140FFA3004331A9 /* NSData+DTCrypto.m in Sources */,
+				87BC9E57215491F1000F2011 /* FSFirstGuideVC.m in Sources */,
 				87D209CE2138F1E2001EDD60 /* UIView+WebCacheOperation.m in Sources */,
 				AD9355A52137D24100735C2E /* TZPhotoPreviewController.m in Sources */,
 				8730B0202140FFA2004331A9 /* DTTextBlock.m in Sources */,
@@ -8971,6 +8994,7 @@
 				87E7C28121509AB000F7AB14 /* DTDictationPlaceholderView.m in Sources */,
 				87E7C28221509AB000F7AB14 /* SDWebImageFrame.m in Sources */,
 				87E7C28321509AB000F7AB14 /* FLEXArgumentInputColorView.m in Sources */,
+				87BC9E58215491F1000F2011 /* FSFirstGuideVC.m in Sources */,
 				87E7C28421509AB000F7AB14 /* BMTableViewImageDetailCell.m in Sources */,
 				87E7C28521509AB000F7AB14 /* SDWebImageCompat.m in Sources */,
 				87E7C28621509AB000F7AB14 /* DTAttributedTextContentView.m in Sources */,

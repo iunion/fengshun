@@ -18,6 +18,8 @@
 #import "FSUserInfo.h"
 #import "BMVerifiTimeManager.h"
 
+#import "FSFirstGuideVC.h"
+
 #import "FSSetTableViewVC.h"
 #import "FSUserMainVC.h"
 
@@ -39,7 +41,8 @@
 @interface AppDelegate ()
 <
     CLLocationManagerDelegate,
-    FSCoreNetWorkStatusProtocol
+    FSCoreNetWorkStatusProtocol,
+    FSFirstGuideVCDelegate
 >
 {
     BOOL s_IsShownFirstGuide;
@@ -177,16 +180,10 @@
         self.m_UserInfo = [[FSUserInfoModle alloc] init];
     }
 
-    FSTabBarController *tabBarController = [[FSTabBarController alloc] initWithDefaultItems];
-    [tabBarController addViewControllers];
-    self.m_TabBarController = tabBarController;
+    [self showFirstGuideView];
     
-    self.window.rootViewController = tabBarController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-#if USE_TEST_HELP
-    [self showFPS];
-#endif
 
     [self getUserAbilityInfoWithVc:nil];
     
@@ -352,6 +349,48 @@
     return YES;
 }
 
+
+#pragma mark -
+#pragma mark 首次启动引导页
+
+- (void)showFirstGuideView
+{
+    if (s_IsShownFirstGuide)
+    {
+        FSFirstGuideVC *firstGuideVC = [[FSFirstGuideVC alloc] init];
+        firstGuideVC.delegate = self;
+        self.window.rootViewController = firstGuideVC;
+#if USE_TEST_HELP
+        [self showFPS];
+#endif
+    }
+    else
+    {
+        [self showTabMain];
+    }
+}
+
+
+#pragma mark -
+#pragma mark MQFirstGuideVCDelegate
+
+- (void)showFirstGuideVCFinish
+{
+    [self showTabMain];
+}
+
+
+- (void)showTabMain
+{
+    FSTabBarController *tabBarController = [[FSTabBarController alloc] initWithDefaultItems];
+    [tabBarController addViewControllers];
+    self.m_TabBarController = tabBarController;
+    
+    self.window.rootViewController = tabBarController;
+#if USE_TEST_HELP
+    [self showFPS];
+#endif
+}
 
 
 #pragma mark -
