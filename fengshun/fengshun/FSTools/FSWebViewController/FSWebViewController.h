@@ -21,9 +21,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, weak) id<FSWebViewControllerDelegate> delegate;
 
+// 使用UIWebView，默认: YES
+@property (nonatomic, assign) BOOL m_UsingUIWebView;
 
 // 是否是post请求
 @property (nonatomic, assign) BOOL m_IsPost;
+
+// 显示导航条返回按钮，默认: YES
+@property (nonatomic, assign) BOOL m_ShowNavBack;
 
 // 通过H5的dcoument.title页面刷新title，默认: YES
 @property (nonatomic, assign) BOOL m_ShowPageTitles;

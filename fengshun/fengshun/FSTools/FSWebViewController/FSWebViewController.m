@@ -94,6 +94,8 @@
         _m_RequestParam = requestParam;
         _m_ShowLoadingBar = showLoadingBar;
         _m_LoadingBarTintColor = color;
+        _m_UsingUIWebView = YES;
+        _m_ShowNavBack = YES;
         _m_ShowPageTitles = YES;
         _delegate = delegate;
     }
@@ -226,7 +228,7 @@
         [self.m_WebView removeFromSuperview];
     }
     
-    self.m_WebView = [[FSWebView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT) usingUIWebView:YES];
+    self.m_WebView = [[FSWebView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT) usingUIWebView:self.m_UsingUIWebView];
     
     //NSString *oldAgent = [self.m_WebView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
     //LLog(@"old agent :%@", oldAgent);
@@ -246,6 +248,7 @@
             {
                 weakSelf.m_Title = title;
                 [weakSelf bm_setNavigationBarTitle:title];
+                [GetAppDelegate.m_TabBarController hideOriginTabBar];
             }
         }
     };
@@ -339,9 +342,7 @@
     if (self.m_WebView.canGoBack && !self.m_IsNotShowCloseBtn)
     {
         [self.m_WebView goBack];
-#if (!SHOW_CLOSEBTN_CANGOEBACK)
         [self updateNavBack];
-#endif
     }
     else
     {
@@ -408,10 +409,36 @@
 {
     if (!addClose && !self.m_IsNotShowCloseBtn)
     {
-        NSDictionary *btnItem1 = [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"navigationbar_back_icon" toucheEvent:@"backAction:" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0];
-        NSDictionary *btnItem2 = [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"navigationbar_webclose_icon" toucheEvent:@"closeAction:" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0];
-        self.m_NavLeftBtnArray = @[btnItem1, btnItem2];
-        [self updateNavWithLeftArray:self.m_NavLeftBtnArray rightArray:self.m_NavRightBtnArray];
+        if (self.m_ShowNavBack)
+        {
+            if (self.m_WebView.canGoBack)
+            {
+                NSDictionary *btnItem1 = [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"navigationbar_back_icon" toucheEvent:@"backAction:" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0];
+                NSDictionary *btnItem2 = [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"navigationbar_webclose_icon" toucheEvent:@"closeAction:" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0];
+                self.m_NavLeftBtnArray = @[btnItem1, btnItem2];
+                [self updateNavWithLeftArray:self.m_NavLeftBtnArray rightArray:self.m_NavRightBtnArray];
+            }
+            else
+            {
+                NSDictionary *btnItem1 = [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"navigationbar_back_icon" toucheEvent:@"backAction:" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0];
+                self.m_NavLeftBtnArray = @[btnItem1];
+                [self updateNavWithLeftArray:self.m_NavLeftBtnArray rightArray:self.m_NavRightBtnArray];
+            }
+        }
+        else
+        {
+            if (self.m_WebView.canGoBack)
+            {
+                NSDictionary *btnItem1 = [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"navigationbar_back_icon" toucheEvent:@"backAction:" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0];
+                self.m_NavLeftBtnArray = @[btnItem1];
+                [self updateNavWithLeftArray:self.m_NavLeftBtnArray rightArray:self.m_NavRightBtnArray];
+            }
+            else
+            {
+                self.m_NavLeftBtnArray = nil;
+                [self updateNavWithLeftArray:self.m_NavLeftBtnArray rightArray:self.m_NavRightBtnArray];
+            }
+        }
     }
     
     addClose = YES;
@@ -419,16 +446,20 @@
 
 - (void)updateNavWithLeftArray:(NSArray *)larray rightArray:(NSArray *)rarray
 {
-    if (![larray bm_isNotEmpty])
+    if (self.m_ShowNavBack)
     {
-        NSDictionary *btnItem = [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"navigationbar_back_icon" toucheEvent:@"backAction:" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0];
-        larray = @[btnItem];
+        if (![larray bm_isNotEmpty])
+        {
+            NSDictionary *btnItem = [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"navigationbar_back_icon" toucheEvent:@"backAction:" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0];
+            larray = @[btnItem];
+        }
     }
     
     self.m_NavLeftBtnArray = larray;
     self.m_NavRightBtnArray = rarray;
     
-    [self bm_setNavigationWithTitle:@"" barTintColor:nil leftDicArray:larray rightDicArray:rarray];
+    [self bm_setNavigationWithTitle:self.m_Title barTintColor:nil leftDicArray:larray rightDicArray:rarray];
+    [GetAppDelegate.m_TabBarController hideOriginTabBar];
 }
 
 
@@ -437,12 +468,7 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-#if (SHOW_CLOSEBTN_CANGOEBACK)
-    if ([self.m_WebView canGoBack])
-    {
-        [self updateNavBack];
-    }
-#endif
+    [self updateNavBack];
 
     NSString *currentURL = [webView stringByEvaluatingJavaScriptFromString:@"document.location.href"];
     BMLog(@"%@", currentURL);
