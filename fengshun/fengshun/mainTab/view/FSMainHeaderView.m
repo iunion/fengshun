@@ -19,11 +19,16 @@
     // Drawing code
 }
 */
++ (CGFloat)headerConstheight
+{
+    return 409 + UI_NAVIGATION_BAR_HEIGHT+UI_STATUS_BAR_HEIGHT;
+}
 - (void)awakeFromNib
 {
     [super awakeFromNib];
     [self configBanner];
     _m_toolCollectionView.contentInset = UIEdgeInsetsMake(0, 30, 0, 30);
+    _m_topViewHeightConstraint.constant = 197 + UI_NAVIGATION_BAR_HEIGHT+UI_STATUS_BAR_HEIGHT;
     [_m_toolCollectionView registerNib:[UINib nibWithNibName:@"FSMainToolCell" bundle:nil] forCellWithReuseIdentifier:@"FSMainToolCell"];
     
 }

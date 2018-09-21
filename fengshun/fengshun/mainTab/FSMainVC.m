@@ -86,7 +86,7 @@ FSMainVC ()
     //self.m_TableView.frame = CGRectMake(0, -(UI_NAVIGATION_BAR_HEIGHT+UI_STATUS_BAR_HEIGHT), UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT-UI_TAB_BAR_HEIGHT);
     self.m_TableView.separatorStyle               = UITableViewCellSeparatorStyleSingleLine;
 
-    self.m_headerView = [[FSMainHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.bm_width, HEADER_CONST_HEIGHT + 190) andDelegate:self];
+    self.m_headerView = [[FSMainHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.bm_width, [FSMainHeaderView headerConstheight] + 190) andDelegate:self];
 
     _m_headerView.m_toolCollectionView.delegate   = self;
     _m_headerView.m_toolCollectionView.dataSource = self;
@@ -419,7 +419,7 @@ FSMainVC ()
     CGFloat   boardConetHeight = MAIN_TOOLCELL_HEIGHT * toolLines + MAIN_TOOLCELL_GAP_V * (toolLines - 1);
     boardConetHeight = (boardConetHeight >= 190) ? boardConetHeight : 190;
     _m_headerView.m_toolHeightConstraint.constant = boardConetHeight;
-    _m_headerView.frame = CGRectMake(0, 0, self.view.bm_width, HEADER_CONST_HEIGHT + boardConetHeight);
+    _m_headerView.frame = CGRectMake(0, 0, self.view.bm_width, [FSMainHeaderView headerConstheight] + boardConetHeight);
     [_m_headerView.m_toolCollectionView reloadData];
     [_m_headerView layoutIfNeeded];
 
