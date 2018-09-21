@@ -54,11 +54,11 @@ FSMoreViewVC ()
     CGFloat space = 10.f;
     CGFloat cacenlBtnHeight = 44.f;
     
-    self.m_BgView = [[UIView alloc]initWithFrame:CGRectMake(0, UI_SCREEN_HEIGHT, UI_SCREEN_WIDTH, btnHeight*2 + space + cacenlBtnHeight)];
-    self.m_BgView.backgroundColor = [UIColor bm_colorWithHexString:@"f6f6f6"];
+    self.m_BgView = [[UIView alloc]initWithFrame:CGRectMake(0, UI_SCREEN_HEIGHT, UI_SCREEN_WIDTH, btnHeight*2 + space + cacenlBtnHeight + UI_HOME_INDICATOR_HEIGHT)];
+    self.m_BgView.backgroundColor = [UIColor bm_colorWithHexString:@"ffffff"];
     [self.view addSubview:self.m_BgView];
     
-    self.m_CancelBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, btnHeight*2 + space, UI_SCREEN_WIDTH, cacenlBtnHeight)];
+    self.m_CancelBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, btnHeight*2 + space, UI_SCREEN_WIDTH, cacenlBtnHeight )];
     self.m_CancelBtn.titleLabel.font = [UIFont systemFontOfSize:15.f];
     self.m_CancelBtn.backgroundColor = [ UIColor whiteColor];
     [self.m_CancelBtn setTitleColor:[UIColor bm_colorWithHexString:@"333333"] forState:UIControlStateNormal];
@@ -66,9 +66,9 @@ FSMoreViewVC ()
     [self.m_CancelBtn addTarget:self action:@selector(removeView) forControlEvents:UIControlEventTouchUpInside];
     [self.m_BgView addSubview:self.m_CancelBtn];
     
-    UIView *whiteView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, btnHeight *2)];
-    whiteView.backgroundColor = [UIColor whiteColor];
-    [self.m_BgView addSubview:whiteView];
+    UIView *spaceView = [[UIView alloc]initWithFrame:CGRectMake(0, btnHeight*2, UI_SCREEN_WIDTH, space)];
+    spaceView.backgroundColor = [UIColor bm_colorWithHexString:@"f6f6f6"];
+    [self.m_BgView addSubview:spaceView];
     
     for (int i = 0; i < 2; i ++)
     {

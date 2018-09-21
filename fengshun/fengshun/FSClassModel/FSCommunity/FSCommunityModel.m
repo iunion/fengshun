@@ -150,7 +150,9 @@
                     }
                     aModel.m_List = arr.mutableCopy;
                 }
-                [data addObject:aModel];
+                if ([aModel.m_List bm_isNotEmpty]) {
+                    [data addObject:aModel];
+                }
             }
         }
     }
