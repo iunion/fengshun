@@ -20,7 +20,7 @@
     [super viewDidLoad];
     NSString *urlString = [NSString stringWithFormat:@"%@/course?Ctype=\"IOS\"",FS_H5_SERVER];
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    urlString = @"https://devftlsh5.odrcloud.net/caseDetail?ID=h5HM8GUBN3_o1ImUsbSy&keywords=%5B%22%E7%A6%BB%E5%A9%9A%22%5D";
+    //urlString = @"https://devftlsh5.odrcloud.net/caseDetail?ID=h5HM8GUBN3_o1ImUsbSy&keywords=%5B%22%E7%A6%BB%E5%A9%9A%22%5D";
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:urlString]];
     [_webView loadRequest:request];
     _webView.delegate = self;

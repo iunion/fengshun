@@ -21,6 +21,11 @@ FSForumListVC ()
 
 @implementation FSForumListVC
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:userInfoChangedNotification object:nil];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -30,6 +35,9 @@ FSForumListVC ()
     self.m_TableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.m_TableView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 24);
     [self loadApiData];
+    
+    // 登录状态改变刷新数据
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadApiData) name:userInfoChangedNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning

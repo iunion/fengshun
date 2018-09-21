@@ -341,7 +341,7 @@ VideoCallVideoViewDelegate>
         [self.view addSubview:vcbb];
         [vcbb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(self.view);
-            make.height.offset(49);
+            make.height.offset(49 + UI_HOME_INDICATOR_HEIGHT);
             make.bottom.equalTo(self.view);
         }];
         vcbb;
@@ -380,16 +380,6 @@ VideoCallVideoViewDelegate>
     });
     
 }
-
-- (void)viewSafeAreaInsetsDidChange
-{
-    [super viewSafeAreaInsetsDidChange];
-    
-    [_bottomBar  mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.offset(49 + self.view.safeAreaInsets.bottom);
-    }];
-}
-
 
 @end
 

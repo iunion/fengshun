@@ -49,7 +49,7 @@
 
 -(void)buildUI
 {
-    self.BottomBgView = [[UIView alloc] initWithFrame:CGRectMake(0, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - 48, self.view.bm_width, 48)];
+    self.BottomBgView = [[UIView alloc] initWithFrame:CGRectMake(0, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - 48 - UI_HOME_INDICATOR_HEIGHT, self.view.bm_width, 48 + UI_HOME_INDICATOR_HEIGHT)];
     self.BottomBgView.backgroundColor = UI_COLOR_BL1;
     [self.view addSubview:self.BottomBgView];
 
@@ -246,15 +246,6 @@
 - (BMEmptyViewType)getNoDataEmptyViewType
 {
     return BMEmptyViewType_Video;
-}
-
-- (void)viewSafeAreaInsetsDidChange
-{
-    [super viewSafeAreaInsetsDidChange];
-    
-    self.BottomBgView.bm_height = 48 + self.view.safeAreaInsets.bottom;
-    self.BottomBgView.bm_bottom = self.view.bm_bottom;
-    self.m_TableView.frame = CGRectMake(0, 0, self.view.bm_width, self.BottomBgView.bm_top);
 }
 
 @end

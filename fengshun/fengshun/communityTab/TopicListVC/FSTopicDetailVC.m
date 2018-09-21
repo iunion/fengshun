@@ -178,6 +178,10 @@ FSReportViewDelegate
         [FSAlertView showAlertWithTitle:@"举报理由说明" message:nil contentView:contentView cancelTitle:@"取消" otherTitle:@"确定" completion:^(BOOL cancelled, NSInteger buttonIndex) {
             BMLog(@"%@",textField.text);
             if (buttonIndex == 1) {
+                if (![textField.text bm_isNotEmpty])
+                {
+                    [self.m_ProgressHUD showAnimated:YES withDetailText:@"请输入举报理由" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                }
                 [weakSelf addReportContent:textField.text];
             }
         }];
@@ -189,9 +193,9 @@ FSReportViewDelegate
 - (void)deleteTopic
 {
     [FSApiRequest deleteTopicWithId:self.m_TopicId success:^(id _Nullable responseObject){
-        if (self.m_DeleteTopicBlock) {
-            self.m_DeleteTopicBlock();
-        }
+//        if (self.m_DeleteTopicBlock) {
+//            self.m_DeleteTopicBlock();
+//        }
         [self.m_ProgressHUD showAnimated:YES withDetailText:@"删除成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSError *_Nullable error){
