@@ -44,7 +44,16 @@
 
 - (void)showWithTopicModel:(FSTopicModel *)model{
     self.m_TitleLab.text    = model.m_Title;
-    self.m_TimeLab.text     = [NSDate hmStringDateFromTs:model.m_LastReplyTime];
+    // 最后回复时间不为空，显示
+    if (model.m_LastReplyTime == 0)
+    {
+        self.m_TimeLab.text     = [NSDate hmStringDateFromTs:model.m_CreateTime];
+    }
+    else
+    {
+        self.m_TimeLab.text     = [NSDate hmStringDateFromTs:model.m_LastReplyTime];
+    }
+    
     self.m_UsernameLab.text = model.m_NickName;
     [self.m_CommentBtn setTitle:[NSString stringWithFormat:@"%@", @(model.m_CommentCount)] forState:UIControlStateNormal];
     self.m_StickView.hidden = !model.m_TopFlag;
