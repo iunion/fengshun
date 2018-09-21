@@ -174,6 +174,11 @@
 //    self.m_TitleLabel.bm_height = size.height;
     
     self.m_TimeLabel.text = [NSDate hmStringDateFromTs:model.m_CreateTime];
+    // 最后回复时间不为空，显示
+    if (model.m_LastReplyTime != 0)
+    {
+        self.m_TimeLabel.text = [NSDate hmStringDateFromTs:model.m_LastReplyTime];
+    }
     size = [self.m_TimeLabel sizeThatFits:CGSizeMake(1000, self.m_TimeLabel.bm_height)];
     self.m_UserNameLabel.bm_left = size.width + 6.0f;
 

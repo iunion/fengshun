@@ -56,7 +56,7 @@
 
     s_IsNoMorePage = YES;
 
-//    if (IS_IPHONE6P)
+//    if (IS_IPHONE6P || IS_IPHONEXP)
 //    {
 //        self.m_TableView.bm_left = 20.0f;
 //        self.m_TableView.bm_width = UI_SCREEN_WIDTH-40.0f;

@@ -298,7 +298,7 @@ static CGFloat kDefaultScale    = 0.5;
 
         self.keyboardItem     = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ZSSkeyboard.png"] style:UIBarButtonItemStylePlain target:self action:@selector(dismissKeyboard)];
         keyboardToolbar.items = @[ self.keyboardItem ];
-        [self.toolbarHolder addSubview:toolbarCropper];
+//        [self.toolbarHolder addSubview:toolbarCropper];
 
         UIView *line         = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0.6f, 44)];
         line.backgroundColor = [UIColor lightGrayColor];

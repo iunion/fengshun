@@ -142,7 +142,7 @@
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     CGRect frame;
-    if (IS_IPHONE6P)
+    if (IS_IPHONE6P || IS_IPHONEXP)
     {
         frame = CGRectMake(0, 0, self.m_TableView.bm_width-60.0f, 44);
     }
