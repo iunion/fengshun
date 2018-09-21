@@ -76,8 +76,9 @@
 
     for (NSUInteger i=0; i<tab_Count; i++)
     {
-        CGRect rect = CGRectMake(width * i, 0, width, UI_TAB_BAR_HEIGHT);
+        CGRect rect = CGRectMake(width * i, 0, width, UI_TAB_BAR_HEIGHT-UI_HOME_INDICATOR_HEIGHT);
         
+       
         BMTabItemButton *item = [[BMTabItemButton alloc] initWithFrame:rect];
         
         [item addTarget:self action:@selector(selectedTab:) forControlEvents:UIControlEventTouchUpInside];
