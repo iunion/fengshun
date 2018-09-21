@@ -11,11 +11,13 @@
 #define FSFirstGuide_PageCount  4
 
 @interface FSFirstGuideVC ()
-//<
-//    UIScrollViewDelegate
-//>
+<
+    UIScrollViewDelegate
+>
 
 @property (nonatomic, strong) UIScrollView *m_FirstGuideScrollView;
+
+@property (nonatomic, strong) UIPageControl *m_PageControl;
 
 @end
 
@@ -27,7 +29,7 @@
     // Do any additional setup after loading the view.
     
     self.m_FirstGuideScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT)];
-    //self.m_FirstGuideScrollView.delegate = self;
+    self.m_FirstGuideScrollView.delegate = self;
     self.m_FirstGuideScrollView.pagingEnabled = YES;
     self.m_FirstGuideScrollView.bounces = NO;
     self.m_FirstGuideScrollView.showsHorizontalScrollIndicator = NO;
@@ -102,6 +104,14 @@
     [self.m_FirstGuideScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     
     [self.view addSubview:self.m_FirstGuideScrollView];
+    
+    self.m_PageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 0, 80.0f, 30.0f)];
+    [self.view addSubview:self.m_PageControl];
+    [self.m_PageControl bm_centerHorizontallyInSuperViewWithTop:(UI_SCREEN_HEIGHT-44.0f)];
+    self.m_PageControl.numberOfPages = FSFirstGuide_PageCount;
+    self.m_PageControl.currentPage = 0;
+    self.m_PageControl.pageIndicatorTintColor = UI_COLOR_B5;
+    self.m_PageControl.currentPageIndicatorTintColor = UI_COLOR_B3;
 }
 
 - (void)didReceiveMemoryWarning
@@ -120,6 +130,26 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(showFirstGuideVCFinish)])
     {
         [self.delegate showFirstGuideVCFinish];
+    }
+}
+
+
+#pragma mark -
+#pragma mark UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGFloat pageWidth = CGRectGetWidth(self.m_FirstGuideScrollView.bounds);
+    CGFloat pageFraction = self.m_FirstGuideScrollView.contentOffset.x / pageWidth;
+    self.m_PageControl.currentPage = roundf(pageFraction);
+    
+    if (self.m_PageControl.currentPage == FSFirstGuide_PageCount - 1)
+    {
+        self.m_PageControl.hidden = YES;
+    }
+    else
+    {
+        self.m_PageControl.hidden = NO;
     }
 }
 
