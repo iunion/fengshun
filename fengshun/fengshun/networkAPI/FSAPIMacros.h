@@ -41,8 +41,8 @@
 
 #else
 
-#define FS_URL_SERVER       (@"https://devftls.odrcloud.net")
-#define FS_H5_SERVER        (@"https://devftlsh5.odrcloud.net")
+#define FS_URL_SERVER       (@"https://testapi.bjsjsadr.com")
+#define FS_H5_SERVER        (@"https://devftls.odrcloud.net")
 #define FS_FILE_ADRESS      (@"/storm/file/download/")
 
 #endif
