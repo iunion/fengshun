@@ -107,7 +107,7 @@
     
     self.m_PageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 0, 80.0f, 30.0f)];
     [self.view addSubview:self.m_PageControl];
-    [self.m_PageControl bm_centerHorizontallyInSuperViewWithTop:(UI_SCREEN_HEIGHT-44.0f)];
+    [self.m_PageControl bm_centerHorizontallyInSuperViewWithTop:(UI_SCREEN_HEIGHT-64.0f)];
     self.m_PageControl.numberOfPages = FSFirstGuide_PageCount;
     self.m_PageControl.currentPage = 0;
     self.m_PageControl.pageIndicatorTintColor = UI_COLOR_B5;
