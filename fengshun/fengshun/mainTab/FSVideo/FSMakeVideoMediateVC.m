@@ -116,6 +116,8 @@
         title = @"编辑视频调解";
     }
 
+    self.bm_NavigationShadowHidden = NO;
+    self.bm_NavigationShadowColor = UI_COLOR_B6;
     [self bm_setNavigationWithTitle:title barTintColor:[UIColor whiteColor] leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
 
     [self buildUI];
@@ -128,7 +130,7 @@
 
 -(void)buildUI
 {
-    self.BottomBgView = [[UIView alloc] initWithFrame:CGRectMake(0, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - 48, self.view.bm_width, 48)];
+    self.BottomBgView = [[UIView alloc] initWithFrame:CGRectMake(0, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - 48 - UI_HOME_INDICATOR_HEIGHT, self.view.bm_width, 48 + UI_HOME_INDICATOR_HEIGHT)];
     self.BottomBgView.backgroundColor = UI_COLOR_BL1;
     [self.view addSubview:self.BottomBgView];
 
@@ -571,16 +573,6 @@
     if (scrollView.tracking) {
         [self.view endEditing:YES];
     }
-}
-
-
-- (void)viewSafeAreaInsetsDidChange
-{
-    [super viewSafeAreaInsetsDidChange];
-    
-    self.BottomBgView.bm_height = 48 + self.view.safeAreaInsets.bottom;
-    self.BottomBgView.bm_bottom = self.view.bm_bottom;
-    self.m_TableView.frame = CGRectMake(0, 0, self.view.bm_width, self.BottomBgView.bm_top);
 }
 
 @end

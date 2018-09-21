@@ -18,4 +18,6 @@
 
 @property (nonatomic, strong) FSMeetingPersonnelModel *model;
 
+- (void)showCellLine:(BOOL)show;
+
 @end

@@ -23,6 +23,8 @@
     [super viewDidLoad];
     self.view.backgroundColor = FS_VIEW_BGCOLOR;
 
+    self.bm_NavigationShadowHidden = NO;
+    self.bm_NavigationShadowColor = UI_COLOR_B6;
     [self bm_setNavigationWithTitle:@"邀请当事人" barTintColor:[UIColor whiteColor] leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:@"完成" rightItemImage:nil rightToucheEvent:@selector(doneAction)];
 
     [self buildUI];

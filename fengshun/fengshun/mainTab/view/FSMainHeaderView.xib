@@ -162,6 +162,7 @@
                 <outlet property="m_toolCollectionView" destination="Etq-8U-0Fc" id="zq3-zm-TY8"/>
                 <outlet property="m_toolHeightConstraint" destination="v6X-T2-87g" id="GMY-wH-KHR"/>
                 <outlet property="m_topView" destination="fV2-Vb-ADS" id="pv1-VU-gQh"/>
+                <outlet property="m_topViewHeightConstraint" destination="LId-wh-asI" id="Rd1-01-ZoK"/>
             </connections>
             <point key="canvasLocation" x="25.5" y="50.5"/>
         </view>

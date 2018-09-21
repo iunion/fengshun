@@ -17,9 +17,10 @@
 @property (nonatomic, strong) FSMeetingPersonnelItem *item;
 
 @property (nonatomic, strong) UIButton *m_SelectButton;
-@property (nonatomic, strong) UILabel *m_FamilyNameLabel;
-@property (nonatomic, strong) UILabel *m_FullNameLable;
-@property (nonatomic, strong) UILabel *m_PhoneLabel;
+@property (nonatomic, strong) UILabel  *m_FamilyNameLabel;
+@property (nonatomic, strong) UILabel  *m_FullNameLable;
+@property (nonatomic, strong) UILabel  *m_PhoneLabel;
+@property (nonatomic, strong) UIView   *m_Line;
 
 @end
 
@@ -75,6 +76,7 @@
 
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(kMarginLeft, kCellHeight - 0.5, UI_SCREEN_WIDTH - kMarginLeft, 0.5)];
     line.backgroundColor = UI_COLOR_B6;
+    self.m_Line = line;
     
     [self.contentView addSubview:line];
     [self.contentView addSubview:_m_FamilyNameLabel];
@@ -88,6 +90,11 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     [self setModel:self.item.personModel];
+}
+
+- (void)showCellLine:(BOOL)show
+{
+    self.m_Line.hidden = !show;
 }
 
 - (void)setModel:(FSMeetingPersonnelModel *)model

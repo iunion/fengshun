@@ -33,6 +33,8 @@
     _m_FreshViewType = BMFreshViewType_NONE;
     [super viewDidLoad];
 
+    self.bm_NavigationShadowHidden = NO;
+    self.bm_NavigationShadowColor = UI_COLOR_B6;
     [self bm_setNavigationWithTitle:@"视频详情" barTintColor:[UIColor whiteColor] leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
     
     [self loadApiData];
@@ -40,13 +42,9 @@
 
 -(void)buildBottom
 {
-    UIView *bottomBgView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.bm_height - 48, self.view.bm_width, 48)];
+    UIView *bottomBgView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.bm_height - 48 - UI_HOME_INDICATOR_HEIGHT, self.view.bm_width, 48 + UI_HOME_INDICATOR_HEIGHT)];
     bottomBgView.backgroundColor = UI_COLOR_BL1;
     [self.view addSubview:bottomBgView];
-    if (@available(iOS 11.0, *)) {
-        bottomBgView.bm_height = 48 + self.view.safeAreaInsets.bottom;
-        bottomBgView.bm_top = self.view.bm_height - bottomBgView.bm_height;
-    }
     
     UIButton *bottom = [UIButton bm_buttonWithFrame:CGRectMake(0, 0, self.view.bm_width, 48)
                                               title:@"进入视频"];
