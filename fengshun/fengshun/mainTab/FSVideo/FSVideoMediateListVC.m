@@ -29,7 +29,7 @@
 {
     [super viewDidLoad];
     self.m_LoadDataType = FSAPILoadDataType_Page;
-    self.m_CountPerPage = 5;
+
     [self bm_setNavigationWithTitle:@"视频调解" barTintColor:[UIColor whiteColor] leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
 
     [self buildUI];
