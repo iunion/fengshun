@@ -69,11 +69,14 @@ FSMainVC ()
 {
     self.m_TableView.bm_freshHeaderView.backgroundColor = [UIColor whiteColor];
     
+    self.bm_NavigationBarAlpha = 0;
+    self.bm_NavigationBarBgTintColor = [UIColor whiteColor];
     self.bm_NavigationItemTintColor = UI_COLOR_B1;
     [self bm_setNavigationWithTitle:@"主页" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:nil rightItemImage:[UIImage imageNamed:@"home_message"] rightToucheEvent:@selector(popMessageVC:)];
     [GetAppDelegate.m_TabBarController hideOriginTabBar];
-    [self setBm_NavigationBarImage:[UIImage imageWithColor:[UIColor whiteColor]]];
-    [self setBm_NavigationBarAlpha:0];
+    
+    self.bm_NavigationTitleAlpha = 0;
+    [self bm_setNeedsUpdateNavigationTitleAlpha];
 
     self.automaticallyAdjustsScrollViewInsets     = NO;
     self.edgesForExtendedLayout                   = UIRectEdgeTop;
@@ -127,6 +130,8 @@ FSMainVC ()
         self.bm_NavigationTitleAlpha = offsetY / maxOffset;
         [self bm_setNeedsUpdateNavigationTitleAlpha];
     }
+    
+    NSLog(@"%@", @(offsetY));
 }
 
 
