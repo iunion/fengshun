@@ -237,7 +237,7 @@
     self.m_ShareItem.highlightBgColor = UI_COLOR_BL1;
     self.m_ShareItem.cellHeight = 50.0f;
     
-    [self.m_AppSection addItem:self.m_HelpItem];
+    //[self.m_AppSection addItem:self.m_HelpItem];
     [self.m_AppSection addItem:self.m_ServiceItem];
     [self.m_AppSection addItem:self.m_ShareItem];
 
