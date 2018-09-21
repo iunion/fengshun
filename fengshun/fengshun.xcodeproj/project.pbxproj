@@ -31,6 +31,8 @@
 		453444C0214D0DFA00EA7BFA /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444BF214D0DFA00EA7BFA /* AssetsLibrary.framework */; };
 		453444C2214D0DFA00EA7BFA /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444C1214D0DFA00EA7BFA /* Accelerate.framework */; };
 		4561391E2148FA2B007DF6A1 /* FSApiRequest+VideoMediate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4561391D2148FA2B007DF6A1 /* FSApiRequest+VideoMediate.m */; };
+		456A48412154C18F00F8F658 /* WebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF7E1CA2153A9F9002CEDA4 /* WebViewVC.m */; };
+		456A48422154C19600F8F658 /* WebViewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E1CB2153A9F9002CEDA4 /* WebViewVC.xib */; };
 		458E181D2151E7690050590B /* video_back_btn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 458E181B2151E7670050590B /* video_back_btn@3x.png */; };
 		458E181E2151E7690050590B /* video_back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 458E181C2151E7680050590B /* video_back_btn@2x.png */; };
 		458E181F2151E9560050590B /* video_back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 458E181C2151E7680050590B /* video_back_btn@2x.png */; };
@@ -1299,7 +1301,6 @@
 		87E7C4DC21509AB000F7AB14 /* TLSSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF74A214D11060005AD43 /* TLSSDK.framework */; };
 		87E7C4DD21509AB000F7AB14 /* QALSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF74C214D11060005AD43 /* QALSDK.framework */; };
 		87E7C4DE21509AB000F7AB14 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 45344497214D0DFA00EA7BFA /* libstdc++.tbd */; };
-		87E7C4DF21509AB000F7AB14 /* libstdc++.6.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 45344499214D0DFA00EA7BFA /* libstdc++.6.tbd */; };
 		87E7C4E021509AB000F7AB14 /* IMCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF74B214D11060005AD43 /* IMCore.framework */; };
 		87E7C4E121509AB000F7AB14 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4534449B214D0DFA00EA7BFA /* libsqlite3.tbd */; };
 		87E7C4E221509AB000F7AB14 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4534449D214D0DFA00EA7BFA /* libresolv.tbd */; };
@@ -3867,7 +3868,6 @@
 				87E7C4DC21509AB000F7AB14 /* TLSSDK.framework in Frameworks */,
 				87E7C4DD21509AB000F7AB14 /* QALSDK.framework in Frameworks */,
 				87E7C4DE21509AB000F7AB14 /* libstdc++.tbd in Frameworks */,
-				87E7C4DF21509AB000F7AB14 /* libstdc++.6.tbd in Frameworks */,
 				87E7C4E021509AB000F7AB14 /* IMCore.framework in Frameworks */,
 				87E7C4E121509AB000F7AB14 /* libsqlite3.tbd in Frameworks */,
 				87E7C4E221509AB000F7AB14 /* libresolv.tbd in Frameworks */,
@@ -8091,6 +8091,7 @@
 				87E7C52E21509AB000F7AB14 /* LICENSE in Resources */,
 				87E7C52F21509AB000F7AB14 /* chat_right_bg@2x.png in Resources */,
 				87E7C53021509AB000F7AB14 /* user_wechaticon@2x.png in Resources */,
+				456A48422154C19600F8F658 /* WebViewVC.xib in Resources */,
 				87D9C609215368B6009F8492 /* fs_icon@2x.png in Resources */,
 				87E7C53121509AB000F7AB14 /* chat_head_mediator@2x.png in Resources */,
 				ADC591F7215395100054BE72 /* fstab_btn3_highIcon@2x.png in Resources */,
@@ -9494,6 +9495,7 @@
 				87E7C44D21509AB000F7AB14 /* DTSmartPagingScrollView.m in Sources */,
 				87E7C44E21509AB000F7AB14 /* BMFreshDotCircleHeader.m in Sources */,
 				87E7C44F21509AB000F7AB14 /* FLEXLiveObjectsTableViewController.m in Sources */,
+				456A48412154C18F00F8F658 /* WebViewVC.m in Sources */,
 				87E7C45021509AB000F7AB14 /* FLEXNetworkCurlLogger.m in Sources */,
 				87E7C45121509AB000F7AB14 /* FSEditorAbilityVC.m in Sources */,
 				45D7D75421538239009E8E7A /* FSMeetingDataEnum.m in Sources */,

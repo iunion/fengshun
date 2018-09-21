@@ -16,7 +16,9 @@
 #define FS_VIDEOPAGE_TEXTFONT UI_FONT_16
 
 @interface FSMakeVideoMediateVC ()
-
+{
+    BOOL isTimePast;
+}
 @property (nonatomic, strong) UIView *BottomBgView;
 
 @property (nonatomic, strong) BMTableViewSection *m_MainSection;
@@ -249,7 +251,6 @@
     self.m_TimeTypeItem.accessoryView = imageTextView;
 
     self.m_ChooseTimeItem = [BMDateTimeItem itemWithTitle:@"选择时间" placeholder:@"请选择"];
-    self.m_ChooseTimeItem.minLimitDate = [NSDate date];
     self.m_ChooseTimeItem.textColor = UI_COLOR_B1;
     self.m_ChooseTimeItem.textFont = FS_VIDEOPAGE_TEXTFONT;
     self.m_ChooseTimeItem.pickerStyle = PickerStyle_YearMonthDayHourMinute;
@@ -259,20 +260,12 @@
     self.m_ChooseTimeItem.pickerPlaceholderColor = UI_COLOR_B10;
     self.m_ChooseTimeItem.accessoryView = [BMTableViewItem DefaultAccessoryView];
     self.m_ChooseTimeItem.showDoneBtn = NO;
+    self.m_ChooseTimeItem.isShowHighlightBg = NO;
     self.m_ChooseTimeItem.formatPickerText = ^NSString * _Nullable(BMDateTimeItem * _Nonnull item) {
         return [item.pickerDate bm_stringByFormatter:@"yyyy-MM-dd HH:mm"];
     };
-    self.m_ChooseTimeItem.isShowHighlightBg = NO;
     self.m_ChooseTimeItem.onChange = ^(BMDateTimeItem * _Nonnull item) {
         weakSelf.m_CreateModel.startTime = [item.pickerDate timeIntervalSince1970] * 1000;
-    };
-    self.m_ChooseTimeItem.actionBarDoneButtonTapHandler = ^(BMDateTimeItem * _Nonnull item) {
-        if (weakSelf.m_CreateModel.startTime == 0) {
-            if (item.pickerDate == nil) {
-                item.pickerDate = [NSDate date];
-            }
-            weakSelf.m_CreateModel.startTime = [item.pickerDate timeIntervalSince1970] * 1000;
-        }
     };
 
     NSArray *timeArray = @[@"1小时", @"1.5小时", @"2小时", @"2.5小时", @"3小时", @"3.5小时", @"4小时"];
@@ -346,7 +339,7 @@
             BMImageTextView *accessoryView2 = (BMImageTextView *)self.m_TimeTypeItem.accessoryView;
             accessoryView2.text = @"预约时间";
             self.m_ChooseTimeItem.pickerDate = [NSDate dateWithTimeIntervalSince1970:self.m_CreateModel.startTime*0.001];
-            self.m_ChooseTimeItem.defaultPickerDate = [NSDate dateWithTimeIntervalSince1970:self.m_CreateModel.startTime*0.001];
+            self.m_ChooseTimeItem.minLimitDate = self.m_ChooseTimeItem.pickerDate;
         }
         
         if ([self.m_CreateModel.orderHour bm_isNotEmpty]) {
@@ -380,6 +373,12 @@
     {
         if (![self.m_MainSection.items containsObject:self.m_ChooseTimeItem])
         {
+            if (self.m_ChooseTimeItem.pickerDate == nil) {
+                NSTimeInterval timeInterval = [self latestFiveExactlyTime];
+                self.m_ChooseTimeItem.minLimitDate = [NSDate dateWithTimeIntervalSince1970:timeInterval];
+                self.m_ChooseTimeItem.pickerDate = self.m_ChooseTimeItem.minLimitDate;
+                self.m_CreateModel.startTime = timeInterval * 1000;
+            }
             [self.m_MainSection insertItem:self.m_ChooseTimeItem atIndex:3];
         }
     }
@@ -467,14 +466,7 @@
         NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970];
         NSString *string = [NSString stringWithFormat:@"%0.0lf",timeInterval];
         long long longTimeInterval = [string longLongValue];
-        NSTimeInterval remainder = longTimeInterval%(5*60);
-        longTimeInterval -= remainder;
-        if (remainder > 4*60) {
-            // 接近下一个正5分钟，多加一个5分钟
-            longTimeInterval += 5*60;
-        }
-        longTimeInterval += 5*60;
-        
+        longTimeInterval += 10; // 立即开始时间延后十秒
         self.m_CreateModel.startTime = longTimeInterval * 1000;
     }
     else
@@ -482,6 +474,13 @@
         if (self.m_CreateModel.startTime == 0) {
             [self.m_ProgressHUD showAnimated:YES withDetailText:@"请选择时间" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             return;
+        }
+        
+        NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] * 1000;
+        if (self.m_CreateModel.startTime < timeInterval) {
+            isTimePast = YES;
+            timeInterval = [self latestFiveExactlyTime];
+            self.m_CreateModel.startTime = timeInterval * 1000;
         }
     }
     
@@ -491,6 +490,18 @@
 
     self.m_CreateModel.meetingPersonnelResponseDTO = self.m_AttendedList;
     [self sendSaveMeetingRequest];
+}
+
+// 最近的5分钟正点
+- (NSTimeInterval)latestFiveExactlyTime
+{
+    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970];
+    NSString *string = [NSString stringWithFormat:@"%0.0lf",timeInterval];
+    long long longTimeInterval = [string longLongValue];
+    NSTimeInterval remainder = longTimeInterval%(5*60);
+    longTimeInterval -= remainder;
+    longTimeInterval += 5*60;
+    return longTimeInterval;
 }
 
 - (void)sendSaveMeetingRequest
@@ -539,8 +550,14 @@
         NSDictionary *dataDic = [resDic bm_dictionaryForKey:@"data"];
         if ([dataDic bm_isNotEmptyDictionary])
         {
-            [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:@"提交成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             FSMeetingDetailModel *mode = [FSMeetingDetailModel modelWithParams:dataDic];
+
+            if (isTimePast) {
+                NSString *tip = [NSString stringWithFormat:@"预约时间已过期，系统已调整到%@", [NSDate bm_stringFromTs:mode.startTime*0.001 formatter:@"HH:mm"]];
+                [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:tip delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            } else {
+                [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:@"提交成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            }
             
             if (self.m_IsStartImmediately)
             {
