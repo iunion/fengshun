@@ -561,15 +561,23 @@
             } else {
                 [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:@"提交成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             }
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:FSMakeVideoMediateSuccessNotification object:nil userInfo:nil];
+
+            if (FSMakeVideoMediateMode_Edit == self.makeMode) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:FSVideoMediateChangedNotification object:mode userInfo:nil];
+            } else {
+                [[NSNotificationCenter defaultCenter] postNotificationName:FSMakeVideoMediateSuccessNotification object:nil userInfo:nil];
+            }
 
             if (_m_IsStartImmediately) {
                 self.m_DetailModel = mode;
                 self.view.userInteractionEnabled = NO;
                 [self startMeeting];
             } else {
-                [self backToVideoMediateList];
+                if (FSMakeVideoMediateMode_Edit == self.makeMode) {
+                    [self.navigationController popViewControllerAnimated:YES];
+                } else {
+                    [self backToVideoMediateList];
+                }
             }
             
             return;

@@ -29,6 +29,11 @@
 @implementation FSVideoMediateDetailVC
 @synthesize m_FreshViewType = _m_FreshViewType;
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad {
     _m_FreshViewType = BMFreshViewType_NONE;
     [super viewDidLoad];
@@ -38,6 +43,8 @@
     [self bm_setNavigationWithTitle:@"视频详情" barTintColor:[UIColor whiteColor] leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
     
     [self loadApiData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoMediateChanged:) name:FSVideoMediateChangedNotification object:nil];
 }
 
 -(void)buildBottom
@@ -78,6 +85,14 @@
     }
     
     return NO;
+}
+
+- (void)videoMediateChanged:(NSNotification *)noti
+{
+    if (noti.object && [noti.object isKindOfClass:[FSMeetingDetailModel class]])
+    {
+        self.m_DetailModel = noti.object;
+    }
 }
 
 -(void)setM_DetailModel:(FSMeetingDetailModel *)model
