@@ -59,6 +59,7 @@
 		45F68F4F2150E58F00628DC8 /* empty_topicicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87E7C6B42150C10100F7AB14 /* empty_topicicon@3x.png */; };
 		45F68F502150E58F00628DC8 /* empty_videoicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87E7C6BB2150C10100F7AB14 /* empty_videoicon@2x.png */; };
 		45F68F512150E58F00628DC8 /* empty_videoicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87E7C6BA2150C10100F7AB14 /* empty_videoicon@3x.png */; };
+		45F87DD421547E92001451D5 /* FSCourseHomePageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF7E1C721539F45002CEDA4 /* FSCourseHomePageVC.m */; };
 		45FEF843214D1B720005AD43 /* UIAlertController+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF840214D1B710005AD43 /* UIAlertController+Blocks.m */; };
 		45FEF844214D1B720005AD43 /* UIButton+XQAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF841214D1B710005AD43 /* UIButton+XQAdd.m */; };
 		8730AD352140B9BD004331A9 /* FSSetupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730AD332140B9BC004331A9 /* FSSetupVC.m */; };
@@ -9222,6 +9223,7 @@
 				87E7C41F21509AB000F7AB14 /* HRColorPickerViewController.m in Sources */,
 				87E7C42021509AB000F7AB14 /* FSAlertView.m in Sources */,
 				87E7C42121509AB000F7AB14 /* DTAccessibilityElement.m in Sources */,
+				45F87DD421547E92001451D5 /* FSCourseHomePageVC.m in Sources */,
 				87E7C42221509AB000F7AB14 /* WebViewJavascriptBridgeBase.m in Sources */,
 				87E7C42321509AB000F7AB14 /* ZFOrientationObserver.m in Sources */,
 				87E7C42421509AB000F7AB14 /* ZFKVOController.m in Sources */,
