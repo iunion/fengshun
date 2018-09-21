@@ -93,7 +93,7 @@
 
         index ++;
         if (index < count) {
-            UIView *line = [[UIView alloc] initWithFrame:CGRectMake(width*index, (self.bm_height - 24)/2, 1, 24)];
+            UIView *line = [[UIView alloc] initWithFrame:CGRectMake(width*index, (self.bm_height - 24)/2, 0.5, 24)];
             line.backgroundColor = UI_COLOR_B6;
             [self addSubview:line];
         }

@@ -19,6 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.bm_NavigationShadowHidden = NO;
+    self.bm_NavigationShadowColor = UI_COLOR_B6;
     [self bm_setNavigationWithTitle:@"参与人员" barTintColor:[UIColor whiteColor] leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
     
     if (self.meetingId > 0 && self.m_AttendList.count < FSMEETING_PERSON_MAX_COUNT) {

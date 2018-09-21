@@ -83,6 +83,8 @@
 - (void)setNavTitle
 {
     NSString *title = [NSString stringWithFormat:@"与%@私密聊天中...",self.memberModel.memberName];
+    self.bm_NavigationShadowHidden = NO;
+    self.bm_NavigationShadowColor = UI_COLOR_B6;
     [self bm_setNavigationWithTitle:title barTintColor:[UIColor whiteColor] leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
 }
 

@@ -294,7 +294,7 @@ static CGFloat margin = 10;
             v.backgroundColor = [UIColor blackColor];
             [self addSubview:v];
             [v mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.height.offset(30);
+                make.height.offset(35);
                 make.left.right.equalTo(self);
                 make.bottom.equalTo(self);
             }];
