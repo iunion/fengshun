@@ -561,7 +561,7 @@
         [weakSelf showLogin];
     }];
     
-    // 分享
+    // 分享 （是否显示）
     [self.m_WebView registerHandler:@"toShare" handler:^(id data, WVJBResponseCallback responseCallback) {
         BMLog(@"share called: %@", data);
         //responseCallback(@"Response from register");
@@ -635,10 +635,25 @@
             [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"复制失败" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         }
     }];
-    
+    // 举报
     [self.m_WebView registerHandler:@"toReport" handler:^(id data, WVJBResponseCallback responseCallback) {
         BMLog(@"toReport called: %@", data);
 
+    }];
+    // 下载按钮（是否显示）
+    [self.m_WebView registerHandler:@"toDownload" handler:^(id data, WVJBResponseCallback responseCallback) {
+        BMLog(@"toDownload called: %@", data);
+        
+    }];
+    // 显示分享面板
+    [self.m_WebView registerHandler:@"showShareBoard" handler:^(id data, WVJBResponseCallback responseCallback) {
+        BMLog(@"showShareBoard called: %@", data);
+        
+    }];
+    //收藏按钮
+    [self.m_WebView registerHandler:@"toCollect" handler:^(id data, WVJBResponseCallback responseCallback) {
+        BMLog(@"toCollect called: %@", data);
+        
     }];
     
     // 跳转客服
