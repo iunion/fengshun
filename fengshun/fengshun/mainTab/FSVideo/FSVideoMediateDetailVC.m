@@ -263,15 +263,13 @@
     if ([_m_DetailModel.meetingStatus isEqualToString:[FSMeetingDataEnum meetingStatusNoStartEnglish]])
     {
         // 未开始 支持所有操作
-        sheetVC = [[FSVideoMediateSheetVC alloc] initWithTitleArray:@[@"添加人员", @"编辑", @"再次发起", @"删除"]];
+        sheetVC = [[FSVideoMediateSheetVC alloc] initWithTitleArray:@[@"添加人员", @"编辑", @"删除"]];
         BMWeakType(sheetVC)
         sheetVC.m_ActionSheetDoneBlock = ^(NSInteger index, NSString *title) {
             if (index == 0) {
                 [weakSelf inviteAction];
             } else if (index == 1) {
                 [weakSelf editAction];
-            } else if (index == 2) {
-                [weakSelf resendAction];
             } else {
                 weaksheetVC.m_ActionSheetDismissBlock = ^{
                     [weakSelf deleteAction];
@@ -282,12 +280,10 @@
     else if ([_m_DetailModel.meetingStatus isEqualToString:[FSMeetingDataEnum meetingStatusUnderwayEnglish]])
     {
         // 进行中 不能编辑不能删除
-        sheetVC = [[FSVideoMediateSheetVC alloc] initWithTitleArray:@[@"添加人员", @"再次发起"]];
+        sheetVC = [[FSVideoMediateSheetVC alloc] initWithTitleArray:@[@"添加人员"]];
         sheetVC.m_ActionSheetDoneBlock = ^(NSInteger index, NSString *title) {
             if (index == 0) {
                 [weakSelf inviteAction];
-            } else {
-                [weakSelf resendAction];
             }
         };
     }
