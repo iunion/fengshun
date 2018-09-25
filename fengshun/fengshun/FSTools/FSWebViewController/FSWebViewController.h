@@ -7,8 +7,10 @@
 //
 
 #import "FSSuperNetVC.h"
+#import "WebViewJavascriptBridgeBase.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
 
 @protocol FSWebViewControllerDelegate;
 
@@ -44,6 +46,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 调用js函数
 - (void)callJsHandler:(NSString *)jsFunc withData:(id)data;
+// 注册js函数
+- (void)registerHander:(NSString *)jsFunc handler:(WVJBHandler)handler;
 // 刷新web
 - (void)refreshWebView;
 

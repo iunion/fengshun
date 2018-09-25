@@ -534,6 +534,11 @@
     [self.m_WebView callJsHandler:jsFunc withData:data];
 }
 
+- (void)registerHander:(NSString *)jsFunc handler:(WVJBHandler)handler
+{
+    [self.m_WebView registerHandler:jsFunc handler:handler];
+}
+
 // 无用
 - (void)removeJSHandler
 {
@@ -655,6 +660,7 @@
         BMLog(@"toCollect called: %@", data);
         
     }];
+    
     
     // 跳转客服
 //    [self.m_WebView registerHandler:@"contactCustomerService" handler:^(id data, WVJBResponseCallback responseCallback) {

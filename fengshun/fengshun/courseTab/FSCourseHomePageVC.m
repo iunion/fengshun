@@ -29,6 +29,7 @@
     [self bm_setNavigationWithTitle:self.m_Title barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
     [GetAppDelegate.m_TabBarController hideOriginTabBar];
     //[self setBm_NavigationBarImage:[UIImage imageWithColor:[UIColor whiteColor]]];
+//    [self callJsHandler:@"" withData:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,7 +47,8 @@
 - (BOOL)webView:(FSWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     NSString *encodingUrlString = [self.m_UrlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    if ([request.URL.absoluteString isEqualToString:encodingUrlString]) {
+    if ([request.URL.absoluteString isEqualToString:encodingUrlString])
+    {
         return YES;
     }
     else

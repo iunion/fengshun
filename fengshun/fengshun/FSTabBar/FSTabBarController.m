@@ -79,6 +79,7 @@
     nav1.popOnBackButtonHandler = [self getPopOnBackButtonHandler];
     
     FSCourseHomePageVC *course =[[FSCourseHomePageVC alloc] initWithTitle:@"课堂" url:[NSString stringWithFormat:@"%@/course?Ctype=\"IOS\"", FS_H5_SERVER]];
+//    FSCourseHomePageVC *course =[[FSCourseHomePageVC alloc] initWithTitle:@"课堂" url:[NSString stringWithFormat:@"baidu.com"]];
     //BMNavigationController *nav2 = [[BMNavigationController alloc] initWithRootViewController:[[WebViewVC alloc]initWithNibName:@"WebViewVC" bundle:nil]];//[[FSH5DemoVC alloc] init]
     BMNavigationController *nav2 = [[BMNavigationController alloc] initWithRootViewController:course];//[[FSH5DemoVC alloc] init]
     nav2.popOnBackButtonHandler = [self getPopOnBackButtonHandler];
