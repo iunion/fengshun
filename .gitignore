@@ -1,3 +1,11 @@
+#忽略文件
+.DS_Store
+*.xcbkptlist
+IDEWorkspaceChecks.plist
+UserInterfaceState.xcuserstate
+xcschememanagement.plist
+*.xcscheme
+#忽略视频SDK
 IMSDK
 AVSDK
 BeautySDK
