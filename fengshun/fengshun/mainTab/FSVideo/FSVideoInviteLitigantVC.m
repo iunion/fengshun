@@ -324,6 +324,7 @@
                     }
                     [self.m_ProgressHUD hideAnimated:NO];
                     [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:@"邀请成功！" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:FSVideoMediateChangedNotification object:nil userInfo:nil];
                     [self.navigationController popViewControllerAnimated:YES];
                     return;
                 }

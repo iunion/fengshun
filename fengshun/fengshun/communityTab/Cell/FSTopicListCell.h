@@ -20,6 +20,8 @@
  */
 - (void)drawCellWithModle:(FSTopicModel *)model;
 
+- (void)drawCellWithCollectionModel:(FSTopicCollectModel *)model;
+
 + (CGFloat)cellHeight;
 
 @end

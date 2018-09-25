@@ -9,6 +9,7 @@
 #import "FSForumListCell.h"
 #import "UIImageView+WebCache.h"
 #import "FSApiRequest.h"
+#import "FSLoginVC.h"
 
 @interface FSForumListCell ()
 // 图片
@@ -66,16 +67,17 @@
 }
 - (IBAction)doFollowAction:(UIButton *)sender
 {
-    FSForumFollowState state = self.m_ForumModel.m_AttentionFlag;
-    [FSApiRequest updateFourmAttentionStateWithFourmId:self.m_ForumModel.m_Id followStatus:!state success:^(id  _Nullable responseObject) {
-        self.m_ForumModel.m_AttentionFlag = !self.m_ForumModel.m_AttentionFlag;
-        [self showWithFSCommunityForumListModel:self.m_ForumModel];
-        if (self.attentionChangeBlock) {
-            self.attentionChangeBlock(!state) ;
-        }
-    } failure:^(NSError * _Nullable error) {
-        
-    }];
+    if (self.attentionBtnClickBlock) {
+        self.attentionBtnClickBlock(self.m_ForumModel) ;
+    }
+//    FSForumFollowState state = self.m_ForumModel.m_AttentionFlag;
+//    [FSApiRequest updateFourmAttentionStateWithFourmId:self.m_ForumModel.m_Id followStatus:!state success:^(id  _Nullable responseObject) {
+//        self.m_ForumModel.m_AttentionFlag = !self.m_ForumModel.m_AttentionFlag;
+//        [self showWithFSCommunityForumListModel:self.m_ForumModel];
+//        
+//    } failure:^(NSError * _Nullable error) {
+//        
+//    }];
 }
 
 

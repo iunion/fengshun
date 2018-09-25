@@ -12,11 +12,16 @@
 #import "FSVideoInviteLitigantVC.h"
 #import "FSVideoMediateDetailVC.h"
 #import "FSVideoMediateListVC.h"
+#import "VideoCallController.h"
+#import "FSMeetingDataEnum.h"
+#import "FSVideoStartTool.h"
 
 #define FS_VIDEOPAGE_TEXTFONT UI_FONT_16
 
 @interface FSMakeVideoMediateVC ()
-
+{
+    BOOL isTimePast;
+}
 @property (nonatomic, strong) UIView *BottomBgView;
 
 @property (nonatomic, strong) BMTableViewSection *m_MainSection;
@@ -34,13 +39,14 @@
 @property (nonatomic, assign) BOOL m_IsStartImmediately;
 @property (nonatomic, strong) NSMutableArray *m_AttendedList; // 参与人员列表
 
+@property (nonatomic, strong) FSMeetingDetailModel *m_DetailModel;
+
 @end
 
 @implementation FSMakeVideoMediateVC
 
 + (instancetype)makevideoMediateVCWithModel:(FSMakeVideoMediateMode)mode
                                        data:(FSMeetingDetailModel *)data
-                                      block:(makeVideoMediateSuccessBlock)block
 {
     FSMakeVideoMediateVC *vc = [FSMakeVideoMediateVC new];
     vc.makeMode = mode;
@@ -97,7 +103,6 @@
         }
     }
 
-    vc.successBlock = block;
     return vc;
 }
 
@@ -130,7 +135,7 @@
 
 -(void)buildUI
 {
-    self.BottomBgView = [[UIView alloc] initWithFrame:CGRectMake(0, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - 48, self.view.bm_width, 48)];
+    self.BottomBgView = [[UIView alloc] initWithFrame:CGRectMake(0, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - 48 - UI_HOME_INDICATOR_HEIGHT, self.view.bm_width, 48 + UI_HOME_INDICATOR_HEIGHT)];
     self.BottomBgView.backgroundColor = UI_COLOR_BL1;
     [self.view addSubview:self.BottomBgView];
 
@@ -249,7 +254,6 @@
     self.m_TimeTypeItem.accessoryView = imageTextView;
 
     self.m_ChooseTimeItem = [BMDateTimeItem itemWithTitle:@"选择时间" placeholder:@"请选择"];
-    self.m_ChooseTimeItem.minLimitDate = [NSDate date];
     self.m_ChooseTimeItem.textColor = UI_COLOR_B1;
     self.m_ChooseTimeItem.textFont = FS_VIDEOPAGE_TEXTFONT;
     self.m_ChooseTimeItem.pickerStyle = PickerStyle_YearMonthDayHourMinute;
@@ -259,20 +263,12 @@
     self.m_ChooseTimeItem.pickerPlaceholderColor = UI_COLOR_B10;
     self.m_ChooseTimeItem.accessoryView = [BMTableViewItem DefaultAccessoryView];
     self.m_ChooseTimeItem.showDoneBtn = NO;
+    self.m_ChooseTimeItem.isShowHighlightBg = NO;
     self.m_ChooseTimeItem.formatPickerText = ^NSString * _Nullable(BMDateTimeItem * _Nonnull item) {
         return [item.pickerDate bm_stringByFormatter:@"yyyy-MM-dd HH:mm"];
     };
-    self.m_ChooseTimeItem.isShowHighlightBg = NO;
     self.m_ChooseTimeItem.onChange = ^(BMDateTimeItem * _Nonnull item) {
         weakSelf.m_CreateModel.startTime = [item.pickerDate timeIntervalSince1970] * 1000;
-    };
-    self.m_ChooseTimeItem.actionBarDoneButtonTapHandler = ^(BMDateTimeItem * _Nonnull item) {
-        if (weakSelf.m_CreateModel.startTime == 0) {
-            if (item.pickerDate == nil) {
-                item.pickerDate = [NSDate date];
-            }
-            weakSelf.m_CreateModel.startTime = [item.pickerDate timeIntervalSince1970] * 1000;
-        }
     };
 
     NSArray *timeArray = @[@"1小时", @"1.5小时", @"2小时", @"2.5小时", @"3小时", @"3.5小时", @"4小时"];
@@ -346,7 +342,7 @@
             BMImageTextView *accessoryView2 = (BMImageTextView *)self.m_TimeTypeItem.accessoryView;
             accessoryView2.text = @"预约时间";
             self.m_ChooseTimeItem.pickerDate = [NSDate dateWithTimeIntervalSince1970:self.m_CreateModel.startTime*0.001];
-            self.m_ChooseTimeItem.defaultPickerDate = [NSDate dateWithTimeIntervalSince1970:self.m_CreateModel.startTime*0.001];
+            self.m_ChooseTimeItem.minLimitDate = self.m_ChooseTimeItem.pickerDate;
         }
         
         if ([self.m_CreateModel.orderHour bm_isNotEmpty]) {
@@ -380,6 +376,12 @@
     {
         if (![self.m_MainSection.items containsObject:self.m_ChooseTimeItem])
         {
+            if (self.m_ChooseTimeItem.pickerDate == nil) {
+                NSTimeInterval timeInterval = [self latestFiveExactlyTime];
+                self.m_ChooseTimeItem.minLimitDate = [NSDate dateWithTimeIntervalSince1970:timeInterval];
+                self.m_ChooseTimeItem.pickerDate = self.m_ChooseTimeItem.minLimitDate;
+                self.m_CreateModel.startTime = timeInterval * 1000;
+            }
             [self.m_MainSection insertItem:self.m_ChooseTimeItem atIndex:3];
         }
     }
@@ -467,14 +469,7 @@
         NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970];
         NSString *string = [NSString stringWithFormat:@"%0.0lf",timeInterval];
         long long longTimeInterval = [string longLongValue];
-        NSTimeInterval remainder = longTimeInterval%(5*60);
-        longTimeInterval -= remainder;
-        if (remainder > 4*60) {
-            // 接近下一个正5分钟，多加一个5分钟
-            longTimeInterval += 5*60;
-        }
-        longTimeInterval += 5*60;
-        
+        longTimeInterval += 10; // 立即开始时间延后十秒
         self.m_CreateModel.startTime = longTimeInterval * 1000;
     }
     else
@@ -482,6 +477,13 @@
         if (self.m_CreateModel.startTime == 0) {
             [self.m_ProgressHUD showAnimated:YES withDetailText:@"请选择时间" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             return;
+        }
+        
+        NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970] * 1000;
+        if (self.m_CreateModel.startTime < timeInterval) {
+            isTimePast = YES;
+            timeInterval = [self latestFiveExactlyTime];
+            self.m_CreateModel.startTime = timeInterval * 1000;
         }
     }
     
@@ -491,6 +493,18 @@
 
     self.m_CreateModel.meetingPersonnelResponseDTO = self.m_AttendedList;
     [self sendSaveMeetingRequest];
+}
+
+// 最近的5分钟正点
+- (NSTimeInterval)latestFiveExactlyTime
+{
+    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970];
+    NSString *string = [NSString stringWithFormat:@"%0.0lf",timeInterval];
+    long long longTimeInterval = [string longLongValue];
+    NSTimeInterval remainder = longTimeInterval%(5*60);
+    longTimeInterval -= remainder;
+    longTimeInterval += 5*60;
+    return longTimeInterval;
 }
 
 - (void)sendSaveMeetingRequest
@@ -504,7 +518,7 @@
     }
     if (request)
     {
-        [self.m_ProgressHUD showAnimated:YES showBackground:YES];
+        [self.m_ProgressHUD showAnimated:YES showBackground:NO];
         NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
             if (error)
             {
@@ -539,22 +553,31 @@
         NSDictionary *dataDic = [resDic bm_dictionaryForKey:@"data"];
         if ([dataDic bm_isNotEmptyDictionary])
         {
-            [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:@"提交成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             FSMeetingDetailModel *mode = [FSMeetingDetailModel modelWithParams:dataDic];
-            
-            if (self.m_IsStartImmediately)
-            {
-                [self.navigationController popViewControllerAnimated:NO];
+
+            if (isTimePast) {
+                NSString *tip = [NSString stringWithFormat:@"预约时间已过期，系统已调整到%@", [NSDate bm_stringFromTs:mode.startTime*0.001 formatter:@"HH:mm"]];
+                [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:tip delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             }
-            else
-            {
-                [self.navigationController popViewControllerAnimated:YES];
-            }
-            
-            if (self.successBlock) {
-                self.successBlock(mode,_m_IsStartImmediately);
+            if (FSMakeVideoMediateMode_Edit == self.makeMode) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:FSVideoMediateChangedNotification object:mode userInfo:nil];
+            } else {
+                [[NSNotificationCenter defaultCenter] postNotificationName:FSMakeVideoMediateSuccessNotification object:nil userInfo:nil];
             }
 
+            if (_m_IsStartImmediately) {
+                self.m_DetailModel = mode;
+                self.view.userInteractionEnabled = NO;
+                [self startMeeting];
+            } else {
+                if (FSMakeVideoMediateMode_Edit == self.makeMode) {
+                    [self.navigationController popViewControllerAnimated:YES];
+                } else {
+                    [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:@"提交成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                    [self backToVideoMediateList];
+                }
+            }
+            
             return;
         }
     }
@@ -563,6 +586,113 @@
     [self.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
 }
 
+- (void)backToVideoMediateList
+{
+    NSArray *listVC = [self.navigationController.viewControllers subarrayWithRange:NSMakeRange(0, 2)];
+    [self.navigationController setViewControllers:listVC animated:YES];
+}
+
+#pragma mark -
+#pragma mark  直接进入会议
+
+- (void)startMeeting
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSMutableURLRequest *request = [FSApiRequest startMeetingWithId:self.m_DetailModel.meetingId];
+    if (request)
+    {
+        [self.m_ProgressHUD showAnimated:YES showBackground:NO];
+        NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+            if (error)
+            {
+                [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                [self backToVideoMediateList];
+            }
+            else
+            {
+#if DEBUG
+                NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
+                BMLog(@"%@ %@", response, responseStr);
+#endif
+                NSDictionary *resDic = responseObject;
+                if (![resDic bm_isNotEmptyDictionary])
+                {
+                    [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                    [self backToVideoMediateList];
+
+                    return;
+                }
+                
+                NSInteger statusCode = [resDic bm_intForKey:@"code"];
+                if (statusCode == 1000)
+                {
+                    [self joinRoom];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:FSVideoMediateChangedNotification object:nil userInfo:nil];
+                    return;
+                }
+                
+                NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
+                [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                [self backToVideoMediateList];
+            }
+        }];
+        [task resume];
+    }
+}
+
+- (void)joinRoom
+{
+    FSMeetingPersonnelModel *model = [_m_DetailModel getMeetingMediator];
+    BMWeakSelf
+    {
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        NSMutableURLRequest *request = [FSApiRequest getJoinMeetingToken:model.inviteCode inviteName:model.userName];
+        if (request)
+        {
+            [self.m_ProgressHUD showAnimated:YES showBackground:NO];
+            NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+                if (error)
+                {
+                    [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                    [self backToVideoMediateList];
+                }
+                else
+                {
+#if DEBUG
+                    NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
+                    BMLog(@"%@ %@", response, responseStr);
+#endif
+                    NSDictionary *resDic = responseObject;
+                    if (![resDic bm_isNotEmptyDictionary])
+                    {
+                        [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                        [self backToVideoMediateList];
+                        
+                        return;
+                    }
+                    
+
+                    NSInteger statusCode = [resDic bm_intForKey:@"code"];
+                    if (statusCode == 1000)
+                    {
+                        NSDictionary *data = [resDic bm_dictionaryForKey:@"data"];
+                        VideoCallController *vc = [VideoCallController VCWithRoomId:_m_DetailModel.roomId meetingId:_m_DetailModel.meetingId token:data[@"token"]];
+                        BMNavigationController *nav = [[BMNavigationController alloc] initWithRootViewController:vc];
+                        [weakSelf presentViewController:nav animated:YES completion:nil];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:FSVideoMediateChangedNotification object:nil userInfo:nil];
+                        [self backToVideoMediateList];
+                        return;
+                    }
+                    
+                    NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
+                    [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                    [self backToVideoMediateList];
+                }
+            }];
+            [task resume];
+        }
+    }
+}
 
 #pragma mark - 屏幕触摸事件
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -573,16 +703,6 @@
     if (scrollView.tracking) {
         [self.view endEditing:YES];
     }
-}
-
-
-- (void)viewSafeAreaInsetsDidChange
-{
-    [super viewSafeAreaInsetsDidChange];
-    
-    self.BottomBgView.bm_height = 48 + self.view.safeAreaInsets.bottom;
-    self.BottomBgView.bm_bottom = self.view.bm_bottom;
-    self.m_TableView.frame = CGRectMake(0, 0, self.view.bm_width, self.BottomBgView.bm_top);
 }
 
 @end

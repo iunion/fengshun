@@ -57,6 +57,8 @@ FSMainVC ()
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
+    self.m_ShowProgressHUD = NO;
+    
     [self setupUI];
     [self.m_TableView registerNib:[UINib nibWithNibName:@"FSCourseTableCell" bundle:nil] forCellReuseIdentifier:@"FSCourseTableCell"];
     [self.m_TableView registerNib:[UINib nibWithNibName:@"FSTopicListCell" bundle:nil] forCellReuseIdentifier:@"FSTopicListCell"];
@@ -69,14 +71,14 @@ FSMainVC ()
 {
     self.m_TableView.bm_freshHeaderView.backgroundColor = [UIColor whiteColor];
     
-    self.bm_NavigationBarAlpha = 0;
+//    self.bm_NavigationBarAlpha = 0;
     self.bm_NavigationBarBgTintColor = [UIColor whiteColor];
     self.bm_NavigationItemTintColor = UI_COLOR_B1;
     [self bm_setNavigationWithTitle:@"主页" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:nil rightItemImage:[UIImage imageNamed:@"home_message"] rightToucheEvent:@selector(popMessageVC:)];
     [GetAppDelegate.m_TabBarController hideOriginTabBar];
     
-    self.bm_NavigationTitleAlpha = 0;
-    [self bm_setNeedsUpdateNavigationTitleAlpha];
+//    self.bm_NavigationTitleAlpha = 0;
+//    [self bm_setNeedsUpdateNavigationTitleAlpha];
 
     self.automaticallyAdjustsScrollViewInsets     = NO;
     self.edgesForExtendedLayout                   = UIRectEdgeTop;
@@ -291,8 +293,8 @@ FSMainVC ()
     icon.image = [UIImage imageNamed:section?@"home_topics":@"home_courses"];
     [view addSubview:icon];
 
-    UILabel *titleLabel  = [[UILabel alloc] initWithFrame:CGRectMake(50, 24, 120, 20)];
-    titleLabel.font      = [UIFont boldSystemFontOfSize:18];
+    UILabel *titleLabel  = [[UILabel alloc] initWithFrame:CGRectMake(45, 24, 120, 20)];
+    titleLabel.font      = [UIFont boldSystemFontOfSize:19];
     titleLabel.textColor = UI_COLOR_B1;
     titleLabel.text      = section ? @"精华帖子" : @"热门推荐";
     [view addSubview:titleLabel];

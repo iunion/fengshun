@@ -41,6 +41,11 @@ FSCommunitySecVC ()
 
 @implementation FSCommunitySecVC
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:userInfoChangedNotification object:nil];
+}
+
 - (instancetype)initWithFourmId:(NSInteger)fourmId
 {
     if (self = [super init])
@@ -64,6 +69,9 @@ FSCommunitySecVC ()
     [self createUI];
     [self loadApiData];
     [self getHeaderInfoMsg];
+    
+    // 登录状态改变刷新数据
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getHeaderInfoMsg) name:userInfoChangedNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,7 +94,7 @@ FSCommunitySecVC ()
     _m_SegmentBar.backgroundColor = [UIColor whiteColor];
 
     // 内容视图
-    self.m_ScrollPageView = [[FSScrollPageView alloc] initWithFrame:CGRectMake(0, _m_SegmentBar.bm_bottom, UI_SCREEN_WIDTH, self.view.bm_height - _m_SegmentBar.bm_bottom) titleColor:UI_COLOR_B1 selectTitleColor:UI_COLOR_BL1 scrollPageSegment:_m_SegmentBar isSubViewPageSegment:NO];
+    self.m_ScrollPageView = [[FSScrollPageView alloc] initWithFrame:CGRectMake(0, _m_SegmentBar.bm_bottom, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT -UI_STATUS_BAR_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - UI_HOME_INDICATOR_HEIGHT- _m_SegmentBar.bm_bottom) titleColor:UI_COLOR_B1 selectTitleColor:UI_COLOR_BL1 scrollPageSegment:_m_SegmentBar isSubViewPageSegment:NO];
     [self.view addSubview:self.m_ScrollPageView];
     self.m_ScrollPageView.datasource = self;
     self.m_ScrollPageView.delegate   = self;
@@ -94,14 +102,10 @@ FSCommunitySecVC ()
     [self.m_ScrollPageView reloadPage];
     [self.m_ScrollPageView scrollPageWithIndex:0];
     
-    self.m_PulishBtn = [UIButton bm_buttonWithFrame:CGRectMake(0, 0, 52.f, 52.f) image:[UIImage imageNamed:@"community_comment"]];
+    self.m_PulishBtn = [UIButton bm_buttonWithFrame:CGRectMake(UI_SCREEN_WIDTH - 52 - 20, UI_SCREEN_HEIGHT-UI_STATUS_BAR_HEIGHT-UI_NAVIGATION_BAR_HEIGHT- UI_HOME_INDICATOR_HEIGHT- 20.f - 52.f, 52.f, 52.f) image:[UIImage imageNamed:@"community_comment"]];
     [self.m_PulishBtn addTarget:self action:@selector(pulishTopicAction) forControlEvents:UIControlEventTouchUpInside];
-    CGFloat space = 20.f;
     [self.view addSubview:self.m_PulishBtn];
-    [self.m_PulishBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.bottom.equalTo(self.view).offset(-space);
-        make.width.height.mas_equalTo(52);
-    }];
+    
 }
 
 #pragma mark - Action
@@ -165,6 +169,11 @@ FSCommunitySecVC ()
 
 - (void)followForumAction:(FSCommunityHeaderView *)aView
 {
+    if (![FSUserInfoModle isLogin])
+    {
+        [self showLogin];
+        return ;
+    }
     FSForumFollowState state = self.m_ForumModel.m_AttentionFlag;
     [FSApiRequest updateFourmAttentionStateWithFourmId:self.m_ForumModel.m_Id followStatus:!state success:^(id  _Nullable responseObject) {
         if (self.m_AttentionChangeBlock) {

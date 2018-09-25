@@ -123,6 +123,10 @@ VideoCallVideoViewDelegate>
     [_topBar setBtnIsSelected:NO index:1];
 }
 
+- (void)socketHelperCloseRoomSuccess:(SocketHelper *)socketHelper {
+    [self.m_ProgressHUD hideAnimated:NO];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 #pragma mark - ILiveRoomDisconnectListener
 - (BOOL)onRoomDisconnect:(int)reason {
@@ -199,6 +203,7 @@ VideoCallVideoViewDelegate>
 - (void)sendEndMeetingRequest
 {
     BMWeakSelf
+    [self.m_ProgressHUD bm_bringToFront];
     [FSVideoStartTool endMeetingWithMeetingId:self.meetingId progressHUD:self.m_ProgressHUD completionHandler:^(NSURLResponse *response, id  _Nullable responseObject, NSError * _Nullable error) {
         NSDictionary *resDic = responseObject;
         NSInteger statusCode = [resDic bm_intForKey:@"code"];
@@ -207,7 +212,8 @@ VideoCallVideoViewDelegate>
             if (weakSelf.endMeetingBlock) {
                 weakSelf.endMeetingBlock();
             }
-            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:FSVideoMediateChangedNotification object:nil userInfo:nil];
+            [[SocketHelper shareHelper] sendCloseRoomEvent];
             return;
         }
     }];
@@ -341,7 +347,7 @@ VideoCallVideoViewDelegate>
         [self.view addSubview:vcbb];
         [vcbb mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(self.view);
-            make.height.offset(49);
+            make.height.offset(49 + UI_HOME_INDICATOR_HEIGHT);
             make.bottom.equalTo(self.view);
         }];
         vcbb;
@@ -380,16 +386,6 @@ VideoCallVideoViewDelegate>
     });
     
 }
-
-- (void)viewSafeAreaInsetsDidChange
-{
-    [super viewSafeAreaInsetsDidChange];
-    
-    [_bottomBar  mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.offset(49 + self.view.safeAreaInsets.bottom);
-    }];
-}
-
 
 @end
 

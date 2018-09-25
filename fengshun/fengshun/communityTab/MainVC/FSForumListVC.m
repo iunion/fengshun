@@ -21,6 +21,11 @@ FSForumListVC ()
 
 @implementation FSForumListVC
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:userInfoChangedNotification object:nil];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -30,6 +35,9 @@ FSForumListVC ()
     self.m_TableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.m_TableView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 24);
     [self loadApiData];
+    
+    // 登录状态改变刷新数据
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadApiData) name:userInfoChangedNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -125,8 +133,15 @@ FSForumListVC ()
     FSCommunityForumModel *model = self.m_DataArray[indexPath.section];
     [cell showWithFSCommunityForumListModel:model.m_List[indexPath.row]];
     BMWeakSelf;
-    cell.attentionChangeBlock = ^(BOOL attentionFlag) {
-        [weakSelf loadApiData];
+    cell.attentionBtnClickBlock = ^(FSForumModel *model) {
+        if (![FSUserInfoModle isLogin])
+        {
+            if (weakSelf.m_ShowLoginBlock) {
+                weakSelf.m_ShowLoginBlock();
+            }
+            return ;
+        }
+        [weakSelf updateAttentionFlag:model];
     };
     return cell;
 }
@@ -142,6 +157,15 @@ FSForumListVC ()
     };
 }
 
+
+- (void)updateAttentionFlag:(FSForumModel *)model {
+    FSForumFollowState state = model.m_AttentionFlag;
+    [FSApiRequest updateFourmAttentionStateWithFourmId:model.m_Id followStatus:!state success:^(id  _Nullable responseObject) {
+        [self loadApiData];
+    } failure:^(NSError * _Nullable error) {
+
+    }];
+}
 
 /*
 #pragma mark - Navigation

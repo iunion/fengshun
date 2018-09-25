@@ -80,7 +80,7 @@
 - (void)initILiveSDK
 {
     // 初始化SDK
-    [[ILiveSDK getInstance] initSdk:FS_ILiveSDKAPPID accountType:FS_ILiveAccountType];
+    [[ILiveSDK getInstance] initSdk:(int)FS_ILiveSDKAPPID accountType:(int)FS_ILiveAccountType];
     [[ILiveSDK getInstance] setChannelMode:E_ChannelIMSDK withHost:@""];
     
     // 获取版本号

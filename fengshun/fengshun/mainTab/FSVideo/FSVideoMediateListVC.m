@@ -11,7 +11,6 @@
 #import "FSVideoMediateListCell.h"
 #import "FSMakeVideoMediateVC.h"
 #import "FSVideoMediateDetailVC.h"
-#import "FSMeetingDataEnum.h"
 
 @interface FSVideoMediateListVC ()
 {
@@ -22,9 +21,16 @@
 @property (nonatomic, strong) NSString *meetingStatusEnums;
 @property (nonatomic, strong) FSHeaderCommonSelectorView *headSelector;
 @property (nonatomic, strong) UIView *BottomBgView;
+
+
 @end
 
 @implementation FSVideoMediateListVC
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (void)viewDidLoad
 {
@@ -45,11 +51,14 @@
     } else {
         [self showEmptyViewWithType:[self getNoDataEmptyViewType] customImageName:[self getNoDataEmptyViewCustomImageName] customMessage:[self getNoDataEmptyViewCustomMessage] customView:[self getNoDataEmptyViewCustomView]];
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadApiData) name:FSMakeVideoMediateSuccessNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadApiData) name:FSVideoMediateChangedNotification object:nil];
 }
 
 -(void)buildUI
 {
-    self.BottomBgView = [[UIView alloc] initWithFrame:CGRectMake(0, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - 48, self.view.bm_width, 48)];
+    self.BottomBgView = [[UIView alloc] initWithFrame:CGRectMake(0, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - 48 - UI_HOME_INDICATOR_HEIGHT, self.view.bm_width, 48 + UI_HOME_INDICATOR_HEIGHT)];
     self.BottomBgView.backgroundColor = UI_COLOR_BL1;
     [self.view addSubview:self.BottomBgView];
 
@@ -113,23 +122,7 @@
 
 - (void)makeVideoMediate
 {
-    BMWeakSelf
-    FSMakeVideoMediateVC *vc = [FSMakeVideoMediateVC makevideoMediateVCWithModel:FSMakeVideoMediateMode_Create
-                                                                            data:nil
-                                                                           block:nil];
-    vc.successBlock = ^(FSMeetingDetailModel *model, BOOL startImmediately) {
-        [weakSelf loadApiData];
-        if (startImmediately) {
-            // 立即开始 进入详情页面
-            FSVideoMediateDetailVC *vc = [FSVideoMediateDetailVC new];
-            vc.m_MeetingId = model.meetingId;
-            vc.changedBlock = ^{
-                [weakSelf loadApiData];
-            };
-            [weakSelf.navigationController pushViewController:vc animated:YES];
-        }
-    };
-    
+    FSMakeVideoMediateVC *vc = [FSMakeVideoMediateVC makevideoMediateVCWithModel:FSMakeVideoMediateMode_Create data:nil];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -246,15 +239,6 @@
 - (BMEmptyViewType)getNoDataEmptyViewType
 {
     return BMEmptyViewType_Video;
-}
-
-- (void)viewSafeAreaInsetsDidChange
-{
-    [super viewSafeAreaInsetsDidChange];
-    
-    self.BottomBgView.bm_height = 48 + self.view.safeAreaInsets.bottom;
-    self.BottomBgView.bm_bottom = self.view.bm_bottom;
-    self.m_TableView.frame = CGRectMake(0, 0, self.view.bm_width, self.BottomBgView.bm_top);
 }
 
 @end

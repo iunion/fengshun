@@ -97,7 +97,7 @@
         [weakSelf checkAuthenticationWithName:weakSelf.m_Name idNum:weakSelf.m_IdNum];
     };
 
-    self.m_IdItem = [BMTextItem itemWithTitle:@"姓名" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_None accessoryView:nil selectionHandler:^(BMTableViewItem *item) {
+    self.m_IdItem = [BMTextItem itemWithTitle:@"身份证号" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_None accessoryView:nil selectionHandler:^(BMTableViewItem *item) {
         
     }];
     self.m_IdItem.placeholder = @"请输入您的身份证号码";

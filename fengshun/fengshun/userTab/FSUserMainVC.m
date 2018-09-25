@@ -80,6 +80,7 @@
 
     self.bm_NavigationBarBgTintColor = UI_COLOR_BL1;
     self.bm_NavigationItemTintColor = [UIColor whiteColor];
+    self.bm_NavigationShadowHidden = YES;
 
     self.bm_NavigationBarEffect = [[UIVisualEffect alloc] init];
     [self bm_setNavigationWithTitle:@"" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_setup_icon" leftToucheEvent:@selector(setUpAction:) rightItemTitle:nil rightItemImage:@"navigationbar_message_icon" rightToucheEvent:@selector(messageAction:)];
@@ -104,7 +105,18 @@
 {
     [super viewWillAppear:animated];
     
+    self.bm_NavigationBarStyle = UIBarStyleBlack;
+    [self bm_setNeedsUpdateNavigationBarStyle];
+    
     [self checkUnreadMessage];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    self.bm_NavigationBarStyle = UIBarStyleDefault;
+    [self bm_setNeedsUpdateNavigationBarStyle];
 }
 
 - (void)setUpAction:(id)sender
@@ -226,7 +238,7 @@
     self.m_ShareItem.highlightBgColor = UI_COLOR_BL1;
     self.m_ShareItem.cellHeight = 50.0f;
     
-    [self.m_AppSection addItem:self.m_HelpItem];
+    //[self.m_AppSection addItem:self.m_HelpItem];
     [self.m_AppSection addItem:self.m_ServiceItem];
     [self.m_AppSection addItem:self.m_ShareItem];
 

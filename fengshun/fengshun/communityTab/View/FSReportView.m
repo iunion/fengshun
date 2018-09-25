@@ -42,7 +42,7 @@
         // 每个按钮高度
         CGFloat btnHeight = 47.f;
         //
-        self.m_AlertView = [[UIView alloc]initWithFrame:CGRectMake(0, self.bm_height, self.bm_width, btnHeight* (btnTitleArr.count + 1))];
+        self.m_AlertView = [[UIView alloc]initWithFrame:CGRectMake(0, self.bm_height, self.bm_width, btnHeight* (btnTitleArr.count + 1) + UI_HOME_INDICATOR_HEIGHT)];
         self.m_AlertView.backgroundColor = [UIColor whiteColor];
         [self addSubview:self.m_AlertView];
         // 初始化按钮

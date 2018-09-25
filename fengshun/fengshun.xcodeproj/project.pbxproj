@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		45344496214D0DFA00EA7BFA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 45344495214D0DFA00EA7BFA /* libz.tbd */; };
 		45344498214D0DFA00EA7BFA /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 45344497214D0DFA00EA7BFA /* libstdc++.tbd */; };
-		4534449A214D0DFA00EA7BFA /* libstdc++.6.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 45344499214D0DFA00EA7BFA /* libstdc++.6.tbd */; };
 		4534449C214D0DFA00EA7BFA /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4534449B214D0DFA00EA7BFA /* libsqlite3.tbd */; };
 		4534449E214D0DFA00EA7BFA /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4534449D214D0DFA00EA7BFA /* libresolv.tbd */; };
 		453444A0214D0DFA00EA7BFA /* libprotobuf.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4534449F214D0DFA00EA7BFA /* libprotobuf.tbd */; };
@@ -31,6 +30,8 @@
 		453444C0214D0DFA00EA7BFA /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444BF214D0DFA00EA7BFA /* AssetsLibrary.framework */; };
 		453444C2214D0DFA00EA7BFA /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444C1214D0DFA00EA7BFA /* Accelerate.framework */; };
 		4561391E2148FA2B007DF6A1 /* FSApiRequest+VideoMediate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4561391D2148FA2B007DF6A1 /* FSApiRequest+VideoMediate.m */; };
+		456A48412154C18F00F8F658 /* WebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF7E1CA2153A9F9002CEDA4 /* WebViewVC.m */; };
+		456A48422154C19600F8F658 /* WebViewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E1CB2153A9F9002CEDA4 /* WebViewVC.xib */; };
 		458E181D2151E7690050590B /* video_back_btn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 458E181B2151E7670050590B /* video_back_btn@3x.png */; };
 		458E181E2151E7690050590B /* video_back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 458E181C2151E7680050590B /* video_back_btn@2x.png */; };
 		458E181F2151E9560050590B /* video_back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 458E181C2151E7680050590B /* video_back_btn@2x.png */; };
@@ -1299,7 +1300,6 @@
 		87E7C4DC21509AB000F7AB14 /* TLSSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF74A214D11060005AD43 /* TLSSDK.framework */; };
 		87E7C4DD21509AB000F7AB14 /* QALSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF74C214D11060005AD43 /* QALSDK.framework */; };
 		87E7C4DE21509AB000F7AB14 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 45344497214D0DFA00EA7BFA /* libstdc++.tbd */; };
-		87E7C4DF21509AB000F7AB14 /* libstdc++.6.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 45344499214D0DFA00EA7BFA /* libstdc++.6.tbd */; };
 		87E7C4E021509AB000F7AB14 /* IMCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF74B214D11060005AD43 /* IMCore.framework */; };
 		87E7C4E121509AB000F7AB14 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4534449B214D0DFA00EA7BFA /* libsqlite3.tbd */; };
 		87E7C4E221509AB000F7AB14 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4534449D214D0DFA00EA7BFA /* libresolv.tbd */; };
@@ -1369,7 +1369,6 @@
 		87E7C52521509AB000F7AB14 /* fsfreshidle_icon18@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730B0E22148E5CB004331A9 /* fsfreshidle_icon18@2x.png */; };
 		87E7C52621509AB000F7AB14 /* login_checked@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D18694213679F800037DDF /* login_checked@3x.png */; };
 		87E7C52721509AB000F7AB14 /* home_robot@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBD4CE872141229300857DB3 /* home_robot@3x.png */; };
-		87E7C52821509AB000F7AB14 /* videocall_default_minhead@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF866214D39290005AD43 /* videocall_default_minhead@3x.png */; };
 		87E7C52921509AB000F7AB14 /* login_closeeye@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D1869D213679F800037DDF /* login_closeeye@2x.png */; };
 		87E7C52A21509AB000F7AB14 /* video_unselect@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45DC02B2214A61EE00FCE042 /* video_unselect@3x.png */; };
 		87E7C52B21509AB000F7AB14 /* videocall_chat_voice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF86A214D392A0005AD43 /* videocall_chat_voice@3x.png */; };
@@ -1534,7 +1533,6 @@
 		87E7C5D821509AB000F7AB14 /* fsfreshidle_icon7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730B1042148E5D1004331A9 /* fsfreshidle_icon7@2x.png */; };
 		87E7C5D921509AB000F7AB14 /* home_topics@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBD4CE7D2141229100857DB3 /* home_topics@3x.png */; };
 		87E7C5DA21509AB000F7AB14 /* login_error@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D1869A213679F800037DDF /* login_error@3x.png */; };
-		87E7C5DB21509AB000F7AB14 /* videocall_default_minhead@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF864214D39290005AD43 /* videocall_default_minhead@2x.png */; };
 		87E7C5DC21509AB000F7AB14 /* user_helpicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730AD3B2140CC27004331A9 /* user_helpicon@2x.png */; };
 		87E7C5DD21509AB000F7AB14 /* editor.html in Resources */ = {isa = PBXBuildFile; fileRef = AD93258F214B4FD9007F3A93 /* editor.html */; };
 		87E7C5DE21509AB000F7AB14 /* fsfreshidle_icon23@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730B0E72148E5CC004331A9 /* fsfreshidle_icon23@2x.png */; };
@@ -1738,6 +1736,22 @@
 		AD5102A4213E77FC008CD74D /* FSCommunitySecVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD5102A2213E77FC008CD74D /* FSCommunitySecVC.xib */; };
 		AD5102A8213E783E008CD74D /* FSSendTopicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5102A6213E783E008CD74D /* FSSendTopicVC.m */; };
 		AD5102A9213E783E008CD74D /* FSSendTopicVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD5102A7213E783E008CD74D /* FSSendTopicVC.xib */; };
+		AD6712272159DBD40081E08D /* fstab_btn3_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD67121F2159DBD30081E08D /* fstab_btn3_icon@3x.png */; };
+		AD6712282159DBD40081E08D /* fstab_btn3_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD67121F2159DBD30081E08D /* fstab_btn3_icon@3x.png */; };
+		AD6712292159DBD40081E08D /* fstab_btn1_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6712202159DBD30081E08D /* fstab_btn1_icon@3x.png */; };
+		AD67122A2159DBD40081E08D /* fstab_btn1_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6712202159DBD30081E08D /* fstab_btn1_icon@3x.png */; };
+		AD67122B2159DBD40081E08D /* fstab_btn2_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6712212159DBD30081E08D /* fstab_btn2_icon@2x.png */; };
+		AD67122C2159DBD40081E08D /* fstab_btn2_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6712212159DBD30081E08D /* fstab_btn2_icon@2x.png */; };
+		AD67122D2159DBD40081E08D /* fstab_btn2_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6712222159DBD40081E08D /* fstab_btn2_icon@3x.png */; };
+		AD67122E2159DBD40081E08D /* fstab_btn2_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6712222159DBD40081E08D /* fstab_btn2_icon@3x.png */; };
+		AD67122F2159DBD50081E08D /* fstab_btn1_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6712232159DBD40081E08D /* fstab_btn1_icon@2x.png */; };
+		AD6712302159DBD50081E08D /* fstab_btn1_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6712232159DBD40081E08D /* fstab_btn1_icon@2x.png */; };
+		AD6712312159DBD50081E08D /* fstab_btn3_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6712242159DBD40081E08D /* fstab_btn3_icon@2x.png */; };
+		AD6712322159DBD50081E08D /* fstab_btn3_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6712242159DBD40081E08D /* fstab_btn3_icon@2x.png */; };
+		AD6712332159DBD50081E08D /* fstab_btn4_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6712252159DBD40081E08D /* fstab_btn4_icon@2x.png */; };
+		AD6712342159DBD50081E08D /* fstab_btn4_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6712252159DBD40081E08D /* fstab_btn4_icon@2x.png */; };
+		AD6712352159DBD50081E08D /* fstab_btn4_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6712262159DBD40081E08D /* fstab_btn4_icon@3x.png */; };
+		AD6712362159DBD50081E08D /* fstab_btn4_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6712262159DBD40081E08D /* fstab_btn4_icon@3x.png */; };
 		AD8B63FE21338E0C006DDC22 /* FSPreviewFileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */; };
 		AD9325AD214B4FD9007F3A93 /* ZSSRichTextEditor.js in Resources */ = {isa = PBXBuildFile; fileRef = AD93253E214B4FD9007F3A93 /* ZSSRichTextEditor.js */; };
 		AD9325FA214B4FDA007F3A93 /* editor.html in Resources */ = {isa = PBXBuildFile; fileRef = AD93258F214B4FD9007F3A93 /* editor.html */; };
@@ -1776,8 +1790,6 @@
 		AD9CAAE4212EA0F40071B941 /* UIScrollView+BMEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9CAAE3212EA0F40071B941 /* UIScrollView+BMEmpty.m */; };
 		ADA1228B214614BE00CF0D87 /* FSTopicListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA12289214614BE00CF0D87 /* FSTopicListVC.m */; };
 		ADA1228C214614BE00CF0D87 /* FSTopicListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADA1228A214614BE00CF0D87 /* FSTopicListVC.xib */; };
-		ADC591F0215395100054BE72 /* fstab_btn3_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591E0215395100054BE72 /* fstab_btn3_icon@3x.png */; };
-		ADC591F1215395100054BE72 /* fstab_btn3_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591E0215395100054BE72 /* fstab_btn3_icon@3x.png */; };
 		ADC591F2215395100054BE72 /* fstab_btn3_highIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591E1215395100054BE72 /* fstab_btn3_highIcon@3x.png */; };
 		ADC591F3215395100054BE72 /* fstab_btn3_highIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591E1215395100054BE72 /* fstab_btn3_highIcon@3x.png */; };
 		ADC591F4215395100054BE72 /* fstab_btn4_highIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591E2215395100054BE72 /* fstab_btn4_highIcon@2x.png */; };
@@ -1786,28 +1798,14 @@
 		ADC591F7215395100054BE72 /* fstab_btn3_highIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591E3215395100054BE72 /* fstab_btn3_highIcon@2x.png */; };
 		ADC591F8215395100054BE72 /* fstab_btn4_highIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591E4215395100054BE72 /* fstab_btn4_highIcon@3x.png */; };
 		ADC591F9215395100054BE72 /* fstab_btn4_highIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591E4215395100054BE72 /* fstab_btn4_highIcon@3x.png */; };
-		ADC591FA215395100054BE72 /* fstab_btn3_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591E5215395100054BE72 /* fstab_btn3_icon@2x.png */; };
-		ADC591FB215395100054BE72 /* fstab_btn3_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591E5215395100054BE72 /* fstab_btn3_icon@2x.png */; };
 		ADC591FC215395100054BE72 /* fstab_btn2_highIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591E6215395100054BE72 /* fstab_btn2_highIcon@2x.png */; };
 		ADC591FD215395100054BE72 /* fstab_btn2_highIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591E6215395100054BE72 /* fstab_btn2_highIcon@2x.png */; };
 		ADC591FE215395100054BE72 /* fstab_btn2_highIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591E7215395100054BE72 /* fstab_btn2_highIcon@3x.png */; };
 		ADC591FF215395100054BE72 /* fstab_btn2_highIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591E7215395100054BE72 /* fstab_btn2_highIcon@3x.png */; };
-		ADC59200215395100054BE72 /* fstab_btn2_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591E8215395100054BE72 /* fstab_btn2_icon@2x.png */; };
-		ADC59201215395100054BE72 /* fstab_btn2_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591E8215395100054BE72 /* fstab_btn2_icon@2x.png */; };
-		ADC59202215395100054BE72 /* fstab_btn2_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591E9215395100054BE72 /* fstab_btn2_icon@3x.png */; };
-		ADC59203215395100054BE72 /* fstab_btn2_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591E9215395100054BE72 /* fstab_btn2_icon@3x.png */; };
-		ADC59204215395100054BE72 /* fstab_btn1_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591EA215395100054BE72 /* fstab_btn1_icon@3x.png */; };
-		ADC59205215395100054BE72 /* fstab_btn1_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591EA215395100054BE72 /* fstab_btn1_icon@3x.png */; };
 		ADC59206215395100054BE72 /* fstab_btn1_highIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591EB215395100054BE72 /* fstab_btn1_highIcon@3x.png */; };
 		ADC59207215395100054BE72 /* fstab_btn1_highIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591EB215395100054BE72 /* fstab_btn1_highIcon@3x.png */; };
-		ADC59208215395100054BE72 /* fstab_btn4_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591EC215395100054BE72 /* fstab_btn4_icon@2x.png */; };
-		ADC59209215395100054BE72 /* fstab_btn4_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591EC215395100054BE72 /* fstab_btn4_icon@2x.png */; };
-		ADC5920A215395100054BE72 /* fstab_btn4_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591ED215395100054BE72 /* fstab_btn4_icon@3x.png */; };
-		ADC5920B215395100054BE72 /* fstab_btn4_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591ED215395100054BE72 /* fstab_btn4_icon@3x.png */; };
 		ADC5920C215395100054BE72 /* fstab_btn1_highIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591EE215395100054BE72 /* fstab_btn1_highIcon@2x.png */; };
 		ADC5920D215395100054BE72 /* fstab_btn1_highIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591EE215395100054BE72 /* fstab_btn1_highIcon@2x.png */; };
-		ADC5920E215395100054BE72 /* fstab_btn1_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591EF215395100054BE72 /* fstab_btn1_icon@2x.png */; };
-		ADC5920F215395100054BE72 /* fstab_btn1_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591EF215395100054BE72 /* fstab_btn1_icon@2x.png */; };
 		ADE8689721392853005359B5 /* FSTopicListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8689521392853005359B5 /* FSTopicListCell.m */; };
 		ADE8689821392853005359B5 /* FSTopicListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADE8689621392853005359B5 /* FSTopicListCell.xib */; };
 		ADE8689C21393469005359B5 /* FSForumListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8689A21393469005359B5 /* FSForumListCell.m */; };
@@ -2222,9 +2220,7 @@
 		45FEF861214D39280005AD43 /* chat_left_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_left_bg@2x.png"; sourceTree = "<group>"; };
 		45FEF862214D39290005AD43 /* video_bottom_message@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_bottom_message@2x.png"; sourceTree = "<group>"; };
 		45FEF863214D39290005AD43 /* video_bottom_message@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_bottom_message@3x.png"; sourceTree = "<group>"; };
-		45FEF864214D39290005AD43 /* videocall_default_minhead@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_default_minhead@2x.png"; sourceTree = "<group>"; };
 		45FEF865214D39290005AD43 /* videocall_close_video@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_close_video@3x.png"; sourceTree = "<group>"; };
-		45FEF866214D39290005AD43 /* videocall_default_minhead@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_default_minhead@3x.png"; sourceTree = "<group>"; };
 		45FEF867214D392A0005AD43 /* videocall_open_audio@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_open_audio@2x.png"; sourceTree = "<group>"; };
 		45FEF868214D392A0005AD43 /* chat_message_text@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_message_text@3x.png"; sourceTree = "<group>"; };
 		45FEF869214D392A0005AD43 /* videocall_open_video@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_open_video@2x.png"; sourceTree = "<group>"; };
@@ -3527,6 +3523,14 @@
 		AD5102A5213E783E008CD74D /* FSSendTopicVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSendTopicVC.h; sourceTree = "<group>"; };
 		AD5102A6213E783E008CD74D /* FSSendTopicVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSSendTopicVC.m; sourceTree = "<group>"; };
 		AD5102A7213E783E008CD74D /* FSSendTopicVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSSendTopicVC.xib; sourceTree = "<group>"; };
+		AD67121F2159DBD30081E08D /* fstab_btn3_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn3_icon@3x.png"; sourceTree = "<group>"; };
+		AD6712202159DBD30081E08D /* fstab_btn1_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn1_icon@3x.png"; sourceTree = "<group>"; };
+		AD6712212159DBD30081E08D /* fstab_btn2_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn2_icon@2x.png"; sourceTree = "<group>"; };
+		AD6712222159DBD40081E08D /* fstab_btn2_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn2_icon@3x.png"; sourceTree = "<group>"; };
+		AD6712232159DBD40081E08D /* fstab_btn1_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn1_icon@2x.png"; sourceTree = "<group>"; };
+		AD6712242159DBD40081E08D /* fstab_btn3_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn3_icon@2x.png"; sourceTree = "<group>"; };
+		AD6712252159DBD40081E08D /* fstab_btn4_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn4_icon@2x.png"; sourceTree = "<group>"; };
+		AD6712262159DBD40081E08D /* fstab_btn4_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn4_icon@3x.png"; sourceTree = "<group>"; };
 		AD8B63FC21338E0C006DDC22 /* FSPreviewFileTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSPreviewFileTool.h; sourceTree = "<group>"; };
 		AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSPreviewFileTool.m; sourceTree = "<group>"; };
 		AD93253E214B4FD9007F3A93 /* ZSSRichTextEditor.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ZSSRichTextEditor.js; sourceTree = "<group>"; };
@@ -3597,22 +3601,14 @@
 		ADA12288214614BE00CF0D87 /* FSTopicListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTopicListVC.h; sourceTree = "<group>"; };
 		ADA12289214614BE00CF0D87 /* FSTopicListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTopicListVC.m; sourceTree = "<group>"; };
 		ADA1228A214614BE00CF0D87 /* FSTopicListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSTopicListVC.xib; sourceTree = "<group>"; };
-		ADC591E0215395100054BE72 /* fstab_btn3_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn3_icon@3x.png"; sourceTree = "<group>"; };
 		ADC591E1215395100054BE72 /* fstab_btn3_highIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn3_highIcon@3x.png"; sourceTree = "<group>"; };
 		ADC591E2215395100054BE72 /* fstab_btn4_highIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn4_highIcon@2x.png"; sourceTree = "<group>"; };
 		ADC591E3215395100054BE72 /* fstab_btn3_highIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn3_highIcon@2x.png"; sourceTree = "<group>"; };
 		ADC591E4215395100054BE72 /* fstab_btn4_highIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn4_highIcon@3x.png"; sourceTree = "<group>"; };
-		ADC591E5215395100054BE72 /* fstab_btn3_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn3_icon@2x.png"; sourceTree = "<group>"; };
 		ADC591E6215395100054BE72 /* fstab_btn2_highIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn2_highIcon@2x.png"; sourceTree = "<group>"; };
 		ADC591E7215395100054BE72 /* fstab_btn2_highIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn2_highIcon@3x.png"; sourceTree = "<group>"; };
-		ADC591E8215395100054BE72 /* fstab_btn2_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn2_icon@2x.png"; sourceTree = "<group>"; };
-		ADC591E9215395100054BE72 /* fstab_btn2_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn2_icon@3x.png"; sourceTree = "<group>"; };
-		ADC591EA215395100054BE72 /* fstab_btn1_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn1_icon@3x.png"; sourceTree = "<group>"; };
 		ADC591EB215395100054BE72 /* fstab_btn1_highIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn1_highIcon@3x.png"; sourceTree = "<group>"; };
-		ADC591EC215395100054BE72 /* fstab_btn4_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn4_icon@2x.png"; sourceTree = "<group>"; };
-		ADC591ED215395100054BE72 /* fstab_btn4_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn4_icon@3x.png"; sourceTree = "<group>"; };
 		ADC591EE215395100054BE72 /* fstab_btn1_highIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn1_highIcon@2x.png"; sourceTree = "<group>"; };
-		ADC591EF215395100054BE72 /* fstab_btn1_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn1_icon@2x.png"; sourceTree = "<group>"; };
 		ADE8689421392853005359B5 /* FSTopicListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTopicListCell.h; sourceTree = "<group>"; };
 		ADE8689521392853005359B5 /* FSTopicListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTopicListCell.m; sourceTree = "<group>"; };
 		ADE8689621392853005359B5 /* FSTopicListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSTopicListCell.xib; sourceTree = "<group>"; };
@@ -3807,7 +3803,6 @@
 				AD3B821E214A468100D72DE9 /* CoreText.framework in Frameworks */,
 				45344496214D0DFA00EA7BFA /* libz.tbd in Frameworks */,
 				45344498214D0DFA00EA7BFA /* libstdc++.tbd in Frameworks */,
-				4534449A214D0DFA00EA7BFA /* libstdc++.6.tbd in Frameworks */,
 				4534449C214D0DFA00EA7BFA /* libsqlite3.tbd in Frameworks */,
 				4534449E214D0DFA00EA7BFA /* libresolv.tbd in Frameworks */,
 				453444A0214D0DFA00EA7BFA /* libprotobuf.tbd in Frameworks */,
@@ -3873,7 +3868,6 @@
 				87E7C4DC21509AB000F7AB14 /* TLSSDK.framework in Frameworks */,
 				87E7C4DD21509AB000F7AB14 /* QALSDK.framework in Frameworks */,
 				87E7C4DE21509AB000F7AB14 /* libstdc++.tbd in Frameworks */,
-				87E7C4DF21509AB000F7AB14 /* libstdc++.6.tbd in Frameworks */,
 				87E7C4E021509AB000F7AB14 /* IMCore.framework in Frameworks */,
 				87E7C4E121509AB000F7AB14 /* libsqlite3.tbd in Frameworks */,
 				87E7C4E221509AB000F7AB14 /* libresolv.tbd in Frameworks */,
@@ -4394,8 +4388,6 @@
 				45FEF865214D39290005AD43 /* videocall_close_video@3x.png */,
 				45FEF886214D39300005AD43 /* videocall_default_head@2x.png */,
 				45FEF86C214D392A0005AD43 /* videocall_default_head@3x.png */,
-				45FEF864214D39290005AD43 /* videocall_default_minhead@2x.png */,
-				45FEF866214D39290005AD43 /* videocall_default_minhead@3x.png */,
 				45FEF85F214D39280005AD43 /* videocall_end_record@2x.png */,
 				45FEF887214D39300005AD43 /* videocall_end_record@3x.png */,
 				45FEF867214D392A0005AD43 /* videocall_open_audio@2x.png */,
@@ -7226,22 +7218,22 @@
 		ADC591DF215395100054BE72 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				ADC591E0215395100054BE72 /* fstab_btn3_icon@3x.png */,
-				ADC591E1215395100054BE72 /* fstab_btn3_highIcon@3x.png */,
-				ADC591E2215395100054BE72 /* fstab_btn4_highIcon@2x.png */,
-				ADC591E3215395100054BE72 /* fstab_btn3_highIcon@2x.png */,
-				ADC591E4215395100054BE72 /* fstab_btn4_highIcon@3x.png */,
-				ADC591E5215395100054BE72 /* fstab_btn3_icon@2x.png */,
+				AD6712232159DBD40081E08D /* fstab_btn1_icon@2x.png */,
+				AD6712202159DBD30081E08D /* fstab_btn1_icon@3x.png */,
+				AD6712212159DBD30081E08D /* fstab_btn2_icon@2x.png */,
+				AD6712222159DBD40081E08D /* fstab_btn2_icon@3x.png */,
+				AD6712242159DBD40081E08D /* fstab_btn3_icon@2x.png */,
+				AD67121F2159DBD30081E08D /* fstab_btn3_icon@3x.png */,
+				AD6712252159DBD40081E08D /* fstab_btn4_icon@2x.png */,
+				AD6712262159DBD40081E08D /* fstab_btn4_icon@3x.png */,
+				ADC591EE215395100054BE72 /* fstab_btn1_highIcon@2x.png */,
+				ADC591EB215395100054BE72 /* fstab_btn1_highIcon@3x.png */,
 				ADC591E6215395100054BE72 /* fstab_btn2_highIcon@2x.png */,
 				ADC591E7215395100054BE72 /* fstab_btn2_highIcon@3x.png */,
-				ADC591E8215395100054BE72 /* fstab_btn2_icon@2x.png */,
-				ADC591E9215395100054BE72 /* fstab_btn2_icon@3x.png */,
-				ADC591EA215395100054BE72 /* fstab_btn1_icon@3x.png */,
-				ADC591EB215395100054BE72 /* fstab_btn1_highIcon@3x.png */,
-				ADC591EC215395100054BE72 /* fstab_btn4_icon@2x.png */,
-				ADC591ED215395100054BE72 /* fstab_btn4_icon@3x.png */,
-				ADC591EE215395100054BE72 /* fstab_btn1_highIcon@2x.png */,
-				ADC591EF215395100054BE72 /* fstab_btn1_icon@2x.png */,
+				ADC591E3215395100054BE72 /* fstab_btn3_highIcon@2x.png */,
+				ADC591E1215395100054BE72 /* fstab_btn3_highIcon@3x.png */,
+				ADC591E2215395100054BE72 /* fstab_btn4_highIcon@2x.png */,
+				ADC591E4215395100054BE72 /* fstab_btn4_highIcon@3x.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -7735,6 +7727,7 @@
 				87426894212E7E36003C52F6 /* increase_eleme@3x.png in Resources */,
 				87BC9E2521548E0D000F2011 /* fsintroguide_750x1334_2@2x.png in Resources */,
 				ADC591F4215395100054BE72 /* fstab_btn4_highIcon@2x.png in Resources */,
+				AD6712312159DBD50081E08D /* fstab_btn3_icon@2x.png in Resources */,
 				8730B1192148E5D1004331A9 /* fsfreshidle_icon19@2x.png in Resources */,
 				87D20AF321393B91001EDD60 /* navigationbar_collect_icon@2x.png in Resources */,
 				87BC9E2221548E0D000F2011 /* fsintroguide_750x1334_3@2x.png in Resources */,
@@ -7745,14 +7738,15 @@
 				87426A6021313940003C52F6 /* FSMainVC.xib in Resources */,
 				DBF7E18B21523CB6002CEDA4 /* search_lawTopic_3@3x.png in Resources */,
 				87D186A3213679F800037DDF /* login_checked@2x.png in Resources */,
+				AD6712332159DBD50081E08D /* fstab_btn4_icon@2x.png in Resources */,
 				DB48742A2148DFE100AB0805 /* FSTextCell.xib in Resources */,
 				874268A2212E7E36003C52F6 /* decrease_baiduwaimai@2x.png in Resources */,
 				45F3FD24214BBF48007712EE /* video_history_icon@3x.png in Resources */,
 				8730AD4C2140CC28004331A9 /* user_shareicon@3x.png in Resources */,
+				AD67122D2159DBD40081E08D /* fstab_btn2_icon@3x.png in Resources */,
 				87E7C6CC2150C10200F7AB14 /* empty_videoicon@3x.png in Resources */,
 				87BC9E3821548E0D000F2011 /* fsintroguide_1242x2688_2@2x.png in Resources */,
 				87426A0E212F9657003C52F6 /* navigationbar_setup_icon@3x.png in Resources */,
-				ADC59208215395100054BE72 /* fstab_btn4_icon@2x.png in Resources */,
 				87C0134D212E7A5300D0AAC3 /* Assets.xcassets in Resources */,
 				DBF7E19321523CB6002CEDA4 /* search_lawTopic_4@3x.png in Resources */,
 				87D1868C213678B400037DDF /* navigationbar_popback_icon@3x.png in Resources */,
@@ -7771,12 +7765,12 @@
 				87426A06212F9657003C52F6 /* navigationbar_message_icon@2x.png in Resources */,
 				DB2656D42146678A002ED713 /* FSLawCell.xib in Resources */,
 				874268BA212E7E36003C52F6 /* BMTableView_UIButtonBarArrowLeft.png in Resources */,
+				AD6712272159DBD40081E08D /* fstab_btn3_icon@3x.png in Resources */,
 				8730B10D2148E5D1004331A9 /* fsfreshidle_icon2@2x.png in Resources */,
 				8730B1052148E5D1004331A9 /* fsfreshidle_icon18@2x.png in Resources */,
 				87D186A4213679F800037DDF /* login_checked@3x.png in Resources */,
 				87BC9E3321548E0D000F2011 /* fsintroguide_640x1136_2@2x.png in Resources */,
 				DBD4CE952141229400857DB3 /* home_robot@3x.png in Resources */,
-				ADC5920A215395100054BE72 /* fstab_btn4_icon@3x.png in Resources */,
 				458E181E2151E7690050590B /* video_back_btn@2x.png in Resources */,
 				ADC59206215395100054BE72 /* fstab_btn1_highIcon@3x.png in Resources */,
 				DB7B1952215A0F1300EB585D /* search_openFilters@3x.png in Resources */,
@@ -7798,7 +7792,6 @@
 				8730AD4A2140CC28004331A9 /* user_topicicon@3x.png in Resources */,
 				8730B0C9214772AD004331A9 /* user_verifyicon@2x.png in Resources */,
 				DB14A7AB2139247900E88798 /* FSCourseTableCell.xib in Resources */,
-				ADC591FA215395100054BE72 /* fstab_btn3_icon@2x.png in Resources */,
 				87D186A6213679F800037DDF /* login_password@2x.png in Resources */,
 				8730B1062148E5D1004331A9 /* fsfreshidle_icon1@2x.png in Resources */,
 				87426A21213100BB003C52F6 /* bmsearch_close@2x.png in Resources */,
@@ -7819,6 +7812,7 @@
 				8742689B212E7E36003C52F6 /* decrease_eleme@2x.png in Resources */,
 				87E7C6C72150C10200F7AB14 /* empty_searchicon@3x.png in Resources */,
 				87D186A0213679F800037DDF /* login_openeye@2x.png in Resources */,
+				AD6712292159DBD40081E08D /* fstab_btn1_icon@3x.png in Resources */,
 				8730AD4D2140CC28004331A9 /* user_topicicon@2x.png in Resources */,
 				8730B0C221465034004331A9 /* BMCombine_down@2x.png in Resources */,
 				87426A07212F9657003C52F6 /* navigationbar_select_icon@3x.png in Resources */,
@@ -7840,7 +7834,6 @@
 				87BC9E3521548E0D000F2011 /* fsintroguide_640x1136_3@2x.png in Resources */,
 				87E7C6C92150C10200F7AB14 /* empty_collecticon@2x.png in Resources */,
 				8730B11B2148E5D1004331A9 /* fsfreshidle_icon16@2x.png in Resources */,
-				ADC59200215395100054BE72 /* fstab_btn2_icon@2x.png in Resources */,
 				DB48743E214A5CCD00AB0805 /* FSFileScanVC.xib in Resources */,
 				DBD4CE972141229400857DB3 /* home_message@3x.png in Resources */,
 				DBF7E18A21523CB6002CEDA4 /* search_lawTopic_1@3x.png in Resources */,
@@ -7882,7 +7875,6 @@
 				DBD4CE8A2141229400857DB3 /* home_courses@3x.png in Resources */,
 				87426893212E7E36003C52F6 /* steppersinput_plusicon@2x.png in Resources */,
 				87D20AF421393B91001EDD60 /* navigationbar_collect_icon@3x.png in Resources */,
-				ADC59202215395100054BE72 /* fstab_btn2_icon@3x.png in Resources */,
 				8730AD432140CC28004331A9 /* user_serviceicon@3x.png in Resources */,
 				87426A0C212F9657003C52F6 /* navigationbar_message_icon@3x.png in Resources */,
 				8730B1222148E5D1004331A9 /* fsfreshidle_icon20@2x.png in Resources */,
@@ -7933,7 +7925,6 @@
 				ADC591F2215395100054BE72 /* fstab_btn3_highIcon@3x.png in Resources */,
 				8742689A212E7E36003C52F6 /* increase_taobao@3x.png in Resources */,
 				8730AD442140CC28004331A9 /* user_shareicon@2x.png in Resources */,
-				ADC591F0215395100054BE72 /* fstab_btn3_icon@3x.png in Resources */,
 				DB487449214B887700AB0805 /* scanfile_select@3x.png in Resources */,
 				DBF7E18E21523CB6002CEDA4 /* search_lawTopic_6@3x.png in Resources */,
 				DBD4CDFE213FB2D800857DB3 /* FSMainToolCell.xib in Resources */,
@@ -7956,7 +7947,6 @@
 				8730AD472140CC28004331A9 /* user_helpicon@2x.png in Resources */,
 				AD9325FA214B4FDA007F3A93 /* editor.html in Resources */,
 				8730B10A2148E5D1004331A9 /* fsfreshidle_icon23@2x.png in Resources */,
-				ADC59204215395100054BE72 /* fstab_btn1_icon@3x.png in Resources */,
 				874268B5212E7E36003C52F6 /* BMTableView_arrows_rightBlack@2x.png in Resources */,
 				8730AD492140CC28004331A9 /* user_collecticon@3x.png in Resources */,
 				87BC9E2C21548E0D000F2011 /* fsintroguide_1125x2436_2@2x.png in Resources */,
@@ -7987,6 +7977,7 @@
 				AD1BE214214127180018AF2C /* FSForumSectionHeaderView.xib in Resources */,
 				87BC9E3921548E0D000F2011 /* fsintroguide_1242x2688_4@2x.png in Resources */,
 				8730B1122148E5D1004331A9 /* fsfreshfreshing_icon8@2x.png in Resources */,
+				AD6712352159DBD50081E08D /* fstab_btn4_icon@3x.png in Resources */,
 				DBF7E17921523B73002CEDA4 /* FSLawTopicInfos.plist in Resources */,
 				DBF7E18F21523CB6002CEDA4 /* search_lawTopic_7@3x.png in Resources */,
 				8742689C212E7E36003C52F6 /* increase_baiduwaimai@2x.png in Resources */,
@@ -7997,6 +7988,7 @@
 				87D186AB213679F800037DDF /* login_error@2x.png in Resources */,
 				87E7C6BF2150C10100F7AB14 /* empty_neticon@2x.png in Resources */,
 				DB7584AA214F5C630002A1FE /* FSOCRSearchResultVC.xib in Resources */,
+				AD67122F2159DBD50081E08D /* fstab_btn1_icon@2x.png in Resources */,
 				8730B1152148E5D1004331A9 /* fsfreshidle_icon24@2x.png in Resources */,
 				DBF7E19921523CB6002CEDA4 /* search_lawTopic_3@2x.png in Resources */,
 				87BC9E3221548E0D000F2011 /* fsintroguide_640x1136_4@2x.png in Resources */,
@@ -8012,8 +8004,8 @@
 				AD9325FD214B4FDA007F3A93 /* JSBeautifier.js in Resources */,
 				DBD4CE8E2141229400857DB3 /* home_tools@3x.png in Resources */,
 				874268A5212E7E36003C52F6 /* increase_meituan@2x.png in Resources */,
-				ADC5920E215395100054BE72 /* fstab_btn1_icon@2x.png in Resources */,
 				87E7C6C32150C10200F7AB14 /* empty_commenticon@2x.png in Resources */,
+				AD67122B2159DBD40081E08D /* fstab_btn2_icon@2x.png in Resources */,
 				87426A05212F9657003C52F6 /* navigationbar_setup_icon@2x.png in Resources */,
 				AD9325AD214B4FD9007F3A93 /* ZSSRichTextEditor.js in Resources */,
 				874268B4212E7E36003C52F6 /* BMTableView_UIButtonBarArrowRight.png in Resources */,
@@ -8044,8 +8036,6 @@
 				87E7C50021509AB000F7AB14 /* video_history_play@3x.png in Resources */,
 				87E7C50121509AB000F7AB14 /* fsfreshidle_icon19@2x.png in Resources */,
 				87E7C50221509AB000F7AB14 /* video_bottom_message@3x.png in Resources */,
-				ADC5920F215395100054BE72 /* fstab_btn1_icon@2x.png in Resources */,
-				ADC59209215395100054BE72 /* fstab_btn4_icon@2x.png in Resources */,
 				87E7C50321509AB000F7AB14 /* navigationbar_collect_icon@2x.png in Resources */,
 				87E7C50421509AB000F7AB14 /* decrease_taobao@2x.png in Resources */,
 				DBF7E1A021524EDB002CEDA4 /* search_lawTopic_3@2x.png in Resources */,
@@ -8084,13 +8074,13 @@
 				87E7C51F21509AB000F7AB14 /* bmsearch_close@3x.png in Resources */,
 				87E7C52021509AB000F7AB14 /* navigationbar_message_icon@2x.png in Resources */,
 				87E7C52121509AB000F7AB14 /* FSLawCell.xib in Resources */,
+				AD6712322159DBD50081E08D /* fstab_btn3_icon@2x.png in Resources */,
 				87E7C52221509AB000F7AB14 /* videocall_close_audio@3x.png in Resources */,
 				87E7C52321509AB000F7AB14 /* BMTableView_UIButtonBarArrowLeft.png in Resources */,
 				87E7C52421509AB000F7AB14 /* fsfreshidle_icon2@2x.png in Resources */,
 				87E7C52521509AB000F7AB14 /* fsfreshidle_icon18@2x.png in Resources */,
 				87E7C52621509AB000F7AB14 /* login_checked@3x.png in Resources */,
 				87E7C52721509AB000F7AB14 /* home_robot@3x.png in Resources */,
-				87E7C52821509AB000F7AB14 /* videocall_default_minhead@3x.png in Resources */,
 				87E7C52921509AB000F7AB14 /* login_closeeye@2x.png in Resources */,
 				ADC591F9215395100054BE72 /* fstab_btn4_highIcon@3x.png in Resources */,
 				87BC9E3C2154913B000F2011 /* fsintroguide_640x960_2@2x.png in Resources */,
@@ -8101,6 +8091,7 @@
 				87E7C52E21509AB000F7AB14 /* LICENSE in Resources */,
 				87E7C52F21509AB000F7AB14 /* chat_right_bg@2x.png in Resources */,
 				87E7C53021509AB000F7AB14 /* user_wechaticon@2x.png in Resources */,
+				456A48422154C19600F8F658 /* WebViewVC.xib in Resources */,
 				87D9C609215368B6009F8492 /* fs_icon@2x.png in Resources */,
 				87E7C53121509AB000F7AB14 /* chat_head_mediator@2x.png in Resources */,
 				ADC591F7215395100054BE72 /* fstab_btn3_highIcon@2x.png in Resources */,
@@ -8116,6 +8107,7 @@
 				87E7C53621509AB000F7AB14 /* home_arrow@3x.png in Resources */,
 				87BC9E4B2154914E000F2011 /* fsintroguide_1242x2208_1@2x.png in Resources */,
 				87E7C53721509AB000F7AB14 /* chat_message_voice@3x.png in Resources */,
+				AD6712342159DBD50081E08D /* fstab_btn4_icon@2x.png in Resources */,
 				87E7C53821509AB000F7AB14 /* chat_left_bg@3x.png in Resources */,
 				45F68F4B2150E58F00628DC8 /* empty_ocricon@3x.png in Resources */,
 				87E7C53921509AB000F7AB14 /* video_selected@3x.png in Resources */,
@@ -8133,8 +8125,6 @@
 				87E7C54421509AB000F7AB14 /* FSCourseTableCell.xib in Resources */,
 				87E7C54521509AB000F7AB14 /* login_password@2x.png in Resources */,
 				87E7C54621509AB000F7AB14 /* videocall_open_video@2x.png in Resources */,
-				ADC591FB215395100054BE72 /* fstab_btn3_icon@2x.png in Resources */,
-				ADC5920B215395100054BE72 /* fstab_btn4_icon@3x.png in Resources */,
 				87E7C54721509AB000F7AB14 /* fsfreshidle_icon1@2x.png in Resources */,
 				87E7C54821509AB000F7AB14 /* bmsearch_close@2x.png in Resources */,
 				45F68F4F2150E58F00628DC8 /* empty_topicicon@3x.png in Resources */,
@@ -8144,14 +8134,12 @@
 				87E7C54B21509AB000F7AB14 /* fsfreshidle_icon14@2x.png in Resources */,
 				87E7C54C21509AB000F7AB14 /* user_topbackgroud@2x.png in Resources */,
 				87E7C54D21509AB000F7AB14 /* video_bottom_endbtn@3x.png in Resources */,
-				ADC59201215395100054BE72 /* fstab_btn2_icon@2x.png in Resources */,
 				87E7C54E21509AB000F7AB14 /* BMCombine_up@3x.png in Resources */,
 				87E7C54F21509AB000F7AB14 /* home_tools@2x.png in Resources */,
 				87E7C55021509AB000F7AB14 /* BMCombine_up@2x.png in Resources */,
 				87E7C55121509AB000F7AB14 /* FSMoreViewVC.xib in Resources */,
 				87E7C55221509AB000F7AB14 /* user_serviceicon@2x.png in Resources */,
 				87E7C55321509AB000F7AB14 /* BMTableView_UIButtonBarArrowLeft@2x.png in Resources */,
-				ADC591F1215395100054BE72 /* fstab_btn3_icon@3x.png in Resources */,
 				87E7C55421509AB000F7AB14 /* decrease_eleme@2x.png in Resources */,
 				87E7C6942150A4E400F7AB14 /* TOCropViewControllerLocalizable.strings in Resources */,
 				87E7C55521509AB000F7AB14 /* login_openeye@2x.png in Resources */,
@@ -8181,6 +8169,7 @@
 				87E7C56C21509AB000F7AB14 /* home_message@3x.png in Resources */,
 				87E7C56D21509AB000F7AB14 /* increase_taobao@2x.png in Resources */,
 				87E7C56E21509AB000F7AB14 /* FSCommunityVC.xib in Resources */,
+				AD6712282159DBD40081E08D /* fstab_btn3_icon@3x.png in Resources */,
 				87E7C56F21509AB000F7AB14 /* video_delete_btn@2x.png in Resources */,
 				87E7C57021509AB000F7AB14 /* login_mobile@3x.png in Resources */,
 				87E7C57121509AB000F7AB14 /* BMTableView_UIButtonBarArrowRight@2x.png in Resources */,
@@ -8188,6 +8177,7 @@
 				87E7C57221509AB000F7AB14 /* search_closeFilters@3x.png in Resources */,
 				87E7C57321509AB000F7AB14 /* fsfreshfreshing_icon4@2x.png in Resources */,
 				87E7C57421509AB000F7AB14 /* videocall_privte_chat@3x.png in Resources */,
+				AD67122A2159DBD40081E08D /* fstab_btn1_icon@3x.png in Resources */,
 				87E7C57521509AB000F7AB14 /* home_message@2x.png in Resources */,
 				87E7C57621509AB000F7AB14 /* decrease_eleme@3x.png in Resources */,
 				87E7C57721509AB000F7AB14 /* BMDatePicker.xib in Resources */,
@@ -8206,6 +8196,7 @@
 				45F68F442150E58F00628DC8 /* empty_commenticon@2x.png in Resources */,
 				87BC9E3B2154913B000F2011 /* fsintroguide_640x960_1@2x.png in Resources */,
 				87E7C58021509AB000F7AB14 /* navigationbar_help_icon@2x.png in Resources */,
+				AD6712362159DBD50081E08D /* fstab_btn4_icon@3x.png in Resources */,
 				87E7C58121509AB000F7AB14 /* user_mobileicon@2x.png in Resources */,
 				DBF7E1A221524EDB002CEDA4 /* search_lawTopic_4@2x.png in Resources */,
 				87E7C58221509AB000F7AB14 /* FSServiceVC.xib in Resources */,
@@ -8236,6 +8227,7 @@
 				87E7C59721509AB000F7AB14 /* scanfile_camera@3x.png in Resources */,
 				87E7C59921509AB000F7AB14 /* user_commenticon@3x.png in Resources */,
 				DBF7E1AB21524EDB002CEDA4 /* search_lawTopic_8@3x.png in Resources */,
+				AD67122E2159DBD40081E08D /* fstab_btn2_icon@3x.png in Resources */,
 				45F68F402150E58F00628DC8 /* empty_404icon@2x.png in Resources */,
 				87E7C59A21509AB000F7AB14 /* login_closeeye@3x.png in Resources */,
 				87E7C59B21509AB000F7AB14 /* bmsearch_searchicon@3x.png in Resources */,
@@ -8279,6 +8271,7 @@
 				87E7C5BD21509AB000F7AB14 /* steppersinput_minusicon@3x.png in Resources */,
 				87E7C5BF21509AB000F7AB14 /* fsfreshfreshing_icon6@2x.png in Resources */,
 				87E7C5C021509AB000F7AB14 /* videocall_camera_switch@2x.png in Resources */,
+				AD67122C2159DBD40081E08D /* fstab_btn2_icon@2x.png in Resources */,
 				87E7C5C121509AB000F7AB14 /* increase_taobao@3x.png in Resources */,
 				87E7C5C221509AB000F7AB14 /* user_shareicon@2x.png in Resources */,
 				87BC9E4321549145000F2011 /* fsintroguide_750x1334_1@2x.png in Resources */,
@@ -8305,7 +8298,6 @@
 				87E7C5D821509AB000F7AB14 /* fsfreshidle_icon7@2x.png in Resources */,
 				87E7C5D921509AB000F7AB14 /* home_topics@3x.png in Resources */,
 				87E7C5DA21509AB000F7AB14 /* login_error@3x.png in Resources */,
-				87E7C5DB21509AB000F7AB14 /* videocall_default_minhead@2x.png in Resources */,
 				87E7C5DC21509AB000F7AB14 /* user_helpicon@2x.png in Resources */,
 				87E7C5DD21509AB000F7AB14 /* editor.html in Resources */,
 				87E7C5DE21509AB000F7AB14 /* fsfreshidle_icon23@2x.png in Resources */,
@@ -8320,9 +8312,9 @@
 				DBF7E19C21524EDB002CEDA4 /* search_lawTopic_1@2x.png in Resources */,
 				87E7C5E521509AB000F7AB14 /* fsfreshidle_icon3@2x.png in Resources */,
 				87E7C5E621509AB000F7AB14 /* FSForumListCell.xib in Resources */,
+				AD6712302159DBD50081E08D /* fstab_btn1_icon@2x.png in Resources */,
 				458E18202151E9560050590B /* video_back_btn@3x.png in Resources */,
 				ADC591F5215395100054BE72 /* fstab_btn4_highIcon@2x.png in Resources */,
-				ADC59205215395100054BE72 /* fstab_btn1_icon@3x.png in Resources */,
 				45F68F452150E58F00628DC8 /* empty_commenticon@3x.png in Resources */,
 				ADC59207215395100054BE72 /* fstab_btn1_highIcon@3x.png in Resources */,
 				87E7C5E721509AB000F7AB14 /* search_hotKey@2x.png in Resources */,
@@ -8360,7 +8352,6 @@
 				87E7C60321509AB000F7AB14 /* search_lawCount@2x.png in Resources */,
 				45F68F482150E58F00628DC8 /* empty_neticon@2x.png in Resources */,
 				87E7C60421509AB000F7AB14 /* navigationbar_share_icon@3x.png in Resources */,
-				ADC59203215395100054BE72 /* fstab_btn2_icon@3x.png in Resources */,
 				87E7C60521509AB000F7AB14 /* video_selected@2x.png in Resources */,
 				87E7C60621509AB000F7AB14 /* login_error@2x.png in Resources */,
 				87E7C60721509AB000F7AB14 /* FSOCRSearchResultVC.xib in Resources */,
@@ -9506,6 +9497,7 @@
 				87E7C44D21509AB000F7AB14 /* DTSmartPagingScrollView.m in Sources */,
 				87E7C44E21509AB000F7AB14 /* BMFreshDotCircleHeader.m in Sources */,
 				87E7C44F21509AB000F7AB14 /* FLEXLiveObjectsTableViewController.m in Sources */,
+				456A48412154C18F00F8F658 /* WebViewVC.m in Sources */,
 				87E7C45021509AB000F7AB14 /* FLEXNetworkCurlLogger.m in Sources */,
 				87E7C45121509AB000F7AB14 /* FSEditorAbilityVC.m in Sources */,
 				45D7D75421538239009E8E7A /* FSMeetingDataEnum.m in Sources */,
