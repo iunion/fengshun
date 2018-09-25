@@ -150,14 +150,12 @@ FSFileScanImagePreviewVC ()
 #pragma mark - TOCropViewControllerDelegate
 - (void)cropViewController:(nonnull TOCropViewController *)cropViewController didCropToImage:(nonnull UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle
 {
-    FSImageFileModel *imageFileModel = [FSImageFileModel imageFileWithOriginalImageFile:_m_selectedImageFile andCropImage:image];
-    [_m_allImageFiles addObject:imageFileModel];
-    self.m_selectedImageFile = imageFileModel;
-    [self refreshUIIfNeedReload:YES];
-    if (_m_SourceDataChanged) {
-        _m_SourceDataChanged();
+    _m_selectedImageFile.m_image = image;
+    if ([_m_localImageFiles containsObject:_m_selectedImageFile]) {
+        [FSImageFileModel asynRefreshLocalImageFileWithList:[_m_localImageFiles copy]];
     }
-     [cropViewController dismissViewControllerAnimated:YES completion:nil];
+    [self refreshUIIfNeedReload:YES];
+    [cropViewController dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)moreAction:(id)sender
 {

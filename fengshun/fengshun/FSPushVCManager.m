@@ -183,6 +183,10 @@
 }
 
 #pragma mark H5 跳转
++(void)pushToAIConsultVC:(UIViewController *)pushVC
+{
+    [FSPushVCManager showWebView:pushVC url:@"https://odrcloud.net:19095/ftlsh5.html" title:nil showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR animated:YES];
+}
 
 + (void)viewController:(UIViewController *)vc pushToLawTopicVCWithLawTopic:(NSString *)lawTopic
 {

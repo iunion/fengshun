@@ -84,7 +84,7 @@ FSOCRManager ()
         NSData *imageData = UIImagePNGRepresentation(imageObj);
         NSString *ext = @"png";
         if (!imageData) {
-            imageData = UIImageJPEGRepresentation(imageObj, 1.0);
+            imageData = UIImageJPEGRepresentation(imageObj, 0.5);
             ext = @"jpg";
         }
         [formData appendPartWithFileData:imageData name:@"image" fileName:[@"ocrImage" stringByAppendingPathExtension:ext] mimeType:@"image/png"];

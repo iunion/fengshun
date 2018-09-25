@@ -23,6 +23,9 @@
 {
     NSString *timeStamp = [@((long)[NSDate date].timeIntervalSince1970) stringValue];
     NSString *urlKey = [info bm_stringForKey:@"PHImageFileURLKey"];
+    if (![urlKey bm_isNotEmpty]) {
+        urlKey = [NSString stringWithFormat:@"FSFileScan://imageSelected/IMG%@.png",timeStamp];
+    }
     NSString *realUrlKey = [urlKey stringByAppendingPathComponent:timeStamp];
     return [self creatImageFileWithUrlKey:realUrlKey fileName:[urlKey lastPathComponent] andImage:image];
 }
@@ -36,16 +39,7 @@
     model.m_isLocalSaved    = NO;
     return model;
 }
-+ (instancetype)imageFileWithOriginalImageFile:(FSImageFileModel *)originalImageFile andCropImage:(UIImage *)image
-{
-    NSString *urlKey    = [originalImageFile.m_imageUrlKey stringByDeletingLastPathComponent];
-    NSString *timeStamp = [@((long)[NSDate date].timeIntervalSince1970) stringValue];
-    NSString *realUrlKey = [urlKey stringByAppendingPathComponent:timeStamp];
-    NSString *extension  = [originalImageFile.m_fileName pathExtension];
-    NSString *name       = [originalImageFile.m_fileName stringByDeletingPathExtension];
-    NSString *fileName   = [[NSString stringWithFormat:@"%@-截取", name] stringByAppendingPathExtension:extension];
-    return [self creatImageFileWithUrlKey:realUrlKey fileName:fileName andImage:image];
-}
+
 + (NSArray<FSImageFileModel *> *)localImageFileList
 {
     NSArray *images = [NSArray arrayWithContentsOfFile:[self p_imageFileListPath]];

@@ -22,7 +22,6 @@
 
 
 + (instancetype)imageFileWithSelectInfo:(NSDictionary *)info andImage:(UIImage *)image;
-+ (instancetype)imageFileWithOriginalImageFile:(FSImageFileModel *)originalImageFile andCropImage:(UIImage *)image;
 
 // 获取与更新本地保存的文件列表
 + (NSArray <FSImageFileModel *> *)localImageFileList;

@@ -111,26 +111,28 @@ FSMainVC ()
 {
     CGFloat offsetY   = scrollView.contentOffset.y;
     CGFloat maxOffset = (261.0 / 667 * UI_SCREEN_HEIGHT - 97) / 2;
+    self.bm_NavigationTitleAlpha = (offsetY<0)? 0 : 1.0;
+    [self bm_setNeedsUpdateNavigationTitleAlpha];
     if (offsetY <= 0)
     {
         self.bm_NavigationBarAlpha = 0;
         [self bm_setNeedsUpdateNavigationBarAlpha];
-        self.bm_NavigationTitleAlpha = 0; //(offsetY == 0) ? 1.0 : 0;
-        [self bm_setNeedsUpdateNavigationTitleAlpha];
+//        self.bm_NavigationTitleAlpha = (offsetY == 0) ? 1.0 : 0;
+//        [self bm_setNeedsUpdateNavigationTitleAlpha];
     }
     else if (offsetY >= maxOffset)
     {
         self.bm_NavigationBarAlpha = 1.0;
         [self bm_setNeedsUpdateNavigationBarAlpha];
-        self.bm_NavigationTitleAlpha = 1.0;
-        [self bm_setNeedsUpdateNavigationTitleAlpha];
+//        self.bm_NavigationTitleAlpha = 1.0;
+//        [self bm_setNeedsUpdateNavigationTitleAlpha];
     }
     else
     {
         self.bm_NavigationBarAlpha = offsetY / maxOffset;
         [self bm_setNeedsUpdateNavigationBarAlpha];
-        self.bm_NavigationTitleAlpha = offsetY / maxOffset;
-        [self bm_setNeedsUpdateNavigationTitleAlpha];
+//        self.bm_NavigationTitleAlpha = offsetY / maxOffset;
+//        [self bm_setNeedsUpdateNavigationTitleAlpha];
     }
     
     NSLog(@"%@", @(offsetY));
@@ -148,7 +150,7 @@ FSMainVC ()
 - (void)AIButtonCliked
 {
     // 智能咨询
-    
+    [FSPushVCManager pushToAIConsultVC:self];
 }
 
 
@@ -320,6 +322,7 @@ FSMainVC ()
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section)
     {
         FSTopicModel *model = _m_topics[indexPath.row];

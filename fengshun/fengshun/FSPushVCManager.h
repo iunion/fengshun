@@ -63,6 +63,10 @@ typedef void (^PushVCCallBack)(void);
 + (void)showMessageVC:(UIViewController *)pushVC;
 
 #pragma mark - H5跳转
+
+// 智能咨询
++ (void)pushToAIConsultVC:(UIViewController *)pushVC;
+
 // 法规专题
 + (void)viewController:(UIViewController *)vc pushToLawTopicVCWithLawTopic:(NSString *)lawTopic;
 

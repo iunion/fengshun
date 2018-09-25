@@ -49,6 +49,7 @@
     if (self.m_searchsucceed) {
         self.m_searchsucceed(textList);
     }
+    self.m_DataArray = [_m_textList mutableCopy];
     [self.m_TableView reloadData];
     return [super succeedLoadedRequestWithDic:requestDic];
 }
