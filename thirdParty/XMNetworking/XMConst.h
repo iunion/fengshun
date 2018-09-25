@@ -112,7 +112,7 @@ typedef void (^XMCenterRequestProcessBlock)(XMRequest *request);
  @param responseObject The response data return from server.
  @param error The error that occurred while the response data don't conforms to your own business logic.
  */
-typedef id (^XMCenterResponseProcessBlock)(XMRequest *request, id _Nullable responseObject, NSError * _Nullable __autoreleasing *error);
+typedef id _Nullable (^XMCenterResponseProcessBlock)(XMRequest *request, id _Nullable responseObject, NSError * _Nullable __autoreleasing *error);
 
 /**
  The custom error process block for all XMRequests invoked by XMCenter.
