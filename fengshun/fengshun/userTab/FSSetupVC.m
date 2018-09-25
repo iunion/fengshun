@@ -130,20 +130,21 @@ typedef void(^FSSetupClearDiskBlock)(NSString *path, BOOL finished);
     UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.m_TableView.bm_width, 100.0f)];
     footerView.backgroundColor = [UIColor clearColor];
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    CGRect frame;
-    if (IS_IPHONE6P || IS_IPHONEXP)
-    {
-        frame = CGRectMake(0, 0, self.m_TableView.bm_width-60.0f, 44);
-    }
-    else if (IS_IPHONE6 || IS_IPHONEX)
-    {
-        frame = CGRectMake(0, 0, self.m_TableView.bm_width-50.0f, 44);
-    }
-    else
-    {
-        frame = CGRectMake(0, 0, self.m_TableView.bm_width-30.0f, 44);
-    }
-    btn.frame = frame;
+//    CGRect frame;
+//    if (IS_IPHONE6P || IS_IPHONEXP)
+//    {
+//        frame = CGRectMake(0, 0, self.m_TableView.bm_width-60.0f, 44);
+//    }
+//    else if (IS_IPHONE6 || IS_IPHONEX)
+//    {
+//        frame = CGRectMake(0, 0, self.m_TableView.bm_width-50.0f, 44);
+//    }
+//    else
+//    {
+//        frame = CGRectMake(0, 0, self.m_TableView.bm_width-30.0f, 44);
+//    }
+//    btn.frame = frame;
+    btn.frame = CGRectMake(0, 0, self.m_TableView.bm_width-40.0f, 44);
     btn.backgroundColor = UI_COLOR_BL1;
     btn.titleLabel.font = FS_BUTTON_LARGETEXTFONT;
     btn.exclusiveTouch = YES;

@@ -242,6 +242,7 @@
     [self.m_AppSection addItem:self.m_ServiceItem];
     [self.m_AppSection addItem:self.m_ShareItem];
 
+    self.m_UserSection.headerHeight = 0.0f;
     self.m_UserSection.footerHeight = 0.0f;
     self.m_AppSection.headerHeight = 10.0f;
     

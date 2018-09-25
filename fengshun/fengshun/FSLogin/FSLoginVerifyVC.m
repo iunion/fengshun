@@ -175,15 +175,15 @@
 - (void)interfaceSettings
 {
     NSString *text = [NSString stringWithFormat:@"验证码已发送到手机%@", [self.m_PhoneNum bm_maskAtRang:NSMakeRange(3, 4) withMask:'*']];
-    UILabel *label1 = [UILabel bm_labelWithFrame:CGRectMake(0, 20.0f, self.m_TableView.bm_width, 32.0f) text:text fontSize:18.0f color:UI_COLOR_B1 alignment:NSTextAlignmentLeft lines:1];
+    UILabel *label1 = [UILabel bm_labelWithFrame:CGRectMake(15.0f, 20.0f, self.m_TableView.bm_width-30.0f, 32.0f) text:text fontSize:18.0f color:UI_COLOR_B1 alignment:NSTextAlignmentLeft lines:1];
     [self.m_TableView addSubview:label1];
     self.m_PhoneNumLabel = label1;
     
-    UILabel *label2 = [UILabel bm_labelWithFrame:CGRectMake(0, label1.bm_bottom+4.0f, self.m_TableView.bm_width, 40.0f) text:@"请在下方输入短信验证码" fontSize:14.0f color:UI_COLOR_B1 alignment:NSTextAlignmentLeft lines:1];
+    UILabel *label2 = [UILabel bm_labelWithFrame:CGRectMake(15.0f, label1.bm_bottom+4.0f, self.m_TableView.bm_width-30.0f, 40.0f) text:@"请在下方输入短信验证码" fontSize:14.0f color:UI_COLOR_B1 alignment:NSTextAlignmentLeft lines:1];
     [self.m_TableView addSubview:label2];
 
     // 获取验证码
-    UIButton *clockBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.m_TableView.bm_width-90.0f, label2.bm_top+5.0f, 90.0f, 30.0f)];
+    UIButton *clockBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.m_TableView.bm_width-110.0f, label2.bm_top+5.0f, 90.0f, 30.0f)];
     self.m_ClockBtn = clockBtn;
     [clockBtn addTarget:self action:@selector(getVerificationCode:) forControlEvents:UIControlEventTouchUpInside];
     clockBtn.exclusiveTouch = YES;
@@ -197,34 +197,36 @@
 //        [weakSelf freshClockBtn:ticket];
 //    }];
 
-    BMVerifyField *verifyField = [[BMVerifyField alloc] initWithFrame:CGRectMake(0, label2.bm_bottom+10.0f, self.m_TableView.bm_width, 40.0f)];
+    BMVerifyField *verifyField = [[BMVerifyField alloc] initWithFrame:CGRectMake(15.0f, label2.bm_bottom+20.0f, self.m_TableView.bm_width-30, 60.0f)];
     [self.m_TableView addSubview:verifyField];
     verifyField.delegate = self;
+    verifyField.itemSpace = (self.m_TableView.bm_width-30-60.0f*4)/4;
     verifyField.trackBorderColor = UI_COLOR_BL1;
     verifyField.autoResignFirstResponderWhenInputFinished = YES;
     verifyField.userInteractionEnabled = NO;
     self.m_VerifyField = verifyField;
     
-    UILabel *label3 = [UILabel bm_labelWithFrame:CGRectMake(0, verifyField.bm_bottom+10.0f, self.m_TableView.bm_width, 24.0f) text:@"" fontSize:12.0f color:UI_COLOR_R1 alignment:NSTextAlignmentLeft lines:1];
+    UILabel *label3 = [UILabel bm_labelWithFrame:CGRectMake(15.0f, verifyField.bm_bottom+10.0f, self.m_TableView.bm_width-30.0f, 24.0f) text:@"" fontSize:12.0f color:UI_COLOR_R1 alignment:NSTextAlignmentLeft lines:1];
     [self.m_TableView addSubview:label3];
     self.m_ErrorLabel = label3;
     self.m_ErrorLabel.hidden = YES;
 
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    CGRect frame;
-    if (IS_IPHONE6P || IS_IPHONEXP)
-    {
-        frame = CGRectMake(0, 0, self.m_TableView.bm_width-60.0f, 44);
-    }
-    else if (IS_IPHONE6 || IS_IPHONEX)
-    {
-        frame = CGRectMake(0, 0, self.m_TableView.bm_width-50.0f, 44);
-    }
-    else
-    {
-        frame = CGRectMake(0, 0, self.m_TableView.bm_width-30.0f, 44);
-    }
-    btn.frame = frame;
+//    CGRect frame;
+//    if (IS_IPHONE6P || IS_IPHONEXP)
+//    {
+//        frame = CGRectMake(0, 0, self.m_TableView.bm_width-60.0f, 44);
+//    }
+//    else if (IS_IPHONE6 || IS_IPHONEX)
+//    {
+//        frame = CGRectMake(0, 0, self.m_TableView.bm_width-50.0f, 44);
+//    }
+//    else
+//    {
+//        frame = CGRectMake(0, 0, self.m_TableView.bm_width-30.0f, 44);
+//    }
+//    btn.frame = frame;
+    btn.frame = CGRectMake(0, 0, self.m_TableView.bm_width-40.0f, 44);
     btn.backgroundColor = UI_COLOR_BL1;
     btn.titleLabel.font = FS_BUTTON_LARGETEXTFONT;
     btn.exclusiveTouch = YES;

@@ -361,7 +361,7 @@
     }
     
     CGSize itemSize = [self getItemSize];
-    CGFloat startX = (self.bounds.size.width - self.inputMaxCount * (itemSize.width + self.itemSpace)) * 0.5;
+    CGFloat startX = self.itemSpace * 0.5;//(self.bounds.size.width - self.inputMaxCount * (itemSize.width + self.itemSpace)) * 0.5;
     
     CGRect itemRect = CGRectMake(startX + self.characterArray.count * (itemSize.width + self.itemSpace),
                                  0,
@@ -399,7 +399,8 @@
     CGContextSetLineCap(ctx, kCGLineCapRound);
     CGRect bounds = CGRectInset(rect, self.borderWidth * 0.5, self.borderWidth * 0.5);
     
-    CGFloat startX = (self.bounds.size.width - self.inputMaxCount * (itemSize.width + self.itemSpace)) * 0.5;
+    //CGFloat startX = (self.bounds.size.width - self.inputMaxCount * (itemSize.width + self.itemSpace)) * 0.5;
+    CGFloat startX = self.itemSpace * 0.5;//(self.bounds.size.width - self.inputMaxCount * (itemSize.width + self.itemSpace)) * 0.5;
 
     if (self.itemSpace < 2)
     {
