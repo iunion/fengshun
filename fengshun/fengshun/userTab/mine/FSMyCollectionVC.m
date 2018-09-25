@@ -87,7 +87,7 @@
             {
                 case FSCollectionType_POSTS:
                 {
-                    FSTopicModel *topic = [FSTopicModel topicWithServerDic:dic];
+                    FSTopicCollectModel *topic = [FSTopicCollectModel collectTopicModelWithDic:dic];
                     if ([topic bm_isNotEmpty])
                     {
                         [dataArray addObject:topic];
@@ -189,8 +189,7 @@
                 cell = [[[NSBundle mainBundle] loadNibNamed:@"FSTopicListCell" owner:self options:nil] lastObject];
             }
             
-            [cell drawCellWithModle:self.m_DataArray[indexPath.row]];
-            
+            [cell drawCellWithCollectionModel:self.m_DataArray[indexPath.row]];
             return cell;
         }
         case FSCollectionType_STATUTE:
