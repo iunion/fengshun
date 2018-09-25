@@ -42,12 +42,12 @@
 - (void)makeCellStyle
 {
     self.m_TitleLabel.textColor = [UIColor bm_colorWithHex:0x333333];
-    self.m_TitleLabel.font = UI_FONT_16;
+    self.m_TitleLabel.font = UI_FONT_18;
     
     self.m_TimeLabel.textColor = [UIColor bm_colorWithHex:0x999999];
-    self.m_TimeLabel.font = UI_FONT_12;
+    self.m_TimeLabel.font = UI_FONT_10;
     
-    self.m_ContentLabel.textColor = [UIColor bm_colorWithHex:0x999999];
+    self.m_ContentLabel.textColor = [UIColor bm_colorWithHex:0x666666];
     self.m_ContentLabel.font = UI_FONT_14;
 }
 
