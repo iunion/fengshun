@@ -37,7 +37,7 @@
     
     if (self)
     {
-        self.titleRect = CGRectMake(0, frame.size.height-18, frame.size.width, 16);
+        self.titleRect = CGRectMake(0, frame.size.height-20, frame.size.width, 16);
 
         self.titleLabel.font = [UIFont boldSystemFontOfSize:10.0];
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -46,7 +46,7 @@
         self.titleSelectedColor = ITEM_SELECTED_COLOR;
         self.titleHighlightColor = nil;
         
-        self.imageRect = CGRectMake((frame.size.width-ITEM_ICON_WIDTH)*0.5f, 7, ITEM_ICON_WIDTH, ITEM_ICON_WIDTH);
+        self.imageRect = CGRectMake((frame.size.width-ITEM_ICON_WIDTH)*0.5f, 6, ITEM_ICON_WIDTH, ITEM_ICON_WIDTH);
     }
     
     return self;
