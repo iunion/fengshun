@@ -28,7 +28,7 @@
     
     self.m_TableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.m_TableView.separatorInset = UIEdgeInsetsMake(0, 14, 0, 14);
-    
+    self.m_TableView.tableFooterView = [UIView new];
     [self loadApiData];
 }
 

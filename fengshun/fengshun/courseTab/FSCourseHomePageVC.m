@@ -9,6 +9,7 @@
 #import "FSCourseHomePageVC.h"
 #import "FSWebView.h"
 #import "AppDelegate.h"
+#import "NSDictionary+BMCategory.h"
 
 @interface FSCourseHomePageVC ()
 <
@@ -29,7 +30,10 @@
     [self bm_setNavigationWithTitle:self.m_Title barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
     [GetAppDelegate.m_TabBarController hideOriginTabBar];
     //[self setBm_NavigationBarImage:[UIImage imageWithColor:[UIColor whiteColor]]];
-    
+    [self registerHander:@"toShowTablayout" handler:^(id data, WVJBResponseCallback responseCallback) {
+        NSString *jsonStr = data;
+        BMLog(@"%d",[[NSDictionary bm_dictionaryWithJsonString:jsonStr] bm_boolForKey:@"isCourse"] );
+    }];
 }
 
 - (void)didReceiveMemoryWarning

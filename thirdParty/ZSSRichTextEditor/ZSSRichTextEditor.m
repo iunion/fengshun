@@ -1096,6 +1096,12 @@ static CGFloat kDefaultScale    = 0.5;
 
 #pragma mark - Editor Interaction
 
+- (void)begainEditor
+{
+    [self.sourceView becomeFirstResponder];
+    [self focusTextEditor];
+}
+
 - (void)focusTextEditor
 {
     self.editorView.keyboardDisplayRequiresUserAction = NO;

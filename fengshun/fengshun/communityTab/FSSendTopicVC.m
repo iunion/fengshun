@@ -107,6 +107,12 @@
     [self bringSomeViewToFront];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self begainEditor];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -246,7 +252,7 @@
                         [weakSelf insertImage:url alt:@""];
                     }
                     failure:^(NSError *_Nullable error){
-
+                        [self.m_ProgressHUD showAnimated:YES withText:@"上传图片识别" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
                     }];
 }
 
