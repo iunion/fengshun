@@ -24,8 +24,8 @@
 @property (nonatomic, strong) FSScrollPageSegment *m_SegmentBar;
 @property (nonatomic, strong) FSScrollPageView *m_ScrollPageView;
 
-@property (nonatomic, strong) FSTableViewVC *m_RecommendVC;
-@property (nonatomic, strong) FSTableViewVC *m_ForumVC;
+@property (nonatomic, strong) FSRecommendListVC *m_RecommendVC;
+@property (nonatomic, strong) FSForumListVC *m_ForumVC;
 
 @end
 
@@ -110,7 +110,11 @@
     }
     else if (index == 1)
     {
+        BMWeakSelf;
         self.m_ForumVC = [[FSForumListVC alloc] init];
+        self.m_ForumVC.m_ShowLoginBlock = ^{
+            [weakSelf showLogin];
+        };
         return self.m_ForumVC.view;
     }
     return nil;

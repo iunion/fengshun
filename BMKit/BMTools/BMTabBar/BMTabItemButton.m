@@ -10,7 +10,7 @@
 #import "BMkit.h"
 #import "UIButton+WebCache.h"
 
-#define ITEM_ICON_WIDTH        (24.0f)
+#define ITEM_ICON_WIDTH        (20.0f)
 
 #define ITEM_NORMAL_COLOR       [UIColor bm_colorWithHex:0x666666]
 #define ITEM_HIGHLIGHT_COLOR    [UIColor redColor]
@@ -37,16 +37,16 @@
     
     if (self)
     {
-        self.titleRect = CGRectMake(0, frame.size.height-20, frame.size.width, 15);
+        self.titleRect = CGRectMake(0, frame.size.height-18, frame.size.width, 16);
 
-        self.titleLabel.font = [UIFont boldSystemFontOfSize:12.0];
+        self.titleLabel.font = [UIFont boldSystemFontOfSize:10.0];
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
         self.titleNormalColor = ITEM_NORMAL_COLOR;
         self.titleSelectedColor = ITEM_SELECTED_COLOR;
         self.titleHighlightColor = nil;
         
-        self.imageRect = CGRectMake((frame.size.width-ITEM_ICON_WIDTH)*0.5f, 5, ITEM_ICON_WIDTH, ITEM_ICON_WIDTH);
+        self.imageRect = CGRectMake((frame.size.width-ITEM_ICON_WIDTH)*0.5f, 7, ITEM_ICON_WIDTH, ITEM_ICON_WIDTH);
     }
     
     return self;

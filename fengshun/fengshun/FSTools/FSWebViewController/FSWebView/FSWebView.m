@@ -178,18 +178,7 @@
     }
     else if ([keyPath isEqualToString:@"title"])
     {
-        NSString *title = change[NSKeyValueChangeNewKey];
-        NSRange range = [title rangeOfString:@"预留信息更新"];
-        if (range.length)
-        {
-            self.title = @"修改银行预留手机号";
-        }
-        else
-        {
-            self.title = title;
-        }
-
-        //self.title = change[NSKeyValueChangeNewKey];
+        self.title = change[NSKeyValueChangeNewKey];
     }
     else
     {
@@ -312,49 +301,7 @@
 {
     [self.webViewProgress webViewDidFinishLoad:webView];
     
-    NSString *title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-    NSRange range = [title rangeOfString:@"预留信息更新"];
-    if (range.length)
-    {
-        self.title = @"修改银行预留手机号";
-    }
-    else
-    {
-        range = [title rangeOfString:@"绑卡"];
-        if (range.length)
-        {
-            self.title = @"绑定银行卡";
-        }
-        else
-        {
-            range = [title rangeOfString:@"卡解绑"];
-            if (range.length)
-            {
-                self.title = @"解绑银行卡";
-            }
-            else
-            {
-                range = [title rangeOfString:@"注册"];
-                if (range.length)
-                {
-                    self.title = @"开通存管账户";
-                }
-                else
-                {
-                    range = [title rangeOfString:@"激活"];
-                    if (range.length)
-                    {
-                        self.title = @"激活存管账户";
-                    }
-                    else
-                    {
-                        self.title = title;
-                    }
-                }
-            }
-        }
-    }
-    //self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     
     if (self.originRequest == nil)
     {

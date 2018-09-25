@@ -133,8 +133,15 @@ FSForumListVC ()
     FSCommunityForumModel *model = self.m_DataArray[indexPath.section];
     [cell showWithFSCommunityForumListModel:model.m_List[indexPath.row]];
     BMWeakSelf;
-    cell.attentionChangeBlock = ^(BOOL attentionFlag) {
-        [weakSelf loadApiData];
+    cell.attentionBtnClickBlock = ^(FSForumModel *model) {
+        if (![FSUserInfoModle isLogin])
+        {
+            if (weakSelf.m_ShowLoginBlock) {
+                weakSelf.m_ShowLoginBlock();
+            }
+            return ;
+        }
+        [weakSelf updateAttentionFlag:model];
     };
     return cell;
 }
@@ -150,6 +157,15 @@ FSForumListVC ()
     };
 }
 
+
+- (void)updateAttentionFlag:(FSForumModel *)model {
+    FSForumFollowState state = model.m_AttentionFlag;
+    [FSApiRequest updateFourmAttentionStateWithFourmId:model.m_Id followStatus:!state success:^(id  _Nullable responseObject) {
+        [self loadApiData];
+    } failure:^(NSError * _Nullable error) {
+
+    }];
+}
 
 /*
 #pragma mark - Navigation

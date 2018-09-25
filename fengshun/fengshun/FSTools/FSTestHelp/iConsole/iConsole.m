@@ -916,7 +916,7 @@ static void exceptionHandler(NSException *exception)
         _simulatorShakeToShow = YES;
         _deviceShakeToShow = YES;
         
-        self.infoString = @"秒钱 APP测试控制平台：";
+        self.infoString = @"枫调理顺 APP测试控制平台：";
         self.inputPlaceholderString = @"输入命令...";
         self.logSubmissionEmail = nil;
         

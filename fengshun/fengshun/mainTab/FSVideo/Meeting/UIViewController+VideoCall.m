@@ -72,14 +72,16 @@
 
 - (void)loginAndJoinRoomWithModel:(RTCRoomInfoModel *)model handler:(void (^)(void))handler {
     // 登录
+    BMWeakType(model)
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:@"正在登录"];
     [[ILiveLoginManager getInstance] iLiveLogin:model.userId sig:model.userSig succ:^{
         // 加入房间
-        
+        NSLog(@"登录房间成功！！！！！！！");
+
         // 1、创建房间配置对象
         ILiveRoomOption *option = [ILiveRoomOption defaultGuestLiveOption];
         // 2、配置进房票据
-        option.avOption.privateMapKey = [model.privateMapKey dataUsingEncoding:NSUTF8StringEncoding];
+        option.avOption.privateMapKey = [weakmodel.privateMapKey dataUsingEncoding:NSUTF8StringEncoding];
         option.imOption.imSupport = NO;
         option.avOption.autoCamera = YES;
         option.avOption.autoMic = YES;
@@ -90,11 +92,13 @@
         option.controlRole = FS_ILiveControlRole;
         
         [hud showAnimated:YES withText:@"正在加入房间"];
-        [[ILiveRoomManager getInstance] joinRoom:(int)model.roomId option:option succ:^{
+        [[ILiveRoomManager getInstance] joinRoom:(int)weakmodel.roomId option:option succ:^{
+            NSLog(@"加入房间成功！！！！！！！");
             [hud hideAnimated:YES];
             handler();
         } failed:^(NSString *module, int errId, NSString *errMsg) {
             // 加入房间失败
+            NSLog(@"加入房间失败！！！！！！！");
             [hud hideAnimated:YES];
             [self showAlertWithTitle:@"加入房间失败" msg:errMsg code:errId];
         }];
@@ -102,6 +106,7 @@
         // 登录失败
         [hud hideAnimated:YES];
         [self showAlertWithTitle:@"登录失败" msg:errMsg code:errId];
+        NSLog(@"登录房间失败！！！！！！！");
     }];
 }
 @end

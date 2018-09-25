@@ -112,7 +112,7 @@
     
     [self interfaceSettings];
     
-    [self getVerificationCode:nil];
+    //[self getVerificationCode:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated

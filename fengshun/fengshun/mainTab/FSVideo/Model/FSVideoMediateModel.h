@@ -10,8 +10,6 @@
 #import "FSMeetingDataEnum.h"
 #import "FSSuperModel.h"
 
-#define FSMEETING_PERSON_MAX_COUNT 8
-
 // 参会人员model
 @interface FSMeetingPersonnelModel : FSSuperModel
 @property (nonatomic, assign) NSInteger personnelId;

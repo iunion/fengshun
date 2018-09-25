@@ -40,8 +40,8 @@
         self.otherBtnTextColor  = [UIColor bm_colorWithHexString:@"577EEE"];
         self.btnFont            = [UIFont systemFontOfSize:16.f];
         self.alertGapLineColor  = [UIColor bm_colorWithHexString:@"D8D8D8"];
-//        self.showAnimationType  = BMAlertViewShowAnimationSlideInFromTop;
-//        self.hideAnimationType  = BMAlertViewHideAnimationSlideOutToBottom;
+        self.showAnimationType  = BMAlertViewShowAnimationFadeIn;
+        self.hideAnimationType  = BMAlertViewHideAnimationFadeOut;
         self.shouldDismissOnTapOutside = NO;
         self.showClose = YES;
     }

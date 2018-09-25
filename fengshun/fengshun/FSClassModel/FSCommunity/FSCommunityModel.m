@@ -250,3 +250,37 @@
 
 @end
 
+
+@implementation FSTopicCollectModel
+
++ (FSTopicCollectModel *)collectTopicModelWithDic:(NSDictionary *)dic
+{
+    FSTopicCollectModel *model = [FSTopicCollectModel new];
+    // 收藏id
+    if (![[dic bm_stringForKey:@"collectionId"] bm_isNotEmpty]) {
+        return nil;
+    }
+    model.m_CollectionId = [dic bm_stringForKey:@"collectionId"];
+    model.m_CreateTime = [dic bm_intForKey:@"createTime"]/1000;
+    model.m_Title = [dic bm_stringForKey:@"title"];
+    model.m_CommentCount = [dic bm_intForKey:@"commentCount"];
+    //缩略图url
+    model.m_CoverThumbUrl = [dic bm_stringForKey:@"coverThumbUrl"];
+    // 帖子/法规/案例/文书/课程id
+    model.m_DetailId = [dic bm_stringForKey:@"detailId"];
+    //文书的文件id
+    model.m_FiledId = [dic bm_stringForKey:@"filedId"];
+    //指导性案例
+    model.m_GuidingCase = [dic bm_stringForKey:@"guidingCase"];
+    // 跳转地址
+    model.m_JumpAddress = [dic bm_stringForKey:@"jumpAddress"];
+    // 文书预览地址
+    model.m_PreviewUrl = [dic bm_stringForKey:@"previewUrl"];
+    model.m_ReadCount = [dic bm_intForKey:@"readCount"];
+    // 来源
+    model.m_Source = [dic bm_stringForKey:@"source"];
+    
+    return model;
+}
+
+@end

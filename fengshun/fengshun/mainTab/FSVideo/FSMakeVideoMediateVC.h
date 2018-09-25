@@ -15,16 +15,11 @@ typedef NS_ENUM(NSInteger, FSMakeVideoMediateMode) {
     FSMakeVideoMediateMode_ReSend       // 重新发起一个新的
 };
 
-
-typedef void(^makeVideoMediateSuccessBlock)(FSMeetingDetailModel *model, BOOL startImmediately);
-
 @interface FSMakeVideoMediateVC : FSSetTableViewVC
 @property (nonatomic, assign) FSMakeVideoMediateMode makeMode;
-@property (nonatomic, copy) makeVideoMediateSuccessBlock successBlock;
 @property (nonatomic, strong) FSMeetingDetailModel *m_CreateModel;
 
 + (instancetype)makevideoMediateVCWithModel:(FSMakeVideoMediateMode)mode
-                                       data:(FSMeetingDetailModel *)data
-                                      block:(makeVideoMediateSuccessBlock)block;
+                                       data:(FSMeetingDetailModel *)data;
 
 @end
