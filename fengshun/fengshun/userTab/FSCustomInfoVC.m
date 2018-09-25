@@ -714,7 +714,16 @@
     
     [self freshViews];
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:userInfoChangedNotification object:nil userInfo:nil];
+    //[[NSNotificationCenter defaultCenter] postNotificationName:userInfoChangedNotification object:nil userInfo:nil];
+}
+
+
+#pragma mark -
+#pragma mark FSEditorAbilityDelegate
+
+- (void)editorAbilityFinished:(FSEditorAbilityVC *)vc ability:(NSString *)ability;
+{
+    [self freshViews];
 }
 
 @end

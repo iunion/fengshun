@@ -193,7 +193,7 @@
             BMLog(@"++++%@", num);
         }
 #endif
-        [self freshAbilityList];
+        [weakSelf freshAbilityList];
     };
     
     [self.m_Section addItem:item];
