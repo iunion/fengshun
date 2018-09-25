@@ -22,6 +22,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *m_SourceLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *m_FloorLabel;
+
 @property (nonatomic, strong) FSCommentMessageModle *m_Modle;
 
 @end
@@ -48,16 +50,19 @@
 - (void)makeCellStyle
 {
     self.m_NameLabel.textColor = [UIColor bm_colorWithHex:0x333333];
-    self.m_NameLabel.font = UI_FONT_15;
+    self.m_NameLabel.font = UI_FONT_14;
     
     self.m_TimeLabel.textColor = [UIColor bm_colorWithHex:0x999999];
-    self.m_TimeLabel.font = UI_FONT_12;
+    self.m_TimeLabel.font = UI_FONT_10;
     
-    self.m_ContentLabel.textColor = [UIColor bm_colorWithHex:0x999999];
+    self.m_ContentLabel.textColor = [UIColor bm_colorWithHex:0x666666];
     self.m_ContentLabel.font = UI_FONT_14;
     
     self.m_SourceLabel.textColor = [UIColor bm_colorWithHex:0x999999];
-    self.m_SourceLabel.font = UI_FONT_12;
+    self.m_SourceLabel.font = UI_FONT_10;
+
+    self.m_FloorLabel.textColor = [UIColor bm_colorWithHex:0x999999];
+    self.m_FloorLabel.font = UI_FONT_10;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -97,8 +102,10 @@
     {
         [atrString bm_setTextColor:[UIColor bm_colorWithHex:0x999999]];
     }
-    [atrString bm_setFont:[UIFont systemFontOfSize:12.0f]];
+    [atrString bm_setFont:[UIFont systemFontOfSize:10.0f]];
     self.m_SourceLabel.attributedText = atrString;
+    
+    //self.m_FloorLabel.text = NSString stringWithFormat:@"", model.m_MessageType
 }
 
 @end

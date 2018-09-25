@@ -29,14 +29,14 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eda-6d-uBf">
                                 <rect key="frame" x="64" y="15" width="200" height="20"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="q0n-jR-NDY">
                                 <rect key="frame" x="64" y="36" width="120" height="16"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -48,9 +48,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dBl-tS-PU7">
-                                <rect key="frame" x="15" y="130" width="260" height="16"/>
+                                <rect key="frame" x="15" y="130" width="240" height="16"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="w9K-0g-iXs">
+                                <rect key="frame" x="245" y="130" width="60" height="16"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -63,11 +70,12 @@
                 <outlet property="m_AvatarImageView" destination="A1F-UO-aoZ" id="A3W-Rq-nwd"/>
                 <outlet property="m_BgView" destination="JSt-HG-wau" id="uyV-lT-e9M"/>
                 <outlet property="m_ContentLabel" destination="pYG-hi-wfI" id="f13-tC-cTX"/>
+                <outlet property="m_FloorLabel" destination="w9K-0g-iXs" id="E8c-2R-gFp"/>
                 <outlet property="m_NameLabel" destination="eda-6d-uBf" id="UB6-8a-veg"/>
                 <outlet property="m_SourceLabel" destination="dBl-tS-PU7" id="Odd-5e-N2o"/>
                 <outlet property="m_TimeLabel" destination="q0n-jR-NDY" id="UzJ-Ho-efZ"/>
             </connections>
-            <point key="canvasLocation" x="-174" y="-58.5"/>
+            <point key="canvasLocation" x="-174" y="-59"/>
         </tableViewCell>
     </objects>
 </document>
