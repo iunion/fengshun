@@ -21,7 +21,7 @@
 
 - (UIVisualEffectView *)effectView
 {
-    if (!_effectView)
+    if (self.subviews.count && !_effectView)
     {
         [super setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
         UIView *view = self.subviews.firstObject;
@@ -49,7 +49,7 @@
 
 - (UIImageView *)backgroundImageView
 {
-    if (!_backgroundImageView)
+    if (self.subviews.count && !_backgroundImageView)
     {
         UIView *view = self.subviews.firstObject;
         
@@ -65,7 +65,7 @@
 
 - (UIImageView *)shadowLineImageView
 {
-    if (!_shadowLineImageView)
+    if (self.subviews.count && !_shadowLineImageView)
     {
         [super setShadowImage:[UIImage new]];
         UIView *view = self.subviews.firstObject;
