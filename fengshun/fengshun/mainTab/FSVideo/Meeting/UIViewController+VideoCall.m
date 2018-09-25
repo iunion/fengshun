@@ -72,6 +72,7 @@
 
 - (void)loginAndJoinRoomWithModel:(RTCRoomInfoModel *)model handler:(void (^)(void))handler {
     // 登录
+    BMWeakType(model)
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:@"正在登录"];
     [[ILiveLoginManager getInstance] iLiveLogin:model.userId sig:model.userSig succ:^{
         // 加入房间
@@ -80,7 +81,7 @@
         // 1、创建房间配置对象
         ILiveRoomOption *option = [ILiveRoomOption defaultGuestLiveOption];
         // 2、配置进房票据
-        option.avOption.privateMapKey = [model.privateMapKey dataUsingEncoding:NSUTF8StringEncoding];
+        option.avOption.privateMapKey = [weakmodel.privateMapKey dataUsingEncoding:NSUTF8StringEncoding];
         option.imOption.imSupport = NO;
         option.avOption.autoCamera = YES;
         option.avOption.autoMic = YES;
@@ -91,7 +92,7 @@
         option.controlRole = FS_ILiveControlRole;
         
         [hud showAnimated:YES withText:@"正在加入房间"];
-        [[ILiveRoomManager getInstance] joinRoom:(int)model.roomId option:option succ:^{
+        [[ILiveRoomManager getInstance] joinRoom:(int)weakmodel.roomId option:option succ:^{
             NSLog(@"加入房间成功！！！！！！！");
             [hud hideAnimated:YES];
             handler();

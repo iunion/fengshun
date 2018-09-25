@@ -123,6 +123,10 @@ VideoCallVideoViewDelegate>
     [_topBar setBtnIsSelected:NO index:1];
 }
 
+- (void)socketHelperCloseRoomSuccess:(SocketHelper *)socketHelper {
+    [self.m_ProgressHUD hideAnimated:NO];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 #pragma mark - ILiveRoomDisconnectListener
 - (BOOL)onRoomDisconnect:(int)reason {
@@ -199,6 +203,7 @@ VideoCallVideoViewDelegate>
 - (void)sendEndMeetingRequest
 {
     BMWeakSelf
+    [self.m_ProgressHUD bm_bringToFront];
     [FSVideoStartTool endMeetingWithMeetingId:self.meetingId progressHUD:self.m_ProgressHUD completionHandler:^(NSURLResponse *response, id  _Nullable responseObject, NSError * _Nullable error) {
         NSDictionary *resDic = responseObject;
         NSInteger statusCode = [resDic bm_intForKey:@"code"];
@@ -208,8 +213,7 @@ VideoCallVideoViewDelegate>
                 weakSelf.endMeetingBlock();
             }
             [[NSNotificationCenter defaultCenter] postNotificationName:FSVideoMediateChangedNotification object:nil userInfo:nil];
-
-            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+            [[SocketHelper shareHelper] sendCloseRoomEvent];
             return;
         }
     }];

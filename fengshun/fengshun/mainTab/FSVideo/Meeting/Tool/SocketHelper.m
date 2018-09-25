@@ -81,6 +81,9 @@ static dispatch_once_t onceToken;
 }
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
     NSLog(@"");
+    if ([self.delegate respondsToSelector:@selector(socketHelper:error:)]) {
+        [self.delegate socketHelper:self error:error];
+    }
 }
 - (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
     NSLog(@"");
@@ -156,7 +159,13 @@ static dispatch_once_t onceToken;
         }
         return;
     }
-    
+    // 关闭房间
+    if([event isEqualToString:@"CLOSE_ROOM"]) {
+        if ([self.delegate respondsToSelector:@selector(socketHelperCloseRoomSuccess:)]) {
+            [self.delegate socketHelperCloseRoomSuccess:self];
+        }
+        return;
+    }
 }
 
 - (void)dealRoomEvent {
@@ -284,6 +293,14 @@ static dispatch_once_t onceToken;
     }
     
     return YES;
+}
+
+- (void)sendCloseRoomEvent{
+    NSDictionary *dic = @{@"event":@"CLOSE_ROOM"};
+    if (_socket.readyState == SR_OPEN) {
+        NSLog(@"%@", dic);
+        [_socket send:[dic mj_JSONString]];
+    }
 }
 
 @end
