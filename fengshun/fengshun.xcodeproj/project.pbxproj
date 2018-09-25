@@ -1752,6 +1752,10 @@
 		AD6712342159DBD50081E08D /* fstab_btn4_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6712252159DBD40081E08D /* fstab_btn4_icon@2x.png */; };
 		AD6712352159DBD50081E08D /* fstab_btn4_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6712262159DBD40081E08D /* fstab_btn4_icon@3x.png */; };
 		AD6712362159DBD50081E08D /* fstab_btn4_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6712262159DBD40081E08D /* fstab_btn4_icon@3x.png */; };
+		AD671244215A59DE0081E08D /* FSMyCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD671242215A59DE0081E08D /* FSMyCommentCell.xib */; };
+		AD671245215A59DE0081E08D /* FSMyCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD671242215A59DE0081E08D /* FSMyCommentCell.xib */; };
+		AD671246215A59DE0081E08D /* FSMyCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD671243215A59DE0081E08D /* FSMyCommentCell.m */; };
+		AD671247215A59DE0081E08D /* FSMyCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD671243215A59DE0081E08D /* FSMyCommentCell.m */; };
 		AD8B63FE21338E0C006DDC22 /* FSPreviewFileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */; };
 		AD9325AD214B4FD9007F3A93 /* ZSSRichTextEditor.js in Resources */ = {isa = PBXBuildFile; fileRef = AD93253E214B4FD9007F3A93 /* ZSSRichTextEditor.js */; };
 		AD9325FA214B4FDA007F3A93 /* editor.html in Resources */ = {isa = PBXBuildFile; fileRef = AD93258F214B4FD9007F3A93 /* editor.html */; };
@@ -3531,6 +3535,9 @@
 		AD6712242159DBD40081E08D /* fstab_btn3_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn3_icon@2x.png"; sourceTree = "<group>"; };
 		AD6712252159DBD40081E08D /* fstab_btn4_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn4_icon@2x.png"; sourceTree = "<group>"; };
 		AD6712262159DBD40081E08D /* fstab_btn4_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn4_icon@3x.png"; sourceTree = "<group>"; };
+		AD671241215A59DD0081E08D /* FSMyCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSMyCommentCell.h; sourceTree = "<group>"; };
+		AD671242215A59DE0081E08D /* FSMyCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSMyCommentCell.xib; sourceTree = "<group>"; };
+		AD671243215A59DE0081E08D /* FSMyCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSMyCommentCell.m; sourceTree = "<group>"; };
 		AD8B63FC21338E0C006DDC22 /* FSPreviewFileTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSPreviewFileTool.h; sourceTree = "<group>"; };
 		AD8B63FD21338E0C006DDC22 /* FSPreviewFileTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSPreviewFileTool.m; sourceTree = "<group>"; };
 		AD93253E214B4FD9007F3A93 /* ZSSRichTextEditor.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ZSSRichTextEditor.js; sourceTree = "<group>"; };
@@ -5900,6 +5907,7 @@
 		87741FE8214A37C200F72427 /* mine */ = {
 			isa = PBXGroup;
 			children = (
+				AD671248215A59E20081E08D /* Cell */,
 				87741FF2214A42C800F72427 /* FSMyCollectionTabVC.h */,
 				87741FF3214A42C800F72427 /* FSMyCollectionTabVC.m */,
 				87741FE9214A381700F72427 /* FSMyCollectionVC.h */,
@@ -7093,6 +7101,16 @@
 			path = FSCommunity;
 			sourceTree = "<group>";
 		};
+		AD671248215A59E20081E08D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				AD671241215A59DD0081E08D /* FSMyCommentCell.h */,
+				AD671243215A59DE0081E08D /* FSMyCommentCell.m */,
+				AD671242215A59DE0081E08D /* FSMyCommentCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		AD8B63FA21338DC3006DDC22 /* FSPreviewFileTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -7866,6 +7884,7 @@
 				8730B10B2148E5D1004331A9 /* fsfreshfreshing_icon3@2x.png in Resources */,
 				DBD4CE8F2141229400857DB3 /* home_arrow@2x.png in Resources */,
 				87D209F2213912ED001EDD60 /* default_avataricon@2x.png in Resources */,
+				AD671244215A59DE0081E08D /* FSMyCommentCell.xib in Resources */,
 				87D9C608215368B6009F8492 /* fs_icon@2x.png in Resources */,
 				87D20AF821393B9A001EDD60 /* navigationbar_share_icon@2x.png in Resources */,
 				87741FE4214A132200F72427 /* user_qqicon@2x.png in Resources */,
@@ -8244,6 +8263,7 @@
 				45F68F4C2150E58F00628DC8 /* empty_searchicon@2x.png in Resources */,
 				87E7C5A421509AB000F7AB14 /* login_unchecked@3x.png in Resources */,
 				87E7C5A621509AB000F7AB14 /* home_courses@2x.png in Resources */,
+				AD671245215A59DE0081E08D /* FSMyCommentCell.xib in Resources */,
 				DB7B1953215A0F1300EB585D /* search_openFilters@3x.png in Resources */,
 				87E7C5A721509AB000F7AB14 /* fsfreshfreshing_icon1@2x.png in Resources */,
 				87E7C5A821509AB000F7AB14 /* default_avatariconlarge@2x.png in Resources */,
@@ -8957,6 +8977,7 @@
 				8774200C214C9DE000F72427 /* FSCommentMessageCell.m in Sources */,
 				87426AC92133AC44003C52F6 /* Reachability.m in Sources */,
 				AD932609214B4FDA007F3A93 /* ZSSTextView.m in Sources */,
+				AD671246215A59DE0081E08D /* FSMyCommentCell.m in Sources */,
 				8730B0562140FFA3004331A9 /* DTStylesheetHTMLElement.m in Sources */,
 				874269C1212E9B78003C52F6 /* BMFreshArcHeader.m in Sources */,
 				87D20AA4213920E2001EDD60 /* FLEXDictionaryExplorerViewController.m in Sources */,
@@ -9130,6 +9151,7 @@
 				87E7C2FC21509AB000F7AB14 /* FSSuperVC.m in Sources */,
 				87E7C2FD21509AB000F7AB14 /* DTReachability.m in Sources */,
 				87E7C2FE21509AB000F7AB14 /* DTCoreTextLayouter.m in Sources */,
+				AD671247215A59DE0081E08D /* FSMyCommentCell.m in Sources */,
 				87E7C30021509AB000F7AB14 /* FLEXKeyboardShortcutManager.m in Sources */,
 				87E7C30121509AB000F7AB14 /* NSDictionary+BMCategory.m in Sources */,
 				87E7C30221509AB000F7AB14 /* DTZipArchiveGZip.m in Sources */,

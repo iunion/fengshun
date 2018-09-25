@@ -213,3 +213,25 @@
 }
 
 @end
+
+@implementation FSCommentListModel
+
++ (FSCommentListModel *)commentModelWithDic:(NSDictionary *)dic
+{
+    FSCommentListModel *model = [FSCommentListModel new];
+    if (![[dic bm_stringForKey:@"commentId"]bm_isNotEmpty])
+    {
+        return nil;
+    }
+    model.m_CommentContent = [dic bm_stringForKey:@"commentContent"];
+    model.m_CommentId = [dic bm_stringForKey:@"commentId"];
+    model.m_CreateTime = [dic bm_intForKey:@"createTime"]/1000;
+    model.m_DetailId = [dic bm_stringForKey:@"detailId"];
+    model.m_JumpAddress = [dic bm_stringForKey:@"jumpAddress"];
+    model.m_Source = [dic bm_stringForKey:@"source"];
+    model.m_Type = [dic bm_stringForKey:@"type"];
+    
+    return model;
+}
+
+@end

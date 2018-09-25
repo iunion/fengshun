@@ -257,7 +257,8 @@
 {
     FSTopicCollectModel *model = [FSTopicCollectModel new];
     // 收藏id
-    if (![[dic bm_stringForKey:@"collectionId"] bm_isNotEmpty]) {
+    if (![[dic bm_stringForKey:@"collectionId"] bm_isNotEmpty])
+    {
         return nil;
     }
     model.m_CollectionId = [dic bm_stringForKey:@"collectionId"];
@@ -284,3 +285,5 @@
 }
 
 @end
+
+

@@ -110,3 +110,23 @@ typedef NS_OPTIONS(NSUInteger, FSJumpType)
 - (void)updateWithServerDic:(NSDictionary *)dic;
 
 @end
+
+@interface FSCommentListModel:NSObject
+// 帖子/法规/案例/文书/课程id
+@property (nonatomic, strong) NSString *m_CommentContent;
+// 帖子/法规/案例/文书/课程id
+@property (nonatomic, strong) NSString *m_DetailId;
+// 评论id
+@property (nonatomic, strong) NSString * m_CommentId;
+// 发贴时间
+@property (nonatomic, assign) NSTimeInterval m_CreateTime;
+// 跳转地址
+@property (nonatomic, strong) NSString *m_JumpAddress;
+// 来源
+@property (nonatomic, strong) NSString *m_Source;
+// 类型
+@property (nonatomic, strong) NSString *m_Type;
+
++ (FSCommentListModel *)commentModelWithDic:(NSDictionary *)dic;
+
+@end

@@ -15,6 +15,8 @@
 
 - (void)drawCellWithModle:(FSCommentMessageModle *)model;
 
+- (void)showWithCommentModel:(FSCommentListModel *)model;
+
 + (CGFloat)cellHeight;
 
 @end

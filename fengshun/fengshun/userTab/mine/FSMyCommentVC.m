@@ -7,7 +7,9 @@
 //
 
 #import "FSMyCommentVC.h"
-#import "FSTopicListCell.h"
+//#import "FSTopicListCell.h"
+#import "FSMyCommentCell.h"
+
 
 @interface FSMyCommentVC ()
 
@@ -23,6 +25,9 @@
     [self bm_setNavigationWithTitle:@"我的评论" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
 
     self.m_LoadDataType = FSAPILoadDataType_Page;
+    
+    self.m_TableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.m_TableView.separatorInset = UIEdgeInsetsMake(0, 14, 0, 14);
     
     [self loadApiData];
 }
@@ -47,10 +52,10 @@
         
         for (NSDictionary *dic in topicDicArray)
         {
-            FSTopicModel *topic = [FSTopicModel topicWithServerDic:dic];
-            if ([topic bm_isNotEmpty])
+            FSCommentListModel *message = [FSCommentListModel commentModelWithDic:dic];
+            if ([message bm_isNotEmpty])
             {
-                [topicArray addObject:topic];
+                [topicArray addObject:message];
             }
         }
         if ([topicArray bm_isNotEmpty])
@@ -78,20 +83,19 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [FSTopicListCell cellHeight];
+    return UITableViewAutomaticDimension;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *taskCellIdentifier = @"FSCell";
-    FSTopicListCell *cell = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
+    FSMyCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
     
     if (cell == nil)
     {
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"FSTopicListCell" owner:self options:nil] lastObject];
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"FSMyCommentCell" owner:self options:nil] lastObject];
     }
-    
-    [cell drawCellWithModle:self.m_DataArray[indexPath.row]];
+    [cell showWithCommentModel:self.m_DataArray[indexPath.row]];
     
     return cell;
 }
@@ -103,8 +107,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    FSTopicModel *model = self.m_DataArray[indexPath.row];
-    [FSPushVCManager showTopicDetail:[self.view.superview bm_viewController] topicId:model.m_Id];
+    FSCommentListModel *modle = self.m_DataArray[indexPath.row];
+    [FSPushVCManager showWebView:self url:modle.m_JumpAddress title:nil];
 }
 
 - (BMEmptyViewType)getNoDataEmptyViewType

@@ -108,4 +108,5 @@
     //self.m_FloorLabel.text = NSString stringWithFormat:@"", model.m_MessageType
 }
 
+
 @end
