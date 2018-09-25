@@ -104,9 +104,7 @@
     singleLine.lineColor         = [UIColor blackColor];
     [self.view addSubview:singleLine];
     
-    self.m_ProgressHUD = [[MBProgressHUD alloc] initWithView:self.view];
-    self.m_ProgressHUD.animationType = MBProgressHUDAnimationFade;
-    [self.view addSubview:self.m_ProgressHUD];
+    [self bringSomeViewToFront];
 }
 
 - (void)didReceiveMemoryWarning
@@ -167,13 +165,13 @@
                                  
                                  if (buttonIndex == 1)
                                  {
-                                     [weakSelf.navigationController popViewControllerAnimated:YES];
+                                     [weakSelf backAction:nil];
                                  }
                              }];
     }
     else
     {
-        [self.navigationController popViewControllerAnimated:YES];
+        [self backAction:nil];
     }
 }
 
