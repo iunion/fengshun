@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		45344496214D0DFA00EA7BFA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 45344495214D0DFA00EA7BFA /* libz.tbd */; };
 		45344498214D0DFA00EA7BFA /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 45344497214D0DFA00EA7BFA /* libstdc++.tbd */; };
-		4534449A214D0DFA00EA7BFA /* libstdc++.6.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 45344499214D0DFA00EA7BFA /* libstdc++.6.tbd */; };
 		4534449C214D0DFA00EA7BFA /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4534449B214D0DFA00EA7BFA /* libsqlite3.tbd */; };
 		4534449E214D0DFA00EA7BFA /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4534449D214D0DFA00EA7BFA /* libresolv.tbd */; };
 		453444A0214D0DFA00EA7BFA /* libprotobuf.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4534449F214D0DFA00EA7BFA /* libprotobuf.tbd */; };
@@ -3802,7 +3801,6 @@
 				AD3B821E214A468100D72DE9 /* CoreText.framework in Frameworks */,
 				45344496214D0DFA00EA7BFA /* libz.tbd in Frameworks */,
 				45344498214D0DFA00EA7BFA /* libstdc++.tbd in Frameworks */,
-				4534449A214D0DFA00EA7BFA /* libstdc++.6.tbd in Frameworks */,
 				4534449C214D0DFA00EA7BFA /* libsqlite3.tbd in Frameworks */,
 				4534449E214D0DFA00EA7BFA /* libresolv.tbd in Frameworks */,
 				453444A0214D0DFA00EA7BFA /* libprotobuf.tbd in Frameworks */,
