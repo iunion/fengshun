@@ -394,17 +394,17 @@
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 100)];
         view.backgroundColor = [UIColor whiteColor];
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(25.0f, 0, UI_SCREEN_WIDTH-50.0f, 60.0f)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, 0, UI_SCREEN_WIDTH-40.0f, 60.0f)];
         label.backgroundColor = [UIColor clearColor];
         label.textColor = UI_COLOR_B4;
         label.numberOfLines = 0;
         label.font = UI_FONT_14;
         label.text = userInfo.m_UserBaseInfo.m_Signature;
         //label.text = @"一句话表达下一句话表达下一句话表达下一句话表达下一句话表达下一句话表达下一句话表达下一句话表达下一句话表达下一句话表达下";
-        CGSize size = [label sizeThatFits:CGSizeMake(UI_SCREEN_WIDTH-50.0f, 1000)];
+        CGSize size = [label sizeThatFits:CGSizeMake(UI_SCREEN_WIDTH-40.0f, 1000)];
         label.bm_height = size.height;
         [view addSubview:label];
-        view.bm_height = label.bm_height + 8.0f;
+        view.bm_height = label.bm_height + 20.0f;
 
         self.m_SignatureSection.footerView = view;
         self.m_SignatureSection.footerHeight = view.bm_height;
@@ -444,10 +444,10 @@
     
     for (NSString *ability in abilityArray)
     {
-        CGFloat width = [ability bm_widthToFitHeight:20 withFont:[UIFont systemFontOfSize:14.0f]] + 12.0f;
+        CGFloat width = [ability bm_widthToFitHeight:20 withFont:[UIFont systemFontOfSize:13.0f]] + 12.0f;
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, 26.0f)];
         label.backgroundColor = [UIColor bm_colorWithHex:0xF0F0F0];
-        label.font = [UIFont systemFontOfSize:14.0f];
+        label.font = [UIFont systemFontOfSize:13.0f];
         label.textColor = [UIColor bm_colorWithHex:0x666666];
         label.textAlignment = NSTextAlignmentCenter;
         label.text = ability;
