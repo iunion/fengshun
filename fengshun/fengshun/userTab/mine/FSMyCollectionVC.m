@@ -240,8 +240,8 @@
 #warning CollectionType
         case FSCollectionType_POSTS:
         {
-            FSTopicModel *model = self.m_DataArray[indexPath.row];
-            [FSPushVCManager showTopicDetail:[self.view.superview bm_viewController] topicId:model.m_Id];
+            FSTopicCollectModel *model = self.m_DataArray[indexPath.row];
+            [FSPushVCManager showTopicDetail:[self.view.superview bm_viewController] topicId:model.m_DetailId];
         }
             break;
         case FSCollectionType_STATUTE:
