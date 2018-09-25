@@ -14,10 +14,13 @@
 #import "FSApiRequest.h"
 #import "FSAlertView.h"
 
+#define Topic_MaxTextCount  32
+
 @interface FSSendTopicVC ()
 <
     TZImagePickerControllerDelegate
 >
+
 //相关的id
 @property (nonatomic, assign) NSInteger m_RelateId;
 //是否是编辑帖子
@@ -31,6 +34,10 @@
 
 @implementation FSSendTopicVC
 
+- (void)dealloc
+{
+    
+}
 
 - (instancetype)initWithIsEdited:(BOOL)isEdited relateId:(NSInteger)relateId
 {
@@ -66,10 +73,12 @@
                  action:@selector(didTapCustomToolbarButton)
        forControlEvents:UIControlEventTouchUpInside];
     [self addCustomToolbarItemWithButton:myButton];
+    
     self.placeholder        = @"请写下你的分享...";
     self.shouldShowKeyboard = NO;
     
     self.view.backgroundColor       = [UIColor whiteColor];
+    
     self.bm_NavigationItemTintColor = UI_COLOR_B1;
     [self bm_setNavigationWithTitle:@"发帖" barTintColor:nil leftItemTitle:nil leftItemImage:[UIImage imageNamed:@"community_return_black"] leftToucheEvent:@selector(popViewController) rightItemTitle:@"发送" rightItemImage:nil rightToucheEvent:@selector(pulishTopicAction)];
     [GetAppDelegate.m_TabBarController hideOriginTabBar];
@@ -82,14 +91,13 @@
     [self.view addSubview:self.m_TitleTextField];
     
     self.m_PlaceHolderLab = [[UILabel alloc]initWithFrame:CGRectMake(self.m_TitleTextField.bm_right, 0, 50.f, 50.f)];
-    self.m_PlaceHolderLab.text = @"32个字";
+    self.m_PlaceHolderLab.text = [NSString stringWithFormat:@"%@个字", @(Topic_MaxTextCount)];
     self.m_PlaceHolderLab.font = [UIFont systemFontOfSize:12.f];
     self.m_PlaceHolderLab.textAlignment = NSTextAlignmentRight;
     self.m_PlaceHolderLab.textColor = UI_COLOR_B1;
     [self.view addSubview:_m_PlaceHolderLab];
     
-
-    BMSingleLineView *singleLine = [[BMSingleLineView alloc] initWithFrame:CGRectMake(self.m_TitleTextField.bm_left, self.m_TitleTextField.bm_bottom - 1, self.m_TitleTextField.bm_width + 50, 1) direction:SingleLineDirectionLandscape];
+    BMSingleLineView *singleLine = [[BMSingleLineView alloc] initWithFrame:CGRectMake(self.m_TitleTextField.bm_left, self.m_TitleTextField.bm_bottom - 1, self.m_TitleTextField.bm_width + 50, 1)];
     singleLine.isDash            = YES;
     singleLine.lineLength        = 3.f;
     singleLine.lineSpacing       = 3.f;
@@ -101,13 +109,12 @@
     [self.view addSubview:self.m_ProgressHUD];
 }
 
-
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 #pragma mark - Action
 
@@ -117,7 +124,8 @@
     {
         return;
     }
-    NSString *lang = [[sender textInputMode] primaryLanguage];
+    
+    NSString *lang = [[UIApplication sharedApplication] textInputMode].primaryLanguage;
     if ([lang isEqualToString:@"zh-Hans"])
     {
         //判断markedTextRange是不是为Nil，如果为Nil的话就说明你现在没有未选中的字符，
@@ -128,21 +136,21 @@
         // 没有高亮选择的字，则对已输入的文字进行字数统计和限制
         if (!position)
         {
-            if (self.m_TitleTextField.text.length > 32)
+            if (self.m_TitleTextField.text.length > Topic_MaxTextCount)
             {
-                self.m_TitleTextField.text = [self.m_TitleTextField.text substringToIndex:32];
+                self.m_TitleTextField.text = [self.m_TitleTextField.text substringToIndex:Topic_MaxTextCount];
             }
-            self.m_PlaceHolderLab.text = [NSString stringWithFormat:@"%ld个字",32 - self.m_TitleTextField.text.length];
+            self.m_PlaceHolderLab.text = [NSString stringWithFormat:@"%@个字", @(Topic_MaxTextCount - self.m_TitleTextField.text.length)];
         }
-    }else{
-        if (self.m_TitleTextField.text.length > 32)
-        {
-            self.m_TitleTextField.text = [self.m_TitleTextField.text substringToIndex:32];
-        }
-        self.m_PlaceHolderLab.text = [NSString stringWithFormat:@"%ld个字",32 - self.m_TitleTextField.text.length];
     }
-    
-    
+    else
+    {
+        if (self.m_TitleTextField.text.length > Topic_MaxTextCount)
+        {
+            self.m_TitleTextField.text = [self.m_TitleTextField.text substringToIndex:Topic_MaxTextCount];
+        }
+        self.m_PlaceHolderLab.text = [NSString stringWithFormat:@"%@个字", @(Topic_MaxTextCount - self.m_TitleTextField.text.length)];
+    }
 }
 
 // 退出
@@ -150,14 +158,16 @@
 {
     if ([self.m_TitleTextField.text bm_isNotEmpty] || [[self getHTML] bm_isNotEmpty])
     {
+        BMWeakSelf;
         [FSAlertView showAlertWithTitle:@"退出编辑"
                                 message:@"您确定放弃当前编辑内容？"
                             cancelTitle:@"取消"
                              otherTitle:@"确定"
                              completion:^(BOOL cancelled, NSInteger buttonIndex) {
+                                 
                                  if (buttonIndex == 1)
                                  {
-                                     [self.navigationController popViewControllerAnimated:YES];
+                                     [weakSelf.navigationController popViewControllerAnimated:YES];
                                  }
                              }];
     }
@@ -166,6 +176,7 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
+
 // 发帖按钮
 - (void)pulishTopicAction
 {
@@ -174,12 +185,14 @@
         [self.m_ProgressHUD showAnimated:YES withText:@"请输入完整信息" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         return;
     }
+    
     BMWeakSelf;
     [FSAlertView showAlertWithTitle:@"确认提交"
                             message:@"您确定发布当前帖子内容"
                         cancelTitle:@"取消"
                          otherTitle:@"确定"
                          completion:^(BOOL cancelled, NSInteger buttonIndex) {
+                             
                              if (buttonIndex == 1)
                              {
                                  [weakSelf sendTopic];
@@ -203,13 +216,16 @@
     imagePickerVc.showSelectBtn = NO;
     
     [imagePickerVc setUiImagePickerControllerSettingBlock:^(UIImagePickerController *imagePickerController) {
+        
         imagePickerController.videoQuality = UIImagePickerControllerQualityTypeHigh;
     }];
     
     [self presentViewController:imagePickerVc animated:YES completion:nil];
 }
 
+
 #pragma mark - TZImagePickerControllerDelegate
+
 /// 用户点击了取消
 - (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker
 {
@@ -222,54 +238,55 @@
     {
         return;
     }
+    
+    BMWeakSelf
     UIImage *img = photos[0];
     [FSApiRequest uploadImg:UIImageJPEGRepresentation(img, .8)
                     success:^(id _Nullable responseObject) {
+                        
                         NSString *url = [NSString stringWithFormat:@"%@", [responseObject bm_stringTrimForKey:@"previewUrl"]];
-                        [self insertImage:url alt:@""];
+                        [weakSelf insertImage:url alt:@""];
                     }
                     failure:^(NSError *_Nullable error){
 
                     }];
 }
 
+
 #pragma mark - Request
+
 // 发帖
 - (void)sendTopic
 {
+    BMWeakSelf
     [FSApiRequest sendPostsWithTitle:self.m_TitleTextField.text
                              content:[self getHTML]
                              forumId:self.m_RelateId
                             isEdited:self.m_IsEdited
                              success:^(id _Nullable responseObject) {
-                                 if (self.sendPostsCallBack) {
-                                     self.sendPostsCallBack();
+                                 
+                                 if (weakSelf.sendPostsCallBack)
+                                 {
+                                     weakSelf.sendPostsCallBack();
                                  }
-                                 [self.navigationController popViewControllerAnimated:YES];
+                                 [weakSelf.navigationController popViewControllerAnimated:YES];
                              }
                              failure:^(NSError *_Nullable error){
 
                              }];
 }
+
 // 获取帖子详情
 - (void)getTopicDetail
 {
+    BMWeakSelf
     [FSApiRequest getTopicDetail:self.m_RelateId success:^(id  _Nullable responseObject) {
-        [self setHTML:[responseObject bm_stringForKey:@"content"]];
-        self.m_TitleTextField.text = [responseObject bm_stringForKey:@"title"];
+        
+        [weakSelf setHTML:[responseObject bm_stringForKey:@"content"]];
+        weakSelf.m_TitleTextField.text = [responseObject bm_stringForKey:@"title"];
     } failure:^(NSError * _Nullable error) {
         
     }];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
