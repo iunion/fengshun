@@ -32,7 +32,7 @@
                             <rect key="frame" x="15" y="15" width="75" height="30"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                             <state key="normal" title="分享PDF">
-                                <color key="titleColor" red="0.3411764706" green="0.4941176471" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.36470588240000001" green="0.50196078430000002" blue="0.90588235289999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
                                 <action selector="toolButtonAction:" destination="-1" eventType="touchUpInside" id="yXY-qV-ReP"/>
@@ -42,7 +42,7 @@
                             <rect key="frame" x="105" y="14.5" width="75" height="30"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                             <state key="normal" title="分享图片">
-                                <color key="titleColor" red="0.3411764706" green="0.4941176471" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.36470588240000001" green="0.50196078430000002" blue="0.90588235289999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
                                 <action selector="toolButtonAction:" destination="-1" eventType="touchUpInside" id="2mN-l5-BN8"/>
@@ -52,7 +52,7 @@
                             <rect key="frame" x="195" y="15" width="75" height="30"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                             <state key="normal" title="保存到相册">
-                                <color key="titleColor" red="0.3411764706" green="0.4941176471" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.36470588240000001" green="0.50196078430000002" blue="0.90588235289999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
                                 <action selector="toolButtonAction:" destination="-1" eventType="touchUpInside" id="Qmh-FU-zJy"/>
@@ -62,7 +62,7 @@
                             <rect key="frame" x="285" y="15" width="75" height="30"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                             <state key="normal" title="文字识别">
-                                <color key="titleColor" red="0.3411764706" green="0.4941176471" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.36470588240000001" green="0.50196078430000002" blue="0.90588235289999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
                                 <action selector="toolButtonAction:" destination="-1" eventType="touchUpInside" id="e1g-8C-rTF"/>

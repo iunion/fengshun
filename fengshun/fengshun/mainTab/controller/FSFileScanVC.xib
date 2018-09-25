@@ -40,11 +40,21 @@
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xgG-rw-bht">
                     <rect key="frame" x="0.0" y="667" width="375" height="0.0"/>
                     <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.14999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HTz-sY-Ino">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="3"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="3" id="tXu-dt-DIC"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Hi-ro-M2j">
                             <rect key="frame" x="15" y="0.5" width="105" height="0.0"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                             <state key="normal" title="删除">
-                                <color key="titleColor" red="0.3411764706" green="0.4941176471" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.36470588240000001" green="0.50196078430000002" blue="0.90588235289999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
                                 <action selector="toolButtonAction:" destination="-1" eventType="touchUpInside" id="dXM-v9-fAW"/>
@@ -54,7 +64,7 @@
                             <rect key="frame" x="135" y="0.0" width="105" height="0.0"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                             <state key="normal" title="分享PDF">
-                                <color key="titleColor" red="0.3411764706" green="0.4941176471" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.36470588240000001" green="0.50196078430000002" blue="0.90588235289999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
                                 <action selector="toolButtonAction:" destination="-1" eventType="touchUpInside" id="AQ7-fd-5jh"/>
@@ -64,7 +74,7 @@
                             <rect key="frame" x="255" y="0.5" width="105" height="0.0"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                             <state key="normal" title="保存到相册">
-                                <color key="titleColor" red="0.3411764706" green="0.4941176471" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.36470588240000001" green="0.50196078430000002" blue="0.90588235289999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
                                 <action selector="toolButtonAction:" destination="-1" eventType="touchUpInside" id="ze4-HX-oyv"/>
@@ -73,24 +83,27 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="HTz-sY-Ino" secondAttribute="trailing" id="9qg-m2-vJZ"/>
                         <constraint firstItem="2Hi-ro-M2j" firstAttribute="height" secondItem="xgG-rw-bht" secondAttribute="height" multiplier="40:59" id="AsV-u9-YIH"/>
                         <constraint firstItem="kkB-k5-9Z0" firstAttribute="centerY" secondItem="2Hi-ro-M2j" secondAttribute="centerY" id="CYY-Ke-pNx"/>
                         <constraint firstItem="kkB-k5-9Z0" firstAttribute="leading" secondItem="5C9-jR-eoi" secondAttribute="trailing" constant="15" id="GkS-sY-0zt"/>
                         <constraint firstItem="kkB-k5-9Z0" firstAttribute="width" secondItem="5C9-jR-eoi" secondAttribute="width" id="J08-Fy-Hp7"/>
                         <constraint firstAttribute="height" id="KLX-ea-j1W"/>
+                        <constraint firstItem="HTz-sY-Ino" firstAttribute="leading" secondItem="xgG-rw-bht" secondAttribute="leading" id="KfZ-Pj-qKp"/>
                         <constraint firstItem="2Hi-ro-M2j" firstAttribute="centerY" secondItem="xgG-rw-bht" secondAttribute="centerY" id="a9D-QT-7aE"/>
                         <constraint firstItem="5C9-jR-eoi" firstAttribute="leading" secondItem="2Hi-ro-M2j" secondAttribute="trailing" constant="15" id="b9w-fd-pFZ"/>
                         <constraint firstItem="5C9-jR-eoi" firstAttribute="width" secondItem="2Hi-ro-M2j" secondAttribute="width" id="gfV-Ej-4O1"/>
                         <constraint firstAttribute="trailing" secondItem="kkB-k5-9Z0" secondAttribute="trailing" constant="15" id="hGE-QR-u6o"/>
                         <constraint firstItem="kkB-k5-9Z0" firstAttribute="height" secondItem="5C9-jR-eoi" secondAttribute="height" id="j62-cW-XYo"/>
                         <constraint firstItem="5C9-jR-eoi" firstAttribute="centerY" secondItem="2Hi-ro-M2j" secondAttribute="centerY" id="klE-0G-Cwm"/>
+                        <constraint firstItem="HTz-sY-Ino" firstAttribute="top" secondItem="xgG-rw-bht" secondAttribute="top" id="lk6-II-8nG"/>
                         <constraint firstItem="5C9-jR-eoi" firstAttribute="height" secondItem="2Hi-ro-M2j" secondAttribute="height" id="w04-LW-iDa"/>
                         <constraint firstItem="2Hi-ro-M2j" firstAttribute="leading" secondItem="xgG-rw-bht" secondAttribute="leading" constant="15" id="yoO-w7-fIQ"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hor-c3-dXO">
                     <rect key="frame" x="152" y="577" width="70" height="40"/>
-                    <color key="backgroundColor" red="0.3411764706" green="0.4941176471" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.36470588235294116" green="0.50196078431372548" blue="0.90588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="8Hv-2N-82T"/>
                         <constraint firstAttribute="width" constant="70" id="CcE-YZ-CbS"/>
