@@ -49,8 +49,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)fsStringDateFromTs:(NSTimeInterval)timestamp;
 
 //+ (NSString *)mqStringFromTs:(NSTimeInterval)timestamp;
-+ (NSString *)hmStringDateFromDate:(NSDate *)aDate;
-+ (NSString *)hmStringDateFromTs:(NSTimeInterval)timestamp;
+//+ (NSString *)hmStringDateFromDate:(NSDate *)aDate;
+//+ (NSString *)hmStringDateFromTs:(NSTimeInterval)timestamp;
 
 + (NSString *)bm_countDownStringDateFromTs:(NSUInteger)count;
 
