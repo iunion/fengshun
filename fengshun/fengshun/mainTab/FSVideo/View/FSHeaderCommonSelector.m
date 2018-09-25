@@ -83,7 +83,7 @@
     for (FSHeaderCommonSelectorModel *model in _m_SelectorArray) {
         UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(width*index, 0, width, self.bm_height)];
         [self addSubview:btn];
-        [btn setImage:[UIImage imageNamed:@"search_openFilters"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"search_closeFilters"] forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont systemFontOfSize:14];
         [btn setTitle:model.title forState:UIControlStateNormal];
         [btn setTitleColor:UI_COLOR_B1 forState:UIControlStateNormal];
@@ -116,10 +116,17 @@
 {
     if (_m_SelectedTag == btn.tag)
     {
+        [btn setImage:[UIImage imageNamed:@"search_closeFilters"] forState:UIControlStateNormal];
         [self hideTableView];
     }
     else
     {
+        if (_m_SelectedTag > 0)
+        {
+            UIButton *selectedBtn = [self viewWithTag:_m_SelectedTag];
+            [selectedBtn setImage:[UIImage imageNamed:@"search_closeFilters"] forState:UIControlStateNormal];
+        }
+        [btn setImage:[UIImage imageNamed:@"search_openFilters"] forState:UIControlStateNormal];
         _m_SelectedTag = btn.tag;
         [self showTableView];
     }
