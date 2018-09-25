@@ -101,18 +101,18 @@
                     <rect key="frame" x="0.0" y="271" width="375" height="281"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="常用工具" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80s-5O-HEO">
-                            <rect key="frame" x="50" y="24" width="73.5" height="19"/>
+                            <rect key="frame" x="45" y="24" width="77.5" height="19"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="19" id="rVY-E9-Mer"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_tools.png" translatesAutoresizingMaskIntoConstraints="NO" id="eOh-Yc-jEu">
-                            <rect key="frame" x="16" y="22.5" width="24" height="22"/>
+                            <rect key="frame" x="16" y="22.5" width="22" height="22"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="24" id="Efp-RO-E3r"/>
+                                <constraint firstAttribute="width" constant="22" id="Efp-RO-E3r"/>
                                 <constraint firstAttribute="height" constant="22" id="Pst-tn-Pn3"/>
                             </constraints>
                         </imageView>
@@ -134,12 +134,12 @@
                     <constraints>
                         <constraint firstItem="80s-5O-HEO" firstAttribute="top" secondItem="hlN-6w-Lr3" secondAttribute="top" constant="24" id="0F0-3y-bTl"/>
                         <constraint firstItem="Etq-8U-0Fc" firstAttribute="top" secondItem="80s-5O-HEO" secondAttribute="bottom" constant="21" id="0vi-pX-fZ0"/>
-                        <constraint firstItem="80s-5O-HEO" firstAttribute="leading" secondItem="eOh-Yc-jEu" secondAttribute="trailing" constant="10" id="ClC-i3-jYo"/>
+                        <constraint firstItem="eOh-Yc-jEu" firstAttribute="leading" secondItem="hlN-6w-Lr3" secondAttribute="leading" constant="16" id="1yj-Yd-cU2"/>
                         <constraint firstItem="Etq-8U-0Fc" firstAttribute="leading" secondItem="hlN-6w-Lr3" secondAttribute="leading" id="D2H-FM-VSH"/>
                         <constraint firstItem="eOh-Yc-jEu" firstAttribute="centerY" secondItem="80s-5O-HEO" secondAttribute="centerY" id="NzC-08-wAL"/>
                         <constraint firstAttribute="trailing" secondItem="Etq-8U-0Fc" secondAttribute="trailing" id="TTy-sh-pKG"/>
                         <constraint firstAttribute="bottom" secondItem="Etq-8U-0Fc" secondAttribute="bottom" constant="27" id="jIS-0j-PMq"/>
-                        <constraint firstItem="80s-5O-HEO" firstAttribute="leading" secondItem="hlN-6w-Lr3" secondAttribute="leading" constant="50" id="vw4-9Q-NyY"/>
+                        <constraint firstItem="80s-5O-HEO" firstAttribute="leading" secondItem="hlN-6w-Lr3" secondAttribute="leading" constant="45" id="vw4-9Q-NyY"/>
                     </constraints>
                 </view>
             </subviews>
