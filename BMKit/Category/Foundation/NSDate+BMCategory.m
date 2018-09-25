@@ -83,6 +83,45 @@ static const unsigned int allCalendarUnitFlags = NSCalendarUnitYear | NSCalendar
     return [self hmStringDateFromTs:timestamp];
 }
 
+// 在帖子里出现的时间，按以下规则进行展示：
+//
+// ①1分钟内的，显示为刚刚
+// ②1分钟至1个小时内的，转换成N分钟前；
+// ③超过1小时，在今天内的，显示今天 XX:XX;
+// ④超过1小时，且不是今天内的，今年以内的，显示④XX-XX，即几月几日；
+// ⑤其他的，显示年月日，XXXX-XX-XX；
++ (NSString *)fsStringDateFromTs:(NSTimeInterval)timestamp
+{
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timestamp];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"]];
+
+    NSTimeInterval now = [[NSDate date] timeIntervalSince1970];
+    NSInteger past = now - timestamp;
+    if (past <= 60)
+    {
+        return @"刚刚";
+    }
+    else if(past < SECONDS_IN_HOUR)
+    {
+        NSInteger min = past/SECONDS_IN_HOUR;
+        return [NSString stringWithFormat:@"%ld分钟前", (long)min];
+    }
+    else if ([date bm_isToday])
+    {
+        [dateFormat setDateFormat:@"今天 HH:mm"];
+        return [dateFormat stringFromDate:date];
+    }
+    else if ([date bm_isThisYear])
+    {
+        [dateFormat setDateFormat:@"MM-dd"];
+        return [dateFormat stringFromDate:date];
+    }
+    
+    [dateFormat setDateFormat:@"yyyy-MM-dd"];
+    return [dateFormat stringFromDate:date];
+}
+
 + (NSString *)hmStringDateFromTs:(NSTimeInterval)timestamp
 {
     NSTimeInterval now = [[NSDate date] timeIntervalSince1970];
@@ -479,7 +518,7 @@ static const unsigned int allCalendarUnitFlags = NSCalendarUnitYear | NSCalendar
 }
 
 - (BOOL)bm_isSameDayAsDate:(NSDate *)aDate
-    {
+{
     return [self bm_isEqualToDateIgnoringTime:aDate];
 }
 

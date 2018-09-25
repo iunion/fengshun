@@ -74,7 +74,7 @@
     [self.m_AvatarImageView sd_setImageWithURL:[NSURL URLWithString:model.m_RelationUserAvatarUrl] placeholderImage:[UIImage imageNamed:@"default_avataricon"] options:SDWebImageRetryFailed|SDWebImageLowPriority];
 
     self.m_NameLabel.text = model.m_RelationUserName;
-    self.m_TimeLabel.text = [NSDate hmStringDateFromTs:model.m_CreateTime];
+    self.m_TimeLabel.text = [NSDate fsStringDateFromTs:model.m_CreateTime];
     
     self.m_ContentLabel.text = model.m_Content;
     

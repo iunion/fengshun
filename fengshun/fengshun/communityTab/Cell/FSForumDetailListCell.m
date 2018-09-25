@@ -47,11 +47,11 @@
     // 最后回复时间不为空，显示
     if (model.m_LastReplyTime == 0)
     {
-        self.m_TimeLab.text     = [NSDate hmStringDateFromTs:model.m_CreateTime];
+        self.m_TimeLab.text     = [NSDate fsStringDateFromTs:model.m_CreateTime];
     }
     else
     {
-        self.m_TimeLab.text     = [NSDate hmStringDateFromTs:model.m_LastReplyTime];
+        self.m_TimeLab.text     = [NSDate fsStringDateFromTs:model.m_LastReplyTime];
     }
     
     self.m_UsernameLab.text = model.m_NickName;

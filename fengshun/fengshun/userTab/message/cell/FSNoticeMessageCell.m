@@ -63,7 +63,7 @@
     self.m_Modle = model;
     
     self.m_TitleLabel.text = model.m_Title;
-    self.m_TimeLabel.text = [NSDate hmStringDateFromTs:model.m_CreateTime];
+    self.m_TimeLabel.text = [NSDate fsStringDateFromTs:model.m_CreateTime];
     
     self.m_ContentLabel.text = model.m_Content;
     

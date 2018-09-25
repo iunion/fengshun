@@ -45,6 +45,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)bm_stringFromTs:(NSTimeInterval)timestamp;
 + (NSString *)bm_stringFromTs:(NSTimeInterval)timestamp formatter:(NSString *)formatter;
 + (NSString *)bm_stringFromNow;
+
++ (NSString *)fsStringDateFromTs:(NSTimeInterval)timestamp;
+
 //+ (NSString *)mqStringFromTs:(NSTimeInterval)timestamp;
 + (NSString *)hmStringDateFromDate:(NSDate *)aDate;
 + (NSString *)hmStringDateFromTs:(NSTimeInterval)timestamp;
