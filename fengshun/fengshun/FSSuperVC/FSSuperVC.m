@@ -44,8 +44,9 @@
     self.bm_NavigationBarStyle = UIBarStyleDefault;
     self.bm_NavigationBarBgTintColor = FS_NAVIGATION_BGCOLOR;
     self.bm_NavigationItemTintColor = FS_NAVIGATION_ITEMCOLOR;
-    self.bm_NavigationShadowHidden = YES;
-    
+    self.bm_NavigationShadowHidden = NO;
+    self.bm_NavigationShadowColor  = UI_COLOR_B6;
+
     self.view.backgroundColor = FS_VIEW_BGCOLOR;
 
 }
