@@ -1744,8 +1744,8 @@
 		AD67122A2159DBD40081E08D /* fstab_btn1_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6712202159DBD30081E08D /* fstab_btn1_icon@3x.png */; };
 		AD67122B2159DBD40081E08D /* fstab_btn2_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6712212159DBD30081E08D /* fstab_btn2_icon@2x.png */; };
 		AD67122C2159DBD40081E08D /* fstab_btn2_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6712212159DBD30081E08D /* fstab_btn2_icon@2x.png */; };
-		AD67122D2159DBD40081E08D /* fstab_btn2_icony@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6712222159DBD40081E08D /* fstab_btn2_icony@3x.png */; };
-		AD67122E2159DBD40081E08D /* fstab_btn2_icony@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6712222159DBD40081E08D /* fstab_btn2_icony@3x.png */; };
+		AD67122D2159DBD40081E08D /* fstab_btn2_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6712222159DBD40081E08D /* fstab_btn2_icon@3x.png */; };
+		AD67122E2159DBD40081E08D /* fstab_btn2_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6712222159DBD40081E08D /* fstab_btn2_icon@3x.png */; };
 		AD67122F2159DBD50081E08D /* fstab_btn1_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6712232159DBD40081E08D /* fstab_btn1_icon@2x.png */; };
 		AD6712302159DBD50081E08D /* fstab_btn1_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6712232159DBD40081E08D /* fstab_btn1_icon@2x.png */; };
 		AD6712312159DBD50081E08D /* fstab_btn3_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6712242159DBD40081E08D /* fstab_btn3_icon@2x.png */; };
@@ -3526,7 +3526,7 @@
 		AD67121F2159DBD30081E08D /* fstab_btn3_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn3_icon@3x.png"; sourceTree = "<group>"; };
 		AD6712202159DBD30081E08D /* fstab_btn1_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn1_icon@3x.png"; sourceTree = "<group>"; };
 		AD6712212159DBD30081E08D /* fstab_btn2_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn2_icon@2x.png"; sourceTree = "<group>"; };
-		AD6712222159DBD40081E08D /* fstab_btn2_icony@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn2_icony@3x.png"; sourceTree = "<group>"; };
+		AD6712222159DBD40081E08D /* fstab_btn2_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn2_icon@3x.png"; sourceTree = "<group>"; };
 		AD6712232159DBD40081E08D /* fstab_btn1_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn1_icon@2x.png"; sourceTree = "<group>"; };
 		AD6712242159DBD40081E08D /* fstab_btn3_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn3_icon@2x.png"; sourceTree = "<group>"; };
 		AD6712252159DBD40081E08D /* fstab_btn4_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn4_icon@2x.png"; sourceTree = "<group>"; };
@@ -7221,7 +7221,7 @@
 				AD6712232159DBD40081E08D /* fstab_btn1_icon@2x.png */,
 				AD6712202159DBD30081E08D /* fstab_btn1_icon@3x.png */,
 				AD6712212159DBD30081E08D /* fstab_btn2_icon@2x.png */,
-				AD6712222159DBD40081E08D /* fstab_btn2_icony@3x.png */,
+				AD6712222159DBD40081E08D /* fstab_btn2_icon@3x.png */,
 				AD6712242159DBD40081E08D /* fstab_btn3_icon@2x.png */,
 				AD67121F2159DBD30081E08D /* fstab_btn3_icon@3x.png */,
 				AD6712252159DBD40081E08D /* fstab_btn4_icon@2x.png */,
@@ -7741,7 +7741,7 @@
 				874268A2212E7E36003C52F6 /* decrease_baiduwaimai@2x.png in Resources */,
 				45F3FD24214BBF48007712EE /* video_history_icon@3x.png in Resources */,
 				8730AD4C2140CC28004331A9 /* user_shareicon@3x.png in Resources */,
-				AD67122D2159DBD40081E08D /* fstab_btn2_icony@3x.png in Resources */,
+				AD67122D2159DBD40081E08D /* fstab_btn2_icon@3x.png in Resources */,
 				87E7C6CC2150C10200F7AB14 /* empty_videoicon@3x.png in Resources */,
 				87BC9E3821548E0D000F2011 /* fsintroguide_1242x2688_2@2x.png in Resources */,
 				87426A0E212F9657003C52F6 /* navigationbar_setup_icon@3x.png in Resources */,
@@ -8223,7 +8223,7 @@
 				87E7C59721509AB000F7AB14 /* scanfile_camera@3x.png in Resources */,
 				87E7C59921509AB000F7AB14 /* user_commenticon@3x.png in Resources */,
 				DBF7E1AB21524EDB002CEDA4 /* search_lawTopic_8@3x.png in Resources */,
-				AD67122E2159DBD40081E08D /* fstab_btn2_icony@3x.png in Resources */,
+				AD67122E2159DBD40081E08D /* fstab_btn2_icon@3x.png in Resources */,
 				45F68F402150E58F00628DC8 /* empty_404icon@2x.png in Resources */,
 				87E7C59A21509AB000F7AB14 /* login_closeeye@3x.png in Resources */,
 				87E7C59B21509AB000F7AB14 /* bmsearch_searchicon@3x.png in Resources */,
