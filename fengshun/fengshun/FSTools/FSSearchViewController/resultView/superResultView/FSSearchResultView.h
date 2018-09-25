@@ -29,12 +29,13 @@
 @property (nonatomic, readonly) NSInteger         m_totalCount;
 
 - (instancetype)initWithFrame:(CGRect)frame andResultVC:(FSSearchResultVC *)resultVC;
-
+- (void)showSecondView:(BOOL)showSecondView;
 // 这些方法供子类使用
 - (void)configTableView;
 
 - (void)searchWithKey:(NSString *)key;
 - (void)keysRemoveKey:(NSString *)key;
+- (void)cleanKeys;
 
 // 这些方法需子类实现
 - (void)searchAction;

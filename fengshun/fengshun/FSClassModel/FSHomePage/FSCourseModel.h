@@ -10,7 +10,7 @@
 
 @interface FSCourseModel : FSSuperModel
 
-@property (nonatomic, assign) NSInteger m_id;
+@property (nonatomic, copy) NSString *  m_id;
 @property (nonatomic, copy) NSString *  m_tilte;
 @property (nonatomic, copy) NSString *  m_sourceInfo;
 

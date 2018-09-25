@@ -124,11 +124,7 @@
     vc.m_ocrSearchType = FSOCRSearchType_laws;
     [searchVC.navigationController pushViewController:vc animated:YES];
 }
-+ (void)viewController:(UIViewController *)vc pushToLawTopicVCWithLawTopic:(NSString *)lawTopic
-{
-    NSString *url = [NSString stringWithFormat:@"%@/Law?keywords=%@",FS_H5_SERVER,lawTopic];
-    [FSPushVCManager showWebView:vc url:url title:nil showLoadingBar:YES loadingBarColor:[UIColor greenColor] animated:YES];
-}
+
 #ifdef FSVIDEO_ON
 + (void)pushVideoMediateList:(UINavigationController *)nav;
 {
@@ -186,5 +182,23 @@
     [pushVC.navigationController pushViewController:vc animated:YES];
 }
 
+#pragma mark H5 跳转
 
++ (void)viewController:(UIViewController *)vc pushToLawTopicVCWithLawTopic:(NSString *)lawTopic
+{
+    NSString *url = [NSString stringWithFormat:@"%@/Law?keywords=%@",FS_H5_SERVER,lawTopic];
+    [FSPushVCManager showWebView:vc url:url title:nil showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR animated:YES];
+}
++ (void)viewController:(UIViewController *)vc pushToLawDetailWithId:(NSString *)lawId keywords:(NSString *)keywordsStr
+{
+    [FSPushVCManager showWebView:vc url:[NSString stringWithFormat:@"%@/law/lawDetail?ID=%@&keywords=%@",FS_H5_SERVER,lawId,keywordsStr] title:nil showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR animated:YES];
+}
++(void)viewController:(UIViewController *)vc pushToCaseDetailWithId:(NSString *)caseId keywords:(NSString *)keywordsStr
+{
+    [self showWebView:vc url:[NSString stringWithFormat:@"%@/caseDetail?ID=%@&keywords=%@",FS_H5_SERVER,caseId,keywordsStr] title:nil showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR animated:YES];
+}
++ (void)viewController:(UIViewController *)vc pushToCourseDetailWithId:(NSString *)CourseId
+{
+    [self showWebView:vc url:[NSString stringWithFormat:@"%@/comment/%@/1/1",FS_H5_SERVER,CourseId] title:nil showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR animated:YES];
+}
 @end

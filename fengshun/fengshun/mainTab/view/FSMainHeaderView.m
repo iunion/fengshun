@@ -47,9 +47,10 @@
     if (self)
     {
         self.frame    = frame;
+        [self layoutIfNeeded];
         self.delegate = delegate;
         [_m_bannerView setDelegate:delegate];
-
+        
         CAGradientLayer *gradientLayer = [CAGradientLayer layer];
         gradientLayer.frame            = _m_bottomButton.bounds;
         gradientLayer.colors           = @[ (__bridge id)[UIColor bm_colorWithHexString:@"#577EEE"].CGColor, (__bridge id)[UIColor bm_colorWithHexString:@"#4A9EFE"].CGColor ];

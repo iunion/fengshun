@@ -8,6 +8,7 @@
 
 #import "FSSearchResultView.h"
 #import "BMTableViewManager.h"
+#import "FSSearchViewController.h"
 
 #define FILTER_HEADER_HEIGHT 85.0f
 #define FILTER_BUTTON_HEIGHT 40.0f
@@ -24,6 +25,8 @@ typedef NS_ENUM(NSUInteger, FSSearchFilterShowList) {
 @interface FSFilterHeaderResultView : FSSearchResultView
 @property (nonatomic, strong) UIButton *m_leftButton;
 @property (nonatomic, strong) UIButton *m_rightButton;
+@property (nonatomic, copy) NSString *m_leftTitle;
+@property (nonatomic, copy) NSString *m_rightTitle;
 
 // 筛选条件展示相关
 @property (nonatomic, strong) FSTableView *        m_filterList;
@@ -37,9 +40,10 @@ typedef NS_ENUM(NSUInteger, FSSearchFilterShowList) {
 @property (nonatomic, strong) BMTableViewManager *m_manager;
 @property (nonatomic, strong) BMTableViewSection *m_section;
 
-
+- (FSSearchViewController *)searchVC;
 - (void)showFilterList;
 
 - (void)selectedRowAtIndex:(NSInteger)index isLeftfilter:(BOOL)isLeft;
 
+- (void)removeResultVC;
 @end

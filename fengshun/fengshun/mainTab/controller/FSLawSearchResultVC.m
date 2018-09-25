@@ -41,8 +41,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     FSLawResultModel *model = _m_searchResultModel.m_resultDataArray[indexPath.row];
-    [FSPushVCManager showWebView:self.m_masterVC url:[NSString stringWithFormat:@"%@/law/lawDetail?ID=%@&keywords=%@",FS_H5_SERVER,model.m_lawsId,_m_searchResultModel.m_keywordsStr] title:nil showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR animated:YES];
-        
+    [FSPushVCManager viewController:self.m_masterVC pushToLawDetailWithId:model.m_lawsId keywords:_m_searchResultModel.m_keywordsStr];
 }
 
 

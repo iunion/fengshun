@@ -221,6 +221,10 @@
 #pragma mark - keyboard notification
 - (void)keyBoardWillShow:(NSNotification *)sender
 {
+    if (_isShowSearchResult) {
+        [self.view bringSubviewToFront:_m_OCRButton];
+        [self.resultView showSecondView:YES];
+    }
     NSValue *value      = sender.userInfo[UIKeyboardFrameEndUserInfoKey];
     CGRect keyBoarFrame = [value CGRectValue];
     CGFloat viewHeight  = UI_SCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT - UI_STATUS_BAR_HEIGHT;
@@ -231,9 +235,15 @@
 }
 -(void)keyBoardWillHide:(NSNotification *)sender
 {
+    
      CGFloat viewHeight  = UI_SCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT - UI_STATUS_BAR_HEIGHT;
     [UIView animateWithDuration:[sender.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
          self.m_OCRButton.bm_bottom = viewHeight - OCRSearchButtonBottonGap;
+    } completion:^(BOOL finished) {
+        if (_isShowSearchResult) {
+            [self.view bringSubviewToFront:self.resultView];
+            [self.resultView showSecondView:NO];
+        }
     }];
 }
 - (void)dealloc
@@ -451,15 +461,15 @@
 
 - (void)tagCollectionView:(TTGTagCollectionView *)tagCollectionView didSelectTag:(UIView *)tagView atIndex:(NSUInteger)index
 {
-    
-    if (_resultType == FSSearchResultType_laws) {
+    if (_resultType == FSSearchResultType_laws)
+    {
         NSDictionary *info = self.hotTagArray[index];
         [FSPushVCManager viewController:self pushToLawTopicVCWithLawTopic:[info bm_stringForKey:@"name"]];
     }
     else
     {
-        UILabel *label = (UILabel *)tagView;
-        [self searchWithKey:label.text];
+        NSString *tag = self.hotTagArray[index];
+        [self searchWithKey:tag];
     }
 }
 
@@ -493,18 +503,22 @@
 - (void)searchWithKey:(NSString *)searchKey
 {
     NSString *search = [searchKey bm_trim];
-    [_searchTextField resignFirstResponder];
+//    [_searchTextField resignFirstResponder];
     if ([search bm_isNotEmpty])
     {
-        
+        _searchTextField.text = search;
         [self addSearchHistory:search];
         
-        if(!self.resultView.superview) [self.view addSubview:self.resultView];
+        if(!self.resultView.superview)
+        {
+            [self.view addSubview:self.resultView];
+            self.isShowSearchResult = YES;
+            [self.resultView showSecondView:NO];
+        }
         [self.resultView searchWithKey:search];
         self.resultView.hidden = NO;
-        
+
         if (self.searchHandler) self.searchHandler(search);
-        
     }
 }
 

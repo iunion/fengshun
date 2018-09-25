@@ -113,7 +113,7 @@ FSMainVC ()
     {
         self.bm_NavigationBarAlpha = 0;
         [self bm_setNeedsUpdateNavigationBarAlpha];
-        self.bm_NavigationTitleAlpha = 0;
+        self.bm_NavigationTitleAlpha = 0; //(offsetY == 0) ? 1.0 : 0;
         [self bm_setNeedsUpdateNavigationTitleAlpha];
     }
     else if (offsetY >= maxOffset)
@@ -322,6 +322,11 @@ FSMainVC ()
     {
         FSTopicModel *model = _m_topics[indexPath.row];
         [FSPushVCManager showTopicDetail:self topicId:model.m_Id];
+    }
+    else
+    {
+        FSCourseModel *model = _m_courses[indexPath.row];
+        [FSPushVCManager viewController:self pushToCourseDetailWithId:model.m_id];
     }
 }
 

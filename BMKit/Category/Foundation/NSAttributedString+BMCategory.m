@@ -415,7 +415,10 @@
     if (attrStr.length)
     {
         // 去掉末尾的 '\n'
-        [attrStr replaceCharactersInRange:NSMakeRange(attrStr.length-1, 1) withString:@""];
+        if ([attrStr.string hasSuffix:@"\n"]) {
+            [attrStr replaceCharactersInRange:NSMakeRange(attrStr.length-1, 1) withString:@""];
+        }
+        
     }
     
     return attrStr;

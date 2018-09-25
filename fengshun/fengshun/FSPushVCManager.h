@@ -43,8 +43,7 @@ typedef void (^PushVCCallBack)(void);
 // 法规检索
 + (void)pushToLawSearch:(UIViewController *)mainVC;
 + (void)searchVCPushtToLawsOCrSearchVC:(UIViewController *)searchVC;
-// 法规专题
-+ (void)viewController:(UIViewController *)vc pushToLawTopicVCWithLawTopic:(NSString *)lawTopic;
+
 #ifdef FSVIDEO_ON
 // 视频调解
 + (void)pushVideoMediateList:(UINavigationController *)nav;
@@ -63,6 +62,17 @@ typedef void (^PushVCCallBack)(void);
 // 显示个人信息
 + (void)showMessageVC:(UIViewController *)pushVC;
 
+#pragma mark - H5跳转
+// 法规专题
++ (void)viewController:(UIViewController *)vc pushToLawTopicVCWithLawTopic:(NSString *)lawTopic;
 
+// 法规详情
++ (void)viewController:(UIViewController *)vc pushToLawDetailWithId:(NSString *)lawId keywords:(NSString *)keywordsStr;
+
+// 案例详情
++ (void)viewController:(UIViewController *)vc pushToCaseDetailWithId:(NSString *)caseId keywords:(NSString *)keywordsStr;
+
+// 课程详情(图文详情)
++ (void)viewController:(UIViewController *)vc pushToCourseDetailWithId:(NSString *)CourseId;
 
 @end

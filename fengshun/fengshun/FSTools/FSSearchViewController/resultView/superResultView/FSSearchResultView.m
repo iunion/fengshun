@@ -15,7 +15,7 @@ FSSearchResultView ()
 @property (nonatomic, copy, readwrite) NSString *m_searchKey;
 @property (nonatomic, readwrite) FSSearchResultVC *m_resultVC;
 @property (nonatomic, readwrite) FSTableView *     m_tableView;
-@property (nonatomic, strong) NSMutableArray *      m_searchArray;
+@property (nonatomic, strong) NSMutableArray *     m_searchArray;
 @end
 
 @implementation FSSearchResultView
@@ -64,6 +64,10 @@ FSSearchResultView ()
     _m_masterVC = m_masterVC;
     _m_resultVC.m_masterVC = m_masterVC;
 }
+- (void)showSecondView:(BOOL)showSecondView
+{
+    // do nothing
+}
 #pragma mark - search protocol
 
 - (void)keysRemoveKey:(NSString *)key
@@ -71,20 +75,28 @@ FSSearchResultView ()
     [_m_searchArray removeObject:key];
     [self searchAction];
 }
+- (void)cleanKeys
+{
+    [_m_searchArray removeAllObjects];
+    [self searchAction];
+}
 - (void)searchWithKey:(NSString *)key
 {
     self.m_searchKey = key;
     if (!_m_searchArray)
     {
-        self.m_searchArray    = [NSMutableArray array];
+        self.m_searchArray = [NSMutableArray array];
     }
-    if ([_m_searchArray containsObject:key]) return;
-    [_m_searchArray insertObject:key atIndex:0];
+    if (![_m_searchArray containsObject:key])
+    {
+        [_m_searchArray insertObject:key atIndex:0];
+    }
     [self searchAction];
 }
 - (void)searchAction
 {
     // search
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
 }
 
 @end

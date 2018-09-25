@@ -47,7 +47,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     FSCaseResultModel *model = _m_searchResultModel.m_resultDataArray[indexPath.row];
-    [FSPushVCManager showWebView:self.m_masterVC url:[NSString stringWithFormat:@"%@/caseDetail?ID=%@&keywords=%@",FS_H5_SERVER,model.m_caseId,_m_searchResultModel.m_keywordsStr] title:nil showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR animated:YES];
+    [FSPushVCManager viewController:self.m_masterVC pushToCaseDetailWithId:model.m_caseId keywords:_m_searchResultModel.m_keywordsStr];
 }
 
 

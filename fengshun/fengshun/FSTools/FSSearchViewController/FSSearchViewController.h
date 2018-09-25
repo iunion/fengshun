@@ -27,6 +27,9 @@ typedef NS_ENUM(NSUInteger, FSSearchResultType)
 @property (nonatomic, assign) BOOL showSearchHistory;
 @property (nonatomic, assign) BOOL addHotTagSearchHistory;
 
+@property (nonatomic, assign) BOOL isShowSearchResult;
+
+
 //@property (nonatomic, strong) NSMutableArray *searchSuggestArray;
 
 @property (nullable, nonatomic, copy) searchViewSearchHandler searchHandler;

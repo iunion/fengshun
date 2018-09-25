@@ -15,9 +15,6 @@
 @property(nonatomic, strong)FSCaseSearchResultModel *m_searchResultModel;
 @property(nonatomic, weak) FSCaseSearchResultVC *m_caseResultVC;
 
-@property(nonatomic, strong)FSSearchFilter * m_leftSelectedFilter;
-@property(nonatomic, strong)FSSearchFilter * m_rightSelectedFilter;
-
 @end
 
 
@@ -68,12 +65,14 @@
 {
     if (_m_searchResultModel.m_filterSegments.count >0) {
         FSSearchFilterSegment *segment = _m_searchResultModel.m_filterSegments[0];
-        [self setupButton:self.m_leftButton withTitle:_m_leftSelectedFilter?_m_leftSelectedFilter.m_value:segment.m_title];
+        FSSearchFilter *filter = _m_caseResultVC.m_leftFilter;
+        [self setupButton:self.m_leftButton withTitle:filter?filter.m_value:segment.m_title];
         self.m_leftFilters = [self filtersWithSegment: segment];
     }
     if (_m_searchResultModel.m_filterSegments.count >1) {
         FSSearchFilterSegment *segment = _m_searchResultModel.m_filterSegments[1];
-        [self setupButton:self.m_rightButton withTitle:_m_rightSelectedFilter?_m_rightSelectedFilter.m_value:segment.m_title];
+        FSSearchFilter *filter = _m_caseResultVC.m_rightFilter;
+        [self setupButton:self.m_rightButton withTitle:filter?filter.m_value:segment.m_title];
         self.m_rightFilters = [self filtersWithSegment: segment];
     }
     [self showFilterList];
@@ -85,6 +84,7 @@
 }
 - (void)searchAction
 {
+    [super searchAction];
     if ([self.m_searchKeys bm_isNotEmpty]) {
         _m_caseResultVC.m_searchResultModel = nil;
         self.m_searchResultModel = nil;
@@ -95,8 +95,10 @@
         // 在关键字删完后会将resultView从父视图移除
         _m_caseResultVC.m_searchResultModel  = nil;
         self.m_searchResultModel = nil;
+        _m_caseResultVC.m_leftFilter = nil;
+        _m_caseResultVC.m_rightFilter = nil;
         [_m_caseResultVC.m_TableView reloadData];
-        [self removeFromSuperview];
+        [self removeResultVC];
     }
 }
 // 选择了筛选条件
@@ -105,16 +107,18 @@
     if (isLeft)
     {
         FSSearchFilterSegment *segment = _m_searchResultModel.m_filterSegments[0];
-        self.m_leftSelectedFilter  = index >= 0 ? segment.m_filters[index] : nil;
-        _m_caseResultVC.m_leftFilter   = _m_leftSelectedFilter;
-        [self setupButton:self.m_leftButton withTitle:_m_leftSelectedFilter ? _m_leftSelectedFilter.m_value : segment.m_title];
+        FSSearchFilter *filter  = index >= 0 ? segment.m_filters[index] : nil;
+        _m_caseResultVC.m_leftFilter = filter;
+        self.m_leftTitle = filter.m_value;
+        [self setupButton:self.m_leftButton withTitle:filter ? filter.m_value : segment.m_title];
     }
     else
     {
         FSSearchFilterSegment *segment = _m_searchResultModel.m_filterSegments[1];
-        self.m_rightSelectedFilter  = index >= 0 ? segment.m_filters[index] : nil;
-        _m_caseResultVC.m_rightFilter  = _m_rightSelectedFilter;
-        [self setupButton:self.m_rightButton withTitle:_m_rightSelectedFilter ? _m_rightSelectedFilter.m_value : segment.m_title];
+        FSSearchFilter *filter = index >= 0 ? segment.m_filters[index] : nil;
+        _m_caseResultVC.m_rightFilter  = filter;
+         self.m_rightTitle = filter.m_value;
+        [self setupButton:self.m_rightButton withTitle:filter ? filter.m_value : segment.m_title];
     }
     _m_caseResultVC.m_searchResultModel = nil;
     self.m_searchResultModel = nil;

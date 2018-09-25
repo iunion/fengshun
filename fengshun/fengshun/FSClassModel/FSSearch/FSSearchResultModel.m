@@ -28,7 +28,6 @@
     }
     if (attributed) {
         NSMutableAttributedString *aString = [NSMutableAttributedString bm_attributedStringReplaceHTMLString:text fontSize:fontSize contentColor:textColor.hexStringFromColor tagColor:UI_COLOR_R1.hexStringFromColor starTag:@"<em>" endTag:@"</em>"];
-        [aString replaceCharactersInRange:NSMakeRange(aString.length-1, 1) withString:@""];
         label.attributedText = aString;
         
     }
