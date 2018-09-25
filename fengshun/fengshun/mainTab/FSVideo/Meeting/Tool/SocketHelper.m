@@ -23,6 +23,11 @@ NSString * const kNotiReceiveHistoryPrivateMessageListName = @"kNotiReceiveHisto
 @property (nonatomic, strong) NSTimer *heartTimer;
 @property (nonatomic, strong) VideoCallRoomModel *roomModel;
 @property (nonatomic, assign) BOOL flag;
+
+@property (nonatomic, assign) NSInteger reconnectCount;
+@property (nonatomic, strong) NSString *m_RoomId;
+@property (nonatomic, strong) NSString *m_Token;
+
 @end
 
 @implementation SocketHelper
@@ -46,13 +51,22 @@ static dispatch_once_t onceToken;
     NSLog(@"qq");
 }
 
-- (void)connectWithRoomId:(NSString *)roomId JWTToken:(NSString *)token{
-    NSString *socketUrl = [NSString stringWithFormat:@"%@/stormChatGateway/joinRoom/%@?JWTToken=%@&watcher=%d", FS_URL_SERVER, roomId, token, NO];
+- (void)reconnect
+{
+    NSString *socketUrl = [NSString stringWithFormat:@"%@/stormChatGateway/joinRoom/%@?JWTToken=%@&watcher=%d", FS_URL_SERVER, self.m_RoomId, self.m_Token, NO];
     NSURL *url = [NSURL URLWithString:socketUrl];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     _socket = [[SRWebSocket alloc] initWithURLRequest:request];
     _socket.delegate = self;
     [_socket open];
+    self.reconnectCount ++;
+}
+
+- (void)connectWithRoomId:(NSString *)roomId JWTToken:(NSString *)token{
+    self.m_RoomId = roomId;
+    self.m_Token = token;
+    
+    [self reconnect];
     
     _heartTimer = [NSTimer timerWithTimeInterval:8.0 target:self selector:@selector(sendHeartSocket) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:_heartTimer forMode:UITrackingRunLoopMode];
@@ -77,13 +91,23 @@ static dispatch_once_t onceToken;
 
 #pragma mark - SRWebSocketDelegate
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket {
-    NSLog(@"");
+    self.reconnectCount = 0;
 }
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
     NSLog(@"");
+    if (self.reconnectCount < 3) {
+        [self performSelector:@selector(reconnect) withObject:nil afterDelay:3.0];
+    } else {
+        if ([self.delegate respondsToSelector:@selector(socketHelper:error:)]) {
+            [self.delegate socketHelper:self error:error];
+        }
+    }
 }
 - (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
     NSLog(@"");
+    if ([self.delegate respondsToSelector:@selector(socketHelper:error:)]) {
+        [self.delegate socketHelper:self error:[NSError errorWithDomain:@"webSocketDidClosed" code:code userInfo:@{NSLocalizedDescriptionKey: reason}]];
+    }
 }
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {
     NSMutableDictionary *messageDic = [message mj_JSONObject];
@@ -156,7 +180,13 @@ static dispatch_once_t onceToken;
         }
         return;
     }
-    
+    // 关闭房间
+    if([event isEqualToString:@"CLOSE_ROOM"]) {
+        if ([self.delegate respondsToSelector:@selector(socketHelperCloseRoomSuccess:)]) {
+            [self.delegate socketHelperCloseRoomSuccess:self];
+        }
+        return;
+    }
 }
 
 - (void)dealRoomEvent {
@@ -284,6 +314,14 @@ static dispatch_once_t onceToken;
     }
     
     return YES;
+}
+
+- (void)sendCloseRoomEvent{
+    NSDictionary *dic = @{@"event":@"CLOSE_ROOM"};
+    if (_socket.readyState == SR_OPEN) {
+        NSLog(@"%@", dic);
+        [_socket send:[dic mj_JSONString]];
+    }
 }
 
 @end

@@ -72,7 +72,7 @@
     NSMutableURLRequest *request = [FSApiRequest endMeetingWithId:meetingId];
     if (request)
     {
-        [hud showAnimated:YES showBackground:NO];
+        [hud showAnimated:YES withText:@"正在结束视频"];
         NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
             if (error)
             {
@@ -95,7 +95,6 @@
                 NSInteger statusCode = [resDic bm_intForKey:@"code"];
                 if (statusCode == 1000)
                 {
-                    [hud hideAnimated:YES];
                     completionHandler(response, responseObject, error);
                     return;
                 }

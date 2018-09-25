@@ -78,6 +78,11 @@ FOUNDATION_EXPORT NSString * const kNotiReceiveHistoryPrivateMessageListName;
 - (BOOL)sendRecordEventWithIsStartRecord:(BOOL)isStart;
 
 /**
+ 发送关闭房间
+ */
+- (void)sendCloseRoomEvent;
+
+/**
  发送语音识别开启或关闭事件
 
  @param enable enable
@@ -128,5 +133,12 @@ FOUNDATION_EXPORT NSString * const kNotiReceiveHistoryPrivateMessageListName;
  @param socketHelper sh
  */
 - (void)socketHelperStopRecordSuccess:(SocketHelper *)socketHelper;
+
+/**
+ 关闭房间成功事件
+ 
+ @param socketHelper sh
+ */
+- (void)socketHelperCloseRoomSuccess:(SocketHelper *)socketHelper;
 
 @end

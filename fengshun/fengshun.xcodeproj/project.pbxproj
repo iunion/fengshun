@@ -1369,7 +1369,6 @@
 		87E7C52521509AB000F7AB14 /* fsfreshidle_icon18@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730B0E22148E5CB004331A9 /* fsfreshidle_icon18@2x.png */; };
 		87E7C52621509AB000F7AB14 /* login_checked@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D18694213679F800037DDF /* login_checked@3x.png */; };
 		87E7C52721509AB000F7AB14 /* home_robot@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBD4CE872141229300857DB3 /* home_robot@3x.png */; };
-		87E7C52821509AB000F7AB14 /* videocall_default_minhead@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF866214D39290005AD43 /* videocall_default_minhead@3x.png */; };
 		87E7C52921509AB000F7AB14 /* login_closeeye@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D1869D213679F800037DDF /* login_closeeye@2x.png */; };
 		87E7C52A21509AB000F7AB14 /* video_unselect@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45DC02B2214A61EE00FCE042 /* video_unselect@3x.png */; };
 		87E7C52B21509AB000F7AB14 /* videocall_chat_voice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF86A214D392A0005AD43 /* videocall_chat_voice@3x.png */; };
@@ -1534,7 +1533,6 @@
 		87E7C5D821509AB000F7AB14 /* fsfreshidle_icon7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730B1042148E5D1004331A9 /* fsfreshidle_icon7@2x.png */; };
 		87E7C5D921509AB000F7AB14 /* home_topics@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBD4CE7D2141229100857DB3 /* home_topics@3x.png */; };
 		87E7C5DA21509AB000F7AB14 /* login_error@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D1869A213679F800037DDF /* login_error@3x.png */; };
-		87E7C5DB21509AB000F7AB14 /* videocall_default_minhead@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45FEF864214D39290005AD43 /* videocall_default_minhead@2x.png */; };
 		87E7C5DC21509AB000F7AB14 /* user_helpicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730AD3B2140CC27004331A9 /* user_helpicon@2x.png */; };
 		87E7C5DD21509AB000F7AB14 /* editor.html in Resources */ = {isa = PBXBuildFile; fileRef = AD93258F214B4FD9007F3A93 /* editor.html */; };
 		87E7C5DE21509AB000F7AB14 /* fsfreshidle_icon23@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730B0E72148E5CC004331A9 /* fsfreshidle_icon23@2x.png */; };
@@ -2218,9 +2216,7 @@
 		45FEF861214D39280005AD43 /* chat_left_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_left_bg@2x.png"; sourceTree = "<group>"; };
 		45FEF862214D39290005AD43 /* video_bottom_message@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_bottom_message@2x.png"; sourceTree = "<group>"; };
 		45FEF863214D39290005AD43 /* video_bottom_message@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_bottom_message@3x.png"; sourceTree = "<group>"; };
-		45FEF864214D39290005AD43 /* videocall_default_minhead@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_default_minhead@2x.png"; sourceTree = "<group>"; };
 		45FEF865214D39290005AD43 /* videocall_close_video@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_close_video@3x.png"; sourceTree = "<group>"; };
-		45FEF866214D39290005AD43 /* videocall_default_minhead@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_default_minhead@3x.png"; sourceTree = "<group>"; };
 		45FEF867214D392A0005AD43 /* videocall_open_audio@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_open_audio@2x.png"; sourceTree = "<group>"; };
 		45FEF868214D392A0005AD43 /* chat_message_text@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_message_text@3x.png"; sourceTree = "<group>"; };
 		45FEF869214D392A0005AD43 /* videocall_open_video@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_open_video@2x.png"; sourceTree = "<group>"; };
@@ -4386,8 +4382,6 @@
 				45FEF865214D39290005AD43 /* videocall_close_video@3x.png */,
 				45FEF886214D39300005AD43 /* videocall_default_head@2x.png */,
 				45FEF86C214D392A0005AD43 /* videocall_default_head@3x.png */,
-				45FEF864214D39290005AD43 /* videocall_default_minhead@2x.png */,
-				45FEF866214D39290005AD43 /* videocall_default_minhead@3x.png */,
 				45FEF85F214D39280005AD43 /* videocall_end_record@2x.png */,
 				45FEF887214D39300005AD43 /* videocall_end_record@3x.png */,
 				45FEF867214D392A0005AD43 /* videocall_open_audio@2x.png */,
@@ -8077,7 +8071,6 @@
 				87E7C52521509AB000F7AB14 /* fsfreshidle_icon18@2x.png in Resources */,
 				87E7C52621509AB000F7AB14 /* login_checked@3x.png in Resources */,
 				87E7C52721509AB000F7AB14 /* home_robot@3x.png in Resources */,
-				87E7C52821509AB000F7AB14 /* videocall_default_minhead@3x.png in Resources */,
 				87E7C52921509AB000F7AB14 /* login_closeeye@2x.png in Resources */,
 				ADC591F9215395100054BE72 /* fstab_btn4_highIcon@3x.png in Resources */,
 				87BC9E3C2154913B000F2011 /* fsintroguide_640x960_2@2x.png in Resources */,
@@ -8293,7 +8286,6 @@
 				87E7C5D821509AB000F7AB14 /* fsfreshidle_icon7@2x.png in Resources */,
 				87E7C5D921509AB000F7AB14 /* home_topics@3x.png in Resources */,
 				87E7C5DA21509AB000F7AB14 /* login_error@3x.png in Resources */,
-				87E7C5DB21509AB000F7AB14 /* videocall_default_minhead@2x.png in Resources */,
 				87E7C5DC21509AB000F7AB14 /* user_helpicon@2x.png in Resources */,
 				87E7C5DD21509AB000F7AB14 /* editor.html in Resources */,
 				87E7C5DE21509AB000F7AB14 /* fsfreshidle_icon23@2x.png in Resources */,

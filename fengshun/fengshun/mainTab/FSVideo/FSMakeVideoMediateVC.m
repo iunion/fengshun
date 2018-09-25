@@ -558,10 +558,7 @@
             if (isTimePast) {
                 NSString *tip = [NSString stringWithFormat:@"预约时间已过期，系统已调整到%@", [NSDate bm_stringFromTs:mode.startTime*0.001 formatter:@"HH:mm"]];
                 [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:tip delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-            } else {
-                [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:@"提交成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             }
-
             if (FSMakeVideoMediateMode_Edit == self.makeMode) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:FSVideoMediateChangedNotification object:mode userInfo:nil];
             } else {
@@ -576,6 +573,7 @@
                 if (FSMakeVideoMediateMode_Edit == self.makeMode) {
                     [self.navigationController popViewControllerAnimated:YES];
                 } else {
+                    [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES withText:@"提交成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
                     [self backToVideoMediateList];
                 }
             }
@@ -590,7 +588,6 @@
 
 - (void)backToVideoMediateList
 {
-    [self.m_ProgressHUD hideAnimated:NO];
     NSArray *listVC = [self.navigationController.viewControllers subarrayWithRange:NSMakeRange(0, 2)];
     [self.navigationController setViewControllers:listVC animated:YES];
 }
