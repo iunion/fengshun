@@ -35,8 +35,7 @@
     model.m_imageUrlKey     = urlKey;
     model.m_fileName        = fileName;
     model.m_creatTime       = [[NSDate date] bm_stringWithFormat:@"yyyy-MM-dd\nHH:mm"];
-    model.m_image           = image;
-    model.m_isLocalSaved    = NO;
+    model.m_OriginalImage   = image;
     return model;
 }
 
@@ -51,9 +50,8 @@
     model.m_imageUrlKey     = [params bm_stringForKey:@"fileUrlKey"];
     model.m_fileName        = [params bm_stringForKey:@"fileName"];
     model.m_creatTime       = [params bm_stringForKey:@"creatTime"];
-
-    model.m_isLocalSaved = YES;
     model.m_image        = [[self p_imageCache] imageFromCacheForKey:model.m_imageUrlKey];
+    model.m_OriginalImage = [[self p_imageCache] imageFromCacheForKey:model.m_OrigianlImageUrlKey];
     return model;
 }
 + (void)asynRefreshLocalImageFileWithList:(NSArray<FSImageFileModel *> *)imageList
@@ -68,11 +66,12 @@
     NSMutableArray *images = [NSMutableArray array];
     for (FSImageFileModel *model in imageList)
     {
-        if ([model.m_imageUrlKey bm_isNotEmpty] && model.m_image)
+        if ([model.m_imageUrlKey bm_isNotEmpty] && model.previewImage)
         {
             NSString *fileName  = [model.m_fileName bm_isNotEmpty] ? model.m_fileName : @"";
             NSString *creatTime = [model.m_creatTime bm_isNotEmpty] ? model.m_creatTime : @"";
             [[self p_imageCache] storeImage:model.m_image forKey:model.m_imageUrlKey completion:nil];
+            [[self p_imageCache] storeImage:model.m_OriginalImage forKey:model.m_OrigianlImageUrlKey completion:nil];
             [images addObject:@{ @"fileUrlKey" : model.m_imageUrlKey,
                                  @"creatTime" : creatTime,
                                  @"fileName" : fileName,
@@ -88,8 +87,8 @@
     NSString *fileName = [[NSString stringWithFormat:@"PDF分享-%@",timeStamp] stringByAppendingPathExtension:@"pdf"];
     NSMutableArray *images = [NSMutableArray array];
     for (FSImageFileModel *model in models) {
-        if ([model.m_image bm_isNotEmpty]) {
-            [images addObject:model.m_image];
+        if ([model.previewImage bm_isNotEmpty]) {
+            [images addObject:model.previewImage];
         }
     }
     return [self convertPDFWithImages:[images copy] fileName:fileName];
@@ -168,5 +167,13 @@
     UIGraphicsEndPDFContext();
     
     return result?pdfPath:nil;
+}
+- (NSString *)m_OrigianlImageUrlKey
+{
+    return [NSString stringWithFormat:@"originalkey-%@",_m_imageUrlKey];
+}
+- (UIImage *)previewImage
+{
+    return [_m_image bm_isNotEmpty]?_m_image :_m_OriginalImage;
 }
 @end

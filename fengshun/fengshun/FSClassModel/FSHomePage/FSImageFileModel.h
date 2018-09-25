@@ -15,10 +15,10 @@
 @property (nonatomic, copy)NSString *m_fileName;
 @property (nonatomic, copy)NSString *m_creatTime;
 @property (nonatomic, copy)NSString *m_imageUrlKey;
-
-// 不是从本地列表中获取
-@property (nonatomic, assign)BOOL m_isLocalSaved;
 @property (nonatomic, strong)UIImage *m_image;
+
+@property (nonatomic, readonly)NSString *m_OrigianlImageUrlKey;
+@property (nonatomic, strong)UIImage *m_OriginalImage;
 
 
 + (instancetype)imageFileWithSelectInfo:(NSDictionary *)info andImage:(UIImage *)image;
@@ -30,4 +30,5 @@
 
 + (void)shareImagefileModels:(NSArray <FSImageFileModel *> *)models atViewController:(UIViewController *)vc;
 
+- (UIImage *)previewImage;
 @end

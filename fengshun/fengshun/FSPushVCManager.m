@@ -155,11 +155,10 @@
     [mainVC.navigationController pushViewController:vc animated:YES];
 }
 
-+ (FSFileScanImagePreviewVC *)fileScanVC:(UIViewController *)fileCacnVC pushToImagePreviewWithSourceArray:(NSMutableArray *)sourceArray localArray:(NSMutableArray *)localArray selectIndex:(NSInteger)selectIndex
++ (FSFileScanImagePreviewVC *)fileScanVC:(UIViewController *)fileCacnVC pushToImagePreviewWithSourceArray:(NSMutableArray *)sourceArray selectIndex:(NSInteger)selectIndex
 {
     FSFileScanImagePreviewVC *vc = [[FSFileScanImagePreviewVC alloc] initWithNibName:@"FSFileScanImagePreviewVC" bundle:nil];
     vc.m_allImageFiles           = sourceArray;
-    vc.m_localImageFiles         = localArray;
     vc.m_selectedImageFile       = [sourceArray objectAtIndex:selectIndex];
     vc.hidesBottomBarWhenPushed  = YES;
     [fileCacnVC.navigationController pushViewController:vc animated:YES];

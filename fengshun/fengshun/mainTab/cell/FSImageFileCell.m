@@ -36,7 +36,7 @@
 - (void)setM_imageFile:(FSImageFileModel *)model
 {
     _m_imageFile           = model;
-    _m_imageView.image     = model.m_image;
+    _m_imageView.image     = model.previewImage;
     _m_fileNameLabel.text  = model.m_fileName;
     _m_creatTimeLabel.text = model.m_creatTime;
 }

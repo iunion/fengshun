@@ -55,7 +55,7 @@ typedef void (^PushVCCallBack)(void);
 // 文件扫描
 + (void)homePagePushToFileScanVC:(UIViewController *)mainVC;
 // 文件扫描图片预览
-+ (FSFileScanImagePreviewVC *)fileScanVC:(UIViewController *)fileCacnVC pushToImagePreviewWithSourceArray:(NSMutableArray *)sourceArray localArray:(NSMutableArray *)localArray selectIndex:(NSInteger)selectIndex;
++ (FSFileScanImagePreviewVC *)fileScanVC:(UIViewController *)fileCacnVC pushToImagePreviewWithSourceArray:(NSMutableArray *)sourceArray selectIndex:(NSInteger)selectIndex;
 // 文字识别结果
 +(void)viewController:(UIViewController *)vc pushToOCRResultVCWithImage:(UIImage *)image;
 

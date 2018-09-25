@@ -102,7 +102,7 @@ FSFileScanImagePreviewVC ()
     FSImageFileModel *model = [_m_allImageFiles objectAtIndex:index];
     if ([model bm_isNotEmpty])
     {
-        UIImageView *imageView  = [[UIImageView alloc] initWithImage:model.m_image];
+        UIImageView *imageView  = [[UIImageView alloc] initWithImage:model.previewImage];
         imageView.clipsToBounds = YES;
         imageView.contentMode   = UIViewContentModeScaleAspectFill;
         return imageView;
@@ -124,18 +124,10 @@ FSFileScanImagePreviewVC ()
     }
     NSInteger oriIndex = [_m_allImageFiles indexOfObject:_m_selectedImageFile];
     [_m_allImageFiles removeObject:_m_selectedImageFile];
-    if ([_m_localImageFiles containsObject:_m_selectedImageFile])
-    {
-        [_m_localImageFiles removeObject:_m_selectedImageFile];
-        [FSImageFileModel asynRefreshLocalImageFileWithList:[_m_localImageFiles copy]];
-    }
+    [self synDataAndUI];
     NSUInteger index         = (oriIndex - 1 < 0) ? 0 : oriIndex - 1;
     self.m_selectedImageFile = (_m_allImageFiles.count > index) ? _m_allImageFiles[index] : nil;
     [self refreshUIIfNeedReload:YES];
-    if (_m_SourceDataChanged)
-    {
-        _m_SourceDataChanged();
-    }
 }
 - (void)presentToImageCrop
 {
@@ -143,7 +135,7 @@ FSFileScanImagePreviewVC ()
     {
         return;
     }
-    TOCropViewController *cropController = [[TOCropViewController alloc] initWithImage:_m_selectedImageFile.m_image];
+    TOCropViewController *cropController = [[TOCropViewController alloc] initWithImage:_m_selectedImageFile.m_OriginalImage];
     cropController.delegate = self;
     [self presentViewController:cropController animated:YES completion:nil];
 }
@@ -151,11 +143,17 @@ FSFileScanImagePreviewVC ()
 - (void)cropViewController:(nonnull TOCropViewController *)cropViewController didCropToImage:(nonnull UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle
 {
     _m_selectedImageFile.m_image = image;
-    if ([_m_localImageFiles containsObject:_m_selectedImageFile]) {
-        [FSImageFileModel asynRefreshLocalImageFileWithList:[_m_localImageFiles copy]];
-    }
+    [self synDataAndUI];
     [self refreshUIIfNeedReload:YES];
     [cropViewController dismissViewControllerAnimated:YES completion:nil];
+}
+- (void)synDataAndUI
+{
+    [FSImageFileModel asynRefreshLocalImageFileWithList:[_m_allImageFiles copy]];
+    if (_m_SourceDataChanged)
+    {
+        _m_SourceDataChanged();
+    }
 }
 - (void)moreAction:(id)sender
 {
@@ -180,7 +178,7 @@ FSFileScanImagePreviewVC ()
 
 - (void)pushToOCRResult
 {
-    [FSPushVCManager viewController:self pushToOCRResultVCWithImage:_m_selectedImageFile.m_image];
+    [FSPushVCManager viewController:self pushToOCRResultVCWithImage:_m_selectedImageFile.previewImage];
 }
 - (IBAction)toolButtonAction:(UIButton *)sender
 {
@@ -201,11 +199,8 @@ FSFileScanImagePreviewVC ()
         // 保存到相册
         case 2:
         {
-            if (![_m_localImageFiles containsObject:_m_selectedImageFile]) {
-                [_m_localImageFiles addObject:_m_selectedImageFile];
-                [FSImageFileModel asynRefreshLocalImageFileWithList:[_m_localImageFiles copy]];
-            }
-            [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:@"已保存到本地" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+#warning 保存到相册
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:@"已保存到相册" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         }
 
             break;

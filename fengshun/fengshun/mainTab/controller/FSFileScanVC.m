@@ -12,7 +12,7 @@
 #import "FSFileScanImagePreviewVC.h"
 #import "MBProgressHUD.h"
 #import "UIScrollView+BMEmpty.h"
-
+#import "TOCropViewController.h"
 
 
 @interface FSFileScanVC ()
@@ -28,7 +28,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *m_collectionView;
 
 // 数据
-@property (nonatomic, strong)NSMutableArray <FSImageFileModel *> *m_localImageFiles;
+
 @property (nonatomic, strong)NSMutableArray <FSImageFileModel *> *m_allImageFiles;
 @property (nonatomic, strong)NSMutableArray <FSImageFileModel *> *m_selectedImageFiles;
 
@@ -71,12 +71,10 @@
 {
     NSArray *localFiles = [FSImageFileModel localImageFileList];
     if ([localFiles bm_isNotEmpty]) {
-        self.m_localImageFiles  = [localFiles mutableCopy];
         self.m_allImageFiles = [localFiles mutableCopy];
     }
     else
     {
-        self.m_localImageFiles  = [NSMutableArray array];
         self.m_allImageFiles = [NSMutableArray array];
     }
     [self refreshViewAndSetTitle:NO];
@@ -148,36 +146,26 @@
 }
 - (IBAction)pickImageFile:(id)sender
 {
-    TZImagePickerController *imagePickerVc  = [TZImagePickerController fs_defaultPickerWithImagesCount:9 delegate:self];
-
+    TZImagePickerController *imagePickerVc  = [TZImagePickerController fs_defaultPickerWithImagesCount:1 delegate:self];
+    imagePickerVc.autoDismiss = NO;
+    imagePickerVc.specialSingleSelected = YES;
     [self presentViewController:imagePickerVc animated:YES completion:nil];
 }
 
 - (void)deleteSelectedImages
 {
-    BOOL needSynLocal = NO;
     for (FSImageFileModel *model in _m_selectedImageFiles) {
         [_m_allImageFiles removeObject:model];
-        if ([_m_localImageFiles containsObject:model]) {
-            needSynLocal = YES;
-            [_m_localImageFiles removeObject:model];
-        }
     }
     [_m_selectedImageFiles removeAllObjects];
     [self refreshViewAndSetTitle:YES];
-    if (needSynLocal) {
-        [FSImageFileModel asynRefreshLocalImageFileWithList:_m_localImageFiles];
-    }
+    [FSImageFileModel asynRefreshLocalImageFileWithList:[_m_allImageFiles copy]];
 }
 - (void)saveImagesToLocal
 {
-    for (FSImageFileModel *model in _m_selectedImageFiles) {
-        if (![_m_localImageFiles containsObject:model]) {
-            [_m_localImageFiles addObject:model];
-        }
-    }
-    [FSImageFileModel asynRefreshLocalImageFileWithList:_m_localImageFiles];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:@"已保存到本地" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+#warning 保存到相册
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:@"已保存到相册" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
 }
 - (IBAction)toolButtonAction:(UIButton *)sender {
     if (![_m_selectedImageFiles bm_isNotEmpty]) {
@@ -203,17 +191,38 @@
     
 }
 #pragma mark - TZImagePickerControllerDelegate
-
+- (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
 - (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos
 {
-    if (![photos bm_isNotEmpty]||photos.count != infos.count) return;
-    NSMutableArray *selectedImages = [NSMutableArray array];
-    for (NSDictionary *info in infos) {
-        FSImageFileModel *model = [FSImageFileModel imageFileWithSelectInfo:info andImage:photos[[infos indexOfObject:info]]];
-        [selectedImages addObject:model];
+    if ([photos bm_isNotEmpty]&& [infos bm_isNotEmpty])
+    {
+        FSImageFileModel *model = [FSImageFileModel imageFileWithSelectInfo:infos[0] andImage:photos[0]];
+        [self pickerVC:picker presentToCropVCWithImageFile:model];
     }
-    self.m_allImageFiles = [[_m_allImageFiles arrayByAddingObjectsFromArray:selectedImages]mutableCopy];
-    [self refreshViewAndSetTitle:NO];
+   
+    
+}
+- (void)pickerVC:(TZImagePickerController *)picker presentToCropVCWithImageFile:(FSImageFileModel *)model
+{
+    TOCropViewController *cropController = [[TOCropViewController alloc] initWithImage:model.m_OriginalImage];
+    BMWeakSelf
+    __weak typeof(cropController) weakCropVC = cropController;
+    [cropController setOnDidCropToRect:^(UIImage * _Nonnull image, CGRect cropRect, NSInteger angle) {
+        model.m_image = image;
+        [weakSelf.m_allImageFiles addObject:model];
+        [FSImageFileModel asynRefreshLocalImageFileWithList:[weakSelf.m_allImageFiles copy]];
+        [weakSelf refreshViewAndSetTitle:NO];
+        [weakSelf dismissViewControllerAnimated:NO completion:^{
+            [weakSelf pushToPreviewVCWithSelectIndex:[weakSelf.m_allImageFiles indexOfObject:model]];
+        }];
+    }];
+    [cropController setOnDidFinishCancelled:^(BOOL isFinished) {
+        [weakCropVC dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [picker presentViewController:cropController animated:YES completion:nil];
 }
 #pragma mark - collectionView delegate & dataSource
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -225,11 +234,15 @@
     }
     else
     {
-        FSFileScanImagePreviewVC *preVC = [FSPushVCManager fileScanVC:self pushToImagePreviewWithSourceArray:_m_allImageFiles localArray:_m_localImageFiles selectIndex:indexPath.row];
-        preVC.m_SourceDataChanged = ^{
-            [self refreshViewAndSetTitle:NO];
-        };
+        [self pushToPreviewVCWithSelectIndex:indexPath.row];
     }
+}
+- (void)pushToPreviewVCWithSelectIndex:(NSUInteger)selectIndex
+{
+    FSFileScanImagePreviewVC *preVC = [FSPushVCManager fileScanVC:self pushToImagePreviewWithSourceArray:_m_allImageFiles selectIndex:selectIndex];
+    preVC.m_SourceDataChanged = ^{
+        [self refreshViewAndSetTitle:NO];
+    };
 }
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
