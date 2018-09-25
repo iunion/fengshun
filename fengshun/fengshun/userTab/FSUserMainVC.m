@@ -80,6 +80,7 @@
 
     self.bm_NavigationBarBgTintColor = UI_COLOR_BL1;
     self.bm_NavigationItemTintColor = [UIColor whiteColor];
+    self.bm_NavigationShadowHidden = YES;
 
     self.bm_NavigationBarEffect = [[UIVisualEffect alloc] init];
     [self bm_setNavigationWithTitle:@"" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_setup_icon" leftToucheEvent:@selector(setUpAction:) rightItemTitle:nil rightItemImage:@"navigationbar_message_icon" rightToucheEvent:@selector(messageAction:)];

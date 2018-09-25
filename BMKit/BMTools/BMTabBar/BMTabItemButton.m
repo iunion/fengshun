@@ -37,7 +37,7 @@
     
     if (self)
     {
-        self.titleRect = CGRectMake(0, frame.size.height-20, frame.size.width, 15);
+        self.titleRect = CGRectMake(0, frame.size.height-18, frame.size.width, 16);
 
         self.titleLabel.font = [UIFont boldSystemFontOfSize:12.0];
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
