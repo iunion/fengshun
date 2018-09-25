@@ -588,7 +588,6 @@
 
 - (void)backToVideoMediateList
 {
-    [self.m_ProgressHUD hideAnimated:NO];
     NSArray *listVC = [self.navigationController.viewControllers subarrayWithRange:NSMakeRange(0, 2)];
     [self.navigationController setViewControllers:listVC animated:YES];
 }
