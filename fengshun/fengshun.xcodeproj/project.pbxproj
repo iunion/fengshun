@@ -1895,6 +1895,12 @@
 		DB804FEE2142669E007F7B19 /* FSSearchResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB804FED2142669E007F7B19 /* FSSearchResultModel.m */; };
 		DB8D16112137CC9800EB16E8 /* FSMainHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8D16102137CC9800EB16E8 /* FSMainHeaderView.m */; };
 		DB8D16132137CCAC00EB16E8 /* FSMainHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB8D16122137CCAC00EB16E8 /* FSMainHeaderView.xib */; };
+		DBBF3042215BAA10003AB3F2 /* FSTextDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBF3041215BAA10003AB3F2 /* FSTextDetailVC.m */; };
+		DBBF3043215BAE0B003AB3F2 /* FSTextDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBF3041215BAA10003AB3F2 /* FSTextDetailVC.m */; };
+		DBBF3046215BB24B003AB3F2 /* text_dowload@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBBF3044215BB24A003AB3F2 /* text_dowload@3x.png */; };
+		DBBF3047215BB24B003AB3F2 /* text_dowload@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBBF3044215BB24A003AB3F2 /* text_dowload@3x.png */; };
+		DBBF3048215BB24B003AB3F2 /* text_dowload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBBF3045215BB24A003AB3F2 /* text_dowload@2x.png */; };
+		DBBF3049215BB24B003AB3F2 /* text_dowload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBBF3045215BB24A003AB3F2 /* text_dowload@2x.png */; };
 		DBD4CDE9213E2C7F00857DB3 /* FSSearchResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD4CDE8213E2C7F00857DB3 /* FSSearchResultView.m */; };
 		DBD4CDEE213E37A000857DB3 /* FSFilterHeaderResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD4CDED213E37A000857DB3 /* FSFilterHeaderResultView.m */; };
 		DBD4CDF1213E383500857DB3 /* FSCaseSearchResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD4CDF0213E383500857DB3 /* FSCaseSearchResultView.m */; };
@@ -3738,6 +3744,10 @@
 		DB8D160F2137CC9800EB16E8 /* FSMainHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMainHeaderView.h; sourceTree = "<group>"; };
 		DB8D16102137CC9800EB16E8 /* FSMainHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMainHeaderView.m; sourceTree = "<group>"; };
 		DB8D16122137CCAC00EB16E8 /* FSMainHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSMainHeaderView.xib; sourceTree = "<group>"; };
+		DBBF3040215BAA10003AB3F2 /* FSTextDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTextDetailVC.h; sourceTree = "<group>"; };
+		DBBF3041215BAA10003AB3F2 /* FSTextDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTextDetailVC.m; sourceTree = "<group>"; };
+		DBBF3044215BB24A003AB3F2 /* text_dowload@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text_dowload@3x.png"; sourceTree = "<group>"; };
+		DBBF3045215BB24A003AB3F2 /* text_dowload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text_dowload@2x.png"; sourceTree = "<group>"; };
 		DBD4CDE7213E2C7F00857DB3 /* FSSearchResultView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSearchResultView.h; sourceTree = "<group>"; };
 		DBD4CDE8213E2C7F00857DB3 /* FSSearchResultView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSSearchResultView.m; sourceTree = "<group>"; };
 		DBD4CDEC213E37A000857DB3 /* FSFilterHeaderResultView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSFilterHeaderResultView.h; sourceTree = "<group>"; };
@@ -7571,6 +7581,8 @@
 				DB487447214B887600AB0805 /* scanfile_select@3x.png */,
 				DB48744B214B887F00AB0805 /* scanfile_camera@2x.png */,
 				DB48744C214B887F00AB0805 /* scanfile_camera@3x.png */,
+				DBBF3045215BB24A003AB3F2 /* text_dowload@2x.png */,
+				DBBF3044215BB24A003AB3F2 /* text_dowload@3x.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -7598,6 +7610,8 @@
 				DB7584A0214F4D200002A1FE /* FSOCRResultVC.h */,
 				DB7584A1214F4D200002A1FE /* FSOCRResultVC.m */,
 				DB7584A2214F4D200002A1FE /* FSOCRResultVC.xib */,
+				DBBF3040215BAA10003AB3F2 /* FSTextDetailVC.h */,
+				DBBF3041215BAA10003AB3F2 /* FSTextDetailVC.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -7817,6 +7831,7 @@
 				87426A06212F9657003C52F6 /* navigationbar_message_icon@2x.png in Resources */,
 				DB2656D42146678A002ED713 /* FSLawCell.xib in Resources */,
 				874268BA212E7E36003C52F6 /* BMTableView_UIButtonBarArrowLeft.png in Resources */,
+				DBBF3048215BB24B003AB3F2 /* text_dowload@2x.png in Resources */,
 				AD6712272159DBD40081E08D /* fstab_btn3_icon@3x.png in Resources */,
 				8730B10D2148E5D1004331A9 /* fsfreshidle_icon2@2x.png in Resources */,
 				8730B1052148E5D1004331A9 /* fsfreshidle_icon18@2x.png in Resources */,
@@ -7948,6 +7963,7 @@
 				87D186A9213679F800037DDF /* login_unchecked@3x.png in Resources */,
 				DBD4CE962141229400857DB3 /* home_courses@2x.png in Resources */,
 				ADC591FC215395100054BE72 /* fstab_btn2_highIcon@2x.png in Resources */,
+				DBBF3046215BB24B003AB3F2 /* text_dowload@3x.png in Resources */,
 				87BC9E2E21548E0D000F2011 /* fsintroguide_640x960_1@2x.png in Resources */,
 				8730B10F2148E5D1004331A9 /* fsfreshfreshing_icon1@2x.png in Resources */,
 				87BC9E2B21548E0D000F2011 /* fsintroguide_1125x2436_1@2x.png in Resources */,
@@ -8198,6 +8214,7 @@
 				87E7C55321509AB000F7AB14 /* BMTableView_UIButtonBarArrowLeft@2x.png in Resources */,
 				87E7C55421509AB000F7AB14 /* decrease_eleme@2x.png in Resources */,
 				87E7C6942150A4E400F7AB14 /* TOCropViewControllerLocalizable.strings in Resources */,
+				DBBF3047215BB24B003AB3F2 /* text_dowload@3x.png in Resources */,
 				87E7C55521509AB000F7AB14 /* login_openeye@2x.png in Resources */,
 				ADC5920D215395100054BE72 /* fstab_btn1_highIcon@2x.png in Resources */,
 				87E7C55621509AB000F7AB14 /* user_topicicon@2x.png in Resources */,
@@ -8393,6 +8410,7 @@
 				87E7C5F321509AB000F7AB14 /* videocall_default_head@3x.png in Resources */,
 				87E7C5F421509AB000F7AB14 /* increase_eleme@2x.png in Resources */,
 				87E7C5F521509AB000F7AB14 /* videocall_voice_off@3x.png in Resources */,
+				DBBF3049215BB24B003AB3F2 /* text_dowload@2x.png in Resources */,
 				87E7C5F621509AB000F7AB14 /* videocall_end_record@2x.png in Resources */,
 				87E7C5F721509AB000F7AB14 /* chat_message_text@2x.png in Resources */,
 				ADC591F3215395100054BE72 /* fstab_btn3_highIcon@3x.png in Resources */,
@@ -8472,6 +8490,7 @@
 				87D20AA9213920E2001EDD60 /* FLEXViewExplorerViewController.m in Sources */,
 				AD9355A12137D24100735C2E /* TZVideoPlayerController.m in Sources */,
 				874268FE212E7E36003C52F6 /* NSBundle+BMCategory.m in Sources */,
+				DBBF3042215BAA10003AB3F2 /* FSTextDetailVC.m in Sources */,
 				8730B0322140FFA2004331A9 /* DTImage+HTML.m in Sources */,
 				DBD4CE0C213FC32D00857DB3 /* FSImageJump.m in Sources */,
 				8730B0782140FFA3004331A9 /* NSString+DTUtilities.m in Sources */,
@@ -9147,6 +9166,7 @@
 				87E7C2CE21509AB000F7AB14 /* FLEXFileBrowserFileOperationController.m in Sources */,
 				87E7C2CF21509AB000F7AB14 /* DTCoreTextLayoutFrameAccessibilityElementGenerator.m in Sources */,
 				87E7C2D021509AB000F7AB14 /* NSObject+MJProperty.m in Sources */,
+				DBBF3043215BAE0B003AB3F2 /* FSTextDetailVC.m in Sources */,
 				87E7C2D121509AB000F7AB14 /* BMCheckBoxGroupItem.m in Sources */,
 				87E7C2D221509AB000F7AB14 /* FMDatabase.m in Sources */,
 				87E7C2D321509AB000F7AB14 /* NSString+DTUTI.m in Sources */,
