@@ -1794,6 +1794,8 @@
 		AD9CAAE4212EA0F40071B941 /* UIScrollView+BMEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9CAAE3212EA0F40071B941 /* UIScrollView+BMEmpty.m */; };
 		ADA1228B214614BE00CF0D87 /* FSTopicListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA12289214614BE00CF0D87 /* FSTopicListVC.m */; };
 		ADA1228C214614BE00CF0D87 /* FSTopicListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADA1228A214614BE00CF0D87 /* FSTopicListVC.xib */; };
+		ADC0F511215B243B00EC43F9 /* FSDetailWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC0F510215B243B00EC43F9 /* FSDetailWebVC.m */; };
+		ADC0F512215B243B00EC43F9 /* FSDetailWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC0F510215B243B00EC43F9 /* FSDetailWebVC.m */; };
 		ADC591F2215395100054BE72 /* fstab_btn3_highIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591E1215395100054BE72 /* fstab_btn3_highIcon@3x.png */; };
 		ADC591F3215395100054BE72 /* fstab_btn3_highIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591E1215395100054BE72 /* fstab_btn3_highIcon@3x.png */; };
 		ADC591F4215395100054BE72 /* fstab_btn4_highIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591E2215395100054BE72 /* fstab_btn4_highIcon@2x.png */; };
@@ -3608,6 +3610,8 @@
 		ADA12288214614BE00CF0D87 /* FSTopicListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTopicListVC.h; sourceTree = "<group>"; };
 		ADA12289214614BE00CF0D87 /* FSTopicListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTopicListVC.m; sourceTree = "<group>"; };
 		ADA1228A214614BE00CF0D87 /* FSTopicListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSTopicListVC.xib; sourceTree = "<group>"; };
+		ADC0F50F215B243B00EC43F9 /* FSDetailWebVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSDetailWebVC.h; sourceTree = "<group>"; };
+		ADC0F510215B243B00EC43F9 /* FSDetailWebVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSDetailWebVC.m; sourceTree = "<group>"; };
 		ADC591E1215395100054BE72 /* fstab_btn3_highIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn3_highIcon@3x.png"; sourceTree = "<group>"; };
 		ADC591E2215395100054BE72 /* fstab_btn4_highIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn4_highIcon@2x.png"; sourceTree = "<group>"; };
 		ADC591E3215395100054BE72 /* fstab_btn3_highIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn3_highIcon@2x.png"; sourceTree = "<group>"; };
@@ -7561,6 +7565,8 @@
 				DB7584A0214F4D200002A1FE /* FSOCRResultVC.h */,
 				DB7584A1214F4D200002A1FE /* FSOCRResultVC.m */,
 				DB7584A2214F4D200002A1FE /* FSOCRResultVC.xib */,
+				ADC0F50F215B243B00EC43F9 /* FSDetailWebVC.h */,
+				ADC0F510215B243B00EC43F9 /* FSDetailWebVC.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -8894,6 +8900,7 @@
 				DB57223B2133A1D90065DC30 /* FSCommunityVC.m in Sources */,
 				87426AD72133F446003C52F6 /* FSSuperNetVC.m in Sources */,
 				8730B0762140FFA3004331A9 /* DTAsyncFileDeleter.m in Sources */,
+				ADC0F511215B243B00EC43F9 /* FSDetailWebVC.m in Sources */,
 				8730B06A2140FFA3004331A9 /* DTFoundationConstants.m in Sources */,
 				AD2244A2213CD6C300F2DC47 /* MASViewConstraint.m in Sources */,
 				AD9355A82137D24100735C2E /* TZImageManager.m in Sources */,
@@ -9341,6 +9348,7 @@
 				87E7C3AD21509AB000F7AB14 /* BMTableViewNumberTextCell.m in Sources */,
 				87E7C3AE21509AB000F7AB14 /* DTSQLiteDatabase.m in Sources */,
 				87E7C3AF21509AB000F7AB14 /* NSString+HTML.m in Sources */,
+				ADC0F512215B243B00EC43F9 /* FSDetailWebVC.m in Sources */,
 				87E7C3B021509AB000F7AB14 /* DTProgressHUD.m in Sources */,
 				87E7C3B121509AB000F7AB14 /* FSTabBarController.m in Sources */,
 				87E7C3B221509AB000F7AB14 /* BMFreshCircleHeader.m in Sources */,

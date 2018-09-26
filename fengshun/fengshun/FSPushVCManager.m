@@ -26,6 +26,8 @@
 #import "FSMessageTabVC.h"
 #import "FSOCRSearchResultVC.h"
 
+#import "FSDetailWebVC.h"
+
 @implementation FSPushVCManager
 
 + (FSCommunitySecVC *)showCommunitySecVCPushVC:(UIViewController *)pushVC FourmId:(NSInteger)fourId
@@ -192,13 +194,30 @@
     NSString *url = [NSString stringWithFormat:@"%@/Law?keywords=%@",FS_H5_SERVER,lawTopic];
     [FSPushVCManager showWebView:vc url:url title:nil showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR animated:YES];
 }
+
+// 法规详情
 + (void)viewController:(UIViewController *)vc pushToLawDetailWithId:(NSString *)lawId keywords:(NSString *)keywordsStr
 {
+#if 0
     [FSPushVCManager showWebView:vc url:[NSString stringWithFormat:@"%@/law/lawDetail?ID=%@&keywords=%@",FS_H5_SERVER,lawId,keywordsStr] title:nil showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR animated:YES];
+#endif
+    
+    FSDetailWebVC *webVC = [[FSDetailWebVC alloc]initWithTitle:nil url:[NSString stringWithFormat:@"%@/law/lawDetail?ID=%@&keywords=%@",FS_H5_SERVER,lawId,keywordsStr]  showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR ];
+    webVC.hidesBottomBarWhenPushed = YES;
+    [vc.navigationController pushViewController:webVC animated:YES];
 }
+// 案件详情
 +(void)viewController:(UIViewController *)vc pushToCaseDetailWithId:(NSString *)caseId keywords:(NSString *)keywordsStr
 {
+#if 0
     [self showWebView:vc url:[NSString stringWithFormat:@"%@/caseDetail?ID=%@&keywords=%@",FS_H5_SERVER,caseId,keywordsStr] title:nil showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR animated:YES];
+    
+#endif
+    
+    FSDetailWebVC *webVC = [[FSDetailWebVC alloc]initWithTitle:nil url:[NSString stringWithFormat:@"%@/caseDetail?ID=%@&keywords=%@",FS_H5_SERVER,caseId,keywordsStr] showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR ];
+    webVC.hidesBottomBarWhenPushed = YES;
+    [vc.navigationController pushViewController:webVC animated:YES];
+    
 }
 + (void)viewController:(UIViewController *)vc pushToCourseDetailWithId:(NSString *)CourseId
 {

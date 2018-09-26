@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "fengshun/FSTools/FSWebViewController/FSWebViewController.m"
-            timestampString = "559572984.194007"
+            filePath = "fengshun/FSPushVCManager.m"
+            timestampString = "559633593.302899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "660"
-            endingLineNumber = "660"
-            landmarkName = "-registerJSHandler"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
+            landmarkName = "+viewController:pushToLawDetailWithId:keywords:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,109 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "fengshun/FSTools/FSWebViewController/FSWebViewController.m"
-            timestampString = "559572984.194322"
+            filePath = "fengshun/FSPushVCManager.m"
+            timestampString = "559633595.732216"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "629"
-            endingLineNumber = "629"
-            landmarkName = "-registerJSHandler"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "fengshun/FSTools/FSWebViewController/FSWebViewController.m"
-            timestampString = "559572984.194379"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "619"
-            endingLineNumber = "619"
-            landmarkName = "-registerJSHandler"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "fengshun/FSTools/FSWebViewController/FSWebViewController.m"
-            timestampString = "559572984.194427"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "611"
-            endingLineNumber = "611"
-            landmarkName = "-registerJSHandler"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "fengshun/FSTools/FSWebViewController/FSWebViewController.m"
-            timestampString = "559572984.1944751"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "571"
-            endingLineNumber = "571"
-            landmarkName = "-registerJSHandler"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "fengshun/FSTools/FSWebViewController/FSWebViewController.m"
-            timestampString = "559572984.194521"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "563"
-            endingLineNumber = "563"
-            landmarkName = "-registerJSHandler"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "fengshun/FSTools/FSWebViewController/FSWebViewController.m"
-            timestampString = "559572984.194567"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "650"
-            endingLineNumber = "650"
-            landmarkName = "-registerJSHandler"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "fengshun/FSTools/FSWebViewController/FSWebViewController.m"
-            timestampString = "559572984.194616"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "655"
-            endingLineNumber = "655"
-            landmarkName = "-registerJSHandler"
+            startingLineNumber = "212"
+            endingLineNumber = "212"
+            landmarkName = "+viewController:pushToCaseDetailWithId:keywords:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
