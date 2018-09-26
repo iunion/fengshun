@@ -16,5 +16,5 @@
 @property (nonatomic, strong)FSTextModel *m_textModel;
 
 - (void)setTextModel:(FSListTextModel *)textModel colors:(BOOL)colors;
-- (void)setCollectionTextModel:(FSCollectionTextModel *)model;
+
 @end

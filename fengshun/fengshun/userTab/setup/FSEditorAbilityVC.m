@@ -8,9 +8,9 @@
 
 #import "FSEditorAbilityVC.h"
 #import "AppDelegate.h"
-#import "FSGlobleDataModle.h"
+#import "FSGlobleDataModel.h"
 
-@interface FSEditorCombineModle : NSObject
+@interface FSEditorCombineModel : NSObject
 
 @property (nonatomic, strong) NSString *m_Title;
 
@@ -18,13 +18,13 @@
 
 @end
 
-@implementation FSEditorCombineModle
+@implementation FSEditorCombineModel
 @end
 
 @interface FSEditorAbilityVC ()
 
 // 用户擅长领域数据
-@property (nonatomic, strong) NSMutableArray <FSEditorCombineModle *> *m_UserAbilityInfo;
+@property (nonatomic, strong) NSMutableArray <FSEditorCombineModel *> *m_UserAbilityInfo;
 @property (nonatomic, strong) NSMutableArray *m_SeletedIndexArray;
 
 
@@ -96,20 +96,20 @@
 {
     NSMutableArray *userAbilityInfo = [NSMutableArray array];
     
-    for (FSGlobleDataModle *globleData in GetAppDelegate.m_Globle_UserAbilityInfo)
+    for (FSGlobleDataModel *globleData in GetAppDelegate.m_Globle_UserAbilityInfo)
     {
         if ([globleData.m_Children bm_isNotEmpty])
         {
-            FSEditorCombineModle *combineModle = [[FSEditorCombineModle alloc] init];
-            combineModle.m_Title = globleData.m_Value;
+            FSEditorCombineModel *combineModel = [[FSEditorCombineModel alloc] init];
+            combineModel.m_Title = globleData.m_Value;
             NSMutableArray *items = [NSMutableArray array];
-            for (FSGlobleDataModle *childGlobleData in globleData.m_Children)
+            for (FSGlobleDataModel *childGlobleData in globleData.m_Children)
             {
                 [items addObject:childGlobleData.m_Value];
             }
-            combineModle.m_ItemArray = items;
+            combineModel.m_ItemArray = items;
             
-            [userAbilityInfo addObject:combineModle];
+            [userAbilityInfo addObject:combineModel];
        }
      }
     
@@ -123,10 +123,10 @@
     for (NSUInteger i=0; i<self.m_UserAbilityInfo.count; i++)
     {
         NSMutableArray *subSelectedIndexArray = [NSMutableArray array];
-        FSEditorCombineModle *combineModle = self.m_UserAbilityInfo[i];
-        for (NSUInteger index=0; index<combineModle.m_ItemArray.count; index++)
+        FSEditorCombineModel *combineModel = self.m_UserAbilityInfo[i];
+        for (NSUInteger index=0; index<combineModel.m_ItemArray.count; index++)
         {
-            NSString *ability = combineModle.m_ItemArray[index];
+            NSString *ability = combineModel.m_ItemArray[index];
             if ([self checkHasAbility:ability])
             {
                 [subSelectedIndexArray addObject:@(index)];
@@ -160,8 +160,8 @@
     
     for (NSUInteger i=0; i<self.m_UserAbilityInfo.count; i++)
     {
-        FSEditorCombineModle *combineModle = self.m_UserAbilityInfo[i];
-        [self addCombineItemWithTitle:combineModle.m_Title itemArray:combineModle.m_ItemArray selectedIndexArray:self.m_SeletedIndexArray[i]];
+        FSEditorCombineModel *combineModel = self.m_UserAbilityInfo[i];
+        [self addCombineItemWithTitle:combineModel.m_Title itemArray:combineModel.m_ItemArray selectedIndexArray:self.m_SeletedIndexArray[i]];
     }
     
     self.m_Section.headerHeight = 10.0f;
@@ -266,7 +266,7 @@
     {
         [self.m_ProgressHUD hideAnimated:NO];
         
-        FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
+        FSUserInfoModel *userInfo = [FSUserInfoModel userInfo];
         userInfo.m_UserBaseInfo.m_Ability = self.m_Ability;
         
         [FSUserInfoDB insertAndUpdateUserInfo:userInfo];

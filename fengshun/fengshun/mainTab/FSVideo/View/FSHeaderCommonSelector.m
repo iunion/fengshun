@@ -16,7 +16,6 @@
 @interface FSHeaderCommonSelectorView ()
 @property (nonatomic, assign) CGFloat       m_HeaderHeight;
 @property (nonatomic, assign) NSInteger     m_SelectedTag;
-@property (nonatomic, strong) NSArray       *m_TitleBtnArray;
 @property (nonatomic, strong) UITableView   *m_TableView;
 @property (nonatomic, strong) UIView        *m_GestureView;
 @property (nonatomic, strong) BMTableViewManager *m_manager;
@@ -136,29 +135,55 @@
 {
     if (_m_SelectedTag > 0)
     {
-        [_m_section removeAllItems];
+        UIButton *selectedBtn = [self viewWithTag:_m_SelectedTag];
+        NSInteger itemIndex = 0;
         
+        [_m_section removeAllItems];
         FSHeaderCommonSelectorModel *tagModel = self.m_SelectorArray[_m_SelectedTag-1];
         NSInteger count = tagModel.list.count;
         for (int index = 0; index < count; index++)
         {
             NSString *title = tagModel.list[index];
-            
-            BMWeakSelf
-            BMTableViewItem *item = [BMTableViewItem itemWithTitle:title
+            if ([title isEqualToString:selectedBtn.titleLabel.text]) {
+                itemIndex = index;
+                break;
+            }
+        }
+        
+        for (int index = 0; index < count; index++)
+        {
+            BMTableViewItem *item = [BMTableViewItem itemWithTitle:tagModel.list[index]
                                                           subTitle:nil
                                                          imageName:nil
                                                  underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset
                                                      accessoryView:nil
-                                                  selectionHandler:^(BMTableViewItem *item) {
-                                                      if (weakSelf.selectorBlock) {
-                                                          weakSelf.selectorBlock(weakSelf.m_SelectedTag-1, item.title);
-                                                      }
-                                                      [weakSelf hideTableView];
-                                                  }];
+                                                  selectionHandler:nil];
+            BMWeakSelf
+            BMWeakType(selectedBtn)
+            BMWeakType(tagModel)
+
+            item.selectionHandler = ^(BMTableViewItem * item) {
+                if (weakSelf.selectorBlock) {
+                    weakSelf.selectorBlock(weakSelf.m_SelectedTag-1, item.title);
+                }
+                if ([item.title isEqualToString:@"全部"]) {
+                    [weakselectedBtn setTitle:weaktagModel.title forState:UIControlStateNormal];
+                } else {
+                    [weakselectedBtn setTitle:item.title forState:UIControlStateNormal];
+                }
+                [weakselectedBtn setImage:[UIImage imageNamed:@"search_closeFilters"] forState:UIControlStateNormal];
+                [weakselectedBtn bm_layoutButtonWithEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageRight imageTitleGap:7];
+                [weakSelf hideTableView];
+            };
+
+            if (itemIndex == index) {
+                item.textColor  = UI_COLOR_BL1;
+            } else {
+                item.textColor  = UI_COLOR_B1;
+            }
+
             item.cellStyle  = UITableViewCellStyleDefault;
             item.textFont   = [UIFont systemFontOfSize:14.0f];
-            item.textColor  = UI_COLOR_B1;
             item.underLineColor = UI_COLOR_B6;
             item.cellHeight = FSSelectorDefaultCellHeight;
             item.selectionStyle = UITableViewCellSelectionStyleGray;

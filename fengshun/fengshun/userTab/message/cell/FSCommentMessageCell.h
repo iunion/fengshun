@@ -11,9 +11,9 @@
 
 @interface FSCommentMessageCell : UITableViewCell
 
-@property (nonatomic, strong, readonly) FSCommentMessageModle *m_Modle;
+@property (nonatomic, strong, readonly) FSCommentMessageModel *m_Model;
 
-- (void)drawCellWithModle:(FSCommentMessageModle *)model;
+- (void)drawCellWithModel:(FSCommentMessageModel *)model;
 
 + (CGFloat)cellHeight;
 

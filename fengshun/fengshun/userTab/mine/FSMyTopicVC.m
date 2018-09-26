@@ -110,7 +110,7 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"FSTopicListCell" owner:self options:nil] lastObject];
     }
     
-    [cell drawCellWithModle:self.m_DataArray[indexPath.row]];
+    [cell drawCellWithModel:self.m_DataArray[indexPath.row]];
     
     return cell;
 }

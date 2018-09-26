@@ -52,14 +52,5 @@
     _m_contentLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     _m_tabLabel.text = model.m_caseTag;
 }
-- (void)setCaseCollectionModel:(FSCaseCollectionModel *)model
-{
-    _m_caseModel          = model;
-    _m_tagView.hidden     = YES;
-    _m_tabLabel.hidden    = YES;
-    _m_contentLabel.text  = nil;
-    _bottomSpace.constant = 0;
-    _m_titleLabel.text    = model.m_title;
-    _m_detailLabel.text   = model.m_source;
-}
+
 @end

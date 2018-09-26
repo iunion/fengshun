@@ -69,7 +69,7 @@ FSReportViewDelegate
             return ;
         }
         // 根据帖子详情接口 userId判断是否是本人帖子
-        BOOL isOwner = [self.m_TopicDetailModel.m_UserId isEqualToString:[FSUserInfoModle userInfo].m_UserBaseInfo.m_UserId];
+        BOOL isOwner = [self.m_TopicDetailModel.m_UserId isEqualToString:[FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId];
         [FSMoreViewVC showMore:self delegate:self isOwner:isOwner isCollection:self.m_TopicDetailModel.m_IsCollection];
     } failure:^(NSError * _Nullable error) {
         [self.m_ProgressHUD showAnimated:YES withText:@"数据错误" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];

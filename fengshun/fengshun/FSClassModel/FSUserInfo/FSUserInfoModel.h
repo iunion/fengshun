@@ -1,5 +1,5 @@
 //
-//  FSUserInfoModle.h
+//  FSUserInfoModel.h
 //  fengshun
 //
 //  Created by jiang deng on 2018/8/28.
@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 💡: 不能为nil，用于数据完整性判断
 // 🔐: 需要加密存储数据
 
-@interface FSUserBaseInfoModle : NSObject
+@interface FSUserBaseInfoModel : NSObject
 
 // 🔐用户ID💡: userId
 @property (nonatomic, strong) NSString *m_UserId;
@@ -65,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface FSUserInfoModle : NSObject
+@interface FSUserInfoModel : NSObject
 
 // 最后更新时间
 @property (nonatomic, assign) NSTimeInterval m_LastUpdateTs;
@@ -75,9 +75,9 @@ NS_ASSUME_NONNULL_BEGIN
 // 🔐用户刷新令牌💡: refreshToken
 @property (nonatomic, strong) NSString *m_RefreshToken;
 
-@property (nonatomic, strong) FSUserBaseInfoModle *m_UserBaseInfo;
+@property (nonatomic, strong) FSUserBaseInfoModel *m_UserBaseInfo;
 
-+ (FSUserInfoModle *)userInfo;
++ (FSUserInfoModel *)userInfo;
 
 // 用户登录ID
 + (nullable NSString *)getCurrentUserId;

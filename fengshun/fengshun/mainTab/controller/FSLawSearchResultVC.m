@@ -66,7 +66,7 @@
                              }];
     }
     
-    return [FSApiRequest searchLawsWithKeywords:self.m_resultView.m_searchKeys start:_m_searchResultModel.m_resultDataArray.count size:self.m_CountPerPage filters:filters];
+    return [FSApiRequest searchLawsWithKeywords:self.m_resultView.m_searchKeys start:s_BakLoadedPage size:self.m_CountPerPage filters:filters];
 }
 - (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)responseObject
 {

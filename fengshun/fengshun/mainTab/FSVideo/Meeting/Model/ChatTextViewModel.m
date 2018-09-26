@@ -7,7 +7,7 @@
 //
 
 #import "ChatTextViewModel.h"
-#import "FSUserInfoModle.h"
+#import "FSUserInfoModel.h"
 
 @implementation ChatTextViewModel
 
@@ -40,7 +40,7 @@
 {
     ChatTextModel *model = [ChatTextModel modelWithParams:dic];
     model.createTime = model.createTime*0.001;
-    model.isMe = [model.sender.memberId isEqualToString:[[[FSUserInfoModle userInfo] m_UserBaseInfo] m_PhoneNum]];
+    model.isMe = [model.sender.memberId isEqualToString:[[[FSUserInfoModel userInfo] m_UserBaseInfo] m_PhoneNum]];
     return model;
 }
 

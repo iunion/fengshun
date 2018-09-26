@@ -41,14 +41,14 @@ static NSString *UserInfoDBTableInsert = @"(userid, mobilephone, token, rftoken,
     return NO;
 }
 
-+ (FSUserInfoModle *)getUserInfoWithUserId:(NSString *)userId
++ (FSUserInfoModel *)getUserInfoWithUserId:(NSString *)userId
 {
     if (![userId bm_isNotEmpty])
     {
         return nil;
     }
     
-    __block FSUserInfoModle *userInfo = nil;
+    __block FSUserInfoModel *userInfo = nil;
     __block BOOL result = YES;
     
     NSString *encodeUserId = [FSEncodeAPI encodeDES:userId];
@@ -56,7 +56,7 @@ static NSString *UserInfoDBTableInsert = @"(userid, mobilephone, token, rftoken,
     [FSDB executeQuery:sql inDb:UserInfoDBName queryResBlock:^(FMDatabase *DB, FMResultSet *rs) {
         if ([rs next])
         {
-            userInfo = [[FSUserInfoModle alloc] init];
+            userInfo = [[FSUserInfoModel alloc] init];
             
             // 最后更新时间: lastupdatets
             userInfo.m_LastUpdateTs = [rs doubleForColumn:@"lastupdatets"];
@@ -69,7 +69,7 @@ static NSString *UserInfoDBTableInsert = @"(userid, mobilephone, token, rftoken,
             userInfo.m_RefreshToken = [FSEncodeAPI decodeDES:dbRefreshToke];
 
             // Base
-            userInfo.m_UserBaseInfo = [[FSUserBaseInfoModle alloc] init];
+            userInfo.m_UserBaseInfo = [[FSUserBaseInfoModel alloc] init];
 
             // 🔐用户ID💡: userid
             NSString *dbUserId = [rs stringForColumn:@"userid"];
@@ -132,7 +132,7 @@ static NSString *UserInfoDBTableInsert = @"(userid, mobilephone, token, rftoken,
     return nil;
 }
 
-+ (BOOL)insertAndUpdateUserInfo:(FSUserInfoModle *)userInfo
++ (BOOL)insertAndUpdateUserInfo:(FSUserInfoModel *)userInfo
 {
     if (![userInfo.m_UserBaseInfo.m_PhoneNum bm_isNotEmpty] || ![userInfo.m_UserBaseInfo.m_UserId bm_isNotEmpty] || ![userInfo.m_Token bm_isNotEmpty])
     {

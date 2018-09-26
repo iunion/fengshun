@@ -44,7 +44,7 @@ typedef NS_OPTIONS(NSUInteger, FSJumpType)
 };
 
 
-@interface FSCommentMessageModle : NSObject
+@interface FSCommentMessageModel : NSObject
 
 // 消息id: messageId
 @property (nonatomic, strong) NSString *m_MessageId;
@@ -82,13 +82,13 @@ typedef NS_OPTIONS(NSUInteger, FSJumpType)
 // 是否已读: readFlag
 @property (nonatomic, assign) BOOL m_ReadFlag;
 
-+ (instancetype)commentMessageModleWithServerDic:(NSDictionary *)dic;
++ (instancetype)commentMessageModelWithServerDic:(NSDictionary *)dic;
 - (void)updateWithServerDic:(NSDictionary *)dic;
 
 @end
 
 
-@interface FSNoticeMessageModle : NSObject
+@interface FSNoticeMessageModel : NSObject
 
 // 公告id: noticeId
 @property (nonatomic, strong) NSString *m_NoticeId;
@@ -106,7 +106,7 @@ typedef NS_OPTIONS(NSUInteger, FSJumpType)
 // 跳转类型（H5、图文系列COURSE_SERIES）: jumpType
 @property (nonatomic, assign) FSJumpType m_JumpType;
 
-+ (instancetype)noticeMessageModleWithServerDic:(NSDictionary *)dic;
++ (instancetype)noticeMessageModelWithServerDic:(NSDictionary *)dic;
 - (void)updateWithServerDic:(NSDictionary *)dic;
 
 @end

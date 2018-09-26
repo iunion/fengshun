@@ -11,7 +11,8 @@
 
 @implementation FSTextCell
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
     self.separatorInset = UIEdgeInsetsMake(0, 16, 0, 15);
 }
@@ -21,16 +22,11 @@
 
     // Configure the view for the selected state
 }
+
 - (void)setTextModel:(FSListTextModel *)textModel colors:(BOOL)colors
 {
     _m_textModel = textModel;
     [FSSearchResultModel setTextLabel:_m_titleLabel withText:textModel.m_title fontSize:16 textColor:UI_COLOR_B1 attributed:colors];
 }
-- (void)setCollectionTextModel:(FSCollectionTextModel *)model
-{
-    _m_textModel = model;
-    self.accessoryType   = UITableViewCellAccessoryNone;
-    self.contentView.frame = CGRectMake(0, 0, self.bm_width, self.bm_height -10);
-    _m_titleLabel.text = model.m_title;
-}
+
 @end

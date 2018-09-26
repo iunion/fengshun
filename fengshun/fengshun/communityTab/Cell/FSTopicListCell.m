@@ -158,7 +158,7 @@
     }
 }
 
-- (void)drawCellWithModle:(FSTopicModel *)model
+- (void)drawCellWithModel:(FSTopicModel *)model
 {
     self.m_TopicModel = model;
     
@@ -188,31 +188,5 @@
     
     self.m_UnderLineView.hidden = self.m_TopicModel.m_PositionType & BMTableViewCell_PositionType_Last;
 }
-
-- (void)drawCellWithCollectionModel:(FSTopicCollectModel *)model
-{
-    
-    [self.m_HeaderImageView sd_setImageWithURL:[model.m_CoverThumbUrl bm_toURL] placeholderImage:[UIImage imageNamed:@"default_avataricon"] options:SDWebImageRetryFailed|SDWebImageLowPriority];
-    
-    self.m_ForumLabel.text = model.m_Source;
-    CGSize size = [self.m_ForumLabel sizeThatFits:CGSizeMake(1000, self.m_ForumLabel.bm_height)];
-    self.m_ForumLabel.bm_width = size.width;
-    self.m_ForumBgView.bm_width = self.m_ForumLabel.bm_right + 10.0f;
-    
-    self.m_TitleLabel.text = model.m_Title;
-    //    size = [self.m_TitleLabel sizeThatFits:CGSizeMake(self.m_TitleLabel.bm_width, 1000)];
-    //    self.m_TitleLabel.bm_height = size.height;
-    
-    self.m_TimeLabel.text = [NSDate fsStringDateFromTs:model.m_CreateTime];
-    
-    size = [self.m_TimeLabel sizeThatFits:CGSizeMake(1000, self.m_TimeLabel.bm_height)];
-    self.m_UserNameLabel.bm_left = size.width + 6.0f;
-    
-//    self.m_UserNameLabel.text = model.m_NickName;
-    [self.m_CommentBtn setTitle:[NSString stringWithFormat:@"%@", @(model.m_CommentCount)] forState:UIControlStateNormal];
-    self.m_StickBgView.hidden = YES;
-}
-
-
 
 @end

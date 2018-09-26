@@ -15,14 +15,6 @@
 
 @end
 
-@interface FSLawCollectionModel : FSLawModel
-
-@property (nonatomic, copy) NSString *m_collectionId;
-@property (nonatomic, copy) NSString *m_source;
-@property (nonatomic, copy) NSString *m_jumpUrl;
-
-@end
-
 // 法规搜索结果
 @interface FSLawResultModel : FSLawModel
 

@@ -74,7 +74,8 @@ FSMainVC ()
 //    self.bm_NavigationBarAlpha = 0;
     self.bm_NavigationBarBgTintColor = [UIColor whiteColor];
     self.bm_NavigationItemTintColor = UI_COLOR_B1;
-    [self bm_setNavigationWithTitle:@"主页" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:nil rightItemImage:[UIImage imageNamed:@"home_message"] rightToucheEvent:@selector(popMessageVC:)];
+    self.bm_NavigationBarAlpha = 0;
+    [self bm_setNavigationWithTitle:@"主页" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:nil rightItemImage:[UIImage imageNamed:@"navigationbar_message_icon"] rightToucheEvent:@selector(popMessageVC:)];
     [GetAppDelegate.m_TabBarController hideOriginTabBar];
     
 //    self.bm_NavigationTitleAlpha = 0;
@@ -172,7 +173,7 @@ FSMainVC ()
         // 视频调解
         case FSHomePageTooltype_VideoMediation:
         {
-            if ([FSUserInfoModle isLogin])
+            if ([FSUserInfoModel isLogin])
             {
                  [FSPushVCManager pushVideoMediateList:self.navigationController];
             }
@@ -205,7 +206,7 @@ FSMainVC ()
         // 文书扫描
         case FSHomePageTooltype_FileScanning:
         {
-            if ([FSUserInfoModle isLogin])
+            if ([FSUserInfoModel isLogin])
             {
                 [FSPushVCManager homePagePushToFileScanVC:self];
             }
@@ -229,7 +230,7 @@ FSMainVC ()
 
 - (void)popMessageVC:(id)sender
 {
-    if ([FSUserInfoModle isLogin])
+    if ([FSUserInfoModel isLogin])
     {
         [FSPushVCManager showMessageVC:self];
     }
@@ -258,7 +259,7 @@ FSMainVC ()
     if (indexPath.section)
     {
         FSTopicListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSTopicListCell"];
-        [cell drawCellWithModle:_m_topics[indexPath.row]];
+        [cell drawCellWithModel:_m_topics[indexPath.row]];
         return cell;
     }
     
@@ -455,6 +456,7 @@ FSMainVC ()
     {
         btn.badgeBgColor = UI_COLOR_R1;
         btn.badgeBorderWidth = 0.0f;
+        btn.badgeCenterOffset = CGPointMake(-7.0f, 7.0f);
         [btn showRedDotBadge];
     }
     else

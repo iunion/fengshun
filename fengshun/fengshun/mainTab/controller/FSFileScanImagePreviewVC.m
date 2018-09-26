@@ -11,6 +11,8 @@
 #import "FSScrollPageView.h"
 #import "MBProgressHUD.h"
 #import "TOCropViewController.h"
+#import <Photos/PHPhotoLibrary.h>
+#import <Photos/PHAssetChangeRequest.h>
 
 
 @interface
@@ -199,8 +201,17 @@ FSFileScanImagePreviewVC ()
         // 保存到相册
         case 2:
         {
-#warning 保存到相册
-            [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:@"已保存到相册" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+                if ([self.m_selectedImageFile.previewImage bm_isNotEmpty]) {
+                    [PHAssetChangeRequest creationRequestForAssetFromImage:self.m_selectedImageFile.previewImage];
+                }
+            } completionHandler:^(BOOL success, NSError * _Nullable error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSString *message = success ? @"已保存到相册" :@"保存出错";
+                    [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                });
+                
+            }];
         }
 
             break;

@@ -11,6 +11,7 @@
 #import "FSVideoMediateListCell.h"
 #import "FSMakeVideoMediateVC.h"
 #import "FSVideoMediateDetailVC.h"
+#import "FSVideoStartTool.h"
 
 @interface FSVideoMediateListVC ()
 {
@@ -21,7 +22,7 @@
 @property (nonatomic, strong) NSString *meetingStatusEnums;
 @property (nonatomic, strong) FSHeaderCommonSelectorView *headSelector;
 @property (nonatomic, strong) UIView *BottomBgView;
-
+@property (nonatomic, strong) FSMeetingDetailModel *deleteModel;
 
 @end
 
@@ -46,7 +47,7 @@
     self.meetingTypeEnums = [FSMeetingDataEnum meetingTypeAllEnglish];
     self.meetingStatusEnums = [FSMeetingDataEnum meetingStatusAllEnglish];
 
-    if ([FSUserInfoModle isLogin]) {
+    if ([FSUserInfoModel isLogin]) {
         [self loadApiData];
     } else {
         [self showEmptyViewWithType:[self getNoDataEmptyViewType] customImageName:[self getNoDataEmptyViewCustomImageName] customMessage:[self getNoDataEmptyViewCustomMessage] customView:[self getNoDataEmptyViewCustomView]];
@@ -102,7 +103,7 @@
 
 - (void)createVideoMediateAction
 {
-    if (![FSUserInfoModle isLogin])
+    if (![FSUserInfoModel isLogin])
     {
         loginAndCreate = YES;
         [self showLogin];
@@ -128,7 +129,7 @@
 
 - (BOOL)needCertification
 {
-    if ([FSUserInfoModle isCertification]) {
+    if ([FSUserInfoModel isCertification]) {
         return NO;
     }
     
@@ -153,7 +154,7 @@
     
     if (loginAndCreate) {
         loginAndCreate = NO;
-        if ([FSUserInfoModle isCertification]) {
+        if ([FSUserInfoModel isCertification]) {
             [self makeVideoMediate];
         } else {
             // 登上一个文件dismiss以后才能再present
@@ -218,6 +219,53 @@
     return cell;
 }
 
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"UITableViewCellEditingStyle = %@", @(editingStyle));
+    self.deleteModel = self.m_DataArray[indexPath.row];
+    [self deleteAction];
+}
+
+- (void)deleteAction
+{
+    UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"删除" message:@"确定要删除吗？" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        [self sendDeleteRequest];
+    }];
+    [vc addAction:action];
+    
+    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    [vc addAction:action2];
+    
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)sendDeleteRequest
+{
+    BMWeakSelf
+    
+    [FSVideoStartTool deleteMeetingWithMeetingId:self.deleteModel.meetingId progressHUD:self.m_ProgressHUD completionHandler:^(NSURLResponse *response, id  _Nullable responseObject, NSError * _Nullable error) {
+        NSDictionary *resDic = responseObject;
+        NSInteger statusCode = [resDic bm_intForKey:@"code"];
+        if (statusCode == 1000)
+        {
+            [weakSelf.m_ProgressHUD showAnimated:YES withText:@"删除成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            [weakSelf loadApiData];
+            weakSelf.deleteModel = nil;
+        }
+    }];
+}
 
 #pragma mark -
 #pragma mark UITableViewDelegate

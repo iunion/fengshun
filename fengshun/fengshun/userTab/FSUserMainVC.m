@@ -128,7 +128,7 @@
 
 - (void)messageAction:(id)sender
 {
-    if ([FSUserInfoModle isLogin])
+    if ([FSUserInfoModel isLogin])
     {
         [FSPushVCManager showMessageVC:self];
     }
@@ -147,7 +147,7 @@
     BMWeakSelf
     self.m_TopicItem = [BMTableViewItem itemWithTitle:@"我的帖子" imageName:@"user_topicicon" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
-        if ([FSUserInfoModle isLogin])
+        if ([FSUserInfoModel isLogin])
         {
             FSMyTopicVC *myTopicVC = [[FSMyTopicVC alloc] init];
             myTopicVC.hidesBottomBarWhenPushed = YES;
@@ -166,7 +166,7 @@
 
     self.m_CommentItem = [BMTableViewItem itemWithTitle:@"我的评论" imageName:@"user_commenticon" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
-        if ([FSUserInfoModle isLogin])
+        if ([FSUserInfoModel isLogin])
         {
             FSMyCommentVC *myCommentVC = [[FSMyCommentVC alloc] init];
             myCommentVC.hidesBottomBarWhenPushed = YES;
@@ -185,7 +185,7 @@
 
     self.m_CollectItem = [BMTableViewItem itemWithTitle:@"我的收藏" imageName:@"user_collecticon" underLineDrawType:BMTableViewCell_UnderLineDrawType_None accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
-        if ([FSUserInfoModle isLogin])
+        if ([FSUserInfoModel isLogin])
         {
             FSMyCollectionTabVC *myCollectionTabVC = [[FSMyCollectionTabVC alloc] init];
             myCollectionTabVC.hidesBottomBarWhenPushed = YES;
@@ -278,9 +278,9 @@
 
 - (void)freshViews
 {
-    if ([FSUserInfoModle isLogin])
+    if ([FSUserInfoModel isLogin])
     {
-        FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
+        FSUserInfoModel *userInfo = [FSUserInfoModel userInfo];
         
         [self.m_AvatarImageView sd_setImageWithURL:[NSURL URLWithString:userInfo.m_UserBaseInfo.m_AvatarUrl] placeholderImage:[UIImage imageNamed:@"default_avatariconlarge"] options:SDWebImageRetryFailed|SDWebImageLowPriority];
         //self.m_AvatarImageView.image = [UIImage imageNamed:@"default_avatariconlarge"];
@@ -322,12 +322,12 @@
 
 - (void)freshApprove
 {
-    if ([FSUserInfoModle isLogin])
+    if ([FSUserInfoModel isLogin])
     {
         self.m_ApproveLabel.hidden = NO;
         self.m_ApproveBtn.hidden = NO;
         
-        FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
+        FSUserInfoModel *userInfo = [FSUserInfoModel userInfo];
         if (userInfo.m_UserBaseInfo.m_IsRealName)
         {
             self.m_ApproveLabel.backgroundColor = UI_COLOR_G1;
@@ -353,7 +353,7 @@
 {
     NSLog(@"loginAction");
     
-    if ([FSUserInfoModle isLogin])
+    if ([FSUserInfoModel isLogin])
     {
         FSCustomInfoVC *vc = [[FSCustomInfoVC alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
@@ -437,6 +437,7 @@
     {
         btn.badgeBgColor = UI_COLOR_R1;
         btn.badgeBorderWidth = 0.0f;
+        btn.badgeCenterOffset = CGPointMake(-7.0f, 7.0f);
         [btn showRedDotBadge];
     }
     else

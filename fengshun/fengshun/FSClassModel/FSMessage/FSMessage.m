@@ -8,9 +8,9 @@
 
 #import "FSMessage.h"
 
-@implementation FSCommentMessageModle
+@implementation FSCommentMessageModel
 
-+ (instancetype)commentMessageModleWithServerDic:(NSDictionary *)dic
++ (instancetype)commentMessageModelWithServerDic:(NSDictionary *)dic
 {
     if (![dic bm_isNotEmptyDictionary])
     {
@@ -23,12 +23,12 @@
         return nil;
     }
     
-    FSCommentMessageModle *commentMessageModle = [[FSCommentMessageModle alloc] init];
-    [commentMessageModle updateWithServerDic:dic];
+    FSCommentMessageModel *commentMessageModel = [[FSCommentMessageModel alloc] init];
+    [commentMessageModel updateWithServerDic:dic];
     
-    if ([commentMessageModle.m_MessageId bm_isNotEmpty])
+    if ([commentMessageModel.m_MessageId bm_isNotEmpty])
     {
-        return commentMessageModle;
+        return commentMessageModel;
     }
     else
     {
@@ -140,9 +140,9 @@
 
 @end
 
-@implementation FSNoticeMessageModle
+@implementation FSNoticeMessageModel
 
-+ (instancetype)noticeMessageModleWithServerDic:(NSDictionary *)dic
++ (instancetype)noticeMessageModelWithServerDic:(NSDictionary *)dic
 {
     if (![dic bm_isNotEmptyDictionary])
     {
@@ -155,12 +155,12 @@
         return nil;
     }
     
-    FSNoticeMessageModle *noticeMessageModle = [[FSNoticeMessageModle alloc] init];
-    [noticeMessageModle updateWithServerDic:dic];
+    FSNoticeMessageModel *noticeMessageModel = [[FSNoticeMessageModel alloc] init];
+    [noticeMessageModel updateWithServerDic:dic];
     
-    if ([noticeMessageModle.m_NoticeId bm_isNotEmpty])
+    if ([noticeMessageModel.m_NoticeId bm_isNotEmpty])
     {
-        return noticeMessageModle;
+        return noticeMessageModel;
     }
     else
     {

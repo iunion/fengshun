@@ -24,7 +24,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *m_FloorLabel;
 
-@property (nonatomic, strong) FSCommentMessageModle *m_Modle;
+@property (nonatomic, strong) FSCommentMessageModel *m_Model;
 
 @end
 
@@ -72,9 +72,9 @@
     // Configure the view for the selected state
 }
 
-- (void)drawCellWithModle:(FSCommentMessageModle *)model
+- (void)drawCellWithModel:(FSCommentMessageModel *)model
 {
-    self.m_Modle = model;
+    self.m_Model = model;
     
     [self.m_AvatarImageView sd_setImageWithURL:[NSURL URLWithString:model.m_RelationUserAvatarUrl] placeholderImage:[UIImage imageNamed:@"default_avataricon"] options:SDWebImageRetryFailed|SDWebImageLowPriority];
 

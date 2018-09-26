@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FSUserInfoModle.h"
+#import "FSUserInfoModel.h"
 
 @interface FSUserInfoDB : NSObject
 
@@ -20,8 +20,8 @@
 // 重建数据库
 + (BOOL)reCreateUserInfoDB;
 
-+ (FSUserInfoModle *)getUserInfoWithUserId:(NSString *)userId;
++ (FSUserInfoModel *)getUserInfoWithUserId:(NSString *)userId;
 
-+ (BOOL)insertAndUpdateUserInfo:(FSUserInfoModle *)userInfo;
++ (BOOL)insertAndUpdateUserInfo:(FSUserInfoModel *)userInfo;
 
 @end

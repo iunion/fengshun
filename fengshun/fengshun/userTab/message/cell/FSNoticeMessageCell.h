@@ -11,9 +11,9 @@
 
 @interface FSNoticeMessageCell : UITableViewCell
 
-@property (nonatomic, strong, readonly) FSNoticeMessageModle *m_Modle;
+@property (nonatomic, strong, readonly) FSNoticeMessageModel *m_Model;
 
-- (void)drawCellWithModle:(FSNoticeMessageModle *)model;
+- (void)drawCellWithModel:(FSNoticeMessageModel *)model;
 
 + (CGFloat)cellHeight;
 

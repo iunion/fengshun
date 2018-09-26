@@ -290,11 +290,12 @@ FSOCRSearchResultVC ()
 {
     if (_m_ocrSearchType)
     {
-        return [FSApiRequest searchLawsWithKeywords:_m_keywords start:_m_lawSearchResultModel.m_resultDataArray.count size:self.m_CountPerPage filters:@[]];
+        return [FSApiRequest searchLawsWithKeywords:_m_keywords start:s_BakLoadedPage size:self.m_CountPerPage filters:@[]];
     }
     else
     {
-        return [FSApiRequest searchCaseWithKeywords:_m_keywords start:_m_caseSearchResultModel.m_resultDataArray.count size:self.m_CountPerPage filters:@[]];
+        
+        return [FSApiRequest searchCaseWithKeywords:_m_keywords start:s_BakLoadedPage size:self.m_CountPerPage filters:@[]];
     }
 }
 

@@ -13,6 +13,8 @@
 #import "MBProgressHUD.h"
 #import "UIScrollView+BMEmpty.h"
 #import "TOCropViewController.h"
+#import <Photos/PHPhotoLibrary.h>
+#import <Photos/PHAssetChangeRequest.h>
 
 
 @interface FSFileScanVC ()
@@ -136,12 +138,15 @@
         [self bm_setNavigationBarTitle:[NSString stringWithFormat:@"已选（%lu）",(unsigned long)_m_selectedImageFiles.count]];
     }
     [_m_collectionView reloadData];
+    UIButton *rightButton = [self bm_getNavigationRightItemAtIndex:0];
     if ([_m_allImageFiles bm_isNotEmpty]) {
         [_m_collectionView hideEmptyView];
+        rightButton.hidden = NO;
     }
     else
     {
         [_m_collectionView showEmptyViewWithType:BMEmptyViewType_Ocr];
+        rightButton.hidden = YES;
     }
 }
 - (IBAction)pickImageFile:(id)sender
@@ -163,12 +168,25 @@
 }
 - (void)saveImagesToLocal
 {
-#warning 保存到相册
+    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+        for (FSImageFileModel *model in self.m_selectedImageFiles) {
+            if ([model.previewImage bm_isNotEmpty]) {
+                [PHAssetChangeRequest creationRequestForAssetFromImage:model.previewImage];
+            }
+        }
+    } completionHandler:^(BOOL success, NSError * _Nullable error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString *message = success ? @"已保存到相册" :@"保存出错";
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        });
+        
+    }];
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:@"已保存到相册" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+    
 }
 - (IBAction)toolButtonAction:(UIButton *)sender {
     if (![_m_selectedImageFiles bm_isNotEmpty]) {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:@"请选择图片" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         return;
     }
     switch (sender.tag) {

@@ -11,14 +11,14 @@
 
 #define GetAppDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
-@class FSUserInfoModle, FSSetTableViewVC;
+@class FSUserInfoModel, FSSetTableViewVC;
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
 @property (nonatomic, strong) FSTabBarController *m_TabBarController;
 
-@property (nonatomic, strong) FSUserInfoModle *m_UserInfo;
+@property (nonatomic, strong) FSUserInfoModel *m_UserInfo;
 
 // 用户擅长领域数据
 @property (nonatomic, strong) NSMutableArray *m_Globle_UserAbilityInfo;

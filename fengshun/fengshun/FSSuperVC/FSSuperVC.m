@@ -161,7 +161,7 @@
 // 弹出登录
 - (BOOL)showLogin
 {
-    if ([FSUserInfoModle isLogin])
+    if ([FSUserInfoModel isLogin])
     {
         return NO;
     }
@@ -195,7 +195,7 @@
 // 弹出认证
 - (void)pushAuthentication
 {
-    if ([FSUserInfoModle isCertification])
+    if ([FSUserInfoModel isCertification])
     {
         return;
     }

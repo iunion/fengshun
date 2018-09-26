@@ -18,11 +18,6 @@
 
 @end
 
-@interface FSCollectionTextModel : FSTextModel
-
-@property (nonatomic, copy)NSString *m_collectionId;
-@end
-
 @interface FSListTextModel : FSTextModel
 
 @property (nonatomic, copy)NSString *m_typeCode; // 与FSTextTypeModel对应
