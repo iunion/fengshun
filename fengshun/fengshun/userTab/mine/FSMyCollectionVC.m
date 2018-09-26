@@ -36,8 +36,8 @@
     // Do any additional setup after loading the view.
     
     self.m_LoadDataType = FSAPILoadDataType_Page;
-    self.m_TableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    self.m_TableView.tableFooterView = [UIView new];
+    //self.m_TableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    //self.m_TableView.tableFooterView = [UIView new];
     self.m_TableView.estimatedRowHeight = 180;
     switch (self.m_CollectionType)
     {
@@ -100,7 +100,21 @@
             {
                 [self.m_DataArray removeAllObjects];
             }
+
+            FSMyCollectionModel *firstModel = [self.m_DataArray firstObject];
+            if (!firstModel)
+            {
+                firstModel = [dataArray firstObject];
+            }
+            FSMyCollectionModel *oldLastModel = [self.m_DataArray lastObject];
+            firstModel.m_PositionType |= BMTableViewCell_PositionType_First;
+            oldLastModel.m_PositionType &= !BMTableViewCell_PositionType_Last;
+            
             [self.m_DataArray addObjectsFromArray:dataArray];
+            
+            FSMyCollectionModel *lastModel = [self.m_DataArray lastObject];
+            lastModel.m_PositionType |= BMTableViewCell_PositionType_Last;
+
             [self.m_TableView reloadData];
         }
     }

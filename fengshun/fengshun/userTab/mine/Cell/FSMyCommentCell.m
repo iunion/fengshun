@@ -8,6 +8,7 @@
 
 #import "FSMyCommentCell.h"
 #import "NSDate+BMCategory.h"
+#import "BMSingleLineView.h"
 
 
 @interface FSMyCommentCell ()
@@ -23,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *m_SourceLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *m_CommentBtn;
+
+@property (nonatomic, strong) BMSingleLineView *m_UnderLineView;
 
 @end
 
@@ -60,6 +63,11 @@
     
     [self.m_CommentBtn setTitleColor:[UIColor bm_colorWithHex:0x999999] forState:UIControlStateNormal];
     self.m_CommentBtn.titleLabel.font = [UIFont systemFontOfSize:10.0f];
+    
+    CGRect underLineFrame = CGRectMake(15.0f, self.contentView.bm_bottom, UI_SCREEN_WIDTH-30.0f, 1);
+    self.m_UnderLineView = [[BMSingleLineView alloc] initWithFrame:underLineFrame];
+    self.m_UnderLineView.lineColor = UI_DEFAULT_LINECOLOR;
+    [self addSubview:self.m_UnderLineView];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -90,6 +98,8 @@
     self.m_SourceLabel.attributedText = atrString;
     
     [self.m_CommentBtn setTitle:@"0" forState:UIControlStateNormal];
+
+    self.m_UnderLineView.hidden = model.m_PositionType & BMTableViewCell_PositionType_Last;
 }
 
 @end

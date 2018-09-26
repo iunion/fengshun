@@ -7,6 +7,7 @@
 //
 
 #import "FSMyCollectionCell.h"
+#import "BMSingleLineView.h"
 
 @interface FSMyCollectionCell ()
 
@@ -21,6 +22,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *m_CommentCountBtn;
 
+@property (nonatomic, strong) BMSingleLineView *m_UnderLineView;
 
 @end
 
@@ -58,6 +60,11 @@
     
     [self.m_CommentCountBtn setTitleColor:[UIColor bm_colorWithHex:0x999999] forState:UIControlStateNormal];
     self.m_CommentCountBtn.titleLabel.font = [UIFont systemFontOfSize:10.0f];
+    
+    CGRect underLineFrame = CGRectMake(15.0f, self.contentView.bm_bottom, UI_SCREEN_WIDTH-30.0f, 1);
+    self.m_UnderLineView = [[BMSingleLineView alloc] initWithFrame:underLineFrame];
+    self.m_UnderLineView.lineColor = UI_DEFAULT_LINECOLOR;
+    [self addSubview:self.m_UnderLineView];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -83,6 +90,8 @@
     self.m_SourceLabel.bm_width = size.width+12.0f;
     
     [self.m_CommentCountBtn setTitle:[NSString stringWithFormat:@"%@", @(model.m_CommentCount)] forState:UIControlStateNormal];
+    
+    self.m_UnderLineView.hidden = model.m_PositionType & BMTableViewCell_PositionType_Last;
 }
 
 @end

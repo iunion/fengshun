@@ -24,9 +24,11 @@
 
     self.m_LoadDataType = FSAPILoadDataType_Page;
     
-    self.m_TableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    self.m_TableView.separatorInset = UIEdgeInsetsMake(0, 14, 0, 14);
-    self.m_TableView.tableFooterView = [UIView new];
+    //self.m_TableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    //self.m_TableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    //self.m_TableView.separatorInset = UIEdgeInsetsMake(0, 14, 0, 14);
+    //self.m_TableView.tableFooterView = [UIView new];
+    
     [self loadApiData];
 }
 
@@ -62,7 +64,21 @@
             {
                 [self.m_DataArray removeAllObjects];
             }
+            
+            FSMyCommentModel *firstModel = [self.m_DataArray firstObject];
+            if (!firstModel)
+            {
+                firstModel = [topicArray firstObject];
+            }
+            FSMyCommentModel *oldLastModel = [self.m_DataArray lastObject];
+            firstModel.m_PositionType |= BMTableViewCell_PositionType_First;
+            oldLastModel.m_PositionType &= !BMTableViewCell_PositionType_Last;
+            
             [self.m_DataArray addObjectsFromArray:topicArray];
+            
+            FSMyCommentModel *lastModel = [self.m_DataArray lastObject];
+            lastModel.m_PositionType |= BMTableViewCell_PositionType_Last;
+            
             [self.m_TableView reloadData];
         }
     }

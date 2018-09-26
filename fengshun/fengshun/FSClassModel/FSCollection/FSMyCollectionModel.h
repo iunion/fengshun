@@ -7,11 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BMTableViewManagerDefine.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 // 我的收藏
 @interface FSMyCollectionModel : NSObject
+
+@property (nonatomic, assign) BMTableViewCell_PositionType m_PositionType;
 
 // 收藏类型
 @property (nonatomic, assign) FSCollectionType m_CollectionType;
@@ -48,6 +51,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 我的评论
 @interface FSMyCommentModel : NSObject
+
+@property (nonatomic, assign) BMTableViewCell_PositionType m_PositionType;
 
 // 评论id: commentId
 @property (nonatomic, strong) NSString *m_CommentId;
