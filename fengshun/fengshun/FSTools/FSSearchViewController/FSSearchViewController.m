@@ -77,7 +77,6 @@
             case FSSearchResultType_laws:
                 _resultView = [[FSLawSearchResultView alloc]initWithFrame:self.view.bounds];
                 break;
-
             case FSSearchResultType_case:
                 _resultView = [[FSCaseSearchResultView alloc] initWithFrame:self.view.bounds];
                 break;
@@ -163,7 +162,7 @@
 - (void)makeSearchHistoriesView
 {
     self.searchHistoriesTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT)];
-    self.searchHistoriesTableView.backgroundColor = [UIColor clearColor];
+    self.searchHistoriesTableView.backgroundColor = [UIColor whiteColor];
     self.searchHistoriesTableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     self.searchHistoriesTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.searchHistoriesTableView];
@@ -190,9 +189,9 @@
     
         _m_OCRButton.layer.masksToBounds = NO;
         _m_OCRButton.layer.shadowOffset = CGSizeZero;//阴影的偏移量
-        _m_OCRButton.layer.shadowRadius = 20;
-        _m_OCRButton.layer.shadowOpacity = 0.2;                        //阴影的不透明度
-        _m_OCRButton.layer.shadowColor = [UIColor blueColor].CGColor;
+        _m_OCRButton.layer.shadowRadius = 10;
+        _m_OCRButton.layer.shadowOpacity = 0.9;                        //阴影的不透明度
+        _m_OCRButton.layer.shadowColor = [_m_OCRButton backgroundColor].CGColor;
 //        UIBezierPath * path = [UIBezierPath bezierPathWithRoundedRect:_m_OCRButton.bounds cornerRadius:20];
         //阴影路径
 //        _m_OCRButton.layer.shadowPath = path.CGPath;
@@ -209,7 +208,7 @@
         [_m_OCRButton addSubview:line];
         UILabel *label   = [[UILabel alloc] initWithFrame:CGRectMake(line.bm_right + 9, 0, _m_OCRButton.bm_width - line.bm_right - 9, 20)];
         label.bm_centerY = buttonTag.bm_centerY;
-        label.font       = [UIFont systemFontOfSize:16];
+        label.font       = [UIFont boldSystemFontOfSize:16];
         label.textColor  = [UIColor whiteColor];
         label.text       = @"拍照识别";
         [_m_OCRButton addSubview:label];
