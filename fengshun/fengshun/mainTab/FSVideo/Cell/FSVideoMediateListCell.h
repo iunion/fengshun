@@ -9,10 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "FSVideoMediateModel.h"
 
+@protocol FSVideoMediateListCellDelegate;
+
 @interface FSVideoMediateListCell : UITableViewCell
 
 @property (nonatomic, strong) UIView *m_BGView;
 
 @property (nonatomic, strong) FSMeetingDetailModel *model;
 
+@property (weak, nonatomic) id<FSVideoMediateListCellDelegate> delegate;
+
+@end
+
+
+@protocol FSVideoMediateListCellDelegate <NSObject>
+- (void)didDeleteVideoMediate:(FSVideoMediateListCell *)cell;
 @end
