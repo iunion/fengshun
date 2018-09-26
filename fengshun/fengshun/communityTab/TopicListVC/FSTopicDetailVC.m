@@ -44,9 +44,7 @@ FSReportViewDelegate
 
     [self bm_setNavigationWithTitle:@"" barTintColor:nil leftDicArray:nil rightDicArray:@[ [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"community_more" toucheEvent:@"moreAction" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0]]];
     
-    self.m_ProgressHUD = [[MBProgressHUD alloc] initWithView:self.view];
-    self.m_ProgressHUD.animationType = MBProgressHUDAnimationFade;
-    [self.view addSubview:self.m_ProgressHUD];
+    [self bringSomeViewToFront];
     
 }
 

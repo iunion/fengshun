@@ -298,7 +298,6 @@
     UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
     NSString *oldAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
     BMLog(@"old agent :%@", oldAgent);
-    
     NSRange rang = [oldAgent rangeOfString:USER_AGENT_TAG];
     
     if (rang.length > 0)
@@ -310,22 +309,23 @@
     
     NSMutableDictionary *agentDic = [[NSMutableDictionary alloc] init];
     FSUserInfoModel *userInfo = GetAppDelegate.m_UserInfo;
-    [agentDic bm_setString:[FSAppInfo getOpenUDID] forKey:@"deviceId"];
-    // 设备号
-    [agentDic bm_setString:[UIDevice bm_devicePlatformString] forKey:@"deviceModel"];
-    // 设备系统类型
-    [agentDic bm_setString:@"iOS" forKey:@"cType"];
-    // 系统版本号
-    [agentDic bm_setString:CURRENT_SYSTEMVERSION forKey:@"osVersion"];
-    // app名称
-    [agentDic bm_setString:FSAPP_APPNAME forKey:@"appName"];
-    // app版本
-    [agentDic bm_setString:APP_VERSIONNO forKey:@"appVersion"];
-    // 渠道 "App Store"
-    [agentDic bm_setString:[FSAppInfo catchChannelName] forKey:@"channelCode"];
-    [agentDic bm_setString:[FSCoreStatus currentFSNetWorkStatusString] forKey:@"netWorkStandard"];
     if ([userInfo.m_Token bm_isNotEmpty])
     {
+        [agentDic bm_setString:[FSAppInfo getOpenUDID] forKey:@"deviceId"];
+        // 设备号
+        [agentDic bm_setString:[UIDevice bm_devicePlatformString] forKey:@"deviceModel"];
+        // 设备系统类型
+        [agentDic bm_setString:@"iOS" forKey:@"cType"];
+        // 系统版本号
+        [agentDic bm_setString:CURRENT_SYSTEMVERSION forKey:@"osVersion"];
+        // app名称
+        [agentDic bm_setString:FSAPP_APPNAME forKey:@"appName"];
+        // app版本
+        [agentDic bm_setString:APP_VERSIONNO forKey:@"appVersion"];
+        // 渠道 "App Store"
+        [agentDic bm_setString:[FSAppInfo catchChannelName] forKey:@"channelCode"];
+        [agentDic bm_setString:[FSCoreStatus currentFSNetWorkStatusString] forKey:@"netWorkStandard"];
+        
         [agentDic bm_setString:userInfo.m_Token forKey:@"JWTToken"];
     }
     
@@ -561,32 +561,7 @@
 
 - (void)registerJSHandler
 {
-    BMWeakSelf
     
-    // 登录
-    [self.m_WebView registerHandler:@"toLogin" handler:^(id data, WVJBResponseCallback responseCallback) {
-        BMLog(@"login called: %@", data);
-        //responseCallback(@"Response from register");
-        
-        [weakSelf showLogin];
-    }];
-    
-    // 分享 （是否显示）
-    [self.m_WebView registerHandler:@"toShare" handler:^(id data, WVJBResponseCallback responseCallback) {
-        BMLog(@"share called: %@", data);
-        //responseCallback(@"Response from register");
-        
-        NSDictionary *shareDic = (NSDictionary *)data;
-        
-        NSString *shareItemId = [shareDic bm_stringTrimForKey:@"id"];
-        NSString *shareType = [shareDic bm_stringTrimForKey:@"type"];
-        
-        if ([shareItemId bm_isNotEmpty] && [shareType bm_isNotEmpty])
-        {
-            [weakSelf sendGetShareDataWithShareItemId:shareItemId shareType:shareType];
-        }
-        
-    }];
 
 #if 0
     // 分享
@@ -608,7 +583,7 @@
         NSString *url = [shareDic bm_stringTrimForKey:@"share_url"];
         [weakSelf shareSDKWithTitle:title shareImage:image content:shareText shareUrlStr:url];
     }];
-#endif
+
     
     // 跳转页
     [self.m_WebView registerHandler:@"showtab" handler:^(id data, WVJBResponseCallback responseCallback) {
@@ -644,6 +619,33 @@
         {
             [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"复制失败" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         }
+    }];
+#endif
+    
+    BMWeakSelf
+    // 登录
+    [self.m_WebView registerHandler:@"toLogin" handler:^(id data, WVJBResponseCallback responseCallback) {
+        BMLog(@"login called: %@", data);
+        //responseCallback(@"Response from register");
+        
+        [weakSelf showLogin];
+    }];
+    
+    // 分享 （是否显示）
+    [self.m_WebView registerHandler:@"toShare" handler:^(id data, WVJBResponseCallback responseCallback) {
+        BMLog(@"share called: %@", data);
+        //responseCallback(@"Response from register");
+        
+        NSDictionary *shareDic = (NSDictionary *)data;
+        
+        NSString *shareItemId = [shareDic bm_stringTrimForKey:@"id"];
+        NSString *shareType = [shareDic bm_stringTrimForKey:@"type"];
+        
+        if ([shareItemId bm_isNotEmpty] && [shareType bm_isNotEmpty])
+        {
+            [weakSelf sendGetShareDataWithShareItemId:shareItemId shareType:shareType];
+        }
+        
     }];
     // 举报
     [self.m_WebView registerHandler:@"toReport" handler:^(id data, WVJBResponseCallback responseCallback) {

@@ -12,7 +12,6 @@
 #import "FSUserMainVC.h"
 //#import "FSH5DemoVC.h"
 #import "FSCourseHomePageVC.h"
-#import "WebViewVC.h"
 
 //正常色
 #define ITEM_NOR_COLOR [UIColor bm_colorWithHex:0x979797]
