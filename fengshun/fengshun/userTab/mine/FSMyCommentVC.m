@@ -7,9 +7,7 @@
 //
 
 #import "FSMyCommentVC.h"
-//#import "FSTopicListCell.h"
 #import "FSMyCommentCell.h"
-
 
 @interface FSMyCommentVC ()
 
@@ -52,7 +50,7 @@
         
         for (NSDictionary *dic in topicDicArray)
         {
-            FSCommentListModel *message = [FSCommentListModel commentModelWithDic:dic];
+            FSMyCommentModel *message = [FSMyCommentModel myCommentModelWithDic:dic];
             if ([message bm_isNotEmpty])
             {
                 [topicArray addObject:message];
@@ -95,7 +93,7 @@
     {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"FSMyCommentCell" owner:self options:nil] lastObject];
     }
-    [cell showWithCommentModel:self.m_DataArray[indexPath.row]];
+    [cell drawCellWithModel:self.m_DataArray[indexPath.row]];
     
     return cell;
 }
@@ -107,7 +105,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    FSCommentListModel *model = self.m_DataArray[indexPath.row];
+    FSMyCommentModel *model = self.m_DataArray[indexPath.row];
     [FSPushVCManager showWebView:self url:model.m_JumpAddress title:nil];
 }
 
@@ -115,6 +113,5 @@
 {
     return BMEmptyViewType_Comment;
 }
-
 
 @end

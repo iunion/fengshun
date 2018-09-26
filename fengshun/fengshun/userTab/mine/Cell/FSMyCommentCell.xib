@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,60 +11,70 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="116" id="KGk-i7-Jjw" customClass="FSMyCommentCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="116"/>
+        <tableViewCell contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" rowHeight="150" id="KGk-i7-Jjw" customClass="FSMyCommentCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="115.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="149.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F6o-Lf-zWw">
-                        <rect key="frame" x="14" y="20" width="31" height="14.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sDw-CR-Jrm">
-                        <rect key="frame" x="276" y="8" width="30" height="38"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <state key="normal" title="12">
-                            <color key="titleColor" red="0.53725490196078429" green="0.53725490196078429" blue="0.53725490196078429" alpha="1" colorSpace="calibratedRGB"/>
-                        </state>
-                    </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebU-tl-zO4">
-                        <rect key="frame" x="14" y="56" width="292" height="14.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7OV-ba-nwy">
-                        <rect key="frame" x="14" y="80.5" width="292" height="14.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <view contentMode="scaleToFill" misplaced="YES" id="gCs-3h-lAB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" id="xcH-GF-ASk">
+                                <rect key="frame" x="15" y="15" width="290" height="20"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cPK-w1-AGK">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="OCm-PX-FOC">
+                                        <rect key="frame" x="230" y="0.0" width="60" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <inset key="titleEdgeInsets" minX="6" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="999" image="community_comment_white">
+                                            <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tdX-cn-E9q">
+                                <rect key="frame" x="15" y="50" width="290" height="50"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Or9-Dl-5iv">
+                                <rect key="frame" x="15" y="110" width="290" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
                 </subviews>
-                <constraints>
-                    <constraint firstItem="7OV-ba-nwy" firstAttribute="width" secondItem="ebU-tl-zO4" secondAttribute="width" id="8hc-0k-Kr9"/>
-                    <constraint firstAttribute="trailing" secondItem="sDw-CR-Jrm" secondAttribute="trailing" constant="14" id="Jxf-3K-QJq"/>
-                    <constraint firstAttribute="bottom" secondItem="7OV-ba-nwy" secondAttribute="bottom" constant="20" id="MoQ-I1-PeW"/>
-                    <constraint firstItem="ebU-tl-zO4" firstAttribute="leading" secondItem="F6o-Lf-zWw" secondAttribute="leading" id="TRB-br-r2p"/>
-                    <constraint firstItem="sDw-CR-Jrm" firstAttribute="centerY" secondItem="F6o-Lf-zWw" secondAttribute="centerY" id="Ttm-jx-wrh"/>
-                    <constraint firstItem="F6o-Lf-zWw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="XBO-NJ-MxE"/>
-                    <constraint firstItem="7OV-ba-nwy" firstAttribute="top" secondItem="ebU-tl-zO4" secondAttribute="bottom" constant="10" id="awH-Eg-sox"/>
-                    <constraint firstItem="ebU-tl-zO4" firstAttribute="trailing" secondItem="sDw-CR-Jrm" secondAttribute="trailing" id="iiP-d8-4vk"/>
-                    <constraint firstItem="7OV-ba-nwy" firstAttribute="leading" secondItem="ebU-tl-zO4" secondAttribute="leading" id="lCg-kE-8E9"/>
-                    <constraint firstItem="F6o-Lf-zWw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="tZl-wY-AQP"/>
-                    <constraint firstItem="ebU-tl-zO4" firstAttribute="top" secondItem="sDw-CR-Jrm" secondAttribute="bottom" constant="10" id="x1M-fE-2AY"/>
-                </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="m_CommentBtn" destination="sDw-CR-Jrm" id="TbB-i5-SCp"/>
-                <outlet property="m_ContentLab" destination="ebU-tl-zO4" id="YeC-rL-jyW"/>
-                <outlet property="m_TimeLab" destination="F6o-Lf-zWw" id="Szg-nG-vWh"/>
-                <outlet property="m_TitleLab" destination="7OV-ba-nwy" id="y0G-f5-j9a"/>
+                <outlet property="m_BgView" destination="gCs-3h-lAB" id="gWL-AM-dIg"/>
+                <outlet property="m_CommentBtn" destination="OCm-PX-FOC" id="scc-0X-9tF"/>
+                <outlet property="m_ContentLabel" destination="tdX-cn-E9q" id="I73-sn-V35"/>
+                <outlet property="m_SourceLabel" destination="Or9-Dl-5iv" id="DmH-9k-05W"/>
+                <outlet property="m_TimeLabel" destination="cPK-w1-AGK" id="Ngc-5K-2md"/>
             </connections>
-            <point key="canvasLocation" x="9" y="217"/>
+            <point key="canvasLocation" x="-314" y="-249"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="community_comment_white" width="14" height="14"/>
+    </resources>
 </document>

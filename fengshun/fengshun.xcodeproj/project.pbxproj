@@ -463,12 +463,16 @@
 		87426AF521353510003C52F6 /* FSDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AF321353510003C52F6 /* FSDB.m */; };
 		87426AF621353510003C52F6 /* FSDBVersionCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AF421353510003C52F6 /* FSDBVersionCheck.m */; };
 		87426AF9213536AC003C52F6 /* FSUserInfoDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AF8213536AC003C52F6 /* FSUserInfoDB.m */; };
-		874C23A9215B2400001C8BE9 /* FSCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 874C23A8215B2400001C8BE9 /* FSCollectionModel.m */; };
-		874C23AA215B2400001C8BE9 /* FSCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 874C23A8215B2400001C8BE9 /* FSCollectionModel.m */; };
+		874C23A9215B2400001C8BE9 /* FSMyCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 874C23A8215B2400001C8BE9 /* FSMyCollectionModel.m */; };
+		874C23AA215B2400001C8BE9 /* FSMyCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 874C23A8215B2400001C8BE9 /* FSMyCollectionModel.m */; };
 		874C23AE215B288F001C8BE9 /* FSMyCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 874C23AC215B288F001C8BE9 /* FSMyCollectionCell.m */; };
 		874C23AF215B288F001C8BE9 /* FSMyCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 874C23AC215B288F001C8BE9 /* FSMyCollectionCell.m */; };
 		874C23B0215B288F001C8BE9 /* FSMyCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 874C23AD215B288F001C8BE9 /* FSMyCollectionCell.xib */; };
 		874C23B1215B288F001C8BE9 /* FSMyCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 874C23AD215B288F001C8BE9 /* FSMyCollectionCell.xib */; };
+		874C23B5215B4FF9001C8BE9 /* FSMyTopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 874C23B3215B4FF9001C8BE9 /* FSMyTopicCell.m */; };
+		874C23B6215B4FF9001C8BE9 /* FSMyTopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 874C23B3215B4FF9001C8BE9 /* FSMyTopicCell.m */; };
+		874C23B7215B4FF9001C8BE9 /* FSMyTopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 874C23B4215B4FF9001C8BE9 /* FSMyTopicCell.xib */; };
+		874C23B8215B4FF9001C8BE9 /* FSMyTopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 874C23B4215B4FF9001C8BE9 /* FSMyTopicCell.xib */; };
 		87741FDC214A0C8A00F72427 /* FSServiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87741FDA214A0C8A00F72427 /* FSServiceVC.m */; };
 		87741FDD214A0C8A00F72427 /* FSServiceVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87741FDB214A0C8A00F72427 /* FSServiceVC.xib */; };
 		87741FE3214A132200F72427 /* user_wechaticon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87741FDF214A132200F72427 /* user_wechaticon@3x.png */; };
@@ -2987,11 +2991,14 @@
 		87426AF421353510003C52F6 /* FSDBVersionCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSDBVersionCheck.m; sourceTree = "<group>"; };
 		87426AF7213536AC003C52F6 /* FSUserInfoDB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSUserInfoDB.h; sourceTree = "<group>"; };
 		87426AF8213536AC003C52F6 /* FSUserInfoDB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSUserInfoDB.m; sourceTree = "<group>"; };
-		874C23A7215B2400001C8BE9 /* FSCollectionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCollectionModel.h; sourceTree = "<group>"; };
-		874C23A8215B2400001C8BE9 /* FSCollectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCollectionModel.m; sourceTree = "<group>"; };
+		874C23A7215B2400001C8BE9 /* FSMyCollectionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMyCollectionModel.h; sourceTree = "<group>"; };
+		874C23A8215B2400001C8BE9 /* FSMyCollectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMyCollectionModel.m; sourceTree = "<group>"; };
 		874C23AB215B288F001C8BE9 /* FSMyCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMyCollectionCell.h; sourceTree = "<group>"; };
 		874C23AC215B288F001C8BE9 /* FSMyCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMyCollectionCell.m; sourceTree = "<group>"; };
 		874C23AD215B288F001C8BE9 /* FSMyCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSMyCollectionCell.xib; sourceTree = "<group>"; };
+		874C23B2215B4FF9001C8BE9 /* FSMyTopicCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMyTopicCell.h; sourceTree = "<group>"; };
+		874C23B3215B4FF9001C8BE9 /* FSMyTopicCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMyTopicCell.m; sourceTree = "<group>"; };
+		874C23B4215B4FF9001C8BE9 /* FSMyTopicCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSMyTopicCell.xib; sourceTree = "<group>"; };
 		87741FD72149FF5F00F72427 /* ExampleApp.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = ExampleApp.html; path = "../../../../gitHubs/WebViewJavascriptBridge/Example Apps/ExampleApp.html"; sourceTree = "<group>"; };
 		87741FD9214A0C8A00F72427 /* FSServiceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSServiceVC.h; sourceTree = "<group>"; };
 		87741FDA214A0C8A00F72427 /* FSServiceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSServiceVC.m; sourceTree = "<group>"; };
@@ -5919,8 +5926,8 @@
 		874C23A6215B23E5001C8BE9 /* FSCollection */ = {
 			isa = PBXGroup;
 			children = (
-				874C23A7215B2400001C8BE9 /* FSCollectionModel.h */,
-				874C23A8215B2400001C8BE9 /* FSCollectionModel.m */,
+				874C23A7215B2400001C8BE9 /* FSMyCollectionModel.h */,
+				874C23A8215B2400001C8BE9 /* FSMyCollectionModel.m */,
 			);
 			path = FSCollection;
 			sourceTree = "<group>";
@@ -7125,6 +7132,9 @@
 		AD671248215A59E20081E08D /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				874C23B2215B4FF9001C8BE9 /* FSMyTopicCell.h */,
+				874C23B3215B4FF9001C8BE9 /* FSMyTopicCell.m */,
+				874C23B4215B4FF9001C8BE9 /* FSMyTopicCell.xib */,
 				AD671241215A59DD0081E08D /* FSMyCommentCell.h */,
 				AD671243215A59DE0081E08D /* FSMyCommentCell.m */,
 				AD671242215A59DE0081E08D /* FSMyCommentCell.xib */,
@@ -7946,6 +7956,7 @@
 				DBD4CE902141229400857DB3 /* home_browseCount@2x.png in Resources */,
 				DB48742F2148DFFE00AB0805 /* FSTextTypeCell.xib in Resources */,
 				8730B1112148E5D1004331A9 /* fsfreshidle_icon5@2x.png in Resources */,
+				874C23B7215B4FF9001C8BE9 /* FSMyTopicCell.xib in Resources */,
 				AD2244DC213D158800F2DC47 /* FSForumDetailListCell.xib in Resources */,
 				87741FE6214A132200F72427 /* user_qqicon@3x.png in Resources */,
 				87D209732137F399001EDD60 /* FSUserMainVC.xib in Resources */,
@@ -8198,6 +8209,7 @@
 				87E7C55D21509AB000F7AB14 /* FSCaseCell.xib in Resources */,
 				DBF7E1A321524EDB002CEDA4 /* search_lawTopic_4@3x.png in Resources */,
 				87E7C55E21509AB000F7AB14 /* video_not_selected@3x.png in Resources */,
+				874C23B8215B4FF9001C8BE9 /* FSMyTopicCell.xib in Resources */,
 				87E7C56121509AB000F7AB14 /* jQuery.js in Resources */,
 				DBF7E19E21524EDB002CEDA4 /* search_lawTopic_2@2x.png in Resources */,
 				87E7C56321509AB000F7AB14 /* fsfreshidle_icon9@2x.png in Resources */,
@@ -8886,10 +8898,11 @@
 				87D9C60D21536A04009F8492 /* FSAboutVC.m in Sources */,
 				DB14A7AA2139247900E88798 /* FSCourseTableCell.m in Sources */,
 				874268E9212E7E36003C52F6 /* UIView+BMAnimationExtensions.m in Sources */,
-				874C23A9215B2400001C8BE9 /* FSCollectionModel.m in Sources */,
+				874C23A9215B2400001C8BE9 /* FSMyCollectionModel.m in Sources */,
 				AD510298213E560F008CD74D /* FSApiRequest+Community.m in Sources */,
 				8730B0772140FFA3004331A9 /* NSFileWrapper+DTCopying.m in Sources */,
 				87E7C69F2150A4E500F7AB14 /* TOCropView.m in Sources */,
+				874C23B5215B4FF9001C8BE9 /* FSMyTopicCell.m in Sources */,
 				87426AD12133D6CF003C52F6 /* FSTableView.m in Sources */,
 				87D20ACE213920E2001EDD60 /* FLEXWebViewController.m in Sources */,
 				87D20AB6213920E2001EDD60 /* FLEXManager.m in Sources */,
@@ -9104,7 +9117,7 @@
 				87E7C2B221509AB000F7AB14 /* FLEXGlobalsTableViewControllerEntry.m in Sources */,
 				87E7C2B321509AB000F7AB14 /* DTStripedLayerTile.m in Sources */,
 				87E7C2B421509AB000F7AB14 /* BMPickerItem.m in Sources */,
-				874C23AA215B2400001C8BE9 /* FSCollectionModel.m in Sources */,
+				874C23AA215B2400001C8BE9 /* FSMyCollectionModel.m in Sources */,
 				87E7C2B521509AB000F7AB14 /* DTAccessibilityViewProxy.m in Sources */,
 				87E7C2B621509AB000F7AB14 /* FLEXClassesTableViewController.m in Sources */,
 				87F639E321533C830035E730 /* FBObjectiveCNSCFTimer.mm in Sources */,
@@ -9402,6 +9415,7 @@
 				87E7C3CA21509AB000F7AB14 /* FSDB.m in Sources */,
 				87E7C3CB21509AB000F7AB14 /* FSImageFileCell.m in Sources */,
 				87E7C3CC21509AB000F7AB14 /* FLEXArgumentInputNotSupportedView.m in Sources */,
+				874C23B6215B4FF9001C8BE9 /* FSMyTopicCell.m in Sources */,
 				87E7C3CD21509AB000F7AB14 /* FSSetPhoneVC.m in Sources */,
 				87E7C3CE21509AB000F7AB14 /* UIView+DTActionHandlers.m in Sources */,
 				87E7C3CF21509AB000F7AB14 /* BMCheckBoxLabel.m in Sources */,

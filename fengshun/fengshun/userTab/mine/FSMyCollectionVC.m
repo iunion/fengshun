@@ -79,7 +79,7 @@
     
         for (NSDictionary *dic in dicArray)
         {
-            FSCollectionModel *collection = [FSCollectionModel collectionModelWithDic:dic];
+            FSMyCollectionModel *collection = [FSMyCollectionModel collectionModelWithDic:dic];
             if ([collection bm_isNotEmpty])
             {
                 collection.m_CollectionType = self.m_CollectionType;
@@ -133,7 +133,7 @@
             cell = [[[NSBundle mainBundle] loadNibNamed:@"FSMyCollectionCell" owner:self options:nil] lastObject];
         }
     
-        [cell showWithCollectionModel:self.m_DataArray[indexPath.row]];
+        [cell drawCellWithModel:self.m_DataArray[indexPath.row]];
         return cell;
 }
 
@@ -150,7 +150,7 @@
 #warning CollectionType
         case FSCollectionType_POSTS:
         {
-            FSCollectionModel *model = self.m_DataArray[indexPath.row];
+            FSMyCollectionModel *model = self.m_DataArray[indexPath.row];
             [FSPushVCManager showTopicDetail:[self.view.superview bm_viewController] topicId:model.m_DetailId];
         }
             break;

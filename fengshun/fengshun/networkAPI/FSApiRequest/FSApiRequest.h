@@ -39,6 +39,12 @@ typedef NS_ENUM(NSUInteger, FSCollectionType) {
     FSCollectionType_COURSE
 };
 
+typedef NS_ENUM(NSUInteger, FSCommentType) {
+    FSCommentType_POSTS = 0,
+    FSCommentType_COMMENT,
+    FSCommentType_COURSE
+};
+
 /**
  排序方式
  

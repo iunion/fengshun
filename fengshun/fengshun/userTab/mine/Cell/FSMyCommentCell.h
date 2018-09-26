@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FSMessage.h"
+#import "FSMyCollectionModel.h"
 
 @interface FSMyCommentCell : UITableViewCell
 
-- (void)showWithCommentModel:(FSCommentListModel *)model;
+@property (nonatomic, strong, readonly) FSMyCommentModel *m_Model;
+
+- (void)drawCellWithModel:(FSMyCommentModel *)model;
 
 @end

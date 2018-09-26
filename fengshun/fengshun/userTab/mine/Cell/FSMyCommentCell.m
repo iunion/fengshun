@@ -10,22 +10,56 @@
 #import "NSDate+BMCategory.h"
 
 
-@interface FSMyCommentCell()
-@property (weak, nonatomic) IBOutlet UILabel *m_TimeLab;
+@interface FSMyCommentCell ()
+
+@property (nonatomic, strong) FSMyCommentModel *m_Model;
+
+@property (weak, nonatomic) IBOutlet UIView *m_BgView;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *m_TimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *m_ContentLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *m_SourceLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *m_CommentBtn;
-@property (weak, nonatomic) IBOutlet UILabel *m_ContentLab;
-@property (weak, nonatomic) IBOutlet UILabel *m_TitleLab;
-
 
 @end
 
 @implementation FSMyCommentCell
 
++ (CGFloat)cellHeight
+{
+    return 150.0f;
+}
+
+- (void)dealloc
+{
+}
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];
     // Initialization code
+    
+    [self makeCellStyle];
+}
+
+- (void)makeCellStyle
+{
+    self.m_TimeLabel.textColor = [UIColor bm_colorWithHex:0x666666];
+    self.m_TimeLabel.font = UI_FONT_14;
+    
+    self.m_ContentLabel.textColor = [UIColor bm_colorWithHex:0x666666];
+    self.m_ContentLabel.font = UI_FONT_14;
+    
+    self.m_SourceLabel.textColor = UI_COLOR_BL1;
+    self.m_SourceLabel.font = UI_FONT_14;
+    //self.m_SourceLabel.backgroundColor = [UIColor bm_colorWithHex:0xF0F5FC];
+    //[self.m_SourceLabel bm_roundedRect:self.m_SourceLabel.bm_height*0.5];
+    
+    [self.m_CommentBtn setTitleColor:[UIColor bm_colorWithHex:0x999999] forState:UIControlStateNormal];
+    self.m_CommentBtn.titleLabel.font = [UIFont systemFontOfSize:10.0f];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -35,11 +69,12 @@
     // Configure the view for the selected state
 }
 
-- (void)showWithCommentModel:(FSCommentListModel *)model
+- (void)drawCellWithModel:(FSMyCommentModel *)model
 {
-    self.m_TimeLab.text = [NSDate bm_stringFromTs:model.m_CreateTime formatter:@"MM-dd"];
-//    self.m_CommentBtn setTitle:model. forState:<#(UIControlState)#>
-    self.m_ContentLab.text = model.m_CommentContent;
+    self.m_TimeLabel.text = [NSDate fsStringDateFromTs:model.m_CreateTime];
+    
+    self.m_ContentLabel.text = model.m_Content;
+    
     NSMutableAttributedString *atrString = [[NSMutableAttributedString alloc] initWithString:@"来自："];
     if ([model.m_Source bm_isNotEmpty])
     {
@@ -51,8 +86,8 @@
     {
         [atrString bm_setTextColor:[UIColor bm_colorWithHex:0x999999]];
     }
-    [atrString bm_setFont:[UIFont systemFontOfSize:10.0f]];
-    self.m_TitleLab.attributedText = atrString;
+    [atrString bm_setFont:[UIFont systemFontOfSize:12.0f]];
+    self.m_SourceLabel.attributedText = atrString;
 }
 
 @end

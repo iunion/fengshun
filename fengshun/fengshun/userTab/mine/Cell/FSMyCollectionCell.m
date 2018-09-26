@@ -10,7 +10,7 @@
 
 @interface FSMyCollectionCell ()
 
-@property (nonatomic, strong) FSCollectionModel *m_Model;
+@property (nonatomic, strong) FSMyCollectionModel *m_Model;
 
 @property (weak, nonatomic) IBOutlet UIView *m_BgView;
 
@@ -67,7 +67,7 @@
     // Configure the view for the selected state
 }
 
-- (void)showWithCollectionModel:(FSCollectionModel *)model;
+- (void)drawCellWithModel:(FSMyCollectionModel *)model;
 {
     self.m_Model = model;
     

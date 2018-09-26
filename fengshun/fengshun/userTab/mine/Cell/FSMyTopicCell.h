@@ -1,5 +1,5 @@
 //
-//  FSMyCollectionCell.h
+//  FSMyTopicCell.h
 //  fengshun
 //
 //  Created by jiang deng on 2018/9/26.
@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "FSMyCollectionModel.h"
 
-@interface FSMyCollectionCell : UITableViewCell
+@interface FSMyTopicCell : UITableViewCell
 
-@property (nonatomic, strong, readonly) FSMyCollectionModel *m_Model;
-
-- (void)drawCellWithModel:(FSMyCollectionModel *)model;
+@property (nonatomic, strong, readonly) FSMyTopicModel *m_Model;
 
 + (CGFloat)cellHeight;
+
+- (void)drawCellWithModel:(FSMyTopicModel *)model;
 
 @end

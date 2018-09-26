@@ -7,7 +7,7 @@
 //
 
 #import "FSMyTopicVC.h"
-#import "FSTopicListCell.h"
+#import "FSMyTopicCell.h"
 
 @interface FSMyTopicVC ()
 
@@ -52,7 +52,7 @@
         
         for (NSDictionary *dic in topicDicArray)
         {
-            FSTopicModel *topic = [FSTopicModel topicWithServerDic:dic];
+            FSMyTopicModel *topic = [FSMyTopicModel myTopicModelWithDic:dic];
             if ([topic bm_isNotEmpty])
             {
                 [topicArray addObject:topic];
@@ -65,19 +65,7 @@
                 [self.m_DataArray removeAllObjects];
             }
             
-            FSTopicModel *firstTopic = [self.m_DataArray firstObject];
-            if (!firstTopic)
-            {
-                firstTopic = [topicArray firstObject];
-            }
-            FSTopicModel *oldLastTopic = [self.m_DataArray lastObject];
-            firstTopic.m_PositionType |= BMTableViewCell_PositionType_First;
-            oldLastTopic.m_PositionType &= !BMTableViewCell_PositionType_Last;
-            
             [self.m_DataArray addObjectsFromArray:topicArray];
-            
-            FSTopicModel *lastTopic = [self.m_DataArray lastObject];
-            lastTopic.m_PositionType |= BMTableViewCell_PositionType_Last;
 
             [self.m_TableView reloadData];
         }
@@ -97,17 +85,17 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [FSTopicListCell cellHeight];
+    return [FSMyTopicCell cellHeight];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *taskCellIdentifier = @"FSCell";
-    FSTopicListCell *cell = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
+    FSMyTopicCell *cell = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
     
     if (cell == nil)
     {
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"FSTopicListCell" owner:self options:nil] lastObject];
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"FSMyTopicCell" owner:self options:nil] lastObject];
     }
     
     [cell drawCellWithModel:self.m_DataArray[indexPath.row]];
@@ -122,8 +110,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    FSTopicModel *model = self.m_DataArray[indexPath.row];
-    [FSPushVCManager showTopicDetail:self topicId:model.m_Id];
+    FSMyTopicModel *model = self.m_DataArray[indexPath.row];
+    [FSPushVCManager showTopicDetail:self topicId:model.m_TopicId];
 }
 
 - (BMEmptyViewType)getNoDataEmptyViewType
