@@ -221,6 +221,6 @@
 }
 + (void)viewController:(UIViewController *)vc pushToCourseDetailWithId:(NSString *)CourseId
 {
-    [self showWebView:vc url:[NSString stringWithFormat:@"%@/comment/%@/1/1",FS_H5_SERVER,CourseId] title:nil showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR animated:YES];
+    [self showWebView:vc url:[NSString stringWithFormat:@"%@/comment/%@",FS_H5_SERVER,CourseId] title:nil showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR animated:YES];
 }
 @end

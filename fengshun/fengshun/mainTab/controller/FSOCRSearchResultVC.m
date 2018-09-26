@@ -41,7 +41,7 @@ FSOCRSearchResultVC ()
 {
     [super viewDidLoad];
     [self setupUI];
-    [self presentToImagePickerWithAnimated:NO];
+//    [self presentToImagePickerWithAnimated:NO];
 }
 
 - (void)setupUI
@@ -136,6 +136,7 @@ FSOCRSearchResultVC ()
 - (void)presentToImagePickerWithAnimated:(BOOL)animated
 {
     TZImagePickerController *imagePickerVc = [TZImagePickerController fs_defaultPickerWithImagesCount:1 delegate:self];
+    
     [self presentViewController:imagePickerVc animated:animated completion:nil];
 }
 
