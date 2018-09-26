@@ -51,7 +51,7 @@
 - (void)moreAction
 {
     //获取收藏状态
-    [self.m_ProgressHUD showAnimated:YES withText:nil];
+    [self.m_ProgressHUD showAnimated:YES];
     BMWeakSelf;
     [FSApiRequest getCollectStateID:self.m_fileId type:@"DOCUMENT" Success:^(id  _Nullable responseObject) {
         [weakSelf.m_ProgressHUD hideAnimated:NO];
@@ -70,13 +70,12 @@
     url = [url stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     if (index < 5)
     {
-        [self.m_ProgressHUD showAnimated:YES withText:[NSString stringWithFormat:@"%@",url] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:[NSString stringWithFormat:@"%@",url] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     }
     else if (index == 5)//收藏
     {
-        BMWeakSelf;
         [FSApiRequest updateCollectStateID:self.m_fileId isCollect:!s_isCollect guidingCase:@"" source:@"" title:@"" type:@"DOCUMENT" Success:^(id  _Nullable responseObject) {
-            [weakSelf.m_ProgressHUD showAnimated:YES withText:s_isCollect?@"取消收藏":@"收藏成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:s_isCollect?@"取消收藏":@"收藏成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         } failure:^(NSError * _Nullable error) {
             
         }];
@@ -86,11 +85,11 @@
         if ([self.m_UrlString bm_isNotEmpty])
         {
             [[UIPasteboard generalPasteboard] setString:self.m_UrlString];
-            [self.m_ProgressHUD showAnimated:YES withDetailText:@"复制成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:@"复制成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         }
         else
         {
-            [self.m_ProgressHUD showAnimated:YES withDetailText:@"复制失败" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:@"复制失败" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         }
     }
 }

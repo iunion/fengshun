@@ -712,7 +712,7 @@
         return;
     }
     //获取收藏状态
-    [self.m_ProgressHUD showAnimated:YES withText:nil];
+    [self.m_ProgressHUD showAnimated:YES];
     BMWeakSelf;
     [FSApiRequest getCollectStateID:[data bm_stringForKey:@"id"] type:[data bm_stringForKey:@"type"] Success:^(id  _Nullable responseObject) {
         [weakSelf.m_ProgressHUD hideAnimated:NO];
@@ -729,14 +729,13 @@
 {
     if (index < 5)
     {
-        [self.m_ProgressHUD showAnimated:YES withText:[NSString stringWithFormat:@"分享未完成：数据为%@",s_ShareJsonSting] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:[NSString stringWithFormat:@"分享未完成：数据为%@",s_ShareJsonSting] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     }
     else if (index == 5)//收藏
     {
-        BMWeakSelf;
         NSDictionary *data = [NSDictionary bm_dictionaryWithJsonString:s_CollectJsonSting];
         [FSApiRequest updateCollectStateID:[data bm_stringForKey:@"id"] isCollect:!s_isCollect guidingCase:[data bm_stringForKey:@"guidingCase"] source:[data bm_stringForKey:@"source"] title:[data bm_stringForKey:@"title"] type:[data bm_stringForKey:@"type"] Success:^(id  _Nullable responseObject) {
-            [weakSelf.m_ProgressHUD showAnimated:YES withText:s_isCollect?@"取消收藏":@"收藏成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:s_isCollect?@"取消收藏":@"收藏成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         } failure:^(NSError * _Nullable error) {
             
         }];
@@ -746,11 +745,11 @@
         if ([self.m_UrlString bm_isNotEmpty])
         {
             [[UIPasteboard generalPasteboard] setString:self.m_UrlString];
-            [self.m_ProgressHUD showAnimated:YES withDetailText:@"复制成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:@"复制成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         }
         else
         {
-            [self.m_ProgressHUD showAnimated:YES withDetailText:@"复制失败" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:@"复制失败" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         }
     }
 }
