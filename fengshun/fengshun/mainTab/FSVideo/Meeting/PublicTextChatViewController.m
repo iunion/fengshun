@@ -75,7 +75,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    [self freshDataWithTableView:self.m_TableView];
     [self showChat];
 }
 
