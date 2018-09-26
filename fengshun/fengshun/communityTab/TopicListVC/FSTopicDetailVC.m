@@ -93,6 +93,10 @@ FSReportViewDelegate
             break;
         case 5:  //收藏
         {
+            if (![FSUserInfoModel isLogin]) {
+                [self showLogin];
+                return;
+            }
             [self collectionTopic];
         }
             break;
@@ -111,6 +115,10 @@ FSReportViewDelegate
             break;
         case 7:  //举报弹窗
         {
+            if (![FSUserInfoModel isLogin]) {
+                [self showLogin];
+                return;
+            }
             [FSReportView showReportView:self];
         }
             break;
