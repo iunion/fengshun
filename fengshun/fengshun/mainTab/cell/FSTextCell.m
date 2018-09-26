@@ -23,10 +23,20 @@
     // Configure the view for the selected state
 }
 
-- (void)setTextModel:(FSListTextModel *)textModel colors:(BOOL)colors
+- (void)setTextModel:(FSListTextModel *)textModel colors:(NSString *)colors
 {
     _m_textModel = textModel;
-    [FSSearchResultModel setTextLabel:_m_titleLabel withText:textModel.m_title fontSize:16 textColor:UI_COLOR_B1 attributed:colors];
+    if ([colors bm_isNotEmpty]) {
+        NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:textModel.m_title attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16],NSForegroundColorAttributeName:UI_COLOR_B1}];
+        
+        [attrStr addAttribute:NSForegroundColorAttributeName value:UI_COLOR_R1 range:[textModel.m_title rangeOfString:colors]];
+        
+        _m_titleLabel.attributedText = attrStr;
+    }
+    else
+    {
+        _m_titleLabel.text = textModel.m_title;
+    }
 }
 
 @end

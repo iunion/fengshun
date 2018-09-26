@@ -29,7 +29,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     FSListTextModel *model =_m_textList[indexPath.row];
-    [FSPushVCManager showWebView:self.m_masterVC url:model.m_previewUrl title:model.m_title];
+     [FSPushVCManager showWebView:self.m_masterVC url:model.m_previewUrl title:model.m_title showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR animated:YES];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -39,7 +39,7 @@
 {
     FSTextCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"FSTextCell"];
     FSListTextModel *model =_m_textList[indexPath.row];
-    [cell setTextModel:model colors:YES];
+    [cell setTextModel:model colors:self.m_keyword];
     return cell;
 }
 

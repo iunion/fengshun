@@ -139,14 +139,14 @@ FSTextSplitVC ()
 {
     FSTextCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"FSTextCell"];
     FSListTextModel *model = _m_selectedType.m_textList[indexPath.row];
-    [cell setTextModel:model colors:NO];
+    [cell setTextModel:model colors:nil];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     FSListTextModel *model = _m_selectedType.m_textList[indexPath.row];
-    [FSPushVCManager showWebView:self url:model.m_previewUrl title:model.m_title];
+     [FSPushVCManager showWebView:self url:model.m_previewUrl title:model.m_title showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR animated:YES];
 }
 
 #pragma mark - NetWorking
