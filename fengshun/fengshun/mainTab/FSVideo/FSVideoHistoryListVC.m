@@ -29,15 +29,19 @@
     [self loadApiData];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
 - (NSMutableURLRequest *)setLoadDataRequest
 {
     return [FSApiRequest getMeetingVideoList:self.meetingId];
 }
 
-- (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)requestDic
+- (BOOL)succeedLoadedRequestWithArray:(NSArray *)requestArray;
 {
-    NSArray *array = requestDic[@"data"];
-    for (NSDictionary *dic in array) {
+    for (NSDictionary *dic in requestArray) {
         FSVideoRecordModel *model = [FSVideoRecordModel modelWithParams:dic];
         [self.m_DataArray addObject:model];
     }
@@ -50,9 +54,31 @@
 #pragma mark -
 #pragma mark Table Data Source Methods
 
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return self.m_DataArray.count;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 85.0f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)sectionIndex
+{
+    return 10.0f;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    return view;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -65,7 +91,7 @@
         cell = [[FSVideoHistoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:taskCellIdentifier];
     }
     
-    [cell setModel:self.m_DataArray[indexPath.row]];
+    [cell setModel:self.m_DataArray[indexPath.section]];
     
     return cell;
 }

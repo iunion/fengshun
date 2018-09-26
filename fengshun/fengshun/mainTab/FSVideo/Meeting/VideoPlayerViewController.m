@@ -49,7 +49,7 @@
 
     _backBtn = ({
         UIButton *btn = [UIButton new];
-        [btn setImage:[UIImage imageNamed:@"video_back"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"video_back_btn"] forState:UIControlStateNormal];
         [self.view addSubview:btn];
         [btn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.view).offset(40);
