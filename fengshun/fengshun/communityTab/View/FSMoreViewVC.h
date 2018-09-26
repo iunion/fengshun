@@ -20,6 +20,8 @@
 
 + (void)showMore:(UIViewController *)presentVC  delegate:(id)delegate isOwner:(BOOL)isOwner isCollection:(BOOL)isCollection;
 
++ (void)showWebMore:(UIViewController *)presentVC  delegate:(id)delegate isCollection:(BOOL)isCollection;
+
 @property (nonatomic, assign)id <FSMoreViewVCDelegate> delegate;
 
 @end

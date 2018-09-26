@@ -173,6 +173,27 @@ NS_ASSUME_NONNULL_BEGIN
 // https://devftls.odrcloud.net/swagger-ui.html#/%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF/refreshTokenUsingPOST
 + (nullable NSMutableURLRequest *)updateUserToken:(NSString *)token;
 
+//收藏个数
+
++ (XMRequest *)getCollectStateID:(NSString *)relateId
+                            type:(NSString *)type
+                         Success:(nullable XMSuccessBlock)successBlock
+                         failure:(nullable XMFailureBlock)failureBlock;
+/**
+ 收藏、取消
+ 
+ @param relateId 相关id
+ @param isCollect 收藏/取消
+ @param guidingCase 指导性案例,CASE时必传
+ @param source 来源（当type为STATUTE，CASE时必传）
+ @param title 标题（当type为STATUTE，CASE时必传）
+ @param type 类型（COURSE-课程 POSTS-帖子 STATUTE-法规 CASE-案例 DOCUMENT-文书范本）
+ @param successBlock 成功
+ @param failureBlock 识别
+ @return XMRequest
+ */
++ (XMRequest *)updateCollectStateID:(NSString *)relateId isCollect:(BOOL)isCollect guidingCase:(NSString *)guidingCase source:(NSString *)source title:(NSString *)title type:(NSString *)type Success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock;
+
 @end
 
 

@@ -23,6 +23,8 @@ FSMoreViewVC ()
 
 @property (nonatomic, strong) UIButton *m_CancelBtn;
 
+@property (nonatomic, assign)BOOL m_IsWebMore;
+
 @end
 
 @implementation FSMoreViewVC
@@ -33,6 +35,24 @@ FSMoreViewVC ()
     FSMoreViewVC *moreVC = [[FSMoreViewVC alloc]init];
     moreVC.delegate = delegate;
     moreVC.m_isOwner = isOwner;
+    moreVC.m_Collection = isCollection;
+    presentVC.definesPresentationContext = YES;
+    moreVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    [presentVC.navigationController presentViewController:moreVC animated:NO completion:^{
+        [UIView animateWithDuration:DEFAULT_DELAY_TIME
+                         animations:^{
+                             moreVC.m_BgView.bm_top = UI_SCREEN_HEIGHT - moreVC.m_BgView.bm_height;
+                         }];
+    }];
+    moreVC.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+}
+
++ (void)showWebMore:(UIViewController *)presentVC delegate:(id)delegate isCollection:(BOOL)isCollection
+{
+    FSMoreViewVC *moreVC = [[FSMoreViewVC alloc]init];
+    moreVC.delegate = delegate;
+    moreVC.m_isOwner = NO;
+    moreVC.m_IsWebMore = YES;
     moreVC.m_Collection = isCollection;
     presentVC.definesPresentationContext = YES;
     moreVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
@@ -89,6 +109,10 @@ FSMoreViewVC ()
                 [btn setTitle:@"取消收藏" forState:UIControlStateSelected];
                 [btn setImage:[UIImage imageNamed:@"community_collect_selected"] forState:UIControlStateSelected];
                 btn.selected = self.m_Collection;
+            }
+            if (btn.tag == 107)
+            {
+                btn.hidden = self.m_IsWebMore;
             }
             // 编辑和删除按钮是否隐藏
             if (btn.tag == 108 || btn.tag == 109)
