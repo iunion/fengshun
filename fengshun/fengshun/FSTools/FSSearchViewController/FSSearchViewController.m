@@ -187,6 +187,17 @@
         [_m_OCRButton bm_roundedRect:20];
         _m_OCRButton.backgroundColor = UI_COLOR_BL1;
         _m_OCRButton.bm_centerX      = self.view.bm_centerX;
+    
+        _m_OCRButton.layer.masksToBounds = NO;
+        _m_OCRButton.layer.shadowOffset = CGSizeZero;//阴影的偏移量
+        _m_OCRButton.layer.shadowRadius = 20;
+        _m_OCRButton.layer.shadowOpacity = 0.2;                        //阴影的不透明度
+        _m_OCRButton.layer.shadowColor = [UIColor blueColor].CGColor;
+//        UIBezierPath * path = [UIBezierPath bezierPathWithRoundedRect:_m_OCRButton.bounds cornerRadius:20];
+        //阴影路径
+//        _m_OCRButton.layer.shadowPath = path.CGPath;
+
+        
         CGFloat viewHeight           = UI_SCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT - UI_STATUS_BAR_HEIGHT;
         _m_OCRButton.bm_bottom       = viewHeight - OCRSearchButtonBottonGap;
         [self.view addSubview:_m_OCRButton];
