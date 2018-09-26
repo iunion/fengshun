@@ -309,6 +309,7 @@
     
     NSMutableDictionary *agentDic = [[NSMutableDictionary alloc] init];
     FSUserInfoModel *userInfo = GetAppDelegate.m_UserInfo;
+    NSString *newAgent;
     if ([userInfo.m_Token bm_isNotEmpty])
     {
         [agentDic bm_setString:[FSAppInfo getOpenUDID] forKey:@"deviceId"];
@@ -327,10 +328,15 @@
         [agentDic bm_setString:[FSCoreStatus currentFSNetWorkStatusString] forKey:@"netWorkStandard"];
         
         [agentDic bm_setString:userInfo.m_Token forKey:@"JWTToken"];
+         newAgent = [oldAgent stringByAppendingString:[agentDic bm_toJSON]];
+    }
+    else
+    {
+        newAgent = @"";
     }
     
     //add my info to the new agent
-    NSString *newAgent = [oldAgent stringByAppendingString:[agentDic bm_toJSON]];
+   
     BMLog(@"new agent :%@", newAgent);
     
     //regist the new agent
