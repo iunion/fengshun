@@ -29,11 +29,7 @@
     
     [self bm_setNavigationWithTitle:self.m_Title barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
     [GetAppDelegate.m_TabBarController hideOriginTabBar];
-    //[self setBm_NavigationBarImage:[UIImage imageWithColor:[UIColor whiteColor]]];
-    [self registerHander:@"toShowTablayout" handler:^(id data, WVJBResponseCallback responseCallback) {
-        NSString *jsonStr = data;
-        BMLog(@"%d",[[NSDictionary bm_dictionaryWithJsonString:jsonStr] bm_boolForKey:@"isCourse"] );
-    }];
+    [self setWebFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT-UI_TAB_BAR_HEIGHT)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,11 +38,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-//- (void)updateNavWithLeftArray:(NSArray *)larray rightArray:(NSArray *)rarray
-//{
-//    [self bm_setNavigationWithTitle:self.m_Title barTintColor:nil leftDicArray:nil rightDicArray:nil];
-//    [GetAppDelegate.m_TabBarController hideOriginTabBar];
-//}
 
 - (BOOL)webView:(FSWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {

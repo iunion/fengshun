@@ -51,6 +51,8 @@ NS_ASSUME_NONNULL_BEGIN
 // 刷新web
 - (void)refreshWebView;
 
+- (void)setWebFrame:(CGRect)frame;
+
 @end
 
 @protocol FSWebViewControllerDelegate <NSObject>

@@ -258,6 +258,11 @@
     [self loadpage];
 }
 
+- (void)setWebFrame:(CGRect)frame
+{
+    [self.m_WebView setFrame:frame];
+}
+
 
 #pragma mark -
 #pragma mark UserAgent
