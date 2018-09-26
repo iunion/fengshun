@@ -13,6 +13,7 @@
 #import "AppDelegate.h"
 #import "FSApiRequest.h"
 #import "FSAlertView.h"
+#import "TOCropViewController.h"
 
 #define Topic_MaxTextCount  32
 
@@ -206,23 +207,9 @@
 
 - (void)didTapCustomToolbarButton
 {
-    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 columnNumber:4 delegate:self pushPhotoPickerVc:YES];
-    
-    imagePickerVc.sortAscendingByModificationDate = NO;
-    
-    imagePickerVc.allowTakePicture = YES;
-    
-    imagePickerVc.allowPickingVideo = NO;
-    imagePickerVc.allowPickingImage = YES;
-    
-    imagePickerVc.allowPickingOriginalPhoto = NO;
-    imagePickerVc.showSelectBtn = NO;
-    
-    [imagePickerVc setUiImagePickerControllerSettingBlock:^(UIImagePickerController *imagePickerController) {
-        
-        imagePickerController.videoQuality = UIImagePickerControllerQualityTypeHigh;
-    }];
-    
+    TZImagePickerController *imagePickerVc  = [TZImagePickerController fs_defaultPickerWithImagesCount:1 delegate:self];
+    imagePickerVc.autoDismiss = NO;
+    imagePickerVc.specialSingleSelected = YES;
     [self presentViewController:imagePickerVc animated:YES completion:nil];
 }
 
@@ -233,6 +220,7 @@
 - (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker
 {
     BMLog(@"用户点击了取消");
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos
@@ -241,20 +229,56 @@
     {
         return;
     }
+    if ([photos bm_isNotEmpty]&& [infos bm_isNotEmpty])
+    {
+        
+        [self pickerVC:picker presentToCropVCWithImage:photos[0]];
+    }
+
     
+//    BMWeakSelf
+//
+//    [FSApiRequest uploadImg:UIImageJPEGRepresentation(img, .8)
+//                    success:^(id _Nullable responseObject) {
+//
+//                        NSString *url = [NSString stringWithFormat:@"%@", [responseObject bm_stringTrimForKey:@"previewUrl"]];
+//                        [weakSelf insertImage:url alt:@""];
+//                    }
+//                    failure:^(NSError *_Nullable error){
+//                        [self.m_ProgressHUD showAnimated:YES withText:@"上传图片识别" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+//                    }];
+}
+
+- (void)pickerVC:(TZImagePickerController *)picker presentToCropVCWithImage:(UIImage *)orignalImage
+{
+    TOCropViewController *cropController = [[TOCropViewController alloc] initWithImage:orignalImage];
     BMWeakSelf
-    UIImage *img = photos[0];
-    [FSApiRequest uploadImg:UIImageJPEGRepresentation(img, .8)
+    __weak typeof(cropController) weakCropVC = cropController;
+    [cropController setOnDidCropToRect:^(UIImage * _Nonnull image, CGRect cropRect, NSInteger angle) {
+        
+        [weakSelf dismissViewControllerAnimated:NO completion:^{
+            [weakSelf uploadImg:UIImageJPEGRepresentation(image, 0.8)];
+        }];
+    }];
+    [cropController setOnDidFinishCancelled:^(BOOL isFinished) {
+        [weakCropVC dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [picker presentViewController:cropController animated:YES completion:nil];
+
+}
+
+- (void)uploadImg:(NSData *)data
+{
+    [FSApiRequest uploadImg:data
                     success:^(id _Nullable responseObject) {
-                        
+
                         NSString *url = [NSString stringWithFormat:@"%@", [responseObject bm_stringTrimForKey:@"previewUrl"]];
-                        [weakSelf insertImage:url alt:@""];
+                        [self insertImage:url alt:@""];
                     }
                     failure:^(NSError *_Nullable error){
                         [self.m_ProgressHUD showAnimated:YES withText:@"上传图片识别" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
                     }];
 }
-
 
 #pragma mark - Request
 
