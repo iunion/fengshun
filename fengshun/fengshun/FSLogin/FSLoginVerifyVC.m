@@ -174,12 +174,16 @@
 
 - (void)interfaceSettings
 {
-    NSString *text = [NSString stringWithFormat:@"验证码已发送到手机%@", [self.m_PhoneNum bm_maskAtRang:NSMakeRange(3, 4) withMask:'*']];
+    NSString *text = [NSString stringWithFormat:@"发送验证码到手机%@", [self.m_PhoneNum bm_maskAtRang:NSMakeRange(3, 4) withMask:'*']];
     UILabel *label1 = [UILabel bm_labelWithFrame:CGRectMake(15.0f, 20.0f, self.m_TableView.bm_width-30.0f, 32.0f) text:text fontSize:18.0f color:UI_COLOR_B1 alignment:NSTextAlignmentLeft lines:1];
     [self.m_TableView addSubview:label1];
+    label1.adjustsFontSizeToFitWidth = YES;
+    label1.minimumScaleFactor = 0.5f;
     self.m_PhoneNumLabel = label1;
     
-    UILabel *label2 = [UILabel bm_labelWithFrame:CGRectMake(15.0f, label1.bm_bottom+4.0f, self.m_TableView.bm_width-30.0f, 40.0f) text:@"请在下方输入短信验证码" fontSize:14.0f color:UI_COLOR_B1 alignment:NSTextAlignmentLeft lines:1];
+    UILabel *label2 = [UILabel bm_labelWithFrame:CGRectMake(15.0f, label1.bm_bottom+4.0f, self.m_TableView.bm_width-140.0f, 40.0f) text:@"请在下方输入短信验证码" fontSize:14.0f color:UI_COLOR_B1 alignment:NSTextAlignmentLeft lines:1];
+    label2.adjustsFontSizeToFitWidth = YES;
+    label2.minimumScaleFactor = 0.5f;
     [self.m_TableView addSubview:label2];
 
     // 获取验证码
@@ -314,6 +318,9 @@
 
 - (void)freshViews
 {
+    NSString *text = [NSString stringWithFormat:@"验证码已发送到手机%@", [self.m_PhoneNum bm_maskAtRang:NSMakeRange(3, 4) withMask:'*']];
+    self.m_PhoneNumLabel.text = text;
+    
     self.m_VerifyField.userInteractionEnabled = YES;
     [self.m_VerifyField becomeFirstResponder];
 }
