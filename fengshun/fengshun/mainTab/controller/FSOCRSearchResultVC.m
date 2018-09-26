@@ -23,9 +23,6 @@ FSOCRSearchResultVC ()
     TZImagePickerControllerDelegate,
     TOCropViewControllerDelegate
 >
-{
-    BOOL s_FirstShow;
-}
 
 @property (weak, nonatomic) IBOutlet UIImageView *m_imageView;
 
@@ -37,6 +34,7 @@ FSOCRSearchResultVC ()
 @property (nonatomic, strong) FSCaseSearchResultModel *m_caseSearchResultModel;
 @property (nonatomic, assign, readonly) NSInteger m_totalCount;
 @property (nonatomic, assign) NSUInteger loadPage;
+@property (nonatomic, strong) UIImage *m_orignalImage;
 
 @end
 
@@ -46,9 +44,9 @@ FSOCRSearchResultVC ()
 {
     [super viewDidLoad];
     [self setupUI];
-    
-    s_FirstShow = YES;
+    [self presentToImagePickerWithAnimated:NO];
 }
+
 
 - (void)setupUI
 {
@@ -79,17 +77,6 @@ FSOCRSearchResultVC ()
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    if (s_FirstShow)
-    {
-        [self presentToImagePickerWithAnimated:NO];
-
-        s_FirstShow = NO;
-    }
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -113,7 +100,7 @@ FSOCRSearchResultVC ()
 
 - (void)presentToImageCrop
 {
-    TOCropViewController *cropController = [[TOCropViewController alloc] initWithImage:_m_imageView.image];
+    TOCropViewController *cropController = [[TOCropViewController alloc] initWithImage:_m_orignalImage];
     cropController.delegate = self;
     [self presentViewController:cropController animated:YES completion:nil];
 }
@@ -149,6 +136,7 @@ FSOCRSearchResultVC ()
     if ([photos bm_isNotEmpty])
     {
         UIImage *image = [photos firstObject];
+        self.m_orignalImage = image;
         [self getOCRTextWithImage:image];
     }
     else
