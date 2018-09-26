@@ -25,6 +25,7 @@
 
 #import "FSMessageTabVC.h"
 #import "FSOCRSearchResultVC.h"
+#import "FSTextDetailVC.h"
 
 
 @implementation FSPushVCManager
@@ -148,7 +149,15 @@
     searchViewController.hidesBottomBarWhenPushed = YES;
     [showVC.navigationController pushViewController:searchViewController animated:YES];
 }
-
++ (void)pushToTextDetail:(UIViewController *)pushVC url:(NSString *)url withFileId:(NSString *)fileId
+{
+    FSTextDetailVC *vc = [[FSTextDetailVC alloc] initWithTitle:nil url:url showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR delegate:nil];
+    
+    vc.hidesBottomBarWhenPushed = YES;
+    vc.m_fileId = fileId;
+    [pushVC.navigationController pushViewController:vc animated:YES];
+    
+}
 + (void)homePagePushToFileScanVC:(UIViewController *)mainVC
 {
     FSFileScanVC *vc            = [[FSFileScanVC alloc] initWithNibName:@"FSFileScanVC" bundle:nil];

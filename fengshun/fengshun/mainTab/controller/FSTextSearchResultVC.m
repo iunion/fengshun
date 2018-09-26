@@ -29,7 +29,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     FSListTextModel *model =_m_textList[indexPath.row];
-     [FSPushVCManager showWebView:self.m_masterVC url:model.m_previewUrl title:model.m_title showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR animated:YES];
+    [FSPushVCManager pushToTextDetail:self url:model.m_previewUrl withFileId:model.m_fileId];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
