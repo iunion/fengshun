@@ -39,7 +39,7 @@
 {
     FSTextCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"FSTextCell"];
     FSListTextModel *model =_m_textList[indexPath.row];
-    [cell setTextModel:model colors:YES];
+    [cell setTextModel:model colors:self.m_keyword];
     return cell;
 }
 

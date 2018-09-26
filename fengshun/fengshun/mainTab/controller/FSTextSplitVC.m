@@ -139,7 +139,7 @@ FSTextSplitVC ()
 {
     FSTextCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"FSTextCell"];
     FSListTextModel *model = _m_selectedType.m_textList[indexPath.row];
-    [cell setTextModel:model colors:NO];
+    [cell setTextModel:model colors:nil];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
