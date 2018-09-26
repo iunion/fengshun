@@ -7,7 +7,7 @@
 //
 
 #import "FSVideoMediateModel.h"
-#import "FSUserInfoModle.h"
+#import "FSUserInfoModel.h"
 
 @implementation FSMeetingPersonnelModel
 
@@ -24,7 +24,7 @@
 
 + (instancetype)userModel
 {
-    FSUserInfoModle *user = [FSUserInfoModle userInfo];
+    FSUserInfoModel *user = [FSUserInfoModel userInfo];
     
     FSMeetingPersonnelModel *model = [FSMeetingPersonnelModel new];
     model.personnelId = [user.m_UserBaseInfo.m_UserId integerValue];

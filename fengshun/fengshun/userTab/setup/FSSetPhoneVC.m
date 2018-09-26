@@ -446,7 +446,7 @@
     {
         [self.m_ProgressHUD hideAnimated:NO];
         
-        FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
+        FSUserInfoModel *userInfo = [FSUserInfoModel userInfo];
         userInfo.m_UserBaseInfo.m_PhoneNum = self.m_PhoneNum;
         
         [FSAppInfo setCurrentPhoneNum:self.m_PhoneNum];

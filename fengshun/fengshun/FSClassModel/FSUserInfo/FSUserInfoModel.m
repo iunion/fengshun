@@ -1,5 +1,5 @@
 //
-//  FSUserInfoModle.m
+//  FSUserInfoModel.m
 //  fengshun
 //
 //  Created by jiang deng on 2018/8/28.
@@ -10,11 +10,11 @@
 #define USERINFO_USERTOKEN_KEY              @"userinfo_usertoken_key"
 #define USERINFO_MOBILE_KEY                 @"userinfo_mobile_key"
 
-#import "FSUserInfoModle.h"
+#import "FSUserInfoModel.h"
 #import "AppDelegate.h"
 #import "FSUserInfoDB.h"
 
-@implementation FSUserBaseInfoModle
+@implementation FSUserBaseInfoModel
 
 + (instancetype)userBaseInfoWithServerDic:(NSDictionary *)dic
 {
@@ -29,7 +29,7 @@
         return nil;
     }
     
-    FSUserBaseInfoModle *userBaseInfo = [[FSUserBaseInfoModle alloc] init];
+    FSUserBaseInfoModel *userBaseInfo = [[FSUserBaseInfoModel alloc] init];
     [userBaseInfo updateWithServerDic:dic];
     
     if ([userBaseInfo.m_UserId bm_isNotEmpty])
@@ -48,7 +48,7 @@
 
     if (self)
     {
-        _m_UserId = [FSUserInfoModle getCurrentUserId];
+        _m_UserId = [FSUserInfoModel getCurrentUserId];
     }
 
     return self;
@@ -150,11 +150,11 @@
 @end
 
 
-#pragma mark - FSUserInfoModle
+#pragma mark - FSUserInfoModel
 
-@implementation FSUserInfoModle
+@implementation FSUserInfoModel
 
-+ (FSUserInfoModle *)userInfo
++ (FSUserInfoModel *)userInfo
 {
     return GetAppDelegate.m_UserInfo;
 }
@@ -193,7 +193,7 @@
 
 + (instancetype)userInfoWithServerDic:(NSDictionary *)dic
 {
-    return [FSUserInfoModle userInfoWithServerDic:dic isUpDateByUserInfoApi:YES];
+    return [FSUserInfoModel userInfoWithServerDic:dic isUpDateByUserInfoApi:YES];
 }
 
 + (instancetype)userInfoWithServerDic:(NSDictionary *)dic isUpDateByUserInfoApi:(BOOL)userInfoApi
@@ -212,7 +212,7 @@
         }
     }
 
-    FSUserInfoModle *userInfo = [[FSUserInfoModle alloc] init];
+    FSUserInfoModel *userInfo = [[FSUserInfoModel alloc] init];
     [userInfo updateWithServerDic:dic isUpDateByUserInfoApi:userInfoApi];
     
     if ([userInfo.m_Token bm_isNotEmpty] && [userInfo.m_UserBaseInfo.m_UserId bm_isNotEmpty])
@@ -233,9 +233,9 @@
     {
         _m_LastUpdateTs = [[NSDate date] timeIntervalSince1970];
         
-        _m_Token = [FSUserInfoModle getCurrentUserToken];
+        _m_Token = [FSUserInfoModel getCurrentUserToken];
         
-        _m_UserBaseInfo = [[FSUserBaseInfoModle alloc] init];
+        _m_UserBaseInfo = [[FSUserBaseInfoModel alloc] init];
     }
     
     return self;
@@ -281,7 +281,7 @@
         return;
     }
 
-    //self.m_UserBaseInfo = [FSUserBaseInfoModle userBaseInfoWithServerDic:userBaseDic];
+    //self.m_UserBaseInfo = [FSUserBaseInfoModel userBaseInfoWithServerDic:userBaseDic];
     [self.m_UserBaseInfo updateWithServerDic:userBaseDic];
     
     // 最后更新时间
@@ -290,7 +290,7 @@
 
 + (BOOL)isLogin
 {
-    FSUserInfoModle *currentUser = GetAppDelegate.m_UserInfo;
+    FSUserInfoModel *currentUser = GetAppDelegate.m_UserInfo;
     if ([currentUser.m_Token bm_isNotEmpty] && [currentUser.m_UserBaseInfo.m_UserId bm_isNotEmpty])
     {
         return YES;
@@ -301,8 +301,8 @@
 
 + (void)logOut
 {
-    [FSUserInfoModle setCurrentUserID:nil];
-    [FSUserInfoModle setCurrentUserToken:nil];
+    [FSUserInfoModel setCurrentUserID:nil];
+    [FSUserInfoModel setCurrentUserToken:nil];
     
     GetAppDelegate.m_UserInfo = nil;
 }
@@ -312,7 +312,7 @@
 {
     if ([self isLogin])
     {
-        FSUserInfoModle *currentUser = GetAppDelegate.m_UserInfo;
+        FSUserInfoModel *currentUser = GetAppDelegate.m_UserInfo;
         if (currentUser.m_UserBaseInfo.m_IsRealName)
         {
             return YES;

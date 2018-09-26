@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *m_TimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *m_ContentLabel;
 
-@property (nonatomic, strong) FSNoticeMessageModle *m_Modle;
+@property (nonatomic, strong) FSNoticeMessageModel *m_Model;
 
 @end
 
@@ -58,9 +58,9 @@
     // Configure the view for the selected state
 }
 
-- (void)drawCellWithModle:(FSNoticeMessageModle *)model
+- (void)drawCellWithModel:(FSNoticeMessageModel *)model
 {
-    self.m_Modle = model;
+    self.m_Model = model;
     
     self.m_TitleLabel.text = model.m_Title;
     self.m_TimeLabel.text = [NSDate fsStringDateFromTs:model.m_CreateTime];

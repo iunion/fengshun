@@ -22,11 +22,11 @@
     if (![FSDBVersionCheck checkUserInfo_DBVer])
     {
 #if 0
-        FSUserInfoModle *oldUserInfo = [FSUserInfoDB getUserInfoWithUserIdFrom1_0:[FSUserInfoModle getCurrentUserId]];
+        FSUserInfoModel *oldUserInfo = [FSUserInfoDB getUserInfoWithUserIdFrom1_0:[FSUserInfoModel getCurrentUserId]];
             
 //        if (!oldUserInfo)
 //        {
-//            oldUserInfo = [FSUserInfoDB getUserInfoWithUserIdFrome1_1:[FSUserInfoModle getCurrentUserId]];
+//            oldUserInfo = [FSUserInfoDB getUserInfoWithUserIdFrome1_1:[FSUserInfoModel getCurrentUserId]];
 //        }
         
         [FSUserInfoDB deleteUserInfoDB];

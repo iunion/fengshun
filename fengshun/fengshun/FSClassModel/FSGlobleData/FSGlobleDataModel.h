@@ -1,5 +1,5 @@
 //
-//  FSGlobleDataModle.h
+//  FSGlobleDataModel.h
 //  fengshun
 //
 //  Created by jiang deng on 2018/9/12.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface FSGlobleDataModle : NSObject
+@interface FSGlobleDataModel : NSObject
 
 // code
 @property (nonatomic, strong) NSString *m_Code;
@@ -21,10 +21,10 @@
 @property (nonatomic, strong) NSString *m_Value;
 
 // children
-@property (nonatomic, strong) NSMutableArray <FSGlobleDataModle *> *m_Children;
+@property (nonatomic, strong) NSMutableArray <FSGlobleDataModel *> *m_Children;
 
 
-+ (instancetype)globleDataModleWithServerDic:(NSDictionary *)dic;
++ (instancetype)globleDataModelWithServerDic:(NSDictionary *)dic;
 - (void)updateWithServerDic:(NSDictionary *)dic;
 
 @end

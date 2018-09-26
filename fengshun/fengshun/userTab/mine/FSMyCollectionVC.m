@@ -7,11 +7,7 @@
 //
 
 #import "FSMyCollectionVC.h"
-#import "FSTopicListCell.h"
-#import "FSCollectionCourseCell.h"
-#import "FSLawCell.h"
-#import "FSCaseCell.h"
-#import "FSTextCell.h"
+#import "FSMyCollectionCell.h"
 
 
 @interface FSMyCollectionVC ()
@@ -83,58 +79,18 @@
     
         for (NSDictionary *dic in dicArray)
         {
-            switch (self.m_CollectionType)
+            FSCollectionModel *collection = [FSCollectionModel collectionModelWithDic:dic];
+            if ([collection bm_isNotEmpty])
             {
-                case FSCollectionType_POSTS:
+                collection.m_CollectionType = self.m_CollectionType;
+                if (collection.m_CollectionType == FSCollectionType_DOCUMENT)
                 {
-                    FSTopicCollectModel *topic = [FSTopicCollectModel collectTopicModelWithDic:dic];
-                    if ([topic bm_isNotEmpty])
+                    if (![collection.m_FiledId bm_isNotEmpty])
                     {
-                        [dataArray addObject:topic];
+                        break;
                     }
                 }
-                    break;
-                    
-                case FSCollectionType_STATUTE:
-                {
-                    // 法规
-                    FSLawCollectionModel *model = [FSLawCollectionModel modelWithParams:dic];
-                    if ([model bm_isNotEmpty]) {
-                        [dataArray addObject:model];
-                    }
-                }
-                    break;
-                case FSCollectionType_CASE:
-                {
-                    // 案例
-                    FSCaseCollectionModel *model = [FSCaseCollectionModel modelWithParams:dic];
-                    if ([model bm_isNotEmpty]) {
-                        [dataArray addObject:model];
-                    }
-                }
-                    break;
-                    
-                case FSCollectionType_DOCUMENT:
-                {
-                    // 文书
-                    FSCollectionTextModel *model = [FSCollectionTextModel modelWithParams:dic];
-                    if ([model bm_isNotEmpty]) {
-                        [dataArray addObject:model];
-                    }
-                }
-                    break;
-                case FSCollectionType_COURSE:
-                {
-                    // 课程
-                    FSCourseCollectionModel *model = [FSCourseCollectionModel modelWithParams:dic];
-                    if ([model bm_isNotEmpty]) {
-                        [dataArray addObject:model];
-                    }
-                }
-                    break;
-                    
-                default:
-                    break;
+                [dataArray addObject:collection];
             }
         }
         
@@ -158,73 +114,27 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 9.0f;
+    return 8.0f;
 }
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return [UIView new];
-}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.m_CollectionType == FSCollectionType_POSTS)
-    {
-        return [FSTopicListCell cellHeight];
-    }
-    
-    return UITableViewAutomaticDimension;
+    return [FSMyCollectionCell cellHeight];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch (self.m_CollectionType)
-    {
-        case FSCollectionType_POSTS:
-        {
-            static NSString *taskCellIdentifier = @"FSCell";
-            FSTopicListCell *cell = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
-            
-            if (cell == nil)
-            {
-                cell = [[[NSBundle mainBundle] loadNibNamed:@"FSTopicListCell" owner:self options:nil] lastObject];
-            }
-            
-            [cell drawCellWithCollectionModel:self.m_DataArray[indexPath.row]];
-            return cell;
-        }
-        case FSCollectionType_STATUTE:
-        {
-            FSLawCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSLawCell"];
-            
-            FSLawCollectionModel *model = self.m_DataArray[indexPath.row];
-            [cell setLawCollectionModel:model];
-            return cell;
-        }
-        case FSCollectionType_CASE:
-        {
-            FSCaseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCaseCell"];
-            
-            FSCaseCollectionModel *model = self.m_DataArray[indexPath.row];
-            [cell setCaseCollectionModel:model];
-            return cell;
-        }
-        case FSCollectionType_DOCUMENT:
-        {
-            FSTextCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"FSTextCell"];
-            FSCollectionTextModel *model = self.m_DataArray[indexPath.row];
-            [cell setCollectionTextModel:model];
-            return cell;
-        }
-        case FSCollectionType_COURSE:
-        {
-            FSCollectionCourseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCollectionCourseCell"];
-            
-            cell.m_course = self.m_DataArray[indexPath.row];
-            return cell;
-        }
-
-    }
+        static NSString *taskCellIdentifier = @"FSCell";
+        FSMyCollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
     
+        if (cell == nil)
+        {
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"FSMyCollectionCell" owner:self options:nil] lastObject];
+        }
+    
+        //[cell drawCellWithCollectionModel:self.m_DataArray[indexPath.row]];
+        return cell;
 }
 
 
@@ -238,12 +148,12 @@
     switch (self.m_CollectionType)
     {
 #warning CollectionType
-        case FSCollectionType_POSTS:
-        {
-            FSTopicCollectModel *model = self.m_DataArray[indexPath.row];
-            [FSPushVCManager showTopicDetail:[self.view.superview bm_viewController] topicId:model.m_DetailId];
-        }
-            break;
+//        case FSCollectionType_POSTS:
+//        {
+//            FSc *model = self.m_DataArray[indexPath.row];
+//            [FSPushVCManager showTopicDetail:[self.view.superview bm_viewController] topicId:model.m_DetailId];
+//        }
+//            break;
         case FSCollectionType_STATUTE:
             break;
         case FSCollectionType_CASE:

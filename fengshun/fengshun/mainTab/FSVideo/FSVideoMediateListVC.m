@@ -46,7 +46,7 @@
     self.meetingTypeEnums = [FSMeetingDataEnum meetingTypeAllEnglish];
     self.meetingStatusEnums = [FSMeetingDataEnum meetingStatusAllEnglish];
 
-    if ([FSUserInfoModle isLogin]) {
+    if ([FSUserInfoModel isLogin]) {
         [self loadApiData];
     } else {
         [self showEmptyViewWithType:[self getNoDataEmptyViewType] customImageName:[self getNoDataEmptyViewCustomImageName] customMessage:[self getNoDataEmptyViewCustomMessage] customView:[self getNoDataEmptyViewCustomView]];
@@ -102,7 +102,7 @@
 
 - (void)createVideoMediateAction
 {
-    if (![FSUserInfoModle isLogin])
+    if (![FSUserInfoModel isLogin])
     {
         loginAndCreate = YES;
         [self showLogin];
@@ -128,7 +128,7 @@
 
 - (BOOL)needCertification
 {
-    if ([FSUserInfoModle isCertification]) {
+    if ([FSUserInfoModel isCertification]) {
         return NO;
     }
     
@@ -153,7 +153,7 @@
     
     if (loginAndCreate) {
         loginAndCreate = NO;
-        if ([FSUserInfoModle isCertification]) {
+        if ([FSUserInfoModel isCertification]) {
             [self makeVideoMediate];
         } else {
             // 登上一个文件dismiss以后才能再present

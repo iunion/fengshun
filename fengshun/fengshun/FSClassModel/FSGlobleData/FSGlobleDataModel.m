@@ -1,16 +1,16 @@
 //
-//  FSGlobleDataModle.m
+//  FSGlobleDataModel.m
 //  fengshun
 //
 //  Created by jiang deng on 2018/9/12.
 //  Copyright © 2018年 FS. All rights reserved.
 //
 
-#import "FSGlobleDataModle.h"
+#import "FSGlobleDataModel.h"
 
-@implementation FSGlobleDataModle
+@implementation FSGlobleDataModel
 
-+ (instancetype)globleDataModleWithServerDic:(NSDictionary *)dic
++ (instancetype)globleDataModelWithServerDic:(NSDictionary *)dic
 {
     if (![dic bm_isNotEmptyDictionary])
     {
@@ -23,7 +23,7 @@
         return nil;
     }
     
-    FSGlobleDataModle *globleData = [[FSGlobleDataModle alloc] init];
+    FSGlobleDataModel *globleData = [[FSGlobleDataModel alloc] init];
     [globleData updateWithServerDic:dic];
     
     if ([globleData.m_Code bm_isNotEmpty])
@@ -73,7 +73,7 @@
         self.m_Children = [[NSMutableArray alloc] init];
         for (NSDictionary *childDic in childrenArray)
         {
-            FSGlobleDataModle *globleData = [FSGlobleDataModle globleDataModleWithServerDic:childDic];
+            FSGlobleDataModel *globleData = [FSGlobleDataModel globleDataModelWithServerDic:childDic];
             if (globleData)
             {
                 [self.m_Children addObject:globleData];

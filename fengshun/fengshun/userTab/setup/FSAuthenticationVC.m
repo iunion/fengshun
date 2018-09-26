@@ -292,7 +292,7 @@
     {
         [self.m_ProgressHUD hideAnimated:NO];
         
-        FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
+        FSUserInfoModel *userInfo = [FSUserInfoModel userInfo];
         userInfo.m_UserBaseInfo.m_RealName = self.m_Name;
         userInfo.m_UserBaseInfo.m_IdCardNo = self.m_IdNum;
         userInfo.m_UserBaseInfo.m_IsRealName = YES;

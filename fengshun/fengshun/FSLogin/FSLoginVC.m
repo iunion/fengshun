@@ -549,12 +549,12 @@
         NSDictionary *dataDic = [resDic bm_dictionaryForKey:@"data"];
         if ([dataDic bm_isNotEmptyDictionary])
         {
-            FSUserInfoModle *userInfo = [FSUserInfoModle userInfoWithServerDic:dataDic isUpDateByUserInfoApi:NO];
+            FSUserInfoModel *userInfo = [FSUserInfoModel userInfoWithServerDic:dataDic isUpDateByUserInfoApi:NO];
             if (userInfo)
             {
                 GetAppDelegate.m_UserInfo = userInfo;
-                [FSUserInfoModle setCurrentUserID:userInfo.m_UserBaseInfo.m_UserId];
-                [FSUserInfoModle setCurrentUserToken:userInfo.m_Token];
+                [FSUserInfoModel setCurrentUserID:userInfo.m_UserBaseInfo.m_UserId];
+                [FSUserInfoModel setCurrentUserToken:userInfo.m_Token];
                 
                 [FSUserInfoDB insertAndUpdateUserInfo:userInfo];
                 

@@ -172,7 +172,7 @@ FSMainVC ()
         // 视频调解
         case FSHomePageTooltype_VideoMediation:
         {
-            if ([FSUserInfoModle isLogin])
+            if ([FSUserInfoModel isLogin])
             {
                  [FSPushVCManager pushVideoMediateList:self.navigationController];
             }
@@ -205,7 +205,7 @@ FSMainVC ()
         // 文书扫描
         case FSHomePageTooltype_FileScanning:
         {
-            if ([FSUserInfoModle isLogin])
+            if ([FSUserInfoModel isLogin])
             {
                 [FSPushVCManager homePagePushToFileScanVC:self];
             }
@@ -229,7 +229,7 @@ FSMainVC ()
 
 - (void)popMessageVC:(id)sender
 {
-    if ([FSUserInfoModle isLogin])
+    if ([FSUserInfoModel isLogin])
     {
         [FSPushVCManager showMessageVC:self];
     }
@@ -258,7 +258,7 @@ FSMainVC ()
     if (indexPath.section)
     {
         FSTopicListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSTopicListCell"];
-        [cell drawCellWithModle:_m_topics[indexPath.row]];
+        [cell drawCellWithModel:_m_topics[indexPath.row]];
         return cell;
     }
     

@@ -221,9 +221,9 @@ typedef void(^FSSetupClearDiskBlock)(NSString *path, BOOL finished);
     
     BMImageTextView *imageTextView;
 
-    if ([FSUserInfoModle isLogin])
+    if ([FSUserInfoModel isLogin])
     {
-        FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
+        FSUserInfoModel *userInfo = [FSUserInfoModel userInfo];
         
         NSString *text = nil;
         if ([userInfo.m_UserBaseInfo.m_PhoneNum bm_isNotEmpty])

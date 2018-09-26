@@ -107,8 +107,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    FSCommentListModel *modle = self.m_DataArray[indexPath.row];
-    [FSPushVCManager showWebView:self url:modle.m_JumpAddress title:nil];
+    FSCommentListModel *model = self.m_DataArray[indexPath.row];
+    [FSPushVCManager showWebView:self url:model.m_JumpAddress title:nil];
 }
 
 - (BMEmptyViewType)getNoDataEmptyViewType

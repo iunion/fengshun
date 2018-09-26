@@ -158,7 +158,7 @@
     }
 }
 
-- (void)drawCellWithModle:(FSTopicModel *)model
+- (void)drawCellWithModel:(FSTopicModel *)model
 {
     self.m_TopicModel = model;
     

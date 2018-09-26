@@ -16,7 +16,7 @@ NSString * const kNotiReceiveHistoryPrivateMessageListName = @"kNotiReceiveHisto
 #import "SRWebSocket.h"
 #import "FSAPIMacros.h"
 #import "MJExtension.h"
-#import "FSUserInfoModle.h"
+#import "FSUserInfoModel.h"
 
 @interface SocketHelper() <SRWebSocketDelegate>
 @property (nonatomic, strong) SRWebSocket *socket;

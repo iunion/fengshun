@@ -73,7 +73,7 @@
             {
                 case FSMessageType_COMMENT:
                 {
-                    FSCommentMessageModle *message = [FSCommentMessageModle commentMessageModleWithServerDic:dic];
+                    FSCommentMessageModel *message = [FSCommentMessageModel commentMessageModelWithServerDic:dic];
                     if ([message bm_isNotEmpty])
                     {
                         [messageArray addObject:message];
@@ -83,7 +83,7 @@
 
                 case FSMessageType_NOTICE:
                 {
-                    FSNoticeMessageModle *message = [FSNoticeMessageModle noticeMessageModleWithServerDic:dic];
+                    FSNoticeMessageModel *message = [FSNoticeMessageModel noticeMessageModelWithServerDic:dic];
                     if ([message bm_isNotEmpty])
                     {
                         [messageArray addObject:message];
@@ -144,7 +144,7 @@
                 cell = [[[NSBundle mainBundle] loadNibNamed:@"FSCommentMessageCell" owner:self options:nil] lastObject];
             }
             
-            [cell drawCellWithModle:self.m_DataArray[indexPath.row]];
+            [cell drawCellWithModel:self.m_DataArray[indexPath.row]];
             
             return cell;
         }
@@ -158,7 +158,7 @@
                 cell = [[[NSBundle mainBundle] loadNibNamed:@"FSNoticeMessageCell" owner:self options:nil] lastObject];
             }
             
-            [cell drawCellWithModle:self.m_DataArray[indexPath.row]];
+            [cell drawCellWithModel:self.m_DataArray[indexPath.row]];
             
             return cell;
         }
@@ -179,21 +179,21 @@
     {
         case FSMessageType_COMMENT:
         {
-            FSCommentMessageModle *modle = self.m_DataArray[indexPath.row];
+            FSCommentMessageModel *model = self.m_DataArray[indexPath.row];
             
-            if (modle.m_JumpType == FSJumpType_H5)
+            if (model.m_JumpType == FSJumpType_H5)
             {
-                [FSPushVCManager showWebView:self.m_PushVC url:modle.m_JumpAddress title:nil];
+                [FSPushVCManager showWebView:self.m_PushVC url:model.m_JumpAddress title:nil];
             }
         }
             
         case FSMessageType_NOTICE:
         {
-            FSNoticeMessageModle *modle = self.m_DataArray[indexPath.row];
+            FSNoticeMessageModel *model = self.m_DataArray[indexPath.row];
             
-            if (modle.m_JumpType == FSJumpType_H5)
+            if (model.m_JumpType == FSJumpType_H5)
             {
-                [FSPushVCManager showWebView:self.m_PushVC url:modle.m_JumpAddress title:nil];
+                [FSPushVCManager showWebView:self.m_PushVC url:model.m_JumpAddress title:nil];
             }
         }
     }

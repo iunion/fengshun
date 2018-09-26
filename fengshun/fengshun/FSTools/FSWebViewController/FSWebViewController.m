@@ -304,7 +304,7 @@
     oldAgent = [oldAgent stringByAppendingString:USER_AGENT_TAG];
     
     NSMutableDictionary *agentDic = [[NSMutableDictionary alloc] init];
-    FSUserInfoModle *userInfo = GetAppDelegate.m_UserInfo;
+    FSUserInfoModel *userInfo = GetAppDelegate.m_UserInfo;
     [agentDic bm_setString:[FSAppInfo getOpenUDID] forKey:@"deviceId"];
     // 设备号
     [agentDic bm_setString:[UIDevice bm_devicePlatformString] forKey:@"deviceModel"];

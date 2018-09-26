@@ -59,9 +59,9 @@
     NSString *api = [NSString stringWithFormat:@"%@&%@", urlpath, urlPrama];
     NSString *api_name = urlpath;
     NSString *user_id = @"";
-    if ([FSUserInfoModle isLogin])
+    if ([FSUserInfoModel isLogin])
     {
-        user_id = [FSUserInfoModle userInfo].m_UserBaseInfo.m_UserId;
+        user_id = [FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId;
     }
     
     [dic bm_setString:api forKey:@"api"];

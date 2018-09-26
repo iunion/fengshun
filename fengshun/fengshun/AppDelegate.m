@@ -23,7 +23,7 @@
 #import "FSSetTableViewVC.h"
 #import "FSUserMainVC.h"
 
-#import "FSGlobleDataModle.h"
+#import "FSGlobleDataModel.h"
 #import "FSCustomInfoVC.h"
 
 #if USE_TEST_HELP
@@ -174,10 +174,10 @@
     
     // 添加观察者，监听用户信息的改变
     [self addObserver:self forKeyPath:@"m_UserInfo" options:NSKeyValueObservingOptionNew context:nil];
-    self.m_UserInfo = [FSUserInfoDB getUserInfoWithUserId:[FSUserInfoModle getCurrentUserId]];
+    self.m_UserInfo = [FSUserInfoDB getUserInfoWithUserId:[FSUserInfoModel getCurrentUserId]];
     if (!self.m_UserInfo)
     {
-        self.m_UserInfo = [[FSUserInfoModle alloc] init];
+        self.m_UserInfo = [[FSUserInfoModel alloc] init];
     }
 
     [self showFirstGuideView];
@@ -202,8 +202,8 @@
 {
     if ([keyPath isEqualToString:@"m_UserInfo"])
     {
-        //FSUserInfoModle *oldUserInfo = [change objectForKey:NSKeyValueChangeOldKey];
-        //FSUserInfoModle *newUserInfo = [change objectForKey:NSKeyValueChangeNewKey];
+        //FSUserInfoModel *oldUserInfo = [change objectForKey:NSKeyValueChangeOldKey];
+        //FSUserInfoModel *newUserInfo = [change objectForKey:NSKeyValueChangeNewKey];
         
         //if (![oldUserInfo bm_isValided])
         {
@@ -413,7 +413,7 @@
     // 重置所有倒计时
     [[BMVerifiTimeManager manager] stopAllType];
     
-    [FSUserInfoModle logOut];
+    [FSUserInfoModel logOut];
     
     if (quit)
     {
@@ -568,7 +568,7 @@
             
             for (NSDictionary *dataDic in dataDicArray)
             {
-                FSGlobleDataModle *abilityData = [FSGlobleDataModle globleDataModleWithServerDic:dataDic];
+                FSGlobleDataModel *abilityData = [FSGlobleDataModel globleDataModelWithServerDic:dataDic];
                 if (abilityData)
                 {
                     [abilityArray addObject:abilityData];

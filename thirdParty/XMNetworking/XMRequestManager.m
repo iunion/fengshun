@@ -106,9 +106,9 @@
     [genearHeaers setValue:[FSCoreStatus currentFSNetWorkStatusString] forKey:@"netWorkStandard"];
 
     // token
-    if ([FSUserInfoModle isLogin])
+    if ([FSUserInfoModel isLogin])
     {
-        NSString *token = [FSUserInfoModle userInfo].m_Token;
+        NSString *token = [FSUserInfoModel userInfo].m_Token;
         if ([token bm_isNotEmpty])
         {
             [genearHeaers setValue:token forKey:@"JWTToken"];

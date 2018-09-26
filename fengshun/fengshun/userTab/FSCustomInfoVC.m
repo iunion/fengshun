@@ -170,7 +170,7 @@
         //NSLog(@"onEndEditing: %@", @(weakSelf.m_PickerView.pickerDate.bm_year));
         weakSelf.m_EmploymentTime = weakSelf.m_PickerView.pickerDate.bm_year;
         
-        FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
+        FSUserInfoModel *userInfo = [FSUserInfoModel userInfo];
         if (weakSelf.m_EmploymentTime != userInfo.m_UserBaseInfo.m_EmploymentTime)
         {
             [weakSelf sendUpdateUserInfoWithOperaType:FSUpdateUserInfo_WorkTime changeValue:@(weakSelf.m_EmploymentTime)];
@@ -216,7 +216,7 @@
 
 - (void)freshViews
 {
-    FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
+    FSUserInfoModel *userInfo = [FSUserInfoModel userInfo];
     
     BMWeakSelf
     
@@ -431,7 +431,7 @@
 
 - (void)editAbility
 {
-    FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
+    FSUserInfoModel *userInfo = [FSUserInfoModel userInfo];
     
     FSEditorAbilityVC *editorVC = [[FSEditorAbilityVC alloc] initWithAbilityArray:userInfo.m_UserBaseInfo.m_AbilityArray];
     editorVC.delegate = self;
@@ -464,7 +464,7 @@
 
 - (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)requestDic
 {
-    FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
+    FSUserInfoModel *userInfo = [FSUserInfoModel userInfo];
     [userInfo updateWithServerDic:requestDic isUpDateByUserInfoApi:YES];
     if (userInfo)
     {
@@ -632,7 +632,7 @@
     {
         [self.m_ProgressHUD hideAnimated:NO];
         
-        FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
+        FSUserInfoModel *userInfo = [FSUserInfoModel userInfo];
 
         if (self.m_OperaType == FSUpdateUserInfo_WorkTime)
         {
@@ -686,7 +686,7 @@
 
 - (void)editorFinishedWithOperaType:(FSUpdateUserInfoOperaType)operaType value:(NSString *)value
 {
-    FSUserInfoModle *userInfo = [FSUserInfoModle userInfo];
+    FSUserInfoModel *userInfo = [FSUserInfoModel userInfo];
 
     switch (operaType)
     {

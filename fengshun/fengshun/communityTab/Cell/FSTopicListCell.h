@@ -18,7 +18,7 @@
  
  @param model FSCommunityTopicListModel
  */
-- (void)drawCellWithModle:(FSTopicModel *)model;
+- (void)drawCellWithModel:(FSTopicModel *)model;
 
 - (void)drawCellWithCollectionModel:(FSTopicCollectModel *)model;
 

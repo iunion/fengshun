@@ -116,12 +116,12 @@ FSCommunitySecVC ()
 }
 // 发帖
 - (void)pulishTopicAction{
-    if (![FSUserInfoModle isLogin])
+    if (![FSUserInfoModel isLogin])
     {
         [self showLogin];
         return;
     }
-    if (![FSUserInfoModle userInfo].m_UserBaseInfo.m_IsRealName)
+    if (![FSUserInfoModel userInfo].m_UserBaseInfo.m_IsRealName)
     {
         BMWeakSelf;
         [FSAlertView showAlertWithTitle:@"温馨提示" message:@"认证后才能发帖" cancelTitle:@"取消" otherTitle:@"去认证" completion:^(BOOL cancelled, NSInteger buttonIndex) {
@@ -169,7 +169,7 @@ FSCommunitySecVC ()
 
 - (void)followForumAction:(FSCommunityHeaderView *)aView
 {
-    if (![FSUserInfoModle isLogin])
+    if (![FSUserInfoModel isLogin])
     {
         [self showLogin];
         return ;

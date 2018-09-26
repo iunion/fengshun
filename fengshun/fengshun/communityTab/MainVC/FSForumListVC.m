@@ -134,7 +134,7 @@ FSForumListVC ()
     [cell showWithFSCommunityForumListModel:model.m_List[indexPath.row]];
     BMWeakSelf;
     cell.attentionBtnClickBlock = ^(FSForumModel *model) {
-        if (![FSUserInfoModle isLogin])
+        if (![FSUserInfoModel isLogin])
         {
             if (weakSelf.m_ShowLoginBlock) {
                 weakSelf.m_ShowLoginBlock();

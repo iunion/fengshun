@@ -9,7 +9,7 @@
 #ifndef FSUserInfo_h
 #define FSUserInfo_h
 
-#import "FSUserInfoModle.h"
+#import "FSUserInfoModel.h"
 #import "FSUserInfoDB.h"
 
 #endif /* FSUserInfo_h */
