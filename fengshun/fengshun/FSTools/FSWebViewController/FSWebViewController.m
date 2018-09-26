@@ -16,8 +16,9 @@
 
 #import "FSApiRequest.h"
 #import "FSCoreStatus.h"
-
+#import "FSAlertView.h"
 #import "NSString+BMURLEncode.h"
+#import "NSAttributedString+BMCategory.h"
 
 #define SHOW_CLOSEBTN_CANGOEBACK    1
 
@@ -181,6 +182,7 @@
     [self makeWebView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(makeWebView) name:userInfoChangedNotification object:nil];
+    [self bringSomeViewToFront];
 }
 
 - (void)didReceiveMemoryWarning
@@ -637,25 +639,18 @@
         [weakSelf showLogin];
     }];
     
-    // 分享 （是否显示）
+    // 分享
     [self.m_WebView registerHandler:@"toShare" handler:^(id data, WVJBResponseCallback responseCallback) {
         BMLog(@"share called: %@", data);
-        //responseCallback(@"Response from register");
-        
-        NSDictionary *shareDic = (NSDictionary *)data;
-        
-        NSString *shareItemId = [shareDic bm_stringTrimForKey:@"id"];
-        NSString *shareType = [shareDic bm_stringTrimForKey:@"type"];
-        
-        if ([shareItemId bm_isNotEmpty] && [shareType bm_isNotEmpty])
-        {
-            [weakSelf sendGetShareDataWithShareItemId:shareItemId shareType:shareType];
-        }
         
     }];
     // 举报
     [self.m_WebView registerHandler:@"toReport" handler:^(id data, WVJBResponseCallback responseCallback) {
+        /*
+         {"id":"3","type":"COMMENT","commentPerson":"用户林1","commentContent":"这是0评论内容"}
+         */
         BMLog(@"toReport called: %@", data);
+        [weakSelf showReportAlertWithData:data];
 
     }];
     // 下载按钮（是否显示）
@@ -680,6 +675,53 @@
 //
 //        [MQVCShow showFeedbackVC:weakSelf];
 //    }];
+}
+
+// 举报弹窗
+- (void)showReportAlertWithData:(NSString *)jsonString
+{
+    //{"id":"3","type":"COMMENT","commentPerson":"用户林1","commentContent":"这是0评论内容"}
+    NSDictionary *data = [NSDictionary bm_dictionaryWithJsonString:jsonString];
+    UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 225, 70)];
+    
+    UILabel *cententLab = [[UILabel alloc]initWithFrame:CGRectMake(35/2, 0, 190, 40)];
+    cententLab.numberOfLines = 2;
+    cententLab.font = [UIFont systemFontOfSize:15.f];
+    cententLab.textColor = [UIColor bm_colorWithHexString:@"333333"];
+    NSString *cententString = [NSString stringWithFormat:@"举报了@%@：%@",[data bm_stringForKey:@"commentPerson"],[data bm_stringForKey:@"commentContent"]];
+    NSMutableAttributedString *attrubuteStr = [[NSMutableAttributedString alloc]initWithString:cententString];
+    [attrubuteStr bm_setTextColor:[UIColor redColor] range:NSMakeRange(3, [data bm_stringForKey:@"commentPerson"].length+1)];
+    [attrubuteStr bm_setTextColor:[UIColor bm_colorWithHexString:@"999999"] range:NSMakeRange(cententString.length - [data bm_stringForKey:@"commentContent"].length, [data bm_stringForKey:@"commentContent"].length)];
+    [attrubuteStr bm_setFont:[UIFont systemFontOfSize:13.f] range:NSMakeRange(cententString.length - [data bm_stringForKey:@"commentContent"].length, [data bm_stringForKey:@"commentContent"].length)];
+    cententLab.attributedText = attrubuteStr;
+    [contentView addSubview:cententLab];
+    
+    UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(35/2, cententLab.bm_bottom + 5, 190, 25)];
+    textField.backgroundColor = [UIColor bm_colorWithHexString:@"f6f6f6"];
+    textField.placeholder = @"请输入举报理由";
+    textField.font = [UIFont systemFontOfSize:14.f];
+    [contentView addSubview:textField];
+    [textField becomeFirstResponder];
+    BMWeakSelf;
+    [FSAlertView showAlertWithTitle:@"举报理由说明" message:nil contentView:contentView cancelTitle:@"取消" otherTitle:@"确定" completion:^(BOOL cancelled, NSInteger buttonIndex) {
+        BMLog(@"%@",textField.text);
+        if (buttonIndex == 1) {
+            if (![textField.text bm_isNotEmpty])
+            {
+                [self.m_ProgressHUD showAnimated:YES withDetailText:@"请输入举报理由" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            }
+            [weakSelf addReportContent:textField.text commentId:[data bm_stringForKey:@"id"]];
+        }
+    }];
+}
+
+- (void)addReportContent:(NSString *)content commentId:(NSString *)commentId
+{
+    [FSApiRequest addReportTopic:[NSString stringWithFormat:@"%@",commentId] content:content success:^(id  _Nullable responseObject) {
+        [self.m_ProgressHUD showAnimated:YES withDetailText:@"已举报该评论" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+    } failure:^(NSError * _Nullable error) {
+        [self.m_ProgressHUD showAnimated:YES withDetailText:[NSString stringWithFormat:@"%@",[error.userInfo bm_stringForKey:@"NSLocalizedDescription"]] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+    }];
 }
 
 //- (void)showPhoto:(NSString *)photoUrl
