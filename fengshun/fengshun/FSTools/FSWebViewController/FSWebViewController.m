@@ -27,7 +27,7 @@
 #define USER_AGENT_TAG              @" fengshun_json:"
 
 #warning AGENTWHITELIST
-#define FSWEBVIEW_AGENTWHITELIST    @[@".miaoqian", @".shicaidai"]
+#define FSWEBVIEW_AGENTWHITELIST    @[@".odrcloud", @".bjsjsadr"]
 
 
 @interface FSWebViewController ()

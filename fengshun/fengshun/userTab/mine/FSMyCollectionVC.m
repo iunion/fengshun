@@ -269,6 +269,7 @@
         case FSCollectionType_DOCUMENT:
             return BMEmptyViewType_CollectDOCUMENT;
         case FSCollectionType_COURSE:
+            return BMEmptyViewType_CollectCOURSE;
         default:
             return BMEmptyViewType_NoData;
     }

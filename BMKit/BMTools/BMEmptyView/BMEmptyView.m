@@ -201,6 +201,12 @@
             atrText = [[NSMutableAttributedString alloc] initWithString:text];
         }
             break;
+        case BMEmptyViewType_CollectCOURSE:
+        {
+            NSString *text = @"您还没有收藏过课程...";
+            atrText = [[NSMutableAttributedString alloc] initWithString:text];
+        }
+            break;
         case BMEmptyViewType_Ocr:
         {
             NSString *text = @"快速扫描文件\n转换PDF文档图片轻松识别转成文字";
@@ -262,6 +268,7 @@
         case BMEmptyViewType_CollectSTATUTE:
         case BMEmptyViewType_CollectPOSTS:
         case BMEmptyViewType_CollectDOCUMENT:
+        case BMEmptyViewType_CollectCOURSE:
             imageName = @"empty_collecticon";
             break;
         case BMEmptyViewType_Ocr:
@@ -349,6 +356,7 @@
         case BMEmptyViewType_CollectSTATUTE:
         case BMEmptyViewType_CollectPOSTS:
         case BMEmptyViewType_CollectDOCUMENT:
+        case BMEmptyViewType_CollectCOURSE:
             break;
         case BMEmptyViewType_Ocr:
             break;
