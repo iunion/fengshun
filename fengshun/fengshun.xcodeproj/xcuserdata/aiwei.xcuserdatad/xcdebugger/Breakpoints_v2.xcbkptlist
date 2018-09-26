@@ -51,22 +51,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../thirdParty/TZImagePickerController/TZImagePickerController.m"
-            timestampString = "559572421.867817"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "576"
-            endingLineNumber = "576"
-            landmarkName = "-setSelectedAssets:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "../thirdParty/TZImagePickerController/TZPhotoPickerController.m"
             timestampString = "559573854.539888"
             startingColumnNumber = "9223372036854775807"
@@ -122,22 +106,6 @@
             startingLineNumber = "855"
             endingLineNumber = "855"
             landmarkName = "-addPHAsset:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../thirdParty/TZImagePickerController/TZPhotoPreviewController.m"
-            timestampString = "559573854.540162"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "306"
-            endingLineNumber = "306"
-            landmarkName = "-select:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
