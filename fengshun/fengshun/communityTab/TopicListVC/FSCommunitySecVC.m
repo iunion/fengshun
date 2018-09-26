@@ -104,6 +104,11 @@ FSCommunitySecVC ()
     
     self.m_PulishBtn = [UIButton bm_buttonWithFrame:CGRectMake(UI_SCREEN_WIDTH - 52 - 20, UI_SCREEN_HEIGHT-UI_STATUS_BAR_HEIGHT-UI_NAVIGATION_BAR_HEIGHT- UI_HOME_INDICATOR_HEIGHT- 20.f - 52.f, 52.f, 52.f) image:[UIImage imageNamed:@"community_comment"]];
     [self.m_PulishBtn addTarget:self action:@selector(pulishTopicAction) forControlEvents:UIControlEventTouchUpInside];
+    self.m_PulishBtn.layer.masksToBounds = NO;
+    self.m_PulishBtn.layer.shadowOffset = CGSizeZero;//阴影的偏移量
+    self.m_PulishBtn.layer.shadowRadius = 20;
+    self.m_PulishBtn.layer.shadowOpacity = 0.3;                        //阴影的不透明度
+    self.m_PulishBtn.layer.shadowColor = [UIColor blueColor].CGColor;
     [self.view addSubview:self.m_PulishBtn];
     
 }
