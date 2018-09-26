@@ -11,6 +11,8 @@
 
 @interface FSMyCollectionCell : UITableViewCell
 
+@property (nonatomic, strong, readonly) FSCollectionModel *m_Model;
+
 - (void)showWithCollectionModel:(FSCollectionModel *)model;
 
 + (CGFloat)cellHeight;

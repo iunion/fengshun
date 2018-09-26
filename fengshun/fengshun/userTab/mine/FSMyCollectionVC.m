@@ -133,7 +133,7 @@
             cell = [[[NSBundle mainBundle] loadNibNamed:@"FSMyCollectionCell" owner:self options:nil] lastObject];
         }
     
-        //[cell drawCellWithCollectionModel:self.m_DataArray[indexPath.row]];
+        [cell showWithCollectionModel:self.m_DataArray[indexPath.row]];
         return cell;
 }
 
@@ -148,12 +148,12 @@
     switch (self.m_CollectionType)
     {
 #warning CollectionType
-//        case FSCollectionType_POSTS:
-//        {
-//            FSc *model = self.m_DataArray[indexPath.row];
-//            [FSPushVCManager showTopicDetail:[self.view.superview bm_viewController] topicId:model.m_DetailId];
-//        }
-//            break;
+        case FSCollectionType_POSTS:
+        {
+            FSCollectionModel *model = self.m_DataArray[indexPath.row];
+            [FSPushVCManager showTopicDetail:[self.view.superview bm_viewController] topicId:model.m_DetailId];
+        }
+            break;
         case FSCollectionType_STATUTE:
             break;
         case FSCollectionType_CASE:
