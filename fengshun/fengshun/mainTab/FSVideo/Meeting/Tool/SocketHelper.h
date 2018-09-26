@@ -104,6 +104,15 @@ FOUNDATION_EXPORT NSString * const kNotiReceiveHistoryPrivateMessageListName;
 - (void)socketHelper:(SocketHelper *)socketHelper error:(NSError *)error;
 
 /**
+ SWITCH_MEDIA
+ 
+ @param socketHelper sh
+ @param memberId 用户id
+ @param isVideo 是否是摄像头
+ */
+- (void)socketHelper:(SocketHelper *)socketHelper switchMemberId:(NSString *)memberId type:(BOOL)isVideo;
+
+/**
  socket链接成功，返回登录相关数据
 
  @param socketHelper sh

@@ -115,6 +115,59 @@ VideoCallVideoViewDelegate>
     }
 }
 
+-(void)socketHelper:(SocketHelper *)socketHelper switchMemberId:(NSString *)memberId type:(BOOL)isVideo
+{
+    VideoCallVideoView *view = [_packView elementForUserId:memberId];
+    if (isVideo)
+    {
+        view.model.memberVideoStatus = !view.model.memberVideoStatus;
+        if ([FSMeetingDataEnum isMediatorIdentity:view.model.memberType]) {
+            // 关闭自己视屏
+            BOOL curCameraState = [[ILiveRoomManager getInstance] getCurCameraState];
+            if (curCameraState != view.model.memberVideoStatus) {
+                // 获取视频方位
+                cameraPos pos = [[ILiveRoomManager getInstance] getCurCameraPos];
+                [[ILiveRoomManager getInstance] enableCamera:pos enable:view.model.memberVideoStatus succ:^{
+                    if (view.model.memberVideoStatus) {
+                        [self vc_showMessage:@"摄像头已开启"];
+                    } else {
+                        [self vc_showMessage:@"摄像头已关闭"];
+                    }
+                } failed:^(NSString *module, int errId, NSString *errMsg) {
+                    NSString *msg = [NSString stringWithFormat:@"摄像头操作失败\n%d:%@", errId, errMsg];
+                    [self vc_showMessage:msg];
+                }];
+            }
+        } else {
+            // 关闭别人的视屏
+        }
+    }
+    else
+    {
+        view.model.memberVoiceStatus = !view.model.memberVoiceStatus;
+        if ([FSMeetingDataEnum isMediatorIdentity:view.model.memberType]) {
+            // 关闭自己的麦克风
+            BOOL curMicState = [[ILiveRoomManager getInstance] getCurMicState];
+            if (curMicState != view.model.memberVoiceStatus) {
+                [[ILiveRoomManager getInstance] enableMic:view.model.memberVoiceStatus succ:^{
+                    if (view.model.memberVoiceStatus) {
+                        [self vc_showMessage:@"麦克风已开启"];
+                    } else {
+                        [self vc_showMessage:@"麦克风已关闭"];
+                    }
+                } failed:^(NSString *module, int errId, NSString *errMsg) {
+                    NSString *msg = [NSString stringWithFormat:@"麦克风操作失败\n%d:%@", errId, errMsg];
+                    [self vc_showMessage:msg];
+                }];
+            }
+        } else {
+            // 关闭别人的麦克风
+            // 发socket，关闭麦克风
+        }
+    }
+    [view reloadData];
+}
+
 - (void)socketHelperStartRecordSuccess:(SocketHelper *)socketHelper {
     [_topBar setBtnIsSelected:YES index:1];
 }
@@ -268,12 +321,12 @@ VideoCallVideoViewDelegate>
 
     UIAlertAction *a1 = [UIAlertAction actionWithTitle:msg1 style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self audioControlWithModel:model];
-        [view reloadData];
+//        [view reloadData];
     }];
 
     UIAlertAction *a2 = [UIAlertAction actionWithTitle:msg2 style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self videoControlWithModel:model];
-        [view reloadData];
+//        [view reloadData];
     }];
     UIAlertAction *a3 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     [tovc addAction:a1];
@@ -283,53 +336,11 @@ VideoCallVideoViewDelegate>
 }
 
 - (void)audioControlWithModel:(VideoCallMemberModel *)model {
-
     [[SocketHelper shareHelper] sendAudioEventWithUserId:model.memberId enable:!model.memberVoiceStatus];
-    model.memberVoiceStatus = !model.memberVoiceStatus;
-    if ([FSMeetingDataEnum isMediatorIdentity:model.memberType]) {
-        // 关闭自己的麦克风
-        BOOL curMicState = [[ILiveRoomManager getInstance] getCurMicState];
-        if (curMicState != model.memberVoiceStatus) {
-            [[ILiveRoomManager getInstance] enableMic:model.memberVoiceStatus succ:^{
-                if (model.memberVoiceStatus) {
-                    [self vc_showMessage:@"麦克风已开启"];
-                } else {
-                    [self vc_showMessage:@"麦克风已关闭"];
-                }
-            } failed:^(NSString *module, int errId, NSString *errMsg) {
-                NSString *msg = [NSString stringWithFormat:@"麦克风操作失败\n%d:%@", errId, errMsg];
-                [self vc_showMessage:msg];
-            }];
-        }
-    } else {
-        // 关闭别人的麦克风
-        // 发socket，关闭麦克风
-    }
 }
 
 - (void)videoControlWithModel:(VideoCallMemberModel *)model {
     [[SocketHelper shareHelper] sendVideoEventWithUserId:model.memberId enable:!model.memberVoiceStatus];
-    model.memberVideoStatus = !model.memberVideoStatus;
-    if ([FSMeetingDataEnum isMediatorIdentity:model.memberType]) {
-        // 关闭自己视屏
-        BOOL curCameraState = [[ILiveRoomManager getInstance] getCurCameraState];
-        if (curCameraState != model.memberVideoStatus) {
-            // 获取视频方位
-            cameraPos pos = [[ILiveRoomManager getInstance] getCurCameraPos];
-            [[ILiveRoomManager getInstance] enableCamera:pos enable:model.memberVideoStatus succ:^{
-                if (model.memberVideoStatus) {
-                    [self vc_showMessage:@"摄像头已开启"];
-                } else {
-                    [self vc_showMessage:@"摄像头已关闭"];
-                }
-            } failed:^(NSString *module, int errId, NSString *errMsg) {
-                NSString *msg = [NSString stringWithFormat:@"摄像头操作失败\n%d:%@", errId, errMsg];
-                [self vc_showMessage:msg];
-            }];
-        }
-    } else {
-        // 关闭别人的视屏
-    }
 }
 
 #pragma mark - 私聊按钮点击事件
