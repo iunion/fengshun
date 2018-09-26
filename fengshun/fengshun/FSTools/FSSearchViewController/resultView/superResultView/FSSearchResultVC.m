@@ -33,6 +33,17 @@
 {
     return BMEmptyViewType_Search;
 }
+#pragma mark - loadPage
+- (void)loadApiData
+{
+    self.loadPage = 0;
+    [super loadApiData];
+}
+- (BOOL)checkLoadFinish:(NSDictionary *)requestDic
+{
+    self.loadPage += 1;
+    return NO;
+}
 #pragma mark - tableViewDeleaget&DataSource
 
 

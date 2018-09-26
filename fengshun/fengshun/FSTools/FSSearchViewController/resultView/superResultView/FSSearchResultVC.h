@@ -17,6 +17,8 @@ typedef void(^SearchSucceed)(id resultModel);
 @property(nonatomic, weak)FSSearchResultView *m_resultView;
 @property(nonatomic, copy)SearchSucceed m_searchsucceed;
 
+@property(nonatomic, assign)NSUInteger loadPage;
+
 @property (nonatomic, weak)     UIViewController *m_masterVC;
 
 @end

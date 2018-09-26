@@ -31,6 +31,7 @@ FSOCRSearchResultVC ()
 @property (nonatomic, strong) FSLawSearchResultModel * m_lawSearchResultModel;
 @property (nonatomic, strong) FSCaseSearchResultModel *m_caseSearchResultModel;
 @property (nonatomic, assign, readonly) NSInteger m_totalCount;
+@property (nonatomic, assign) NSUInteger loadPage;
 
 @end
 
@@ -144,7 +145,15 @@ FSOCRSearchResultVC ()
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-# warning H5跳转
+    if (_m_ocrSearchType) {
+        FSLawResultModel *model = _m_lawSearchResultModel.m_resultDataArray[indexPath.row];
+        [FSPushVCManager viewController:self pushToLawDetailWithId:model.m_lawsId keywords:_m_lawSearchResultModel.m_keywordsStr];
+    }
+    else
+    {
+        FSCaseResultModel *model = _m_caseSearchResultModel.m_resultDataArray[indexPath.row];
+        [FSPushVCManager viewController:self pushToCaseDetailWithId:model.m_caseId keywords:_m_caseSearchResultModel.m_keywordsStr];
+    }
 }
 
 - (NSInteger)m_totalCount
@@ -273,7 +282,11 @@ FSOCRSearchResultVC ()
     self.m_caseSearchResultModel = nil;
     [self loadApiData];
 }
-
+- (void)loadApiData
+{
+    self.loadPage = 0;
+    [super loadApiData];
+}
 - (BOOL)canLoadApiData
 {
     if (_m_ocrSearchType) {
@@ -290,12 +303,12 @@ FSOCRSearchResultVC ()
 {
     if (_m_ocrSearchType)
     {
-        return [FSApiRequest searchLawsWithKeywords:_m_keywords start:s_BakLoadedPage size:self.m_CountPerPage filters:@[]];
+        return [FSApiRequest searchLawsWithKeywords:_m_keywords start:self.loadPage size:self.m_CountPerPage filters:@[]];
     }
     else
     {
         
-        return [FSApiRequest searchCaseWithKeywords:_m_keywords start:s_BakLoadedPage size:self.m_CountPerPage filters:@[]];
+        return [FSApiRequest searchCaseWithKeywords:_m_keywords start:self.loadPage size:self.m_CountPerPage filters:@[]];
     }
 }
 
@@ -346,12 +359,19 @@ FSOCRSearchResultVC ()
 
 - (BOOL)checkLoadFinish:(NSDictionary *)requestDic
 {
+    [super checkLoadFinish:requestDic];
     if (_m_ocrSearchType)
     {
+        if (_m_lawSearchResultModel.m_isMore) {
+            self.loadPage += 1;
+        }
         return !_m_lawSearchResultModel.m_isMore;
     }
     else
     {
+        if (_m_caseSearchResultModel.m_isMore) {
+            self.loadPage += 1;
+        }
         return !_m_caseSearchResultModel.m_isMore;
     }
 }
