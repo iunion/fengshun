@@ -166,6 +166,7 @@
     self.m_PassWordItem.underLineDrawType = BMTableViewCell_UnderLineDrawType_SeparatorAllLeftInset;
     self.m_PassWordItem.underLineColor = FS_LINECOLOR;
     self.m_PassWordItem.cellBgColor = [UIColor clearColor];
+    self.m_PassWordItem.secureTextEntry = YES;
     
     self.m_PassWordItem.image = [UIImage imageNamed:@"login_password"];
     
