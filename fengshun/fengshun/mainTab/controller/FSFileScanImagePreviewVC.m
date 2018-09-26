@@ -26,6 +26,8 @@ FSFileScanImagePreviewVC ()
 @property (weak, nonatomic) IBOutlet UILabel *  m_pageContolLabel;
 @property (nonatomic, strong) FSScrollPageView *m_scrollPageView;
 
+@property (nonatomic, strong)UIButton *editFileNameButton;
+
 @end
 
 @implementation FSFileScanImagePreviewVC
@@ -42,10 +44,20 @@ FSFileScanImagePreviewVC ()
     self.bm_NavigationShadowHidden = NO;
     self.bm_NavigationShadowColor  = UI_COLOR_B6;
     [self bm_setNavigationLeftItemTintColor:UI_COLOR_B1];
-    [self bm_setNavigationWithTitle:_m_selectedImageFile.m_fileName barTintColor:nil leftItemTitle:@"" leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:@"更多" rightItemImage:nil rightToucheEvent:@selector(moreAction:)];
+    
+    UILabel *titleView = (UILabel *)[self bm_getNavigationBarTitleLabel];
+    self.editFileNameButton = [[UIButton alloc]initWithFrame:titleView.bounds];
+    [_editFileNameButton addTarget:self action:@selector(editFileName) forControlEvents:UIControlEventTouchUpInside];
+    _editFileNameButton.titleLabel.font = titleView.font;
+    [_editFileNameButton setTitle:_m_selectedImageFile.m_fileName forState:UIControlStateNormal];
+    [_editFileNameButton setTitleColor:titleView.textColor forState:UIControlStateNormal];
+    
+    [self bm_setNavigationWithTitleView:_editFileNameButton barTintColor:nil leftItemTitle:@"" leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:@"更多" rightItemImage:nil rightToucheEvent:@selector(moreAction:)];
     [self bm_setNavigationRightItemTintColor:UI_COLOR_BL1];
     [self bm_setNeedsUpdateNavigationBar];
     [self setBm_NavigationBarImage:[UIImage imageWithColor:[UIColor whiteColor]]];
+    
+    
     for (UIButton *toolButton in _m_toolButtons)
     {
         [toolButton bm_roundedRect:15 borderWidth:0.5 borderColor:UI_COLOR_BL1];
@@ -59,6 +71,25 @@ FSFileScanImagePreviewVC ()
     _m_scrollPageView.delegate   = self;
 
     [self refreshUIIfNeedReload:YES];
+}
+- (void)editFileName
+{
+    if (![_m_selectedImageFile bm_isNotEmpty]) {
+        return;
+    }
+    UIAlertController *av = [UIAlertController alertControllerWithTitle:@"重命名" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [av addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.text = self.m_selectedImageFile.m_fileName;
+    }];
+    [av addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+    __weak typeof(av) weakAv = av;
+    [av addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UITextField *tf = [weakAv.textFields firstObject];
+        self.m_selectedImageFile.m_fileName = tf.text;
+        [self synDataAndUI];
+        [self refreshUIIfNeedReload:NO];
+    }]];
+    [self presentViewController:av animated:YES completion:nil];
 }
 - (void)refreshUIIfNeedReload:(BOOL)needReload
 {
@@ -75,11 +106,11 @@ FSFileScanImagePreviewVC ()
     NSUInteger total        = _m_allImageFiles.count;
     _m_pageContolLabel.text = [NSString stringWithFormat:@"%lu/%lu", (unsigned long)index, (unsigned long)total];
     if (_m_selectedImageFile) {
-        [self bm_setNavigationBarTitle:_m_selectedImageFile.m_fileName];
+        [self.editFileNameButton setTitle:_m_selectedImageFile.m_fileName forState:UIControlStateNormal];
     }
     else
     {
-        [self bm_setNavigationBarTitle:@"无图片"];
+        [self.editFileNameButton setTitle:@"无图片" forState:UIControlStateNormal];
     }
 }
 - (void)didReceiveMemoryWarning
