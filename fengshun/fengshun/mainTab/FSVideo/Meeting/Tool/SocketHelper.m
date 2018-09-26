@@ -187,6 +187,14 @@ static dispatch_once_t onceToken;
         }
         return;
     }
+    // 接收到开关摄像头或麦克风消息
+    if([event isEqualToString:@"SWITCH_MEDIA"]) {
+        if ([self.delegate respondsToSelector:@selector(socketHelper:switchMemberId:type:)]) {
+            NSString *type = data[@"mediaType"];
+            [self.delegate socketHelper:self switchMemberId:data[@"memberId"] type:[type isEqualToString:@"VIDEO"]];
+        }
+        return;
+    }
 }
 
 - (void)dealRoomEvent {
