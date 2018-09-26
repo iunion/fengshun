@@ -71,7 +71,7 @@
                              @"docCount":@(_m_rightFilter.m_docCount),
                              }];
     }
-    return [FSApiRequest searchCaseWithKeywords:self.m_resultView.m_searchKeys start:s_BakLoadedPage size:self.m_CountPerPage filters:filters];
+    return [FSApiRequest searchCaseWithKeywords:self.m_resultView.m_searchKeys start:self.loadPage size:self.m_CountPerPage filters:filters];
 }
 - (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)responseObject
 {
@@ -94,6 +94,7 @@
 }
 - (BOOL)checkLoadFinish:(NSDictionary *)requestDic
 {
+    [super checkLoadFinish:requestDic];
     return !_m_searchResultModel.m_isMore;
 }
 @end

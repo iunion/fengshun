@@ -157,7 +157,6 @@ FSTextSplitVC ()
     [FSApiRequest loadTextIndexPageDataSuccess:^(id _Nullable responseObject){
         NSDictionary *              data      = responseObject;
         NSArray *                   typeArray = [FSTextTypeModel modelsWithDataArray:[data bm_arrayForKey:@"documentHomeLeftMenuList"]];
-        NSArray<FSListTextModel *> *textList  = [FSListTextModel modelsWithDataArray:[data bm_arrayForKey:@"documentList"]];
 
         self.m_typeArray               = typeArray;
         _m_typeListManager.m_typeArray = typeArray;
@@ -166,22 +165,9 @@ FSTextSplitVC ()
         [_m_textTypeListView reloadData];
 
         // 定位初始textList的Type
-        NSString *typeCode  = nil;
-        if (textList.count)
-        {
-            typeCode = textList[0].m_typeCode;
-        }
-
-        for (FSTextTypeModel *typeModel in typeArray)
-        {
-            if ([typeModel.m_typeCode isEqualToString:typeCode])
-            {
-                typeModel.m_textList = textList;
-                self.m_selectedType  = typeModel;
-                [_m_textTypeListView selectRowAtIndexPath:[NSIndexPath indexPathForRow:[_m_typeArray indexOfObject:typeModel] inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
-                [self.m_TableView reloadData];
-                break;
-            }
+        if ([typeArray bm_isNotEmpty]) {
+            [_m_textTypeListView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+            [self selectedTextTypeAtIndex:0];
         }
 
     }

@@ -115,13 +115,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../thirdParty/TZImagePickerController/TZPhotoPickerController.m"
-            timestampString = "559573854.540398"
+            filePath = "fengshun/FSPushVCManager.m"
+            timestampString = "559640412.052942"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "586"
-            endingLineNumber = "586"
-            landmarkName = "-collectionView:didSelectItemAtIndexPath:"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
+            landmarkName = "+viewController:pushToCaseDetailWithId:keywords:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -131,29 +131,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../thirdParty/TZImagePickerController/TZPhotoPickerController.m"
-            timestampString = "559573854.540462"
+            filePath = "fengshun/FSPushVCManager.m"
+            timestampString = "559640412.05303"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "606"
-            endingLineNumber = "606"
-            landmarkName = "-collectionView:didSelectItemAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "fengshun/mainTab/controller/FSCaseSearchResultVC.m"
-            timestampString = "559625121.954769"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "-setLoadDataRequest"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
+            landmarkName = "+viewController:pushToCourseDetailWithId:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
