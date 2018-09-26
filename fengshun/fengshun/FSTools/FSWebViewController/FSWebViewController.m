@@ -17,6 +17,7 @@
 #import "FSApiRequest.h"
 #import "FSCoreStatus.h"
 #import "FSAlertView.h"
+#import "FSMoreViewVC.h"
 #import "NSString+BMURLEncode.h"
 #import "NSAttributedString+BMCategory.h"
 
@@ -33,7 +34,8 @@
 
 @interface FSWebViewController ()
 <
-    FSWebViewDelegate
+    FSWebViewDelegate,
+    FSMoreViewVCDelegate
 >
 {
     // 显示关闭
@@ -42,6 +44,12 @@
     BOOL needShowFresh;
     
     NSString *s_PhtoUrlStr;
+    
+    NSString *s_ShareJsonSting;// 分享的json
+    
+    NSString *s_CollectJsonSting;// 收藏json
+    
+    BOOL s_isCollect;// 是否收藏
 }
 
 @property (nonatomic, strong) FSWebView *m_WebView;
@@ -628,6 +636,11 @@
             [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"复制失败" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         }
     }];
+    // 显示分享面板
+    [self.m_WebView registerHandler:@"showShareBoard" handler:^(id data, WVJBResponseCallback responseCallback) {
+        BMLog(@"showShareBoard called: %@", data);
+        
+    }];
 #endif
     
     BMWeakSelf
@@ -642,7 +655,15 @@
     // 分享
     [self.m_WebView registerHandler:@"toShare" handler:^(id data, WVJBResponseCallback responseCallback) {
         BMLog(@"share called: %@", data);
-        
+        /*f5HM8GUBN3_o1ImUsbSy
+         {"title":"中华人民共和国广告法",
+         "url":"https://devftlsh5.odrcloud.net/Law/lawDetail?ID=TJDjrGUBN3_o1ImUSqS9&keywords=%E5%90%88%E5%90%8C%E7%BA%A0%E7%BA%B7&a=a",
+         "content":"枫调理顺—调解员专属的APP",
+         "imgUrl":"https://devres.odrcloud.net/storm-test//51/200/97c7f2c52c3c4038868f8d04d15ae8c1.png",
+         "id":"TJDjrGUBN3_o1ImUSqS9",
+         "type":"STATUTE"}
+         */
+        s_ShareJsonSting = data;
     }];
     // 举报
     [self.m_WebView registerHandler:@"toReport" handler:^(id data, WVJBResponseCallback responseCallback) {
@@ -658,15 +679,21 @@
         BMLog(@"toDownload called: %@", data);
         
     }];
-    // 显示分享面板
-    [self.m_WebView registerHandler:@"showShareBoard" handler:^(id data, WVJBResponseCallback responseCallback) {
-        BMLog(@"showShareBoard called: %@", data);
-        
-    }];
+    
     //收藏按钮
     [self.m_WebView registerHandler:@"toCollect" handler:^(id data, WVJBResponseCallback responseCallback) {
+        /*
+         {
+             "id":"kJDjrGUBN3_o1ImUV6QM",
+             "type":"STATUTE",
+             "source":"全国人民代表大会常务委员会",
+             "title":"中华人民共和国药品管理法",
+             "guidingCase":""
+         }
+         */
         BMLog(@"toCollect called: %@", data);
-        
+        s_CollectJsonSting = data;
+        [weakSelf addRightBtn];
     }];
     
     
@@ -677,6 +704,62 @@
 //    }];
 }
 
+- (void)addRightBtn
+{
+    [self bm_setNavigationWithTitle:self.m_WebView.title barTintColor:nil leftDicArray:nil rightDicArray:@[ [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"community_more" toucheEvent:@"moreAction" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0]]];
+}
+// 更多按钮
+- (void)moreAction
+{
+    NSDictionary *data = [NSDictionary bm_dictionaryWithJsonString:s_CollectJsonSting];
+    
+    if (![data bm_isNotEmptyDictionary])
+    {
+        [self.m_ProgressHUD showAnimated:YES withText:@"数据错误" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        return;
+    }
+    [self.m_ProgressHUD showAnimated:YES];
+    [FSApiRequest getCollectStateID:[data bm_stringForKey:@"id"] type:[data bm_stringForKey:@"type"] Success:^(id  _Nullable responseObject) {
+        [self.m_ProgressHUD hideAnimated:NO];
+        NSInteger count = [responseObject integerValue];
+        s_isCollect = count>0;
+        [FSMoreViewVC showWebMore:self delegate:self isCollection:s_isCollect];
+        
+    } failure:^(NSError * _Nullable error) {
+        
+    }];
+}
+
+- (void)moreViewClickWithType:(NSInteger)index
+{
+    if (index < 5)
+    {
+        [self.m_ProgressHUD showAnimated:YES withText:[NSString stringWithFormat:@"分享未完成：数据为%@",s_ShareJsonSting] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+    }
+    else if (index == 5)//收藏
+    {
+        NSDictionary *data = [NSDictionary bm_dictionaryWithJsonString:s_CollectJsonSting];
+        [FSApiRequest updateCollectStateID:[data bm_stringForKey:@"id"] isCollect:!s_isCollect guidingCase:[data bm_stringForKey:@"guidingCase"] source:[data bm_stringForKey:@"source"] title:[data bm_stringForKey:@"title"] type:[data bm_stringForKey:@"type"] Success:^(id  _Nullable responseObject) {
+            [self.m_ProgressHUD showAnimated:YES withText:s_isCollect?@"取消收藏":@"收藏成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        } failure:^(NSError * _Nullable error) {
+            
+        }];
+    }
+    else if (index == 6)//复制
+    {
+        if ([self.m_UrlString bm_isNotEmpty])
+        {
+            [[UIPasteboard generalPasteboard] setString:self.m_UrlString];
+            [self.m_ProgressHUD showAnimated:YES withDetailText:@"复制成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        }
+        else
+        {
+            [self.m_ProgressHUD showAnimated:YES withDetailText:@"复制失败" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        }
+    }
+}
+
+#pragma mark - 举报弹窗
 // 举报弹窗
 - (void)showReportAlertWithData:(NSString *)jsonString
 {

@@ -42,7 +42,7 @@
             errorMessage = @"操作数据库失败";
             break;
         case 136001:
-            errorMessage = @"您已举报过该内容，系统将尽快处理。";
+            errorMessage = @"";
             break;
         case FSAPI_NET_ERRORCODE:
             if ([FSCoreStatus currentNetWorkStatus] == FSCoreNetWorkStatusNone)
@@ -199,6 +199,40 @@
     [parameters bm_setApiString:shareType forKey:@"type"];
 
     return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
+}
+
++ (XMRequest *)getCollectStateID:(NSString *)relateId type:(NSString *)type Success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters bm_setString:relateId forKey:@"id"];
+    [parameters bm_setString:type forKey:@"type"];
+    return [XMRequestManager rm_requestWithApi:@"/storm/user/collectionCount" parameters:parameters success:successBlock failure:failureBlock];
+}
+
+
+/**
+ 收藏、取消
+
+ @param relateId 相关id
+ @param isCollect 收藏/取消
+ @param guidingCase 指导性案例,CASE时必传
+ @param source 来源（当type为STATUTE，CASE时必传）
+ @param title 标题（当type为STATUTE，CASE时必传）
+ @param type 类型（COURSE-课程 POSTS-帖子 STATUTE-法规 CASE-案例 DOCUMENT-文书范本）
+ @param successBlock 成功
+ @param failureBlock 识别
+ @return XMRequest
+ */
++ (XMRequest *)updateCollectStateID:(NSString *)relateId isCollect:(BOOL)isCollect guidingCase:(NSString *)guidingCase source:(NSString *)source title:(NSString *)title type:(NSString *)type Success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters bm_setString:relateId forKey:@"id"];
+    [parameters bm_setString:type forKey:@"type"];
+    [parameters bm_setString:isCollect?@"COLLECTION":@"CANCEL_COLLECTION" forKey:@"collection"];
+    [parameters bm_setString:guidingCase forKey:@"guidingCase"];
+    [parameters bm_setString:source forKey:@"source"];
+    [parameters bm_setString:title forKey:@"title"];
+    return [XMRequestManager rm_requestWithApi:@"/storm/user/collection" parameters:parameters success:successBlock failure:failureBlock];
 }
 
 @end

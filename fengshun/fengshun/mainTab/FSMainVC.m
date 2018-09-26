@@ -147,7 +147,14 @@ FSMainVC ()
 {
     _m_headerView.m_pageControl.currentPage = index;
 }
-
+- (void)bannerView:(nonnull UIView *)bannerView didSelectIndex:(NSUInteger)index
+{
+    FSBannerModel *model = _m_banners[index];
+    if (model.m_jumpType && [model.m_jumpAddress bm_isNotEmpty]) {
+        // H5跳转
+        [FSPushVCManager showWebView:self url:model.m_jumpAddress title:nil showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR animated:YES];
+    }
+}
 - (void)AIButtonCliked
 {
     // 智能咨询

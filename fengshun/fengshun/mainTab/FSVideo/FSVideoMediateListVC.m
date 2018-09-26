@@ -13,7 +13,7 @@
 #import "FSVideoMediateDetailVC.h"
 #import "FSVideoStartTool.h"
 
-@interface FSVideoMediateListVC ()
+@interface FSVideoMediateListVC () <FSVideoMediateListCellDelegate>
 {
     BOOL loginAndCreate;
 }
@@ -222,6 +222,7 @@
     if (cell == nil)
     {
         cell = [[FSVideoMediateListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:taskCellIdentifier];
+        cell.delegate = self;
     }
     
     [cell setModel:self.m_DataArray[indexPath.row]];
@@ -229,20 +230,9 @@
     return cell;
 }
 
--(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)didDeleteVideoMediate:(FSVideoMediateListCell *)cell
 {
-    return YES;
-}
-
--(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return UITableViewCellEditingStyleDelete;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"UITableViewCellEditingStyle = %@", @(editingStyle));
-    self.deleteModel = self.m_DataArray[indexPath.row];
+    self.deleteModel = cell.model;
     [self deleteAction];
 }
 
