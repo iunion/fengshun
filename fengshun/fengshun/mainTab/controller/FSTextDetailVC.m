@@ -16,14 +16,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    CGSize buttonSize = CGSizeMake(115, 41);
+    CGSize buttonSize = CGSizeMake(115, 41.0f);
     UIButton *dowloadButton = [[UIButton alloc]initWithFrame:CGRectMake(UI_SCREEN_WIDTH - buttonSize.width, UI_SCREEN_HEIGHT -UI_NAVIGATION_BAR_HEIGHT- UI_STATUS_BAR_HEIGHT -buttonSize.height -45, buttonSize.width, buttonSize.height)];
     dowloadButton.backgroundColor = UI_COLOR_BL1;
     dowloadButton.titleLabel.font = [UIFont systemFontOfSize:16];
     [dowloadButton setImage:[UIImage imageNamed:@"text_dowload"] forState:UIControlStateNormal];
     [dowloadButton setTitle:@"下载范本" forState:UIControlStateNormal];
+    [dowloadButton bm_layoutButtonWithEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:6];
     [dowloadButton addTarget:self action:@selector(downloadFile) forControlEvents:UIControlEventTouchUpInside];
-    
+    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+    maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:dowloadButton.bounds byRoundingCorners:UIRectCornerTopLeft|UIRectCornerBottomLeft cornerRadii:CGSizeMake(buttonSize.height/2, buttonSize.height/2)].CGPath;
+    [dowloadButton.layer setMask:maskLayer];
     
     [self.view addSubview:dowloadButton];
 }
