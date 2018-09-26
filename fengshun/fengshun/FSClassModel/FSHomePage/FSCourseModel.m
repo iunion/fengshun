@@ -13,24 +13,6 @@
 
 @end
 
-@implementation FSCourseCollectionModel
-
-+ (instancetype)modelWithParams:(NSDictionary *)params
-{
-    FSCourseCollectionModel *model = [[self alloc]init];
-    model.m_id                     = [params bm_stringForKey:@"detailId"];
-    model.m_tilte                  = [params bm_stringForKey:@"title"];
-    model.m_sourceInfo             = [params bm_stringForKey:@"source"];
-    model.m_readCount              = [params bm_intForKey:@"readCount"];
-    model.m_jumpAddress            = [params bm_stringForKey:@"jumpAddress"];
-    model.m_coverThumbUrl          = [params bm_stringForKey:@"coverThumbUrl"];
-    model.m_collectionId           = [params bm_stringForKey:@"collectionId"];
-
-    return model;
-}
-
-@end
-
 @implementation FSCourseRecommendModel
 
 
@@ -47,4 +29,5 @@
 
     return model;
 }
+
 @end

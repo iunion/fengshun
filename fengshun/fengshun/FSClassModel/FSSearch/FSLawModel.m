@@ -12,22 +12,6 @@
 
 @end
 
-@implementation FSLawCollectionModel
-
-+ (instancetype)modelWithParams:(NSDictionary *)params
-{
-    FSLawCollectionModel *model = [[self alloc] init];
-    model.m_lawsId              = [params bm_stringForKey:@"detailId"];
-    model.m_title               = [params bm_stringForKey:@"title"];
-    model.m_source              = [params bm_stringForKey:@"source"];
-    model.m_jumpUrl             = [params bm_stringForKey:@"jumpAddress"];
-    model.m_collectionId        = [params bm_stringForKey:@"collectionId"];
-
-    return model;
-}
-
-@end
-
 @implementation FSLawResultModel
 
 +(instancetype)modelWithParams:(NSDictionary *)params

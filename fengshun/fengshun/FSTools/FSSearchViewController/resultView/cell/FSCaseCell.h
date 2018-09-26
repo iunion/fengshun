@@ -12,6 +12,7 @@
 @interface FSCaseCell : UITableViewCell
 
 @property (nonatomic, strong) FSCaseModel *m_caseModel;
+
 - (void)setCaseResultModel:(FSCaseResultModel *)model attributed:(BOOL)attributed;
-- (void)setCaseCollectionModel:(FSCaseCollectionModel *)model;
+
 @end

@@ -14,13 +14,6 @@
 
 @end
 
-@interface FSCaseCollectionModel : FSCaseModel
-
-@property (nonatomic, copy) NSString *m_collectionId;
-@property (nonatomic, copy) NSString *m_source;
-@property (nonatomic, copy) NSString *m_jumpUrl;
-@end
-
 @interface FSCaseResultModel : FSCaseModel
 
 @property (nonatomic, copy) NSString *m_simpleContent;

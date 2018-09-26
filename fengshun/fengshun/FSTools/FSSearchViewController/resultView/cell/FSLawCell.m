@@ -39,14 +39,5 @@
     _m_contentLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     _m_matchLabel.text  = [NSString stringWithFormat:@"命中法条 %ld",model.m_matchCount];
 }
-- (void)setLawCollectionModel:(FSLawCollectionModel *)model
-{
-    _m_lawModel           = model;
-    _m_matchTag.hidden    = YES;
-    _m_matchLabel.hidden  = YES;
-    _m_contentLabel.text  = nil;
-    _bottomSpace.constant = 10;
-    _m_titleLabel.text    = model.m_title;
-    _m_detailLabel.text   = model.m_source;
-}
+
 @end

@@ -14,18 +14,6 @@
 
 @end
 
-@implementation FSCollectionTextModel
-+ (instancetype)modelWithParams:(NSDictionary *)params
-{
-    FSCollectionTextModel *model = [[self alloc] init];
-    model.m_title                = [params bm_stringForKey:@"title"];
-    model.m_fileId               = [params bm_stringForKey:@"fileId"];
-    model.m_previewUrl           = [params bm_stringForKey:@"previewUrl"];
-    model.m_collectionId         = [params bm_stringForKey:@"collectionId"];
-    return model;
-}
-@end
-
 @implementation FSListTextModel
 
 + (instancetype)modelWithParams:(NSDictionary *)params
