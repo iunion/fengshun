@@ -317,9 +317,10 @@
     view.backgroundColor = [UIColor whiteColor];
     self.headerView      = view;
 
-    CGFloat topGap = 27.0f;
+    CGFloat topGap = (_resultType == FSSearchResultType_case)?27:10;
     if (_resultType == FSSearchResultType_case)
     {
+        topGap = 27;
         CGFloat labelHeight = 30.0f;
         UIImageView *hotTag = [[UIImageView alloc] initWithFrame:CGRectMake(15, topGap / 2, 11, labelHeight)];
         hotTag.contentMode  = UIViewContentModeLeft;
@@ -333,9 +334,7 @@
         [view addSubview:label];
         topGap += labelHeight - 11;
     }
-    
-   
-    
+  
     TTGTagCollectionView *tagCollectionView = [[TTGTagCollectionView alloc] initWithFrame:CGRectMake(12, topGap, UI_SCREEN_WIDTH-24, 60.0f)];
     tagCollectionView.delegate = self;
     tagCollectionView.dataSource = self;
