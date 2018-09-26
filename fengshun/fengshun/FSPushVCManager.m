@@ -198,10 +198,13 @@
     [FSPushVCManager showWebView:pushVC url:@"https://odrcloud.net:19095/ftlsh5.html" title:nil showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR animated:YES];
 }
 
-+ (void)viewController:(UIViewController *)vc pushToLawTopicVCWithLawTopic:(NSString *)lawTopic
++ (void)viewController:(UIViewController *)pushVC pushToLawTopicVCWithLawTopic:(NSString *)lawTopic
 {
     NSString *url = [NSString stringWithFormat:@"%@/Law?keywords=%@",FS_H5_SERVER,lawTopic];
-    [FSPushVCManager showWebView:vc url:url title:nil showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR animated:YES];
+    FSWebViewController *vc = [[FSWebViewController alloc] initWithTitle:@"法规专题" url:url showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR delegate:nil];
+    vc.hidesBottomBarWhenPushed = YES;
+    vc.m_ShowPageTitles = NO;
+    [pushVC.navigationController pushViewController:vc animated:YES];
 }
 
 // 法规详情

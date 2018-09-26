@@ -69,7 +69,7 @@ typedef void (^PushVCCallBack)(void);
 + (void)pushToAIConsultVC:(UIViewController *)pushVC;
 
 // 法规专题
-+ (void)viewController:(UIViewController *)vc pushToLawTopicVCWithLawTopic:(NSString *)lawTopic;
++ (void)viewController:(UIViewController *)pushVC pushToLawTopicVCWithLawTopic:(NSString *)lawTopic;
 
 // 法规详情
 + (void)viewController:(UIViewController *)vc pushToLawDetailWithId:(NSString *)lawId keywords:(NSString *)keywordsStr;
