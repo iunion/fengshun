@@ -42,7 +42,7 @@
             errorMessage = @"操作数据库失败";
             break;
         case 136001:
-            errorMessage = @"";
+            errorMessage = @"您已举报过该内容，系统将尽快处理。";
             break;
         case FSAPI_NET_ERRORCODE:
             if ([FSCoreStatus currentNetWorkStatus] == FSCoreNetWorkStatusNone)

@@ -189,7 +189,6 @@
         [self.m_ProgressHUD showAnimated:YES withText:@"请输入完整信息" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         return;
     }
-    
     BMWeakSelf;
     [FSAlertView showAlertWithTitle:@"确认提交"
                             message:@"您确定发布当前帖子内容"

@@ -647,8 +647,6 @@
     // 登录
     [self.m_WebView registerHandler:@"toLogin" handler:^(id data, WVJBResponseCallback responseCallback) {
         BMLog(@"login called: %@", data);
-        //responseCallback(@"Response from register");
-        
         [weakSelf showLogin];
     }];
     
@@ -674,11 +672,6 @@
         [weakSelf showReportAlertWithData:data];
 
     }];
-    // 下载按钮（是否显示）
-    [self.m_WebView registerHandler:@"toDownload" handler:^(id data, WVJBResponseCallback responseCallback) {
-        BMLog(@"toDownload called: %@", data);
-        
-    }];
     
     //收藏按钮
     [self.m_WebView registerHandler:@"toCollect" handler:^(id data, WVJBResponseCallback responseCallback) {
@@ -703,7 +696,7 @@
 //        [MQVCShow showFeedbackVC:weakSelf];
 //    }];
 }
-
+// 添加更多按钮
 - (void)addRightBtn
 {
     [self bm_setNavigationWithTitle:self.m_WebView.title barTintColor:nil leftDicArray:nil rightDicArray:@[ [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"community_more" toucheEvent:@"moreAction" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0]]];
@@ -718,18 +711,20 @@
         [self.m_ProgressHUD showAnimated:YES withText:@"数据错误" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         return;
     }
-    [self.m_ProgressHUD showAnimated:YES];
+    //获取收藏状态
+    [self.m_ProgressHUD showAnimated:YES withText:nil];
+    BMWeakSelf;
     [FSApiRequest getCollectStateID:[data bm_stringForKey:@"id"] type:[data bm_stringForKey:@"type"] Success:^(id  _Nullable responseObject) {
-        [self.m_ProgressHUD hideAnimated:NO];
+        [weakSelf.m_ProgressHUD hideAnimated:NO];
         NSInteger count = [responseObject integerValue];
         s_isCollect = count>0;
-        [FSMoreViewVC showWebMore:self delegate:self isCollection:s_isCollect];
+        [FSMoreViewVC showWebMore:weakSelf delegate:weakSelf isCollection:s_isCollect];
         
     } failure:^(NSError * _Nullable error) {
         
     }];
 }
-
+#pragma mark - moreAlert
 - (void)moreViewClickWithType:(NSInteger)index
 {
     if (index < 5)
@@ -738,9 +733,10 @@
     }
     else if (index == 5)//收藏
     {
+        BMWeakSelf;
         NSDictionary *data = [NSDictionary bm_dictionaryWithJsonString:s_CollectJsonSting];
         [FSApiRequest updateCollectStateID:[data bm_stringForKey:@"id"] isCollect:!s_isCollect guidingCase:[data bm_stringForKey:@"guidingCase"] source:[data bm_stringForKey:@"source"] title:[data bm_stringForKey:@"title"] type:[data bm_stringForKey:@"type"] Success:^(id  _Nullable responseObject) {
-            [self.m_ProgressHUD showAnimated:YES withText:s_isCollect?@"取消收藏":@"收藏成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            [weakSelf.m_ProgressHUD showAnimated:YES withText:s_isCollect?@"取消收藏":@"收藏成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         } failure:^(NSError * _Nullable error) {
             
         }];
@@ -759,7 +755,7 @@
     }
 }
 
-#pragma mark - 举报弹窗
+#pragma mark - reportAlert
 // 举报弹窗
 - (void)showReportAlertWithData:(NSString *)jsonString
 {
@@ -792,6 +788,7 @@
             if (![textField.text bm_isNotEmpty])
             {
                 [self.m_ProgressHUD showAnimated:YES withDetailText:@"请输入举报理由" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                return ;
             }
             [weakSelf addReportContent:textField.text commentId:[data bm_stringForKey:@"id"]];
         }
