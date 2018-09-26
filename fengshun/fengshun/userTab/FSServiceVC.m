@@ -7,6 +7,7 @@
 //
 
 #import "FSServiceVC.h"
+#import "FSAlertView.h"
 
 @interface FSServiceVC ()
 
@@ -123,6 +124,10 @@
     {
         [[UIApplication sharedApplication] openURL:url];
     }
+    else
+    {
+        [self.m_ProgressHUD showAnimated:YES withText:@"您已成功复制QQ号，去添加客服QQ号联系她们吧" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+    }
 }
 
 - (IBAction)openWechat:(UIButton *)btn
@@ -134,6 +139,10 @@
     if ([[UIApplication sharedApplication] canOpenURL:url])
     {
         [[UIApplication sharedApplication] openURL:url];
+    }
+    else
+    {
+        [self.m_ProgressHUD showAnimated:YES withText:@"您已成功复制微信号，去添加微信号联系客服们吧" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     }
 }
 
