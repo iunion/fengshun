@@ -21,6 +21,9 @@ FSOCRSearchResultVC ()
     TZImagePickerControllerDelegate,
     TOCropViewControllerDelegate
 >
+{
+    BOOL s_FirstShow;
+}
 
 @property (weak, nonatomic) IBOutlet UIImageView *m_imageView;
 
@@ -41,7 +44,8 @@ FSOCRSearchResultVC ()
 {
     [super viewDidLoad];
     [self setupUI];
-    [self presentToImagePickerWithAnimated:NO];
+    
+    s_FirstShow = YES;
 }
 
 - (void)setupUI
@@ -70,6 +74,17 @@ FSOCRSearchResultVC ()
     else
     {
         [self.m_TableView registerNib:[UINib nibWithNibName:@"FSCaseCell" bundle:nil] forCellReuseIdentifier:@"FSCaseCell"];
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if (s_FirstShow)
+    {
+        [self presentToImagePickerWithAnimated:NO];
+        s_FirstShow = NO;
     }
 }
 
