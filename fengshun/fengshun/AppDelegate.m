@@ -556,6 +556,11 @@
     BMLog(@"查询擅长领域返回数据是:+++++%@", responseStr);
 #endif
     
+    if (self.m_GetAbilityVC)
+    {
+        [self.m_GetAbilityVC.m_ProgressHUD hideAnimated:YES];
+    }
+
     NSInteger statusCode = [resDic bm_intForKey:@"code"];
     if (statusCode == 1000)
     {
@@ -589,6 +594,8 @@
             }
         }
 
+        self.m_GetAbilityVC = nil;
+        
         return;
     }
     
