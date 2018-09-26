@@ -146,7 +146,7 @@ FSTextSplitVC ()
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     FSListTextModel *model = _m_selectedType.m_textList[indexPath.row];
-    [FSPushVCManager pushToTextDetail:self url:model.m_previewUrl withFileId:model.m_fileId];
+    [FSPushVCManager pushToTextDetail:self url:model.m_previewUrl withFileId:model.m_fileId title:model.m_title];
 }
 
 #pragma mark - NetWorking

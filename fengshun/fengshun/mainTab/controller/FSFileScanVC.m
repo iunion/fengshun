@@ -226,7 +226,6 @@
         FSImageFileModel *model = [FSImageFileModel imageFileWithSelectInfo:infos[0] andImage:photos[0]];
         [self pickerVC:picker presentToCropVCWithImageFile:model];
     }
-   
     
 }
 - (void)pickerVC:(TZImagePickerController *)picker presentToCropVCWithImageFile:(FSImageFileModel *)model
