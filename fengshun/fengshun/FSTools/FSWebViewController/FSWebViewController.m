@@ -364,6 +364,8 @@
     {
         [self.m_WebView goBack];
         [self updateNavBack];
+        [self bm_getNavigationRightItemAtIndex:0];
+        [self bm_setNeedsUpdateNavigationBar];
     }
     else
     {
@@ -482,6 +484,8 @@
     [self bm_setNavigationWithTitle:self.m_Title barTintColor:nil leftDicArray:larray rightDicArray:rarray];
     [GetAppDelegate.m_TabBarController hideOriginTabBar];
 }
+
+
 
 
 #pragma mark -
