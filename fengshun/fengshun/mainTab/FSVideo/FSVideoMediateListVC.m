@@ -57,6 +57,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadApiData) name:FSVideoMediateChangedNotification object:nil];
 }
 
+- (void)loadApiData
+{
+    if (self.m_DataTask == nil) {
+        [super loadApiData];
+    }
+}
+
 -(void)buildUI
 {
     self.BottomBgView = [[UIView alloc] initWithFrame:CGRectMake(0, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - 48 - UI_HOME_INDICATOR_HEIGHT, self.view.bm_width, 48 + UI_HOME_INDICATOR_HEIGHT)];
@@ -179,7 +186,10 @@
 
 - (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)data
 {
-    NSLog(@"%@",data);
+    if (![data bm_isNotEmptyDictionary]) {
+        return NO;
+    }
+
     NSArray *array = [FSMeetingDetailModel modelsWithDataArray:data[@"list"]];
     if (self.m_IsLoadNew) {
         [self.m_DataArray removeAllObjects];
