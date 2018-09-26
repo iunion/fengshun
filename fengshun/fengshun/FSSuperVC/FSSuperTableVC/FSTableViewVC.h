@@ -47,6 +47,9 @@
 @property (nonatomic, assign, readonly) BOOL m_IsLoadNew;
 // 显示空数据页
 @property (nonatomic, assign) BOOL m_showEmptyView;
+// 网络请求
+@property (nonatomic, strong) NSURLSessionDataTask *m_DataTask;
+
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil freshViewType:(BMFreshViewType)freshViewType;
 
