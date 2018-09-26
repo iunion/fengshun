@@ -88,6 +88,8 @@
     }
     [atrString bm_setFont:[UIFont systemFontOfSize:12.0f]];
     self.m_SourceLabel.attributedText = atrString;
+    
+    [self.m_CommentBtn setTitle:@"0" forState:UIControlStateNormal];
 }
 
 @end
