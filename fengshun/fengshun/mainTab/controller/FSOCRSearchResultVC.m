@@ -41,7 +41,7 @@ FSOCRSearchResultVC ()
 {
     [super viewDidLoad];
     [self setupUI];
-//    [self presentToImagePickerWithAnimated:NO];
+    [self presentToImagePickerWithAnimated:NO];
 }
 
 - (void)setupUI
