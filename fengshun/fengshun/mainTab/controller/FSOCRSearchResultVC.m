@@ -15,6 +15,8 @@
 #import "FSCaseCell.h"
 #import "TOCropViewController.h"
 
+#import "BMNavigationController.h"
+
 @interface
 FSOCRSearchResultVC ()
 <
@@ -84,6 +86,7 @@ FSOCRSearchResultVC ()
     if (s_FirstShow)
     {
         [self presentToImagePickerWithAnimated:NO];
+
         s_FirstShow = NO;
     }
 }
@@ -117,6 +120,9 @@ FSOCRSearchResultVC ()
 #pragma mark - TOCropViewControllerDelegate
 - (void)cropViewController:(nonnull TOCropViewController *)cropViewController didCropToImage:(nonnull UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle
 {
+    BMNavigationController *nav = (BMNavigationController *)self.navigationController;
+    [nav resetPushAnimation];
+    
     [cropViewController dismissViewControllerAnimated:YES completion:nil];
     if ([image bm_isNotEmpty]) {
         _m_imageView.image = image;
@@ -126,6 +132,9 @@ FSOCRSearchResultVC ()
 #pragma mark - TZImagePickerControllerDelegate
 - (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker
 {
+    BMNavigationController *nav = (BMNavigationController *)self.navigationController;
+    [nav resetPushAnimation];
+    
     if (!_m_notFirstSelected)
     {
         [self.navigationController popViewControllerAnimated:NO];
@@ -134,6 +143,9 @@ FSOCRSearchResultVC ()
 
 - (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos
 {
+    BMNavigationController *nav = (BMNavigationController *)self.navigationController;
+    [nav resetPushAnimation];
+    
     if ([photos bm_isNotEmpty])
     {
         UIImage *image = [photos firstObject];

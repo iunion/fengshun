@@ -110,8 +110,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
     FSMyTopicModel *model = self.m_DataArray[indexPath.row];
-    [FSPushVCManager showTopicDetail:self topicId:model.m_TopicId];
+    [FSPushVCManager showWebView:self url:model.m_JumpAddress title:nil];
 }
 
 - (BMEmptyViewType)getNoDataEmptyViewType

@@ -15,8 +15,6 @@
 
 @property (nonatomic, strong) FSTableView *m_TableView;
 
-// 网络请求
-@property (nonatomic, strong) NSURLSessionDataTask *m_DataTask;
 
 // 内容数据
 //@property (nonatomic, strong) NSMutableArray *m_DataArray;
