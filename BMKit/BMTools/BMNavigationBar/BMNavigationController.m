@@ -49,6 +49,12 @@
     self.interactivePopGestureRecognizer.delegate = nil;
 }
 
+- (void)resetPushAnimation
+{
+    self.duringPushAnimation = NO;
+    self.duringPopAnimation = NO;
+}
+
 - (instancetype)init
 {
     return [super initWithNavigationBarClass:[BMNavigationBar class] toolbarClass:nil];

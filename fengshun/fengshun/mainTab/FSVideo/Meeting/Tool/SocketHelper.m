@@ -94,17 +94,19 @@ static dispatch_once_t onceToken;
     self.reconnectCount = 0;
 }
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
-    NSLog(@"");
+    NSLog(@"didFailWithError");
     if (self.reconnectCount < 3) {
+        NSLog(@"尝试第%@次重连", @(self.reconnectCount + 1));
         [self performSelector:@selector(reconnect) withObject:nil afterDelay:3.0];
     } else {
+        NSLog(@"重连超过3次，报错后离开视频%@", error);
         if ([self.delegate respondsToSelector:@selector(socketHelper:error:)]) {
             [self.delegate socketHelper:self error:error];
         }
     }
 }
 - (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
-    NSLog(@"");
+    NSLog(@"didCloseWithCode");
     if ([self.delegate respondsToSelector:@selector(socketHelper:error:)]) {
         [self.delegate socketHelper:self error:[NSError errorWithDomain:@"webSocketDidClosed" code:code userInfo:@{NSLocalizedDescriptionKey: reason}]];
     }
@@ -114,7 +116,7 @@ static dispatch_once_t onceToken;
     NSString *event = messageDic[@"event"];
     NSDictionary *data = messageDic[@"data"];
     
-    NSLog(@"%@", messageDic);
+    NSLog(@"didReceiveMessage %@", messageDic);
 
     // error
     if ([event isEqualToString:@"ERROR"]) {
@@ -266,7 +268,7 @@ static dispatch_once_t onceToken;
     [data setObject:userId forKey:@"memberId"];
     [dic setObject:data.copy forKey:@"data"];
     if (_socket.readyState == SR_OPEN) {
-        NSLog(@"%@", dic);
+        NSLog(@"sendAudioEvent %@", dic);
         [_socket send:[dic mj_JSONString]];
     }
 }
@@ -279,7 +281,7 @@ static dispatch_once_t onceToken;
     [data setObject:userId forKey:@"memberId"];
     [dic setObject:data.copy forKey:@"data"];
     if (_socket.readyState == SR_OPEN) {
-        NSLog(@"%@", dic);
+        NSLog(@"sendVideo %@", dic);
         [_socket send:[dic mj_JSONString]];
     }
 }
@@ -291,7 +293,7 @@ static dispatch_once_t onceToken;
     [data setObject:@"VOICE_DISCERN" forKey:@"mediaType"];
     [dic setObject:data.copy forKey:@"data"];
     if (_socket.readyState == SR_OPEN) {
-        NSLog(@"%@", dic);
+        NSLog(@"sendSpeech%@", dic);
         [_socket send:[dic mj_JSONString]];
     }
 }
@@ -327,7 +329,7 @@ static dispatch_once_t onceToken;
 - (void)sendCloseRoomEvent{
     NSDictionary *dic = @{@"event":@"CLOSE_ROOM"};
     if (_socket.readyState == SR_OPEN) {
-        NSLog(@"%@", dic);
+        NSLog(@"sendCloseRoomEvent %@", dic);
         [_socket send:[dic mj_JSONString]];
     }
 }

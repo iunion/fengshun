@@ -31,4 +31,6 @@ typedef BOOL (^shouldPopOnBackButtonHandler)(UIViewController *vc);
 // 刷新tintColor title和btnItem颜色
 - (void)updateNavigationBarTintColorForViewController:(UIViewController *)vc;
 
+- (void)resetPushAnimation;
+
 @end
