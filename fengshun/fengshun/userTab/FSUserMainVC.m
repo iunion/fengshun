@@ -437,6 +437,7 @@
     {
         btn.badgeBgColor = UI_COLOR_R1;
         btn.badgeBorderWidth = 0.0f;
+        btn.badgeCenterOffset = CGPointMake(-7.0f, 7.0f);
         [btn showRedDotBadge];
     }
     else

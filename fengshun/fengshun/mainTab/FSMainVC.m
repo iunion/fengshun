@@ -74,7 +74,7 @@ FSMainVC ()
 //    self.bm_NavigationBarAlpha = 0;
     self.bm_NavigationBarBgTintColor = [UIColor whiteColor];
     self.bm_NavigationItemTintColor = UI_COLOR_B1;
-    [self bm_setNavigationWithTitle:@"主页" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:nil rightItemImage:[UIImage imageNamed:@"home_message"] rightToucheEvent:@selector(popMessageVC:)];
+    [self bm_setNavigationWithTitle:@"主页" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:nil rightItemImage:[UIImage imageNamed:@"navigationbar_message_icon"] rightToucheEvent:@selector(popMessageVC:)];
     [GetAppDelegate.m_TabBarController hideOriginTabBar];
     
 //    self.bm_NavigationTitleAlpha = 0;
@@ -455,6 +455,7 @@ FSMainVC ()
     {
         btn.badgeBgColor = UI_COLOR_R1;
         btn.badgeBorderWidth = 0.0f;
+        btn.badgeCenterOffset = CGPointMake(-7.0f, 7.0f);
         [btn showRedDotBadge];
     }
     else
