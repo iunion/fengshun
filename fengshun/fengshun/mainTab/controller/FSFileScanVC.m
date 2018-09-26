@@ -152,7 +152,7 @@
     else
     {
         [_m_collectionView showEmptyViewWithType:BMEmptyViewType_Ocr];
-        rightButton.hidden = YES;
+        rightButton.hidden = YES &&!_m_editing;
     }
 }
 - (IBAction)pickImageFile:(id)sender

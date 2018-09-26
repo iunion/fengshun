@@ -18,8 +18,8 @@
 
 // 测试环境
 #define FS_URL_SERVER_TEST      (@"https://testapi.bjsjsadr.com")
-//#define FS_H5_SERVER_TEST       (@"https://devftls.odrcloud.net")
-#define FS_H5_SERVER_TEST        (@"https://devftlsh5.odrcloud.net")
+#define FS_H5_SERVER_TEST       (@"https://devftls.odrcloud.net")
+//#define FS_H5_SERVER_TEST        (@"https://devftlsh5.odrcloud.net")
 #define FS_FILE_ADRESS_TEST     (@"/storm/file/download/")
 
 // 线上环境
@@ -43,8 +43,8 @@
 #else
 
 #define FS_URL_SERVER       (@"https://testapi.bjsjsadr.com")
-//#define FS_H5_SERVER        (@"https://devftls.odrcloud.net")
-#define FS_H5_SERVER        (@"https://devftlsh5.odrcloud.net")
+#define FS_H5_SERVER        (@"https://devftls.odrcloud.net")
+//#define FS_H5_SERVER        (@"https://devftlsh5.odrcloud.net")
 #define FS_FILE_ADRESS      (@"/storm/file/download/")
 
 #endif

@@ -95,7 +95,14 @@ FSMoreViewVC ()
             {
                 btn.hidden = !self.m_isOwner;
             }
-            [btn bm_layoutButtonWithEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageTop imageTitleGap:5];
+            //[btn bm_layoutButtonWithEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageTop imageTitleGap:5];
+            
+            CGFloat imageWidth = 30.0f;
+            CGFloat titleheight = 28.0f;
+            btn.bm_imageRect = CGRectMake((btnWid-imageWidth)*0.5, (btnHeight-(imageWidth+titleheight))*0.5, imageWidth, imageWidth);
+            btn.bm_titleRect = CGRectMake(0, (btnHeight-(imageWidth+titleheight))*0.5+imageWidth, btnWid, titleheight);
+
+            
             [self.m_BgView addSubview:btn];
         }
     }
