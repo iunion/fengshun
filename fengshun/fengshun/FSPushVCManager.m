@@ -149,12 +149,13 @@
     searchViewController.hidesBottomBarWhenPushed = YES;
     [showVC.navigationController pushViewController:searchViewController animated:YES];
 }
-+ (void)pushToTextDetail:(UIViewController *)pushVC url:(NSString *)url withFileId:(NSString *)fileId
++ (void)pushToTextDetail:(UIViewController *)pushVC url:(NSString *)url withFileId:(NSString *)fileId title:(NSString *)title
 {
-    FSTextDetailVC *vc = [[FSTextDetailVC alloc] initWithTitle:nil url:url showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR delegate:nil];
+    FSTextDetailVC *vc = [[FSTextDetailVC alloc] initWithTitle:title url:url showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR delegate:nil];
     
     vc.hidesBottomBarWhenPushed = YES;
     vc.m_fileId = fileId;
+    vc.m_ShowPageTitles = NO;
     [pushVC.navigationController pushViewController:vc animated:YES];
     
 }
