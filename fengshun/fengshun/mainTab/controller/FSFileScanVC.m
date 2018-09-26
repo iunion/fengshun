@@ -186,6 +186,7 @@
 }
 - (IBAction)toolButtonAction:(UIButton *)sender {
     if (![_m_selectedImageFiles bm_isNotEmpty]) {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:@"请选择图片" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         return;
     }
     switch (sender.tag) {

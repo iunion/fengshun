@@ -15,6 +15,9 @@
 <
     FSWebViewDelegate
 >
+{
+    
+}
 
 @end
 
@@ -32,7 +35,7 @@
     //[self setBm_NavigationBarImage:[UIImage imageWithColor:[UIColor whiteColor]]];
     [self registerHander:@"toShowTablayout" handler:^(id data, WVJBResponseCallback responseCallback) {
         NSString *jsonStr = data;
-        BMLog(@"%d",[[NSDictionary bm_dictionaryWithJsonString:jsonStr] bm_boolForKey:@"isCourse"] );
+        BMLog(@"%d",[[NSDictionary bm_dictionaryWithJsonString:jsonStr] bm_boolForKey:@"isCourse"]);
     }];
 }
 

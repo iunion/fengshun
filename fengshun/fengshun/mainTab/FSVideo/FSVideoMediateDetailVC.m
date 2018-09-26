@@ -224,13 +224,17 @@
     lastView.backgroundColor = [UIColor whiteColor];
     [contenView addSubview:lastView];
     
-    UIButton *leftBtn = [self buttonWithFrame:CGRectMake(60, 12, 112, 34) Title:@"视频回放" image:@"video_history_icon"];
+    CGFloat btn_left = 60;
+    if (IS_IPHONE4 || IS_IPHONE5) {
+        btn_left = 36;
+    }
+    UIButton *leftBtn = [self buttonWithFrame:CGRectMake(btn_left, 12, 112, 34) Title:@"视频回放" image:@"video_history_icon"];
     [leftBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -8, 0, 0)];
     [leftBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 4, 0, 0)];
     [lastView addSubview:leftBtn];
     [leftBtn addTarget:self action:@selector(videoHistoryAction) forControlEvents:UIControlEventTouchUpInside];
 
-    UIButton *rightBtn = [self buttonWithFrame:CGRectMake(UI_SCREEN_WIDTH - 112 - 60, 12, 112, 34) Title:@"消息记录" image:@"video_message_icon"];
+    UIButton *rightBtn = [self buttonWithFrame:CGRectMake(UI_SCREEN_WIDTH - 112 - btn_left, 12, 112, 34) Title:@"消息记录" image:@"video_message_icon"];
     [lastView addSubview:rightBtn];
     [rightBtn setImageEdgeInsets:UIEdgeInsetsMake(2, -8, 0, 0)];
     [rightBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 4, 0, 0)];
