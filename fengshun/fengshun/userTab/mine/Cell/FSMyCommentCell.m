@@ -30,7 +30,7 @@
 
 + (CGFloat)cellHeight
 {
-    return 150.0f;
+    return 145.0f;
 }
 
 - (void)dealloc

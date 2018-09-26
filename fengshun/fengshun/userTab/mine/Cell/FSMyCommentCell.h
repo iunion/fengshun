@@ -13,6 +13,8 @@
 
 @property (nonatomic, strong, readonly) FSMyCommentModel *m_Model;
 
++ (CGFloat)cellHeight;
+
 - (void)drawCellWithModel:(FSMyCommentModel *)model;
 
 @end
