@@ -42,7 +42,7 @@
         self.alertGapLineColor  = [UIColor bm_colorWithHexString:@"D8D8D8"];
         self.showAnimationType  = BMAlertViewShowAnimationFadeIn;
         self.hideAnimationType  = BMAlertViewHideAnimationFadeOut;
-        self.shouldDismissOnTapOutside = NO;
+        self.shouldDismissOnTapOutside = YES;
         self.showClose = YES;
     }
     

@@ -173,7 +173,7 @@ FSReportViewDelegate
         textField.placeholder = @"请输入举报理由";
         textField.font = [UIFont systemFontOfSize:14.f];
         [contentView addSubview:textField];
-        
+        [textField becomeFirstResponder];
         BMWeakSelf;
         [FSAlertView showAlertWithTitle:@"举报理由说明" message:nil contentView:contentView cancelTitle:@"取消" otherTitle:@"确定" completion:^(BOOL cancelled, NSInteger buttonIndex) {
             BMLog(@"%@",textField.text);
@@ -216,7 +216,7 @@ FSReportViewDelegate
     [FSApiRequest addReportTopic:[NSString stringWithFormat:@"%ld",self.m_TopicId] content:content success:^(id  _Nullable responseObject) {
        [self.m_ProgressHUD showAnimated:YES withDetailText:@"已举报该帖子" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     } failure:^(NSError * _Nullable error) {
-        
+        [self.m_ProgressHUD showAnimated:YES withDetailText:[NSString stringWithFormat:@"%@",[error.userInfo bm_stringForKey:@"NSLocalizedDescription"]] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     }];
 }
 
