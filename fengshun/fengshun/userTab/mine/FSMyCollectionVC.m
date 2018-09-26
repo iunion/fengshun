@@ -144,25 +144,28 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
-    switch (self.m_CollectionType)
-    {
-#warning CollectionType
-        case FSCollectionType_POSTS:
-        {
-            FSMyCollectionModel *model = self.m_DataArray[indexPath.row];
-            [FSPushVCManager showTopicDetail:[self.view.superview bm_viewController] topicId:model.m_DetailId];
-        }
-            break;
-        case FSCollectionType_STATUTE:
-            break;
-        case FSCollectionType_CASE:
-            break;
-        case FSCollectionType_DOCUMENT:
-            break;
-        case FSCollectionType_COURSE:
-            break;
-    }
+
+    FSMyCollectionModel *model = self.m_DataArray[indexPath.row];
+    [FSPushVCManager showWebView:self url:model.m_JumpAddress title:nil];
+
+//    switch (self.m_CollectionType)
+//    {
+//#warning CollectionType
+//        case FSCollectionType_POSTS:
+//        {
+//            FSMyCollectionModel *model = self.m_DataArray[indexPath.row];
+//            [FSPushVCManager showTopicDetail:[self.view.superview bm_viewController] topicId:model.m_DetailId];
+//        }
+//            break;
+//        case FSCollectionType_STATUTE:
+//            break;
+//        case FSCollectionType_CASE:
+//            break;
+//        case FSCollectionType_DOCUMENT:
+//            break;
+//        case FSCollectionType_COURSE:
+//            break;
+//    }
     
 }
 
