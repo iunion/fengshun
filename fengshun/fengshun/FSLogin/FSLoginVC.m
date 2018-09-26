@@ -268,6 +268,8 @@
 
 - (void)confirmClick:(UIButton *)btn
 {
+    [self.view endEditing:YES];
+
     if (!s_isLogin)
     {
         NSString *phoneNum = [self.m_PhoneItem.value bm_trim];
