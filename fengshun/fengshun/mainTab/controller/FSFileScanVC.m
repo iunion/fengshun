@@ -56,6 +56,12 @@
     [self bm_setNeedsUpdateNavigationBar];
     [self setBm_NavigationBarImage:[UIImage imageWithColor:[UIColor whiteColor]]];
     [_m_imagePickButton bm_roundedRect:20];
+    _m_imagePickButton.layer.masksToBounds = NO;
+    _m_imagePickButton.layer.shadowOffset = CGSizeZero;//阴影的偏移量
+    _m_imagePickButton.layer.shadowRadius = 20;
+    _m_imagePickButton.layer.shadowOpacity = 0.2;                        //阴影的不透明度
+    _m_imagePickButton.layer.shadowColor = [UIColor blueColor].CGColor;
+    
     for (UIButton *toolButton in _m_toolButtons) {
         [toolButton bm_roundedRect:20 borderWidth:0.5 borderColor:UI_COLOR_BL1];
     }

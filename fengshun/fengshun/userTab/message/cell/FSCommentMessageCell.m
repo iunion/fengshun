@@ -49,6 +49,8 @@
 
 - (void)makeCellStyle
 {
+    [self.m_AvatarImageView bm_circleView];
+    
     self.m_NameLabel.textColor = [UIColor bm_colorWithHex:0x333333];
     self.m_NameLabel.font = UI_FONT_14;
     

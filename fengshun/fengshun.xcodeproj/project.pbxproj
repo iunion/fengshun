@@ -473,6 +473,10 @@
 		874C23B6215B4FF9001C8BE9 /* FSMyTopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 874C23B3215B4FF9001C8BE9 /* FSMyTopicCell.m */; };
 		874C23B7215B4FF9001C8BE9 /* FSMyTopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 874C23B4215B4FF9001C8BE9 /* FSMyTopicCell.xib */; };
 		874C23B8215B4FF9001C8BE9 /* FSMyTopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 874C23B4215B4FF9001C8BE9 /* FSMyTopicCell.xib */; };
+		874C23BD215B5DF2001C8BE9 /* user_praiseicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 874C23BB215B5DF1001C8BE9 /* user_praiseicon@2x.png */; };
+		874C23BE215B5DF2001C8BE9 /* user_praiseicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 874C23BB215B5DF1001C8BE9 /* user_praiseicon@2x.png */; };
+		874C23BF215B5DF2001C8BE9 /* user_praiseicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 874C23BC215B5DF1001C8BE9 /* user_praiseicon@3x.png */; };
+		874C23C0215B5DF2001C8BE9 /* user_praiseicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 874C23BC215B5DF1001C8BE9 /* user_praiseicon@3x.png */; };
 		87741FDC214A0C8A00F72427 /* FSServiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87741FDA214A0C8A00F72427 /* FSServiceVC.m */; };
 		87741FDD214A0C8A00F72427 /* FSServiceVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87741FDB214A0C8A00F72427 /* FSServiceVC.xib */; };
 		87741FE3214A132200F72427 /* user_wechaticon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87741FDF214A132200F72427 /* user_wechaticon@3x.png */; };
@@ -3001,6 +3005,8 @@
 		874C23B2215B4FF9001C8BE9 /* FSMyTopicCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMyTopicCell.h; sourceTree = "<group>"; };
 		874C23B3215B4FF9001C8BE9 /* FSMyTopicCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMyTopicCell.m; sourceTree = "<group>"; };
 		874C23B4215B4FF9001C8BE9 /* FSMyTopicCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSMyTopicCell.xib; sourceTree = "<group>"; };
+		874C23BB215B5DF1001C8BE9 /* user_praiseicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_praiseicon@2x.png"; sourceTree = "<group>"; };
+		874C23BC215B5DF1001C8BE9 /* user_praiseicon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_praiseicon@3x.png"; sourceTree = "<group>"; };
 		87741FD72149FF5F00F72427 /* ExampleApp.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = ExampleApp.html; path = "../../../../gitHubs/WebViewJavascriptBridge/Example Apps/ExampleApp.html"; sourceTree = "<group>"; };
 		87741FD9214A0C8A00F72427 /* FSServiceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSServiceVC.h; sourceTree = "<group>"; };
 		87741FDA214A0C8A00F72427 /* FSServiceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSServiceVC.m; sourceTree = "<group>"; };
@@ -5936,9 +5942,19 @@
 			path = FSCollection;
 			sourceTree = "<group>";
 		};
+		874C23BA215B5DF1001C8BE9 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				874C23BB215B5DF1001C8BE9 /* user_praiseicon@2x.png */,
+				874C23BC215B5DF1001C8BE9 /* user_praiseicon@3x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		87741FE8214A37C200F72427 /* mine */ = {
 			isa = PBXGroup;
 			children = (
+				874C23BA215B5DF1001C8BE9 /* images */,
 				AD671248215A59E20081E08D /* Cell */,
 				87741FF2214A42C800F72427 /* FSMyCollectionTabVC.h */,
 				87741FF3214A42C800F72427 /* FSMyCollectionTabVC.m */,
@@ -7989,6 +8005,7 @@
 				DB487449214B887700AB0805 /* scanfile_select@3x.png in Resources */,
 				DBF7E18E21523CB6002CEDA4 /* search_lawTopic_6@3x.png in Resources */,
 				DBD4CDFE213FB2D800857DB3 /* FSMainToolCell.xib in Resources */,
+				874C23BF215B5DF2001C8BE9 /* user_praiseicon@3x.png in Resources */,
 				8730B1132148E5D1004331A9 /* fsfreshidle_icon26@2x.png in Resources */,
 				87426892212E7E36003C52F6 /* steppersinput_plusicon@3x.png in Resources */,
 				8730B1072148E5D1004331A9 /* fsfreshidle_icon10@2x.png in Resources */,
@@ -8013,6 +8030,7 @@
 				87BC9E2C21548E0D000F2011 /* fsintroguide_1125x2436_2@2x.png in Resources */,
 				DBD4CE912141229400857DB3 /* home_browseCount@3x.png in Resources */,
 				8774200D214C9DE000F72427 /* FSCommentMessageCell.xib in Resources */,
+				874C23BD215B5DF2001C8BE9 /* user_praiseicon@2x.png in Resources */,
 				8742689F212E7E36003C52F6 /* decrease_baiduwaimai@3x.png in Resources */,
 				8730B11E2148E5D1004331A9 /* fsfreshidle_icon3@2x.png in Resources */,
 				ADE8689D21393469005359B5 /* FSForumListCell.xib in Resources */,
@@ -8104,6 +8122,7 @@
 				87E7C50621509AB000F7AB14 /* FSMainVC.xib in Resources */,
 				45F68F412150E58F00628DC8 /* empty_404icon@3x.png in Resources */,
 				87E7C50721509AB000F7AB14 /* login_checked@2x.png in Resources */,
+				874C23BE215B5DF2001C8BE9 /* user_praiseicon@2x.png in Resources */,
 				87E7C50821509AB000F7AB14 /* FSTextCell.xib in Resources */,
 				87E7C50921509AB000F7AB14 /* video_bottom_message@2x.png in Resources */,
 				87E7C50A21509AB000F7AB14 /* video_more_btn@2x.png in Resources */,
@@ -8429,6 +8448,7 @@
 				87BC9E4D2154914E000F2011 /* fsintroguide_1242x2208_3@2x.png in Resources */,
 				87E7C60D21509AB000F7AB14 /* bmsearch_history@3x.png in Resources */,
 				87E7C60E21509AB000F7AB14 /* video_history_play@2x.png in Resources */,
+				874C23C0215B5DF2001C8BE9 /* user_praiseicon@3x.png in Resources */,
 				87BC9E4121549140000F2011 /* fsintroguide_640x1136_3@2x.png in Resources */,
 				87E7C60F21509AB000F7AB14 /* navigationbar_select_icon@2x.png in Resources */,
 				87E7C61021509AB000F7AB14 /* search_delKey@2x.png in Resources */,

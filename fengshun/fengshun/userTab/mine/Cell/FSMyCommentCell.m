@@ -30,7 +30,7 @@
 
 + (CGFloat)cellHeight
 {
-    return 150.0f;
+    return 145.0f;
 }
 
 - (void)dealloc
@@ -88,6 +88,8 @@
     }
     [atrString bm_setFont:[UIFont systemFontOfSize:12.0f]];
     self.m_SourceLabel.attributedText = atrString;
+    
+    [self.m_CommentBtn setTitle:@"0" forState:UIControlStateNormal];
 }
 
 @end
