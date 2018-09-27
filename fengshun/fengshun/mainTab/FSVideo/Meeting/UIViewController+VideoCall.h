@@ -12,8 +12,4 @@
 
 - (void)vc_showMessage:(NSString *)msg;
 
-- (void)showAlertError:(NSError *)error;
-
-- (void)loginAndJoinRoomWithModel:(RTCRoomInfoModel *)model handler:(void (^)(void))handler;
-
 @end
