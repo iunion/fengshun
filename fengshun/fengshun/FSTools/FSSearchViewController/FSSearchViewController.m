@@ -423,7 +423,7 @@
     item0.textColor = UI_COLOR_B4;
     item0.cellHeight = 40.0f;
     item0.highlightBgColor = [UIColor clearColor];
-    
+    item0.underLineDrawType=BMTableViewCell_UnderLineDrawType_SeparatorAllLeftInset;
     
     // 这儿有循环引用的问题
     BMWeakSelf
