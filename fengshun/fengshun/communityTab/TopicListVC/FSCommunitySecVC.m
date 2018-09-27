@@ -59,7 +59,7 @@ FSCommunitySecVC ()
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib
-    [self bm_setNavigationWithTitle:@"" barTintColor:nil leftDicArray:@[ [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"community_white_back" toucheEvent:@"popViewController" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageRight imageTitleGap:0] ] rightDicArray:nil];
+    [self bm_setNavigationWithTitle:@"" barTintColor:nil leftDicArray:@[ [self bm_makeBarButtonDictionaryWithTitle:@"   " image:@"community_white_back" toucheEvent:@"popViewController" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:5] ] rightDicArray:nil];
     self.bm_NavigationBarHidden = YES;
     [self bm_getNavigationLeftItemAtIndex:0].tintColor = [UIColor whiteColor];
     [self bm_setNeedsUpdateNavigationBar];
