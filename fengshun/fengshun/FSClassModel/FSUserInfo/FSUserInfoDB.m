@@ -10,6 +10,9 @@
 #import "FSDB.h"
 #import "FSEncodeAPI.h"
 
+#define FSSearchHistoryPath     @"fsSearchHistory"
+#define FSSearchHistoryUserId   @"master"
+
 static NSString *UserInfoDBName = @"userinfo.dat";
 static NSString *UserInfoDBTableName = @"userinfo";
 
@@ -173,10 +176,69 @@ NSString *const FSUserInfoCaseSearchHistoryKey = @"com.ftls.caseSearchHistory";
 NSString *const FSUserInfoLawSearchHistoryKey = @"com.ftls.lawSearchHistory";
 NSString *const FSUserInfoTextSearchHistoryKey = @"com.ftls.textSearchHistory";
 
-+ (void)cleanUserHistroyData
++ (NSString *)getSearchHistoryPath
 {
-    [[NSFileManager defaultManager] removeItemAtPath:SEARCH_HISTORY_CACHEFILE(FSUserInfoCaseSearchHistoryKey) error:nil];
-    [[NSFileManager defaultManager] removeItemAtPath:SEARCH_HISTORY_CACHEFILE(FSUserInfoLawSearchHistoryKey) error:nil];
-    [[NSFileManager defaultManager] removeItemAtPath:SEARCH_HISTORY_CACHEFILE(FSUserInfoTextSearchHistoryKey) error:nil];
+    NSString *path = [NSString stringWithFormat:@"%@/%@", [NSString bm_libraryPath], FSSearchHistoryPath];
+    BMLog(@"%@", path);
+    
+    return path;
 }
+
++ (BOOL)makeSearchHistoryPath
+{
+    NSString *path = [FSUserInfoDB getSearchHistoryPath];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL isDir = NO;
+    BOOL existed = [fileManager fileExistsAtPath:path isDirectory:&isDir];
+    if (!existed || !isDir)
+    {
+        NSError *error = nil;
+        [fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
+        
+        if (error)
+        {
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
++ (NSArray *)getSearchHistoryWithUserId:(NSString *)userId key:(NSString *)key
+{
+    if (![userId bm_isNotEmpty])
+    {
+        userId = FSSearchHistoryUserId;
+    }
+    
+    NSString *plistPath = FSSEARCH_HISTORY_CACHEFILE(key, userId);
+    NSArray *array = [NSArray arrayWithContentsOfFile:plistPath];
+    
+    return array;
+}
+
++ (void)saveSearchHistoryWithUserId:(NSString *)userId key:(NSString *)key searchHistories:(NSArray *)searchHistories
+{
+    if (![userId bm_isNotEmpty])
+    {
+        userId = FSSearchHistoryUserId;
+    }
+    
+    NSString *plistPath = FSSEARCH_HISTORY_CACHEFILE(key, userId);
+    [searchHistories writeToFile:plistPath atomically:NO];
+}
+
++ (void)cleanUserSearchHistroyDataWithUserId:(NSString *)userId
+{
+    if (![userId bm_isNotEmpty])
+    {
+        userId = FSSearchHistoryUserId;
+    }
+    
+    [[NSFileManager defaultManager] removeItemAtPath:FSSEARCH_HISTORY_CACHEFILE(FSUserInfoCaseSearchHistoryKey, userId) error:nil];
+    [[NSFileManager defaultManager] removeItemAtPath:FSSEARCH_HISTORY_CACHEFILE(FSUserInfoLawSearchHistoryKey, userId) error:nil];
+    [[NSFileManager defaultManager] removeItemAtPath:FSSEARCH_HISTORY_CACHEFILE(FSUserInfoTextSearchHistoryKey, userId) error:nil];
+}
+
 @end

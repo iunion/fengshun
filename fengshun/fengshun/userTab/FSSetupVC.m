@@ -174,7 +174,7 @@ typedef void(^FSSetupClearDiskBlock)(NSString *path, BOOL finished);
     SDImageCache *cache = [SDImageCache sharedImageCache];
     NSString *cachePath = [cache getDiskCachePath];
     [cachePathArray addObject:cachePath];
-    
+
     BMWeakSelf
     [self clearDiskWithFilePathArray:cachePathArray completionBlock:^(NSString *path, BOOL finished) {
         if (finished)
@@ -182,6 +182,9 @@ typedef void(^FSSetupClearDiskBlock)(NSString *path, BOOL finished);
             [weakSelf freshViews];
         }
     }];
+    
+    // 搜索历史
+    [FSUserInfoDB cleanUserSearchHistroyDataWithUserId:[FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId];
 }
 
 - (void)calculateCacheDiskSize
@@ -275,7 +278,6 @@ typedef void(^FSSetupClearDiskBlock)(NSString *path, BOOL finished);
 - (void)logoutClick:(UIButton *)btn
 {
     [GetAppDelegate logOutWithApi];
-    [FSUserInfoDB cleanUserHistroyData];
 }
 
 - (void)calculateSizeWithFilePathArray:(NSArray *)filePathArray completionBlock:(FSSetupCalculateSizeBlock)completionBlock

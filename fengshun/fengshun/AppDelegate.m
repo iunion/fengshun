@@ -143,6 +143,9 @@
     // 检查数据库版本
     [FSDBVersionCheck checkDBVer];
     
+    // 创建搜索历史存储目录
+    [FSUserInfoDB makeSearchHistoryPath];
+    
 #ifdef FSVIDEO_ON
     [self initILiveSDK];
 #endif
