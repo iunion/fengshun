@@ -368,7 +368,11 @@
     {
         [self.m_WebView goBack];
         [self updateNavBack];
-        [self bm_getNavigationRightItemAtIndex:0];
+        
+        // 隐藏右边item
+        UIButton *btn = [self bm_getNavigationRightItemAtIndex:0];
+        btn.hidden = YES;
+        
         [self bm_setNeedsUpdateNavigationBar];
     }
     else
@@ -678,7 +682,6 @@
         BMLog(@"toReport called: %@", data);
         
         [weakSelf showReportAlertWithData:data];
-
     }];
     
     //收藏按钮
@@ -746,6 +749,12 @@
     }
     else if (index == 5) // 收藏
     {
+        if (![FSUserInfoModel isLogin])
+        {
+            [self showLogin];
+            return;
+        }
+
         BMWeakSelf
         NSDictionary *data = [NSDictionary bm_dictionaryWithJsonString:s_CollectJsonSting];
         [FSApiRequest updateCollectStateID:[data bm_stringForKey:@"id"] isCollect:!s_isCollect guidingCase:[data bm_stringForKey:@"guidingCase"] source:[data bm_stringForKey:@"source"] title:[data bm_stringForKey:@"title"] type:[data bm_stringForKey:@"type"] Success:^(id responseObject) {
