@@ -57,8 +57,8 @@
     _m_AttentionNumLab.text         = [NSString stringWithFormat:@"%ld 关注", aModel.m_AttentionCount];
     _m_PostNumLab.text              = [NSString stringWithFormat:@"%ld 帖子", aModel.m_PostsCount];
     _m_AttentionBtn.selected        = aModel.m_AttentionFlag;
-    _m_AttentionBtn.backgroundColor = [UIColor bm_colorWithHexString:aModel.m_AttentionFlag ? @"F5F6F7" : @"4E7CF6"];
-    [_m_AttentionBtn setTitleColor:[UIColor bm_colorWithHexString:aModel.m_AttentionFlag ? @"999999" : @"ffffff"] forState:UIControlStateNormal];
+    _m_AttentionBtn.backgroundColor = [UIColor bm_colorWithHex:aModel.m_AttentionFlag ? 0xF5F6F7 : 0x4E7CF6];
+    [_m_AttentionBtn setTitleColor:[UIColor bm_colorWithHex:aModel.m_AttentionFlag ? 0x999999 : 0xFFFFFF] forState:UIControlStateNormal];
     [_m_AttentionBtn setTitle:aModel.m_AttentionFlag ? @"已关注" : @"+ 关注" forState:UIControlStateNormal];
 }
 

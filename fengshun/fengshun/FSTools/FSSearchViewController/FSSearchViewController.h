@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FSSuperVC.h"
+#import "FSUserInfo.h"
 
 #define SEARCH_CASEHOTKEY_CACHEFILE [[NSString bm_documentsPath] stringByAppendingPathComponent:@"caseHotkey.plist"]
 #define SEARCH_LAWTOPIC_FILE [[NSBundle mainBundle]pathForResource:@"FSLawTopicInfos" ofType:@"plist"]

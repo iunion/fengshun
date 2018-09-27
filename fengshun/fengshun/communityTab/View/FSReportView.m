@@ -57,15 +57,15 @@
             if (i == (btnTitleArr.count))// 取消按钮
             {
                 [btn setTitle:cancelTitle forState:UIControlStateNormal];
-                [btn setTitleColor:[UIColor bm_colorWithHexString:@"999999"] forState:UIControlStateNormal];
+                [btn setTitleColor:[UIColor bm_colorWithHex:0x999999] forState:UIControlStateNormal];
             }
             else
             {
                 [btn setTitle:btnTitleArr[i] forState:UIControlStateNormal];
-                [btn setTitleColor:[UIColor bm_colorWithHexString:@"333333"] forState:UIControlStateNormal];
+                [btn setTitleColor:[UIColor bm_colorWithHex:0x333333] forState:UIControlStateNormal];
                 // 分割线
                 UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, (i+1)*btnHeight - 0.5f, self.bm_width, 1)];
-                line.backgroundColor = [UIColor bm_colorWithHexString:@"f6f6f6"];
+                line.backgroundColor = [UIColor bm_colorWithHex:0xF6F6F6];
                 [self.m_AlertView addSubview:line];
             }
             [btn addTarget:self action:@selector(btnClickAction:) forControlEvents:UIControlEventTouchUpInside];
