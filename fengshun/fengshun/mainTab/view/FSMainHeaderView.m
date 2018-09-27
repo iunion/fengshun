@@ -39,6 +39,7 @@
     self.m_bannerView = [[FSPageBannerView alloc] initWithFrame:CGRectMake(0, 1+UI_NAVIGATION_BAR_HEIGHT+UI_STATUS_BAR_HEIGHT, UI_SCREEN_WIDTH, 164) scrollDirection:FSBannerViewScrollDirectionLandscape images:nil pageWidth:UI_SCREEN_WIDTH - 56.0f padding:0 rollingScale:YES];
     [_m_bannerView setPageControlStyle:FSBannerViewPageStyle_None];
     _m_bannerView.showClose = NO;
+    _m_bannerView.placeholderImage = [UIImage imageNamed:@"placeholder_banner"];
     [_m_bannerView setCorner:5.0f];
     _m_bannerView.rollingDelayTime = 5.0;
     [self.m_topView addSubview:_m_bannerView];
