@@ -51,7 +51,7 @@
 {
     self.m_SourceLabel.textColor = UI_COLOR_BL1;
     self.m_SourceLabel.font = UI_FONT_14;
-    self.m_SourceLabel.backgroundColor = [UIColor bm_colorWithHex:0xF0F5FC];
+    self.m_SourceLabel.backgroundColor = [UIColor bm_colorWithHex:0xE5ECFD];
     [self.m_SourceLabel bm_roundedRect:self.m_SourceLabel.bm_height*0.5];
 
     self.m_TitleLabel.textColor = [UIColor bm_colorWithHex:0x333333];
@@ -85,9 +85,10 @@
     
     self.m_SourceLabel.text = model.m_ForumName;
     CGSize size = [self.m_SourceLabel sizeThatFits:CGSizeMake(1000, self.m_SourceLabel.bm_height)];
-    self.m_SourceLabel.bm_width = size.width+12.0f;
+    self.m_SourceLabel.bm_width = size.width+16.0f;
 
     self.m_TitleLabel.bm_left = self.m_SourceLabel.bm_right + 6.0f;
+    self.m_TitleLabel.bm_width = UI_SCREEN_WIDTH-30.0f-self.m_TitleLabel.bm_left;
     self.m_TitleLabel.text = model.m_Title;
     
     self.m_ContentLabel.text = model.m_Description;

@@ -55,7 +55,7 @@
 
     self.m_SourceLabel.textColor = UI_COLOR_BL1;
     self.m_SourceLabel.font = UI_FONT_10;
-    self.m_SourceLabel.backgroundColor = [UIColor bm_colorWithHex:0xF0F5FC];
+    self.m_SourceLabel.backgroundColor = [UIColor bm_colorWithHex:0xE5ECFD];
     [self.m_SourceLabel bm_roundedRect:self.m_SourceLabel.bm_height*0.5];
     
     [self.m_CommentCountBtn setTitleColor:[UIColor bm_colorWithHex:0x999999] forState:UIControlStateNormal];
