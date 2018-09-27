@@ -166,27 +166,27 @@
     {
         case FSCollectionType_POSTS:
         {
-            [FSPushVCManager showTopicDetail:[self.view.superview bm_viewController] topicId:model.m_DetailId];
+            [FSPushVCManager showTopicDetail:self.m_PushVC topicId:model.m_DetailId];
         }
             break;
         case FSCollectionType_STATUTE:
         {
-            [FSPushVCManager viewController:[self.view.superview bm_viewController] pushToLawDetailWithId:model.m_DetailId keywords:@"NULL"];
+            [FSPushVCManager viewController:self.m_PushVC pushToLawDetailWithId:model.m_DetailId keywords:@"NULL"];
         }
             break;
         case FSCollectionType_CASE:
         {
-            [FSPushVCManager viewController:[self.view.superview bm_viewController] pushToCaseDetailWithId:model.m_DetailId keywords:@"NULL"];
+            [FSPushVCManager viewController:self.m_PushVC pushToCaseDetailWithId:model.m_DetailId keywords:@"NULL"];
         }
             break;
         case FSCollectionType_DOCUMENT:
         {
-            [FSPushVCManager pushToTextDetail:[self.view.superview bm_viewController] url:model.m_PreviewUrl withFileId:model.m_FiledId documentId:model.m_DetailId title:model.m_Title];
+            [FSPushVCManager pushToTextDetail:self.m_PushVC url:model.m_PreviewUrl withFileId:model.m_FiledId documentId:model.m_DetailId title:model.m_Title];
         }
             break;
         case FSCollectionType_COURSE:
         {
-            [FSPushVCManager viewController:[self.view.superview bm_viewController] pushToCourseDetailWithId:model.m_DetailId];
+            [FSPushVCManager viewController:self.m_PushVC pushToCourseDetailWithId:model.m_DetailId];
         }
             break;
     }

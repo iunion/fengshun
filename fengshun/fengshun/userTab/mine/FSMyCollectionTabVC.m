@@ -124,28 +124,28 @@
     {
         case 0:
             self.m_TopicCollectVC = [[FSMyCollectionVC alloc] initWithCollectionType:FSCollectionType_POSTS];
+            self.m_TopicCollectVC.m_PushVC = self;
             return self.m_TopicCollectVC.view;
-            break;
             
         case 1:
             self.m_StatuteCollectVC = [[FSMyCollectionVC alloc] initWithCollectionType:FSCollectionType_STATUTE];
+            self.m_StatuteCollectVC.m_PushVC = self;
             return self.m_StatuteCollectVC.view;
-            break;
 
         case 2:
             self.m_CaseCollectVC = [[FSMyCollectionVC alloc] initWithCollectionType:FSCollectionType_CASE];
+            self.m_CaseCollectVC.m_PushVC = self;
             return self.m_CaseCollectVC.view;
-            break;
             
         case 3:
             self.m_DocumentCollectVC = [[FSMyCollectionVC alloc] initWithCollectionType:FSCollectionType_DOCUMENT];
+            self.m_DocumentCollectVC.m_PushVC = self;
             return self.m_DocumentCollectVC.view;
-            break;
             
         case 4:
             self.m_CourseCollectVC = [[FSMyCollectionVC alloc] initWithCollectionType:FSCollectionType_COURSE];
+            self.m_CourseCollectVC.m_PushVC = self;
             return self.m_CourseCollectVC.view;
-            break;
             
         default:
             return nil;
