@@ -104,7 +104,7 @@ static const unsigned int allCalendarUnitFlags = NSCalendarUnitYear | NSCalendar
     }
     else if(past < SECONDS_IN_HOUR)
     {
-        NSInteger min = past/SECONDS_IN_HOUR;
+        NSInteger min = past/SECONDS_IN_MINUTE;
         return [NSString stringWithFormat:@"%ld分钟前", (long)min];
     }
     else if ([date bm_isToday])
@@ -136,7 +136,7 @@ static const unsigned int allCalendarUnitFlags = NSCalendarUnitYear | NSCalendar
     }
     else if(past < SECONDS_IN_HOUR)
     {
-        NSInteger min = past/SECONDS_IN_HOUR;
+        NSInteger min = past/SECONDS_IN_MINUTE;
         return [NSString stringWithFormat:@"%ld分钟前", (long)min];
     }
     else if (past < SECONDS_IN_DAY)

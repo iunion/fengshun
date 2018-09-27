@@ -14,7 +14,6 @@
 #import "FSTextSearchResultView.h"
 
 #define SEARCH_HISTORY_MAXCACHECOUNT        10
-#define SEARCH_HISTORY_CACHEFILE(searchKey) [[NSString bm_documentsPath] stringByAppendingPathComponent:[NSString stringWithFormat:@"searchhistory_%@.plist", searchKey]]
 
 #define SearchBarGap            5.0f
 #define SearchBarFont           [UIFont systemFontOfSize:16.0f]
@@ -140,7 +139,7 @@
 {
     UIView *searchBarBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_NAVIGATION_BAR_HEIGHT)];
     searchBarBgView.backgroundColor = [UIColor clearColor];
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(10.0f, SearchBarGap, UI_SCREEN_WIDTH-20.0f, UI_NAVIGATION_BAR_HEIGHT-SearchBarGap*2)];
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(30.0f, SearchBarGap, UI_SCREEN_WIDTH-60.0f, UI_NAVIGATION_BAR_HEIGHT-SearchBarGap*2)];
     searchBar.backgroundColor = [UIColor clearColor];
     searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [searchBarBgView addSubview:searchBar];
@@ -175,7 +174,7 @@
     [self.manager addSection:section];
     self.section = section;
     
-    self.searchHistories = [NSMutableArray arrayWithArray:[self getSearchHistory]];
+    self.searchHistories = [NSMutableArray arrayWithArray:[FSUserInfoDB getSearchHistoryWithUserId:[FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId key:self.searchKey]];
 }
 - (void)moreUISetup
 {
@@ -272,7 +271,8 @@
     if (_resultType == FSSearchResultType_case) {
         for (NSString *tag in self.hotTagArray)
         {
-            CGFloat width = (UI_SCREEN_WIDTH-5*12)/4;
+            CGFloat width = (UI_SCREEN_WIDTH-5*10)/4;
+//            CGFloat width = [tag bm_widthToFitHeight:20 withFont:[UIFont systemFontOfSize:14.0f]] + 24.0f;
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, 28.0f)];
             label.backgroundColor = FS_VIEW_BGCOLOR;
             label.font = [UIFont systemFontOfSize:14.0f];
@@ -287,7 +287,8 @@
     {
         for (NSDictionary *lawTopicInfo in self.hotTagArray)
         {
-            CGSize  itemSize = CGSizeMake(80, 66);
+//            CGSize  itemSize = CGSizeMake(80, 66);
+            CGSize  itemSize = CGSizeMake((UI_SCREEN_WIDTH-5*10)/4, 66);
             UIView *view     = [[UIView alloc] initWithFrame:CGRectMake(0, 0, itemSize.width, itemSize.height)];
             UIImageView *iv  = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 34, 34)];
             iv.image         = [UIImage imageNamed:[lawTopicInfo bm_stringForKey:@"iconName"]];
@@ -337,7 +338,7 @@
     TTGTagCollectionView *tagCollectionView = [[TTGTagCollectionView alloc] initWithFrame:CGRectMake(12, topGap, UI_SCREEN_WIDTH-24, 60.0f)];
     tagCollectionView.delegate = self;
     tagCollectionView.dataSource = self;
-    tagCollectionView.horizontalSpacing = 10.0f;
+    tagCollectionView.horizontalSpacing = 7.0f;
     tagCollectionView.verticalSpacing = 10.0f;
     tagCollectionView.bm_height = tagCollectionView.contentSize.height;
     [view addSubview:tagCollectionView];
@@ -346,20 +347,6 @@
     
     self.searchHistoriesTableView.tableHeaderView = self.headerView;
     [self.tagCollectionView reload];
-}
-
-- (NSArray *)getSearchHistory
-{
-    NSString *plistPath = SEARCH_HISTORY_CACHEFILE(self.searchKey);
-    NSArray *array = [NSArray arrayWithContentsOfFile:plistPath];
-    
-    return array;
-}
-
-- (void)saveSearchHistory
-{
-    NSString *plistPath = SEARCH_HISTORY_CACHEFILE(self.searchKey);
-    [self.searchHistories writeToFile:plistPath atomically:NO];
 }
 
 - (void)addSearchHistory:(NSString *)search
@@ -374,7 +361,7 @@
             [self.searchHistories removeLastObject];
         }
         
-        [self saveSearchHistory];
+        [FSUserInfoDB saveSearchHistoryWithUserId:[FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId key:self.searchKey searchHistories:self.searchHistories];
         
         [self freshItems];
     }
@@ -388,7 +375,7 @@
     {
         NSString *search = [self.searchHistories objectAtIndex:btn.tag];
         [self.searchHistories removeObject:search];
-        [self saveSearchHistory];
+        [FSUserInfoDB saveSearchHistoryWithUserId:[FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId key:self.searchKey searchHistories:self.searchHistories];
 
         [self freshItems];
     }
@@ -397,8 +384,8 @@
 - (void)removeAllSearchHistory
 {
     [self.searchHistories removeAllObjects];
-    [self saveSearchHistory];
-    
+    [FSUserInfoDB saveSearchHistoryWithUserId:[FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId key:self.searchKey searchHistories:self.searchHistories];
+
     [self freshItems];
 }
 
@@ -423,7 +410,7 @@
     item0.textColor = UI_COLOR_B4;
     item0.cellHeight = 40.0f;
     item0.highlightBgColor = [UIColor clearColor];
-    
+    item0.underLineDrawType=BMTableViewCell_UnderLineDrawType_SeparatorAllLeftInset;
     
     // 这儿有循环引用的问题
     BMWeakSelf

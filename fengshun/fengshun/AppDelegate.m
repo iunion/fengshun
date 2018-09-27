@@ -25,6 +25,7 @@
 
 #import "FSGlobleDataModel.h"
 #import "FSCustomInfoVC.h"
+#import <UMCommon/UMCommon.h>
 
 #if USE_TEST_HELP
 #import "FSTestHelper.h"
@@ -77,7 +78,7 @@
 
 #ifdef FSVIDEO_ON
 //#pragma mark - 配置iLiveSDK
-- (void)initILiveSDK
+- (void)setupILiveSDK
 {
     // 初始化SDK
     [[ILiveSDK getInstance] initSdk:(int)FS_ILiveSDKAPPID accountType:(int)FS_ILiveAccountType];
@@ -89,6 +90,23 @@
     NSLog(@"IMSDK version:%@", [[TIMManager sharedInstance] GetVersion]);
 }
 #endif
+
+// Umeng统计
+- (void)setupUmeng
+{
+    [UMConfigure initWithAppkey:UMeng_AppKey channel:@"App Store"];
+}
+
+- (void)setupThirdParty
+{
+#ifdef FSVIDEO_ON
+    // 腾讯视频
+    [self setupILiveSDK];
+#endif
+
+    // Umeng统计
+    [self setupUmeng];
+}
 
 - (void)setUpApp
 {
@@ -143,9 +161,8 @@
     // 检查数据库版本
     [FSDBVersionCheck checkDBVer];
     
-#ifdef FSVIDEO_ON
-    [self initILiveSDK];
-#endif
+    // 创建搜索历史存储目录
+    [FSUserInfoDB makeSearchHistoryPath];
 }
 
 
@@ -172,6 +189,8 @@
 
     [self setUpApp];
     
+    [self setupThirdParty];
+
     // 添加观察者，监听用户信息的改变
     [self addObserver:self forKeyPath:@"m_UserInfo" options:NSKeyValueObservingOptionNew context:nil];
     self.m_UserInfo = [FSUserInfoDB getUserInfoWithUserId:[FSUserInfoModel getCurrentUserId]];
@@ -181,7 +200,7 @@
     }
 
     [self showFirstGuideView];
-    
+
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 

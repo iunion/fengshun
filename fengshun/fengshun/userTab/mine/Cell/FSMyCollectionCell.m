@@ -55,7 +55,7 @@
 
     self.m_SourceLabel.textColor = UI_COLOR_BL1;
     self.m_SourceLabel.font = UI_FONT_10;
-    self.m_SourceLabel.backgroundColor = [UIColor bm_colorWithHex:0xF0F5FC];
+    self.m_SourceLabel.backgroundColor = [UIColor bm_colorWithHex:0xE5ECFD];
     [self.m_SourceLabel bm_roundedRect:self.m_SourceLabel.bm_height*0.5];
     
     [self.m_CommentCountBtn setTitleColor:[UIColor bm_colorWithHex:0x999999] forState:UIControlStateNormal];
@@ -85,9 +85,17 @@
     CGSize size = [self.m_TimeLabel sizeThatFits:CGSizeMake(1000, self.m_TimeLabel.bm_height)];
     self.m_SourceLabel.bm_left = size.width + 6.0f;
 
-    self.m_SourceLabel.text = model.m_Source;
-    size = [self.m_SourceLabel sizeThatFits:CGSizeMake(1000, self.m_SourceLabel.bm_height)];
-    self.m_SourceLabel.bm_width = size.width+12.0f;
+    if ([model.m_Source bm_isNotEmpty])
+    {
+        self.m_SourceLabel.hidden = NO;
+        self.m_SourceLabel.text = model.m_Source;
+        size = [self.m_SourceLabel sizeThatFits:CGSizeMake(1000, self.m_SourceLabel.bm_height)];
+        self.m_SourceLabel.bm_width = size.width+12.0f;
+    }
+    else
+    {
+        self.m_SourceLabel.hidden = YES;
+    }
     
     [self.m_CommentCountBtn setTitle:[NSString stringWithFormat:@"%@", @(model.m_CommentCount)] forState:UIControlStateNormal];
     

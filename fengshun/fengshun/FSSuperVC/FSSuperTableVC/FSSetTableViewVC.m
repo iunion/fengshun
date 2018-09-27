@@ -123,20 +123,20 @@
     CGPoint relativePoint = [cell convertPoint:CGPointZero toView:[UIApplication sharedApplication].keyWindow];
 //    CGPoint testPoint = [cell convertPoint:CGPointZero toView:self.m_TableView];
 //    NSLog(@"testPoint = %@",NSStringFromCGPoint(testPoint));
-    CGFloat keyboardHeight = [notification.userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size.height;
+    CGFloat keyboardHeight = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
     CGFloat actualHeight = CGRectGetHeight(cell.frame) + relativePoint.y + keyboardHeight;
     CGFloat overstep = actualHeight - CGRectGetHeight([UIScreen mainScreen].bounds);// + 5;
     if (overstep > 1)
     {
-//        CGFloat now = self.m_TableView.contentOffset.y;
-//        CGFloat new = now + overstep;
-//        [self.m_TableView setContentOffset:CGPointMake(0, new) animated:YES];
-        CGFloat duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-        CGRect frame = [UIScreen mainScreen].bounds;
-        frame.origin.y -= overstep;
-        [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveLinear animations: ^{
-            [UIApplication sharedApplication].keyWindow.frame = frame;
-        } completion:nil];
+        CGFloat now = self.m_TableView.contentOffset.y;
+        CGFloat new = now + overstep;
+        [self.m_TableView setContentOffset:CGPointMake(0, new) animated:YES];
+//        CGFloat duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+//        CGRect frame = [UIScreen mainScreen].bounds;
+//        frame.origin.y -= overstep;
+//        [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveLinear animations: ^{
+//            [UIApplication sharedApplication].keyWindow.frame = frame;
+//        } completion:nil];
     }
 }
 

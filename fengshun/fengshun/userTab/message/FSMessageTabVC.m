@@ -40,7 +40,7 @@
     
     self.bm_NavigationBarBgTintColor = [UIColor whiteColor];
     self.bm_NavigationShadowHidden   = NO;
-    self.bm_NavigationShadowColor    = [UIColor bm_colorWithHexString:@"D8D8D8"];
+    self.bm_NavigationShadowColor    = [UIColor bm_colorWithHex:0xD8D8D8];
     
     [self bm_setNavigationWithTitle:@"消息" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
     

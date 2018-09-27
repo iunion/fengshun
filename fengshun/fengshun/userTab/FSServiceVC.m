@@ -119,12 +119,12 @@
     NSLog(@"openQQ");
     [[UIPasteboard generalPasteboard] setString:self.m_QQNumber];
 
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"mqqapi://"]];
-    if ([[UIApplication sharedApplication] canOpenURL:url])
-    {
-        [[UIApplication sharedApplication] openURL:url];
-    }
-    else
+//    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"mqqapi://"]];
+//    if ([[UIApplication sharedApplication] canOpenURL:url])
+//    {
+//        [[UIApplication sharedApplication] openURL:url];
+//    }
+//    else
     {
         [self.m_ProgressHUD showAnimated:YES withText:@"您已成功复制QQ号，去添加客服QQ号联系她们吧" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     }
@@ -135,12 +135,12 @@
     NSLog(@"openWechat");
     [[UIPasteboard generalPasteboard] setString:self.m_WechatNumber];
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"weixin://"]];
-    if ([[UIApplication sharedApplication] canOpenURL:url])
-    {
-        [[UIApplication sharedApplication] openURL:url];
-    }
-    else
+//    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"weixin://"]];
+//    if ([[UIApplication sharedApplication] canOpenURL:url])
+//    {
+//        [[UIApplication sharedApplication] openURL:url];
+//    }
+//    else
     {
         [self.m_ProgressHUD showAnimated:YES withText:@"您已成功复制微信号，去添加微信号联系客服们吧" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     }

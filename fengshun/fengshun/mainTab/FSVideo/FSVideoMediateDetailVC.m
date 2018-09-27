@@ -188,13 +188,11 @@
         }
         vc.m_AttendList = weakSelf.m_DetailModel.meetingPersonnelResponseDTO;
         vc.inviteComplete = ^(NSArray *litigantList) {
-            if (litigantList.count) {
-                if ([litigantList bm_isNotEmpty]) {
-                    NSMutableArray *array = [NSMutableArray arrayWithArray:weakSelf.m_DetailModel.meetingPersonnelResponseDTO];
-                    [array addObjectsFromArray:litigantList];
-                    weakSelf.m_DetailModel.meetingPersonnelResponseDTO = [NSArray arrayWithArray:array];
-                    weakSelf.personView.desLabel.text = [weakSelf.m_DetailModel getMeetingPersonnelNameListWithShowCount:3];
-                }
+            if ([litigantList bm_isNotEmpty]) {
+                NSMutableArray *array = [NSMutableArray arrayWithArray:weakSelf.m_DetailModel.meetingPersonnelResponseDTO];
+                [array addObjectsFromArray:litigantList];
+                weakSelf.m_DetailModel.meetingPersonnelResponseDTO = [NSArray arrayWithArray:array];
+                weakSelf.personView.desLabel.text = [weakSelf.m_DetailModel getMeetingPersonnelNameListWithShowCount:3];
             }
         };
 
@@ -352,9 +350,10 @@
 
 - (void)deleteAction
 {
+    BMWeakSelf
     UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"删除" message:@"确定要删除视频记录吗？删除后，相关记录不可恢复" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        [self sendDeleteRequest];
+        [weakSelf sendDeleteRequest];
     }];
     [vc addAction:action];
     
@@ -402,15 +401,16 @@
 
 - (void)startMeeting
 {
+    BMWeakSelf
     [FSVideoStartTool startMeetingWithMeetingId:self.m_MeetingId progressHUD:self.m_ProgressHUD completionHandler:^(NSURLResponse *response, id  _Nullable responseObject, NSError * _Nullable error) {
         NSDictionary *resDic = responseObject;
         NSInteger statusCode = [resDic bm_intForKey:@"code"];
         if (statusCode == 1000)
         {
-            _m_DetailModel.meetingStatus = [FSMeetingDataEnum meetingStatusUnderwayEnglish];
-            self.statusLabel.text = [FSMeetingDataEnum meetingStatusEnglishToChinese:_m_DetailModel.meetingStatus];
-            [self.m_ProgressHUD hideAnimated:NO];
-            [self joinRoom];
+            weakSelf.m_DetailModel.meetingStatus = [FSMeetingDataEnum meetingStatusUnderwayEnglish];
+            weakSelf.statusLabel.text = [FSMeetingDataEnum meetingStatusEnglishToChinese:_m_DetailModel.meetingStatus];
+            [weakSelf.m_ProgressHUD hideAnimated:NO];
+            [weakSelf joinRoom];
             [[NSNotificationCenter defaultCenter] postNotificationName:FSVideoMediateChangedNotification object:nil userInfo:nil];
         }
     }];
@@ -432,13 +432,11 @@
                 weakSelf.statusLabel.text = [FSMeetingDataEnum meetingStatusEnglishToChinese:_m_DetailModel.meetingStatus];
             };
             vc.inviteBlock = ^(NSArray *litigantList) {
-                if (litigantList.count) {
-                    if ([litigantList bm_isNotEmpty]) {
-                        NSMutableArray *array = [NSMutableArray arrayWithArray:weakSelf.m_DetailModel.meetingPersonnelResponseDTO];
-                        [array addObjectsFromArray:litigantList];
-                        weakSelf.m_DetailModel.meetingPersonnelResponseDTO = [NSArray arrayWithArray:array];
-                        weakSelf.personView.desLabel.text = [weakSelf.m_DetailModel getMeetingPersonnelNameListWithShowCount:3];
-                    }
+                if ([litigantList bm_isNotEmpty]) {
+                    NSMutableArray *array = [NSMutableArray arrayWithArray:weakSelf.m_DetailModel.meetingPersonnelResponseDTO];
+                    [array addObjectsFromArray:litigantList];
+                    weakSelf.m_DetailModel.meetingPersonnelResponseDTO = [NSArray arrayWithArray:array];
+                    weakSelf.personView.desLabel.text = [weakSelf.m_DetailModel getMeetingPersonnelNameListWithShowCount:3];
                 }
             };
             [[NSNotificationCenter defaultCenter] postNotificationName:FSMakeVideoMediateSuccessNotification object:nil userInfo:nil];

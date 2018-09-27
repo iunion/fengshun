@@ -23,6 +23,7 @@
 {
     return 409 + UI_NAVIGATION_BAR_HEIGHT+UI_STATUS_BAR_HEIGHT;
 }
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];
@@ -32,6 +33,7 @@
     [_m_toolCollectionView registerNib:[UINib nibWithNibName:@"FSMainToolCell" bundle:nil] forCellWithReuseIdentifier:@"FSMainToolCell"];
     
 }
+
 - (void)configBanner
 {
     self.m_bannerView = [[FSPageBannerView alloc] initWithFrame:CGRectMake(0, 1+UI_NAVIGATION_BAR_HEIGHT+UI_STATUS_BAR_HEIGHT, UI_SCREEN_WIDTH, 164) scrollDirection:FSBannerViewScrollDirectionLandscape images:nil pageWidth:UI_SCREEN_WIDTH - 56.0f padding:0 rollingScale:YES];
@@ -41,6 +43,7 @@
     _m_bannerView.rollingDelayTime = 5.0;
     [self.m_topView addSubview:_m_bannerView];
 }
+
 - (instancetype)initWithFrame:(CGRect)frame andDelegate:(id<FSBannerViewDelegate, FSMainHeaderDelegate>)delegate
 {
     self = [[[NSBundle mainBundle] loadNibNamed:@"FSMainHeaderView" owner:self options:nil] firstObject];
@@ -53,7 +56,7 @@
         
         CAGradientLayer *gradientLayer = [CAGradientLayer layer];
         gradientLayer.frame            = _m_bottomButton.bounds;
-        gradientLayer.colors           = @[ (__bridge id)[UIColor bm_colorWithHexString:@"#577EEE"].CGColor, (__bridge id)[UIColor bm_colorWithHexString:@"#4A9EFE"].CGColor ];
+        gradientLayer.colors           = @[ (__bridge id)[UIColor bm_colorWithHex:0x577EEE].CGColor, (__bridge id)[UIColor bm_colorWithHex:0x4A9EFE].CGColor ];
         gradientLayer.startPoint       = CGPointMake(0, 0);
         gradientLayer.endPoint         = CGPointMake(1, 0);
         gradientLayer.locations        = @[ @0, @1 ];

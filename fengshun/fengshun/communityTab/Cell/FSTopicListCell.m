@@ -74,7 +74,7 @@
 - (void)makeCellStyle
 {
     [self.m_ForumBgView bm_roundedRect:self.m_ForumBgView.bm_height * 0.5f];
-    self.m_ForumBgView.backgroundColor = [UIColor bm_colorWithHex:0xF0F5FC];
+    self.m_ForumBgView.backgroundColor = [UIColor bm_colorWithHex:0xE5ECFD];
     
     [self.m_HeaderImageView bm_roundedRect:self.m_HeaderImageView.bm_height * 0.5f];
     
