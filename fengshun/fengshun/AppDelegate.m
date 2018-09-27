@@ -25,6 +25,7 @@
 
 #import "FSGlobleDataModel.h"
 #import "FSCustomInfoVC.h"
+#import <UMCommon/UMCommon.h>
 
 #if USE_TEST_HELP
 #import "FSTestHelper.h"
@@ -179,9 +180,8 @@
     {
         self.m_UserInfo = [[FSUserInfoModel alloc] init];
     }
-
+    [UMConfigure initWithAppkey:UMeng_AppKey channel:@"App Store"];
     [self showFirstGuideView];
-    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 
