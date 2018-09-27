@@ -101,11 +101,11 @@
                     <rect key="frame" x="0.0" y="271" width="375" height="281"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="常用工具" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80s-5O-HEO">
-                            <rect key="frame" x="45" y="24" width="77.5" height="19"/>
+                            <rect key="frame" x="45" y="24" width="82" height="19"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="19" id="rVY-E9-Mer"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>

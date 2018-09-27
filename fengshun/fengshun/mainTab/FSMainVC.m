@@ -21,7 +21,7 @@
 
 #import "FSOCRManager.h"
 
-#define SECTION_HEDER_HEIGHT 44.0f
+#define SECTION_HEDER_HEIGHT 52.0f
 
 @interface
 FSMainVC ()
@@ -304,7 +304,7 @@ FSMainVC ()
     [view addSubview:icon];
 
     UILabel *titleLabel  = [[UILabel alloc] initWithFrame:CGRectMake(45, 24, 120, 20)];
-    titleLabel.font      = [UIFont boldSystemFontOfSize:19];
+    titleLabel.font      = [UIFont boldSystemFontOfSize:20];
     titleLabel.textColor = UI_COLOR_B1;
     titleLabel.text      = section ? @"精华帖子" : @"热门推荐";
     [view addSubview:titleLabel];

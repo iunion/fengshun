@@ -199,7 +199,7 @@
         CGFloat viewHeight           = UI_SCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT - UI_STATUS_BAR_HEIGHT;
         _m_OCRButton.bm_bottom       = viewHeight - OCRSearchButtonBottonGap;
         [self.view addSubview:_m_OCRButton];
-        UIImageView *buttonTag = [[UIImageView alloc] initWithFrame:CGRectMake(16, 12, 20, 15)];
+        UIImageView *buttonTag = [[UIImageView alloc] initWithFrame:CGRectMake(16, 11.5f, 20, 17)];
         buttonTag.image        = [UIImage imageNamed:@"scanfile_camera"];
         [_m_OCRButton addSubview:buttonTag];
         UIView *line         = [[UIView alloc] initWithFrame:CGRectMake(buttonTag.bm_right + 10, 10, 0.5, 20)];
