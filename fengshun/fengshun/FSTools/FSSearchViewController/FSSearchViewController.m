@@ -139,7 +139,7 @@
 {
     UIView *searchBarBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_NAVIGATION_BAR_HEIGHT)];
     searchBarBgView.backgroundColor = [UIColor clearColor];
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(30.0f, SearchBarGap, UI_SCREEN_WIDTH-60.0f, UI_NAVIGATION_BAR_HEIGHT-SearchBarGap*2)];
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(18.0f, SearchBarGap, UI_SCREEN_WIDTH-36.0f, UI_NAVIGATION_BAR_HEIGHT-SearchBarGap*2)];
     searchBar.backgroundColor = [UIColor clearColor];
     searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [searchBarBgView addSubview:searchBar];
