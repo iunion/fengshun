@@ -126,6 +126,7 @@
 //    }
 //    else
     {
+        self.m_ProgressHUD.detailsLabelFont = [UIFont systemFontOfSize:14.0f];
         [self.m_ProgressHUD showAnimated:YES withDetailText:@"您已成功复制QQ号，去添加客服QQ号联系她们吧" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     }
 }
@@ -142,6 +143,7 @@
 //    }
 //    else
     {
+        self.m_ProgressHUD.detailsLabelFont = [UIFont systemFontOfSize:14.0f];
         [self.m_ProgressHUD showAnimated:YES withDetailText:@"您已成功复制微信号，去添加微信号联系客服们吧" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     }
 }
