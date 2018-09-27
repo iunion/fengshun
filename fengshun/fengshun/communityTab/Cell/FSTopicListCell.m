@@ -58,7 +58,7 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    // Initialization code
+    self.separatorInset = UIEdgeInsetsMake(0, 20, 0, 19);
 
     [self makeCellStyle];
 }

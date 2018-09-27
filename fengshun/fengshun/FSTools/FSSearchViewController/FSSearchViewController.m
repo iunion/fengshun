@@ -169,7 +169,6 @@
     self.manager = [[BMTableViewManager alloc] initWithTableView:self.searchHistoriesTableView];
     self.manager.delegate = self;
     BMTableViewSection *section = [BMTableViewSection section];
-    section.headerHeight = _resultType ? 11:0;
     section.footerHeight = 0;
     [self.manager addSection:section];
     self.section = section;
@@ -187,7 +186,7 @@
         _m_OCRButton.bm_centerX      = self.view.bm_centerX;
     
         _m_OCRButton.layer.masksToBounds = NO;
-        _m_OCRButton.layer.shadowOffset = CGSizeZero;//阴影的偏移量
+        _m_OCRButton.layer.shadowOffset = CGSizeMake(0, 5);//阴影的偏移量
         _m_OCRButton.layer.shadowRadius = 10;
         _m_OCRButton.layer.shadowOpacity = 0.9;                        //阴影的不透明度
         _m_OCRButton.layer.shadowColor = [_m_OCRButton backgroundColor].CGColor;
@@ -288,13 +287,13 @@
         for (NSDictionary *lawTopicInfo in self.hotTagArray)
         {
 //            CGSize  itemSize = CGSizeMake(80, 66);
-            CGSize  itemSize = CGSizeMake((UI_SCREEN_WIDTH-5*10)/4, 66);
+            CGSize  itemSize = CGSizeMake((UI_SCREEN_WIDTH-5*10)/4, 57);
             UIView *view     = [[UIView alloc] initWithFrame:CGRectMake(0, 0, itemSize.width, itemSize.height)];
             UIImageView *iv  = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 34, 34)];
             iv.image         = [UIImage imageNamed:[lawTopicInfo bm_stringForKey:@"iconName"]];
             [view addSubview:iv];
             iv.bm_centerX       = itemSize.width / 2;
-            UILabel *label      = [[UILabel alloc] initWithFrame:CGRectMake(0, itemSize.height - 16 - 5, itemSize.width, 16)];
+            UILabel *label      = [[UILabel alloc] initWithFrame:CGRectMake(0, itemSize.height - 14, itemSize.width, 14)];
             label.textAlignment = NSTextAlignmentCenter;
             label.font          = [UIFont systemFontOfSize:14];
             label.textColor     = UI_COLOR_B1;
@@ -317,10 +316,9 @@
     view.backgroundColor = [UIColor whiteColor];
     self.headerView      = view;
 
-    CGFloat topGap = (_resultType == FSSearchResultType_case)?27:10;
+    CGFloat topGap = (_resultType == FSSearchResultType_case)?27:20;
     if (_resultType == FSSearchResultType_case)
     {
-        topGap = 27;
         CGFloat labelHeight = 30.0f;
         UIImageView *hotTag = [[UIImageView alloc] initWithFrame:CGRectMake(15, topGap / 2, 11, labelHeight)];
         hotTag.contentMode  = UIViewContentModeLeft;
@@ -339,10 +337,10 @@
     tagCollectionView.delegate = self;
     tagCollectionView.dataSource = self;
     tagCollectionView.horizontalSpacing = 7.0f;
-    tagCollectionView.verticalSpacing = 10.0f;
+    tagCollectionView.verticalSpacing = (_resultType == FSSearchResultType_case)?10.0f:20.0f;
     tagCollectionView.bm_height = tagCollectionView.contentSize.height;
     [view addSubview:tagCollectionView];
-    view.bm_height = tagCollectionView.bm_bottom + 23.0f;
+    view.bm_height = tagCollectionView.bm_bottom + 20.0f;
     self.tagCollectionView = tagCollectionView;
     
     self.searchHistoriesTableView.tableHeaderView = self.headerView;
@@ -392,7 +390,13 @@
 - (void)freshItems
 {
     [self.section removeAllItems];
-    
+    if (_resultType &&[self.searchHistories bm_isNotEmpty]) {
+        self.section.headerHeight = 11.0f;
+    }
+    else
+    {
+        self.section.headerHeight = 0;
+    }
     if (!self.showSearchHistory || ![self.searchHistories bm_isNotEmpty])
     {
         [self.searchHistoriesTableView reloadData];
