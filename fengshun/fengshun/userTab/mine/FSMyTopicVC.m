@@ -9,6 +9,7 @@
 #import "FSMyTopicVC.h"
 #import "FSMyTopicCell.h"
 
+
 @interface FSMyTopicVC ()
 
 @end
@@ -112,7 +113,8 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     FSMyTopicModel *model = self.m_DataArray[indexPath.row];
-    [FSPushVCManager showWebView:self url:model.m_JumpAddress title:nil];
+//    [FSPushVCManager showWebView:self url:model.m_JumpAddress title:nil];
+    [FSPushVCManager showTopicDetail:self  topicId:model.m_TopicId];
 }
 
 - (BMEmptyViewType)getNoDataEmptyViewType

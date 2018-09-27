@@ -60,8 +60,8 @@ FSCommunitySecVC ()
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib
     [self bm_setNavigationWithTitle:@"" barTintColor:nil leftDicArray:@[ [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"community_white_back" toucheEvent:@"popViewController" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageRight imageTitleGap:0] ] rightDicArray:nil];
-    
-    [self setBm_NavigationBarAlpha:0];
+    self.bm_NavigationBarHidden = YES;
+    [self bm_setNeedsUpdateNavigationBar];
     
     self.view.backgroundColor = FS_VIEW_BGCOLOR;
     self.m_dataArray          = [NSMutableArray arrayWithCapacity:0];
