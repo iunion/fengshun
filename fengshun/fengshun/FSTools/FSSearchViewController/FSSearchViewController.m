@@ -272,7 +272,7 @@
     if (_resultType == FSSearchResultType_case) {
         for (NSString *tag in self.hotTagArray)
         {
-            CGFloat width = [tag bm_widthToFitHeight:20 withFont:[UIFont systemFontOfSize:14.0f]] + 24.0f;
+            CGFloat width = (UI_SCREEN_WIDTH-5*12)/4;
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, 28.0f)];
             label.backgroundColor = FS_VIEW_BGCOLOR;
             label.font = [UIFont systemFontOfSize:14.0f];
@@ -327,7 +327,7 @@
         [view addSubview:hotTag];
 
         UILabel *label  = [[UILabel alloc] initWithFrame:CGRectMake(37, topGap / 2, UI_SCREEN_WIDTH - 37, labelHeight)];
-        label.font      = [UIFont systemFontOfSize:12.0f];
+        label.font      = [UIFont systemFontOfSize:13.0f];
         label.textColor = [UIColor bm_colorWithHex:0x666666];
         label.text = @"热门关键词";
         [view addSubview:label];
@@ -337,7 +337,7 @@
     TTGTagCollectionView *tagCollectionView = [[TTGTagCollectionView alloc] initWithFrame:CGRectMake(12, topGap, UI_SCREEN_WIDTH-24, 60.0f)];
     tagCollectionView.delegate = self;
     tagCollectionView.dataSource = self;
-    tagCollectionView.horizontalSpacing = 7.0f;
+    tagCollectionView.horizontalSpacing = 10.0f;
     tagCollectionView.verticalSpacing = 10.0f;
     tagCollectionView.bm_height = tagCollectionView.contentSize.height;
     [view addSubview:tagCollectionView];
