@@ -573,6 +573,12 @@
         [self.m_ProgressHUD hideAnimated:NO];
         
         [self freshErrorLabelWithMessage:message];
+        
+        // 一分钟之后才能发送短信
+        if (statusCode == 1003)
+        {
+            [self freshViews];
+        }
     }
 
     [[BMVerifiTimeManager manager] stopTimeWithType:self.m_VerificationType];
