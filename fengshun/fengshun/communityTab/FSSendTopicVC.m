@@ -220,7 +220,7 @@
 - (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker
 {
     BMLog(@"用户点击了取消");
-    [picker dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos
@@ -229,9 +229,8 @@
     {
         return;
     }
-    if ([photos bm_isNotEmpty]&& [infos bm_isNotEmpty])
+    if ([photos bm_isNotEmpty])
     {
-        
         [self pickerVC:picker presentToCropVCWithImage:photos[0]];
     }
 
@@ -253,7 +252,6 @@
 {
     TOCropViewController *cropController = [[TOCropViewController alloc] initWithImage:orignalImage];
     BMWeakSelf
-    __weak typeof(cropController) weakCropVC = cropController;
     [cropController setOnDidCropToRect:^(UIImage * _Nonnull image, CGRect cropRect, NSInteger angle) {
         
         [weakSelf dismissViewControllerAnimated:NO completion:^{
@@ -261,7 +259,7 @@
         }];
     }];
     [cropController setOnDidFinishCancelled:^(BOOL isFinished) {
-        [weakCropVC dismissViewControllerAnimated:YES completion:nil];
+        [picker dismissViewControllerAnimated:YES completion:nil];
     }];
     [picker presentViewController:cropController animated:YES completion:nil];
 

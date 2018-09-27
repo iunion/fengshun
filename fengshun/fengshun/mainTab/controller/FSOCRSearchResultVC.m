@@ -14,7 +14,6 @@
 #import "FSLawCell.h"
 #import "FSCaseCell.h"
 #import "TOCropViewController.h"
-
 #import "BMNavigationController.h"
 
 @interface
@@ -117,11 +116,14 @@ FSOCRSearchResultVC ()
     }
 }
 #pragma mark - TZImagePickerControllerDelegate
+
+#pragma mark - TZImagePickerControllerDelegate
+
 - (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker
 {
     BMNavigationController *nav = (BMNavigationController *)self.navigationController;
     [nav resetPushAnimation];
-    
+    [self dismissViewControllerAnimated:YES completion:nil];
     if (!_m_notFirstSelected)
     {
         [self.navigationController popViewControllerAnimated:NO];
@@ -132,12 +134,12 @@ FSOCRSearchResultVC ()
 {
     BMNavigationController *nav = (BMNavigationController *)self.navigationController;
     [nav resetPushAnimation];
-    
+
     if ([photos bm_isNotEmpty])
     {
         UIImage *image = [photos firstObject];
         self.m_orignalImage = image;
-        [self getOCRTextWithImage:image];
+        [self pickerVC:picker presentToCropVCWithImage:image];
     }
     else
     {
@@ -147,11 +149,27 @@ FSOCRSearchResultVC ()
         }
     }
 }
+- (void)pickerVC:(TZImagePickerController *)picker presentToCropVCWithImage:(UIImage *)orignalImage
+{
+    TOCropViewController *cropController = [[TOCropViewController alloc] initWithImage:orignalImage];
+    BMWeakSelf
+    [cropController setOnDidCropToRect:^(UIImage * _Nonnull image, CGRect cropRect, NSInteger angle) {
+        [weakSelf dismissViewControllerAnimated:NO completion:^{
+            [weakSelf getOCRTextWithImage:image];
+        }];
+    }];
+    [cropController setOnDidFinishCancelled:^(BOOL isFinished) {
+        [picker dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [picker presentViewController:cropController animated:YES completion:nil];
+}
+
 
 - (void)presentToImagePickerWithAnimated:(BOOL)animated
 {
     TZImagePickerController *imagePickerVc = [TZImagePickerController fs_defaultPickerWithImagesCount:1 delegate:self];
-    
+    imagePickerVc.autoDismiss = NO;
+    imagePickerVc.specialSingleSelected = YES;
     [self presentViewController:imagePickerVc animated:animated completion:nil];
 }
 

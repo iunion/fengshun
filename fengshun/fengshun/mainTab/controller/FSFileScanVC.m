@@ -222,13 +222,13 @@
 #pragma mark - TZImagePickerControllerDelegate
 - (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker
 {
-    [picker dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos
 {
-    if ([photos bm_isNotEmpty]&& [infos bm_isNotEmpty])
+    if ([photos bm_isNotEmpty])
     {
-        FSImageFileModel *model = [FSImageFileModel imageFileWithSelectInfo:infos[0] andImage:photos[0]];
+        FSImageFileModel *model = [FSImageFileModel imageFileWithSelectInfo:[infos firstObject] andImage:photos[0]];
         [self pickerVC:picker presentToCropVCWithImageFile:model];
     }
     
@@ -237,7 +237,6 @@
 {
     TOCropViewController *cropController = [[TOCropViewController alloc] initWithImage:model.m_OriginalImage];
     BMWeakSelf
-    __weak typeof(cropController) weakCropVC = cropController;
     [cropController setOnDidCropToRect:^(UIImage * _Nonnull image, CGRect cropRect, NSInteger angle) {
         model.m_image = image;
         [weakSelf.m_allImageFiles addObject:model];
@@ -248,7 +247,7 @@
         }];
     }];
     [cropController setOnDidFinishCancelled:^(BOOL isFinished) {
-        [weakCropVC dismissViewControllerAnimated:YES completion:nil];
+        [picker dismissViewControllerAnimated:YES completion:nil];
     }];
     [picker presentViewController:cropController animated:YES completion:nil];
 }
