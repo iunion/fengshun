@@ -53,6 +53,10 @@ static dispatch_once_t onceToken;
 
 - (void)reconnect
 {
+    if (_socket) {
+        [_socket close];
+        _socket.delegate = nil;
+    }
     NSString *socketUrl = [NSString stringWithFormat:@"%@/stormChatGateway/joinRoom/%@?JWTToken=%@&watcher=%d", FS_URL_SERVER, self.m_RoomId, self.m_Token, NO];
     NSURL *url = [NSURL URLWithString:socketUrl];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];

@@ -74,6 +74,9 @@ VideoCallVideoViewDelegate>
 
 - (void)socketHelper:(SocketHelper *)socketHelper RTCRoomInfo:(RTCRoomInfoModel *)model loginAndJoinRoomSuccessHandler:(void (^)(void))handler {
     BMWeakSelf
+    if (self.model) {
+        return;
+    }
     [self loginAndJoinRoomWithModel:model handler:^{
         handler();
         weakSelf.model = model;
