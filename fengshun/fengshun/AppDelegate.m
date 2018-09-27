@@ -537,7 +537,6 @@
         
         BMWeakSelf
         self.m_UserAbilityTask = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-#if DEBUG
             if (error)
             {
                 BMLog(@"Error: %@", error);
@@ -550,7 +549,6 @@
                 BMLog(@"%@ %@", response, responseStr);
                 [weakSelf getUserAbilityInfoRequestFinished:response responseDic:responseObject];
             }
-#endif
         }];
         [self.m_UserAbilityTask resume];
     }
