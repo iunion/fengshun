@@ -271,7 +271,8 @@
     if (_resultType == FSSearchResultType_case) {
         for (NSString *tag in self.hotTagArray)
         {
-            CGFloat width = (UI_SCREEN_WIDTH-5*12)/4;
+            CGFloat width = (UI_SCREEN_WIDTH-5*10)/4;
+//            CGFloat width = [tag bm_widthToFitHeight:20 withFont:[UIFont systemFontOfSize:14.0f]] + 24.0f;
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, 28.0f)];
             label.backgroundColor = FS_VIEW_BGCOLOR;
             label.font = [UIFont systemFontOfSize:14.0f];
@@ -336,7 +337,7 @@
     TTGTagCollectionView *tagCollectionView = [[TTGTagCollectionView alloc] initWithFrame:CGRectMake(12, topGap, UI_SCREEN_WIDTH-24, 60.0f)];
     tagCollectionView.delegate = self;
     tagCollectionView.dataSource = self;
-    tagCollectionView.horizontalSpacing = 10.0f;
+    tagCollectionView.horizontalSpacing = 7.0f;
     tagCollectionView.verticalSpacing = 10.0f;
     tagCollectionView.bm_height = tagCollectionView.contentSize.height;
     [view addSubview:tagCollectionView];
