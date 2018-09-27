@@ -61,6 +61,7 @@ FSCommunitySecVC ()
     // Do any additional setup after loading the view from its nib
     [self bm_setNavigationWithTitle:@"" barTintColor:nil leftDicArray:@[ [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"community_white_back" toucheEvent:@"popViewController" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageRight imageTitleGap:0] ] rightDicArray:nil];
     self.bm_NavigationBarHidden = YES;
+    [self bm_getNavigationLeftItemAtIndex:0].tintColor = [UIColor whiteColor];
     [self bm_setNeedsUpdateNavigationBar];
     
     self.view.backgroundColor = FS_VIEW_BGCOLOR;
@@ -73,6 +74,22 @@ FSCommunitySecVC ()
     
     // 登录状态改变刷新数据
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getHeaderInfoMsg) name:userInfoChangedNotification object:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.bm_NavigationBarStyle = UIBarStyleBlack;
+    [self bm_setNeedsUpdateNavigationBarStyle];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    self.bm_NavigationBarStyle = UIBarStyleDefault;
+    [self bm_setNeedsUpdateNavigationBarStyle];
 }
 
 - (void)didReceiveMemoryWarning

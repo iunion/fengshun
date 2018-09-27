@@ -79,7 +79,7 @@
     [self.m_HeaderImageView bm_roundedRect:self.m_HeaderImageView.bm_height * 0.5f];
     
     self.m_ForumLabel.textColor = [UIColor bm_colorWithHex:0x333333];
-    self.m_ForumLabel.font = UI_FONT_15;
+    self.m_ForumLabel.font = UI_BOLDFONT_15;
     
     [self.m_StickBgView bm_roundedRect:self.m_StickBgView.bm_height * 0.5f];
     self.m_StickBgView.backgroundColor = [UIColor bm_colorWithHex:0xE14D4D alpha:0.1];
