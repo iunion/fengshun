@@ -364,7 +364,7 @@
     {
         [self.m_WebView goBack];
         [self updateNavBack];
-        [self bm_getNavigationRightItemAtIndex:0];
+        [self bm_getNavigationRightItemAtIndex:0].hidden = YES;
         [self bm_setNeedsUpdateNavigationBar];
     }
     else
