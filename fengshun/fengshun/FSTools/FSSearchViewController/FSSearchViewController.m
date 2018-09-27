@@ -137,19 +137,19 @@
 
 - (void)makeSearchBar
 {
-    UIView *searchBarBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_NAVIGATION_BAR_HEIGHT)];
-    searchBarBgView.backgroundColor = [UIColor clearColor];
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(18.0f, SearchBarGap, UI_SCREEN_WIDTH-36.0f, UI_NAVIGATION_BAR_HEIGHT-SearchBarGap*2)];
+    //UIView *searchBarBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_NAVIGATION_BAR_HEIGHT)];
+    //searchBarBgView.backgroundColor = [UIColor clearColor];
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, SearchBarGap, UI_SCREEN_WIDTH, UI_NAVIGATION_BAR_HEIGHT-SearchBarGap*2)];
     searchBar.backgroundColor = [UIColor clearColor];
     searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [searchBarBgView addSubview:searchBar];
+    //[searchBarBgView addSubview:searchBar];
     searchBar.backgroundImage = [UIImage imageNamed:@"navigationbar_clearImage"];
     searchBar.delegate = self;
     searchBar.placeholder = @"请输入关键字";
     self.bm_NavigationItemTintColor = UI_COLOR_B1;
     self.bm_NavigationShadowHidden = NO;
     self.bm_NavigationShadowColor = UI_COLOR_B6;
-    [self bm_setNavigationWithTitleView:searchBarBgView barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:@"取消" rightItemImage:nil rightToucheEvent:@selector(cancelSearch:)];
+    [self bm_setNavigationWithTitleView:searchBar barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:@"取消" rightItemImage:nil rightToucheEvent:@selector(cancelSearch:)];
     [self setBm_NavigationBarImage:[UIImage imageWithColor:[UIColor whiteColor]]];
     
     self.searchTextField = (UITextField *)[searchBar bm_viewOfClass:[UITextField class]];

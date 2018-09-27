@@ -274,7 +274,7 @@
         
         if (title != nil)
         {
-            btn.titleLabel.font = [UIFont boldSystemFontOfSize:16.0f];
+            btn.titleLabel.font = [UIFont boldSystemFontOfSize:14.0f];
             
             CGSize size = [title boundingRectWithSize:CGSizeMake(100.0f, 44.0f) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:btn.titleLabel.font} context:nil].size;
             btn.frame = CGRectMake(0, 0, size.width, size.height);
