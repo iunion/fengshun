@@ -14,7 +14,6 @@
 #import "FSTextSearchResultView.h"
 
 #define SEARCH_HISTORY_MAXCACHECOUNT        10
-#define SEARCH_HISTORY_CACHEFILE(searchKey) [[NSString bm_documentsPath] stringByAppendingPathComponent:[NSString stringWithFormat:@"searchhistory_%@.plist", searchKey]]
 
 #define SearchBarGap            5.0f
 #define SearchBarFont           [UIFont systemFontOfSize:16.0f]

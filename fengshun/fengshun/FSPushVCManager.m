@@ -99,7 +99,7 @@
     {
         [hotKeys writeToFile:SEARCH_CASEHOTKEY_CACHEFILE atomically:NO];
     }
-    FSSearchViewController *searchViewController  = [[FSSearchViewController alloc] initWithSearchKey:@"caseSearch" resultType:FSSearchResultType_case hotSearchTags:hotKeys searchHandler:nil];
+    FSSearchViewController *searchViewController  = [[FSSearchViewController alloc] initWithSearchKey:FSUserInfoCaseSearchHistoryKey resultType:FSSearchResultType_case hotSearchTags:hotKeys searchHandler:nil];
     searchViewController.hidesBottomBarWhenPushed = YES;
     [mainVC.navigationController pushViewController:searchViewController animated:YES];
 }
@@ -115,7 +115,7 @@
 {
    NSArray *topics = [NSArray arrayWithContentsOfFile:SEARCH_LAWTOPIC_FILE];
     
-    FSSearchViewController *searchViewController  = [[FSSearchViewController alloc] initWithSearchKey:@"lawsSearch" resultType:FSSearchResultType_laws hotSearchTags:topics searchHandler:nil];
+    FSSearchViewController *searchViewController  = [[FSSearchViewController alloc] initWithSearchKey:FSUserInfoLawSearchHistoryKey resultType:FSSearchResultType_laws hotSearchTags:topics searchHandler:nil];
     searchViewController.hidesBottomBarWhenPushed = YES;
     [mainVC.navigationController pushViewController:searchViewController animated:YES];
 }
@@ -145,7 +145,7 @@
 
 + (void)pushToTextSearchVC:(UIViewController *)showVC
 {
-    FSSearchViewController *searchViewController  = [[FSSearchViewController alloc] initWithSearchKey:@"textSearch" resultType:FSSearchResultType_text hotSearchTags:nil searchHandler:nil];
+    FSSearchViewController *searchViewController  = [[FSSearchViewController alloc] initWithSearchKey:FSUserInfoTextSearchHistoryKey resultType:FSSearchResultType_text hotSearchTags:nil searchHandler:nil];
     searchViewController.hidesBottomBarWhenPushed = YES;
     [showVC.navigationController pushViewController:searchViewController animated:YES];
 }
