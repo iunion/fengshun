@@ -9,8 +9,12 @@
 #import "FSOCRResultVC.h"
 #import "FSOCRManager.h"
 #import "MBProgressHUD.h"
+#import "FSMoreViewVC.h"
 
 @interface FSOCRResultVC ()
+<
+FSMoreViewVCDelegate
+>
 @property (nonatomic, strong) MBProgressHUD *m_ProgressHUD;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *m_toolButtons;
 @property (weak, nonatomic) IBOutlet UITextView *m_textView;
@@ -69,8 +73,13 @@
     else
     {
         // 分享
+        [FSMoreViewVC showShareAlertView:self delegate:self];
     }
 }
-
+// 分享
+- (void)moreViewClickWithType:(NSInteger)index
+{
+    
+}
 
 @end

@@ -22,6 +22,8 @@
 
 + (void)showWebMore:(UIViewController *)presentVC  delegate:(id)delegate isCollection:(BOOL)isCollection;
 
++ (void)showShareAlertView:(UIViewController *)presentVC  delegate:(id)delegate;
+
 @property (nonatomic, assign)id <FSMoreViewVCDelegate> delegate;
 
 @end
