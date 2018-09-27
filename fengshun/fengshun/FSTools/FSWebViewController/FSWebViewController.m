@@ -45,11 +45,13 @@
     
     NSString *s_PhtoUrlStr;
     
-    NSString *s_ShareJsonSting;// 分享的json
+    // 分享的json
+    __block NSString *s_ShareJsonSting;
     
-    NSString *s_CollectJsonSting;// 收藏json
-    
-    BOOL s_isCollect;// 是否收藏
+    // 收藏json
+    __block NSString *s_CollectJsonSting;
+    // 是否收藏
+    __block BOOL s_isCollect;
 }
 
 @property (nonatomic, strong) FSWebView *m_WebView;
@@ -77,6 +79,7 @@
 {
     return [self initWithTitle:title url:url showLoadingBar:YES loadingBarColor:nil];
 }
+
 - (instancetype)initWithTitle:(NSString *)title url:(NSString *)url navRightTitle:(NSString *)navRightTitle delegate:(id<FSWebViewControllerDelegate>)delegate
 {
     return [self initWithTitle:title url:url showLoadingBar:YES loadingBarColor:nil delegate:delegate];
@@ -190,7 +193,6 @@
     [self makeWebView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(makeWebView) name:userInfoChangedNotification object:nil];
-    [self bringSomeViewToFront];
 }
 
 - (void)didReceiveMemoryWarning
@@ -266,6 +268,8 @@
     [self registerJSHandler];
 
     [self loadpage];
+    
+    [self bringSomeViewToFront];
 }
 
 - (void)setWebFrame:(CGRect)frame
@@ -364,7 +368,11 @@
     {
         [self.m_WebView goBack];
         [self updateNavBack];
-        [self bm_getNavigationRightItemAtIndex:0];
+        
+        // 隐藏右边item
+        UIButton *btn = [self bm_getNavigationRightItemAtIndex:0];
+        btn.hidden = YES;
+        
         [self bm_setNeedsUpdateNavigationBar];
     }
     else
@@ -581,8 +589,6 @@
 
 - (void)registerJSHandler
 {
-    
-
 #if 0
     // 分享
     [self.m_WebView registerHandler:@"toShare" handler:^(id data, WVJBResponseCallback responseCallback) {
@@ -667,14 +673,15 @@
          */
         s_ShareJsonSting = data;
     }];
+    
     // 举报
     [self.m_WebView registerHandler:@"toReport" handler:^(id data, WVJBResponseCallback responseCallback) {
         /*
          {"id":"3","type":"COMMENT","commentPerson":"用户林1","commentContent":"这是0评论内容"}
          */
         BMLog(@"toReport called: %@", data);
+        
         [weakSelf showReportAlertWithData:data];
-
     }];
     
     //收藏按钮
@@ -689,6 +696,7 @@
          }
          */
         BMLog(@"toCollect called: %@", data);
+        
         s_CollectJsonSting = data;
         [weakSelf addRightBtn];
     }];
@@ -700,11 +708,13 @@
 //        [MQVCShow showFeedbackVC:weakSelf];
 //    }];
 }
+
 // 添加更多按钮
 - (void)addRightBtn
 {
     [self bm_setNavigationWithTitle:self.m_WebView.title barTintColor:nil leftDicArray:nil rightDicArray:@[ [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"community_more" toucheEvent:@"moreAction" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0]]];
 }
+
 // 更多按钮
 - (void)moreAction
 {
@@ -715,16 +725,18 @@
         [self.m_ProgressHUD showAnimated:YES withText:@"数据错误" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         return;
     }
-    //获取收藏状态
+    
+    // 获取收藏状态
     [self.m_ProgressHUD showAnimated:YES];
+    
     BMWeakSelf;
-    [FSApiRequest getCollectStateID:[data bm_stringForKey:@"id"] type:[data bm_stringForKey:@"type"] Success:^(id  _Nullable responseObject) {
+    [FSApiRequest getCollectStateID:[data bm_stringForKey:@"id"] type:[data bm_stringForKey:@"type"] Success:^(id responseObject) {
+        
         [weakSelf.m_ProgressHUD hideAnimated:NO];
         NSInteger count = [responseObject integerValue];
         s_isCollect = count>0;
         [FSMoreViewVC showWebMore:weakSelf delegate:weakSelf isCollection:s_isCollect];
-        
-    } failure:^(NSError * _Nullable error) {
+    } failure:^(NSError *error) {
         
     }];
 }
@@ -733,27 +745,34 @@
 {
     if (index < 5)
     {
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:[NSString stringWithFormat:@"分享未完成：数据为%@",s_ShareJsonSting] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        [self.m_ProgressHUD showAnimated:YES withText:[NSString stringWithFormat:@"分享未完成：数据为%@", s_ShareJsonSting] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     }
-    else if (index == 5)//收藏
+    else if (index == 5) // 收藏
     {
+        if (![FSUserInfoModel isLogin])
+        {
+            [self showLogin];
+            return;
+        }
+
+        BMWeakSelf
         NSDictionary *data = [NSDictionary bm_dictionaryWithJsonString:s_CollectJsonSting];
-        [FSApiRequest updateCollectStateID:[data bm_stringForKey:@"id"] isCollect:!s_isCollect guidingCase:[data bm_stringForKey:@"guidingCase"] source:[data bm_stringForKey:@"source"] title:[data bm_stringForKey:@"title"] type:[data bm_stringForKey:@"type"] Success:^(id  _Nullable responseObject) {
-            [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:s_isCollect?@"取消收藏":@"收藏成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-        } failure:^(NSError * _Nullable error) {
+        [FSApiRequest updateCollectStateID:[data bm_stringForKey:@"id"] isCollect:!s_isCollect guidingCase:[data bm_stringForKey:@"guidingCase"] source:[data bm_stringForKey:@"source"] title:[data bm_stringForKey:@"title"] type:[data bm_stringForKey:@"type"] Success:^(id responseObject) {
+            [weakSelf.m_ProgressHUD showAnimated:YES withText:s_isCollect ? @"取消收藏" : @"收藏成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        } failure:^(NSError *error) {
             
         }];
     }
-    else if (index == 6)//复制
+    else if (index == 6) // 复制
     {
         if ([self.m_UrlString bm_isNotEmpty])
         {
             [[UIPasteboard generalPasteboard] setString:self.m_UrlString];
-            [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:@"复制成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            [self.m_ProgressHUD showAnimated:YES withText:@"复制成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         }
         else
         {
-            [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:@"复制失败" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            [self.m_ProgressHUD showAnimated:YES withText:@"复制失败" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         }
     }
 }
@@ -769,28 +788,30 @@
     UILabel *cententLab = [[UILabel alloc]initWithFrame:CGRectMake(35/2, 0, 190, 40)];
     cententLab.numberOfLines = 2;
     cententLab.font = [UIFont systemFontOfSize:15.f];
-    cententLab.textColor = [UIColor bm_colorWithHexString:@"333333"];
-    NSString *cententString = [NSString stringWithFormat:@"举报了@%@：%@",[data bm_stringForKey:@"commentPerson"],[data bm_stringForKey:@"commentContent"]];
+    cententLab.textColor = [UIColor bm_colorWithHex:0x333333];
+    NSString *cententString = [NSString stringWithFormat:@"举报了@%@：%@", [data bm_stringForKey:@"commentPerson"], [data bm_stringForKey:@"commentContent"]];
     NSMutableAttributedString *attrubuteStr = [[NSMutableAttributedString alloc]initWithString:cententString];
     [attrubuteStr bm_setTextColor:[UIColor redColor] range:NSMakeRange(3, [data bm_stringForKey:@"commentPerson"].length+1)];
-    [attrubuteStr bm_setTextColor:[UIColor bm_colorWithHexString:@"999999"] range:NSMakeRange(cententString.length - [data bm_stringForKey:@"commentContent"].length, [data bm_stringForKey:@"commentContent"].length)];
+    [attrubuteStr bm_setTextColor:[UIColor bm_colorWithHex:0x999999] range:NSMakeRange(cententString.length - [data bm_stringForKey:@"commentContent"].length, [data bm_stringForKey:@"commentContent"].length)];
     [attrubuteStr bm_setFont:[UIFont systemFontOfSize:13.f] range:NSMakeRange(cententString.length - [data bm_stringForKey:@"commentContent"].length, [data bm_stringForKey:@"commentContent"].length)];
     cententLab.attributedText = attrubuteStr;
     [contentView addSubview:cententLab];
     
     UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(35/2, cententLab.bm_bottom + 5, 190, 25)];
-    textField.backgroundColor = [UIColor bm_colorWithHexString:@"f6f6f6"];
+    textField.backgroundColor = [UIColor bm_colorWithHex:0xf6f6f6];
     textField.placeholder = @"请输入举报理由";
     textField.font = [UIFont systemFontOfSize:14.f];
     [contentView addSubview:textField];
     [textField becomeFirstResponder];
-    BMWeakSelf;
+    
+    BMWeakSelf
     [FSAlertView showAlertWithTitle:@"举报理由说明" message:nil contentView:contentView cancelTitle:@"取消" otherTitle:@"确定" completion:^(BOOL cancelled, NSInteger buttonIndex) {
-        BMLog(@"%@",textField.text);
+        
+        BMLog(@"%@", textField.text);
         if (buttonIndex == 1) {
             if (![textField.text bm_isNotEmpty])
             {
-                [self.m_ProgressHUD showAnimated:YES withDetailText:@"请输入举报理由" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"请输入举报理由" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
                 return ;
             }
             [weakSelf addReportContent:textField.text commentId:[data bm_stringForKey:@"id"]];
@@ -800,10 +821,11 @@
 
 - (void)addReportContent:(NSString *)content commentId:(NSString *)commentId
 {
-    [FSApiRequest addReportTopic:[NSString stringWithFormat:@"%@",commentId] content:content success:^(id  _Nullable responseObject) {
-        [self.m_ProgressHUD showAnimated:YES withDetailText:@"已举报该评论" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-    } failure:^(NSError * _Nullable error) {
-        [self.m_ProgressHUD showAnimated:YES withDetailText:[NSString stringWithFormat:@"%@",[error.userInfo bm_stringForKey:@"NSLocalizedDescription"]] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+    BMWeakSelf
+    [FSApiRequest addReportTopic:[NSString stringWithFormat:@"%@",commentId] content:content success:^(id  responseObject) {
+        [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"已举报该评论" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+    } failure:^(NSError *error) {
+        [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:[NSString stringWithFormat:@"%@",[error.userInfo bm_stringForKey:@"NSLocalizedDescription"]] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     }];
 }
 

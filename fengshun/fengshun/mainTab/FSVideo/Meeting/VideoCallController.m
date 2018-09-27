@@ -73,16 +73,20 @@ VideoCallVideoViewDelegate>
 }
 
 - (void)socketHelper:(SocketHelper *)socketHelper RTCRoomInfo:(RTCRoomInfoModel *)model loginAndJoinRoomSuccessHandler:(void (^)(void))handler {
+    BMWeakSelf
+    if (self.model) {
+        return;
+    }
     [self loginAndJoinRoomWithModel:model handler:^{
         handler();
-        self.model = model;
+        weakSelf.model = model;
         if (model.roomModel) {
             if (model.roomModel.voiceDiscernSwitch) {
                 [[ASRManager defaultManager] start];
-                [self.topBar setBtnIsSelected:YES index:2];
+                [weakSelf.topBar setBtnIsSelected:YES index:2];
             } else {
                 [[ASRManager defaultManager] stop];
-                [self.topBar setBtnIsSelected:NO index:2];
+                [weakSelf.topBar setBtnIsSelected:NO index:2];
             }
         }
     }];
@@ -208,11 +212,12 @@ VideoCallVideoViewDelegate>
         }
         [topBar setBtnIsSelected:!status index:2];
     } else if (index == 3) { // 翻转摄像头
+        BMWeakSelf
         [[ILiveRoomManager getInstance] switchCamera:^{
             
         } failed:^(NSString *module, int errId, NSString *errMsg) {
             NSString *msg = [NSString stringWithFormat:@"翻转摄像头操作失败\n%d:%@", errId, errMsg];
-            [self vc_showMessage:msg];
+            [weakSelf vc_showMessage:msg];
         }];
     }
 }
@@ -239,9 +244,10 @@ VideoCallVideoViewDelegate>
             [self.navigationController pushViewController:vc animated:YES];
         } else {
             // 结束视频
+            BMWeakSelf
             UIAlertController *vc = [UIAlertController alertControllerWithTitle:nil message:@"确定要现在结束视频吗？结束后，所有人离开视频不可再次进入" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"结束" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-                [self sendEndMeetingRequest];
+                [weakSelf sendEndMeetingRequest];
             }];
             [vc addAction:action];
             
@@ -265,6 +271,9 @@ VideoCallVideoViewDelegate>
             if (weakSelf.endMeetingBlock) {
                 weakSelf.endMeetingBlock();
             }
+            
+            [MBProgressHUD showHUDAddedTo:[FSVideoStartTool mainWindow] animated:NO withText:@"视频已结束" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            
             [[NSNotificationCenter defaultCenter] postNotificationName:FSVideoMediateChangedNotification object:nil userInfo:nil];
             [[SocketHelper shareHelper] sendCloseRoomEvent];
             return;
@@ -317,16 +326,15 @@ VideoCallVideoViewDelegate>
     } else {
         msg2 = @"打开摄像头";
     }
+    BMWeakSelf
     UIAlertController *tovc = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
 
     UIAlertAction *a1 = [UIAlertAction actionWithTitle:msg1 style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self audioControlWithModel:model];
-//        [view reloadData];
+        [weakSelf audioControlWithModel:model];
     }];
 
     UIAlertAction *a2 = [UIAlertAction actionWithTitle:msg2 style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self videoControlWithModel:model];
-//        [view reloadData];
+        [weakSelf videoControlWithModel:model];
     }];
     UIAlertAction *a3 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     [tovc addAction:a1];

@@ -11,7 +11,7 @@
 #import "FSTextTypeCell.h"
 
 #define LEFT_HEADER_HEIGHT 18.0f
-#define LEFT_CELL_HEIGHT 40.0f
+#define LEFT_CELL_HEIGHT 50.0f
 
 typedef void (^FSSelectedTextType)(NSInteger typeIndex);
 
@@ -85,7 +85,7 @@ FSTextSplitVC ()
 
     self.m_TableView.backgroundColor              = [UIColor whiteColor];
     self.m_TableView.tableFooterView              = [UIView new];
-    self.m_TableView.estimatedRowHeight           = 52;
+    self.m_TableView.rowHeight           = 62;
     self.m_TableView.showsVerticalScrollIndicator = NO;
     self.m_TableView.bm_showEmptyView             = NO;
 

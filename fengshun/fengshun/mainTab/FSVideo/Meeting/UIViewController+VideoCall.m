@@ -52,19 +52,21 @@
 }
 
 - (void)showAlertError:(NSError *)error {
+    BMWeakSelf
     UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"error" message:error.localizedFailureReason preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [weakSelf dismissViewControllerAnimated:YES completion:nil];
     }];
     [vc addAction:action];
     [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)showAlertWithTitle:(NSString *)title msg:(NSString *)msg code:(NSInteger)code {
+    BMWeakSelf
     NSString *fmsg = [NSString stringWithFormat:@"errId:%ld errMsg:%@", code, msg];
     UIAlertController *vc = [UIAlertController alertControllerWithTitle:title message:fmsg preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [weakSelf dismissViewControllerAnimated:YES completion:nil];
     }];
     [vc addAction:action];
     [self presentViewController:vc animated:YES completion:nil];
@@ -72,8 +74,12 @@
 
 - (void)loginAndJoinRoomWithModel:(RTCRoomInfoModel *)model handler:(void (^)(void))handler {
     // 登录
-    BMWeakType(model)
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:@"正在登录"];
+
+    BMWeakSelf
+    BMWeakType(hud)
+    BMWeakType(model)
+
     [[ILiveLoginManager getInstance] iLiveLogin:model.userId sig:model.userSig succ:^{
         // 加入房间
         NSLog(@"登录房间成功！！！！！！！");
@@ -91,21 +97,22 @@
         //    option.firstFrameListener = toVC;
         option.controlRole = FS_ILiveControlRole;
         
-        [hud showAnimated:YES withText:@"正在加入房间"];
+        [weakhud showAnimated:YES withText:@"正在加入房间"];
+        
         [[ILiveRoomManager getInstance] joinRoom:(int)weakmodel.roomId option:option succ:^{
             NSLog(@"加入房间成功！！！！！！！");
-            [hud hideAnimated:YES];
+            [weakhud hideAnimated:YES];
             handler();
         } failed:^(NSString *module, int errId, NSString *errMsg) {
             // 加入房间失败
-            NSLog(@"加入房间失败！！！！！！！");
-            [hud hideAnimated:YES];
-            [self showAlertWithTitle:@"加入房间失败" msg:errMsg code:errId];
+            NSLog(@"failed 加入房间失败！！！！！！！");
+            [weakhud hideAnimated:YES];
+            [weakSelf showAlertWithTitle:@"加入房间失败" msg:errMsg code:errId];
         }];
     } failed:^(NSString *module, int errId, NSString *errMsg) {
         // 登录失败
-        [hud hideAnimated:YES];
-        [self showAlertWithTitle:@"登录失败" msg:errMsg code:errId];
+        [weakhud hideAnimated:YES];
+        [weakSelf showAlertWithTitle:@"登录失败" msg:errMsg code:errId];
         NSLog(@"登录房间失败！！！！！！！");
     }];
 }
