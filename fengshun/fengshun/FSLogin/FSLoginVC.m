@@ -238,7 +238,7 @@
     self.m_ForgetBtn = forgetBtn;
 
     UIButton *resetBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    resetBtn.frame = CGRectMake(0, btn.bm_bottom+10, 100, 40);
+    resetBtn.frame = CGRectMake(15, btn.bm_bottom+10, 100, 40);
     resetBtn.backgroundColor = [UIColor clearColor];
     resetBtn.titleLabel.font = FS_BUTTON_SMALLTEXTFONT;
     resetBtn.exclusiveTouch = YES;

@@ -57,7 +57,7 @@
         [self addSubview:_titleLabel];
         _titleLabel.bm_left = kMarginLeft;
         
-        self.line = [[UIView alloc] initWithFrame:CGRectMake(kMarginLeft, self.bm_height - 0.5, self.bm_width - kMarginLeft, 0.5)];
+        self.line = [[UIView alloc] initWithFrame:CGRectMake(kMarginLeft, self.bm_height-1, self.bm_width - kMarginLeft, 0.5)];
         _line.backgroundColor = UI_COLOR_B6;
         [self addSubview:_line];
     }

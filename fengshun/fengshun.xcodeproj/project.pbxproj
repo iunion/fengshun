@@ -1895,6 +1895,22 @@
 		DB804FEE2142669E007F7B19 /* FSSearchResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB804FED2142669E007F7B19 /* FSSearchResultModel.m */; };
 		DB8D16112137CC9800EB16E8 /* FSMainHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8D16102137CC9800EB16E8 /* FSMainHeaderView.m */; };
 		DB8D16132137CCAC00EB16E8 /* FSMainHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB8D16122137CCAC00EB16E8 /* FSMainHeaderView.xib */; };
+		DBB73F73215CC01F00E65230 /* placeholder_courseDetail@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBB73F69215CC01C00E65230 /* placeholder_courseDetail@3x.png */; };
+		DBB73F74215CC01F00E65230 /* placeholder_courseDetail@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBB73F69215CC01C00E65230 /* placeholder_courseDetail@3x.png */; };
+		DBB73F75215CC01F00E65230 /* placeholder_banner@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBB73F6A215CC01C00E65230 /* placeholder_banner@3x.png */; };
+		DBB73F76215CC01F00E65230 /* placeholder_banner@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBB73F6A215CC01C00E65230 /* placeholder_banner@3x.png */; };
+		DBB73F77215CC01F00E65230 /* placeholder_hp_hot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBB73F6B215CC01D00E65230 /* placeholder_hp_hot@2x.png */; };
+		DBB73F78215CC01F00E65230 /* placeholder_hp_hot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBB73F6B215CC01D00E65230 /* placeholder_hp_hot@2x.png */; };
+		DBB73F79215CC01F00E65230 /* placeholder_topic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBB73F6C215CC01D00E65230 /* placeholder_topic@3x.png */; };
+		DBB73F7A215CC01F00E65230 /* placeholder_topic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBB73F6C215CC01D00E65230 /* placeholder_topic@3x.png */; };
+		DBB73F7B215CC01F00E65230 /* placeholder_hp_hot@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBB73F6D215CC01E00E65230 /* placeholder_hp_hot@3x.png */; };
+		DBB73F7C215CC01F00E65230 /* placeholder_hp_hot@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBB73F6D215CC01E00E65230 /* placeholder_hp_hot@3x.png */; };
+		DBB73F7D215CC01F00E65230 /* placeholder_topic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBB73F6E215CC01E00E65230 /* placeholder_topic@2x.png */; };
+		DBB73F7E215CC01F00E65230 /* placeholder_topic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBB73F6E215CC01E00E65230 /* placeholder_topic@2x.png */; };
+		DBB73F7F215CC01F00E65230 /* placeholder_courseDetail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBB73F6F215CC01E00E65230 /* placeholder_courseDetail@2x.png */; };
+		DBB73F80215CC01F00E65230 /* placeholder_courseDetail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBB73F6F215CC01E00E65230 /* placeholder_courseDetail@2x.png */; };
+		DBB73F81215CC01F00E65230 /* placeholder_banner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBB73F70215CC01E00E65230 /* placeholder_banner@2x.png */; };
+		DBB73F82215CC01F00E65230 /* placeholder_banner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBB73F70215CC01E00E65230 /* placeholder_banner@2x.png */; };
 		DBBF3042215BAA10003AB3F2 /* FSTextDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBF3041215BAA10003AB3F2 /* FSTextDetailVC.m */; };
 		DBBF3043215BAE0B003AB3F2 /* FSTextDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DBBF3041215BAA10003AB3F2 /* FSTextDetailVC.m */; };
 		DBBF3046215BB24B003AB3F2 /* text_dowload@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBBF3044215BB24A003AB3F2 /* text_dowload@3x.png */; };
@@ -3744,6 +3760,14 @@
 		DB8D160F2137CC9800EB16E8 /* FSMainHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMainHeaderView.h; sourceTree = "<group>"; };
 		DB8D16102137CC9800EB16E8 /* FSMainHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMainHeaderView.m; sourceTree = "<group>"; };
 		DB8D16122137CCAC00EB16E8 /* FSMainHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSMainHeaderView.xib; sourceTree = "<group>"; };
+		DBB73F69215CC01C00E65230 /* placeholder_courseDetail@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder_courseDetail@3x.png"; sourceTree = "<group>"; };
+		DBB73F6A215CC01C00E65230 /* placeholder_banner@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder_banner@3x.png"; sourceTree = "<group>"; };
+		DBB73F6B215CC01D00E65230 /* placeholder_hp_hot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder_hp_hot@2x.png"; sourceTree = "<group>"; };
+		DBB73F6C215CC01D00E65230 /* placeholder_topic@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder_topic@3x.png"; sourceTree = "<group>"; };
+		DBB73F6D215CC01E00E65230 /* placeholder_hp_hot@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder_hp_hot@3x.png"; sourceTree = "<group>"; };
+		DBB73F6E215CC01E00E65230 /* placeholder_topic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder_topic@2x.png"; sourceTree = "<group>"; };
+		DBB73F6F215CC01E00E65230 /* placeholder_courseDetail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder_courseDetail@2x.png"; sourceTree = "<group>"; };
+		DBB73F70215CC01E00E65230 /* placeholder_banner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder_banner@2x.png"; sourceTree = "<group>"; };
 		DBBF3040215BAA10003AB3F2 /* FSTextDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTextDetailVC.h; sourceTree = "<group>"; };
 		DBBF3041215BAA10003AB3F2 /* FSTextDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTextDetailVC.m; sourceTree = "<group>"; };
 		DBBF3044215BB24A003AB3F2 /* text_dowload@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text_dowload@3x.png"; sourceTree = "<group>"; };
@@ -5669,6 +5693,7 @@
 		87426A5B21313915003C52F6 /* mainTab */ = {
 			isa = PBXGroup;
 			children = (
+				DBB73F67215CC00700E65230 /* placeholderImage */,
 				DBF7E17621521715002CEDA4 /* controller */,
 				45A3BF882148A9C20093278C /* FSVideo */,
 				DBD4CE7B2141224500857DB3 /* images */,
@@ -7505,6 +7530,21 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		DBB73F67215CC00700E65230 /* placeholderImage */ = {
+			isa = PBXGroup;
+			children = (
+				DBB73F70215CC01E00E65230 /* placeholder_banner@2x.png */,
+				DBB73F6A215CC01C00E65230 /* placeholder_banner@3x.png */,
+				DBB73F6B215CC01D00E65230 /* placeholder_hp_hot@2x.png */,
+				DBB73F6D215CC01E00E65230 /* placeholder_hp_hot@3x.png */,
+				DBB73F6E215CC01E00E65230 /* placeholder_topic@2x.png */,
+				DBB73F6C215CC01D00E65230 /* placeholder_topic@3x.png */,
+				DBB73F6F215CC01E00E65230 /* placeholder_courseDetail@2x.png */,
+				DBB73F69215CC01C00E65230 /* placeholder_courseDetail@3x.png */,
+			);
+			path = placeholderImage;
+			sourceTree = "<group>";
+		};
 		DBD4CDEA213E2F0B00857DB3 /* resultView */ = {
 			isa = PBXGroup;
 			children = (
@@ -7919,6 +7959,7 @@
 				874268D7212E7E36003C52F6 /* BMDatePicker.xib in Resources */,
 				874269BA212E9B78003C52F6 /* bmfresh_arrow@3x.png in Resources */,
 				DB804FE521422548007F7B19 /* search_delKey@3x.png in Resources */,
+				DBB73F7D215CC01F00E65230 /* placeholder_topic@2x.png in Resources */,
 				DB487446214B642600AB0805 /* FSImageFileCell.xib in Resources */,
 				ADC591F6215395100054BE72 /* fstab_btn3_highIcon@2x.png in Resources */,
 				8730B1102148E5D1004331A9 /* fsfreshidle_icon8@2x.png in Resources */,
@@ -7926,6 +7967,7 @@
 				87E7C6C02150C10100F7AB14 /* empty_commonicon@2x.png in Resources */,
 				87742012214C9E1600F72427 /* FSNoticeMessageCell.xib in Resources */,
 				874269FD212F9657003C52F6 /* navigationbar_help_icon@2x.png in Resources */,
+				DBB73F75215CC01F00E65230 /* placeholder_banner@3x.png in Resources */,
 				8730B0CD214772BC004331A9 /* user_mobileicon@2x.png in Resources */,
 				87741FDD214A0C8A00F72427 /* FSServiceVC.xib in Resources */,
 				87BC9E3421548E0D000F2011 /* fsintroguide_640x1136_1@2x.png in Resources */,
@@ -7972,6 +8014,7 @@
 				DB48742F2148DFFE00AB0805 /* FSTextTypeCell.xib in Resources */,
 				8730B1112148E5D1004331A9 /* fsfreshidle_icon5@2x.png in Resources */,
 				874C23B7215B4FF9001C8BE9 /* FSMyTopicCell.xib in Resources */,
+				DBB73F81215CC01F00E65230 /* placeholder_banner@2x.png in Resources */,
 				AD2244DC213D158800F2DC47 /* FSForumDetailListCell.xib in Resources */,
 				87741FE6214A132200F72427 /* user_qqicon@3x.png in Resources */,
 				87D209732137F399001EDD60 /* FSUserMainVC.xib in Resources */,
@@ -8012,6 +8055,7 @@
 				87E7C6CD2150C10200F7AB14 /* empty_videoicon@2x.png in Resources */,
 				DB4874212148A90D00AB0805 /* search_icon@3x.png in Resources */,
 				8730B1272148E5D1004331A9 /* fsfreshidle_icon7@2x.png in Resources */,
+				DBB73F73215CC01F00E65230 /* placeholder_courseDetail@3x.png in Resources */,
 				DBD4CE8B2141229400857DB3 /* home_topics@3x.png in Resources */,
 				87E7C6C42150C10200F7AB14 /* empty_searchicon@2x.png in Resources */,
 				87D186AA213679F800037DDF /* login_error@3x.png in Resources */,
@@ -8041,6 +8085,8 @@
 				8730AD422140CC28004331A9 /* user_commenticon@2x.png in Resources */,
 				DBF7E19021523CB6002CEDA4 /* search_lawTopic_5@3x.png in Resources */,
 				87BC9E2321548E0D000F2011 /* fsintroguide_750x1334_1@2x.png in Resources */,
+				DBB73F7F215CC01F00E65230 /* placeholder_courseDetail@2x.png in Resources */,
+				DBB73F79215CC01F00E65230 /* placeholder_topic@3x.png in Resources */,
 				ADA1228C214614BE00CF0D87 /* FSTopicListVC.xib in Resources */,
 				8742689D212E7E36003C52F6 /* increase_eleme@2x.png in Resources */,
 				87D1869F213679F800037DDF /* login_openeye@3x.png in Resources */,
@@ -8063,6 +8109,7 @@
 				AD67122F2159DBD50081E08D /* fstab_btn1_icon@2x.png in Resources */,
 				8730B1152148E5D1004331A9 /* fsfreshidle_icon24@2x.png in Resources */,
 				DBF7E19921523CB6002CEDA4 /* search_lawTopic_3@2x.png in Resources */,
+				DBB73F77215CC01F00E65230 /* placeholder_hp_hot@2x.png in Resources */,
 				87BC9E3221548E0D000F2011 /* fsintroguide_640x1136_4@2x.png in Resources */,
 				8730B0C121465034004331A9 /* BMCombine_down@3x.png in Resources */,
 				ADE8689821392853005359B5 /* FSTopicListCell.xib in Resources */,
@@ -8071,6 +8118,7 @@
 				DBF7E19621523CB6002CEDA4 /* search_lawTopic_5@2x.png in Resources */,
 				87E7C6C12150C10100F7AB14 /* empty_commonicon@3x.png in Resources */,
 				87426A23213100BB003C52F6 /* bmsearch_history@3x.png in Resources */,
+				DBB73F7B215CC01F00E65230 /* placeholder_hp_hot@3x.png in Resources */,
 				87426A0D212F9657003C52F6 /* navigationbar_select_icon@2x.png in Resources */,
 				DB804FE421422548007F7B19 /* search_delKey@2x.png in Resources */,
 				AD9325FD214B4FDA007F3A93 /* JSBeautifier.js in Resources */,
@@ -8115,6 +8163,7 @@
 				87E7C50621509AB000F7AB14 /* FSMainVC.xib in Resources */,
 				45F68F412150E58F00628DC8 /* empty_404icon@3x.png in Resources */,
 				87E7C50721509AB000F7AB14 /* login_checked@2x.png in Resources */,
+				DBB73F7E215CC01F00E65230 /* placeholder_topic@2x.png in Resources */,
 				874C23BE215B5DF2001C8BE9 /* user_praiseicon@2x.png in Resources */,
 				87E7C50821509AB000F7AB14 /* FSTextCell.xib in Resources */,
 				87E7C50921509AB000F7AB14 /* video_bottom_message@2x.png in Resources */,
@@ -8124,6 +8173,7 @@
 				87BC9E492154914A000F2011 /* fsintroguide_1125x2436_3@2x.png in Resources */,
 				87E7C50C21509AB000F7AB14 /* decrease_baiduwaimai@2x.png in Resources */,
 				87E7C50E21509AB000F7AB14 /* video_history_icon@3x.png in Resources */,
+				DBB73F76215CC01F00E65230 /* placeholder_banner@3x.png in Resources */,
 				87E7C50F21509AB000F7AB14 /* user_shareicon@3x.png in Resources */,
 				87E7C51021509AB000F7AB14 /* navigationbar_setup_icon@3x.png in Resources */,
 				87E7C51121509AB000F7AB14 /* Assets.xcassets in Resources */,
@@ -8149,6 +8199,7 @@
 				87E7C52121509AB000F7AB14 /* FSLawCell.xib in Resources */,
 				AD6712322159DBD50081E08D /* fstab_btn3_icon@2x.png in Resources */,
 				87E7C52221509AB000F7AB14 /* videocall_close_audio@3x.png in Resources */,
+				DBB73F7A215CC01F00E65230 /* placeholder_topic@3x.png in Resources */,
 				87E7C52321509AB000F7AB14 /* BMTableView_UIButtonBarArrowLeft.png in Resources */,
 				87E7C52421509AB000F7AB14 /* fsfreshidle_icon2@2x.png in Resources */,
 				87E7C52521509AB000F7AB14 /* fsfreshidle_icon18@2x.png in Resources */,
@@ -8167,7 +8218,9 @@
 				87D9C609215368B6009F8492 /* fs_icon@2x.png in Resources */,
 				87E7C53121509AB000F7AB14 /* chat_head_mediator@2x.png in Resources */,
 				ADC591F7215395100054BE72 /* fstab_btn3_highIcon@2x.png in Resources */,
+				DBB73F80215CC01F00E65230 /* placeholder_courseDetail@2x.png in Resources */,
 				87E7C53221509AB000F7AB14 /* FSCommunitySecVC.xib in Resources */,
+				DBB73F74215CC01F00E65230 /* placeholder_courseDetail@3x.png in Resources */,
 				87BC9E3E2154913B000F2011 /* fsintroguide_640x960_4@2x.png in Resources */,
 				87BC9E482154914A000F2011 /* fsintroguide_1125x2436_2@2x.png in Resources */,
 				87E7C53321509AB000F7AB14 /* home_topics@2x.png in Resources */,
@@ -8193,6 +8246,7 @@
 				87E7C53F21509AB000F7AB14 /* FSOCRResultVC.xib in Resources */,
 				87E7C54021509AB000F7AB14 /* video_person_icon@2x.png in Resources */,
 				87E7C54121509AB000F7AB14 /* user_topicicon@3x.png in Resources */,
+				DBB73F7C215CC01F00E65230 /* placeholder_hp_hot@3x.png in Resources */,
 				87E7C54321509AB000F7AB14 /* user_verifyicon@2x.png in Resources */,
 				87E7C54421509AB000F7AB14 /* FSCourseTableCell.xib in Resources */,
 				87E7C54521509AB000F7AB14 /* login_password@2x.png in Resources */,
@@ -8378,6 +8432,7 @@
 				87E7C5DD21509AB000F7AB14 /* editor.html in Resources */,
 				87E7C5DE21509AB000F7AB14 /* fsfreshidle_icon23@2x.png in Resources */,
 				87E7C5E021509AB000F7AB14 /* BMTableView_arrows_rightBlack@2x.png in Resources */,
+				DBB73F78215CC01F00E65230 /* placeholder_hp_hot@2x.png in Resources */,
 				87BC9E3F21549140000F2011 /* fsintroguide_640x1136_1@2x.png in Resources */,
 				87E7C5E121509AB000F7AB14 /* user_collecticon@3x.png in Resources */,
 				87E7C5E221509AB000F7AB14 /* home_browseCount@3x.png in Resources */,
@@ -8385,6 +8440,7 @@
 				DBF7E1A921524EDB002CEDA4 /* search_lawTopic_7@3x.png in Resources */,
 				87E7C5E421509AB000F7AB14 /* decrease_baiduwaimai@3x.png in Resources */,
 				87BC9E4621549145000F2011 /* fsintroguide_750x1334_4@2x.png in Resources */,
+				DBB73F82215CC01F00E65230 /* placeholder_banner@2x.png in Resources */,
 				DBF7E19C21524EDB002CEDA4 /* search_lawTopic_1@2x.png in Resources */,
 				87E7C5E521509AB000F7AB14 /* fsfreshidle_icon3@2x.png in Resources */,
 				87E7C5E621509AB000F7AB14 /* FSForumListCell.xib in Resources */,
