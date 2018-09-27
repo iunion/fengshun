@@ -174,7 +174,7 @@
     [self.manager addSection:section];
     self.section = section;
     
-    self.searchHistories = [NSMutableArray arrayWithArray:[self getSearchHistory]];
+    self.searchHistories = [NSMutableArray arrayWithArray:[FSUserInfoDB getSearchHistoryWithUserId:[FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId key:self.searchKey]];
 }
 - (void)moreUISetup
 {
@@ -348,20 +348,6 @@
     [self.tagCollectionView reload];
 }
 
-- (NSArray *)getSearchHistory
-{
-    NSString *plistPath = SEARCH_HISTORY_CACHEFILE(self.searchKey);
-    NSArray *array = [NSArray arrayWithContentsOfFile:plistPath];
-    
-    return array;
-}
-
-- (void)saveSearchHistory
-{
-    NSString *plistPath = SEARCH_HISTORY_CACHEFILE(self.searchKey);
-    [self.searchHistories writeToFile:plistPath atomically:NO];
-}
-
 - (void)addSearchHistory:(NSString *)search
 {
     if ([search bm_isNotEmpty])
@@ -374,7 +360,7 @@
             [self.searchHistories removeLastObject];
         }
         
-        [self saveSearchHistory];
+        [FSUserInfoDB saveSearchHistoryWithUserId:[FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId key:self.searchKey searchHistories:self.searchHistories];
         
         [self freshItems];
     }
@@ -388,7 +374,7 @@
     {
         NSString *search = [self.searchHistories objectAtIndex:btn.tag];
         [self.searchHistories removeObject:search];
-        [self saveSearchHistory];
+        [FSUserInfoDB saveSearchHistoryWithUserId:[FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId key:self.searchKey searchHistories:self.searchHistories];
 
         [self freshItems];
     }
@@ -397,8 +383,8 @@
 - (void)removeAllSearchHistory
 {
     [self.searchHistories removeAllObjects];
-    [self saveSearchHistory];
-    
+    [FSUserInfoDB saveSearchHistoryWithUserId:[FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId key:self.searchKey searchHistories:self.searchHistories];
+
     [self freshItems];
 }
 

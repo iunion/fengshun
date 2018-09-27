@@ -13,7 +13,7 @@ extern NSString *const FSUserInfoCaseSearchHistoryKey;
 extern NSString *const FSUserInfoLawSearchHistoryKey;
 extern NSString *const FSUserInfoTextSearchHistoryKey;
 
-#define SEARCH_HISTORY_CACHEFILE(searchKey) [[NSString bm_documentsPath] stringByAppendingPathComponent:[NSString stringWithFormat:@"searchhistory_%@.plist", searchKey]]
+#define FSSEARCH_HISTORY_CACHEFILE(searchKey, userId) [[FSUserInfoDB getSearchHistoryPath] stringByAppendingPathComponent:[NSString stringWithFormat:@"searchhistory_%@_user%@.plist", searchKey, userId]]
 
 @interface FSUserInfoDB : NSObject
 
@@ -31,9 +31,18 @@ extern NSString *const FSUserInfoTextSearchHistoryKey;
 + (BOOL)insertAndUpdateUserInfo:(FSUserInfoModel *)userInfo;
 
 
-// 用户的使用历史数据,目前是本地文件存储
-// 在登出和登录的时候进行清理,其实应该用户数据库存储,且用数据库管理
-// 所以清理的方法添加到这儿
-+ (void)cleanUserHistroyData;
+
+// 获取搜索历史存储目录
++ (NSString *)getSearchHistoryPath;
+// 创建搜索历史存储目录
++ (BOOL)makeSearchHistoryPath;
+
+// 获取搜索历史
++ (NSArray *)getSearchHistoryWithUserId:(NSString *)userId key:(NSString *)key;
+// 存储搜索历史
++ (void)saveSearchHistoryWithUserId:(NSString *)userId key:(NSString *)key searchHistories:(NSArray *)searchHistories;
+
+// 清除搜索历史
++ (void)cleanUserSearchHistroyDataWithUserId:(NSString *)userId;
 
 @end

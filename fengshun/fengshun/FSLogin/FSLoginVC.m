@@ -526,7 +526,6 @@
 
 - (void)loginRequestFinished:(NSURLResponse *)response responseDic:(NSDictionary *)resDic
 {
-    [FSUserInfoDB cleanUserHistroyData];
     if (![resDic bm_isNotEmptyDictionary])
     {
         [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
