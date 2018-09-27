@@ -150,6 +150,7 @@ FSMoreViewVC ()
             
             CGFloat imageWidth = 30.0f;
             CGFloat titleheight = 28.0f;
+            btn.imageView.contentMode = UIViewContentModeScaleAspectFit;
             btn.bm_imageRect = CGRectMake((btnWid-imageWidth)*0.5, (btnHeight-(imageWidth+titleheight))*0.5, imageWidth, imageWidth);
             btn.bm_titleRect = CGRectMake(0, (btnHeight-(imageWidth+titleheight))*0.5+imageWidth, btnWid, titleheight);
 
