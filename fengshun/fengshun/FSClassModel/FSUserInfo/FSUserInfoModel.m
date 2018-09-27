@@ -141,6 +141,13 @@
 
 - (void)setM_Ability:(NSString *)ability
 {
+    if ([ability bm_isNotEmpty])
+    {
+        if ([[ability substringFromIndex:ability.length-1] isEqualToString:@","])
+        {
+            ability = [ability substringToIndex:ability.length-1];
+        }
+    }
     _m_Ability = ability;
     
     NSArray *array = [ability componentsSeparatedByString:@","];
