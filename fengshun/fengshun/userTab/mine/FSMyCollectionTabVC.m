@@ -85,7 +85,7 @@
 
 - (NSUInteger)scrollPageViewNumberOfPages:(FSScrollPageView *)scrollPageView
 {
-    return 4;
+    return 5;
 }
 
 - (NSString *)scrollPageView:(FSScrollPageView *)scrollPageView titleAtIndex:(NSUInteger)index
