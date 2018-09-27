@@ -105,11 +105,10 @@
     
     BMWeakSelf
     NSMutableString *fmsg = [NSMutableString new];
-    if (code) {
-        [fmsg appendString:[NSString stringWithFormat:@"errId:%@ ", @(code)]];
-    }
     if (msg) {
-        [fmsg appendString:[NSString stringWithFormat:@"errMsg:%@", msg]];
+        [fmsg appendString:msg];
+    } else if (code) {
+        [fmsg appendString:[NSString stringWithFormat:@"错误码:%@ ", @(code)]];
     }
     
     UIAlertController *vc = [UIAlertController alertControllerWithTitle:title message:fmsg preferredStyle:UIAlertControllerStyleAlert];
@@ -156,8 +155,6 @@
     [[ILiveLoginManager getInstance] iLiveLogin:model.userId sig:model.userSig succ:^{
         // 加入房间
         NSLog(@"登录账号成功！！！！！！！");
-        weakSelf.joinRoomStep = 1;
-        [weakSelf.m_ProgressHUD showAnimated:YES withText:@"正在加入房间"];
         [weakSelf joinRoomWithModel:weakmodel handler:handler];
     } failed:^(NSString *module, int errId, NSString *errMsg) {
         // 登录失败
@@ -169,6 +166,9 @@
 
 - (void)joinRoomWithModel:(RTCRoomInfoModel *)model handler:(void (^)(void))handler {
     // 1、创建房间配置对象
+    self.joinRoomStep = 1;
+    [self.m_ProgressHUD showAnimated:YES withText:@"正在加入房间"];
+
     ILiveRoomOption *option = [ILiveRoomOption defaultGuestLiveOption];
     // 2、配置进房票据
     option.avOption.privateMapKey = [model.privateMapKey dataUsingEncoding:NSUTF8StringEncoding];
@@ -351,7 +351,8 @@
     NSLog(@"onDisconnect %@ %@", @(code), err);
     if (self.joinRoomStep == 1) {
         NSLog(@"onDisconnect joinRoomStep = 1");
-        [self performSelector:@selector(onRoomDisconnect:) withObject:nil afterDelay:30];
+        self.joinRoomStep = 10;
+        [self performSelector:@selector(joinRoomFailed) withObject:nil afterDelay:10];
     }
 }
 
@@ -360,11 +361,16 @@
     NSLog(@"onConnecting 网络连接中……");
 }
 
+- (void)joinRoomFailed {
+    if (self.joinRoomStep == 10) {
+        [self showAlertWithTitle:@"加入房间失败" msg:nil code:0];
+    }
+}
 
 #pragma mark - ILiveRoomDisconnectListener
 - (BOOL)onRoomDisconnect:(int)reason {
     NSLog(@"房间异常退出：%d", reason);
-    [self showAlertWithTitle:@"房间异常退出" msg:nil code:0];
+    [self showAlertWithTitle:@"异常退出房间" msg:nil code:0];
     return YES;
 }
 
