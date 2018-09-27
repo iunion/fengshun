@@ -428,7 +428,6 @@
             NSDictionary *data = [resDic bm_dictionaryForKey:@"data"];
             VideoCallController *vc = [VideoCallController VCWithRoomId:_m_DetailModel.roomId meetingId:_m_DetailModel.meetingId token:data[@"token"]];
             vc.endMeetingBlock = ^{
-                [weakSelf.m_ProgressHUD showAnimated:YES withText:@"视频已结束" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
                 weakSelf.m_DetailModel.meetingStatus = [FSMeetingDataEnum meetingStatusEndEnglish];
                 weakSelf.statusLabel.text = [FSMeetingDataEnum meetingStatusEnglishToChinese:_m_DetailModel.meetingStatus];
             };
