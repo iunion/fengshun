@@ -349,6 +349,8 @@
                 
                 [self closeAction:nil];
                 
+                [FSUserInfoDB cleanUserSearchHistroyDataWithUserId:nil];
+
                 return;
             }
         }

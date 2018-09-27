@@ -175,6 +175,10 @@ typedef void(^FSSetupClearDiskBlock)(NSString *path, BOOL finished);
     NSString *cachePath = [cache getDiskCachePath];
     [cachePathArray addObject:cachePath];
 
+    // 搜索历史
+    cachePath = [FSUserInfoDB getSearchHistoryPath];
+    [cachePathArray addObject:cachePath];
+
     BMWeakSelf
     [self clearDiskWithFilePathArray:cachePathArray completionBlock:^(NSString *path, BOOL finished) {
         if (finished)
@@ -184,7 +188,7 @@ typedef void(^FSSetupClearDiskBlock)(NSString *path, BOOL finished);
     }];
     
     // 搜索历史
-    [FSUserInfoDB cleanUserSearchHistroyDataWithUserId:[FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId];
+    //[FSUserInfoDB cleanUserSearchHistroyDataWithUserId:[FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId];
 }
 
 - (void)calculateCacheDiskSize
