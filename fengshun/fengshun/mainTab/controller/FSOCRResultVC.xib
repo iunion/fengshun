@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FSOCRResultVC">
             <connections>
                 <outlet property="m_textView" destination="Ex8-wr-9bZ" id="tVl-xl-wQU"/>
+                <outlet property="m_toolView" destination="jba-c4-R9t" id="fqn-xn-05W"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="m_toolButtons" destination="0hE-R3-9mE" id="hYb-zI-bZU"/>
                 <outletCollection property="m_toolButtons" destination="9tu-XI-0bc" id="4q4-4w-tc0"/>
@@ -23,6 +24,13 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ex8-wr-9bZ">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="608"/>
+                    <color key="backgroundColor" red="0.96078431369999995" green="0.96470588239999999" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.70108011739999998" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jba-c4-R9t">
                     <rect key="frame" x="0.0" y="608" width="375" height="59"/>
                     <subviews>
@@ -65,13 +73,6 @@
                         <constraint firstAttribute="trailing" secondItem="9tu-XI-0bc" secondAttribute="trailing" constant="15" id="oEh-kK-FHx"/>
                     </constraints>
                 </view>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ex8-wr-9bZ">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="608"/>
-                    <color key="backgroundColor" red="0.96078431369999995" green="0.96470588239999999" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.70108011739999998" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                </textView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>

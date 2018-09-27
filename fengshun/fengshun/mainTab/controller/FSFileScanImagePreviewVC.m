@@ -25,6 +25,7 @@ FSFileScanImagePreviewVC ()
 >
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *m_toolButtons;
 @property (weak, nonatomic) IBOutlet UILabel *  m_pageContolLabel;
+@property (weak, nonatomic) IBOutlet UIView *m_toolView;
 @property (nonatomic, strong) FSScrollPageView *m_scrollPageView;
 
 @property (nonatomic, strong)UIButton *editFileNameButton;
@@ -41,6 +42,10 @@ FSFileScanImagePreviewVC ()
 }
 - (void)setupUI
 {
+    _m_toolView.layer.shadowOffset = CGSizeMake(0, -3);
+    _m_toolView.layer.shadowOpacity = 0.19;
+    _m_toolView.layer.shadowColor = UI_COLOR_B2.CGColor;
+    
     [_m_pageContolLabel bm_roundedRect:13.5];
     self.bm_NavigationShadowHidden = NO;
     self.bm_NavigationShadowColor  = UI_COLOR_B6;

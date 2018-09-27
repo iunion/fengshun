@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FSFileScanImagePreviewVC">
             <connections>
                 <outlet property="m_pageContolLabel" destination="GeR-rP-2Xf" id="d9e-AY-7Kc"/>
+                <outlet property="m_toolView" destination="3EV-1l-lWf" id="fKZ-gP-fZV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="m_toolButtons" destination="vo8-Xj-04T" id="3ac-Ls-95s"/>
                 <outletCollection property="m_toolButtons" destination="dE4-cF-epG" id="s82-8h-isk"/>
@@ -25,6 +26,17 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GeR-rP-2Xf">
+                    <rect key="frame" x="163" y="555" width="50" height="27"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.70108011744966447" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="JoZ-et-eS0"/>
+                        <constraint firstAttribute="height" constant="27" id="twE-A9-szW"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3EV-1l-lWf">
                     <rect key="frame" x="0.0" y="608" width="375" height="59"/>
                     <subviews>
@@ -90,17 +102,6 @@
                         <constraint firstItem="vO5-aP-C3l" firstAttribute="width" secondItem="vo8-Xj-04T" secondAttribute="width" id="x8t-33-viE"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GeR-rP-2Xf">
-                    <rect key="frame" x="163" y="555" width="50" height="27"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.70108011744966447" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="50" id="JoZ-et-eS0"/>
-                        <constraint firstAttribute="height" constant="27" id="twE-A9-szW"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="3EV-1l-lWf" secondAttribute="bottom" id="BXp-3g-SVh"/>
