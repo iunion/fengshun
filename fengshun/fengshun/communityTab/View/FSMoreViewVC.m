@@ -22,8 +22,10 @@ FSMoreViewVC ()
 @property (nonatomic, strong) UIView *m_BgView;
 
 @property (nonatomic, strong) UIButton *m_CancelBtn;
-
+// 是否是web more按钮（不显示举报）
 @property (nonatomic, assign)BOOL m_IsWebMore;
+// 是否只有分享按钮
+@property (nonatomic, assign) BOOL m_IsShareSheet;
 
 @end
 
@@ -36,6 +38,8 @@ FSMoreViewVC ()
     moreVC.delegate = delegate;
     moreVC.m_isOwner = isOwner;
     moreVC.m_Collection = isCollection;
+    moreVC.m_IsWebMore = NO;
+    moreVC.m_IsShareSheet = NO;
     presentVC.definesPresentationContext = YES;
     moreVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     [presentVC.navigationController presentViewController:moreVC animated:NO completion:^{
@@ -54,6 +58,26 @@ FSMoreViewVC ()
     moreVC.m_isOwner = NO;
     moreVC.m_IsWebMore = YES;
     moreVC.m_Collection = isCollection;
+    moreVC.m_IsShareSheet = NO;
+    presentVC.definesPresentationContext = YES;
+    moreVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    [presentVC.navigationController presentViewController:moreVC animated:NO completion:^{
+        [UIView animateWithDuration:DEFAULT_DELAY_TIME
+                         animations:^{
+                             moreVC.m_BgView.bm_top = UI_SCREEN_HEIGHT - moreVC.m_BgView.bm_height;
+                         }];
+    }];
+    moreVC.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+}
+
++ (void)showShareAlertView:(UIViewController *)presentVC delegate:(id)delegate
+{
+    FSMoreViewVC *moreVC = [[FSMoreViewVC alloc]init];
+    moreVC.delegate = delegate;
+    moreVC.m_IsShareSheet = YES;
+    moreVC.m_isOwner = NO;
+    moreVC.m_IsWebMore = NO;
+    moreVC.m_Collection = NO;
     presentVC.definesPresentationContext = YES;
     moreVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     [presentVC.navigationController presentViewController:moreVC animated:NO completion:^{
@@ -73,12 +97,15 @@ FSMoreViewVC ()
     CGFloat btnHeight = 90.f;
     CGFloat space = 10.f;
     CGFloat cacenlBtnHeight = 44.f;
+    CGFloat totalBtnHeight = self.m_IsShareSheet ? btnHeight:btnHeight*2;
     
-    self.m_BgView = [[UIView alloc]initWithFrame:CGRectMake(0, UI_SCREEN_HEIGHT, UI_SCREEN_WIDTH, btnHeight*2 + space + cacenlBtnHeight + UI_HOME_INDICATOR_HEIGHT)];
+    self.m_BgView = [[UIView alloc]initWithFrame:CGRectMake(0, UI_SCREEN_HEIGHT, UI_SCREEN_WIDTH, totalBtnHeight + space + cacenlBtnHeight + UI_HOME_INDICATOR_HEIGHT)];
     self.m_BgView.backgroundColor = [UIColor bm_colorWithHex:0xFFFFFF];
     [self.view addSubview:self.m_BgView];
     
-    self.m_CancelBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, btnHeight*2 + space, UI_SCREEN_WIDTH, cacenlBtnHeight )];
+    
+    
+    self.m_CancelBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, totalBtnHeight + space, UI_SCREEN_WIDTH, cacenlBtnHeight )];
     self.m_CancelBtn.titleLabel.font = [UIFont systemFontOfSize:15.f];
     self.m_CancelBtn.backgroundColor = [ UIColor whiteColor];
     [self.m_CancelBtn setTitleColor:[UIColor bm_colorWithHex:0x333333] forState:UIControlStateNormal];
@@ -86,11 +113,13 @@ FSMoreViewVC ()
     [self.m_CancelBtn addTarget:self action:@selector(removeView) forControlEvents:UIControlEventTouchUpInside];
     [self.m_BgView addSubview:self.m_CancelBtn];
     
-    UIView *spaceView = [[UIView alloc]initWithFrame:CGRectMake(0, btnHeight*2, UI_SCREEN_WIDTH, space)];
+    UIView *spaceView = [[UIView alloc]initWithFrame:CGRectMake(0, totalBtnHeight, UI_SCREEN_WIDTH, space)];
     spaceView.backgroundColor = [UIColor bm_colorWithHex:0xF6F6F6];
     [self.m_BgView addSubview:spaceView];
     
-    for (int i = 0; i < 2; i ++)
+    NSInteger row = self.m_IsShareSheet ? 1:2;
+    
+    for (int i = 0; i < row ; i ++)
     {
         for (int j = 0; j < 5; j ++)
         {
@@ -130,6 +159,7 @@ FSMoreViewVC ()
             [self.m_BgView addSubview:btn];
         }
     }
+    
 }
 
 

@@ -78,7 +78,7 @@
     
     [self.m_HeaderImageView bm_roundedRect:self.m_HeaderImageView.bm_height * 0.5f];
     
-    self.m_ForumLabel.textColor = [UIColor bm_colorWithHex:0x3C8CFF];
+    self.m_ForumLabel.textColor = [UIColor bm_colorWithHex:0x333333];
     self.m_ForumLabel.font = UI_FONT_15;
     
     [self.m_StickBgView bm_roundedRect:self.m_StickBgView.bm_height * 0.5f];
@@ -167,7 +167,7 @@
     self.m_ForumLabel.text = model.m_ForumName;
     CGSize size = [self.m_ForumLabel sizeThatFits:CGSizeMake(1000, self.m_ForumLabel.bm_height)];
     self.m_ForumLabel.bm_width = size.width;
-    self.m_ForumBgView.bm_width = self.m_ForumLabel.bm_right + 10.0f;
+    self.m_ForumBgView.bm_width = self.m_ForumLabel.bm_right + 12.0f;
     
     self.m_TitleLabel.text = model.m_Title;
 //    size = [self.m_TitleLabel sizeThatFits:CGSizeMake(self.m_TitleLabel.bm_width, 1000)];

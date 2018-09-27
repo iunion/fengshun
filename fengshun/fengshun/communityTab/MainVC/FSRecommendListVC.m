@@ -21,7 +21,8 @@
     // Do any additional setup after loading the view.
     
     self.m_LoadDataType = FSAPILoadDataType_Page;
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.m_TableView.bm_width, 8)];
+    self.view.backgroundColor = [UIColor bm_colorWithHex:0xf5f6f7];
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.m_TableView.bm_width, 12)];
     self.m_TableView.tableHeaderView = headerView;
     [self loadApiData];
 }

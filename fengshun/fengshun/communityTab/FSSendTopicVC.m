@@ -102,7 +102,7 @@
     singleLine.isDash            = YES;
     singleLine.lineLength        = 3.f;
     singleLine.lineSpacing       = 3.f;
-    singleLine.lineColor         = [UIColor blackColor];
+    singleLine.lineColor         = [UIColor bm_colorWithHex:0x333333];
     [self.view addSubview:singleLine];
     
     [self bringSomeViewToFront];

@@ -13,14 +13,15 @@
 #import "TOCropViewController.h"
 #import <Photos/PHPhotoLibrary.h>
 #import <Photos/PHAssetChangeRequest.h>
-
+#import "FSMoreViewVC.h"
 
 @interface
 FSFileScanImagePreviewVC ()
 <
     FSScrollPageViewDelegate,
     FSScrollPageViewDataSource,
-    TOCropViewControllerDelegate
+    TOCropViewControllerDelegate,
+    FSMoreViewVCDelegate
 >
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *m_toolButtons;
 @property (weak, nonatomic) IBOutlet UILabel *  m_pageContolLabel;
@@ -228,6 +229,7 @@ FSFileScanImagePreviewVC ()
             break;
         // 分享图片
         case 1:
+            [FSMoreViewVC showShareAlertView:self delegate:self];
             break;
         // 保存到相册
         case 2:
@@ -251,6 +253,11 @@ FSFileScanImagePreviewVC ()
             [self pushToOCRResult];
             break;
     }
+    
+}
+// 分享按钮点击
+- (void)moreViewClickWithType:(NSInteger)index
+{
     
 }
 
