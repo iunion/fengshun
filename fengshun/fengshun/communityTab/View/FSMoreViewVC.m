@@ -75,19 +75,19 @@ FSMoreViewVC ()
     CGFloat cacenlBtnHeight = 44.f;
     
     self.m_BgView = [[UIView alloc]initWithFrame:CGRectMake(0, UI_SCREEN_HEIGHT, UI_SCREEN_WIDTH, btnHeight*2 + space + cacenlBtnHeight + UI_HOME_INDICATOR_HEIGHT)];
-    self.m_BgView.backgroundColor = [UIColor bm_colorWithHexString:@"ffffff"];
+    self.m_BgView.backgroundColor = [UIColor bm_colorWithHex:0xFFFFFF];
     [self.view addSubview:self.m_BgView];
     
     self.m_CancelBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, btnHeight*2 + space, UI_SCREEN_WIDTH, cacenlBtnHeight )];
     self.m_CancelBtn.titleLabel.font = [UIFont systemFontOfSize:15.f];
     self.m_CancelBtn.backgroundColor = [ UIColor whiteColor];
-    [self.m_CancelBtn setTitleColor:[UIColor bm_colorWithHexString:@"333333"] forState:UIControlStateNormal];
+    [self.m_CancelBtn setTitleColor:[UIColor bm_colorWithHex:0x333333] forState:UIControlStateNormal];
     [self.m_CancelBtn setTitle:@"取消" forState:UIControlStateNormal];
     [self.m_CancelBtn addTarget:self action:@selector(removeView) forControlEvents:UIControlEventTouchUpInside];
     [self.m_BgView addSubview:self.m_CancelBtn];
     
     UIView *spaceView = [[UIView alloc]initWithFrame:CGRectMake(0, btnHeight*2, UI_SCREEN_WIDTH, space)];
-    spaceView.backgroundColor = [UIColor bm_colorWithHexString:@"f6f6f6"];
+    spaceView.backgroundColor = [UIColor bm_colorWithHex:0xF6F6F6];
     [self.m_BgView addSubview:spaceView];
     
     for (int i = 0; i < 2; i ++)
@@ -100,7 +100,7 @@ FSMoreViewVC ()
             btn.titleLabel.textAlignment = NSTextAlignmentCenter;
             [btn setTitle:@[@[@"微信",@"朋友圈",@"QQ",@"QQ空间",@"微博"],@[@"收藏",@"复制链接",@"举报",@"编辑",@"删除"]][i][j] forState:UIControlStateNormal];
             [btn setImage:[UIImage imageNamed:@[@[@"community_wechat",@"community_friends_cycle",@"community_QQ",@"community_zone",@"community_weibo"],@[@"community_collect",@"community_copy",@"community_report",@"community_edit",@"community_delete"]][i][j]] forState:UIControlStateNormal];
-            [btn setTitleColor:[UIColor bm_colorWithHexString:@"333333"] forState:UIControlStateNormal];
+            [btn setTitleColor:[UIColor bm_colorWithHex:0x333333] forState:UIControlStateNormal];
             [btn addTarget:self action:@selector(moreViewAction:) forControlEvents:UIControlEventTouchUpInside];
             btn.tag = (i*5 + j) + 100;
             // 收藏按钮

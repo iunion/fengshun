@@ -170,12 +170,12 @@ FSReportViewDelegate
         UILabel *cententLab = [[UILabel alloc]initWithFrame:CGRectMake(35/2, 0, 190, 40)];
         cententLab.numberOfLines = 2;
         cententLab.font = [UIFont systemFontOfSize:15.f];
-        cententLab.textColor = [UIColor bm_colorWithHexString:@"333333"];
+        cententLab.textColor = [UIColor bm_colorWithHex:0x333333];
         cententLab.text = self.m_TopicDetailModel.m_Title;
         [contentView addSubview:cententLab];
         
         UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(35/2, cententLab.bm_bottom + 5, 190, 25)];
-        textField.backgroundColor = [UIColor bm_colorWithHexString:@"f6f6f6"];
+        textField.backgroundColor = [UIColor bm_colorWithHex:0xF6F6F6];
         textField.placeholder = @"请输入举报理由";
         textField.font = [UIFont systemFontOfSize:14.f];
         [contentView addSubview:textField];
