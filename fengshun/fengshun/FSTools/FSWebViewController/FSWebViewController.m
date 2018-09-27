@@ -674,7 +674,6 @@
          */
         BMLog(@"toReport called: %@", data);
         [weakSelf showReportAlertWithData:data];
-
     }];
     
     //收藏按钮
@@ -737,6 +736,11 @@
     }
     else if (index == 5)//收藏
     {
+        if (![FSUserInfoModel isLogin])
+        {
+            [self showLogin];
+            return;
+        }
         NSDictionary *data = [NSDictionary bm_dictionaryWithJsonString:s_CollectJsonSting];
         [FSApiRequest updateCollectStateID:[data bm_stringForKey:@"id"] isCollect:!s_isCollect guidingCase:[data bm_stringForKey:@"guidingCase"] source:[data bm_stringForKey:@"source"] title:[data bm_stringForKey:@"title"] type:[data bm_stringForKey:@"type"] Success:^(id  _Nullable responseObject) {
             [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:s_isCollect?@"取消收藏":@"收藏成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
