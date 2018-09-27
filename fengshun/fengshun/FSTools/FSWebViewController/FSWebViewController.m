@@ -45,14 +45,13 @@
     
     NSString *s_PhtoUrlStr;
     
-    // 分享的json
-    __block NSString *s_ShareJsonSting;
-    
-    // 收藏json
-    __block NSString *s_CollectJsonSting;
-    // 是否收藏
-    __block BOOL s_isCollect;
 }
+// 分享的json
+@property (nonatomic , strong) NSString *s_ShareJsonSting;
+// 收藏json
+@property (nonatomic , strong) NSString *s_CollectJsonSting;
+// 是否收藏
+@property (nonatomic, assign) BOOL s_isCollect;
 
 @property (nonatomic, strong) FSWebView *m_WebView;
 @property (nonatomic, strong) NSMutableURLRequest *m_UrlRequest;
@@ -671,7 +670,7 @@
          "id":"TJDjrGUBN3_o1ImUSqS9",
          "type":"STATUTE"}
          */
-        s_ShareJsonSting = data;
+        weakSelf.s_ShareJsonSting = data;
     }];
     
     // 举报
@@ -697,7 +696,7 @@
          */
         BMLog(@"toCollect called: %@", data);
         
-        s_CollectJsonSting = data;
+        weakSelf.s_CollectJsonSting = data;
         [weakSelf addRightBtn];
     }];
     
@@ -718,7 +717,7 @@
 // 更多按钮
 - (void)moreAction
 {
-    NSDictionary *data = [NSDictionary bm_dictionaryWithJsonString:s_CollectJsonSting];
+    NSDictionary *data = [NSDictionary bm_dictionaryWithJsonString:self.s_CollectJsonSting];
     
     if (![data bm_isNotEmptyDictionary])
     {
@@ -734,8 +733,8 @@
         
         [weakSelf.m_ProgressHUD hideAnimated:NO];
         NSInteger count = [responseObject integerValue];
-        s_isCollect = count>0;
-        [FSMoreViewVC showWebMore:weakSelf delegate:weakSelf isCollection:s_isCollect];
+        weakSelf.s_isCollect = count>0;
+        [FSMoreViewVC showWebMore:weakSelf delegate:weakSelf isCollection:weakSelf.s_isCollect];
     } failure:^(NSError *error) {
         
     }];
@@ -745,7 +744,7 @@
 {
     if (index < 5)
     {
-        [self.m_ProgressHUD showAnimated:YES withText:[NSString stringWithFormat:@"分享未完成：数据为%@", s_ShareJsonSting] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        [self.m_ProgressHUD showAnimated:YES withText:[NSString stringWithFormat:@"分享未完成：数据为%@", self.s_ShareJsonSting] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     }
     else if (index == 5) // 收藏
     {
@@ -756,9 +755,9 @@
         }
 
         BMWeakSelf
-        NSDictionary *data = [NSDictionary bm_dictionaryWithJsonString:s_CollectJsonSting];
-        [FSApiRequest updateCollectStateID:[data bm_stringForKey:@"id"] isCollect:!s_isCollect guidingCase:[data bm_stringForKey:@"guidingCase"] source:[data bm_stringForKey:@"source"] title:[data bm_stringForKey:@"title"] type:[data bm_stringForKey:@"type"] Success:^(id responseObject) {
-            [weakSelf.m_ProgressHUD showAnimated:YES withText:s_isCollect ? @"取消收藏" : @"收藏成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        NSDictionary *data = [NSDictionary bm_dictionaryWithJsonString:self.s_CollectJsonSting];
+        [FSApiRequest updateCollectStateID:[data bm_stringForKey:@"id"] isCollect:!self.s_isCollect guidingCase:[data bm_stringForKey:@"guidingCase"] source:[data bm_stringForKey:@"source"] title:[data bm_stringForKey:@"title"] type:[data bm_stringForKey:@"type"] Success:^(id responseObject) {
+            [weakSelf.m_ProgressHUD showAnimated:YES withText:weakSelf.s_isCollect ? @"取消收藏" : @"收藏成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         } failure:^(NSError *error) {
             
         }];

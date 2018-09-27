@@ -103,8 +103,6 @@ FSMoreViewVC ()
     self.m_BgView.backgroundColor = [UIColor bm_colorWithHex:0xFFFFFF];
     [self.view addSubview:self.m_BgView];
     
-    
-    
     self.m_CancelBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, totalBtnHeight + space, UI_SCREEN_WIDTH, cacenlBtnHeight )];
     self.m_CancelBtn.titleLabel.font = [UIFont systemFontOfSize:15.f];
     self.m_CancelBtn.backgroundColor = [ UIColor whiteColor];
