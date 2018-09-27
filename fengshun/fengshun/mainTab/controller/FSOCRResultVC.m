@@ -18,6 +18,7 @@ FSMoreViewVCDelegate
 @property (nonatomic, strong) MBProgressHUD *m_ProgressHUD;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *m_toolButtons;
 @property (weak, nonatomic) IBOutlet UITextView *m_textView;
+@property (weak, nonatomic) IBOutlet UIView *m_toolView;
 @end
 
 @implementation FSOCRResultVC
@@ -29,6 +30,10 @@ FSMoreViewVCDelegate
 }
 - (void)setupUI
 {
+    _m_toolView.layer.shadowOffset = CGSizeMake(0, -3);
+    _m_toolView.layer.shadowOpacity = 0.19;
+    _m_toolView.layer.shadowColor = UI_COLOR_B2.CGColor;
+    
     self.bm_NavigationShadowHidden = NO;
     self.bm_NavigationShadowColor  = UI_COLOR_B6;
     [self bm_setNavigationLeftItemTintColor:UI_COLOR_B1];

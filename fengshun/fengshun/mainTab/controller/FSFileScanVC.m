@@ -59,9 +59,12 @@
     _m_imagePickButton.layer.masksToBounds = NO;
     _m_imagePickButton.layer.shadowOffset = CGSizeMake(0, 5);//阴影的偏移量
     _m_imagePickButton.layer.shadowRadius = 15;
-    _m_imagePickButton.layer.shadowOpacity = 0.9;                        //阴影的不透明度
+    _m_imagePickButton.layer.shadowOpacity = 0.5;                        //阴影的不透明度
     _m_imagePickButton.layer.shadowColor = [_m_imagePickButton backgroundColor].CGColor;
     
+    _m_toolView.layer.shadowOffset = CGSizeMake(0, -3);
+    _m_toolView.layer.shadowOpacity = 0.19;
+    _m_toolView.layer.shadowColor = UI_COLOR_B2.CGColor;
     
     
     for (UIButton *toolButton in _m_toolButtons) {

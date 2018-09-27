@@ -137,19 +137,18 @@
 
 - (void)makeSearchBar
 {
-    UIView *searchBarBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_NAVIGATION_BAR_HEIGHT)];
-    searchBarBgView.backgroundColor = [UIColor clearColor];
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(18.0f, SearchBarGap, UI_SCREEN_WIDTH-36.0f, UI_NAVIGATION_BAR_HEIGHT-SearchBarGap*2)];
-    searchBar.backgroundColor = [UIColor clearColor];
+//    UIView *searchBarBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_NAVIGATION_BAR_HEIGHT)];
+//    searchBarBgView.backgroundColor = [UIColor clearColor];
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(-1.0f, SearchBarGap, UI_SCREEN_WIDTH, UI_NAVIGATION_BAR_HEIGHT-SearchBarGap*2)];    searchBar.backgroundColor = [UIColor clearColor];
     searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [searchBarBgView addSubview:searchBar];
+    //[searchBarBgView addSubview:searchBar];
     searchBar.backgroundImage = [UIImage imageNamed:@"navigationbar_clearImage"];
     searchBar.delegate = self;
     searchBar.placeholder = @"请输入关键字";
     self.bm_NavigationItemTintColor = UI_COLOR_B1;
     self.bm_NavigationShadowHidden = NO;
     self.bm_NavigationShadowColor = UI_COLOR_B6;
-    [self bm_setNavigationWithTitleView:searchBarBgView barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:@"取消" rightItemImage:nil rightToucheEvent:@selector(cancelSearch:)];
+    [self bm_setNavigationWithTitleView:searchBar barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:@"取消" rightItemImage:nil rightToucheEvent:@selector(cancelSearch:)];
     [self setBm_NavigationBarImage:[UIImage imageWithColor:[UIColor whiteColor]]];
     
     self.searchTextField = (UITextField *)[searchBar bm_viewOfClass:[UITextField class]];
@@ -188,7 +187,7 @@
         _m_OCRButton.layer.masksToBounds = NO;
         _m_OCRButton.layer.shadowOffset = CGSizeMake(0, 5);//阴影的偏移量
         _m_OCRButton.layer.shadowRadius = 10;
-        _m_OCRButton.layer.shadowOpacity = 0.9;                        //阴影的不透明度
+        _m_OCRButton.layer.shadowOpacity = 0.5;                        //阴影的不透明度
         _m_OCRButton.layer.shadowColor = [_m_OCRButton backgroundColor].CGColor;
 //        UIBezierPath * path = [UIBezierPath bezierPathWithRoundedRect:_m_OCRButton.bounds cornerRadius:20];
         //阴影路径
@@ -273,13 +272,15 @@
             CGFloat width = (UI_SCREEN_WIDTH-5*10)/4;
 //            CGFloat width = [tag bm_widthToFitHeight:20 withFont:[UIFont systemFontOfSize:14.0f]] + 24.0f;
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, 28.0f)];
-            label.backgroundColor = FS_VIEW_BGCOLOR;
             label.font = [UIFont systemFontOfSize:14.0f];
             label.textColor = UI_COLOR_B1;
             label.textAlignment = NSTextAlignmentCenter;
             label.text = tag;
-            [label bm_roundedRect:14.0f];
-            [self.tagViewArray addObject:label];
+            UIView *tagView = [[UIView alloc]initWithFrame:label.bounds];
+            tagView.backgroundColor = FS_VIEW_BGCOLOR;
+            [tagView bm_roundedRect:14.0];
+            [tagView addSubview:label];
+            [self.tagViewArray addObject:tagView];
         }
     }
     else if (_resultType == FSSearchResultType_laws)
