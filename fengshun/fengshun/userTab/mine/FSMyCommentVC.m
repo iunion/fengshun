@@ -122,7 +122,14 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     FSMyCommentModel *model = self.m_DataArray[indexPath.row];
-    [FSPushVCManager showWebView:self url:model.m_JumpAddress title:nil];
+    if (model.m_CommentType == FSCommentType_POSTS) // 帖子做特殊处理
+    {
+        [FSPushVCManager showTopicDetail:self  topicId:model.m_DetailId];
+    }
+    else
+    {
+        [FSPushVCManager showWebView:self url:model.m_JumpAddress title:nil];
+    }
 }
 
 - (BMEmptyViewType)getNoDataEmptyViewType
