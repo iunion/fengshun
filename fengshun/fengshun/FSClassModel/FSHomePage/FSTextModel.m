@@ -22,6 +22,7 @@
     model.m_title          = [params bm_stringForKey:@"documentName"];
     model.m_typeCode       = [params bm_stringForKey:@"documentTypeCode"];
     model.m_fileId         = [params bm_stringForKey:@"fileId"];
+    model.m_documentId     = [params bm_stringForKey:@"documentId"];
     model.m_previewUrl     = [params bm_stringForKey:@"previewUrl"];
     return model;
 }

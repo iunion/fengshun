@@ -53,7 +53,7 @@
     //获取收藏状态
     [self.m_ProgressHUD showAnimated:YES];
     BMWeakSelf;
-    [FSApiRequest getCollectStateID:self.m_fileId type:@"DOCUMENT" Success:^(id  _Nullable responseObject) {
+    [FSApiRequest getCollectStateID:self.m_docummentId type:@"DOCUMENT" Success:^(id  _Nullable responseObject) {
         [weakSelf.m_ProgressHUD hideAnimated:NO];
         NSInteger count = [responseObject integerValue];
         s_isCollect = count>0;
@@ -74,7 +74,7 @@
     }
     else if (index == 5)//收藏
     {
-        [FSApiRequest updateCollectStateID:self.m_fileId isCollect:!s_isCollect guidingCase:@"" source:@"" title:@"" type:@"DOCUMENT" Success:^(id  _Nullable responseObject) {
+        [FSApiRequest updateCollectStateID:self.m_docummentId isCollect:!s_isCollect guidingCase:@"" source:@"" title:@"" type:@"DOCUMENT" Success:^(id  _Nullable responseObject) {
             [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:s_isCollect?@"取消收藏":@"收藏成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         } failure:^(NSError * _Nullable error) {
             

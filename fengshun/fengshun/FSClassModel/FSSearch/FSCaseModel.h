@@ -19,9 +19,8 @@
 @property (nonatomic, copy) NSString *m_simpleContent;
 @property (nonatomic, copy) NSString *m_caseNo;
 @property (nonatomic, copy) NSString *m_court;
+@property (nonatomic, copy) NSString *m_basicInfo;
+@property (nonatomic, assign) BOOL    m_isGuidingCase;
 @property (nonatomic, copy) NSString *m_caseTag;
-
-// UI有,但数据欠缺
-@property (nonatomic, copy) NSString *m_date;
 
 @end

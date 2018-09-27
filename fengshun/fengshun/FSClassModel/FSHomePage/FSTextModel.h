@@ -12,6 +12,7 @@
 
 @property (nonatomic, copy)NSString *m_title;
 @property (nonatomic, copy)NSString *m_fileId;
+@property (nonatomic, copy)NSString *m_documentId;
 
 @property (nonatomic, copy)NSString *m_previewUrl; // 详情页Url
 

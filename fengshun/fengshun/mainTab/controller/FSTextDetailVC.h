@@ -11,5 +11,6 @@
 @interface FSTextDetailVC : FSWebViewController
 
 @property(nonatomic, copy)NSString *m_fileId;
+@property(nonatomic, copy)NSString *m_docummentId;
 
 @end

@@ -39,23 +39,23 @@
     //self.m_TableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     //self.m_TableView.tableFooterView = [UIView new];
     self.m_TableView.estimatedRowHeight = 180;
-    switch (self.m_CollectionType)
-    {
-        case FSCollectionType_POSTS:
-            break;
-        case FSCollectionType_STATUTE:
-            [self.m_TableView registerNib:[UINib nibWithNibName:@"FSLawCell" bundle:nil] forCellReuseIdentifier:@"FSLawCell"];
-            break;
-        case FSCollectionType_CASE:
-            [self.m_TableView registerNib:[UINib nibWithNibName:@"FSCaseCell" bundle:nil] forCellReuseIdentifier:@"FSCaseCell"];
-            break;
-        case FSCollectionType_DOCUMENT:
-            [self.m_TableView registerNib:[UINib nibWithNibName:@"FSTextCell" bundle:nil] forCellReuseIdentifier:@"FSTextCell"];
-            break;
-        case FSCollectionType_COURSE:
-            [self.m_TableView registerNib:[UINib nibWithNibName:@"FSCollectionCourseCell" bundle:nil] forCellReuseIdentifier:@"FSCollectionCourseCell"];
-            break;
-    }
+//    switch (self.m_CollectionType)
+//    {
+//        case FSCollectionType_POSTS:
+//            break;
+//        case FSCollectionType_STATUTE:
+//            [self.m_TableView registerNib:[UINib nibWithNibName:@"FSLawCell" bundle:nil] forCellReuseIdentifier:@"FSLawCell"];
+//            break;
+//        case FSCollectionType_CASE:
+//            [self.m_TableView registerNib:[UINib nibWithNibName:@"FSCaseCell" bundle:nil] forCellReuseIdentifier:@"FSCaseCell"];
+//            break;
+//        case FSCollectionType_DOCUMENT:
+//            [self.m_TableView registerNib:[UINib nibWithNibName:@"FSTextCell" bundle:nil] forCellReuseIdentifier:@"FSTextCell"];
+//            break;
+//        case FSCollectionType_COURSE:
+//            [self.m_TableView registerNib:[UINib nibWithNibName:@"FSCollectionCourseCell" bundle:nil] forCellReuseIdentifier:@"FSCollectionCourseCell"];
+//            break;
+//    }
     [self loadApiData];
 }
 
@@ -160,26 +160,36 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 
     FSMyCollectionModel *model = self.m_DataArray[indexPath.row];
-    [FSPushVCManager showWebView:self url:model.m_JumpAddress title:nil];
+//    [FSPushVCManager showWebView:self url:model.m_JumpAddress title:nil];
 
-//    switch (self.m_CollectionType)
-//    {
-//#warning CollectionType
-//        case FSCollectionType_POSTS:
-//        {
-//            FSMyCollectionModel *model = self.m_DataArray[indexPath.row];
-//            [FSPushVCManager showTopicDetail:[self.view.superview bm_viewController] topicId:model.m_DetailId];
-//        }
-//            break;
-//        case FSCollectionType_STATUTE:
-//            break;
-//        case FSCollectionType_CASE:
-//            break;
-//        case FSCollectionType_DOCUMENT:
-//            break;
-//        case FSCollectionType_COURSE:
-//            break;
-//    }
+    switch (self.m_CollectionType)
+    {
+        case FSCollectionType_POSTS:
+        {
+            [FSPushVCManager showTopicDetail:[self.view.superview bm_viewController] topicId:model.m_DetailId];
+        }
+            break;
+        case FSCollectionType_STATUTE:
+        {
+            [FSPushVCManager viewController:[self.view.superview bm_viewController] pushToLawDetailWithId:model.m_DetailId keywords:@"NULL"];
+        }
+            break;
+        case FSCollectionType_CASE:
+        {
+            [FSPushVCManager viewController:[self.view.superview bm_viewController] pushToCaseDetailWithId:model.m_DetailId keywords:@"NULL"];
+        }
+            break;
+        case FSCollectionType_DOCUMENT:
+        {
+            [FSPushVCManager pushToTextDetail:[self.view.superview bm_viewController] url:model.m_PreviewUrl withFileId:model.m_FiledId documentId:model.m_DetailId title:model.m_Title];
+        }
+            break;
+        case FSCollectionType_COURSE:
+        {
+            [FSPushVCManager viewController:[self.view.superview bm_viewController] pushToCourseDetailWithId:model.m_DetailId];
+        }
+            break;
+    }
     
 }
 
