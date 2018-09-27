@@ -169,4 +169,14 @@ static NSString *UserInfoDBTableInsert = @"(userid, mobilephone, token, rftoken,
     return result;
 }
 
+NSString *const FSUserInfoCaseSearchHistoryKey = @"com.ftls.caseSearchHistory";
+NSString *const FSUserInfoLawSearchHistoryKey = @"com.ftls.lawSearchHistory";
+NSString *const FSUserInfoTextSearchHistoryKey = @"com.ftls.textSearchHistory";
+
++ (void)cleanUserHistroyData
+{
+    [[NSFileManager defaultManager] removeItemAtPath:SEARCH_HISTORY_CACHEFILE(FSUserInfoCaseSearchHistoryKey) error:nil];
+    [[NSFileManager defaultManager] removeItemAtPath:SEARCH_HISTORY_CACHEFILE(FSUserInfoLawSearchHistoryKey) error:nil];
+    [[NSFileManager defaultManager] removeItemAtPath:SEARCH_HISTORY_CACHEFILE(FSUserInfoTextSearchHistoryKey) error:nil];
+}
 @end

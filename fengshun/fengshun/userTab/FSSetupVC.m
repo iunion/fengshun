@@ -275,6 +275,7 @@ typedef void(^FSSetupClearDiskBlock)(NSString *path, BOOL finished);
 - (void)logoutClick:(UIButton *)btn
 {
     [GetAppDelegate logOutWithApi];
+    [FSUserInfoDB cleanUserHistroyData];
 }
 
 - (void)calculateSizeWithFilePathArray:(NSArray *)filePathArray completionBlock:(FSSetupCalculateSizeBlock)completionBlock
