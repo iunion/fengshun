@@ -12,6 +12,8 @@
 
 @interface FSVideoStartTool : NSObject
 
++ (UIWindow *)mainWindow;
+
 + (BOOL)startMeetingWithMeetingId:(NSInteger)meetingId progressHUD:(MBProgressHUD *)hud completionHandler:(nullable void (^)(NSURLResponse *response, id _Nullable responseObject,  NSError * _Nullable error))completionHandler;
 
 + (BOOL)endMeetingWithMeetingId:(NSInteger)meetingId progressHUD:(MBProgressHUD *)hud completionHandler:(nullable void (^)(NSURLResponse *response, id _Nullable responseObject,  NSError * _Nullable error))completionHandler;

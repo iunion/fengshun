@@ -265,6 +265,9 @@ VideoCallVideoViewDelegate>
             if (weakSelf.endMeetingBlock) {
                 weakSelf.endMeetingBlock();
             }
+            
+            [MBProgressHUD showHUDAddedTo:[FSVideoStartTool mainWindow] animated:NO withText:@"视频已结束" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            
             [[NSNotificationCenter defaultCenter] postNotificationName:FSVideoMediateChangedNotification object:nil userInfo:nil];
             [[SocketHelper shareHelper] sendCloseRoomEvent];
             return;
