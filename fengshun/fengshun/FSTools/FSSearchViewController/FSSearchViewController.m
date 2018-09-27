@@ -287,7 +287,8 @@
     {
         for (NSDictionary *lawTopicInfo in self.hotTagArray)
         {
-            CGSize  itemSize = CGSizeMake(80, 66);
+//            CGSize  itemSize = CGSizeMake(80, 66);
+            CGSize  itemSize = CGSizeMake((UI_SCREEN_WIDTH-5*10)/4, 66);
             UIView *view     = [[UIView alloc] initWithFrame:CGRectMake(0, 0, itemSize.width, itemSize.height)];
             UIImageView *iv  = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 34, 34)];
             iv.image         = [UIImage imageNamed:[lawTopicInfo bm_stringForKey:@"iconName"]];
