@@ -262,7 +262,7 @@
             }
             else
             {
-#if DEBUG
+#ifdef DEBUG
                 NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
                 BMLog(@"%@ %@", response, responseStr);
 #endif
@@ -282,7 +282,7 @@
         return;
     }
     
-#if DEBUG
+#ifdef DEBUG
     NSString *responseStr = [[NSString stringWithFormat:@"%@", resDic] bm_convertUnicode];
     BMLog(@"实名认证返回数据是:+++++%@", responseStr);
 #endif

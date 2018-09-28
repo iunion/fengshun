@@ -12,6 +12,8 @@
 
 #import "FSUserInfo.h"
 
+#import <UMAnalytics/MobClick.h>
+
 @interface FSSuperVC : UIViewController
 <
     FSSuperVCProtocol

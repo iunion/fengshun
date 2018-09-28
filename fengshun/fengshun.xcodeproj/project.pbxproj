@@ -475,6 +475,8 @@
 		874C23BE215B5DF2001C8BE9 /* user_praiseicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 874C23BB215B5DF1001C8BE9 /* user_praiseicon@2x.png */; };
 		874C23BF215B5DF2001C8BE9 /* user_praiseicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 874C23BC215B5DF1001C8BE9 /* user_praiseicon@3x.png */; };
 		874C23C0215B5DF2001C8BE9 /* user_praiseicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 874C23BC215B5DF1001C8BE9 /* user_praiseicon@3x.png */; };
+		874C23C7215E216A001C8BE9 /* UMAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45C34DC215E158A00805EB8 /* UMAnalytics.framework */; };
+		874C23C8215E21BD001C8BE9 /* UMAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45C34DC215E158A00805EB8 /* UMAnalytics.framework */; };
 		87741FDC214A0C8A00F72427 /* FSServiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87741FDA214A0C8A00F72427 /* FSServiceVC.m */; };
 		87741FDD214A0C8A00F72427 /* FSServiceVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87741FDB214A0C8A00F72427 /* FSServiceVC.xib */; };
 		87741FE3214A132200F72427 /* user_wechaticon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87741FDF214A132200F72427 /* user_wechaticon@3x.png */; };
@@ -3841,6 +3843,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				874C23C7215E216A001C8BE9 /* UMAnalytics.framework in Frameworks */,
 				ADEF1F6F214F9B7500FFE0C3 /* ImageIO.framework in Frameworks */,
 				ADEF1F6D214F9B6300FFE0C3 /* CoreTelephony.framework in Frameworks */,
 				ADEF1F32214F546800FFE0C3 /* libsqlite3.tbd in Frameworks */,
@@ -3901,6 +3904,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				874C23C8215E21BD001C8BE9 /* UMAnalytics.framework in Frameworks */,
 				87E7C4C921509AB000F7AB14 /* ImageIO.framework in Frameworks */,
 				87E7C4CA21509AB000F7AB14 /* CoreTelephony.framework in Frameworks */,
 				87E7C4CB21509AB000F7AB14 /* libsqlite3.tbd in Frameworks */,

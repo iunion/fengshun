@@ -296,7 +296,7 @@
             }
             else
             {
-#if DEBUG
+#ifdef DEBUG
                 NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
                 BMLog(@"%@ %@", response, responseStr);
 #endif
@@ -320,7 +320,7 @@
         return;
     }
     
-#if DEBUG
+#ifdef DEBUG
     NSString *responseStr = [[NSString stringWithFormat:@"%@", resDic] bm_convertUnicode];
     BMLog(@"注册返回数据是:+++++%@", responseStr);
 #endif
@@ -408,7 +408,7 @@
             }
             else
             {
-#if DEBUG
+#ifdef DEBUG
                 NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
                 BMLog(@"%@ %@", response, responseStr);
 #endif
@@ -432,7 +432,7 @@
         return;
     }
     
-#if DEBUG
+#ifdef DEBUG
     NSString *responseStr = [[NSString stringWithFormat:@"%@", resDic] bm_convertUnicode];
     BMLog(@"重设密码返回数据是:+++++%@", responseStr);
 #endif
