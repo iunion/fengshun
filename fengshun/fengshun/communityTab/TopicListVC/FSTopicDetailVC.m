@@ -70,7 +70,7 @@ FSReportViewDelegate
         BOOL isOwner = [self.m_TopicDetailModel.m_UserId isEqualToString:[FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId];
         [FSMoreViewVC showMore:self delegate:self isOwner:isOwner isCollection:self.m_TopicDetailModel.m_IsCollection];
     } failure:^(NSError * _Nullable error) {
-        [self checkXMApiWithError:error];
+        
     }];
 }
 
@@ -205,7 +205,7 @@ FSReportViewDelegate
         [self.m_ProgressHUD showAnimated:YES withDetailText:@"删除成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSError *_Nullable error){
-        [self checkXMApiWithError:error];
+        
     }];
 }
 
@@ -213,7 +213,7 @@ FSReportViewDelegate
     [FSApiRequest collectionTopic:!self.m_TopicDetailModel.m_IsCollection topicId:[NSString stringWithFormat:@"%ld",self.m_TopicId] success:^(id  _Nullable responseObject) {
         [self.m_ProgressHUD showAnimated:YES withDetailText:self.m_TopicDetailModel.m_IsCollection?@"取消收藏成功":@"收藏成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     } failure:^(NSError * _Nullable error) {
-        [self checkXMApiWithError:error];
+        
     }];
 }
 
@@ -222,7 +222,7 @@ FSReportViewDelegate
     [FSApiRequest addReportTopic:[NSString stringWithFormat:@"%ld",self.m_TopicId] content:content success:^(id  _Nullable responseObject) {
        [self.m_ProgressHUD showAnimated:YES withDetailText:@"已举报该帖子" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     } failure:^(NSError * _Nullable error) {
-        [self checkXMApiWithError:error];
+        
     }];
 }
 

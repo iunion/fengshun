@@ -260,7 +260,7 @@
                         [self begainEditor];
                     }
                     failure:^(NSError *_Nullable error){
-                        [self checkXMApiWithError:error];
+                        
                     }];
 }
 
@@ -283,7 +283,7 @@
                                  [weakSelf.navigationController popViewControllerAnimated:YES];
                              }
                              failure:^(NSError *_Nullable error){
-                                 [self checkXMApiWithError:error];
+                                 
                              }];
 }
 
@@ -296,7 +296,7 @@
         [weakSelf setHTML:[responseObject bm_stringForKey:@"content"]];
         weakSelf.m_TitleTextField.text = [responseObject bm_stringForKey:@"title"];
     } failure:^(NSError * _Nullable error) {
-        [self checkXMApiWithError:error];
+        
     }];
 }
 
