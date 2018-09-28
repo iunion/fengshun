@@ -104,7 +104,7 @@ FSCommunitySecVC ()
     _m_HeaderView          = (FSCommunityHeaderView *)[[NSBundle mainBundle] loadNibNamed:@"FSCommunityHeaderView" owner:self options:nil].firstObject;
     _m_HeaderView.delegate = self;
     [self.view addSubview:_m_HeaderView];
-    _m_HeaderView.frame = CGRectMake(0, -(UI_NAVIGATION_BAR_HEIGHT+20), UI_SCREEN_WIDTH, 200);
+    _m_HeaderView.frame = CGRectMake(0, -(UI_NAVIGATION_BAR_HEIGHT+UI_STATUS_BAR_HEIGHT), UI_SCREEN_WIDTH, 200);
 
     // 切换视图
     self.m_SegmentBar = [[FSScrollPageSegment alloc] initWithFrame:CGRectMake(0, _m_HeaderView.bm_bottom + 8, UI_SCREEN_WIDTH, 44) titles:nil titleColor:nil selectTitleColor:nil showUnderLine:YES moveLineFrame:CGRectZero isEqualDivide:YES fresh:YES];
