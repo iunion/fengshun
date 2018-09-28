@@ -409,7 +409,7 @@
             }
             else
             {
-#if DEBUG
+#ifdef DEBUG
                 NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
                 BMLog(@"%@ %@", response, responseStr);
 #endif
@@ -433,7 +433,7 @@
         return;
     }
     
-#if DEBUG
+#ifdef DEBUG
     NSString *responseStr = [[NSString stringWithFormat:@"%@", resDic] bm_convertUnicode];
     BMLog(@"登录检查返回数据是:+++++%@", responseStr);
 #endif
@@ -513,7 +513,7 @@
             }
             else
             {
-#if DEBUG
+#ifdef DEBUG
                 NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
                 BMLog(@"%@ %@", response, responseStr);
 #endif
@@ -537,7 +537,7 @@
         return;
     }
     
-#if DEBUG
+#ifdef DEBUG
     NSString *responseStr = [[NSString stringWithFormat:@"%@", resDic] bm_convertUnicode];
     BMLog(@"登录返回数据是:+++++%@", responseStr);
 #endif

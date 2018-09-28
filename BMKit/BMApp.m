@@ -55,7 +55,7 @@ static NSString * const BMAppLastBuildVersionKey    = @"BMApp.lastBuildVersion";
     {
         block(YES);
         
-#if DEBUG
+#ifdef DEBUG
         BMLog(@"BMApp: Running migration for version %@", version);
 #endif
         
@@ -83,7 +83,7 @@ static NSString * const BMAppLastBuildVersionKey    = @"BMApp.lastBuildVersion";
     {
         block(YES);
         
-#if DEBUG
+#ifdef DEBUG
         BMLog(@"BMApp: Running migration for buildVersion %@", buildVersion);
 #endif
         
@@ -106,7 +106,7 @@ static NSString * const BMAppLastBuildVersionKey    = @"BMApp.lastBuildVersion";
     {
         block(YES);
 
-#if DEBUG
+#ifdef DEBUG
         BMLog(@"BMApp: Running update Block for version %@", BMAPP_VERSION);
 #endif
         
@@ -125,7 +125,7 @@ static NSString * const BMAppLastBuildVersionKey    = @"BMApp.lastBuildVersion";
     {
         block(YES);
         
-#if DEBUG
+#ifdef DEBUG
         BMLog(@"BMApp: Running update Block for buildVersion %@", BMAPP_BUILD);
 #endif
         

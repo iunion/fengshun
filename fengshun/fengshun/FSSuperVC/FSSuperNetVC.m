@@ -105,7 +105,7 @@
             }
             else
             {
-#if DEBUG
+#ifdef DEBUG
                 NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
                 BMLog(@"%@ %@", response, responseStr);
 #endif
@@ -155,7 +155,7 @@
         return;
     }
     
-#if DEBUG
+#ifdef DEBUG
     NSString *responseStr = [[NSString stringWithFormat:@"%@", responseDic] bm_convertUnicode];
     BMLog(@"API返回数据是:+++++%@", responseStr);
 #endif
@@ -216,7 +216,7 @@
         }
         else if (self.m_ShowResultHUD)
         {
-#if DEBUG
+#ifdef DEBUG
             [self.m_ProgressHUD showAnimated:YES withDetailText:[NSString stringWithFormat:@"%@:%@", @(statusCode), message] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
 #else
             [self.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
@@ -319,7 +319,7 @@
             }
             else
             {
-#if DEBUG
+#ifdef DEBUG
                 NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
                 BMLog(@"%@ %@", response, responseStr);
 #endif
@@ -339,7 +339,7 @@
         return;
     }
     
-#if DEBUG
+#ifdef DEBUG
     NSString *responseStr = [[NSString stringWithFormat:@"%@", resDic] bm_convertUnicode];
     BMLog(@"获取分享返回数据是:+++++%@", responseStr);
 #endif

@@ -333,7 +333,7 @@
             }
             else
             {
-#if DEBUG
+#ifdef DEBUG
                 NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
                 BMLog(@"%@ %@", response, responseStr);
 #endif

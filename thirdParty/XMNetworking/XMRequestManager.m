@@ -145,7 +145,7 @@
     BMWeakSelf
     // 响应后统一处理插件
     [XMCenter setResponseProcessBlock:^id(XMRequest *request, id responseObject, NSError *__autoreleasing *error) {
-#if DEBUG
+#ifdef DEBUG
         NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
         BMLog(@"+++++++++++++[%@]原始返回:%@", request.url, responseStr);
 #endif

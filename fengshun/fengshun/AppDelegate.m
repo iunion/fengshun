@@ -25,7 +25,6 @@
 
 #import "FSGlobleDataModel.h"
 #import "FSCustomInfoVC.h"
-#import <UMCommon/UMCommon.h>
 
 #if USE_TEST_HELP
 #import "FSTestHelper.h"
@@ -35,6 +34,9 @@
 #import <ILiveSDK/ILiveSDK.h>
 #import <ILiveSDK/ILiveCoreHeader.h>
 #endif
+
+#import <UMCommon/UMCommon.h>
+#import <UMAnalytics/MobClick.h>
 
 //#import "SDWebImageCodersManager.h"
 //#import "SDWebImageGIFCoder.h"
@@ -95,6 +97,8 @@
 - (void)setupUmeng
 {
     [UMConfigure initWithAppkey:UMeng_AppKey channel:@"App Store"];
+    
+    [MobClick setScenarioType:E_UM_NORMAL];
 }
 
 - (void)setupThirdParty
@@ -470,7 +474,7 @@
 
         BMWeakSelf
         self.m_LoginOutTask = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-#if DEBUG
+#ifdef DEBUG
             if (error)
             {
                 BMLog(@"Error: %@", error);
@@ -498,7 +502,7 @@
         return;
     }
     
-#if DEBUG
+#ifdef DEBUG
     NSString *responseStr = [[NSString stringWithFormat:@"%@", resDic] bm_convertUnicode];
     BMLog(@"登出返回数据是:+++++%@", responseStr);
 #endif
@@ -568,7 +572,7 @@
         return;
     }
     
-#if DEBUG
+#ifdef DEBUG
     NSString *responseStr = [[NSString stringWithFormat:@"%@", resDic] bm_convertUnicode];
     BMLog(@"查询擅长领域返回数据是:+++++%@", responseStr);
 #endif

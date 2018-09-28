@@ -127,7 +127,7 @@ FSOCRManager ()
 }
 - (NSString *)p_textWithResponse:(NSDictionary *)responseObject
 {
-#if DEBUG
+#ifdef DEBUG
     NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
     BMLog(@"+++++++++++++OCR 识别返回:%@", responseStr);
 #endif

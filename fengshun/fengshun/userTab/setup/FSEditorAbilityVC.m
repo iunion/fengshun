@@ -187,7 +187,7 @@
     
     item.selectedHandler = ^(BMCombineItem *item) {
         
-#if DEBUG
+#ifdef DEBUG
         for (NSNumber *num in item.selectedIndexArray)
         {
             BMLog(@"++++%@", num);
@@ -236,7 +236,7 @@
             }
             else
             {
-#if DEBUG
+#ifdef DEBUG
                 NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
                 BMLog(@"%@ %@", response, responseStr);
 #endif
@@ -256,7 +256,7 @@
         return;
     }
     
-#if DEBUG
+#ifdef DEBUG
     NSString *responseStr = [[NSString stringWithFormat:@"%@", resDic] bm_convertUnicode];
     BMLog(@"修改擅长领域返回数据是:+++++%@", responseStr);
 #endif
