@@ -43,7 +43,9 @@
 {
     for (NSDictionary *dic in requestArray) {
         FSVideoRecordModel *model = [FSVideoRecordModel modelWithParams:dic];
-        [self.m_DataArray addObject:model];
+        if (model) {
+            [self.m_DataArray addObject:model];
+        }
     }
     [self.m_TableView reloadData];
 
