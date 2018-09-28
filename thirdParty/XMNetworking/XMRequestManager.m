@@ -173,7 +173,6 @@
                         }
                     });
                 }
-                
             }
             else
             {
@@ -195,8 +194,10 @@
 + (BOOL)cheakLoginState:(XMRequest *)request
 {
     BOOL isCheak = NO;
-    for (NSString *api in [self ignoreLoginCheakApi]) {
-        if ([api isEqualToString:request.api]) {
+    for (NSString *api in [self ignoreLoginCheakApi])
+    {
+        if ([api isEqualToString:request.api])
+        {
             isCheak = YES;
             break;
         }
