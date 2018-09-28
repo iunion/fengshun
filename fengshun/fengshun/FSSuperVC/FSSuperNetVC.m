@@ -276,6 +276,24 @@
 }
 
 
+#pragma mark -
+#pragma mark checkRequestStatus
+
+- (void)checkXMApiWithError:(NSError *)error
+{
+    if ([error.domain isEqualToString:FSAPIResponseErrorDomain])
+    {
+        if ([self checkRequestStatus:error.code message:error.userInfo[NSLocalizedDescriptionKey] responseDic:error.userInfo[NSHelpAnchorErrorKey] logOutQuit:YES showLogin:YES])
+        {
+            [self.m_ProgressHUD hideAnimated:YES];
+        }
+        else
+        {
+            [self.m_ProgressHUD showAnimated:YES withDetailText:[NSString stringWithFormat:@"%@", [error.userInfo bm_stringForKey:@"NSLocalizedDescription"]] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        }
+    }
+}
+
 
 #pragma mark -
 #pragma mark share

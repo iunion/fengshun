@@ -11,6 +11,7 @@
 #import "FSAPIMacros.h"
 
 
+#define FSAPIResponseErrorDomain    @"com.bmsf.publicError"
 
 @interface XMUploadFile : NSObject
 

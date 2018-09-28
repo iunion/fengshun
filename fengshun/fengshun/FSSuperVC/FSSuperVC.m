@@ -153,7 +153,13 @@
     return NO;
 }
 
-
+- (void)checkXMApiWithError:(NSError *)error
+{
+    if ([error.domain isEqualToString:FSAPIResponseErrorDomain])
+    {
+        [self checkRequestStatus:error.code message:error.userInfo[NSLocalizedDescriptionKey] responseDic:error.userInfo[NSHelpAnchorErrorKey] logOutQuit:YES showLogin:YES];
+    }
+}
 
 #pragma mark -
 #pragma mark Login

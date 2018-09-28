@@ -159,7 +159,8 @@
             NSInteger code = [responseObject[@"code"] integerValue];
             if (code != 1000)
             {
-                *error = [NSError errorWithDomain:@"com.bmsf.publicError" code:code userInfo:@{NSLocalizedDescriptionKey : [FSApiRequest publicErrorMessageWithCode:code]}];
+                NSString *message = [responseObject bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
+                *error = [NSError errorWithDomain:FSAPIResponseErrorDomain code:code userInfo:@{NSLocalizedDescriptionKey : message, NSHelpAnchorErrorKey : responseObject}];
             }
             else
             {

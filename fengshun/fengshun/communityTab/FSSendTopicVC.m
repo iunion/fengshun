@@ -11,7 +11,6 @@
 #import "FSApiRequest.h"
 #import "ZSSBarButtonItem.h"
 #import "AppDelegate.h"
-#import "FSApiRequest.h"
 #import "FSAlertView.h"
 #import "TOCropViewController.h"
 
@@ -261,7 +260,7 @@
                         [self begainEditor];
                     }
                     failure:^(NSError *_Nullable error){
-                        [self.m_ProgressHUD showAnimated:YES withText:@"上传图片失败" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                        [self checkXMApiWithError:error];
                     }];
 }
 
@@ -284,7 +283,7 @@
                                  [weakSelf.navigationController popViewControllerAnimated:YES];
                              }
                              failure:^(NSError *_Nullable error){
-
+                                 [self checkXMApiWithError:error];
                              }];
 }
 
@@ -297,7 +296,7 @@
         [weakSelf setHTML:[responseObject bm_stringForKey:@"content"]];
         weakSelf.m_TitleTextField.text = [responseObject bm_stringForKey:@"title"];
     } failure:^(NSError * _Nullable error) {
-        
+        [self checkXMApiWithError:error];
     }];
 }
 
