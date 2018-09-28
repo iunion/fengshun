@@ -57,20 +57,20 @@ zss_editor.init = function() {
                  });
     
     // Make sure that when we tap anywhere in the document we focus on the editor
-    $(window).on('touchmove', function(e) {
-                 zss_editor.isDragging = true;
-                 zss_editor.updateScrollOffset = true;
-                 zss_editor.setScrollPosition();
-                 zss_editor.enabledEditingItems(e);
-                 });
-    $(window).on('touchstart', function(e) {
-                 zss_editor.isDragging = false;
-                 });
-    $(window).on('touchend', function(e) {
-                 if (!zss_editor.isDragging && (e.target.id == "zss_editor_footer"||e.target.nodeName.toLowerCase() == "html")) {
-                 zss_editor.focusEditor();
-                 }
-                 });
+//    $(window).on('touchmove', function(e) {
+//                 zss_editor.isDragging = true;
+//                 zss_editor.updateScrollOffset = true;
+//                 zss_editor.setScrollPosition();
+//                 zss_editor.enabledEditingItems(e);
+//                 });
+//    $(window).on('touchstart', function(e) {
+//                 zss_editor.isDragging = false;
+//                 });
+//    $(window).on('touchend', function(e) {
+//                 if (!zss_editor.isDragging && (e.target.id == "zss_editor_footer"||e.target.nodeName.toLowerCase() == "html")) {
+//                 zss_editor.focusEditor();
+//                 }
+//                 });
     
 }//end
 
@@ -587,10 +587,10 @@ zss_editor.enabledEditingItems = function(e) {
         items.push(formatBlock);
     }
     // Images
-    $('img').bind('touchstart', function(e) {
-                  $('img').removeClass('zs_active');
-                  $(this).addClass('zs_active');
-                  });
+//    $('img').bind('touchstart', function(e) {
+//                  $('img').removeClass('zs_active');
+//                  $(this).addClass('zs_active');
+//                  });
     
     // Use jQuery to figure out those that are not supported
     if (typeof(e) != "undefined") {
