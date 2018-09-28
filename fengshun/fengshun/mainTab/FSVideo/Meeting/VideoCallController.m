@@ -404,6 +404,8 @@
                 [weakSelf vc_showMessage:msg];
             }];
         }
+    } else {
+        [self vc_showMessage:@"摄像头关闭状态,操作失败"];
     }
 }
 
