@@ -111,7 +111,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self begainEditor];
+//    [self begainEditor];
 }
 
 - (void)didReceiveMemoryWarning
@@ -233,19 +233,6 @@
     {
         [self pickerVC:picker presentToCropVCWithImage:photos[0]];
     }
-
-    
-//    BMWeakSelf
-//
-//    [FSApiRequest uploadImg:UIImageJPEGRepresentation(img, .8)
-//                    success:^(id _Nullable responseObject) {
-//
-//                        NSString *url = [NSString stringWithFormat:@"%@", [responseObject bm_stringTrimForKey:@"previewUrl"]];
-//                        [weakSelf insertImage:url alt:@""];
-//                    }
-//                    failure:^(NSError *_Nullable error){
-//                        [self.m_ProgressHUD showAnimated:YES withText:@"上传图片识别" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-//                    }];
 }
 
 - (void)pickerVC:(TZImagePickerController *)picker presentToCropVCWithImage:(UIImage *)orignalImage
@@ -274,7 +261,7 @@
                         [self insertImage:url alt:@""];
                     }
                     failure:^(NSError *_Nullable error){
-                        [self.m_ProgressHUD showAnimated:YES withText:@"上传图片识别" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                        [self.m_ProgressHUD showAnimated:YES withText:@"上传图片失败" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
                     }];
 }
 

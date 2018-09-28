@@ -2225,7 +2225,7 @@ static CGFloat kDefaultScale    = 0.5;
                              }
                              else
                              {
-                                 editorFrame.size.height = UI_MAINSCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT;
+                                 editorFrame.size.height = UI_MAINSCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT - 50;
                              }
 
                              self.editorView.frame                            = editorFrame;
@@ -2242,7 +2242,7 @@ static CGFloat kDefaultScale    = 0.5;
                              }
                              else
                              {
-                                 sourceFrame.size.height = UI_MAINSCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT;
+                                 sourceFrame.size.height = UI_MAINSCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT - 50;
                              }
 
                              self.sourceView.frame = sourceFrame;
