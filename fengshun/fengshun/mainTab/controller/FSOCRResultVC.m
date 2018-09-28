@@ -42,6 +42,9 @@ FSMoreViewVCDelegate
     for (UIButton *toolButton in _m_toolButtons)
     {
         [toolButton bm_roundedRect:15 borderWidth:0.5 borderColor:UI_COLOR_BL1];
+        if (UI_SCREEN_WIDTH <  375) {
+            toolButton.titleLabel.font = [UIFont systemFontOfSize:12.0f];
+        }
     }
     self.m_ProgressHUD = [[MBProgressHUD alloc] initWithView:self.view];
     self.m_ProgressHUD.animationType = MBProgressHUDAnimationFade;

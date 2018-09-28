@@ -69,6 +69,9 @@
     
     for (UIButton *toolButton in _m_toolButtons) {
         [toolButton bm_roundedRect:20 borderWidth:0.5 borderColor:UI_COLOR_BL1];
+        if (UI_SCREEN_WIDTH <  375) {
+            toolButton.titleLabel.font = [UIFont systemFontOfSize:12.0f];
+        }
     }
 }
 - (void)configCollectionView

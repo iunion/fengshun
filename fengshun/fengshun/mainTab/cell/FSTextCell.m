@@ -29,7 +29,19 @@
     if ([colors bm_isNotEmpty]) {
         NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:textModel.m_title attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16],NSForegroundColorAttributeName:UI_COLOR_B1}];
         
-        [attrStr addAttribute:NSForegroundColorAttributeName value:UI_COLOR_R1 range:[textModel.m_title rangeOfString:colors]];
+        NSMutableString *tmpString = [NSMutableString stringWithString:attrStr.string];
+        NSRange range = [attrStr.string rangeOfString:colors];
+        NSInteger location = 0;
+        while (range.length>0)
+        {
+            [attrStr bm_setTextColor:UI_COLOR_R1 range:NSMakeRange(location+range.location, range.length)];
+            location += (range.location+range.length);
+            NSString *tmp = [tmpString substringWithRange:NSMakeRange(range.location+range.length, attrStr.string.length-location)];
+            tmpString = [NSMutableString stringWithString:tmp];
+            range=[tmp rangeOfString:colors];
+        }
+       
+//        [attrStr addAttribute:NSForegroundColorAttributeName value:UI_COLOR_R1 range:[textModel.m_title rangeOfString:colors]];
         
         _m_titleLabel.attributedText = attrStr;
     }
