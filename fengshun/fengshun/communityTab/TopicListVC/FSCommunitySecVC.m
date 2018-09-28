@@ -204,7 +204,7 @@ FSCommunitySecVC ()
         }
         [self getHeaderInfoMsg];
     } failure:^(NSError * _Nullable error) {
-        [self checkXMApiWithError:error];
+        
     }];
 }
 
@@ -246,7 +246,7 @@ FSCommunitySecVC ()
             [_m_HeaderView updateHeaderViewWith:model];
         }
     } failure:^(NSError * _Nullable error) {
-        [self checkXMApiWithError:error];
+        
     }];
 }
 /*

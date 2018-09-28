@@ -13,6 +13,7 @@
 #import "FSLocation.h"
 #import "FSCoreStatus.h"
 #import "FSUserInfo.h"
+#import "AppDelegate.h"
 
 @implementation XMUploadFile
 
@@ -161,6 +162,7 @@
             {
                 NSString *message = [responseObject bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
                 *error = [NSError errorWithDomain:FSAPIResponseErrorDomain code:code userInfo:@{NSLocalizedDescriptionKey : message, NSHelpAnchorErrorKey : responseObject}];
+                
             }
             else
             {
@@ -176,7 +178,14 @@
     // 错误统一处理
     [XMCenter setErrorProcessBlock:^(XMRequest *request, NSError *__autoreleasing *error){
         // 这儿的error的情况包括:网络请求出错、自定义error、responseObject解析出错等.
-
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIViewController *vc = [GetAppDelegate.m_TabBarController getCurrentViewController];
+            if ([vc isKindOfClass:[FSSuperVC class]])
+            {
+                FSSuperVC *superVC = (FSSuperVC *)vc;
+                [superVC checkXMApiWithError:*error];
+            }
+        });
     }];
 }
 
