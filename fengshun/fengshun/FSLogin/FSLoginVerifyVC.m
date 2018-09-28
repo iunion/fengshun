@@ -12,6 +12,7 @@
 #import "FSSetPhoneVC.h"
 
 #import "DTCoreText.h"
+#import "BMTableViewActionBar.h"
 
 #import "FSPushVCManager.h"
 
@@ -19,7 +20,8 @@
 @interface FSLoginVerifyVC ()
 <
     BMVerifyFieldDelegate,
-    DTAttributedTextContentViewDelegate
+    DTAttributedTextContentViewDelegate,
+    BMTableViewActionBarDelegate
 >
 
 @property (nonatomic, strong) NSString *m_PhoneNum;
@@ -36,6 +38,8 @@
 
 @property (strong, nonatomic) NSURLSessionDataTask *m_VerificationCodeTask;
 @property (strong, nonatomic) NSURLSessionDataTask *m_CheckVerificationCodeTask;
+
+@property (nonatomic, strong) BMTableViewActionBar *actionBar;
 
 @end
 
@@ -209,6 +213,12 @@
     verifyField.autoResignFirstResponderWhenInputFinished = YES;
     verifyField.userInteractionEnabled = NO;
     self.m_VerifyField = verifyField;
+    
+    self.actionBar = [[BMTableViewActionBar alloc] initWithDelegate:self];
+    [self.actionBar.navigationControl setEnabled:NO forSegmentAtIndex:0];
+    [self.actionBar.navigationControl setEnabled:NO forSegmentAtIndex:1];
+    [self.actionBar setActionBarTitle:@""];
+    [self.m_VerifyField setFieldInputAccessoryView:self.actionBar];
     
     UILabel *label3 = [UILabel bm_labelWithFrame:CGRectMake(15.0f, verifyField.bm_bottom+10.0f, self.m_TableView.bm_width-30.0f, 24.0f) text:@"" fontSize:12.0f color:UI_COLOR_R1 alignment:NSTextAlignmentLeft lines:1];
     [self.m_TableView addSubview:label3];
@@ -776,6 +786,14 @@
     }
 }
 
+
+#pragma mark -
+#pragma mark REActionBar delegate
+
+- (void)actionBar:(BMTableViewActionBar *)actionBar doneButtonPressed:(UIBarButtonItem *)doneButtonItem
+{
+    [self.view endEditing:YES];
+}
 
 
 #pragma mark -
