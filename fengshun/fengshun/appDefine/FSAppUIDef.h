@@ -37,7 +37,8 @@
 #define UI_COLOR_B9             [UIColor bm_colorWithHex:0xF8F8F8]  //248,248,248
 #define UI_COLOR_B10            [UIColor bm_colorWithHex:0xB5B5B5]  //181,181,181
 
-#define UI_COLOR_BL1            [UIColor bm_colorWithHex:0x5d80e7]  //93, 128, 231
+//#define UI_COLOR_BL1            [UIColor bm_colorWithHex:0x5d80e7]  //93, 128, 231
+#define UI_COLOR_BL1            [UIColor bm_colorWithHex:0x577EEE]  //93, 128, 231
 #define UI_COLOR_BL2            [UIColor bm_colorWithHex:0xDDE6FF]  //221,230,255
 #define UI_COLOR_BL3            [UIColor bm_colorWithHex:0x8DC8FE]  //141,200,254
 #define UI_COLOR_BL4            [UIColor bm_colorWithHex:0x77CDEA]  //119,205,234
