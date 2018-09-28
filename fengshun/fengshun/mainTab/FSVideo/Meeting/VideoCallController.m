@@ -174,8 +174,8 @@
     // 2、配置进房票据
     option.avOption.privateMapKey = [model.privateMapKey dataUsingEncoding:NSUTF8StringEncoding];
     option.imOption.imSupport = NO;
-    option.avOption.autoCamera = YES;
-    option.avOption.autoMic = YES;
+    option.avOption.autoCamera = NO;
+    option.avOption.autoMic = NO;
     option.controlRole = FS_ILiveControlRole;
     // 设置房间中断事件监听
     option.roomDisconnectListener = self;
@@ -226,16 +226,18 @@
     // 人员加入事件
     VideoCallVideoView *view = [_packView elementForUserId:model.memberId];
     if (model.memberStatus == VideoCallMemberStatusOnline) {
-        if (view) {return;}
-        ILiveFrameDispatcher *frameDispatcher = [[ILiveRoomManager getInstance] getFrameDispatcher];
-        ILiveRenderView *renderView = [frameDispatcher addRenderAt:CGRectZero forIdentifier:model.memberId srcType:QAVVIDEO_SRC_TYPE_CAMERA];
-        renderView.autoRotate = YES;
-        renderView.isRotate = NO;
-        renderView.identifier = model.memberId;
-        VideoCallVideoView *videoView = [[VideoCallVideoView alloc] initWithRenderView:renderView model:model];
-        videoView.delegate = self;
-        [self.packView addSubview:videoView];
-        [self.packView adjustLayout];
+        if (view == nil) {
+            ILiveFrameDispatcher *frameDispatcher = [[ILiveRoomManager getInstance] getFrameDispatcher];
+            ILiveRenderView *renderView = [frameDispatcher addRenderAt:CGRectZero forIdentifier:model.memberId srcType:QAVVIDEO_SRC_TYPE_CAMERA];
+            renderView.autoRotate = YES;
+            renderView.isRotate = NO;
+            renderView.identifier = model.memberId;
+            VideoCallVideoView *videoView = [[VideoCallVideoView alloc] initWithRenderView:renderView model:model];
+            videoView.delegate = self;
+            [self.packView addSubview:videoView];
+            [self.packView adjustLayout];
+            view = videoView;
+        }
     } else if (model.memberStatus == VideoCallMemberStatusOffline) {
         // 人员退出事件
         if (!view) {return;}
@@ -245,6 +247,43 @@
         [self.packView adjustLayout];
     } else {
         NSAssert(NO, @"error");
+    }
+    
+    // 同步状态
+    if (view && model.memberStatus == VideoCallMemberStatusOnline) {
+        view.model.memberVideoStatus = model.memberVideoStatus;
+        view.model.memberVoiceStatus = model.memberVoiceStatus;
+        [view reloadData];
+
+        if ([FSMeetingDataEnum isMediatorIdentity:view.model.memberType]) {
+            BOOL curCameraState = [[ILiveRoomManager getInstance] getCurCameraState];
+            if (curCameraState != view.model.memberVideoStatus) {
+                // 获取视频方位
+                cameraPos pos = [[ILiveRoomManager getInstance] getCurCameraPos];
+                [[ILiveRoomManager getInstance] enableCamera:pos enable:view.model.memberVideoStatus succ:^{
+                    if (view.model.memberVideoStatus) {
+                        NSLog(@"摄像头已开启");
+                    } else {
+                        NSLog(@"摄像头已关闭");
+                    }
+                } failed:^(NSString *module, int errId, NSString *errMsg) {
+                    NSLog(@"摄像头操作失败\n%d:%@", errId, errMsg);
+                }];
+            }
+            
+            BOOL curMicState = [[ILiveRoomManager getInstance] getCurMicState];
+            if (curMicState != view.model.memberVoiceStatus) {
+                [[ILiveRoomManager getInstance] enableMic:view.model.memberVoiceStatus succ:^{
+                    if (view.model.memberVoiceStatus) {
+                        NSLog(@"麦克风已开启");
+                    } else {
+                        NSLog(@"麦克风已关闭");
+                    }
+                } failed:^(NSString *module, int errId, NSString *errMsg) {
+                    NSLog(@"麦克风操作失败\n%d:%@", errId, errMsg);
+                }];
+            }
+        }
     }
 }
 

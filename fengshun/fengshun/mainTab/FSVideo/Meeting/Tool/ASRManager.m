@@ -108,7 +108,7 @@ static dispatch_once_t onceToken;
         if (rsp.retCode == 0) {
             if (![[ILiveRoomManager getInstance] getCurMicState])
             {
-                NSLog(@"房间设置非语音识别环境");
+                NSLog(@"麦克风关闭状态");
                 return;
             }
             if (![t isEqualToString:rsp.voiceId])
