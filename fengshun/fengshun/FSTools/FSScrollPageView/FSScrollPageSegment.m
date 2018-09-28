@@ -72,6 +72,11 @@ FSScrollPageSegment ()
 
 - (instancetype)initWithTitles:(NSArray *)titles titleColor:(UIColor *)titleColor selectTitleColor:(UIColor *)selectTitleColor isEqualDivide:(BOOL)isEqualDivide
 {
+    return [self initWithTitles:titles titleColor:titleColor selectTitleColor:selectTitleColor titleFontSize:BUTTON_FONTSIZE isEqualDivide:isEqualDivide];
+}
+
+- (instancetype)initWithTitles:(NSArray *)titles titleColor:(UIColor *)titleColor selectTitleColor:(UIColor *)selectTitleColor titleFontSize:(CGFloat)fontSize isEqualDivide:(BOOL)isEqualDivide
+{
     CGRect frame = CGRectMake(0, 0, UI_SCREEN_WIDTH, FSScrollPageSegment_Height);
 
     return [self initWithFrame:frame titles:titles titleColor:titleColor selectTitleColor:selectTitleColor showUnderLine:YES moveLineFrame:CGRectZero isEqualDivide:isEqualDivide fresh:YES];
@@ -81,10 +86,12 @@ FSScrollPageSegment ()
 {
     return [self initWithFrame:frame titles:nil titleColor:nil selectTitleColor:nil showUnderLine:NO moveLineFrame:moveLineFrame isEqualDivide:isEqualDivide fresh:NO];
 }
+
 - (instancetype)initWithFrame:(CGRect)frame titles:(NSArray *)titles titleColor:(UIColor *)titleColor selectTitleColor:(UIColor *)selectTitleColor showUnderLine:(BOOL)showUnderLine moveLineFrame:(CGRect)moveLineFrame isEqualDivide:(BOOL)isEqualDivide fresh:(BOOL)fresh
 {
     return [self initWithFrame:frame titles:titles titleColor:titleColor selectTitleColor:selectTitleColor showUnderLine:showUnderLine moveLineFrame:moveLineFrame isEqualDivide:isEqualDivide fresh:fresh showTopline:NO showGapline:YES];
 }
+
 - (instancetype)initWithFrame:(CGRect)frame titles:(NSArray *)titles titleColor:(UIColor *)titleColor selectTitleColor:(UIColor *)selectTitleColor showUnderLine:(BOOL)showUnderLine moveLineFrame:(CGRect)moveLineFrame isEqualDivide:(BOOL)isEqualDivide fresh:(BOOL)fresh showTopline:(BOOL)showTopline showGapline:(BOOL)showGapline
 {
     self = [super initWithFrame:frame];
@@ -103,7 +110,8 @@ FSScrollPageSegment ()
         self.m_ShowGapline = showGapline;
 
         // 添加顶部线条
-        if (showTopline) {
+        if (showTopline)
+        {
             BMSingleLineView *topline = [[BMSingleLineView alloc]initWithFrame:CGRectMake(0, 0, self.bm_width, 1) direction:SingleLineDirectionLandscape];
             topline.lineColor = SEGMENT_LINE_COLOR;
             [self addSubview:topline];
@@ -145,6 +153,11 @@ FSScrollPageSegment ()
 
 
 - (void)freshButtonWithTitles:(NSArray *)titleArray titleColor:(UIColor *)titleColor selectTitleColor:(UIColor *)selectTitleColor
+{
+    [self freshButtonWithTitles:titleArray titleColor:titleColor selectTitleColor:selectTitleColor titleFontSize:BUTTON_FONTSIZE];
+}
+
+- (void)freshButtonWithTitles:(NSArray *)titleArray titleColor:(UIColor *)titleColor selectTitleColor:(UIColor *)selectTitleColor titleFontSize:(CGFloat)fontSize
 {
     // 移除Btn
     for (UIButton *btn in self.m_BtnArray)
@@ -188,7 +201,7 @@ FSScrollPageSegment ()
             [btn setTitle:title forState:UIControlStateNormal];
             [btn setTitleColor:titleColor forState:UIControlStateNormal];
             [btn setTitleColor:selectTitleColor forState:UIControlStateSelected];
-            btn.titleLabel.font = [UIFont systemFontOfSize:BUTTON_FONTSIZE];
+            btn.titleLabel.font = [UIFont systemFontOfSize:fontSize];
             //[btn.titleLabel sizeToFit];
             btn.tag = i + BUTTON_START_TAG;
 
@@ -209,7 +222,7 @@ FSScrollPageSegment ()
         {
             NSString *title = titleArray[i];
 
-            CGSize btnSize = [title sizeWithAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:BUTTON_FONTSIZE]}];
+            CGSize btnSize = [title sizeWithAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:fontSize]}];
             buttonWidth    = btnSize.width + BUTTON_GAP;
 
             CGRect frame = CGRectMake(x, 0, buttonWidth, self.bm_height);
@@ -222,7 +235,7 @@ FSScrollPageSegment ()
             [btn setTitle:title forState:UIControlStateNormal];
             [btn setTitleColor:titleColor forState:UIControlStateNormal];
             [btn setTitleColor:selectTitleColor forState:UIControlStateSelected];
-            btn.titleLabel.font = [UIFont systemFontOfSize:BUTTON_FONTSIZE];
+            btn.titleLabel.font = [UIFont systemFontOfSize:fontSize];
             //[btn.titleLabel sizeToFit];
             btn.tag = i + BUTTON_START_TAG;
     
@@ -235,6 +248,7 @@ FSScrollPageSegment ()
         self.m_BackScrollView.contentSize = CGSizeMake(x + BUTTON_GAP / 2, self.m_BackScrollView.bm_height);
     }
 }
+
 - (void)addGaplineWithStartX:(CGFloat)startX
 {
     BMSingleLineView *gapline = [[BMSingleLineView alloc]initWithFrame:CGRectMake(startX, GAPLINE_INDENT, GAPLINE_WIDTH, self.bm_height - 2*GAPLINE_INDENT) direction:SingleLineDirectionPortait];
@@ -244,6 +258,7 @@ FSScrollPageSegment ()
     [self.m_BackScrollView addSubview:gapline];
     [self.m_gaplineArray addObject:gapline];
 }
+
 - (void)setMoveLineColor:(UIColor *)movelineColor
 {
     if (movelineColor)
@@ -279,6 +294,24 @@ FSScrollPageSegment ()
     for (UIButton *btn in self.m_BtnArray)
     {
         [btn setTitleColor:selectTextColor forState:UIControlStateSelected];
+    }
+}
+
+- (void)setM_TextFontSize:(CGFloat)textFontSize
+{
+    if (!self.m_IsEqualDivide)
+    {
+        return;
+    }
+    
+    if (textFontSize < 8.0f)
+    {
+        textFontSize = 8.0f;
+    }
+    
+    for (UIButton *btn in self.m_BtnArray)
+    {
+        btn.titleLabel.font = [UIFont systemFontOfSize:textFontSize];
     }
 }
 

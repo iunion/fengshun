@@ -24,8 +24,12 @@
 // 选中时的Title颜色
 @property (nonatomic, strong) UIColor *m_SelectTextColor;
 
+@property (nonatomic, assign) CGFloat m_TextFontSize;
+
 // 初始化方法
 - (instancetype)initWithTitles:(NSArray *)titles titleColor:(UIColor *)titleColor selectTitleColor:(UIColor *)selectTitleColor isEqualDivide:(BOOL)isEqualDivide;
+
+- (instancetype)initWithTitles:(NSArray *)titles titleColor:(UIColor *)titleColor selectTitleColor:(UIColor *)selectTitleColor titleFontSize:(CGFloat)fontSize isEqualDivide:(BOOL)isEqualDivide;
 
 // 适用于分割线配置的初始化方法
 + (instancetype)attachedSegmentWithFrame:(CGRect)frame showUnderLine:(BOOL)showUnderLine showTopline:(BOOL)showTopline moveLineFrame:(CGRect)moveLineFrame isEqualDivide:(BOOL)isEqualDivide showGapline:(BOOL)showGapline;
