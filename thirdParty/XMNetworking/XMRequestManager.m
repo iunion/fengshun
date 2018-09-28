@@ -142,7 +142,7 @@
     [XMCenter setRequestProcessBlock:^(XMRequest *request){
         // 在这里对所有的请求进行统一的预处理，如业务数据加密等
     }];
-
+    BMWeakSelf
     // 响应后统一处理插件
     [XMCenter setResponseProcessBlock:^id(XMRequest *request, id responseObject, NSError *__autoreleasing *error) {
 #if DEBUG
@@ -161,7 +161,18 @@
             if (code != 1000)
             {
                 NSString *message = [responseObject bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
-                *error = [NSError errorWithDomain:FSAPIResponseErrorDomain code:code userInfo:@{NSLocalizedDescriptionKey : message, NSHelpAnchorErrorKey : responseObject}];
+                NSError *customError = [NSError errorWithDomain:FSAPIResponseErrorDomain code:code userInfo:@{NSLocalizedDescriptionKey : message, NSHelpAnchorErrorKey : responseObject}];
+                *error = customError;
+                if (![weakSelf cheakLoginState:request]) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        UIViewController *vc = [GetAppDelegate.m_TabBarController getCurrentViewController];
+                        if ([vc isKindOfClass:[FSSuperVC class]])
+                        {
+                            FSSuperVC *superVC = (FSSuperVC *)vc;
+                            [superVC checkXMApiWithError:customError];
+                        }
+                    });
+                }
                 
             }
             else
@@ -174,20 +185,32 @@
 
         return nil;
     }];
-
     // 错误统一处理
     [XMCenter setErrorProcessBlock:^(XMRequest *request, NSError *__autoreleasing *error){
         // 这儿的error的情况包括:网络请求出错、自定义error、responseObject解析出错等.
-        dispatch_async(dispatch_get_main_queue(), ^{
-            UIViewController *vc = [GetAppDelegate.m_TabBarController getCurrentViewController];
-            if ([vc isKindOfClass:[FSSuperVC class]])
-            {
-                FSSuperVC *superVC = (FSSuperVC *)vc;
-                [superVC checkXMApiWithError:*error];
-            }
-        });
+        
     }];
 }
+
++ (BOOL)cheakLoginState:(XMRequest *)request
+{
+    BOOL isCheak = NO;
+    for (NSString *api in [self ignoreLoginCheakApi]) {
+        if ([api isEqualToString:request.api]) {
+            isCheak = YES;
+            break;
+        }
+    }
+    return isCheak;
+}
+
+#pragma mark - 忽略登录检查的api
++ (NSArray *)ignoreLoginCheakApi
+{
+    return @[@"/storm/home/getMessageUnReadFlag"// 小红点
+             ];
+}
+
 
 + (void)p_setupPostRequest:(XMRequest *)request withServer:(NSString *)server API:(NSString *)api methd:(XMHTTPMethodType)methodType parameters:(NSDictionary *)parameters timeoutInterval:(NSTimeInterval)timeoutInterval
 {
