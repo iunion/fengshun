@@ -111,7 +111,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-//    [self begainEditor];
 }
 
 - (void)didReceiveMemoryWarning
@@ -259,6 +258,7 @@
 
                         NSString *url = [NSString stringWithFormat:@"%@", [responseObject bm_stringTrimForKey:@"previewUrl"]];
                         [self insertImage:url alt:@""];
+                        [self begainEditor];
                     }
                     failure:^(NSError *_Nullable error){
                         [self.m_ProgressHUD showAnimated:YES withText:@"上传图片失败" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];

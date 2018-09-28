@@ -360,7 +360,7 @@ static CGFloat kDefaultScale    = 0.5;
     self.editorView.hidesInputAccessoryView           = YES;
     self.editorView.keyboardDisplayRequiresUserAction = NO;
     self.editorView.scalesPageToFit                   = YES;
-    //    self.editorView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+//    self.editorView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     self.editorView.dataDetectorTypes  = UIDataDetectorTypeNone;
     self.editorView.scrollView.bounces = NO;
     self.editorView.backgroundColor    = [UIColor whiteColor];
@@ -1099,6 +1099,7 @@ static CGFloat kDefaultScale    = 0.5;
 - (void)begainEditor
 {
     [self.sourceView becomeFirstResponder];
+    [self.editorView becomeFirstResponder];
     [self focusTextEditor];
 }
 
@@ -1764,7 +1765,7 @@ static CGFloat kDefaultScale    = 0.5;
 
 - (void)updateImage:(NSString *)url alt:(NSString *)alt
 {
-    //    [self.editorView stringByEvaluatingJavaScriptFromString:@"zss_editor.prepareInsert();"];
+    [self.editorView stringByEvaluatingJavaScriptFromString:@"zss_editor.prepareInsert();"];
     NSString *trigger = [NSString stringWithFormat:@"zss_editor.updateImage(\"%@\", \"%@\");", url, alt];
     [self.editorView stringByEvaluatingJavaScriptFromString:trigger];
 }
@@ -2001,13 +2002,25 @@ static CGFloat kDefaultScale    = 0.5;
 #pragma mark - Callbacks
 
 //Blank implementation
-- (void)editorDidScrollWithPosition:(NSInteger)position {}
+- (void)editorDidScrollWithPosition:(NSInteger)position
+{
+    
+}
 //Blank implementation
-- (void)editorDidChangeWithText:(NSString *)text andHTML:(NSString *)html {}
+- (void)editorDidChangeWithText:(NSString *)text andHTML:(NSString *)html
+{
+    
+}
 //Blank implementation
-- (void)hashtagRecognizedWithWord:(NSString *)word {}
+- (void)hashtagRecognizedWithWord:(NSString *)word
+{
+    
+}
 //Blank implementation
-- (void)mentionRecognizedWithWord:(NSString *)word {}
+- (void)mentionRecognizedWithWord:(NSString *)word
+{
+    
+}
 #pragma mark - AlertView
 
 - (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView
@@ -2162,7 +2175,7 @@ static CGFloat kDefaultScale    = 0.5;
     // Correct Curve
     UIViewAnimationOptions animationOptions = curve << 16;
 
-    const int extraHeight = 60;
+    const int extraHeight = 10;
 
     if ([notification.name isEqualToString:UIKeyboardWillShowNotification])
     {
@@ -2178,7 +2191,7 @@ static CGFloat kDefaultScale    = 0.5;
 
                              // Editor View
                              CGRect editorFrame                               = self.editorView.frame;
-                             editorFrame.size.height                          = (UI_MAINSCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT - keyboardHeight) - sizeOfToolbar - extraHeight;
+                             editorFrame.size.height                          = (UI_MAINSCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT - keyboardHeight) - sizeOfToolbar - extraHeight - 50;
                              self.editorView.frame                            = editorFrame;
                              self.editorViewFrame                             = self.editorView.frame;
                              self.editorView.scrollView.contentInset          = UIEdgeInsetsZero;
@@ -2186,7 +2199,7 @@ static CGFloat kDefaultScale    = 0.5;
 
                              // Source View
                              CGRect sourceFrame      = self.sourceView.frame;
-                             sourceFrame.size.height = (UI_MAINSCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT - keyboardHeight) - sizeOfToolbar - extraHeight;
+                             sourceFrame.size.height = (UI_MAINSCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT - keyboardHeight) - sizeOfToolbar - extraHeight - 50;
                              self.sourceView.frame   = sourceFrame;
 
                              // Provide editor with keyboard height and editor view height
