@@ -67,6 +67,7 @@
         [SocketHelper destroy];
         [[ASRManager defaultManager] stop];
         [ASRManager defaultManager].delegate = nil;
+        [ASRManager destroy];
     }];
 }
 
@@ -270,8 +271,6 @@
                     [self vc_showMessage:msg];
                 }];
             }
-        } else {
-            // 关闭别人的视屏
         }
     }
     else
@@ -292,9 +291,6 @@
                     [self vc_showMessage:msg];
                 }];
             }
-        } else {
-            // 关闭别人的麦克风
-            // 发socket，关闭麦克风
         }
     }
     [view reloadData];
@@ -455,9 +451,25 @@
 
 #pragma mark - ASRDelegate
 - (void)asrReceiveText:(NSString *)text {
+    NSLog(@"asrReceiveText = %@", text);
     if (text.length) {
         [[SocketHelper shareHelper] sentTextMessageEvent:text receiverId:nil isVoice:YES];
     }
+}
+
+-(void)asrFailedWithError:(NSError *)error
+{
+    NSLog(@"asrFailedWithError = %@", error);
+    if ([error.localizedFailureReason bm_isNotEmpty]) {
+//        [self vc_showMessage:error.localizedFailureReason];
+    } else if ([error.localizedDescription bm_isNotEmpty]) {
+//        [self vc_showMessage:error.localizedDescription];
+    }
+}
+
+-(void)asrStateChange:(ASRState)state
+{
+    NSLog(@"asrStateChange = %@", @(state));
 }
 
 #pragma mark - VideoCallVideoViewDelegate
