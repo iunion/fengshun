@@ -69,16 +69,10 @@
     // 新页面默认申请人、被申请人
     if (_m_InviteList == nil) {
         _m_InviteList = [NSMutableArray array];
-        if (self.meetingId == 0 && self.existingLitigantList.count)
+        [self addApplicantLitigant];
+        if (self.meetingId == 0 && self.existingLitigantList.count == 0)
         {
-            [_m_InviteList addObjectsFromArray:self.existingLitigantList];
-        }
-        else
-        {
-            [self addApplicantLitigant];
-            if (self.meetingId == 0) {
-                [self addRespondentLitigant];
-            }
+            [self addRespondentLitigant];
         }
     }
     
@@ -260,6 +254,16 @@
         }
     }
     
+    if (self.existingLitigantList.count) {
+        for (FSMeetingPersonnelModel *firstModel in self.m_InviteList) {
+            for (FSMeetingPersonnelModel *senconModel in self.existingLitigantList) {
+                if ([firstModel.mobilePhone isEqualToString:senconModel.mobilePhone]) {
+                    [self.m_ProgressHUD showAnimated:YES withDetailText:@"参会手机号不能重复" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                    return;
+                }
+            }
+        }
+    }
     
     self.m_CorrectList = correctArray;
     if (self.meetingId == 0) {
