@@ -439,12 +439,12 @@
 
 - (void)updateAttendedLitWithoutMediator:(NSArray *)list
 {
-    for (NSInteger index = self.m_AttendedList.count-1; index >= 0; index--) {
-        FSMeetingPersonnelModel *model = self.m_AttendedList[index];
-        if (![model isMediatorPerson]) {
-            [self.m_AttendedList removeObject:model];
-        }
-    }
+//    for (NSInteger index = self.m_AttendedList.count-1; index >= 0; index--) {
+//        FSMeetingPersonnelModel *model = self.m_AttendedList[index];
+//        if (![model isMediatorPerson]) {
+//            [self.m_AttendedList removeObject:model];
+//        }
+//    }
     
     [self.m_AttendedList addObjectsFromArray:list];
     [self freshViews];

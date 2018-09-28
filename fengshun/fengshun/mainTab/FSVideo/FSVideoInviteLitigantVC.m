@@ -69,16 +69,10 @@
     // 新页面默认申请人、被申请人
     if (_m_InviteList == nil) {
         _m_InviteList = [NSMutableArray array];
-        if (self.meetingId == 0 && self.existingLitigantList.count)
+        [self addApplicantLitigant];
+        if (self.meetingId == 0 && self.existingLitigantList.count == 0)
         {
-            [_m_InviteList addObjectsFromArray:self.existingLitigantList];
-        }
-        else
-        {
-            [self addApplicantLitigant];
-            if (self.meetingId == 0) {
-                [self addRespondentLitigant];
-            }
+            [self addRespondentLitigant];
         }
     }
     
@@ -209,6 +203,8 @@
 
 - (void)doneAction
 {
+    FSUserInfoModel *user = [FSUserInfoModel userInfo];
+
     NSMutableArray *correctArray = [NSMutableArray array];
     for (FSMeetingPersonnelModel *model in self.m_InviteList) {
         // 手机号和姓名可以同时为空
@@ -229,6 +225,12 @@
             [self.m_ProgressHUD showAnimated:YES withDetailText:@"请输入正确的手机号码" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             return;
         }
+        
+        if ([model.mobilePhone isEqualToString:user.m_UserBaseInfo.m_PhoneNum]) {
+            [self.m_ProgressHUD showAnimated:YES withDetailText:@"参会手机号不能重复" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            return;
+        }
+
         [correctArray addObject:model];
     }
     
@@ -236,6 +238,33 @@
         [self.m_ProgressHUD showAnimated:YES withDetailText:@"请输入当事人信息" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         return;
     }
+    
+    // 手机号不能重复
+    NSInteger correctCount = correctArray.count;
+    if (correctCount > 1) {
+        for (int i=0; i< correctCount; i++) {
+            FSMeetingPersonnelModel *firstModel = correctArray[i];
+            for (int j=i+1; j< correctCount; j++) {
+                FSMeetingPersonnelModel *senconModel = correctArray[j];
+                if ([firstModel.mobilePhone isEqualToString:senconModel.mobilePhone]) {
+                    [self.m_ProgressHUD showAnimated:YES withDetailText:@"参会手机号不能重复" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                    return;
+                }
+            }
+        }
+    }
+    
+    if (self.existingLitigantList.count) {
+        for (FSMeetingPersonnelModel *firstModel in self.m_InviteList) {
+            for (FSMeetingPersonnelModel *senconModel in self.existingLitigantList) {
+                if ([firstModel.mobilePhone isEqualToString:senconModel.mobilePhone]) {
+                    [self.m_ProgressHUD showAnimated:YES withDetailText:@"参会手机号不能重复" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                    return;
+                }
+            }
+        }
+    }
+    
     self.m_CorrectList = correctArray;
     if (self.meetingId == 0) {
         if (self.inviteComplete && self.m_CorrectList.count) {
