@@ -3833,6 +3833,7 @@
 		DBF7E1B721536C07002CEDA4 /* FSCollectionCourseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSCollectionCourseCell.xib; sourceTree = "<group>"; };
 		DBF7E1C621539F45002CEDA4 /* FSCourseHomePageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCourseHomePageVC.h; sourceTree = "<group>"; };
 		DBF7E1C721539F45002CEDA4 /* FSCourseHomePageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCourseHomePageVC.m; sourceTree = "<group>"; };
+		E45C34DC215E158A00805EB8 /* UMAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMAnalytics.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -7349,6 +7350,7 @@
 		ADEF1F50214F8AF300FFE0C3 /* UMShare */ = {
 			isa = PBXGroup;
 			children = (
+				E45C34DC215E158A00805EB8 /* UMAnalytics.framework */,
 				ADEF1F55214F8AF300FFE0C3 /* SocialLibraries */,
 				ADEF1F70214F9C6500FFE0C3 /* UMCommon.framework */,
 				ADEF1F54214F8AF300FFE0C3 /* UMShare.framework */,
@@ -9949,7 +9951,7 @@
 				EXCLUDED_SOURCE_FILE_NAMES = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
-					"$(SRCROOT)/../thirdParty/UMShare",
+					"$(SRCROOT)/../thirdParty/UMShare/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fengshun/fengshun-Prefix.pch";
@@ -10002,7 +10004,7 @@
 				);
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
-					"$(SRCROOT)/../thirdParty/UMShare",
+					"$(SRCROOT)/../thirdParty/UMShare/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fengshun/fengshun-Prefix.pch";
@@ -10120,7 +10122,7 @@
 					"$(PROJECT_DIR)/ILiveSDKT/IMSDK",
 					"$(PROJECT_DIR)/ILiveSDKT/AVSDK",
 					"$(PROJECT_DIR)/ILiveSDKT/ILiveSDK",
-					"$(SRCROOT)/../thirdParty/UMShare",
+					"$(SRCROOT)/../thirdParty/UMShare/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fengshun/fengshun-Prefix.pch";
@@ -10181,7 +10183,7 @@
 					"$(PROJECT_DIR)/ILiveSDKT/IMSDK",
 					"$(PROJECT_DIR)/ILiveSDKT/AVSDK",
 					"$(PROJECT_DIR)/ILiveSDKT/ILiveSDK",
-					"$(SRCROOT)/../thirdParty/UMShare",
+					"$(SRCROOT)/../thirdParty/UMShare/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fengshun/fengshun-Prefix.pch";
