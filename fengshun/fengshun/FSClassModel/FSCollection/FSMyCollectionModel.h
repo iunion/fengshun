@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 文书的文件id: filedId
 @property (nonatomic, strong) NSString *m_FiledId;
 // 指导性案例: guidingCase
-@property (nonatomic, strong) NSString *m_GuidingCase;
+@property (nonatomic, assign) BOOL m_GuidingCase;
 // 文书预览地址: previewUrl
 @property (nonatomic, strong) NSString *m_PreviewUrl;
 // 阅读数: readCount

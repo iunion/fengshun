@@ -67,7 +67,7 @@
     // 缩略图url: coverThumbUrl
     self.m_CoverThumbUrl = [dic bm_stringTrimForKey:@"coverThumbUrl"];
     // 指导性案例: guidingCase
-    self.m_GuidingCase = [dic bm_stringTrimForKey:@"guidingCase"];
+    self.m_GuidingCase = [dic bm_boolForKey:@"guidingCase"];
     // 文书预览地址: previewUrl
     self.m_PreviewUrl = [dic bm_stringTrimForKey:@"previewUrl"];
     // 阅读数: readCount

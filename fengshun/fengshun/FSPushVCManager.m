@@ -202,7 +202,7 @@
 + (void)viewController:(UIViewController *)pushVC pushToLawTopicVCWithLawTopic:(NSString *)lawTopic
 {
     NSString *url = [NSString stringWithFormat:@"%@/Law?keywords=%@",FS_H5_SERVER,lawTopic];
-    FSWebViewController *vc = [[FSWebViewController alloc] initWithTitle:@"法规专题" url:url showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR delegate:nil];
+    FSWebViewController *vc = [[FSWebViewController alloc] initWithTitle:lawTopic url:url showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR delegate:nil];
     vc.hidesBottomBarWhenPushed = YES;
     vc.m_ShowPageTitles = NO;
     [pushVC.navigationController pushViewController:vc animated:YES];
@@ -214,9 +214,9 @@
     [FSPushVCManager showWebView:vc url:[NSString stringWithFormat:@"%@/law/lawDetail?ID=%@&keywords=%@",FS_H5_SERVER,lawId,keywordsStr] title:nil showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR animated:YES];
 }
 // 案件详情
-+(void)viewController:(UIViewController *)vc pushToCaseDetailWithId:(NSString *)caseId keywords:(NSString *)keywordsStr
++(void)viewController:(UIViewController *)vc pushToCaseDetailWithId:(NSString *)caseId isGuide:(BOOL)isGuide keywords:(NSString *)keywordsStr
 {
-    [self showWebView:vc url:[NSString stringWithFormat:@"%@/caseDetail?ID=%@&keywords=%@",FS_H5_SERVER,caseId,keywordsStr] title:nil showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR animated:YES];
+    [self showWebView:vc url:[NSString stringWithFormat:@"%@%@?ID=%@&keywords=%@",FS_H5_SERVER,isGuide?@"/caseGuide":@"/caseDetail",caseId,keywordsStr] title:nil showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR animated:YES];
     
     
 }

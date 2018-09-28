@@ -186,7 +186,7 @@ FSOCRSearchResultVC ()
     else
     {
         FSCaseResultModel *model = _m_caseSearchResultModel.m_resultDataArray[indexPath.row];
-        [FSPushVCManager viewController:self pushToCaseDetailWithId:model.m_caseId keywords:_m_caseSearchResultModel.m_keywordsStr];
+        [FSPushVCManager viewController:self pushToCaseDetailWithId:model.m_caseId isGuide:model.m_isGuidingCase keywords:_m_caseSearchResultModel.m_keywordsStr];
     }
 }
 

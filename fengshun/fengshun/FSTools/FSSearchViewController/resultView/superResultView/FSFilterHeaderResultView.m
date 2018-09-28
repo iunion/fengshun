@@ -164,13 +164,26 @@ FSFilterHeaderResultView ()
 }
 - (void)showLeftFilters:(id)sender
 {
-    self.m_showList = FSSearchFilterShowList_Left;
-    [self showFilterList];
+    if (_m_showList == FSSearchFilterShowList_Left) {
+        [self hiddenFilterListWithIndex: -1];
+    }
+    else
+    {
+        self.m_showList = FSSearchFilterShowList_Left;
+        [self showFilterList];
+    }
 }
 - (void)showRightFilters:(id)sender
 {
-    self.m_showList = FSSearchFilterShowList_Right;
-    [self showFilterList];
+    if (_m_showList == FSSearchFilterShowList_Right) {
+        [self hiddenFilterListWithIndex:-1];
+    }
+    else
+    {
+        self.m_showList = FSSearchFilterShowList_Right;
+        [self showFilterList];
+    }
+    
 }
 - (void)filterViewClicked:(id)sender
 {
