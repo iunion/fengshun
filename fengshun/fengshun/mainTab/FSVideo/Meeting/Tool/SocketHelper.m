@@ -237,6 +237,9 @@ static dispatch_once_t onceToken;
                           };
 
     if (_socket.readyState == SR_OPEN) {
+        
+        NSLog(@"sentTextMessageEvent = %@", dic);
+
         [_socket send:[dic mj_JSONString]];
     }
 }

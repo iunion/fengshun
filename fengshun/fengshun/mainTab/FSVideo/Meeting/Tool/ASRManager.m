@@ -106,8 +106,18 @@ static dispatch_once_t onceToken;
     [_client startDetectionWihtCompletionHandle:^(QCloudAAIRsp *rsp) {
         __strong typeof(weakSelf) self = weakSelf;
         if (rsp.retCode == 0) {
-            if (![[ILiveRoomManager getInstance] getCurMicState]) return;
-            if (![t isEqualToString:rsp.voiceId]) t = rsp.voiceId;
+            if (![[ILiveRoomManager getInstance] getCurMicState])
+            {
+                NSLog(@"房间设置非语音识别环境");
+                return;
+            }
+            if (![t isEqualToString:rsp.voiceId])
+            {
+                t = rsp.voiceId;
+            }
+            
+            NSLog(@"监听到语音识别消息：%@", rsp.text);
+
             if(rsp.text.length&&[self.delegate respondsToSelector:@selector(asrReceiveText:)])[self.delegate asrReceiveText:rsp.text];
         }else{
             NSLog(@"语音识别失败code= %dmsg:%@",rsp.retCode,rsp.descMsg);
