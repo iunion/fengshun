@@ -395,12 +395,15 @@
         [topBar setBtnIsSelected:!status index:2];
     } else if (index == 3) { // 翻转摄像头
         BMWeakSelf
-        [[ILiveRoomManager getInstance] switchCamera:^{
-            
-        } failed:^(NSString *module, int errId, NSString *errMsg) {
-            NSString *msg = [NSString stringWithFormat:@"翻转摄像头操作失败\n%d:%@", errId, errMsg];
-            [weakSelf vc_showMessage:msg];
-        }];
+        // 摄像头打开状态下才能翻转
+        if ([[ILiveRoomManager getInstance] getCurCameraState]) {
+            [[ILiveRoomManager getInstance] switchCamera:^{
+                
+            } failed:^(NSString *module, int errId, NSString *errMsg) {
+                NSString *msg = [NSString stringWithFormat:@"翻转摄像头操作失败\n%d:%@", errId, errMsg];
+                [weakSelf vc_showMessage:msg];
+            }];
+        }
     }
 }
 
