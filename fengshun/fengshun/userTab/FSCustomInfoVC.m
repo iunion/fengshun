@@ -292,6 +292,7 @@
     imageTextView.textColor = UI_COLOR_B4;
     imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
     imageTextView.showTableCellAccessoryArrow = YES;
+    imageTextView.maxWidth = self.m_TableView.bm_width - 120.0f;
     self.m_OrganizationItem.accessoryView = imageTextView;
     self.m_OrganizationItem.selectionHandler = ^(id item) {
         FSEditorVC *editorVC = [[FSEditorVC alloc] initWithOperaType:FSUpdateUserInfo_Organization minWordCount:0 maxnWordCount:100 text:userInfo.m_UserBaseInfo.m_Organization placeholderText:nil];
@@ -311,6 +312,7 @@
     imageTextView.textColor = UI_COLOR_B4;
     imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
     imageTextView.showTableCellAccessoryArrow = YES;
+    imageTextView.maxWidth = self.m_TableView.bm_width - 120.0f;
     self.m_JobItem.accessoryView = imageTextView;
     self.m_JobItem.selectionHandler = ^(id item) {
         FSEditorVC *editorVC = [[FSEditorVC alloc] initWithOperaType:FSUpdateUserInfo_Job minWordCount:0 maxnWordCount:50 text:userInfo.m_UserBaseInfo.m_Job placeholderText:nil];

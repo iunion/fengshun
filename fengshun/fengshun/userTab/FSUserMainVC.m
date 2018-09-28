@@ -420,14 +420,17 @@
 
 - (void)checkUnreadMessage
 {
-    [FSApiRequest getMessageUnReadFlagSuccess:^(id responseObject) {
-        if ([responseObject isKindOfClass:[NSNumber class]])
-        {
-            BOOL show = ((NSNumber *)responseObject).boolValue;
-            [self showRedBadge:show];
-        }
-    } failure:^(NSError *error) {
-    }];
+    if ([FSUserInfoModel isLogin])
+    {
+        [FSApiRequest getMessageUnReadFlagSuccess:^(id responseObject) {
+            if ([responseObject isKindOfClass:[NSNumber class]])
+            {
+                BOOL show = ((NSNumber *)responseObject).boolValue;
+                [self showRedBadge:show];
+            }
+        } failure:^(NSError *error) {
+        }];
+    }
 }
 
 - (void)showRedBadge:(BOOL)show

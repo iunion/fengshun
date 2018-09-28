@@ -52,6 +52,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithInputCount:(NSUInteger)count;
 
+- (void)setFieldInputView:(__kindof UIView *)inputView;
+- (void)setFieldInputAccessoryView:(__kindof UIView *)inputAccessoryView;
+
 - (void)clear;
 
 @end

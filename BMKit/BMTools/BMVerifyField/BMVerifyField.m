@@ -17,6 +17,9 @@
 @property (nonatomic, strong) NSMutableArray <NSString *> *characterArray;
 @property (nonatomic, strong) CALayer *cursorLayer;
 
+@property (nullable, nonatomic, strong) __kindof UIView *inputView;
+@property (nullable, nonatomic, strong) __kindof UIView *inputAccessoryView;
+
 @end
 
 @implementation BMVerifyField
@@ -27,6 +30,10 @@
 
 @synthesize autocapitalizationType = _autocapitalizationType;
 @synthesize autocorrectionType = _autocorrectionType;
+
+- (void)dealloc
+{
+}
 
 - (instancetype)initWithInputCount:(NSUInteger)count
 {
@@ -89,6 +96,16 @@
 
 
 #pragma mark - Property
+
+- (void)setFieldInputView:(UIView *)inputView
+{
+    self.inputView = inputView;
+}
+
+- (void)setFieldInputAccessoryView:(UIView *)inputAccessoryView
+{
+    self.inputAccessoryView = inputAccessoryView;
+}
 
 - (CALayer *)cursorLayer
 {
