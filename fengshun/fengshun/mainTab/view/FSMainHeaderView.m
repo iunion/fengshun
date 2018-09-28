@@ -10,6 +10,8 @@
 #import "UIButton+BMContentRect.h"
 #import "FSMainToolCell.h"
 
+#define FS_HEADER_WIDTH (UI_SCREEN_WIDTH -55.0f)
+
 @implementation FSMainHeaderView
 
 /*
@@ -21,7 +23,7 @@
 */
 + (CGFloat)headerConstheight
 {
-    return 409 + UI_NAVIGATION_BAR_HEIGHT+UI_STATUS_BAR_HEIGHT;
+    return 248 + FS_HEADER_WIDTH/2 + UI_NAVIGATION_BAR_HEIGHT+UI_STATUS_BAR_HEIGHT;
 }
 
 - (void)awakeFromNib
@@ -29,14 +31,14 @@
     [super awakeFromNib];
     [self configBanner];
     _m_toolCollectionView.contentInset = UIEdgeInsetsMake(0, 30, 0, 30);
-    _m_topViewHeightConstraint.constant = 197 + UI_NAVIGATION_BAR_HEIGHT+UI_STATUS_BAR_HEIGHT;
+    _m_topViewHeightConstraint.constant = FS_HEADER_WIDTH/2 + 36 + UI_NAVIGATION_BAR_HEIGHT+UI_STATUS_BAR_HEIGHT;
     [_m_toolCollectionView registerNib:[UINib nibWithNibName:@"FSMainToolCell" bundle:nil] forCellWithReuseIdentifier:@"FSMainToolCell"];
     
 }
 
 - (void)configBanner
 {
-    self.m_bannerView = [[FSPageBannerView alloc] initWithFrame:CGRectMake(0, 1+UI_NAVIGATION_BAR_HEIGHT+UI_STATUS_BAR_HEIGHT, UI_SCREEN_WIDTH, 164) scrollDirection:FSBannerViewScrollDirectionLandscape images:nil pageWidth:UI_SCREEN_WIDTH - 56.0f padding:0 rollingScale:YES];
+    self.m_bannerView = [[FSPageBannerView alloc] initWithFrame:CGRectMake(0, 1+UI_NAVIGATION_BAR_HEIGHT+UI_STATUS_BAR_HEIGHT, UI_SCREEN_WIDTH, FS_HEADER_WIDTH/2) scrollDirection:FSBannerViewScrollDirectionLandscape images:nil pageWidth:FS_HEADER_WIDTH padding:0 rollingScale:YES];
     [_m_bannerView setPageControlStyle:FSBannerViewPageStyle_None];
     _m_bannerView.showClose = NO;
     _m_bannerView.placeholderImage = [UIImage imageNamed:@"placeholder_banner"];
