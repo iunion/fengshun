@@ -325,9 +325,15 @@
                     } else {
                         [self vc_showMessage:@"麦克风已关闭"];
                     }
+                    if (view.model.memberVoiceStatus) {
+                        NSLog(@"麦克风已开启");
+                    } else {
+                        NSLog(@"麦克风已关闭");
+                    }
                 } failed:^(NSString *module, int errId, NSString *errMsg) {
                     NSString *msg = [NSString stringWithFormat:@"麦克风操作失败\n%d:%@", errId, errMsg];
                     [self vc_showMessage:msg];
+                    NSLog(@"麦克风操作失败\n%d:%@", errId, errMsg);
                 }];
             }
         }
