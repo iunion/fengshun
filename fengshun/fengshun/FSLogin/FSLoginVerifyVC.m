@@ -710,7 +710,7 @@
 #endif
     
     NSInteger statusCode = [resDic bm_intForKey:@"code"];
-    if (statusCode == 1000)
+    if (statusCode == 1000 && [resDic bm_intForKey:@"data"] == 1)
     {
         [self.m_ProgressHUD hideAnimated:NO];
         
