@@ -65,5 +65,8 @@
 
     // Configure the view for the selected state
 }
-
+- (void)hiddenTopTag:(BOOL)hidden
+{
+    _m_StickBgView.hidden = hidden;
+}
 @end

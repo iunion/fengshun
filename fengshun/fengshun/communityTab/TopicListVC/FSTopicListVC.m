@@ -175,6 +175,7 @@ FSTopicListVC ()
         cell = [[NSBundle mainBundle] loadNibNamed:@"FSForumDetailListCell" owner:self options:nil].firstObject;
     }
     [cell showWithTopicModel:self.m_DataArray[indexPath.row]];
+    [cell hiddenTopTag:YES];
     return cell;
 }
 

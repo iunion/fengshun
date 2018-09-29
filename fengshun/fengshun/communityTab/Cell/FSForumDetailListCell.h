@@ -14,5 +14,5 @@
 + (CGFloat)cellHeight;
 
 - (void)showWithTopicModel:(FSTopicModel *)model;
-
+- (void)hiddenTopTag:(BOOL)hidden;
 @end
