@@ -102,8 +102,8 @@
 
 - (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)requestDic
 {
-    self.m_QQNumber = [requestDic bm_stringTrimForKey:@"qqNumber"];
-    self.m_WechatNumber = [requestDic bm_stringTrimForKey:@"wechatNumber"];
+    self.m_QQNumber = [requestDic bm_stringTrimForKey:@"qqNumber" withDefault:@"892533889"];
+    self.m_WechatNumber = [requestDic bm_stringTrimForKey:@"wechatNumber" withDefault:@"枫调理顺"];
     
     if ([self.m_QQNumber bm_isNotEmpty] || [self.m_WechatNumber bm_isNotEmpty])
     {
@@ -127,7 +127,7 @@
 //    else
     {
         self.m_ProgressHUD.detailsLabelFont = [UIFont systemFontOfSize:14.0f];
-        [self.m_ProgressHUD showAnimated:YES withDetailText:@"您已成功复制QQ号，去添加客服QQ号联系她们吧" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        [self.m_ProgressHUD showAnimated:YES withDetailText:@"您已成功复制QQ群号，到QQ里找客服反馈吧" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     }
 }
 
@@ -144,7 +144,7 @@
 //    else
     {
         self.m_ProgressHUD.detailsLabelFont = [UIFont systemFontOfSize:14.0f];
-        [self.m_ProgressHUD showAnimated:YES withDetailText:@"您已成功复制微信号，去添加微信号联系客服们吧" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        [self.m_ProgressHUD showAnimated:YES withDetailText:@"您已成功复制微信公众号，关注微信公众号直接反馈吧" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     }
 }
 

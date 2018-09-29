@@ -72,7 +72,7 @@ static dispatch_once_t onceToken;
     
     [self reconnect];
     
-    _heartTimer = [NSTimer timerWithTimeInterval:8.0 target:self selector:@selector(sendHeartSocket) userInfo:nil repeats:YES];
+    _heartTimer = [NSTimer timerWithTimeInterval:5.0 target:self selector:@selector(sendHeartSocket) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:_heartTimer forMode:UITrackingRunLoopMode];
     [[NSRunLoop currentRunLoop] addTimer:_heartTimer forMode:NSDefaultRunLoopMode];
     [_heartTimer fire];
