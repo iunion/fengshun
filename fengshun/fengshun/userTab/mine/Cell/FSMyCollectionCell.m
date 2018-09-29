@@ -97,8 +97,21 @@
         self.m_SourceLabel.hidden = YES;
     }
     
-    [self.m_CommentCountBtn setTitle:[NSString stringWithFormat:@"%@", @(model.m_CommentCount)] forState:UIControlStateNormal];
     
+    if ([model.m_CommentCount bm_isNotEmpty])
+    {
+        [self.m_CommentCountBtn setTitle:model.m_CommentCount forState:UIControlStateNormal];
+    }
+    else if ([model.m_ReadCount bm_isNotEmpty])
+    {
+        [self.m_CommentCountBtn setTitle:[NSString stringWithFormat:@"%@人阅读", model.m_ReadCount] forState:UIControlStateNormal];
+        [self.m_CommentCountBtn setImage:nil forState:UIControlStateNormal];
+    }
+    else
+    {
+        [self.m_CommentCountBtn setHidden:YES];
+    }
+
     self.m_UnderLineView.hidden = model.m_PositionType & BMTableViewCell_PositionType_Last;
 }
 

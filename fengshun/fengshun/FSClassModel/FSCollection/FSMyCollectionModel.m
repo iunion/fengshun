@@ -71,13 +71,13 @@
     // 文书预览地址: previewUrl
     self.m_PreviewUrl = [dic bm_stringTrimForKey:@"previewUrl"];
     // 阅读数: readCount
-    self.m_ReadCount = [dic bm_uintForKey:@"readCount"];
+    self.m_ReadCount = [dic bm_stringTrimForKey:@"readCount"];
     // 来源: source
     self.m_Source = [dic bm_stringTrimForKey:@"source"];
     // 发贴时间: createTime
     self.m_CreateTime = [dic bm_doubleForKey:@"createTime"]/1000;
     // 评论数: commentCount
-    self.m_CommentCount = [dic bm_uintForKey:@"commentCount"];
+    self.m_CommentCount = [dic bm_stringTrimForKey:@"commentCount"];
     // 标题: title
     self.m_Title = [dic bm_stringTrimForKey:@"title"];
     // 跳转地址: jumpAddress
