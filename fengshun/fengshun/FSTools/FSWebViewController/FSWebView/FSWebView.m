@@ -75,6 +75,9 @@
     
     [_realWebView removeFromSuperview];
     _realWebView = nil;
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (instancetype)initWithCoder:(NSCoder*)coder
@@ -109,6 +112,9 @@
 
 - (void)makeView
 {
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
     Class wkWebView = NSClassFromString(@"WKWebView");
     if (wkWebView && self.usingUIWebView == NO)
     {
@@ -128,6 +134,33 @@
     [self.realWebView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
     [self addSubview:self.realWebView];
 }
+
+#pragma mark - 原生对键盘事件的优化
+- (void)keyBoardWillShow:(NSNotification *)note
+{
+    NSDictionary *info = [note userInfo];
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    //目标视图view
+    UIView *webView = self.realWebView;
+    CGRect frame = webView.frame;
+    float y = frame.origin.y + frame.size.height - (self.frame.size.height - keyboardSize.height);
+    
+    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
+        if (y > 0)
+        {
+            self.frame = CGRectMake(0, -y, self.frame.size.width, self.frame.size.height);
+        }
+    }];
+}
+//键盘隐藏后将视图恢复到原始状态
+- (void)keyBoardWillHide:(NSNotification *)note
+{
+    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
+        self.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    }];
+}
+
+#pragma mark -
 
 - (void)makeWKWebView
 {
@@ -151,7 +184,8 @@
     
     webView.backgroundColor = [UIColor clearColor];
     webView.opaque = NO;
-    //webView.scrollView.bounces = NO;
+    webView.allowsBackForwardNavigationGestures = YES;
+//    webView.scrollView.bounces = NO;
     
     [webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
     [webView addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
