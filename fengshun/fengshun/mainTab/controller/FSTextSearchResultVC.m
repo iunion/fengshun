@@ -18,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.m_TableView.rowHeight = 62;
+    self.m_TableView.estimatedRowHeight = 62;
 }
 
 - (void)didReceiveMemoryWarning {

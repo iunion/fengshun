@@ -11,7 +11,8 @@
 
 @interface FSTextCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *m_titleLabel;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomSpace;
+@property (weak, nonatomic) IBOutlet UILabel *m_subTitleLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *m_titlesGap;
 
 @property (nonatomic, strong)FSTextModel *m_textModel;
 
