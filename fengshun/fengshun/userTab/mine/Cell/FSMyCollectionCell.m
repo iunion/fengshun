@@ -98,6 +98,7 @@
     }
     
     [self.m_CommentCountBtn setTitle:[NSString stringWithFormat:@"%@", @(model.m_CommentCount)] forState:UIControlStateNormal];
+    self.m_CommentCountBtn.hidden = !(model.m_CollectionType == FSCollectionType_POSTS || model.m_CollectionType == FSCollectionType_COURSE);
     
     self.m_UnderLineView.hidden = model.m_PositionType & BMTableViewCell_PositionType_Last;
 }
