@@ -47,7 +47,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     FSCaseResultModel *model = _m_searchResultModel.m_resultDataArray[indexPath.row];
-    [FSPushVCManager viewController:self.m_masterVC pushToCaseDetailWithId:model.m_caseId keywords:_m_searchResultModel.m_keywordsStr];
+    [FSPushVCManager viewController:self.m_masterVC pushToCaseDetailWithId:model.m_caseId isGuide:model.m_isGuidingCase keywords:_m_searchResultModel.m_keywordsStr];
 }
 
 

@@ -101,24 +101,21 @@ static dispatch_once_t onceToken;
     }
     [_client stop];
     
-    __block NSString * t  = @"";
     __weak typeof(self) weakSelf = self;
     [_client startDetectionWihtCompletionHandle:^(QCloudAAIRsp *rsp) {
         __strong typeof(weakSelf) self = weakSelf;
         if (rsp.retCode == 0) {
             if (![[ILiveRoomManager getInstance] getCurMicState])
             {
-                NSLog(@"房间设置非语音识别环境");
+                NSLog(@"麦克风关闭状态");
                 return;
             }
-            if (![t isEqualToString:rsp.voiceId])
-            {
-                t = rsp.voiceId;
+            
+            NSLog(@"监听到语音识别消息Id = %@  text=%@", rsp.voiceId, rsp.text);
+            if(rsp.text.length&&[self.delegate respondsToSelector:@selector(asrReceiveText:)]) {
+                [self.delegate asrReceiveText:rsp.text];
             }
             
-            NSLog(@"监听到语音识别消息：%@", rsp.text);
-
-            if(rsp.text.length&&[self.delegate respondsToSelector:@selector(asrReceiveText:)])[self.delegate asrReceiveText:rsp.text];
         }else{
             NSLog(@"语音识别失败code= %dmsg:%@",rsp.retCode,rsp.descMsg);
             if ([self.delegate respondsToSelector:@selector(asrFailedWithError:)]) {

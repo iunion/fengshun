@@ -28,17 +28,17 @@ NS_ASSUME_NONNULL_BEGIN
 // 文书的文件id: filedId
 @property (nonatomic, strong) NSString *m_FiledId;
 // 指导性案例: guidingCase
-@property (nonatomic, strong) NSString *m_GuidingCase;
+@property (nonatomic, assign) BOOL m_GuidingCase;
 // 文书预览地址: previewUrl
 @property (nonatomic, strong) NSString *m_PreviewUrl;
 // 阅读数: readCount
-@property (nonatomic, assign) NSUInteger m_ReadCount;
+@property (nonatomic, strong) NSString * m_ReadCount;
 // 来源: source
 @property (nonatomic, strong) NSString *m_Source;
 // 发贴时间: createTime
 @property (nonatomic, assign) NSTimeInterval m_CreateTime;
 // 评论数: commentCount
-@property (nonatomic, assign) NSUInteger m_CommentCount;
+@property (nonatomic, strong) NSString * m_CommentCount;
 // 标题: title
 @property (nonatomic, strong) NSString *m_Title;
 // 跳转地址: jumpAddress

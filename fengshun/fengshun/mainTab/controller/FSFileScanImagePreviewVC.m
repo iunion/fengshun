@@ -146,7 +146,7 @@ FSFileScanImagePreviewVC ()
     {
         UIImageView *imageView  = [[UIImageView alloc] initWithImage:model.previewImage];
         imageView.clipsToBounds = YES;
-        imageView.contentMode   = UIViewContentModeScaleAspectFill;
+        imageView.contentMode   = UIViewContentModeScaleAspectFit;
         return imageView;
     }
     return nil;

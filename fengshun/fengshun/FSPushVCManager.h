@@ -75,7 +75,7 @@ typedef void (^PushVCCallBack)(void);
 + (void)viewController:(UIViewController *)vc pushToLawDetailWithId:(NSString *)lawId keywords:(NSString *)keywordsStr;
 
 // 案例详情
-+ (void)viewController:(UIViewController *)vc pushToCaseDetailWithId:(NSString *)caseId keywords:(NSString *)keywordsStr;
++ (void)viewController:(UIViewController *)vc pushToCaseDetailWithId:(NSString *)caseId isGuide:(BOOL)isGuide keywords:(NSString *)keywordsStr;
 
 // 课程详情(图文详情)
 + (void)viewController:(UIViewController *)vc pushToCourseDetailWithId:(NSString *)CourseId;

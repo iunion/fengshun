@@ -176,7 +176,7 @@
             break;
         case FSCollectionType_CASE:
         {
-            [FSPushVCManager viewController:self.m_PushVC pushToCaseDetailWithId:model.m_DetailId keywords:@"NULL"];
+            [FSPushVCManager viewController:self.m_PushVC pushToCaseDetailWithId:model.m_DetailId isGuide:model.m_GuidingCase keywords:@"NULL"];
         }
             break;
         case FSCollectionType_DOCUMENT:

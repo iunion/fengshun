@@ -54,7 +54,7 @@
     [FSSearchResultModel setTextLabel:_m_detailLabel withText:detail fontSize:12 textColor:UI_COLOR_B4 attributed:attributed];
     [FSSearchResultModel setTextLabel:_m_contentLabel withText:model.m_simpleContent fontSize:14 textColor:UI_COLOR_B1 attributed:attributed];
     _m_contentLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-    _m_tabLabel.text = model.m_caseTag;
+    _m_tabLabel.text = model.m_isGuidingCase? @"指导性案例": model.m_caseTag;
 }
 
 @end
