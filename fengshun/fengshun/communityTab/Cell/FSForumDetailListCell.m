@@ -67,6 +67,6 @@
 }
 - (void)hiddenTopTag:(BOOL)hidden
 {
-    _m_StickBgView.hidden = hidden;
+    _m_StickView.hidden = hidden;
 }
 @end
