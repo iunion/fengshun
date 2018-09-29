@@ -98,7 +98,7 @@
 
     self.m_CommentBtn.titleLabel.font = UI_FONT_12;
     [self.m_CommentBtn setTitleColor:[UIColor bm_colorWithHex:0x999999] forState:UIControlStateNormal];
-    //[self.m_CommentBtn bm_layoutButtonWithEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:5.0f];
+    [self.m_CommentBtn bm_layoutButtonWithEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:5.0f];
     
     CGRect underLineFrame = CGRectMake(15.0f, self.contentView.bm_height-1, UI_SCREEN_WIDTH-30.0f, 1);
     self.m_UnderLineView = [[BMSingleLineView alloc] initWithFrame:underLineFrame];
