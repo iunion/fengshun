@@ -44,7 +44,7 @@
     _m_textModel = textModel;
     NSString *title = textModel.m_title;
     NSString *subTitle = textModel.m_subTitle;
-    _m_titlesGap.constant = [subTitle bm_isNotEmpty] ? 10 :0;
+    _m_titlesGap.constant = [subTitle bm_isNotEmpty] ? 9 :0;
     if ([colors bm_isNotEmpty])
     {
         
