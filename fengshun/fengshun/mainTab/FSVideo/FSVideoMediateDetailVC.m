@@ -322,7 +322,7 @@
 - (void)inviteAction
 {
     if (self.m_DetailModel.meetingPersonnelResponseDTO.count >= FSMEETING_PERSON_MAX_COUNT) {
-        [self.m_ProgressHUD showAnimated:YES withText:[NSString stringWithFormat:@"参会人员不能大于%@人(含调解员)",@(FSMEETING_PERSON_MAX_COUNT)] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        [self.m_ProgressHUD showAnimated:YES withText:FSMEETING_PERSON_MAXCOUNT_TIP delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         return;
     }
     // 邀请

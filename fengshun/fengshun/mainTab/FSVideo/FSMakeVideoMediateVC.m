@@ -421,7 +421,7 @@
     
     for (FSMeetingPersonnelModel *model in self.m_AttendedList)
     {
-        if ([model isMediatorPerson]) {
+        if ([model isMediatorPerson] || model.selectState == 0) {
             continue;
         }
         
@@ -452,6 +452,12 @@
 
 - (void)inviteAction
 {
+    if ([self litigantListWithoutMediator].count  >= FSMEETING_PERSON_MAX_COUNT-1)
+    {
+        [self.m_ProgressHUD showAnimated:YES withText:FSMEETING_PERSON_MAXCOUNT_TIP delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        return;
+    }
+    
     FSVideoInviteLitigantVC *vc = [FSVideoInviteLitigantVC new];
     vc.existingLitigantList = [self litigantListWithoutMediator];
     BMWeakSelf

@@ -12,6 +12,7 @@
 #define FSVideoMediateChangedNotification                   @"FSVideoMediateChangedNotification"
 
 #define FSMEETING_PERSON_MAX_COUNT 8
+#define FSMEETING_PERSON_MAXCOUNT_TIP [NSString stringWithFormat:@"参会人员不能大于%@人",@(FSMEETING_PERSON_MAX_COUNT)]
 
 // 视频会议相关的枚举类型数据
 @interface FSMeetingDataEnum : NSObject

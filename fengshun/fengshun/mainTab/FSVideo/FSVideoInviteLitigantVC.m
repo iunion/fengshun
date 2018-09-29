@@ -300,13 +300,13 @@
     {
         if (self.m_InviteList.count + self.existingLitigantCount >= FSMEETING_PERSON_MAX_COUNT)
         {
-            [self.m_ProgressHUD showAnimated:YES withText:[NSString stringWithFormat:@"参会人员不能大于%@人(含调解员)",@(FSMEETING_PERSON_MAX_COUNT)] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            [self.m_ProgressHUD showAnimated:YES withText:FSMEETING_PERSON_MAXCOUNT_TIP delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             return;
         }
     }
-    else if (self.m_InviteList.count >= FSMEETING_PERSON_MAX_COUNT-1)
+    else if (self.m_InviteList.count + self.existingLitigantList.count >= FSMEETING_PERSON_MAX_COUNT-1)
     {
-        [self.m_ProgressHUD showAnimated:YES withText:[NSString stringWithFormat:@"参会人员不能大于%@人(含调解员)",@(FSMEETING_PERSON_MAX_COUNT)] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        [self.m_ProgressHUD showAnimated:YES withText:FSMEETING_PERSON_MAXCOUNT_TIP delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         return;
     }
     [self addApplicantLitigant];// 默认是申请人
