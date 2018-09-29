@@ -81,11 +81,11 @@ FSTextSplitVC ()
     CGFloat leftWidth      = 90.0f;
     CGFloat scaleWidth     = leftWidth / 375 * self.view.bm_width;
     CGFloat realLeftWidth  = (scaleWidth >= leftWidth) ? scaleWidth : leftWidth;
-    self.m_TableView.frame = CGRectMake(realLeftWidth, 0, self.view.bm_width - realLeftWidth, self.view.bm_height);
+    self.m_TableView.frame = CGRectMake(realLeftWidth, 0, UI_SCREEN_WIDTH - realLeftWidth, UI_SCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT -UI_STATUS_BAR_HEIGHT);
 
     self.m_TableView.backgroundColor              = [UIColor whiteColor];
     self.m_TableView.tableFooterView              = [UIView new];
-    self.m_TableView.rowHeight           = 62;
+    self.m_TableView.estimatedRowHeight           = 62;
     self.m_TableView.showsVerticalScrollIndicator = NO;
     self.m_TableView.bm_showEmptyView             = NO;
 

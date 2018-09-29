@@ -10,7 +10,9 @@
 
 @interface FSTextModel : FSSuperModel
 
-@property (nonatomic, copy)NSString *m_title;
+@property (nonatomic, readonly)NSString *m_title;
+@property (nonatomic, readonly)NSString *m_subTitle;
+@property (nonatomic, copy)NSString *m_fullTitle;
 @property (nonatomic, copy)NSString *m_fileId;
 @property (nonatomic, copy)NSString *m_documentId;
 
