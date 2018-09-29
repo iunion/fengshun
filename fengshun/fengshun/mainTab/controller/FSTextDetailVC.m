@@ -11,9 +11,7 @@
 
 @interface FSTextDetailVC ()
 
-{
-    BOOL s_isCollect;
-}
+@property(nonatomic, assign)BOOL s_isCollect;
 @end
 
 @implementation FSTextDetailVC
@@ -56,8 +54,8 @@
     [FSApiRequest getCollectStateID:self.m_docummentId type:@"DOCUMENT" Success:^(id  _Nullable responseObject) {
         [weakSelf.m_ProgressHUD hideAnimated:NO];
         NSInteger count = [responseObject integerValue];
-        s_isCollect = count>0;
-        [FSMoreViewVC showWebMore:weakSelf delegate:weakSelf isCollection:s_isCollect];
+        weakSelf.s_isCollect = count>0;
+        [FSMoreViewVC showWebMore:weakSelf delegate:weakSelf isCollection:weakSelf.s_isCollect];
         
     } failure:^(NSError * _Nullable error) {
         
@@ -80,8 +78,9 @@
             [self showLogin];
             return;
         }
-        [FSApiRequest updateCollectStateID:self.m_docummentId isCollect:!s_isCollect guidingCase:@"" source:@"" title:@"" type:@"DOCUMENT" Success:^(id  _Nullable responseObject) {
-            [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:s_isCollect?@"取消收藏":@"收藏成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        BMWeakSelf
+        [FSApiRequest updateCollectStateID:self.m_docummentId isCollect:!weakSelf.s_isCollect guidingCase:@"" source:@"" title:@"" type:@"DOCUMENT" Success:^(id  _Nullable responseObject) {
+            [MBProgressHUD showHUDAddedTo:weakSelf.view animated:YES withText:weakSelf.s_isCollect?@"取消收藏":@"收藏成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         } failure:^(NSError * _Nullable error) {
             
         }];

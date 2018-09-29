@@ -51,7 +51,7 @@ typedef void (^PushVCCallBack)(void);
 // 文书范本
 + (void)homePagePushToTextSplitVC:(UIViewController *)mainVC;
 + (void)pushToTextSearchVC:(UIViewController *)showVC;
-+ (void)pushToTextDetail:(UIViewController *)pushVC url:(NSString *)url withFileId:(NSString *)fileId documentId:(NSString *)documentId title:(NSString *)title;
+
 
 // 文件扫描
 + (void)homePagePushToFileScanVC:(UIViewController *)mainVC;
@@ -79,5 +79,8 @@ typedef void (^PushVCCallBack)(void);
 
 // 课程详情(图文详情)
 + (void)viewController:(UIViewController *)vc pushToCourseDetailWithId:(NSString *)CourseId;
+
+// 文书详情
++ (void)pushToTextDetail:(UIViewController *)pushVC url:(NSString *)url withFileId:(NSString *)fileId documentId:(NSString *)documentId title:(NSString *)title;
 
 @end

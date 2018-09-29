@@ -105,7 +105,7 @@
         _m_RequestParam = requestParam;
         _m_ShowLoadingBar = showLoadingBar;
         _m_LoadingBarTintColor = color;
-        _m_UsingUIWebView = YES;
+        _m_UsingUIWebView = NO;
         _m_ShowNavBack = YES;
         _m_ShowPageTitles = YES;
         _delegate = delegate;
