@@ -25,15 +25,18 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *m_CommentBtn;
 
-@property (nonatomic, strong) BMSingleLineView *m_UnderLineView;
-
 @end
 
 @implementation FSMyCommentCell
 
-+ (CGFloat)cellHeight
++ (CGFloat)cellHeightWithContent:(NSString *)content
 {
-    return 145.0f;
+    CGSize dSize = [content bm_sizeToFitWidth:UI_SCREEN_WIDTH - 15*2 withFont:UI_FONT_14];
+    dSize.height = (int)dSize.height+1;
+    if (dSize.height > 54) { dSize.height = 54; }// 最多支持三行
+    return 95 + dSize.height + 8;
+    
+    //    return 145.0f;
 }
 
 - (void)dealloc
@@ -63,11 +66,6 @@
     
     [self.m_CommentBtn setTitleColor:[UIColor bm_colorWithHex:0x999999] forState:UIControlStateNormal];
     self.m_CommentBtn.titleLabel.font = [UIFont systemFontOfSize:10.0f];
-    
-    CGRect underLineFrame = CGRectMake(15.0f, self.contentView.bm_bottom, UI_SCREEN_WIDTH-30.0f, 1);
-    self.m_UnderLineView = [[BMSingleLineView alloc] initWithFrame:underLineFrame];
-    self.m_UnderLineView.lineColor = UI_DEFAULT_LINECOLOR;
-    [self addSubview:self.m_UnderLineView];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -82,7 +80,11 @@
     self.m_TimeLabel.text = [NSDate fsStringDateFromTs:model.m_CreateTime];
     
     self.m_ContentLabel.text = model.m_Content;
-    
+    CGSize dSize = [model.m_Content bm_sizeToFitWidth:UI_SCREEN_WIDTH - 15*2 withFont:UI_FONT_14];
+    dSize.height = (int)dSize.height+1;
+    if (dSize.height > 54) { dSize.height = 54; }// 最多支持三行
+    self.m_ContentLabel.bm_height = dSize.height;
+    self.m_SourceLabel.bm_top = 15 + self.m_ContentLabel.bm_bottom;
     NSMutableAttributedString *atrString = [[NSMutableAttributedString alloc] initWithString:@"来自："];
     if ([model.m_Source bm_isNotEmpty])
     {
@@ -98,8 +100,6 @@
     self.m_SourceLabel.attributedText = atrString;
     
     [self.m_CommentBtn setTitle:@"0" forState:UIControlStateNormal];
-
-    self.m_UnderLineView.hidden = model.m_PositionType & BMTableViewCell_PositionType_Last;
 }
 
 @end

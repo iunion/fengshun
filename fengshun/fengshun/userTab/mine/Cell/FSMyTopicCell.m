@@ -34,6 +34,7 @@
 + (CGFloat)cellHeightWithDescription:(NSString *)description;
 {
     CGSize dSize = [description bm_sizeToFitWidth:UI_SCREEN_WIDTH - 15*2 withFont:UI_FONT_14];
+    dSize.height = (int)dSize.height+1;
     if (dSize.height > 54) { dSize.height = 54; }// 最多支持三行
     return 68 + dSize.height + 15  + 20 + 15 + 8;
 
@@ -63,7 +64,7 @@
     self.m_TitleLabel.font = UI_FONT_18;
     
     self.m_ContentLabel.textColor = [UIColor bm_colorWithHex:0x999999];
-    self.m_ContentLabel.numberOfLines = 0;
+    self.m_ContentLabel.numberOfLines = 3;
     self.m_ContentLabel.font = UI_FONT_14;
 
     self.m_TimeLabel.textColor = [UIColor bm_colorWithHex:0x999999];
@@ -98,6 +99,7 @@
     self.m_TitleLabel.text = model.m_Title;
     
     CGSize dSize = [model.m_Description bm_sizeToFitWidth:UI_SCREEN_WIDTH - 15*2 withFont:UI_FONT_14];
+    dSize.height = (int)dSize.height+1;
     if (dSize.height > 54) { dSize.height = 54; }// 最多支持三行
 
     self.m_ContentLabel.text = model.m_Description;
