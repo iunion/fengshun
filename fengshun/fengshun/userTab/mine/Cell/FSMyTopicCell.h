@@ -13,7 +13,7 @@
 
 @property (nonatomic, strong, readonly) FSMyTopicModel *m_Model;
 
-+ (CGFloat)cellHeight;
++ (CGFloat)cellHeightWithDescription:(NSString *)description;
 
 - (void)drawCellWithModel:(FSMyTopicModel *)model;
 

@@ -86,7 +86,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [FSMyTopicCell cellHeight];
+    FSMyTopicModel *model = self.m_DataArray[indexPath.row];
+    return [FSMyTopicCell cellHeightWithDescription:model.m_Description];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -104,6 +105,12 @@
     return cell;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 8)];
+    
+    return view;
+}
 
 #pragma mark -
 #pragma mark UITableViewDelegate
