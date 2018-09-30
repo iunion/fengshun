@@ -47,7 +47,6 @@
     _m_titlesGap.constant = [subTitle bm_isNotEmpty] ? 9 :0;
     if ([colors bm_isNotEmpty])
     {
-        
         if ([title bm_isNotEmpty]) {
             _m_titleLabel.attributedText = [self attributedStringWithString:title font:16 color:UI_COLOR_B1 andKey:colors];
         }

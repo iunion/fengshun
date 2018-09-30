@@ -67,10 +67,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_robot.png" translatesAutoresizingMaskIntoConstraints="NO" id="750-yw-8bf">
-                            <rect key="frame" x="39" y="30" width="23" height="32"/>
+                            <rect key="frame" x="34" y="23.5" width="37" height="45"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="23" id="Inb-4j-WyT"/>
-                                <constraint firstAttribute="height" constant="32" id="L9A-P8-UHm"/>
+                                <constraint firstAttribute="width" constant="37" id="Inb-4j-WyT"/>
+                                <constraint firstAttribute="height" constant="45" id="L9A-P8-UHm"/>
                             </constraints>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="JD7-WG-mlH">
@@ -90,7 +90,7 @@
                         <constraint firstItem="Iz7-f8-wDM" firstAttribute="leading" secondItem="rCP-cG-MNs" secondAttribute="leading" constant="61" id="J4K-i1-JMK"/>
                         <constraint firstItem="rCP-cG-MNs" firstAttribute="leading" secondItem="4Dl-MD-rjm" secondAttribute="leading" constant="17" id="LFF-O7-WnL"/>
                         <constraint firstItem="02V-HV-x2q" firstAttribute="top" secondItem="Iz7-f8-wDM" secondAttribute="bottom" constant="7" id="V4C-Br-Xve"/>
-                        <constraint firstItem="750-yw-8bf" firstAttribute="leading" secondItem="rCP-cG-MNs" secondAttribute="leading" constant="22" id="VCe-hw-wAp"/>
+                        <constraint firstItem="750-yw-8bf" firstAttribute="leading" secondItem="rCP-cG-MNs" secondAttribute="leading" constant="17" id="VCe-hw-wAp"/>
                         <constraint firstAttribute="bottom" secondItem="rCP-cG-MNs" secondAttribute="bottom" constant="15" id="apd-9q-Vvq"/>
                         <constraint firstItem="rCP-cG-MNs" firstAttribute="top" secondItem="4Dl-MD-rjm" secondAttribute="top" constant="16" id="kev-PH-ZKL"/>
                         <constraint firstItem="JD7-WG-mlH" firstAttribute="centerY" secondItem="rCP-cG-MNs" secondAttribute="centerY" id="w95-NY-zld"/>
@@ -169,7 +169,7 @@
     </objects>
     <resources>
         <image name="home_arrow.png" width="11" height="20"/>
-        <image name="home_robot.png" width="24" height="34"/>
+        <image name="home_robot.png" width="37" height="45"/>
         <image name="home_tools.png" width="18" height="18"/>
     </resources>
 </document>

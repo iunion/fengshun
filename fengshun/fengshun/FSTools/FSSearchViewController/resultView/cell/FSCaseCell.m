@@ -39,7 +39,13 @@
     [FSSearchResultModel setTextLabel:_m_titleLabel withText:model.m_title fontSize:18 textColor:UI_COLOR_B1 attributed:attributed];
     NSString * detail = @"";
     if (model.m_isGuidingCase) {
-        detail = model.m_basicInfo;
+        
+        NSString *cleanString = model.m_basicInfo;
+        cleanString = [cleanString stringByReplacingOccurrencesOfString:@"(" withString:@""];
+        cleanString = [cleanString stringByReplacingOccurrencesOfString:@")" withString:@""];
+        cleanString = [cleanString stringByReplacingOccurrencesOfString:@"（" withString:@""];
+        cleanString = [cleanString stringByReplacingOccurrencesOfString:@"）" withString:@""];
+        detail = [NSString stringWithFormat:@" | %@",cleanString];
     }
     else
     {
@@ -54,7 +60,8 @@
     [FSSearchResultModel setTextLabel:_m_detailLabel withText:detail fontSize:12 textColor:UI_COLOR_B4 attributed:attributed];
     [FSSearchResultModel setTextLabel:_m_contentLabel withText:model.m_simpleContent fontSize:14 textColor:UI_COLOR_B1 attributed:attributed];
     _m_contentLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-    _m_tabLabel.text = model.m_isGuidingCase? @"指导性案例": model.m_caseTag;
+    _m_tabLabel.hidden = !model.m_isGuidingCase;
+    _m_tagView.hidden = !model.m_isGuidingCase;
 }
 
 @end

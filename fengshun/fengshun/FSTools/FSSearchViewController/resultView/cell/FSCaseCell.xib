@@ -37,8 +37,12 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="案例类型" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Py0-3s-2Hi">
-                        <rect key="frame" x="297.5" y="103.5" width="49.5" height="12"/>
+                    <view alpha="0.14999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ag8-oq-2BC">
+                        <rect key="frame" x="272" y="97.5" width="88" height="24"/>
+                        <color key="backgroundColor" red="0.3411764706" green="0.4941176471" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="指导性案例" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Py0-3s-2Hi">
+                        <rect key="frame" x="285" y="103" width="61.5" height="12"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="12" id="SOH-V4-uY1"/>
                         </constraints>
@@ -46,10 +50,6 @@
                         <color key="textColor" red="0.3411764705882353" green="0.49411764705882355" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view alpha="0.14999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ag8-oq-2BC">
-                        <rect key="frame" x="285" y="97.5" width="75" height="24"/>
-                        <color key="backgroundColor" red="0.3411764706" green="0.4941176471" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="twQ-VC-THR" secondAttribute="trailing" constant="17" id="0kN-T8-6Vx"/>
