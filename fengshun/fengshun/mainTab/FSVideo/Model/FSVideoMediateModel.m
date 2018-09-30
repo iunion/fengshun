@@ -115,7 +115,9 @@
         for (int index = 0; index < count; index++) {
             FSMeetingPersonnelModel *model = self.meetingPersonnelResponseDTO[index];
             [string appendString:model.userName];
-            [string appendString:@"、"];
+            if (index < count - 1) {
+                [string appendString:@"、"];
+            }
         }
 
         [string appendString:[NSString stringWithFormat:@"等%@人", @(allCount)]];
