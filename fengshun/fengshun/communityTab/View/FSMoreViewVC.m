@@ -158,7 +158,7 @@ FSMoreViewVC ()
             [self.m_BgView addSubview:btn];
         }
     }
-    
+    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeMoreView)]];
 }
 
 
@@ -166,6 +166,11 @@ FSMoreViewVC ()
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)removeMoreView
+{
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 - (void)moreViewAction:(UIButton *)sender
