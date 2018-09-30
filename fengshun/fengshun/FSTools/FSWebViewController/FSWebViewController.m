@@ -149,14 +149,25 @@
             
             [self.m_WebView loadRequest:urlRequest];
         }
+        else if ([loadUrl containsString:@"www."])
+        {
+            NSURLRequest * urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://%@",loadUrl]]];
+            [self.m_WebView loadRequest:urlRequest];
+        }
         else
         {
             // 加载本地html数据
             NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
             NSString *filePath = [resourcePath stringByAppendingPathComponent:loadUrl];
             NSString *appHtml = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-            NSURL *baseURL = [NSURL fileURLWithPath:filePath];
-            [self.m_WebView loadHTMLString:appHtml baseURL:baseURL];
+            if (appHtml) {
+                NSURL *baseURL = [NSURL fileURLWithPath:filePath];
+                [self.m_WebView loadHTMLString:appHtml baseURL:baseURL];
+            }else{
+                NSURLRequest * urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://www.%@",loadUrl]]];
+                [self.m_WebView loadRequest:urlRequest];
+            }
+
         }
     }
 }
