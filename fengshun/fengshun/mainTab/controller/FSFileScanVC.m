@@ -46,6 +46,11 @@
     [self configCollectionView];
     [self loadLocalData];
 }
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self refreshViewAndSetTitle:NO];
+}
 - (void)setupUI
 {
     self.bm_NavigationShadowHidden  = NO;
@@ -53,6 +58,8 @@
     [self bm_setNavigationLeftItemTintColor:UI_COLOR_B1];
     [self bm_setNavigationWithTitle:@"文件扫描" barTintColor:nil leftItemTitle:@"" leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(leftAction:) rightItemTitle:@"选择" rightItemImage:nil rightToucheEvent:@selector(rightAction:)];
     [self bm_setNavigationRightItemTintColor:UI_COLOR_BL1];
+    UIButton *rightButton = [self bm_getNavigationRightItemAtIndex:0];
+    rightButton.hidden = YES;
     [self bm_setNeedsUpdateNavigationBar];
     [self setBm_NavigationBarImage:[UIImage imageWithColor:[UIColor whiteColor]]];
     [_m_imagePickButton bm_roundedRect:20];
@@ -93,7 +100,6 @@
     {
         self.m_allImageFiles = [NSMutableArray array];
     }
-    [self refreshViewAndSetTitle:NO];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
