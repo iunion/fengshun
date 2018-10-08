@@ -24,6 +24,7 @@ NSString * const kNotiReceiveHistoryPrivateMessageListName = @"kNotiReceiveHisto
 @property (nonatomic, strong) VideoCallRoomModel *roomModel;
 @property (nonatomic, assign) BOOL flag;
 
+@property (nonatomic, assign) NSTimeInterval lastConnectTime;
 @property (nonatomic, assign) NSInteger reconnectCount;
 @property (nonatomic, strong) NSString *m_RoomId;
 @property (nonatomic, strong) NSString *m_Token;
@@ -57,6 +58,10 @@ static dispatch_once_t onceToken;
         [_socket close];
         _socket.delegate = nil;
     }
+
+    NSLog(@"尝试第%@次重连", @(self.reconnectCount + 1));
+
+    self.lastConnectTime = [[NSDate date] timeIntervalSince1970];
     NSString *socketUrl = [NSString stringWithFormat:@"%@/stormChatGateway/joinRoom/%@?JWTToken=%@&watcher=%d", FS_URL_SERVER, self.m_RoomId, self.m_Token, NO];
     NSURL *url = [NSURL URLWithString:socketUrl];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:5];
@@ -100,8 +105,12 @@ static dispatch_once_t onceToken;
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
     NSLog(@"didFailWithError");
     if (self.reconnectCount < 3) {
-        NSLog(@"尝试第%@次重连", @(self.reconnectCount + 1));
-        [self performSelector:@selector(reconnect) withObject:nil afterDelay:5.0];
+        NSTimeInterval now = [[NSDate date] timeIntervalSince1970];
+        if (now - self.lastConnectTime >= 5) {
+            [self reconnect];
+        } else {
+            [self performSelector:@selector(reconnect) withObject:nil afterDelay:5.0 - (now - self.lastConnectTime)];
+        }
     } else {
         NSLog(@"重连超过3次，报错后离开视频%@", error);
         if ([self.delegate respondsToSelector:@selector(socketHelper:error:)]) {
