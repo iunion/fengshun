@@ -183,6 +183,7 @@
 // 发帖按钮
 - (void)pulishTopicAction
 {
+    BMLog(@"%@",[self getHTML]);
     if (![self.m_TitleTextField.text bm_isNotEmpty] || ![[self getHTML] bm_isNotEmpty])
     {
         [self.m_ProgressHUD showAnimated:YES withText:@"请输入完整信息" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
@@ -256,7 +257,8 @@
                     success:^(id _Nullable responseObject) {
 
                         NSString *url = [NSString stringWithFormat:@"%@", [responseObject bm_stringTrimForKey:@"previewUrl"]];
-                        [self insertImage:url alt:@""];
+                        BMLog(@"%@",url);
+                        [self insertImage:url alt:@"image"];
                         [self begainEditor];
                     }
                     failure:^(NSError *_Nullable error){
