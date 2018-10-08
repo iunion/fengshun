@@ -289,7 +289,6 @@ typedef void(^FSSetupClearDiskBlock)(NSString *path, BOOL finished);
         }
     }];
     alertView.otherBtnTextColor = [UIColor redColor];
-    [alertView showAlertView];
 }
 
 - (void)calculateSizeWithFilePathArray:(NSArray *)filePathArray completionBlock:(FSSetupCalculateSizeBlock)completionBlock

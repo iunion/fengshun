@@ -104,11 +104,16 @@ static dispatch_once_t onceToken;
 }
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
     NSLog(@"didFailWithError");
-    if (self.reconnectCount < 3) {
+    if (self.reconnectCount == 0) {
+        // 发现断开连接，立即开始尝试连接
+        [self reconnect];
+    } else if (self.reconnectCount < 3) {
         NSTimeInterval now = [[NSDate date] timeIntervalSince1970];
         if (now - self.lastConnectTime >= 5) {
+            // 距离上次请求已经超过5s，立即发出请求
             [self reconnect];
         } else {
+            // 间隔不到5s，那么等到5s的时候再发起请求
             [self performSelector:@selector(reconnect) withObject:nil afterDelay:5.0 - (now - self.lastConnectTime)];
         }
     } else {
