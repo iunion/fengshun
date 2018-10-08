@@ -67,7 +67,7 @@
     CGFloat scrollPullHeight = offsetY + insetTop + insetBottom;
     CGFloat pullingPercent = scrollPullHeight / self.pullMaxHeight;
     CGFloat pullMaxHeight = self.pullMaxHeight;
-    if (scrollPullHeight < self.pullMaxHeight*MinTriggerAutomaticallyRefreshPercent)
+    if (scrollPullHeight < pullMaxHeight*MinTriggerAutomaticallyRefreshPercent)
     {
         // 拉动幅度
         self.pullingPercent = pullingPercent;

@@ -142,7 +142,7 @@ static inline NSString *getAssetsName(NSString *assetsName)
         }
     }
     
-    NSString *basePath = [bundle pathForResource:language ofType:@"lproj"];
+    NSString *basePath = [bundle pathForResource:systemLanguage ofType:@"lproj"];
     return [NSBundle bundleWithPath:basePath];
 }
 

@@ -198,37 +198,37 @@
 
 - (void)setFormate:(NSString *)formate
 {
-    _formate = formate;
-    
     if (!formate)
     {
         switch (self.pickerStyle)
         {
             case PickerStyle_YearMonthDayHourMinute:
                 //_formate = @"yyyy-MM-dd HH:mm";
-                _formate = @"MM-dd HH:mm";
+                formate = @"MM-dd HH:mm";
                 break;
             case PickerStyle_MonthDayHourMinute:
-                _formate = @"yyyy-MM-dd HH:mm";
+                formate = @"yyyy-MM-dd HH:mm";
                 break;
             case PickerStyle_Year:
-                self.formate = @"yyyy";
+                formate = @"yyyy";
                 break;
             case PickerStyle_YearMonthDay:
-                _formate = @"yyyy-MM-dd";
+                formate = @"yyyy-MM-dd";
                 break;
             case PickerStyle_MonthDay:
-                _formate = @"MM-dd";
+                formate = @"MM-dd";
                 break;
             case PickerStyle_HourMinute:
-                _formate = @"HH:mm";
+                formate = @"HH:mm";
                 break;
                 
             default:
-                _formate = @"yyyy-MM-dd HH:mm";
+                formate = @"yyyy-MM-dd HH:mm";
                 break;
         }
     }
+    
+    _formate = formate;
     
     if (self.pickerDate)
     {

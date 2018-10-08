@@ -33,8 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIImage *)resizedImageWithName:(NSString *)name;
 + (UIImage *)resizedImageWithName:(NSString *)name left:(CGFloat)left top:(CGFloat)top;
 
-+ (UIImage *)imageWithColor:(UIColor *)color;
-+ (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size;
++ (nullable UIImage *)imageWithColor:(UIColor *)color;
++ (nullable UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size;
 
 // 图片先压缩到size大小然后再做圆角大小为r，然后在view上圆角与图片可能被等比拉伸/缩放
 + (UIImage *)createRoundedRectImage:(UIImage *)image size:(CGSize)size radius:(CGFloat)r;
@@ -68,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 // 黑白
-- (UIImage *)convertToGrayScale;    // 有黑底
+- (nullable UIImage *)convertToGrayScale;    // 有黑底
 - (UIImage *)imageWithBlackWhite;
 
 // 图片处理 黑白灰度 做旧深棕色 反色
@@ -84,7 +84,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIImage (BMBorder)
 
 - (UIImage *)imageWithColoredBorder:(NSUInteger)borderThickness borderColor:(UIColor *)color withShadow:(BOOL)withShadow;
-- (UIImage *)imageWithTransparentBorder:(NSUInteger)thickness;
+- (nullable UIImage *)imageWithTransparentBorder:(NSUInteger)thickness;
 
 @end
 
@@ -108,10 +108,10 @@ typedef enum {
 @end
 
 @interface UIImage (BMImageMetadata)
-- (NSMutableDictionary *)getImageMetadata;
-- (NSData *)setImageDateTime:(NSDate *)date latitude:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude withCompressionQuality:(CGFloat)compressionQuality;
-- (NSData *)setImageMetadata:(NSMutableDictionary *)metaData;
-- (NSData *)setImageMetadata:(NSMutableDictionary *)metaData withCompressionQuality:(CGFloat)compressionQuality;
+- (nullable NSMutableDictionary *)getImageMetadata;
+- (nullable NSData *)setImageDateTime:(NSDate *)date latitude:(CLLocationDegrees)latitude longitude:(CLLocationDegrees)longitude withCompressionQuality:(CGFloat)compressionQuality;
+- (nullable NSData *)setImageMetadata:(NSMutableDictionary *)metaData;
+- (nullable NSData *)setImageMetadata:(NSMutableDictionary *)metaData withCompressionQuality:(CGFloat)compressionQuality;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -4,7 +4,7 @@
 //
 //  Created by 谭真 on 15/12/24.
 //  Copyright © 2015年 谭真. All rights reserved.
-//  version 3.0.7 - 2018.09.13
+//  version 3.0.8 - 2018.09.27
 //  更多信息，请前往项目的github地址：https://github.com/banchichen/TZImagePickerController
 
 #import "TZImagePickerController.h"
@@ -140,7 +140,7 @@
     return self.statusBarStyle;
 }
 
-+(instancetype)fs_defaultPickerWithImagesCount:(NSUInteger)imagesCount delegate:(id<TZImagePickerControllerDelegate>)delegate
++ (instancetype)fs_defaultPickerWithImagesCount:(NSUInteger)imagesCount delegate:(id<TZImagePickerControllerDelegate>)delegate
 {
     TZImagePickerController *imagePickerVc  = [[self alloc] initWithMaxImagesCount:imagesCount delegate:delegate];
     
@@ -779,6 +779,14 @@
     // NSLog(@"%@ dealloc",NSStringFromClass(self.class));
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    TZImagePickerController *tzImagePicker = (TZImagePickerController *)self.navigationController;
+    if (tzImagePicker && [tzImagePicker isKindOfClass:[TZImagePickerController class]]) {
+        return tzImagePicker.statusBarStyle;
+    }
+    return [super preferredStatusBarStyle];
+}
+
 #pragma mark - Layout
 
 - (void)viewDidLayoutSubviews {
@@ -884,7 +892,7 @@
         if (config == nil) {
             config = [[TZImagePickerConfig alloc] init];
             config.preferredLanguage = nil;
-            config.gifPreviewMaxImagesCount = 200;
+            config.gifPreviewMaxImagesCount = 50;
         }
     });
     return config;
