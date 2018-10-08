@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-
-
 @interface NSAttributedString (BMSize)
 
 - (CGSize)bm_sizeToFitWidth:(CGFloat)width;

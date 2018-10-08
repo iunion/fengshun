@@ -492,7 +492,8 @@
 {
     CGFloat cellOffset = 15.0;
 
-    if (self.accessoryView) {
+    if (self.accessoryView)
+    {
         cellOffset = 0.0f;
     }
     

@@ -4,6 +4,7 @@
 IDEWorkspaceChecks.plist
 UserInterfaceState.xcuserstate
 xcschememanagement.plist
+WorkspaceSettings.xcsettings
 *.xcscheme
 #忽略视频SDK
 IMSDK
