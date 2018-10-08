@@ -173,7 +173,6 @@
 {
     TZImagePickerController *imagePickerVc  = [TZImagePickerController fs_defaultPickerWithImagesCount:1 delegate:self];
     imagePickerVc.autoDismiss = NO;
-    imagePickerVc.specialSingleSelected = YES;
     [self presentViewController:imagePickerVc animated:YES completion:nil];
 }
 
