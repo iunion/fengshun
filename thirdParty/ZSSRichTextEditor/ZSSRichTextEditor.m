@@ -1885,7 +1885,6 @@ static CGFloat kDefaultScale    = 0.5;
     else if ([urlString rangeOfString:@"debug://"].location != NSNotFound)
     {
         NSLog(@"Debug Found");
-
         // We recieved the callback
         NSString *debug = [urlString stringByReplacingOccurrencesOfString:@"debug://" withString:@""];
         debug           = [debug stringByReplacingPercentEscapesUsingEncoding:NSStringEncodingConversionAllowLossy];
@@ -1905,10 +1904,10 @@ static CGFloat kDefaultScale    = 0.5;
 {
     self.editorLoaded = YES;
 
-    if (!self.internalHTML)
-    {
-        self.internalHTML = @"";
-    }
+//    if (!self.internalHTML)
+//    {
+//        self.internalHTML = @"";
+//    }
     [self updateHTML];
 
     if (self.placeholder)
