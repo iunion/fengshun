@@ -338,8 +338,8 @@ FSMainVC ()
     }
     else
     {
-        FSCourseModel *model = _m_courses[indexPath.row];
-        [FSPushVCManager viewController:self pushToCourseDetailWithId:model.m_id];
+        FSCourseRecommendModel *model = _m_courses[indexPath.row];
+        [FSPushVCManager viewController:self pushToCourseDetailWithId:model.m_id andIsSerial:model.m_isSerial];
     }
 }
 

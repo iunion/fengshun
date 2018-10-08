@@ -24,7 +24,7 @@
 
 @interface FSCourseRecommendModel : FSCourseModel
 
-// 是否属于某个系列
-@property (nonatomic, assign) BOOL m_isSeries;
+// 是否是图文系列(专题)
+@property (nonatomic, assign) BOOL m_isSerial;
 
 @end

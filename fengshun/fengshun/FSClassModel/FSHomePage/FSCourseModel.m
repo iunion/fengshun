@@ -25,7 +25,7 @@
     model.m_readCount             = [params bm_intForKey:@"readCount"];
     model.m_jumpAddress           = [params bm_stringForKey:@"jumpAddress"];
     model.m_coverThumbUrl         = [params bm_stringForKey:@"coverThumbUrl"];
-    model.m_isSeries              = [params bm_boolForKey:@"seriesFlag"];
+    model.m_isSerial              = [params bm_boolForKey:@"seriesFlag"];
 
     return model;
 }
