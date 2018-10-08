@@ -66,6 +66,9 @@
 
 - (void)createUI
 {
+    self.alwaysShowToolbar = NO;
+    self.receiveEditorDidChangeEvents = NO;
+    self.shouldShowKeyboard = NO;
     self.enabledToolbarItems = @[ ZSSRichTextEditorToolbarNone ];
     UIButton *myButton       = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 60.f, 28.0f)];
     [myButton setImage:[UIImage imageNamed:@"community_add_pic"] forState:UIControlStateNormal];
@@ -74,8 +77,7 @@
        forControlEvents:UIControlEventTouchUpInside];
     [self addCustomToolbarItemWithButton:myButton];
     
-    self.placeholder        = @"请写下你的分享...";
-    self.shouldShowKeyboard = NO;
+    [self setPlaceholder:@"请写下你的分享..."];
     
     self.view.backgroundColor       = [UIColor whiteColor];
     
@@ -217,7 +219,6 @@
 /// 用户点击了取消
 - (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker
 {
-    BMLog(@"用户点击了取消");
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -238,7 +239,6 @@
     TOCropViewController *cropController = [[TOCropViewController alloc] initWithImage:orignalImage];
     BMWeakSelf
     [cropController setOnDidCropToRect:^(UIImage * _Nonnull image, CGRect cropRect, NSInteger angle) {
-        
         [weakSelf dismissViewControllerAnimated:NO completion:^{
             [weakSelf uploadImg:UIImageJPEGRepresentation(image, 0.8)];
         }];
@@ -252,13 +252,16 @@
 
 - (void)uploadImg:(NSData *)data
 {
+    BMWeakSelf
     [FSApiRequest uploadImg:data
                     success:^(id _Nullable responseObject) {
 
                         NSString *url = [NSString stringWithFormat:@"%@", [responseObject bm_stringTrimForKey:@"previewUrl"]];
                         BMLog(@"%@",url);
-                        [self insertImage:url alt:@"image"];
-                        [self begainEditor];
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            [weakSelf insertImage:url alt:@"image"];
+                            [weakSelf begainEditor];
+                        });
                     }
                     failure:^(NSError *_Nullable error){
                         
