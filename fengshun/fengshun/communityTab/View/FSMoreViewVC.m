@@ -26,6 +26,8 @@ FSMoreViewVC ()
 @property (nonatomic, assign)BOOL m_IsWebMore;
 // 是否只有分享按钮
 @property (nonatomic, assign) BOOL m_IsShareSheet;
+// yes=刷新、no=复制
+@property (nonatomic, assign) BOOL m_isRefresh;
 
 @end
 
@@ -40,6 +42,7 @@ FSMoreViewVC ()
     moreVC.m_Collection = isCollection;
     moreVC.m_IsWebMore = NO;
     moreVC.m_IsShareSheet = NO;
+    moreVC.m_isRefresh = NO;
     presentVC.definesPresentationContext = YES;
     moreVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     [presentVC.navigationController presentViewController:moreVC animated:NO completion:^{
@@ -59,6 +62,7 @@ FSMoreViewVC ()
     moreVC.m_IsWebMore = YES;
     moreVC.m_Collection = isCollection;
     moreVC.m_IsShareSheet = NO;
+    moreVC.m_isRefresh = NO;
     presentVC.definesPresentationContext = YES;
     moreVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     [presentVC.navigationController presentViewController:moreVC animated:NO completion:^{
@@ -70,6 +74,27 @@ FSMoreViewVC ()
     moreVC.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
 }
 
++ (void)showWebMore:(UIViewController *)presentVC delegate:(id)delegate isCollection:(BOOL)isCollection hasRefresh:(BOOL)hasRefresh
+{
+    FSMoreViewVC *moreVC = [[FSMoreViewVC alloc]init];
+    moreVC.delegate = delegate;
+    moreVC.m_isOwner = NO;
+    moreVC.m_IsWebMore = YES;
+    moreVC.m_Collection = isCollection;
+    moreVC.m_IsShareSheet = NO;
+    moreVC.m_isRefresh = hasRefresh;
+    presentVC.definesPresentationContext = YES;
+    moreVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    [presentVC.navigationController presentViewController:moreVC animated:NO completion:^{
+        [UIView animateWithDuration:DEFAULT_DELAY_TIME
+                         animations:^{
+                             moreVC.m_BgView.bm_top = UI_SCREEN_HEIGHT - moreVC.m_BgView.bm_height;
+                         }];
+    }];
+    moreVC.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    
+}
+
 + (void)showShareAlertView:(UIViewController *)presentVC delegate:(id)delegate
 {
     FSMoreViewVC *moreVC = [[FSMoreViewVC alloc]init];
@@ -78,6 +103,7 @@ FSMoreViewVC ()
     moreVC.m_isOwner = NO;
     moreVC.m_IsWebMore = NO;
     moreVC.m_Collection = NO;
+    moreVC.m_isRefresh = NO;
     presentVC.definesPresentationContext = YES;
     moreVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     [presentVC.navigationController presentViewController:moreVC animated:NO completion:^{
@@ -125,8 +151,8 @@ FSMoreViewVC ()
             btn.backgroundColor = [UIColor whiteColor];
             btn.titleLabel.font = [UIFont systemFontOfSize:11.f];
             btn.titleLabel.textAlignment = NSTextAlignmentCenter;
-            [btn setTitle:@[@[@"微信",@"朋友圈",@"QQ",@"QQ空间",@"微博"],@[@"收藏",@"复制链接",@"举报",@"编辑",@"删除"]][i][j] forState:UIControlStateNormal];
-            [btn setImage:[UIImage imageNamed:@[@[@"community_wechat",@"community_friends_cycle",@"community_QQ",@"community_zone",@"community_weibo"],@[@"community_collect",@"community_copy",@"community_report",@"community_edit",@"community_delete"]][i][j]] forState:UIControlStateNormal];
+            [btn setTitle:@[@[@"微信",@"朋友圈",@"QQ",@"QQ空间",@"微博"],@[@"收藏",self.m_isRefresh?@"刷新":@"复制链接",@"举报",@"编辑",@"删除"]][i][j] forState:UIControlStateNormal];
+            [btn setImage:[UIImage imageNamed:@[@[@"community_wechat",@"community_friends_cycle",@"community_QQ",@"community_zone",@"community_weibo"],@[@"community_collect",self.m_isRefresh?@"more_refresh":@"community_copy",@"community_report",@"community_edit",@"community_delete"]][i][j]] forState:UIControlStateNormal];
             [btn setTitleColor:[UIColor bm_colorWithHex:0x333333] forState:UIControlStateNormal];
             [btn addTarget:self action:@selector(moreViewAction:) forControlEvents:UIControlEventTouchUpInside];
             btn.tag = (i*5 + j) + 100;
@@ -153,7 +179,6 @@ FSMoreViewVC ()
             btn.imageView.contentMode = UIViewContentModeScaleAspectFit;
             btn.bm_imageRect = CGRectMake((btnWid-imageWidth)*0.5, (btnHeight-(imageWidth+titleheight))*0.5, imageWidth, imageWidth);
             btn.bm_titleRect = CGRectMake(0, (btnHeight-(imageWidth+titleheight))*0.5+imageWidth, btnWid, titleheight);
-
             
             [self.m_BgView addSubview:btn];
         }

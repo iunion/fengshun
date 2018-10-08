@@ -20,7 +20,8 @@
 
 + (void)showMore:(UIViewController *)presentVC  delegate:(id)delegate isOwner:(BOOL)isOwner isCollection:(BOOL)isCollection;
 
-+ (void)showWebMore:(UIViewController *)presentVC  delegate:(id)delegate isCollection:(BOOL)isCollection;
++ (void)showWebMore:(UIViewController *)presentVC  delegate:(id)delegate isCollection:(BOOL)isCollection ;
++ (void)showWebMore:(UIViewController *)presentVC  delegate:(id)delegate isCollection:(BOOL)isCollection hasRefresh:(BOOL)hasRefresh;
 
 + (void)showShareAlertView:(UIViewController *)presentVC  delegate:(id)delegate;
 

@@ -55,7 +55,7 @@
         [weakSelf.m_ProgressHUD hideAnimated:NO];
         NSInteger count = [responseObject integerValue];
         weakSelf.s_isCollect = count>0;
-        [FSMoreViewVC showWebMore:weakSelf delegate:weakSelf isCollection:weakSelf.s_isCollect];
+        [FSMoreViewVC showWebMore:weakSelf delegate:weakSelf isCollection:weakSelf.s_isCollect hasRefresh:YES];
         
     } failure:^(NSError * _Nullable error) {
         
@@ -85,17 +85,9 @@
             
         }];
     }
-    else if (index == 6)//复制
+    else if (index == 6)//刷新
     {
-        if ([self.m_UrlString bm_isNotEmpty])
-        {
-            [[UIPasteboard generalPasteboard] setString:self.m_UrlString];
-            [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:@"复制成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-        }
-        else
-        {
-            [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:@"复制失败" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-        }
+        [self refreshWebView];
     }
 }
 

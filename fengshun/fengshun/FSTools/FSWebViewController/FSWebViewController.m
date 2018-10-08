@@ -64,6 +64,8 @@
 
 @property (nonatomic, strong) NSArray *m_NavLeftBtnArray;
 @property (nonatomic, strong) NSArray *m_NavRightBtnArray;
+// 刷新还是复制
+@property (nonatomic, assign) BOOL m_IsRefresh;
 
 @end
 
@@ -203,6 +205,8 @@
     [self makeWebView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(makeWebView) name:userInfoChangedNotification object:nil];
+    // 案例、法规、文书详情右上角…分享菜单中“复制链接”功能 改为刷新 
+     self.m_IsRefresh = [self.m_UrlString containsString:@"Law"] || [self.m_UrlString containsString:@"caseGuide"] || [self.m_UrlString containsString:@"caseDetail"] || [self.m_UrlString containsString:@"law"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -745,7 +749,7 @@
         [weakSelf.m_ProgressHUD hideAnimated:NO];
         NSInteger count = [responseObject integerValue];
         weakSelf.s_isCollect = count>0;
-        [FSMoreViewVC showWebMore:weakSelf delegate:weakSelf isCollection:weakSelf.s_isCollect];
+        [FSMoreViewVC showWebMore:weakSelf delegate:weakSelf isCollection:weakSelf.s_isCollect hasRefresh:self.m_IsRefresh];
     } failure:^(NSError *error) {
         
     }];
@@ -773,17 +777,25 @@
             
         }];
     }
-    else if (index == 6) // 复制
+    else if (index == 6) // 刷新
     {
-        if ([self.m_UrlString bm_isNotEmpty])
+        if (self.m_IsRefresh)
         {
-            [[UIPasteboard generalPasteboard] setString:self.m_UrlString];
-            [self.m_ProgressHUD showAnimated:YES withText:@"复制成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            [self.m_WebView reload];
         }
         else
         {
-            [self.m_ProgressHUD showAnimated:YES withText:@"复制失败" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            if ([self.m_UrlString bm_isNotEmpty])
+            {
+                [[UIPasteboard generalPasteboard] setString:self.m_UrlString];
+                [self.m_ProgressHUD showAnimated:YES withDetailText:@"复制成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            }
+            else
+            {
+                [self.m_ProgressHUD showAnimated:YES withDetailText:@"复制失败" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            }
         }
+        
     }
 }
 
