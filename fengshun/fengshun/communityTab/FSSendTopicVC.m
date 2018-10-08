@@ -112,6 +112,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self.m_TitleTextField becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning

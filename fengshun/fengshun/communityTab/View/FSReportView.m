@@ -70,9 +70,15 @@
             }
             [btn addTarget:self action:@selector(btnClickAction:) forControlEvents:UIControlEventTouchUpInside];
         }
+        [self addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeMoreView)]];
         [self showAnimation];
     }
     return self;
+}
+
+- (void)removeMoreView
+{
+    [self removeFromSuperview];
 }
 
 - (void)btnClickAction:(UIButton *)sender
