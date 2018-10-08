@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="加班：一周内写完一个论坛需求" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DC9-9K-Cod">
-                        <rect key="frame" x="16" y="26.5" width="215" height="21.5"/>
+                        <rect key="frame" x="16" y="26" width="289" height="22"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -68,12 +68,12 @@
                     <constraint firstItem="6JZ-Sb-LBp" firstAttribute="centerY" secondItem="lxY-0H-6ts" secondAttribute="centerY" id="3cl-3O-AOJ"/>
                     <constraint firstItem="qHv-Jj-wpq" firstAttribute="top" secondItem="DC9-9K-Cod" secondAttribute="bottom" constant="24" id="7W9-33-z3S"/>
                     <constraint firstItem="DC9-9K-Cod" firstAttribute="centerY" secondItem="H5s-fp-Vkr" secondAttribute="centerY" id="9Uo-ky-1wX"/>
-                    <constraint firstItem="H5s-fp-Vkr" firstAttribute="leading" secondItem="DC9-9K-Cod" secondAttribute="trailing" constant="16" id="Q9n-Oa-20Q"/>
                     <constraint firstAttribute="bottom" secondItem="qHv-Jj-wpq" secondAttribute="bottom" constant="24" id="S11-Hc-Li2"/>
                     <constraint firstItem="qHv-Jj-wpq" firstAttribute="leading" secondItem="DC9-9K-Cod" secondAttribute="leading" id="T5e-lG-70e"/>
                     <constraint firstItem="6JZ-Sb-LBp" firstAttribute="trailing" secondItem="H5s-fp-Vkr" secondAttribute="trailing" id="VwA-AZ-8Ng"/>
                     <constraint firstItem="lxY-0H-6ts" firstAttribute="leading" secondItem="qHv-Jj-wpq" secondAttribute="trailing" constant="16" id="a6q-wG-2ZM"/>
                     <constraint firstItem="H5s-fp-Vkr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="rjj-1V-2NJ"/>
+                    <constraint firstAttribute="trailing" secondItem="DC9-9K-Cod" secondAttribute="trailing" constant="15" id="swI-w4-lqB"/>
                     <constraint firstItem="lxY-0H-6ts" firstAttribute="centerY" secondItem="qHv-Jj-wpq" secondAttribute="centerY" id="yn2-fV-rOV"/>
                 </constraints>
             </tableViewCellContentView>

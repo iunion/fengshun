@@ -63,14 +63,14 @@ zss_editor.init = function() {
 //                 zss_editor.setScrollPosition();
 //                 zss_editor.enabledEditingItems(e);
 //                 });
-//    $(window).on('touchstart', function(e) {
-//                 zss_editor.isDragging = false;
-//                 });
-//    $(window).on('touchend', function(e) {
-//                 if (!zss_editor.isDragging && (e.target.id == "zss_editor_footer"||e.target.nodeName.toLowerCase() == "html")) {
-//                 zss_editor.focusEditor();
-//                 }
-//                 });
+    $(window).on('touchstart', function(e) {
+                 zss_editor.isDragging = false;
+                 });
+    $(window).on('touchend', function(e) {
+                 if (!zss_editor.isDragging && (e.target.id == "zss_editor_footer"||e.target.nodeName.toLowerCase() == "html")) {
+                 zss_editor.focusEditor();
+                 }
+                 });
     
 }//end
 
@@ -473,6 +473,7 @@ zss_editor.prepareInsert = function() {
 zss_editor.insertImage = function(url, alt) {
     zss_editor.restorerange();
     var html = '<img src="'+url+'" alt="'+alt+'" style="width:100%" />';
+//    var html = '<img src="'+url+'" alt="'+alt+'" />';
     zss_editor.insertHTML(html);
     zss_editor.enabledEditingItems();
 }

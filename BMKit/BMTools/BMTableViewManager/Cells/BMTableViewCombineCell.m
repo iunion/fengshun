@@ -102,8 +102,8 @@
     
     self.imageTextView.bm_top = BMCombine_TitleTop;
     
-    CGFloat x = self.textLabel.bm_left + BMCombine_LeftGap;
-    CGFloat y = self.textLabel.bm_bottom + BMCombine_TopGap;
+    CGFloat x = 0;//self.textLabel.bm_left + BMCombine_LeftGap;
+    CGFloat y = 0;//self.textLabel.bm_bottom + BMCombine_TopGap;
     for (NSUInteger index = 0; index < self.itemArray.count; index++)
     {
         x = self.textLabel.bm_left + BMCombine_LeftGap +(self.item.itemWidth+BMCombine_ItemHGap)*(index%BMCombine_CountPerLine);

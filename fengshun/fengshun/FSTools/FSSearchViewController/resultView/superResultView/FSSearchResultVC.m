@@ -16,45 +16,62 @@
 
 @implementation FSSearchResultVC
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 - (NSInteger)m_totalCount
 {
     return [_m_resultView m_totalCount];
 }
+
 -(BMEmptyViewType)getNoDataEmptyViewType
 {
     return BMEmptyViewType_Search;
 }
+
+
 #pragma mark - loadPage
+
 - (void)loadApiData
 {
     self.loadPage = 0;
     [super loadApiData];
 }
+
 - (BOOL)checkLoadFinish:(NSDictionary *)requestDic
 {
     self.loadPage += 1;
     return NO;
 }
-#pragma mark - tableViewDeleaget&DataSource
 
+
+#pragma mark - tableViewDeleaget&DataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 0;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSSearchResultVCCell"];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:@"FSSearchResultVCCell"];
+    }
+
+    return cell;
 }
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *view         = [UIView new];
@@ -66,12 +83,15 @@
     [view addSubview:label];
     return view;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return SEARCH_HEADER_HEIGHT;
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
 @end

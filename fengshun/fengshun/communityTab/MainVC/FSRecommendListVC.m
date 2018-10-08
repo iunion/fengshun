@@ -88,11 +88,6 @@
 #pragma mark -
 #pragma mark Table Data Source Methods
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 8.0f;
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [FSTopicListCell cellHeight];

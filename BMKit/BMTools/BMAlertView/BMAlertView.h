@@ -139,7 +139,7 @@ typedef void (^BMAlertViewCompletionBlock)(BOOL cancelled, NSInteger buttonIndex
                 buttonsShouldStack:(BOOL)shouldStack
                         completion:(nullable BMAlertViewCompletionBlock)completion;
 
-+ (instancetype)alertWithTitle:(nullable id)title
++ (nullable instancetype)alertWithTitle:(nullable id)title
                        message:(nullable id)message
                    contentView:(nullable UIView *)contentView
                    cancelTitle:(nullable NSString *)cancelTitle
@@ -156,7 +156,7 @@ typedef void (^BMAlertViewCompletionBlock)(BOOL cancelled, NSInteger buttonIndex
           buttonsShouldStack:(BOOL)shouldStack
                   completion:(nullable BMAlertViewCompletionBlock)completion;
 
-- (UIButton *)getButtonAtIndex:(NSUInteger)index;
+- (nullable UIButton *)getButtonAtIndex:(NSUInteger)index;
 
 - (void)showAlertView;
 
