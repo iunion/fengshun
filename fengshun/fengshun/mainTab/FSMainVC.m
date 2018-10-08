@@ -57,6 +57,9 @@ FSMainVC ()
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
+    BMFreshGifHeader *refreshHeaderView = (BMFreshGifHeader *)self.m_TableView.bm_freshHeaderView;
+    refreshHeaderView.containerYOffset = 120.0f;
+
     self.m_ShowProgressHUD = NO;
     
     [self setupUI];
@@ -136,7 +139,7 @@ FSMainVC ()
 //        [self bm_setNeedsUpdateNavigationTitleAlpha];
     }
     
-    NSLog(@"%@", @(offsetY));
+//    NSLog(@"%@", @(offsetY));
 }
 
 
