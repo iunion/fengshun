@@ -788,7 +788,12 @@
 
 
 #pragma mark -
-#pragma mark REActionBar delegate
+#pragma mark BMTableViewActionBarDelegate
+
+- (void)actionBar:(BMTableViewActionBar *)actionBar navigationControlValueChanged:(UISegmentedControl *)navigationControl
+{
+    
+}
 
 - (void)actionBar:(BMTableViewActionBar *)actionBar doneButtonPressed:(UIBarButtonItem *)doneButtonItem
 {

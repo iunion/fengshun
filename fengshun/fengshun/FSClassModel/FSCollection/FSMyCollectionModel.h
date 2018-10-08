@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 跳转地址: jumpAddress
 @property (nonatomic, strong) NSString *m_JumpAddress;
 
-+ (instancetype)collectionModelWithDic:(NSDictionary *)dic;
++ (nullable instancetype)collectionModelWithDic:(NSDictionary *)dic;
 - (void)updateWithServerDic:(NSDictionary *)dic;
 
 @end
@@ -74,7 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 类型（课程图文COURSE，帖子POSTS，评论COMMENT）: type
 @property (nonatomic, assign) FSCommentType m_CommentType;
 
-+ (instancetype)myCommentModelWithDic:(NSDictionary *)dic;
++ (nullable instancetype)myCommentModelWithDic:(NSDictionary *)dic;
 - (void)updateWithServerDic:(NSDictionary *)dic;
 
 @end
@@ -104,7 +104,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 跳转地址: jumpAddress
 @property (nonatomic, strong) NSString *m_JumpAddress;
 
-+ (instancetype)myTopicModelWithDic:(NSDictionary *)dic;
++ (nullable instancetype)myTopicModelWithDic:(NSDictionary *)dic;
 - (void)updateWithServerDic:(NSDictionary *)dic;
 
 @end

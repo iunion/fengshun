@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSUInteger m_WorkingLife;
 
 
-+ (instancetype)userBaseInfoWithServerDic:(NSDictionary *)dic;
++ (nullable instancetype)userBaseInfoWithServerDic:(NSDictionary *)dic;
 - (void)updateWithServerDic:(NSDictionary *)dic;
 
 @end
@@ -88,8 +88,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)setCurrentUserToken:(nullable NSString *)userToken;
 
 // 通过服务器Dic初始化
-+ (instancetype)userInfoWithServerDic:(NSDictionary *)dic;
-+ (instancetype)userInfoWithServerDic:(NSDictionary *)dic isUpDateByUserInfoApi:(BOOL)userInfoApi;
++ (nullable instancetype)userInfoWithServerDic:(NSDictionary *)dic;
++ (nullable instancetype)userInfoWithServerDic:(NSDictionary *)dic isUpDateByUserInfoApi:(BOOL)userInfoApi;
 
 - (void)updateWithServerDic:(NSDictionary *)dic isUpDateByUserInfoApi:(BOOL)userInfoApi;
 
