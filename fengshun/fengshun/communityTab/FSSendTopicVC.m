@@ -256,8 +256,12 @@
                     success:^(id _Nullable responseObject) {
 
                         NSString *url = [NSString stringWithFormat:@"%@", [responseObject bm_stringTrimForKey:@"previewUrl"]];
-                        [self insertImage:url alt:@""];
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                           [self insertImage:url alt:@""];
+                        });
+                        
                         [self begainEditor];
+
                     }
                     failure:^(NSError *_Nullable error){
                         
