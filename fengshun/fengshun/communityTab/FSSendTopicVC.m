@@ -252,16 +252,14 @@
 
 - (void)uploadImg:(NSData *)data
 {
-    BMWeakSelf
     [FSApiRequest uploadImg:data
                     success:^(id _Nullable responseObject) {
 
                         NSString *url = [NSString stringWithFormat:@"%@", [responseObject bm_stringTrimForKey:@"previewUrl"]];
-                        BMLog(@"%@",url);
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            [weakSelf insertImage:url alt:@"image"];
-                            [weakSelf begainEditor];
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                           [self insertImage:url alt:@""];
                         });
+                        [self begainEditor];
                     }
                     failure:^(NSError *_Nullable error){
                         

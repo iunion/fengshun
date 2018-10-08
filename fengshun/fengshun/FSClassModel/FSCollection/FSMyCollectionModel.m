@@ -82,8 +82,14 @@
     self.m_Title = [dic bm_stringTrimForKey:@"title"];
     // 跳转地址: jumpAddress
     self.m_JumpAddress = [dic bm_stringTrimForKey:@"jumpAddress"];
+    
+    // type, 主要用来区分图文和图文系列
+    self.m_type = [dic bm_stringTrimForKey:@"type"];
 }
-
+- (BOOL)m_isSerial
+{
+    return [_m_type isEqualToString:@"SPECIAL"];
+}
 @end
 
 @implementation FSMyCommentModel

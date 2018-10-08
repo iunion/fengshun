@@ -1763,6 +1763,7 @@ static CGFloat kDefaultScale    = 0.5;
     [self.editorView stringByEvaluatingJavaScriptFromString:@"zss_editor.prepareInsert();"];
     NSString *trigger = [NSString stringWithFormat:@"zss_editor.insertImage(\"%@\", \"%@\");", url, alt];
     [self.editorView stringByEvaluatingJavaScriptFromString:trigger];
+//    [self.editorView setNeedsLayout];
 }
 
 

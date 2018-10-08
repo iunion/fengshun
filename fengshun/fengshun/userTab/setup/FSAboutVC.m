@@ -56,9 +56,9 @@
     
     self.m_VersionLabel.textColor = UI_COLOR_B4;
 #ifdef DEBUG
-    self.m_VersionLabel.text = [NSString stringWithFormat:@"枫调理顺V%@", APP_BUILDNO];
+    self.m_VersionLabel.text = [NSString stringWithFormat:@"枫调理顺 %@", APP_BUILDNO];
 #else
-    self.m_VersionLabel.text = [NSString stringWithFormat:@"枫调理顺V%@", APP_VERSIONNO];
+    self.m_VersionLabel.text = [NSString stringWithFormat:@"枫调理顺 %@", APP_VERSIONNO];
 #endif
 
     self.m_IntrTextView.textColor = UI_COLOR_B4;

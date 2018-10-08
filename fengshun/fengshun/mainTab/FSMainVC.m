@@ -57,6 +57,9 @@ FSMainVC ()
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
+    BMFreshGifHeader *refreshHeaderView = (BMFreshGifHeader *)self.m_TableView.bm_freshHeaderView;
+    refreshHeaderView.containerYOffset = 120.0f;
+
     self.m_ShowProgressHUD = NO;
     
     [self setupUI];
@@ -136,7 +139,7 @@ FSMainVC ()
 //        [self bm_setNeedsUpdateNavigationTitleAlpha];
     }
     
-    NSLog(@"%@", @(offsetY));
+//    NSLog(@"%@", @(offsetY));
 }
 
 
@@ -338,8 +341,8 @@ FSMainVC ()
     }
     else
     {
-        FSCourseModel *model = _m_courses[indexPath.row];
-        [FSPushVCManager viewController:self pushToCourseDetailWithId:model.m_id];
+        FSCourseRecommendModel *model = _m_courses[indexPath.row];
+        [FSPushVCManager viewController:self pushToCourseDetailWithId:model.m_id andIsSerial:model.m_isSerial];
     }
 }
 
