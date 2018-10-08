@@ -14,6 +14,7 @@
 #import "FSSetPhoneVC.h"
 
 #import "FSAboutVC.h"
+#import "FSAlertView.h"
 
 typedef void(^FSSetupCalculateSizeBlock)(NSString *path, NSUInteger fileCount, NSUInteger totalSize, BOOL finished);
 typedef void(^FSSetupClearDiskBlock)(NSString *path, BOOL finished);
@@ -281,7 +282,14 @@ typedef void(^FSSetupClearDiskBlock)(NSString *path, BOOL finished);
 
 - (void)logoutClick:(UIButton *)btn
 {
-    [GetAppDelegate logOutWithApi];
+    FSAlertView *alertView = [FSAlertView showAlertWithTitle:@"确定退出当前账号？" message:nil cancelTitle:@"取消" otherTitle:@"退出" completion:^(BOOL cancelled, NSInteger buttonIndex) {
+        if (buttonIndex == 1)
+        {
+            [GetAppDelegate logOutWithApi];
+        }
+    }];
+    alertView.otherBtnTextColor = [UIColor redColor];
+    [alertView showAlertView];
 }
 
 - (void)calculateSizeWithFilePathArray:(NSArray *)filePathArray completionBlock:(FSSetupCalculateSizeBlock)completionBlock
