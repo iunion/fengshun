@@ -81,6 +81,19 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
 @end
 
 @implementation BMAlertView
+@synthesize alertMarkBgColor = _alertMarkBgColor;
+@synthesize alertBgColor = _alertBgColor;
+@synthesize alertTitleColor = _alertTitleColor;
+@synthesize alertTitleFont = _alertTitleFont;
+@synthesize alertMessageColor = _alertMessageColor;
+@synthesize alertMessageFont = _alertMessageFont;
+@synthesize buttonHeight = _buttonHeight;
+@synthesize alertGapLineColor = _alertGapLineColor;
+@synthesize cancleBtnBgColor = _cancleBtnBgColor;
+@synthesize otherBtnBgColor = _otherBtnBgColor;
+@synthesize cancleBtnTextColor = _cancleBtnTextColor;
+@synthesize otherBtnTextColor = _otherBtnTextColor;
+@synthesize btnFont = _btnFont;
 
 - (void)dealloc
 {
@@ -515,7 +528,7 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
     
     if (self.alertMessageAttrStr)
     {
-        self.messageLabel.attributedText = self.alertTitleAttrStr;
+        self.messageLabel.attributedText = self.alertMessageAttrStr;
     }
     else
     {
@@ -700,6 +713,36 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
 #pragma mark -
 #pragma mark property
 
+- (void)setAlertTitle:(NSString *)alertTitle
+{
+    _alertTitle = alertTitle;
+    _alertTitleAttrStr = nil;
+
+    [self freshAlertView];
+}
+
+- (void)setAlertMessage:(NSString *)alertMessage
+{
+    _alertMessage = alertMessage;
+    _alertMessageAttrStr = nil;
+
+    [self freshAlertView];
+}
+
+- (void)setAlertTitleAttrStr:(NSMutableAttributedString *)alertTitleAttrStr
+{
+    _alertTitleAttrStr = alertTitleAttrStr;
+    
+    [self freshAlertView];
+}
+
+- (void)setAlertMessageAttrStr:(NSMutableAttributedString *)alertMessageAttrStr
+{
+    _alertMessageAttrStr = alertMessageAttrStr;
+    
+    [self freshAlertView];
+}
+
 - (void)setShowClose:(BOOL)showClose
 {
     _showClose = showClose;
@@ -724,6 +767,13 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
     return _alertMarkBgColor;
 }
 
+- (void)setAlertMarkBgColor:(UIColor *)alertMarkBgColor
+{
+    alertMarkBgColor = _alertMarkBgColor;
+    
+    self.backgroundView.backgroundColor = alertMarkBgColor;
+}
+
 - (UIColor *)alertBgColor
 {
     if (!_alertBgColor)
@@ -732,6 +782,13 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
     }
     
     return _alertBgColor;
+}
+
+- (void)setAlertBgColor:(UIColor *)alertBgColor
+{
+    _alertBgColor = alertBgColor;
+    
+    self.alertView.backgroundColor = alertBgColor;
 }
 
 - (UIColor *)alertTitleColor
@@ -744,6 +801,13 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
     return _alertTitleColor;
 }
 
+- (void)setAlertTitleColor:(UIColor *)alertTitleColor
+{
+    _alertTitleColor = alertTitleColor;
+    
+    self.titleLabel.textColor = alertTitleColor;
+}
+
 - (UIFont *)alertTitleFont
 {
     if (!_alertTitleFont)
@@ -752,6 +816,13 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
     }
     
     return _alertTitleFont;
+}
+
+- (void)setAlertTitleFont:(UIFont *)alertTitleFont
+{
+    _alertTitleFont = alertTitleFont;
+    
+    [self freshAlertView];
 }
 
 - (UIColor *)alertMessageColor
@@ -764,6 +835,13 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
     return _alertMessageColor;
 }
 
+- (void)setAlertMessageColor:(UIColor *)alertMessageColor
+{
+    _alertMessageColor = alertMessageColor;
+    
+    self.messageLabel.textColor = alertMessageColor;
+}
+
 - (UIFont *)alertMessageFont
 {
     if (!_alertMessageFont)
@@ -772,6 +850,13 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
     }
     
     return _alertMessageFont;
+}
+
+- (void)setAlertMessageFont:(UIFont *)alertMessageFont
+{
+    _alertMessageFont = alertMessageFont;
+    
+    [self freshAlertView];
 }
 
 - (CGFloat)buttonHeight
@@ -784,6 +869,13 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
     return _buttonHeight;
 }
 
+- (void)setButtonHeight:(CGFloat)buttonHeight
+{
+    _buttonHeight = buttonHeight;
+ 
+    [self freshAlertView];
+}
+
 - (UIColor *)alertGapLineColor
 {
     if (!_alertGapLineColor)
@@ -792,6 +884,16 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
     }
     
     return _alertGapLineColor;
+}
+
+- (void)setAlertGapLineColor:(UIColor *)alertGapLineColor
+{
+    _alertGapLineColor = alertGapLineColor;
+    
+    for (CALayer *lineLayer in self.lineLayerArray)
+    {
+        lineLayer.backgroundColor = alertGapLineColor.CGColor;
+    }
 }
 
 - (UIColor *)cancleBtnBgColor
@@ -804,6 +906,18 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
     return _cancleBtnBgColor;
 }
 
+- (void)setCancleBtnBgColor:(UIColor *)cancleBtnBgColor
+{
+    _cancleBtnBgColor = cancleBtnBgColor;
+    
+    if (self.buttonArray.count)
+    {
+        UIButton *button = self.buttonArray[0];
+        
+        button.backgroundColor = cancleBtnBgColor;
+    }
+}
+
 - (UIColor *)otherBtnBgColor
 {
     if (!_otherBtnBgColor)
@@ -812,6 +926,18 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
     }
     
     return _otherBtnBgColor;
+}
+
+- (void)setOtherBtnBgColor:(UIColor *)otherBtnBgColor
+{
+    _otherBtnBgColor = otherBtnBgColor;
+    
+    for (NSUInteger index=1; index<self.buttonArray.count; index++)
+    {
+        UIButton *button = self.buttonArray[index];
+        
+        button.backgroundColor = otherBtnBgColor;
+    }
 }
 
 - (UIColor *)cancleBtnTextColor
@@ -824,6 +950,19 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
     return _cancleBtnTextColor;
 }
 
+- (void)setCancleBtnTextColor:(UIColor *)cancleBtnTextColor
+{
+    _cancleBtnTextColor = cancleBtnTextColor;
+    
+    if (self.buttonArray.count)
+    {
+        UIButton *button = self.buttonArray[0];
+        
+        [button setTitleColor:cancleBtnTextColor forState:UIControlStateNormal];
+        [button setTitleColor:[cancleBtnTextColor colorByDarkeningTo:0.8f] forState:UIControlStateHighlighted];
+    }
+}
+
 - (UIColor *)otherBtnTextColor
 {
     if (!_otherBtnTextColor)
@@ -834,6 +973,19 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
     return _otherBtnTextColor;
 }
 
+- (void)setOtherBtnTextColor:(UIColor *)otherBtnTextColor
+{
+    _otherBtnTextColor = otherBtnTextColor;
+    
+    for (NSUInteger index=1; index<self.buttonArray.count; index++)
+    {
+        UIButton *button = self.buttonArray[index];
+        
+        [button setTitleColor:otherBtnTextColor forState:UIControlStateNormal];
+        [button setTitleColor:[otherBtnTextColor colorByDarkeningTo:0.8f] forState:UIControlStateHighlighted];
+    }
+}
+
 - (UIFont *)btnFont
 {
     if (!_btnFont)
@@ -842,6 +994,16 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
     }
     
     return _btnFont;
+}
+
+- (void)setBtnFont:(UIFont *)btnFont
+{
+    _btnFont = btnFont;
+    
+    for (UIButton *button in self.buttonArray)
+    {
+        button.titleLabel.font = btnFont;
+    }
 }
 
 
