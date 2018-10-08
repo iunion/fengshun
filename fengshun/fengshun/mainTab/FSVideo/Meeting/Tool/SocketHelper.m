@@ -59,7 +59,7 @@ static dispatch_once_t onceToken;
     }
     NSString *socketUrl = [NSString stringWithFormat:@"%@/stormChatGateway/joinRoom/%@?JWTToken=%@&watcher=%d", FS_URL_SERVER, self.m_RoomId, self.m_Token, NO];
     NSURL *url = [NSURL URLWithString:socketUrl];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:5];
     _socket = [[SRWebSocket alloc] initWithURLRequest:request];
     _socket.delegate = self;
     [_socket open];
@@ -101,7 +101,7 @@ static dispatch_once_t onceToken;
     NSLog(@"didFailWithError");
     if (self.reconnectCount < 3) {
         NSLog(@"尝试第%@次重连", @(self.reconnectCount + 1));
-        [self performSelector:@selector(reconnect) withObject:nil afterDelay:3.0];
+        [self performSelector:@selector(reconnect) withObject:nil afterDelay:5.0];
     } else {
         NSLog(@"重连超过3次，报错后离开视频%@", error);
         if ([self.delegate respondsToSelector:@selector(socketHelper:error:)]) {

@@ -59,9 +59,10 @@
         self.bm_freshHeaderView = refreshHeaderView;
 
         [refreshHeaderView setFreshTitles:nil];
-        refreshHeaderView.bm_height = 90.0f;
+        refreshHeaderView.bm_height = 300.0f;
+        refreshHeaderView.pullMaxHeight = 80.0f;
         refreshHeaderView.containerSize = CGSizeMake(50.0f, 50.0f);
-        refreshHeaderView.containerYOffset = 18.0f;
+        refreshHeaderView.containerYOffset = 105.0f;
  
         NSMutableArray *idleImages = [NSMutableArray array];
         for (NSUInteger i = 1; i<=26; i++)

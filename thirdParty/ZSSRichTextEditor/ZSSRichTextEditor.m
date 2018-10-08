@@ -57,7 +57,7 @@ static Class             hackishFixClass     = Nil;
     if (!hackishFixClass)
     {
         Class newClass = objc_allocateClassPair(browserViewClass, hackishFixClassName, 0);
-        newClass       = objc_allocateClassPair(browserViewClass, hackishFixClassName, 0);
+        //newClass       = objc_allocateClassPair(browserViewClass, hackishFixClassName, 0);
         IMP nilImp     = [self methodForSelector:@selector(methodReturningNil)];
         class_addMethod(newClass, @selector(inputAccessoryView), nilImp, "@@:");
         objc_registerClassPair(newClass);
@@ -1403,7 +1403,7 @@ static CGFloat kDefaultScale    = 0.5;
 - (void)setSelectedColor:(UIColor *)color tag:(int)tag
 {
     NSString *hex = [NSString stringWithFormat:@"#%06x", HexColorFromUIColor(color)];
-    NSString *trigger;
+    NSString *trigger = nil;
     if (tag == 1)
     {
         trigger = [NSString stringWithFormat:@"zss_editor.setTextColor(\"%@\");", hex];
@@ -1412,7 +1412,10 @@ static CGFloat kDefaultScale    = 0.5;
     {
         trigger = [NSString stringWithFormat:@"zss_editor.setBackgroundColor(\"%@\");", hex];
     }
-    [self.editorView stringByEvaluatingJavaScriptFromString:trigger];
+    if (trigger)
+    {
+        [self.editorView stringByEvaluatingJavaScriptFromString:trigger];
+    }
 }
 
 - (void)undo:(ZSSBarButtonItem *)barButtonItem

@@ -183,6 +183,7 @@
 // 发帖按钮
 - (void)pulishTopicAction
 {
+    BMLog(@"%@",[self getHTML]);
     if (![self.m_TitleTextField.text bm_isNotEmpty] || ![[self getHTML] bm_isNotEmpty])
     {
         [self.m_ProgressHUD showAnimated:YES withText:@"请输入完整信息" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
@@ -207,7 +208,6 @@
 {
     TZImagePickerController *imagePickerVc  = [TZImagePickerController fs_defaultPickerWithImagesCount:1 delegate:self];
     imagePickerVc.autoDismiss = NO;
-    imagePickerVc.specialSingleSelected = YES;
     [self presentViewController:imagePickerVc animated:YES completion:nil];
 }
 
@@ -256,10 +256,15 @@
                     success:^(id _Nullable responseObject) {
 
                         NSString *url = [NSString stringWithFormat:@"%@", [responseObject bm_stringTrimForKey:@"previewUrl"]];
+<<<<<<< HEAD
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                            [self insertImage:url alt:@""];
                         });
                         
+=======
+                        BMLog(@"%@",url);
+                        [self insertImage:url alt:@"image"];
+>>>>>>> 84ea4513dcb53536b1783317cb7f5e88d3a486eb
                         [self begainEditor];
 
                     }

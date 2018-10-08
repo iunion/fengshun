@@ -186,7 +186,7 @@
             break;
         case FSCollectionType_COURSE:
         {
-            [FSPushVCManager viewController:self.m_PushVC pushToCourseDetailWithId:model.m_DetailId];
+            [FSPushVCManager viewController:self.m_PushVC pushToCourseDetailWithId:model.m_DetailId andIsSerial:model.m_isSerial];
         }
             break;
     }

@@ -434,7 +434,7 @@
     UIApplication *sharedApp = [UIApplication sharedApplication];
     // iTunes: App Store link
     // 例如，微信的下载链接: https://itunes.apple.com/cn/app/id414478124?mt=8
-    if ([urlString containsString:@"//itunes.apple.com/"])
+    if (url && [urlString containsString:@"//itunes.apple.com/"])
     {
         [[UIApplication sharedApplication] openURL:url];
         retValue = YES;

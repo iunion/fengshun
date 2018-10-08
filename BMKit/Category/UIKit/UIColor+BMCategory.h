@@ -90,7 +90,7 @@ NS_ASSUME_NONNULL_BEGIN
 // Related colors
 - (UIColor *) contrastingColor; // A good contrasting color: will be either black or white
 - (nullable UIColor *) complementaryColor; // A complementary color that should look good with this color
-- (UIColor *)bm_disableColor;
+- (nullable UIColor *)bm_disableColor;
 - (nullable NSArray*) triadicColors; // Two colors that should look good with this color
 - (nullable NSArray*) analogousColorsWithStepAngle:(CGFloat)stepAngle pairCount:(int)pairs; // Multiple pairs of colors
 

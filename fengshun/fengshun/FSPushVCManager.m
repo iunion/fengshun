@@ -211,9 +211,10 @@
     
     
 }
-+ (void)viewController:(UIViewController *)vc pushToCourseDetailWithId:(NSString *)CourseId
++ (void)viewController:(UIViewController *)vc pushToCourseDetailWithId:(NSString *)CourseId andIsSerial:(BOOL)isSerial
 {
-    [self showWebView:vc url:[NSString stringWithFormat:@"%@/comment/%@",FS_H5_SERVER,CourseId] title:nil showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR animated:YES];
+
+    [self showWebView:vc url:[NSString stringWithFormat:@"%@/%@/%@",FS_H5_SERVER,isSerial?@"imgWordsSeries":@"comment",CourseId] title:nil showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR animated:YES];
 }
 
 + (void)pushToTextDetail:(UIViewController *)pushVC url:(NSString *)url withFileId:(NSString *)fileId documentId:(NSString *)documentId title:(NSString *)title

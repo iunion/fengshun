@@ -431,7 +431,6 @@
     if (!borderColor)
     {
         borderColor = [UIColor clearColor];
-        return;
     }
     
     _borderColor = borderColor;

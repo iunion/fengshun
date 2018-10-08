@@ -44,7 +44,12 @@ NS_ASSUME_NONNULL_BEGIN
 // 跳转地址: jumpAddress
 @property (nonatomic, strong) NSString *m_JumpAddress;
 
-+ (instancetype)collectionModelWithDic:(NSDictionary *)dic;
+// 因为课程又分为图文和图文系列,所以添加type字段来区分
+// COURSE-课程,POSTS-帖子,STATUTE-法规,CASE-案例,DOCUMENT-文书范本,SPECIAL-图文列表
+@property (nonatomic, copy) NSString *m_type;
+@property (nonatomic, assign, readonly)BOOL m_isSerial;
+
++ (nullable instancetype)collectionModelWithDic:(NSDictionary *)dic;
 - (void)updateWithServerDic:(NSDictionary *)dic;
 
 @end
@@ -74,7 +79,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 类型（课程图文COURSE，帖子POSTS，评论COMMENT）: type
 @property (nonatomic, assign) FSCommentType m_CommentType;
 
-+ (instancetype)myCommentModelWithDic:(NSDictionary *)dic;
++ (nullable instancetype)myCommentModelWithDic:(NSDictionary *)dic;
 - (void)updateWithServerDic:(NSDictionary *)dic;
 
 @end
@@ -104,7 +109,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 跳转地址: jumpAddress
 @property (nonatomic, strong) NSString *m_JumpAddress;
 
-+ (instancetype)myTopicModelWithDic:(NSDictionary *)dic;
++ (nullable instancetype)myTopicModelWithDic:(NSDictionary *)dic;
 - (void)updateWithServerDic:(NSDictionary *)dic;
 
 @end

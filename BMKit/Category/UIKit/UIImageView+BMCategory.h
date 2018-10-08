@@ -15,8 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)bm_imageViewWithImageNamed:(NSString *)imageName;
 + (instancetype)bm_imageViewWithFrame:(CGRect)frame;
 + (instancetype)bm_imageViewWithStretchableImage:(NSString *)imageName Frame:(CGRect)frame;
-+ (instancetype)bm_imageViewWithImageArray:(NSArray *)imageArray duration:(NSTimeInterval)duration;
-+ (instancetype)bm_imageViewWithImageArray:(NSArray *)imageArray duration:(NSTimeInterval)duration repeatCount:(NSUInteger)repeatCount;
++ (nullable instancetype)bm_imageViewWithImageArray:(NSArray *)imageArray duration:(NSTimeInterval)duration;
++ (nullable instancetype)bm_imageViewWithImageArray:(NSArray *)imageArray duration:(NSTimeInterval)duration repeatCount:(NSUInteger)repeatCount;
 
 - (void)bm_setImageWithStretchableImage:(NSString *)imageName;
 - (void)bm_setImageWithStretchableImage:(NSString *)imageName atPoint:(CGPoint)point;
