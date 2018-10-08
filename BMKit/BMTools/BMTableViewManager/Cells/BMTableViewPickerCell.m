@@ -79,6 +79,7 @@
     self.pickerView = [[UIPickerView alloc] init];
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
+    
     self.hidenTextField.inputView = self.pickerView;
 }
 
