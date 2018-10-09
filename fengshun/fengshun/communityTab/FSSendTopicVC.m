@@ -18,8 +18,7 @@
 
 @interface FSSendTopicVC ()
 <
-    TZImagePickerControllerDelegate,
-    UITextFieldDelegate
+    TZImagePickerControllerDelegate
 >
 
 //相关的id
@@ -30,7 +29,7 @@
 @property (nonatomic, strong) UITextField *m_TitleTextField;
 
 @property (nonatomic, strong) UILabel *m_PlaceHolderLab;
-
+// 编辑内容的自定义placeholder，解决只插入图片点击标题消失的问题
 @property (nonatomic, strong) UILabel *m_contentPlaceHolderLab;
 
 @end
@@ -80,8 +79,6 @@
        forControlEvents:UIControlEventTouchUpInside];
     [self addCustomToolbarItemWithButton:myButton];
     
-    self.placeholder = @"请写下你的分享...";
-    
     self.view.backgroundColor       = [UIColor whiteColor];
     
     self.bm_NavigationItemTintColor = UI_COLOR_B1;
@@ -92,7 +89,6 @@
     self.m_TitleTextField.font        = [UIFont systemFontOfSize:16.f];
     self.m_TitleTextField.textColor   = UI_COLOR_B1;
     self.m_TitleTextField.placeholder = @"添加标题";
-    self.m_TitleTextField.delegate = self;
     [self.m_TitleTextField addTarget:self action:@selector(titleTextChange:) forControlEvents:UIControlEventEditingChanged];
     [self.view addSubview:self.m_TitleTextField];
     
@@ -170,11 +166,7 @@
     }
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    BMLog(@"1234");
-}
-
+// 编辑器内容改变
 - (void)editorDidChangeWithText:(NSString *)text andHTML:(NSString *)html
 {
     BMLog(@"text == %@,html == %@",text,html);
