@@ -33,7 +33,7 @@ BOOL DTCGSizeMakeWithDictionaryRepresentation(NSDictionary *dict, CGSize *size)
 	NSNumber *widthNumber = dict[@"Width"];
 	NSNumber *heightNumber = dict[@"Height"];
 	
-	if (!widthNumber || !heightNumber)
+	if (widthNumber == nil || heightNumber == nil)
 	{
 		return NO;
 	}
@@ -74,7 +74,7 @@ BOOL DTCGRectMakeWithDictionaryRepresentation(NSDictionary *dict, CGRect *rect)
 	NSNumber *xNumber = dict[@"X"];
 	NSNumber *yNumber = dict[@"Y"];
 	
-	if (!widthNumber || !heightNumber || !xNumber || !yNumber)
+	if (widthNumber == nil || heightNumber == nil || xNumber == nil || yNumber == nil)
 	{
 		return NO;
 	}

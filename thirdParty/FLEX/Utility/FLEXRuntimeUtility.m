@@ -587,6 +587,11 @@ const unsigned int kFLEXNumberOfImplicitArgs = 2;
 
 + (NSString *)appendName:(NSString *)name toType:(NSString *)type
 {
+    if (!name)
+    {
+        return nil;
+    }
+    
     NSString *combined = nil;
     if ([type characterAtIndex:[type length] - 1] == '*') {
         combined = [type stringByAppendingString:name];

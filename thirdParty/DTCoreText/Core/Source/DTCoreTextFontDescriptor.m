@@ -805,7 +805,7 @@ static BOOL _needsChineseFontCascadeFix = NO;
 	}
 	
 	NSNumber *pointNum = [attributes objectForKey:(id)kCTFontSizeAttribute];
-	if (pointNum)
+	if (pointNum != nil)
 	{
 		_pointSize = [pointNum floatValue];
 	}

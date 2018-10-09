@@ -81,7 +81,7 @@
             
             if ([[subPath lowercaseString] rangeOfString:[self.searchString lowercaseString]].location != NSNotFound) {
                 [searchPaths addObject:fullPath];
-                if (!sizeMapping[fullPath]) {
+                if (sizeMapping[fullPath] == nil) {
                     uint64_t fullPathSize = [self totalSizeAtPath:fullPath];
                     totalSize += fullPathSize;
                     [sizeMapping setObject:@(fullPathSize) forKey:fullPath];

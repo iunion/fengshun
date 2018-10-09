@@ -108,7 +108,7 @@
 		 
 		 NSInteger currentCounter=0;
 		 
-		 if (!currentCounterNum)
+		 if (currentCounterNum == nil)
 		 {
 			 currentCounter = currentEffectiveList.startingItemNumber;
 		 }

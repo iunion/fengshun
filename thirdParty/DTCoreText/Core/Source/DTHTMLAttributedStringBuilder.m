@@ -208,7 +208,7 @@
 	
 	NSNumber *defaultFontSizeNumber = [_options objectForKey:DTDefaultFontSize];
 	
-	if (defaultFontSizeNumber)
+	if (defaultFontSizeNumber != nil)
 	{
 		defaultFontSize = [defaultFontSizeNumber floatValue];
 	}
@@ -254,7 +254,7 @@
 	// default is to have A underlined
 	NSNumber *linkDecorationDefault = [_options objectForKey:DTDefaultLinkDecoration];
 	
-	if (linkDecorationDefault)
+	if (linkDecorationDefault != nil)
 	{
 		if (![linkDecorationDefault boolValue])
 		{
@@ -286,7 +286,7 @@
 	
 	NSNumber *defaultLineHeightMultiplierNum = [_options objectForKey:DTDefaultLineHeightMultiplier];
 	
-	if (defaultLineHeightMultiplierNum)
+	if (defaultLineHeightMultiplierNum != nil)
 	{
 		CGFloat defaultLineHeightMultiplier = [defaultLineHeightMultiplierNum floatValue];
 		_defaultParagraphStyle.lineHeightMultiple = defaultLineHeightMultiplier;
@@ -294,19 +294,19 @@
 	
 	NSNumber *defaultTextAlignmentNum = [_options objectForKey:DTDefaultTextAlignment];
 	
-	if (defaultTextAlignmentNum)
+	if (defaultTextAlignmentNum != nil)
 	{
 		_defaultParagraphStyle.alignment = (CTTextAlignment)[defaultTextAlignmentNum integerValue];
 	}
 	
 	NSNumber *defaultFirstLineHeadIndent = [_options objectForKey:DTDefaultFirstLineHeadIndent];
-	if (defaultFirstLineHeadIndent)
+	if (defaultFirstLineHeadIndent != nil)
 	{
 		_defaultParagraphStyle.firstLineHeadIndent = [defaultFirstLineHeadIndent integerValue];
 	}
 	
 	NSNumber *defaultHeadIndent = [_options objectForKey:DTDefaultHeadIndent];
-	if (defaultHeadIndent)
+	if (defaultHeadIndent != nil)
 	{
 		_defaultParagraphStyle.headIndent = [defaultHeadIndent integerValue];
 	}
