@@ -119,10 +119,7 @@ ZSSRichTextEditor ()
  */
 @property (nonatomic, strong) NSString *htmlString;
 
-/*
- *  UIWebView for writing/editing/displaying the content
- */
-@property (nonatomic, strong) UIWebView *editorView;
+
 /*
  *  ZSSTextView for displaying the source code for what is displayed in the editor view
  */
@@ -203,10 +200,10 @@ ZSSRichTextEditor ()
  */
 @property (nonatomic, strong) NSString *customCSS;
 
-/*
- *  BOOL for if the editor is loaded or not
- */
-@property (nonatomic) BOOL editorLoaded;
+///*
+// *  BOOL for if the editor is loaded or not
+// */
+//@property (nonatomic) BOOL editorLoaded;
 
 /*
  *  Image Picker for selecting photos from users photo library
@@ -1763,7 +1760,6 @@ static CGFloat kDefaultScale    = 0.5;
     [self.editorView stringByEvaluatingJavaScriptFromString:@"zss_editor.prepareInsert();"];
     NSString *trigger = [NSString stringWithFormat:@"zss_editor.insertImage(\"%@\", \"%@\");", url, alt];
     [self.editorView stringByEvaluatingJavaScriptFromString:trigger];
-//    [self.editorView setNeedsLayout];
 }
 
 
@@ -1903,23 +1899,39 @@ static CGFloat kDefaultScale    = 0.5;
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     self.editorLoaded = YES;
+    
+    JSContext *ctx                = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+    ctx[@"contentUpdateCallback"] = ^(JSValue *msg) {
+        
+        if (_receiveEditorDidChangeEvents)
+        {
+            [self editorDidChangeWithText:[self getText] andHTML:[self getHTML]];
+        }
+        
+        [self checkForMentionOrHashtagInText:[self getText]];
+        
+    };
+    [ctx evaluateScript:@"document.getElementById('zss_editor_content').addEventListener('input', contentUpdateCallback, false);"];
 
 //    if (!self.internalHTML)
 //    {
 //        self.internalHTML = @"";
 //    }
+    
     [self updateHTML];
-
+    
     if (self.placeholder)
     {
         [self setPlaceholderText];
     }
-
+    
     if (self.customCSS)
     {
         [self updateCSS];
     }
 
+    
+    
     if (self.shouldShowKeyboard)
     {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -1932,18 +1944,13 @@ static CGFloat kDefaultScale    = 0.5;
      Callback for when text is changed, solution posted by richardortiz84 https://github.com/nnhubbard/ZSSRichTextEditor/issues/5
      
      */
-    JSContext *ctx                = [webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-    ctx[@"contentUpdateCallback"] = ^(JSValue *msg) {
+    
+    
+}
 
-        if (_receiveEditorDidChangeEvents)
-        {
-            [self editorDidChangeWithText:[self getText] andHTML:[self getHTML]];
-        }
-
-        [self checkForMentionOrHashtagInText:[self getText]];
-
-    };
-    [ctx evaluateScript:@"document.getElementById('zss_editor_content').addEventListener('input', contentUpdateCallback, false);"];
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    
 }
 
 #pragma mark - Mention & Hashtag Support Section

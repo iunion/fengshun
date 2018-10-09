@@ -59,7 +59,10 @@ static NSString * const ZSSRichTextEditorToolbarFonts = @"com.zedsaid.toolbarite
  */
 @interface ZSSRichTextEditor : FSSuperNetVC <UIWebViewDelegate, HRColorPickerViewControllerDelegate, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate,ZSSFontsViewControllerDelegate>
 
-
+/*
+ *  UIWebView for writing/editing/displaying the content
+ */
+@property (nonatomic, strong) UIWebView *editorView;
 /**
  *  The base URL to use for the webView
  */
@@ -104,6 +107,11 @@ static NSString * const ZSSRichTextEditorToolbarFonts = @"com.zedsaid.toolbarite
  *  Color to tint selected items
  */
 @property (nonatomic, strong) UIColor *toolbarItemSelectedTintColor;
+
+/*
+ *  BOOL for if the editor is loaded or not
+ */
+@property (nonatomic) BOOL editorLoaded;
 
 /**
  *  Sets the HTML for the entire editor

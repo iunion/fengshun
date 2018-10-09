@@ -18,7 +18,8 @@
 
 @interface FSSendTopicVC ()
 <
-    TZImagePickerControllerDelegate
+    TZImagePickerControllerDelegate,
+    UITextFieldDelegate
 >
 
 //相关的id
@@ -29,6 +30,8 @@
 @property (nonatomic, strong) UITextField *m_TitleTextField;
 
 @property (nonatomic, strong) UILabel *m_PlaceHolderLab;
+
+@property (nonatomic, strong) UILabel *m_contentPlaceHolderLab;
 
 @end
 
@@ -67,7 +70,7 @@
 - (void)createUI
 {
     self.alwaysShowToolbar = NO;
-    self.receiveEditorDidChangeEvents = NO;
+    self.receiveEditorDidChangeEvents = YES;
     self.shouldShowKeyboard = NO;
     self.enabledToolbarItems = @[ ZSSRichTextEditorToolbarNone ];
     UIButton *myButton       = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 60.f, 28.0f)];
@@ -77,7 +80,7 @@
        forControlEvents:UIControlEventTouchUpInside];
     [self addCustomToolbarItemWithButton:myButton];
     
-    [self setPlaceholder:@"请写下你的分享..."];
+    self.placeholder = @"请写下你的分享...";
     
     self.view.backgroundColor       = [UIColor whiteColor];
     
@@ -89,6 +92,7 @@
     self.m_TitleTextField.font        = [UIFont systemFontOfSize:16.f];
     self.m_TitleTextField.textColor   = UI_COLOR_B1;
     self.m_TitleTextField.placeholder = @"添加标题";
+    self.m_TitleTextField.delegate = self;
     [self.m_TitleTextField addTarget:self action:@selector(titleTextChange:) forControlEvents:UIControlEventEditingChanged];
     [self.view addSubview:self.m_TitleTextField];
     
@@ -98,6 +102,13 @@
     self.m_PlaceHolderLab.textAlignment = NSTextAlignmentRight;
     self.m_PlaceHolderLab.textColor = UI_COLOR_B1;
     [self.view addSubview:_m_PlaceHolderLab];
+    
+    self.m_contentPlaceHolderLab = [[UILabel alloc]initWithFrame:CGRectMake(10.f, 10.f, 200.f, 19.f)];
+    self.m_contentPlaceHolderLab.text = [NSString stringWithFormat:@"请写下你的分享..."];
+    self.m_contentPlaceHolderLab.font = [UIFont systemFontOfSize:16.f];
+    self.m_contentPlaceHolderLab.textAlignment = NSTextAlignmentLeft;
+    self.m_contentPlaceHolderLab.textColor = UI_COLOR_B1;
+    [self.editorView.scrollView addSubview:self.m_contentPlaceHolderLab];
     
     BMSingleLineView *singleLine = [[BMSingleLineView alloc] initWithFrame:CGRectMake(self.m_TitleTextField.bm_left, self.m_TitleTextField.bm_bottom - 1, self.m_TitleTextField.bm_width + 50, 1)];
     singleLine.isDash            = YES;
@@ -157,6 +168,17 @@
         }
         self.m_PlaceHolderLab.text = [NSString stringWithFormat:@"%@个字", @(Topic_MaxTextCount - self.m_TitleTextField.text.length)];
     }
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    BMLog(@"1234");
+}
+
+- (void)editorDidChangeWithText:(NSString *)text andHTML:(NSString *)html
+{
+    BMLog(@"text == %@,html == %@",text,html);
+    self.m_contentPlaceHolderLab.hidden = !([html isEqualToString:@"<br />"] || html.length == 0) ;
 }
 
 // 退出

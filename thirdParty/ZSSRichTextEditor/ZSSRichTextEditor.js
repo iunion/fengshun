@@ -63,14 +63,14 @@ zss_editor.init = function() {
 //                 zss_editor.setScrollPosition();
 //                 zss_editor.enabledEditingItems(e);
 //                 });
-    $(window).on('touchstart', function(e) {
-                 zss_editor.isDragging = false;
-                 });
-    $(window).on('touchend', function(e) {
-                 if (!zss_editor.isDragging && (e.target.id == "zss_editor_footer"||e.target.nodeName.toLowerCase() == "html")) {
-                 zss_editor.focusEditor();
-                 }
-                 });
+//    $(window).on('touchstart', function(e) {
+//                 zss_editor.isDragging = false;
+//                 });
+//    $(window).on('touchend', function(e) {
+//                 if (!zss_editor.isDragging && (e.target.id == "zss_editor_footer"||e.target.nodeName.toLowerCase() == "html")) {
+//                 zss_editor.focusEditor();
+//                 }
+//                 });
     
 }//end
 
@@ -635,16 +635,16 @@ zss_editor.enabledEditingItems = function(e) {
             items.push('indent');
         }
         // Image
-        if (nodeName == 'img') {
-            zss_editor.currentEditingImage = t;
-            items.push('image:'+t.attr('src'));
-            if (t.attr('alt') !== undefined) {
-                items.push('image-alt:'+t.attr('alt'));
-            }
-            
-        } else {
-            zss_editor.currentEditingImage = null;
-        }
+//        if (nodeName == 'img') {
+//            zss_editor.currentEditingImage = t;
+//            items.push('image:'+t.attr('src'));
+//            if (t.attr('alt') !== undefined) {
+//                items.push('image-alt:'+t.attr('alt'));
+//            }
+//            
+//        } else {
+//            zss_editor.currentEditingImage = null;
+//        }
         
     }
     
