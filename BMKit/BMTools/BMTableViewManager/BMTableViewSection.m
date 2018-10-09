@@ -280,7 +280,7 @@ CGFloat const BMTableViewCellTitlePadding = 5.0f;
     [self.mutableItems exchangeObjectAtIndex:idx1 withObjectAtIndex:idx2];
 }
 
-- (void)sortItemsUsingFunction:(NSInteger (*)(id, id, void *))compare context:(void *)context
+- (void)sortItemsUsingFunction:(NSInteger (NS_NOESCAPE *)(id, id, void *))compare context:(void *)context
 {
     [self.mutableItems sortUsingFunction:compare context:context];
 }

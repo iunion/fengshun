@@ -7,7 +7,7 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
-typedef void(^CallbackBlock)();
+typedef void(^CallbackBlock)(void);
 
 /**
  统计的场景类别，默认为普通统计；若使用游戏统计API，则需选择游戏场景类别，如E_UM_GAME。
@@ -18,6 +18,9 @@ typedef NS_ENUM (NSUInteger, eScenarioType)
     E_UM_GAME   = 1,    // game
     E_UM_DPLUS  = 4    // DPlus
 };
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdocumentation"
 
 @class CLLocation;
 @interface MobClick : NSObject <UIAlertViewDelegate>
@@ -212,3 +215,6 @@ typedef NS_ENUM (NSUInteger, eScenarioType)
 + (void)onDeepLinkReceived:(NSURL *)link;
 
 @end
+
+#pragma clang diagnostic pop
+

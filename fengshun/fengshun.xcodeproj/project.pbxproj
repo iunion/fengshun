@@ -1995,7 +1995,7 @@
 			outputFiles = (
 				"${INPUT_FILE_BASE}.css.c",
 			);
-			script = "cd \"$INPUT_FILE_DIR\"  # move into file dir, otherwise xxd takes the full path for the symbol\n/usr/bin/xxd -i \"$INPUT_FILE_NAME\" \"$DERIVED_SOURCES_DIR/$INPUT_FILE_BASE.css.c\" # builds a c file with a hex array";
+			script = "cd \"$INPUT_FILE_DIR\"  # move into file dir, otherwise xxd takes the full path for the symbol\n/usr/bin/xxd -i \"$INPUT_FILE_NAME\" \"$DERIVED_SOURCES_DIR/$INPUT_FILE_BASE.css.c\" # builds a c file with a hex array\n";
 		};
 		87E7C61B21509AB000F7AB14 /* PBXBuildRule */ = {
 			isa = PBXBuildRule;
