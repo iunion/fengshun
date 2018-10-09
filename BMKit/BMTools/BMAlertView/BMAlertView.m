@@ -3,7 +3,7 @@
 //  ODR
 //
 //  Created by jiang deng on 2018/7/10.
-//  Copyright © 2018年 DH. All rights reserved.
+//  Copyright © 2018年 DJ. All rights reserved.
 //
 //  || https://github.com/alexanderjarvis/PXAlertView
 
@@ -712,6 +712,13 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
 
 #pragma mark -
 #pragma mark property
+
+- (void)setAlertMarkBgEffect:(UIVisualEffect *)alertMarkBgEffect
+{
+    _alertMarkBgEffect = alertMarkBgEffect;
+    
+    self.alertMarkBgEffectView.effect = alertMarkBgEffect;
+}
 
 - (void)setAlertTitle:(NSString *)alertTitle
 {

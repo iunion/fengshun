@@ -451,7 +451,7 @@
 		
 		NSNumber *headerLevel = [paraAttributes objectForKey:DTHeaderLevelAttribute];
 		
-		if (headerLevel)
+		if (headerLevel != nil)
 		{
 			blockElement = [NSString stringWithFormat:@"h%d", (int)[headerLevel integerValue]];
 		}
@@ -726,7 +726,7 @@
 			}
 			
 			NSNumber *underline = [attributes objectForKey:(id)kCTUnderlineStyleAttributeName];
-			if (underline)
+			if (underline != nil)
 			{
 				fontStyle = [fontStyle stringByAppendingString:@"text-decoration:underline;"];
 			}
@@ -741,7 +741,7 @@
 			}
 			
 			NSNumber *superscript = [attributes objectForKey:(id)kCTSuperscriptAttributeName];
-			if (superscript)
+			if (superscript != nil)
 			{
 				NSInteger style = [superscript integerValue];
 				

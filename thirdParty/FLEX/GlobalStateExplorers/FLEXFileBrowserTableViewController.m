@@ -138,7 +138,7 @@
     NSArray<NSString *> *currentPaths = isSearchActive ? self.searchPaths : self.childPaths;
 
     NSString *sizeString = nil;
-    if (!currentSize) {
+    if (currentSize == nil) {
         sizeString = @"Computing size…";
     } else {
         sizeString = [NSByteCountFormatter stringFromByteCount:[currentSize longLongValue] countStyle:NSByteCountFormatterCountStyleFile];

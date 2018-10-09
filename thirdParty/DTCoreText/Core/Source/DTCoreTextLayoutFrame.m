@@ -1460,12 +1460,12 @@ static BOOL _DTCoreTextLayoutFramesShouldDrawDebugFrames = NO;
 			{
 				case 1:
 				{
-					textPosition.y += oneRun.ascent * (ascentMultiplier ? [ascentMultiplier floatValue] : 0.47f);
+					textPosition.y += oneRun.ascent * (ascentMultiplier != nil ? [ascentMultiplier floatValue] : 0.47f);
 					break;
 				}
 				case -1:
 				{
-					textPosition.y -= oneRun.ascent * (ascentMultiplier ? [ascentMultiplier floatValue] : 0.25f);
+					textPosition.y -= oneRun.ascent * (ascentMultiplier != nil ? [ascentMultiplier floatValue] : 0.25f);
 					break;
 				}
 				default:
@@ -1475,7 +1475,7 @@ static BOOL _DTCoreTextLayoutFramesShouldDrawDebugFrames = NO;
 			if (DTCoreTextModernAttributesPossible())
 			{
 				NSNumber *baselineOffset = oneRun.attributes[NSBaselineOffsetAttributeName];
-				if (baselineOffset)
+				if (baselineOffset != nil)
 				{
 					textPosition.y += [baselineOffset floatValue];
 				}

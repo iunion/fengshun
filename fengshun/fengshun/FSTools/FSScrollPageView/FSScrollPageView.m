@@ -7,8 +7,6 @@
 //
 
 #import "FSScrollPageView.h"
-//#import "MQTableView.h"
-
 
 
 @interface FSScrollPageView ()
@@ -213,7 +211,10 @@
             {
                 NSAssert(newView, @"Cannot show the pages, it is not a view!");
             }
-            [self.m_ScrollView addSubview:aView];
+            if (aView)
+            {
+                [self.m_ScrollView addSubview:aView];
+            }
             aView.frame = CGRectMake(self.bm_width * index, 0, self.bm_width, self.m_ScrollView.bm_height);
             UITableView *tableView = (UITableView *)[aView bm_viewOfClass:[UITableView class]];
             if (tableView)

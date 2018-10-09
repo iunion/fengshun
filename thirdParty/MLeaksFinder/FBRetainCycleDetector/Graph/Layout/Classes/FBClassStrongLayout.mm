@@ -190,7 +190,7 @@ NSArray<id<FBObjectReference>> *FBGetObjectStrongReferences(id obj,
   __unsafe_unretained Class currentClass = object_getClass(obj);
 
   while (previousClass != currentClass) {
-    NSArray<id<FBObjectReference>> *ivars;
+    NSArray<id<FBObjectReference>> *ivars = nil;
     
     if (layoutCache && currentClass) {
       ivars = layoutCache[currentClass];

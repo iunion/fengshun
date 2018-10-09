@@ -20,7 +20,7 @@ static NSUInteger DTAnimatedGIFFrameDurationForImageAtIndex(CGImageSourceRef sou
 	
 	NSNumber *delayTimeUnclampedProp = gifProperties[(NSString *)kCGImagePropertyGIFUnclampedDelayTime];
 	
-	if(delayTimeUnclampedProp)
+	if(delayTimeUnclampedProp != nil)
 	{
 		frameDuration = [delayTimeUnclampedProp floatValue]*100;
 	}
@@ -28,7 +28,7 @@ static NSUInteger DTAnimatedGIFFrameDurationForImageAtIndex(CGImageSourceRef sou
 	{
 		NSNumber *delayTimeProp = gifProperties[(NSString *)kCGImagePropertyGIFDelayTime];
 		
-		if(delayTimeProp)
+		if(delayTimeProp != nil)
 		{
 			frameDuration = [delayTimeProp floatValue]*100;
 		}

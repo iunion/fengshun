@@ -1249,7 +1249,7 @@
     [self.mutableSections exchangeObjectAtIndex:idx1 withObjectAtIndex:idx2];
 }
 
-- (void)sortSectionsUsingFunction:(NSInteger (*)(id, id, void *))compare context:(void *)context
+- (void)sortSectionsUsingFunction:(NSInteger (NS_NOESCAPE *)(id, id, void *))compare context:(void *)context
 {
     [self.mutableSections sortUsingFunction:compare context:context];
 }

@@ -162,7 +162,10 @@
             {
                 NSString *message = [responseObject bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
                 NSError *customError = [NSError errorWithDomain:FSAPIResponseErrorDomain code:code userInfo:@{NSLocalizedDescriptionKey : message, NSHelpAnchorErrorKey : responseObject}];
-                *error = customError;
+                if (error)
+                {
+                    *error = customError;
+                }
                 if (![weakSelf cheakLoginState:request]) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         UIViewController *vc = [GetAppDelegate.m_TabBarController getCurrentViewController];

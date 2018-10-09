@@ -35,7 +35,7 @@
 {
 	NSNumber *underlineStyle = [self objectForKey:(id)kCTUnderlineStyleAttributeName];
 	
-	if (underlineStyle)
+	if (underlineStyle != nil)
 	{
 		return [underlineStyle integerValue] != kCTUnderlineStyleNone;
 	}
@@ -44,7 +44,7 @@
 	{
 		underlineStyle = [self objectForKey:NSUnderlineStyleAttributeName];
 	
-		if (underlineStyle)
+		if (underlineStyle != nil)
 		{
 			return [underlineStyle integerValue] != NSUnderlineStyleNone;
 		}
@@ -57,7 +57,7 @@
 {
 	NSNumber *strikethroughStyle = [self objectForKey:DTStrikeOutAttribute];
 	
-	if (strikethroughStyle)
+	if (strikethroughStyle != nil)
 	{
 		return [strikethroughStyle boolValue];
 	}
@@ -66,7 +66,7 @@
 	{
 		strikethroughStyle = [self objectForKey:NSStrikethroughStyleAttributeName];
 		
-		if (strikethroughStyle)
+		if (strikethroughStyle != nil)
 		{
 			return [strikethroughStyle boolValue];
 		}
@@ -217,7 +217,7 @@
 	{
 		NSNumber *kerningNum = [self objectForKey:NSKernAttributeName];
 		
-		if (kerningNum)
+		if (kerningNum != nil)
 		{
 			return [kerningNum floatValue];
 		}
@@ -243,7 +243,7 @@
 {
 	NSNumber *num = [self objectForKey:DTBackgroundStrokeWidthAttribute];
 	
-	if (num)
+	if (num != nil)
 	{
 		return [num floatValue];
 	}
@@ -255,7 +255,7 @@
 {
 	NSNumber *num = [self objectForKey:DTBackgroundCornerRadiusAttribute];
 	
-	if (num)
+	if (num != nil)
 	{
 		return [num floatValue];
 	}
