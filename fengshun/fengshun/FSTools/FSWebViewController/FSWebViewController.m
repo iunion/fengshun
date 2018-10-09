@@ -523,9 +523,11 @@
 {
     [self updateNavBack];
 
+#ifdef DEBUG
     NSString *currentURL = [webView stringByEvaluatingJavaScriptFromString:@"document.location.href"];
     BMLog(@"%@", currentURL);
-
+#endif
+    
 #if 0
     [self.m_WebView evaluateJavaScript:@"document.getElementsByName('miaoqian_right_content')[0].content" completionHandler:^(id object, NSError *error) {
         NSString *js_RightBtn = (NSString *)object;
