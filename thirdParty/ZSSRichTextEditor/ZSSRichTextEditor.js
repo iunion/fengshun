@@ -472,7 +472,8 @@ zss_editor.prepareInsert = function() {
 
 zss_editor.insertImage = function(url, alt) {
     zss_editor.restorerange();
-    var html = '<img src="'+url+'" alt="'+alt+'" style="width:100%" />';
+    var html = '<img src="'+url+'" alt="'+alt+'" style="width:100%;margin:5px 0px 5px 0px;" />';
+    //style=\" width:100%; margin:5px 0px 5px 0px;"
 //    var html = '<img src="'+url+'" alt="'+alt+'" />';
     zss_editor.insertHTML(html);
     zss_editor.enabledEditingItems();
@@ -641,7 +642,7 @@ zss_editor.enabledEditingItems = function(e) {
 //            if (t.attr('alt') !== undefined) {
 //                items.push('image-alt:'+t.attr('alt'));
 //            }
-//            
+//
 //        } else {
 //            zss_editor.currentEditingImage = null;
 //        }
