@@ -134,7 +134,7 @@
             imageView.userInteractionEnabled = YES;
             imageView.tag = FSBanner_StartTag+i;
             [view addSubview:imageView];
-            addView = imageView;
+            //addView = imageView;
         }
         
         // 水平滚动
@@ -156,7 +156,7 @@
         [control addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
         control.exclusiveTouch = YES;
     }
-    
+
     // 在水平方向滚动
     if (self.scrollDirection == FSBannerViewScrollDirectionLandscape)
     {
