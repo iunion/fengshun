@@ -49,6 +49,9 @@
 /// Default is 9 / 默认最大可选9张图片
 @property (nonatomic, assign) NSInteger maxImagesCount;
 
+// add for 枫调理顺
+@property (nonatomic, assign) BOOL specialSingleSelected;
+
 /// The minimum count photos user must pick, Default is 0
 /// 最小照片必选张数,默认是0
 @property (nonatomic, assign) NSInteger minImagesCount;
