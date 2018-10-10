@@ -21,13 +21,15 @@
 }
 + (instancetype)imageFileWithSelectInfo:(NSDictionary *)info andImage:(UIImage *)image
 {
-    NSString *timeStamp = [@((long)[NSDate date].timeIntervalSince1970) stringValue];
+    NSDate *currentDate = [NSDate date];
+    NSString *timeStamp = [@((long)currentDate.timeIntervalSince1970) stringValue];
     NSString *urlKey = [info bm_stringForKey:@"PHImageFileURLKey"];
     if (![urlKey bm_isNotEmpty]) {
         urlKey = [NSString stringWithFormat:@"FSFileScan://imageSelected/IMG%@.png",timeStamp];
     }
     NSString *realUrlKey = [urlKey stringByAppendingPathComponent:timeStamp];
-    return [self creatImageFileWithUrlKey:realUrlKey fileName:[urlKey lastPathComponent] andImage:image];
+    NSString *fileName = [currentDate bm_stringWithFormat:@"yyyy-MM-dd HH:mm:ss扫描"];
+    return [self creatImageFileWithUrlKey:realUrlKey fileName:fileName andImage:image];
 }
 + (instancetype)creatImageFileWithUrlKey:(NSString *)urlKey fileName:(NSString *)fileName andImage:(UIImage *)image
 {
