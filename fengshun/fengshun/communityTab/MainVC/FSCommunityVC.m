@@ -43,7 +43,7 @@
     self.bm_NavigationShadowHidden   = NO;
     self.bm_NavigationShadowColor    = [UIColor bm_colorWithHex:0xD8D8D8];
 
-    [self bm_setNavigationWithTitle:@"枫调理顺" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
+    [self bm_setNavigationWithTitle:@"社区" barTintColor:nil leftItemTitle:nil leftItemImage:nil leftToucheEvent:nil rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
     [GetAppDelegate.m_TabBarController hideOriginTabBar];
 
     [self setupUI];
