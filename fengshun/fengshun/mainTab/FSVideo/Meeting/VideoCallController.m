@@ -411,7 +411,7 @@
 #pragma mark - ILiveRoomDisconnectListener
 - (BOOL)onRoomDisconnect:(int)reason {
     NSLog(@"房间异常退出：%d", reason);
-    [self showAlertWithTitle:@"异常退出房间" msg:nil code:0];
+    [self showAlertWithTitle:@"发生未知错误，请尝试退出重进" msg:nil code:0];
     return YES;
 }
 
