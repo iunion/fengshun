@@ -93,10 +93,14 @@
 #pragma mark - Custom Method
 
 - (void)showAlertError:(NSError *)error {
-    [self showAlertWithTitle:nil msg:error.localizedFailureReason code:0];
+    if (error.localizedFailureReason) {
+        [self showAlertWithTitle:error.localizedFailureReason msg:nil];
+    } else {
+        [self showAlertWithTitle:nil msg:error.localizedDescription];
+    }
 }
 
-- (void)showAlertWithTitle:(NSString *)title msg:(NSString *)msg code:(NSInteger)code {
+- (void)showAlertWithTitle:(NSString *)title msg:(NSString *)msg{
     
     if (self.isShowError) {
         return;
@@ -105,14 +109,11 @@
     self.isShowError = YES;
     
     BMWeakSelf
-    NSMutableString *fmsg = [NSMutableString new];
-    if (msg) {
-        [fmsg appendString:msg];
-    } else if (code) {
-        [fmsg appendString:[NSString stringWithFormat:@"错误码:%@ ", @(code)]];
+    if ((![msg bm_isNotEmpty]) && (![title bm_isNotEmpty])) {
+        msg = @"发生未知错误，请尝试退出重进";
     }
     
-    UIAlertController *vc = [UIAlertController alertControllerWithTitle:title message:fmsg preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *vc = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [weakSelf exitVC];
     }];
@@ -160,7 +161,7 @@
     } failed:^(NSString *module, int errId, NSString *errMsg) {
         // 登录失败
         [weakSelf.m_ProgressHUD hideAnimated:YES];
-        [weakSelf showAlertWithTitle:@"登录失败" msg:errMsg code:errId];
+        [weakSelf showAlertWithTitle:@"登录失败" msg:errMsg];
         NSLog(@"登录账号失败！！！！！！！");
     }];
 }
@@ -192,7 +193,7 @@
         NSLog(@"failed 加入房间失败！！！！！！！");
         weakSelf.joinRoomStep = 3;
         [weakSelf.m_ProgressHUD hideAnimated:YES];
-        [weakSelf showAlertWithTitle:@"加入房间失败" msg:errMsg code:errId];
+        [weakSelf showAlertWithTitle:@"加入房间失败" msg:errMsg];
     }];
 }
 
@@ -358,19 +359,19 @@
 - (void)onForceOffline
 {
     NSLog(@"踢下线通知");
-    [self showAlertWithTitle:@"您已被踢下线" msg:nil code:0];
+    [self showAlertWithTitle:@"您已被踢下线" msg:nil];
 }
 
 - (void)onReConnFailed:(int)code err:(NSString*)err
 {
     NSLog(@"断线重连失败");
-    [self showAlertWithTitle:@"断线重连失败" msg:err code:code];
+    [self showAlertWithTitle:@"断线重连失败" msg:err];
 }
 
 - (void)onUserSigExpired
 {
     NSLog(@"用户登录的userSig过期");
-    [self showAlertWithTitle:@"登录userSig已过期" msg:nil code:0];
+    [self showAlertWithTitle:@"登录userSig已过期" msg:nil];
 }
 
 #pragma mark -  TIMConnListener
@@ -404,14 +405,14 @@
 
 - (void)joinRoomFailed {
     if (self.joinRoomStep == 10) {
-        [self showAlertWithTitle:@"加入房间失败" msg:nil code:0];
+        [self showAlertWithTitle:@"加入房间失败" msg:nil];
     }
 }
 
 #pragma mark - ILiveRoomDisconnectListener
 - (BOOL)onRoomDisconnect:(int)reason {
     NSLog(@"房间异常退出：%d", reason);
-    [self showAlertWithTitle:@"发生未知错误，请尝试退出重进" msg:nil code:0];
+    [self showAlertWithTitle:nil msg:@"发生未知错误，请尝试退出重进"];
     return YES;
 }
 
