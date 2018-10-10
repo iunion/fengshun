@@ -42,6 +42,8 @@
 @property (nonatomic, strong) UIImagePickerController *imagePickerVc;
 @property (strong, nonatomic) CLLocation *location;
 @property (assign, nonatomic) BOOL useCachedImage;
+// add for 枫调理顺
+@property (nonatomic, strong) TZAssetModel * selectedModel;
 @end
 
 static CGSize AssetGridThumbnailSize;
@@ -374,6 +376,12 @@ static CGFloat itemMargin = 5;
     NSMutableArray *assets = [NSMutableArray array];
     NSMutableArray *photos;
     NSMutableArray *infoArr;
+    
+    // add for 枫调理顺
+    if (tzImagePickerVc.specialSingleSelected) {
+        tzImagePickerVc.selectedModels = [@[_selectedModel] mutableCopy];
+    }
+    
     if (tzImagePickerVc.onlyReturnAsset) { // not fetch image
         for (NSInteger i = 0; i < tzImagePickerVc.selectedModels.count; i++) {
             TZAssetModel *model = tzImagePickerVc.selectedModels[i];
@@ -582,7 +590,13 @@ static CGFloat itemMargin = 5;
         index = indexPath.item - 1;
     }
     TZAssetModel *model = _models[index];
-    if (model.type == TZAssetModelMediaTypeVideo && !tzImagePickerVc.allowPickingMultipleVideo) {
+    // add for 枫调理顺
+    self.selectedModel = model;
+    if (tzImagePickerVc.specialSingleSelected) {
+        
+        [self doneButtonClick];
+    }
+    else if (model.type == TZAssetModelMediaTypeVideo && !tzImagePickerVc.allowPickingMultipleVideo) {
         if (tzImagePickerVc.selectedModels.count > 0) {
             TZImagePickerController *imagePickerVc = (TZImagePickerController *)self.navigationController;
             [imagePickerVc showAlertWithTitle:[NSBundle tz_localizedStringForKey:@"Can not choose both video and photo"]];
@@ -819,6 +833,10 @@ static CGFloat itemMargin = 5;
 - (void)addPHAsset:(PHAsset *)asset {
     TZAssetModel *assetModel = [[TZImageManager manager] createModelWithAsset:asset];
     TZImagePickerController *tzImagePickerVc = (TZImagePickerController *)self.navigationController;
+    // add for 枫调理顺
+    if (tzImagePickerVc.specialSingleSelected) {
+        self.selectedModel = assetModel;
+    }
     [tzImagePickerVc hideProgressHUD];
     if (tzImagePickerVc.sortAscendingByModificationDate) {
         [_models addObject:assetModel];
