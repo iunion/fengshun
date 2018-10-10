@@ -124,25 +124,25 @@
         case 1008:
         {
             NSDictionary *dataDic = [responseDic bm_dictionaryForKey:@"data"];
-            NSString *downString;
+            NSString *downUrl;
             NSString *httpLink = [dataDic bm_stringTrimForKey:@"link"];
             NSString *appId = [dataDic bm_stringTrimForKey:@"appId"];
             if ([httpLink bm_isNotEmpty])
             {
-                downString = httpLink;
+                downUrl = httpLink;
             }
             else if ([appId bm_isNotEmpty])
             {
-                downString = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/%@", appId];
+                downUrl = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/%@", appId];
             }
             else
             {
-                downString = APPSTORE_DOWNLOADAPP_ADDRESS;
+                downUrl = APPSTORE_DOWNLOADAPP_ADDRESS;
             }
             
             FSAlertView *alertView = [FSAlertView showAlertWithTitle:message message:nil cancelTitle:@"立即更新" otherTitle:nil completion:^(BOOL cancelled, NSInteger buttonIndex) {
                 //NSString *downString = APPSTORE_DOWNLOADAPP_ADDRESS;
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:downString]];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:downUrl]];
             }];
             alertView.showClose = NO;
             alertView.notDismissOnCancel = YES;

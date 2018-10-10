@@ -47,7 +47,11 @@ NS_ASSUME_NONNULL_BEGIN
 // 因为课程又分为图文和图文系列,所以添加type字段来区分
 // COURSE-课程,POSTS-帖子,STATUTE-法规,CASE-案例,DOCUMENT-文书范本,SPECIAL-图文列表
 @property (nonatomic, copy) NSString *m_type;
+
 @property (nonatomic, assign, readonly)BOOL m_isSerial;
+
+@property (nonatomic, assign) CGFloat m_TitleHeight;
+
 
 + (nullable instancetype)collectionModelWithDic:(NSDictionary *)dic;
 - (void)updateWithServerDic:(NSDictionary *)dic;

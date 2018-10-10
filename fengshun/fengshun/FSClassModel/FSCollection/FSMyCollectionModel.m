@@ -84,12 +84,39 @@
     self.m_JumpAddress = [dic bm_stringTrimForKey:@"jumpAddress"];
     
     // type, 主要用来区分图文和图文系列
+    // COURSE-课程,POSTS-帖子,STATUTE-法规,CASE-案例,DOCUMENT-文书范本,SPECIAL-图文列表
     self.m_type = [dic bm_stringTrimForKey:@"type"];
+    if ([self.m_type isEqualToString:@"COURSE"] || [self.m_type isEqualToString:@"SPECIAL"])
+    {
+        self.m_CollectionType = FSCollectionType_COURSE;
+    }
+    
+    if (self.m_CollectionType != FSCollectionType_COURSE)
+    {
+        CGSize size = [self.m_Title bm_sizeToFitWidth:UI_SCREEN_WIDTH-30.0f withFont:UI_FONT_18];
+        self.m_TitleHeight = size.height;
+    }
 }
+
 - (BOOL)m_isSerial
 {
     return [_m_type isEqualToString:@"SPECIAL"];
 }
+
+//- (CGFloat)titleHeight
+//{
+//    CGSize size = [self.m_Title bm_sizeToFitWidth:UI_SCREEN_WIDTH-30.0f withFont:UI_FONT_18];
+//
+//    return size.height;
+//}
+//
+//- (CGFloat)cellHeight
+//{
+//    CGFloat height = [self titleHeight];
+//
+//    return height+20+16+20+20;
+//}
+
 @end
 
 @implementation FSMyCommentModel

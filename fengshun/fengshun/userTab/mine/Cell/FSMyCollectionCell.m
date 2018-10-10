@@ -17,12 +17,13 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *m_TitleLabel;
 
+@property (weak, nonatomic) IBOutlet UIView *m_BottomBgView;
 @property (weak, nonatomic) IBOutlet UILabel *m_TimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *m_SourceLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *m_CommentCountBtn;
 
-@property (nonatomic, strong) BMSingleLineView *m_UnderLineView;
+//@property (nonatomic, strong) BMSingleLineView *m_UnderLineView;
 
 @end
 
@@ -30,7 +31,7 @@
 
 + (CGFloat)cellHeight
 {
-    return 100.0f;
+    return 108.0f;
 }
 
 - (void)dealloc
@@ -55,16 +56,16 @@
 
     self.m_SourceLabel.textColor = UI_COLOR_BL1;
     self.m_SourceLabel.font = UI_FONT_10;
-    self.m_SourceLabel.backgroundColor = [UIColor bm_colorWithHex:0xE5ECFD];
-    [self.m_SourceLabel bm_roundedRect:self.m_SourceLabel.bm_height*0.5];
+    //self.m_SourceLabel.backgroundColor = [UIColor bm_colorWithHex:0xE5ECFD];
+    //[self.m_SourceLabel bm_roundedRect:self.m_SourceLabel.bm_height*0.5];
     
     [self.m_CommentCountBtn setTitleColor:[UIColor bm_colorWithHex:0x999999] forState:UIControlStateNormal];
     self.m_CommentCountBtn.titleLabel.font = [UIFont systemFontOfSize:10.0f];
     
-    CGRect underLineFrame = CGRectMake(15.0f, self.contentView.bm_bottom, UI_SCREEN_WIDTH-30.0f, 1);
-    self.m_UnderLineView = [[BMSingleLineView alloc] initWithFrame:underLineFrame];
-    self.m_UnderLineView.lineColor = UI_DEFAULT_LINECOLOR;
-    [self addSubview:self.m_UnderLineView];
+//    CGRect underLineFrame = CGRectMake(15.0f, self.m_BgView.bm_bottom, UI_SCREEN_WIDTH-30.0f, 1);
+//    self.m_UnderLineView = [[BMSingleLineView alloc] initWithFrame:underLineFrame];
+//    self.m_UnderLineView.lineColor = UI_DEFAULT_LINECOLOR;
+//    [self addSubview:self.m_UnderLineView];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -79,18 +80,45 @@
     self.m_Model = model;
     
     self.m_TitleLabel.text = model.m_Title;
+    self.m_TitleLabel.bm_height = model.m_TitleHeight;
     
-    self.m_TimeLabel.text = [NSDate fsStringDateFromTs:model.m_CreateTime];
+    self.m_BottomBgView.bm_top = model.m_TitleHeight + 36.0f;
     
-    CGSize size = [self.m_TimeLabel sizeThatFits:CGSizeMake(1000, self.m_TimeLabel.bm_height)];
-    self.m_SourceLabel.bm_left = size.width + 6.0f;
+    if (model.m_CollectionType == FSCollectionType_POSTS)
+    {
+        self.m_TimeLabel.hidden = NO;
+        self.m_TimeLabel.text = [NSDate fsStringDateFromTs:model.m_CreateTime];
+        
+        CGSize size = [self.m_TimeLabel sizeThatFits:CGSizeMake(1000, self.m_TimeLabel.bm_height)];
+        self.m_SourceLabel.bm_left = size.width + 6.0f;
+    }
+    else
+    {
+        self.m_TimeLabel.hidden = YES;
+    }
 
     if ([model.m_Source bm_isNotEmpty])
     {
         self.m_SourceLabel.hidden = NO;
         self.m_SourceLabel.text = model.m_Source;
-        size = [self.m_SourceLabel sizeThatFits:CGSizeMake(1000, self.m_SourceLabel.bm_height)];
-        self.m_SourceLabel.bm_width = size.width+12.0f;
+        CGSize size = [self.m_SourceLabel sizeThatFits:CGSizeMake(1000, self.m_SourceLabel.bm_height)];
+        if (model.m_CollectionType == FSCollectionType_POSTS)
+        {
+            self.m_SourceLabel.textAlignment = NSTextAlignmentCenter;
+            self.m_SourceLabel.textColor = UI_COLOR_BL1;
+            self.m_SourceLabel.backgroundColor = [UIColor bm_colorWithHex:0xE5ECFD];
+            self.m_SourceLabel.bm_width = size.width+12.0f;
+            [self.m_SourceLabel bm_roundedRect:self.m_SourceLabel.bm_height*0.5];
+        }
+        else
+        {
+            self.m_SourceLabel.textAlignment = NSTextAlignmentLeft;
+            self.m_SourceLabel.textColor = [UIColor bm_colorWithHex:0x999999];
+            self.m_SourceLabel.backgroundColor = [UIColor clearColor];
+            self.m_SourceLabel.bm_left = 0;
+            self.m_SourceLabel.bm_width = size.width;
+            [self.m_SourceLabel bm_removeBorders];
+        }
     }
     else
     {
@@ -103,6 +131,7 @@
     if ([model.m_CommentCount bm_isNotEmpty])
     {
         [self.m_CommentCountBtn setTitle:model.m_CommentCount forState:UIControlStateNormal];
+        [self.m_CommentCountBtn setImage:[UIImage imageNamed:@"community_comment_white"] forState:UIControlStateNormal];
     }
     else if ([model.m_ReadCount bm_isNotEmpty])
     {
@@ -114,7 +143,7 @@
         [self.m_CommentCountBtn setHidden:YES];
     }
 
-    self.m_UnderLineView.hidden = model.m_PositionType & BMTableViewCell_PositionType_Last;
+    //self.m_UnderLineView.hidden = model.m_PositionType & BMTableViewCell_PositionType_Last;
 }
 
 @end

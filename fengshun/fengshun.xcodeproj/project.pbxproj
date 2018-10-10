@@ -477,6 +477,10 @@
 		874C23C0215B5DF2001C8BE9 /* user_praiseicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 874C23BC215B5DF1001C8BE9 /* user_praiseicon@3x.png */; };
 		874C23C7215E216A001C8BE9 /* UMAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45C34DC215E158A00805EB8 /* UMAnalytics.framework */; };
 		874C23C8215E21BD001C8BE9 /* UMAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45C34DC215E158A00805EB8 /* UMAnalytics.framework */; };
+		876A1957216DF0B4008A04F4 /* FSMyCourseCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 876A1955216DF0B4008A04F4 /* FSMyCourseCollectionCell.m */; };
+		876A1958216DF0B4008A04F4 /* FSMyCourseCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 876A1956216DF0B4008A04F4 /* FSMyCourseCollectionCell.xib */; };
+		876A1959216DFFC6008A04F4 /* FSMyCourseCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 876A1955216DF0B4008A04F4 /* FSMyCourseCollectionCell.m */; };
+		876A195A216DFFCD008A04F4 /* FSMyCourseCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 876A1956216DF0B4008A04F4 /* FSMyCourseCollectionCell.xib */; };
 		87741FDC214A0C8A00F72427 /* FSServiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87741FDA214A0C8A00F72427 /* FSServiceVC.m */; };
 		87741FDD214A0C8A00F72427 /* FSServiceVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87741FDB214A0C8A00F72427 /* FSServiceVC.xib */; };
 		87741FE3214A132200F72427 /* user_wechaticon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87741FDF214A132200F72427 /* user_wechaticon@3x.png */; };
@@ -3023,6 +3027,9 @@
 		874C23B4215B4FF9001C8BE9 /* FSMyTopicCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSMyTopicCell.xib; sourceTree = "<group>"; };
 		874C23BB215B5DF1001C8BE9 /* user_praiseicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_praiseicon@2x.png"; sourceTree = "<group>"; };
 		874C23BC215B5DF1001C8BE9 /* user_praiseicon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_praiseicon@3x.png"; sourceTree = "<group>"; };
+		876A1954216DF0B4008A04F4 /* FSMyCourseCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMyCourseCollectionCell.h; sourceTree = "<group>"; };
+		876A1955216DF0B4008A04F4 /* FSMyCourseCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMyCourseCollectionCell.m; sourceTree = "<group>"; };
+		876A1956216DF0B4008A04F4 /* FSMyCourseCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSMyCourseCollectionCell.xib; sourceTree = "<group>"; };
 		87741FD72149FF5F00F72427 /* ExampleApp.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = ExampleApp.html; path = "../../../../gitHubs/WebViewJavascriptBridge/Example Apps/ExampleApp.html"; sourceTree = "<group>"; };
 		87741FD9214A0C8A00F72427 /* FSServiceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSServiceVC.h; sourceTree = "<group>"; };
 		87741FDA214A0C8A00F72427 /* FSServiceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSServiceVC.m; sourceTree = "<group>"; };
@@ -7186,6 +7193,9 @@
 				874C23AB215B288F001C8BE9 /* FSMyCollectionCell.h */,
 				874C23AC215B288F001C8BE9 /* FSMyCollectionCell.m */,
 				874C23AD215B288F001C8BE9 /* FSMyCollectionCell.xib */,
+				876A1954216DF0B4008A04F4 /* FSMyCourseCollectionCell.h */,
+				876A1955216DF0B4008A04F4 /* FSMyCourseCollectionCell.m */,
+				876A1956216DF0B4008A04F4 /* FSMyCourseCollectionCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -7841,6 +7851,7 @@
 				ADC591F4215395100054BE72 /* fstab_btn4_highIcon@2x.png in Resources */,
 				AD6712312159DBD50081E08D /* fstab_btn3_icon@2x.png in Resources */,
 				8730B1192148E5D1004331A9 /* fsfreshidle_icon19@2x.png in Resources */,
+				876A1958216DF0B4008A04F4 /* FSMyCourseCollectionCell.xib in Resources */,
 				87D20AF321393B91001EDD60 /* navigationbar_collect_icon@2x.png in Resources */,
 				87BC9E2221548E0D000F2011 /* fsintroguide_750x1334_3@2x.png in Resources */,
 				87BC9E3021548E0D000F2011 /* fsintroguide_640x960_4@2x.png in Resources */,
@@ -8451,6 +8462,7 @@
 				87E7C5E521509AB000F7AB14 /* fsfreshidle_icon3@2x.png in Resources */,
 				87E7C5E621509AB000F7AB14 /* FSForumListCell.xib in Resources */,
 				AD6712302159DBD50081E08D /* fstab_btn1_icon@2x.png in Resources */,
+				876A195A216DFFCD008A04F4 /* FSMyCourseCollectionCell.xib in Resources */,
 				458E18202151E9560050590B /* video_back_btn@3x.png in Resources */,
 				ADC591F5215395100054BE72 /* fstab_btn4_highIcon@2x.png in Resources */,
 				45F68F452150E58F00628DC8 /* empty_commenticon@3x.png in Resources */,
@@ -8536,6 +8548,7 @@
 				8730B0252140FFA2004331A9 /* DTCoreTextLayoutLine.m in Sources */,
 				87D1868721365BBB00037DDF /* FSLoginVC.m in Sources */,
 				8730B0912140FFA3004331A9 /* NSScanner+DTScripting.m in Sources */,
+				876A1957216DF0B4008A04F4 /* FSMyCourseCollectionCell.m in Sources */,
 				AD22449F213CD6C300F2DC47 /* NSArray+MASAdditions.m in Sources */,
 				874268FC212E7E36003C52F6 /* NSDecimalNumber+BMCategory.m in Sources */,
 				874268DF212E7E36003C52F6 /* BMAlignedImageView.m in Sources */,
@@ -9681,6 +9694,7 @@
 				87E7C46F21509AB000F7AB14 /* DTFoundationConstants.m in Sources */,
 				87E7C47021509AB000F7AB14 /* MASViewConstraint.m in Sources */,
 				87E7C6F72151F2C700F7AB14 /* YYFPSLabel.m in Sources */,
+				876A1959216DFFC6008A04F4 /* FSMyCourseCollectionCell.m in Sources */,
 				87E7C47121509AB000F7AB14 /* TZImageManager.m in Sources */,
 				87F639FD21533C830035E730 /* FBNodeEnumerator.mm in Sources */,
 				87E7C47221509AB000F7AB14 /* NSString+BMFormat.m in Sources */,

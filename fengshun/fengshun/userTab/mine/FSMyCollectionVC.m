@@ -8,6 +8,7 @@
 
 #import "FSMyCollectionVC.h"
 #import "FSMyCollectionCell.h"
+#import "FSMyCourseCollectionCell.h"
 
 
 @interface FSMyCollectionVC ()
@@ -133,22 +134,48 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [FSMyCollectionCell cellHeight];
+    //return [FSMyCollectionCell cellHeight];
+    if (self.m_CollectionType == FSCollectionType_COURSE)
+    {
+        return [FSMyCourseCollectionCell cellHeight];
+    }
+    else
+    {
+        FSMyCollectionModel *model = self.m_DataArray[indexPath.row];
+    
+        return model.m_TitleHeight+76.0f+8.0f;
+    }
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        static NSString *taskCellIdentifier = @"FSCell";
-        FSMyCollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
+    static NSString *taskCellIdentifier = @"FSCell";
     
+    if (self.m_CollectionType == FSCollectionType_COURSE)
+    {
+        FSMyCourseCollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
+        
+        if (cell == nil)
+        {
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"FSMyCourseCollectionCell" owner:self options:nil] lastObject];
+        }
+        
+        [cell drawCellWithModel:self.m_DataArray[indexPath.row]];
+        return cell;
+    }
+    else
+    {
+        FSMyCollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
+        
         if (cell == nil)
         {
             cell = [[[NSBundle mainBundle] loadNibNamed:@"FSMyCollectionCell" owner:self options:nil] lastObject];
         }
-    
+        
         [cell drawCellWithModel:self.m_DataArray[indexPath.row]];
         return cell;
+    }
 }
 
 
@@ -189,8 +216,10 @@
             [FSPushVCManager viewController:self.m_PushVC pushToCourseDetailWithId:model.m_DetailId andIsSerial:model.m_isSerial];
         }
             break;
+            
+        default:
+            return;
     }
-    
 }
 
 - (BMEmptyViewType)getNoDataEmptyViewType
