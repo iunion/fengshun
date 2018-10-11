@@ -258,6 +258,10 @@ FSOCRSearchResultVC ()
 
 #pragma mark - networking
 
+-(BMEmptyViewType)getNoDataEmptyViewType
+{
+    return BMEmptyViewType_Search;
+}
 // 第一步,识别出文字
 - (void)getOCRTextWithImage:(UIImage *)image
 {
