@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FSTopicDetailVC.h"
 
-@class FSWebViewController, FSFileScanImagePreviewVC,FSCommunitySecVC;
+@class FSWebViewController, FSFileScanImagePreviewVC,FSCommunitySecVC,FSSendTopicVC;
 @protocol FSWebViewControllerDelegate;
 
 // 跳转回调
@@ -23,7 +23,7 @@ typedef void (^PushVCCallBack)(void);
 + (void)showPostDetailVCWithPushVC:(UIViewController *)pushVC url:(NSString *)url;
 
 // 发帖|| 编辑帖子
-+ (void)showSendPostWithPushVC:(UIViewController *)pushVC isEdited:(BOOL )isEdited relatedId:(NSInteger )relatedId callBack:(PushVCCallBack)callBack;
++ (FSSendTopicVC *)showSendPostWithPushVC:(UIViewController *)pushVC isEdited:(BOOL )isEdited relatedId:(NSInteger )relatedId callBack:(PushVCCallBack)callBack;
 
 //帖子详情
 + (FSTopicDetailVC *)showTopicDetail:(UIViewController *)pushVC  topicId:(NSString *)topicId;

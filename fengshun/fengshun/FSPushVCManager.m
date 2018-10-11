@@ -44,11 +44,12 @@
     [pushVC.navigationController pushViewController:vc animated:YES];
 }
 
-+ (void)showSendPostWithPushVC:(UIViewController *)pushVC isEdited:(BOOL )isEdited relatedId:(NSInteger )relatedId callBack:(PushVCCallBack)callBack
++ (FSSendTopicVC *)showSendPostWithPushVC:(UIViewController *)pushVC isEdited:(BOOL )isEdited relatedId:(NSInteger )relatedId callBack:(PushVCCallBack)callBack
 {
     FSSendTopicVC *vc = [[FSSendTopicVC alloc] initWithIsEdited:isEdited relateId:relatedId];
     vc.sendPostsCallBack         = callBack;
     [pushVC.navigationController pushViewController:vc animated:YES];
+    return vc;
 }
 
 + (FSTopicDetailVC *)showTopicDetail:(UIViewController *)pushVC topicId:(NSString *)topicId{

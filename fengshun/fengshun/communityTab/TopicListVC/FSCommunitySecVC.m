@@ -139,14 +139,15 @@ FSCommunitySecVC ()
 }
 // 发帖
 - (void)pulishTopicAction{
+    
     if (![FSUserInfoModel isLogin])
     {
         [self showLogin];
         return;
     }
+    BMWeakSelf
     if (![FSUserInfoModel userInfo].m_UserBaseInfo.m_IsRealName)
     {
-        BMWeakSelf;
         [FSAlertView showAlertWithTitle:@"温馨提示" message:@"认证后才能发帖" cancelTitle:@"取消" otherTitle:@"去认证" completion:^(BOOL cancelled, NSInteger buttonIndex) {
             if (buttonIndex == 1)
             {
@@ -158,7 +159,10 @@ FSCommunitySecVC ()
         return;
     }
     [FSPushVCManager showSendPostWithPushVC:self isEdited:NO relatedId:self.m_FourmId callBack:^ {
-        
+        [weakSelf getHeaderInfoMsg];
+        if (weakSelf.m_AttentionChangeBlock) {
+            weakSelf.m_AttentionChangeBlock();
+        }
     }];
 }
 //认证完成
