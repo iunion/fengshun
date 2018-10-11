@@ -127,7 +127,7 @@
 //    else
     {
         self.m_ProgressHUD.detailsLabelFont = [UIFont systemFontOfSize:14.0f];
-        [self.m_ProgressHUD showAnimated:YES withDetailText:@"您已成功复制QQ群号，到QQ里找客服反馈吧" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        [self.m_ProgressHUD showAnimated:YES withDetailText:@"您已成功复制QQ公众号，到QQ里找客服反馈吧" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     }
 }
 

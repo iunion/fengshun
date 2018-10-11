@@ -94,7 +94,15 @@
     // 用户Id
     //self.m_UserId;
     // 用户昵称
-    self.m_NickName = [dic bm_stringForKey:@"nickName"];
+    NSString *nickName = [dic bm_stringForKey:@"nickName"];
+    if ([nickName bm_isNotEmpty]) {
+        self.m_NickName = nickName;
+    }
+    else
+    {
+        self.m_NickName = [dic bm_stringForKey:@"createName"];
+    }
+    
 
     // 是否置顶
     self.m_TopFlag = [dic bm_boolForKey:@"topFlag"];
