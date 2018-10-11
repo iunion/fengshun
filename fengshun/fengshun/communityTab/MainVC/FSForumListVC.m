@@ -132,12 +132,14 @@ FSForumListVC ()
         cell = [[NSBundle mainBundle] loadNibNamed:@"FSForumListCell" owner:self options:nil].firstObject;
     }
     FSCommunityForumModel *model = self.m_DataArray[indexPath.section];
+    // 判断是否是已关注section
     [cell showWithFSCommunityForumListModel:model.m_List[indexPath.row]];
-    BMWeakSelf;
+    BMWeakSelf
     cell.attentionBtnClickBlock = ^(FSForumModel *model) {
         if (![FSUserInfoModel isLogin])
         {
-            if (weakSelf.m_ShowLoginBlock) {
+            if (weakSelf.m_ShowLoginBlock)
+            {
                 weakSelf.m_ShowLoginBlock();
             }
             return ;
@@ -158,14 +160,60 @@ FSForumListVC ()
     };
 }
 
-
-- (void)updateAttentionFlag:(FSForumModel *)model {
+- (void)updateAttentionFlag:(FSForumModel *)model
+{
     FSForumFollowState state = model.m_AttentionFlag;
     [FSApiRequest updateFourmAttentionStateWithFourmId:model.m_Id followStatus:!state success:^(id  _Nullable responseObject) {
         [self loadApiData];
     } failure:^(NSError * _Nullable error) {
 
     }];
+#if 0
+    if (![self.m_DataArray bm_isNotEmpty])
+    {
+        return;
+    }
+    FSCommunityForumModel *aModel = self.m_DataArray [0];
+    // 已关注存在
+    if ([aModel.m_Name isEqualToString:@"已关注"])
+    {
+        // 关注了
+        if (model.m_AttentionFlag)
+        {
+            model.m_isAttentionSection = YES;
+            [aModel.m_List addObject:model];
+        }
+        else
+        {
+            [aModel.m_List enumerateObjectsUsingBlock:^(FSForumModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if (obj.m_Id == model.m_Id) {
+                    [aModel.m_List removeObject:obj];
+                }
+            }];
+            if (![aModel.m_List bm_isNotEmpty])
+            {
+                [self.m_DataArray removeObject:aModel];
+                [self.m_TableView reloadData];
+            }
+        }
+        [self.m_TableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    else
+    {
+        if (model.m_AttentionFlag)
+        {
+            FSCommunityForumModel *newModel = [FSCommunityForumModel new];
+            newModel.m_Name = @"已关注";
+            if (!newModel.m_List) {
+                newModel.m_List = [NSMutableArray array];
+            }
+            model.m_isAttentionSection = YES;
+            [newModel.m_List addObject:model];
+            [self.m_DataArray insertObject:newModel atIndex:0];
+        }
+        [self.m_TableView reloadData];
+    }
+#endif
 }
 
 /*

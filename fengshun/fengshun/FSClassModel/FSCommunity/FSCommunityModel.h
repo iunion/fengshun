@@ -101,6 +101,8 @@
 @property (nonatomic, assign) BOOL m_AttentionFlag;
 // 二级版块名称
 @property (nonatomic, strong) NSString *m_ForumNameSecond;
+// 是否是已关注的版块
+@property (nonatomic, assign) BOOL m_isAttentionSection;
 
 + (instancetype)forumModelWithServerDic:(NSDictionary *)dic;
 // 刷新model

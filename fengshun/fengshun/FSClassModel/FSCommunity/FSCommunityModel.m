@@ -142,6 +142,7 @@
                     for (NSDictionary *dic in [param bm_arrayForKey:@"list"])
                     {
                         FSForumModel *listModel = [FSForumModel new];
+                        listModel.m_isAttentionSection = [aModel.m_Name isEqualToString:@"已关注"];
                         [listModel updateForumModel:dic];
                         if (listModel)
                         {

@@ -15,8 +15,6 @@
 
 @property (nonatomic, strong)FSForumModel *m_ForumModel;
 
-@property (nonatomic, strong) NSIndexPath *m_IndexPath;
-
 // 关注状态变化
 @property (nonatomic, copy)void (^attentionBtnClickBlock)(FSForumModel *);
 
