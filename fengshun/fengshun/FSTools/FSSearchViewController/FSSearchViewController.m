@@ -104,6 +104,7 @@
     [self moreUISetup];
     
     [self freshItems];
+    
 }
 
 - (void)setSearchBarPplaceholder:(NSString *)searchBarPplaceholder
@@ -214,6 +215,13 @@
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     }
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fingerTapped:)];
+    singleTap.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:singleTap];
+}
+ -(void)fingerTapped:(UITapGestureRecognizer *)gestureRecognizer
+{
+    [_searchTextField resignFirstResponder];
 }
 #pragma mark - OCR Search
 - (void)pushToOCRSearchVC
@@ -463,6 +471,7 @@
 
 - (void)tagCollectionView:(TTGTagCollectionView *)tagCollectionView didSelectTag:(UIView *)tagView atIndex:(NSUInteger)index
 {
+    [_searchTextField resignFirstResponder];
     if (_resultType == FSSearchResultType_laws)
     {
         NSDictionary *info = self.hotTagArray[index];

@@ -260,7 +260,7 @@ FSOCRSearchResultVC ()
 
 -(BMEmptyViewType)getNoDataEmptyViewType
 {
-    return BMEmptyViewType_Search;
+    return BMEmptyViewType_OcrSearch;
 }
 // 第一步,识别出文字
 - (void)getOCRTextWithImage:(UIImage *)image
