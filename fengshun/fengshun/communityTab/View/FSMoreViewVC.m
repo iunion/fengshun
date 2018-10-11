@@ -200,7 +200,7 @@ FSMoreViewVC ()
 
 - (void)moreViewAction:(UIButton *)sender
 {
-    BMLog(@"%ld", sender.tag);
+    BMLog(@"%@", @(sender.tag));
     if (self.delegate && [self.delegate respondsToSelector:@selector(moreViewClickWithType:)]) {
         [self.delegate moreViewClickWithType:sender.tag - 100];
     }

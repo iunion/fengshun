@@ -37,7 +37,7 @@
     [FSSearchResultModel setTextLabel:_m_detailLabel withText:detail fontSize:12 textColor:UI_COLOR_B4 attributed:attributed];
     [FSSearchResultModel setTextLabel:_m_contentLabel withText:model.m_simpleContent fontSize:14 textColor:UI_COLOR_B1 attributed:attributed];
     _m_contentLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-    _m_matchLabel.text  = [NSString stringWithFormat:@"命中法条 %ld",model.m_matchCount];
+    _m_matchLabel.text  = [NSString stringWithFormat:@"命中法条 %@", @(model.m_matchCount)];
 }
 
 @end

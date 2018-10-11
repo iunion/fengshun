@@ -596,8 +596,8 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
     [super viewWillAppear:animated];
     
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    [center addObserver:self selector:@selector(keyboardWillShown:) name:UIKeyboardFrameBeginUserInfoKey object:nil];
-    [center addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardFrameEndUserInfoKey object:nil];
+    [center addObserver:self selector:@selector(keyboardWillShown:) name:UIKeyboardWillShowNotification object:nil];
+    [center addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
     [self freshAlertView];
 }
@@ -607,15 +607,15 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
     [super viewWillDisappear:animated];
     
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    [center removeObserver:self name:UIKeyboardFrameBeginUserInfoKey object:nil];
-    [center removeObserver:self name:UIKeyboardFrameEndUserInfoKey object:nil];
+    [center removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [center removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)keyboardWillShown:(NSNotification *)notification
 {
     //if (self.isVisible)
     {
-        CGRect keyboardFrameBeginRect = [[[notification userInfo] valueForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+        CGRect keyboardFrameBeginRect = [[[notification userInfo] valueForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
         if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8 && (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation == UIInterfaceOrientationLandscapeRight))

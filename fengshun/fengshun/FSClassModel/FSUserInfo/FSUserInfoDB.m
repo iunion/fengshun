@@ -116,9 +116,9 @@ static NSString *UserInfoDBTableInsert = @"(userid, mobilephone, token, rftoken,
             // 工作机构: workOrganization
             userInfo.m_UserBaseInfo.m_Organization = [rs stringForColumn:@"organization"];
             // 工作年限: workingLife
-            userInfo.m_UserBaseInfo.m_WorkingLife = [rs unsignedLongLongIntForColumn:@"workinglife"];
+            userInfo.m_UserBaseInfo.m_WorkingLife = (NSUInteger)[rs unsignedLongLongIntForColumn:@"workinglife"];
             // 从业时间: employmentTime
-            userInfo.m_UserBaseInfo.m_EmploymentTime = [rs unsignedLongLongIntForColumn:@"employmenttime"];
+            userInfo.m_UserBaseInfo.m_EmploymentTime = (NSUInteger)[rs unsignedLongLongIntForColumn:@"employmenttime"];
 
             // 个人签名: personalitySignature
             userInfo.m_UserBaseInfo.m_Signature = [rs stringForColumn:@"signature"];

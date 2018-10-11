@@ -264,7 +264,7 @@
 #endif
 }
 
-- (void)setEstimatedProgress:(double)estimatedProgress
+- (void)setEstimatedProgress:(CGFloat)estimatedProgress
 {
     _estimatedProgress = estimatedProgress;
     if (self.updateProgressBlock)

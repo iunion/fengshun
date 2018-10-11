@@ -58,8 +58,8 @@
     [self.m_ImgView sd_setImageWithURL:[aModel.m_IconUrl bm_toURL]placeholderImage:nil options:SDWebImageRetryFailed | SDWebImageLowPriority];
     self.m_TitleLab.text        = aModel.m_ForumNameSecond;
     self.m_ContentLab.text      = aModel.m_Description;
-    self.m_AttentionNumLab.text = [NSString stringWithFormat:@"%ld 关注", aModel.m_AttentionCount];
-    self.m_NoteNumLab.text      = [NSString stringWithFormat:@"%ld 帖子", aModel.m_PostsCount];
+    self.m_AttentionNumLab.text = [NSString stringWithFormat:@"%@ 关注", @(aModel.m_AttentionCount)];
+    self.m_NoteNumLab.text      = [NSString stringWithFormat:@"%@ 帖子", @(aModel.m_PostsCount)];
     self.m_DoBtn.selected       = aModel.m_AttentionFlag;
     self.m_DoBtn.backgroundColor = [UIColor bm_colorWithHex:aModel.m_AttentionFlag ? 0xF5F6F7 : 0x4E7CF6];
     [self.m_DoBtn setTitleColor:[UIColor bm_colorWithHex:aModel.m_AttentionFlag ? 0x999999 : 0xffffff] forState:UIControlStateNormal];

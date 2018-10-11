@@ -87,7 +87,7 @@
             });
         }else{
             int seconds = timeOut % 60;
-            NSString * timeStr = [NSString stringWithFormat:@"%0.2d",seconds];
+            NSString * timeStr = [NSString stringWithFormat:@"%0.2ld", (long)seconds];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [strongSelf setTitle:[NSString stringWithFormat:@"%@ %@%@",subTitles.firstObject,timeStr,subTitles.lastObject] forState:UIControlStateNormal];
                 [strongSelf setTitleColor:color forState:UIControlStateNormal];
@@ -141,9 +141,9 @@
             });
         }else{
             NSInteger seconds = timeOut;
-            NSString * timeStr = [NSString stringWithFormat:@"%0.2ld",seconds];
+            NSString * timeStr = [NSString stringWithFormat:@"%0.2ld", (long)seconds];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [strongSelf setTitle:[NSString stringWithFormat:@"%@ %@%@",subTitles.firstObject,timeStr,subTitles.lastObject] forState:UIControlStateNormal];
+                [strongSelf setTitle:[NSString stringWithFormat:@"%@ %@%@", subTitles.firstObject, timeStr, subTitles.lastObject] forState:UIControlStateNormal];
                 [strongSelf setTitleColor:color forState:UIControlStateNormal];
                 strongSelf.titleLabel.font = font;
                 strongSelf.layer.borderColor = color.CGColor;

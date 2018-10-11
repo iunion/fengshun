@@ -99,7 +99,7 @@
     
     for (NSInteger i=0; i<60; i++)
     {
-        NSString *num = [NSString stringWithFormat:@"%02ld", i];
+        NSString *num = [NSString stringWithFormat:@"%02ld", (long)i];
         
         if (0<i && i<=12)
         {
@@ -114,7 +114,7 @@
     
     for (NSInteger i=Picker_MinYear; i<=Picker_MaxYear; i++)
     {
-        NSString *num = [NSString stringWithFormat:@"%ld",(long)i];
+        NSString *num = [NSString stringWithFormat:@"%ld", (long)i];
         [_yearArray addObject:num];
     }
     
@@ -788,7 +788,7 @@
     
     for (NSInteger i=1; i<=num; i++)
     {
-        [_dayArray addObject:[NSString stringWithFormat:@"%02ld", i]];
+        [_dayArray addObject:[NSString stringWithFormat:@"%02ld", (long)i]];
     }
 }
 
