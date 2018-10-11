@@ -481,6 +481,8 @@
 		876A1958216DF0B4008A04F4 /* FSMyCourseCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 876A1956216DF0B4008A04F4 /* FSMyCourseCollectionCell.xib */; };
 		876A1959216DFFC6008A04F4 /* FSMyCourseCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 876A1955216DF0B4008A04F4 /* FSMyCourseCollectionCell.m */; };
 		876A195A216DFFCD008A04F4 /* FSMyCourseCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 876A1956216DF0B4008A04F4 /* FSMyCourseCollectionCell.xib */; };
+		876A195C216F11B5008A04F4 /* fsdefault_image100x80@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 876A195B216F11B4008A04F4 /* fsdefault_image100x80@2x.png */; };
+		876A195D216F11B5008A04F4 /* fsdefault_image100x80@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 876A195B216F11B4008A04F4 /* fsdefault_image100x80@2x.png */; };
 		87741FDC214A0C8A00F72427 /* FSServiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87741FDA214A0C8A00F72427 /* FSServiceVC.m */; };
 		87741FDD214A0C8A00F72427 /* FSServiceVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87741FDB214A0C8A00F72427 /* FSServiceVC.xib */; };
 		87741FE3214A132200F72427 /* user_wechaticon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87741FDF214A132200F72427 /* user_wechaticon@3x.png */; };
@@ -3030,6 +3032,7 @@
 		876A1954216DF0B4008A04F4 /* FSMyCourseCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMyCourseCollectionCell.h; sourceTree = "<group>"; };
 		876A1955216DF0B4008A04F4 /* FSMyCourseCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMyCourseCollectionCell.m; sourceTree = "<group>"; };
 		876A1956216DF0B4008A04F4 /* FSMyCourseCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSMyCourseCollectionCell.xib; sourceTree = "<group>"; };
+		876A195B216F11B4008A04F4 /* fsdefault_image100x80@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fsdefault_image100x80@2x.png"; sourceTree = "<group>"; };
 		87741FD72149FF5F00F72427 /* ExampleApp.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = ExampleApp.html; path = "../../../../gitHubs/WebViewJavascriptBridge/Example Apps/ExampleApp.html"; sourceTree = "<group>"; };
 		87741FD9214A0C8A00F72427 /* FSServiceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSServiceVC.h; sourceTree = "<group>"; };
 		87741FDA214A0C8A00F72427 /* FSServiceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSServiceVC.m; sourceTree = "<group>"; };
@@ -6410,6 +6413,7 @@
 				87D9C604215368B6009F8492 /* fs_icon@3x.png */,
 				87D209F1213912ED001EDD60 /* default_avataricon@2x.png */,
 				87D20B2B213FB7F7001EDD60 /* default_avatariconlarge@2x.png */,
+				876A195B216F11B4008A04F4 /* fsdefault_image100x80@2x.png */,
 				8730B0EC2148E5CD004331A9 /* fsfreshfreshing_icon1@2x.png */,
 				8730B0FC2148E5CF004331A9 /* fsfreshfreshing_icon2@2x.png */,
 				8730B0E82148E5CC004331A9 /* fsfreshfreshing_icon3@2x.png */,
@@ -7996,6 +8000,7 @@
 				AD671244215A59DE0081E08D /* FSMyCommentCell.xib in Resources */,
 				87D9C608215368B6009F8492 /* fs_icon@2x.png in Resources */,
 				87D20AF821393B9A001EDD60 /* navigationbar_share_icon@2x.png in Resources */,
+				876A195C216F11B5008A04F4 /* fsdefault_image100x80@2x.png in Resources */,
 				87741FE4214A132200F72427 /* user_qqicon@2x.png in Resources */,
 				87BC9E3721548E0D000F2011 /* fsintroguide_1242x2688_1@2x.png in Resources */,
 				45F3FD23214BBF48007712EE /* video_message_icon@2x.png in Resources */,
@@ -8523,6 +8528,7 @@
 				87E7C61121509AB000F7AB14 /* video_share@2x.png in Resources */,
 				87BC9E5021549153000F2011 /* fsintroguide_1242x2688_2@2x.png in Resources */,
 				87E7C61221509AB000F7AB14 /* JSBeautifier.js in Resources */,
+				876A195D216F11B5008A04F4 /* fsdefault_image100x80@2x.png in Resources */,
 				87E7C61321509AB000F7AB14 /* home_tools@3x.png in Resources */,
 				87E7C61421509AB000F7AB14 /* increase_meituan@2x.png in Resources */,
 				87E7C61521509AB000F7AB14 /* navigationbar_setup_icon@2x.png in Resources */,

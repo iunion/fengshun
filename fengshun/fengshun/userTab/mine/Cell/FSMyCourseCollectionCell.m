@@ -70,7 +70,7 @@
 {
     self.m_Model = model;
     
-    [self.m_IconImageView sd_setImageWithURL:[model.m_CoverThumbUrl bm_toURL] placeholderImage:nil options:SDWebImageRetryFailed | SDWebImageLowPriority];
+    [self.m_IconImageView sd_setImageWithURL:[model.m_CoverThumbUrl bm_toURL] placeholderImage:[UIImage imageNamed:@"fsdefault_image100x80"] options:SDWebImageRetryFailed | SDWebImageLowPriority];
     
     self.m_TitleLabel.text = model.m_Title;
     
