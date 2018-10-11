@@ -216,6 +216,15 @@
             [atrText bm_setTextColor:[UIColor bm_colorWithHex:0x577EEE] range:[text rangeOfString:@"快速扫描文件"]];
             return atrText;
         }
+        case BMEmptyViewType_OcrSearch:
+        {
+            NSString *text = @"未匹配到关键词\n换一张试试";
+            atrText = [[NSMutableAttributedString alloc] initWithString:text];
+            [atrText bm_setFont:[UIFont systemFontOfSize:16.0f]];
+            [atrText bm_setTextColor:[UIColor bm_colorWithHex:0x999999]];
+            [atrText bm_setTextColor:[UIColor bm_colorWithHex:0x577EEE] range:[text rangeOfString:@"换一张试试"]];
+            return atrText;
+        }
         case BMEmptyViewType_Custom:
         {
             if ([self.customMessage bm_isNotEmpty])
@@ -272,6 +281,7 @@
             imageName = @"empty_collecticon";
             break;
         case BMEmptyViewType_Ocr:
+        case BMEmptyViewType_OcrSearch:
             imageName = @"empty_ocricon";
             break;
         case BMEmptyViewType_Custom:
@@ -359,6 +369,7 @@
         case BMEmptyViewType_CollectCOURSE:
             break;
         case BMEmptyViewType_Ocr:
+        case BMEmptyViewType_OcrSearch:
             break;
         case BMEmptyViewType_Custom:
             break;
