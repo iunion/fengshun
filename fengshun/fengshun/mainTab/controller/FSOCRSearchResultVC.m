@@ -34,6 +34,7 @@ FSOCRSearchResultVC ()
 @property (nonatomic, assign, readonly) NSInteger m_totalCount;
 @property (nonatomic, assign) NSUInteger loadPage;
 @property (nonatomic, strong) UIImage *  m_orignalImage;
+@property (nonatomic, assign) BOOL m_notEmptyViewAction;
 
 @end
 
@@ -92,7 +93,6 @@ FSOCRSearchResultVC ()
     }
     else
     {
-        _m_notFirstSelected = YES;
         [self presentToImagePickerWithAnimated:YES];
     }
 }
@@ -169,6 +169,9 @@ FSOCRSearchResultVC ()
 
 - (void)presentToImagePickerWithAnimated:(BOOL)animated
 {
+    if (animated) {
+        self.m_notFirstSelected = YES;
+    }
     TZImagePickerController *imagePickerVc = [TZImagePickerController fs_defaultPickerWithImagesCount:1 delegate:self];
     imagePickerVc.autoDismiss = NO;
     imagePickerVc.specialSingleSelected = YES;
@@ -265,9 +268,10 @@ FSOCRSearchResultVC ()
 {
     return BMEmptyViewType_OcrSearch;
 }
-// 第一步,识别出文字
+#pragma mark - 第一步,识别出文字
 - (void)getOCRTextWithImage:(UIImage *)image
 {
+    [self hideEmptyView];
     _m_imageView.image = image;
     [self.m_ProgressHUD showAnimated:YES showBackground:NO];
     [[FSOCRManager manager] ocr_getTextWithImage:image
@@ -293,7 +297,7 @@ FSOCRSearchResultVC ()
     self.m_caseSearchResultModel = nil;
     [self loadDataResponseFinished:nil responseDic:@{ @"code" : @"1000" }];
 }
-// 第二步,根据文字提取关键字
+#pragma mark - 第二步,根据文字提取关键字
 - (void)getkeywordsWithOCRText:(NSString *)ocrText
 {
     if (_m_ocrSearchType)
@@ -324,28 +328,36 @@ FSOCRSearchResultVC ()
     }
 }
 
-// 第三步,根据关键字,搜索
+#pragma mark - 第三步,根据关键字,搜索
 - (void)searchWithKeywords:(NSArray *)keywords
 {
     self.m_keywords = keywords;
     self.m_lawSearchResultModel = nil;
     self.m_caseSearchResultModel = nil;
+    self.m_notEmptyViewAction = YES;
     [self loadApiData];
 }
 - (void)loadApiData
 {
-    self.loadPage = 0;
-    [super loadApiData];
+    if (_m_notEmptyViewAction) {
+        self.loadPage = 0;
+        [super loadApiData];
+    }
+    else
+    {
+        // 空白页触发的刷新事件,在这儿是重新选图片
+        [self presentToImagePickerWithAnimated:YES];
+    }
 }
 - (BOOL)canLoadApiData
 {
     if (_m_ocrSearchType)
     {
-        return ![_m_lawSearchResultModel bm_isNotEmpty] || _m_lawSearchResultModel.m_isMore;
+        return [_m_lawSearchResultModel bm_isNotEmpty]? _m_lawSearchResultModel.m_isMore:YES;
     }
     else
     {
-        return ![_m_caseSearchResultModel bm_isNotEmpty] || _m_caseSearchResultModel.m_isMore;
+        return [_m_caseSearchResultModel bm_isNotEmpty]? _m_caseSearchResultModel.m_isMore:YES;
     }
 }
 
@@ -403,12 +415,13 @@ FSOCRSearchResultVC ()
     {
         [self handleCaseSearchResult:responseObject];
     }
+    // 可能会出现空白页,配置此属性,正确引导空白页的事件
+    self.m_notEmptyViewAction = NO;
     return YES;
 }
 
 - (BOOL)checkLoadFinish:(NSDictionary *)requestDic
 {
-    [super checkLoadFinish:requestDic];
     if (_m_ocrSearchType)
     {
         if (_m_lawSearchResultModel.m_isMore)
