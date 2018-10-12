@@ -275,14 +275,21 @@ FSOCRSearchResultVC ()
             }
             else
             {
-                [self.m_ProgressHUD showAnimated:YES withText:@"图片无文字" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+//                [self.m_ProgressHUD showAnimated:YES withText:@"图片无文字" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                [self noTextForSearch];
             }
         }
         failed:^(NSError *error) {
-            [self.m_ProgressHUD showAnimated:YES withText:@"文字识别出错" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+//            [self.m_ProgressHUD showAnimated:YES withText:@"文字识别出错" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            [self noTextForSearch];
         }];
 }
-
+- (void)noTextForSearch
+{
+    self.m_lawSearchResultModel = nil;
+    self.m_caseSearchResultModel = nil;
+    [self loadDataResponseFinished:nil responseDic:@{@"code":@"1000"}];
+}
 // 第二步,根据文字提取关键字
 - (void)getkeywordsWithOCRText:(NSString *)ocrText
 {
@@ -295,7 +302,8 @@ FSOCRSearchResultVC ()
                 [self searchWithKeywords:keywords];
             }
             failure:^(NSError *_Nullable error) {
-                [self.m_ProgressHUD showAnimated:YES withText:@"关键字解析出错" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+//                [self.m_ProgressHUD showAnimated:YES withText:@"关键字解析出错" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                [self noTextForSearch];
             }];
     }
     else
@@ -307,7 +315,8 @@ FSOCRSearchResultVC ()
                 [self searchWithKeywords:keywords];
             }
             failure:^(NSError *_Nullable error) {
-                [self.m_ProgressHUD showAnimated:YES withText:@"关键字解析出错" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                [self noTextForSearch];
+//                [self.m_ProgressHUD showAnimated:YES withText:@"关键字解析出错" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             }];
     }
 }
@@ -392,7 +401,7 @@ FSOCRSearchResultVC ()
     {
         [self handleCaseSearchResult:responseObject];
     }
-    return [super succeedLoadedRequestWithDic:responseObject];
+    return YES;
 }
 
 - (BOOL)checkLoadFinish:(NSDictionary *)requestDic
