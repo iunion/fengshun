@@ -12,10 +12,10 @@
 #import <CommonCrypto/CommonHMAC.h>
 #import <ILiveSDK/ILiveCoreHeader.h>
 
-static NSString *const kASRsid = @"AKIDlfdHxN0ntSVt4KPH0xXWnGl21UUFNoO5";
-static NSString *const kASRskey = @"oaYWFO70LGDmcpfwo8uF1IInayysGtgZ";
-static NSString *const kASRappid = @"1251000004";
-static NSString *const kASRprojectId = @"1013976";
+static NSString *const kASRsid = @"AKIDZ9YjhTPNTJuGNEoKWUEk25uUq43mKSP8";
+static NSString *const kASRskey = @"bx33rQkqhKhoghTzFF0VjiSwAxWrxnNh";
+static NSString *const kASRappid = @"1255516392";
+static NSString *const kASRprojectId = @"1123257";
 
 @interface ASRConfig()
 
