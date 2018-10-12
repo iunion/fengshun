@@ -11,10 +11,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-
+@class FSWebView;
 @protocol FSWebViewControllerDelegate;
 
 @interface FSWebViewController : FSSuperNetVC
+
+@property (nonatomic, strong, readonly) FSWebView *m_WebView;
 
 @property (nullable, nonatomic, strong) NSString *m_Title;
 

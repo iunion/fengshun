@@ -92,4 +92,36 @@
     [self setViewControllers:@[nav1, nav2, nav3, nav4]];
 }
 
+- (void)selectedTabWithIndex:(BMTabIndex)index
+{
+    [super selectedTabWithIndex:index];
+    
+    switch (index)
+    {
+        case BMTabIndex_Main:
+            //[MobClick event:@"Tab_Events" label:@"首页_Tab"];
+            break;
+        case BMTabIndex_Class:
+        {
+            //[MobClick event:@"Tab_Events" label:@"活期_Tab"];
+            BMNavigationController *nav = [self.viewControllers objectAtIndex:BMTabIndex_Class];
+            
+            FSCourseHomePageVC *vc = (FSCourseHomePageVC *)[nav.viewControllers firstObject];
+            if (vc.m_WebView)
+            {
+                [vc refreshWebView];
+            }
+        }
+            break;
+        case BMTabIndex_Forum:
+            //[MobClick event:@"Tab_Events" label:@"定期_Tab"];
+            break;
+        case BMTabIndex_User:
+            //[MobClick event:@"Tab_Events" label:@"个人中心_Tab"];
+            break;
+        default:
+            break;
+    }
+}
+
 @end
