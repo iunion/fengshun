@@ -33,7 +33,7 @@ FSOCRSearchResultVC ()
 @property (nonatomic, strong) FSCaseSearchResultModel *m_caseSearchResultModel;
 @property (nonatomic, assign, readonly) NSInteger m_totalCount;
 @property (nonatomic, assign) NSUInteger loadPage;
-@property (nonatomic, strong) UIImage *m_orignalImage;
+@property (nonatomic, strong) UIImage *  m_orignalImage;
 
 @end
 
@@ -51,7 +51,7 @@ FSOCRSearchResultVC ()
 {
     self.m_LoadDataType = FSAPILoadDataType_Page;
     self.bm_NavigationShadowHidden = NO;
-    self.bm_NavigationShadowColor  = UI_COLOR_B6;
+    self.bm_NavigationShadowColor = UI_COLOR_B6;
     [self bm_setNavigationLeftItemTintColor:UI_COLOR_B1];
     NSString *title = _m_ocrSearchType ? @"法规检索" : @"案例检索";
     [self bm_setNavigationWithTitle:title barTintColor:nil leftItemTitle:@"" leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
@@ -61,10 +61,10 @@ FSOCRSearchResultVC ()
         [toolButton bm_roundedRect:16 borderWidth:0.5 borderColor:UI_COLOR_BL1];
     }
     self.m_TableView.estimatedRowHeight = 180;
-    self.m_TableView.tableFooterView    = [UIView new];
-    self.m_TableView.separatorStyle     = UITableViewCellSeparatorStyleSingleLine;
+    self.m_TableView.tableFooterView = [UIView new];
+    self.m_TableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
 
-    CGFloat topGap         = UI_NAVIGATION_BAR_HEIGHT + UI_STATUS_BAR_HEIGHT + 75;
+    CGFloat topGap = UI_NAVIGATION_BAR_HEIGHT + UI_STATUS_BAR_HEIGHT + 75;
     self.m_TableView.frame = CGRectMake(0, 75, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT - topGap);
     if (_m_ocrSearchType)
     {
@@ -108,9 +108,10 @@ FSOCRSearchResultVC ()
 {
     BMNavigationController *nav = (BMNavigationController *)self.navigationController;
     [nav resetPushAnimation];
-    
+
     [cropViewController dismissViewControllerAnimated:YES completion:nil];
-    if ([image bm_isNotEmpty]) {
+    if ([image bm_isNotEmpty])
+    {
         _m_imageView.image = image;
         [self getOCRTextWithImage:image];
     }
@@ -153,11 +154,12 @@ FSOCRSearchResultVC ()
 {
     TOCropViewController *cropController = [[TOCropViewController alloc] initWithImage:orignalImage];
     BMWeakSelf
-    [cropController setOnDidCropToRect:^(UIImage * _Nonnull image, CGRect cropRect, NSInteger angle) {
-        [weakSelf dismissViewControllerAnimated:NO completion:^{
-            [weakSelf getOCRTextWithImage:image];
+        [cropController setOnDidCropToRect:^(UIImage *_Nonnull image, CGRect cropRect, NSInteger angle) {
+            [weakSelf dismissViewControllerAnimated:NO
+                                         completion:^{
+                                             [weakSelf getOCRTextWithImage:image];
+                                         }];
         }];
-    }];
     [cropController setOnDidFinishCancelled:^(BOOL isFinished) {
         [picker dismissViewControllerAnimated:YES completion:nil];
     }];
@@ -179,7 +181,8 @@ FSOCRSearchResultVC ()
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (_m_ocrSearchType) {
+    if (_m_ocrSearchType)
+    {
         FSLawResultModel *model = _m_lawSearchResultModel.m_resultDataArray[indexPath.row];
         [FSPushVCManager viewController:self pushToLawDetailWithId:model.m_lawsId keywords:_m_lawSearchResultModel.m_keywordsStr];
     }
@@ -204,19 +207,19 @@ FSOCRSearchResultVC ()
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *view         = [UIView new];
+    UIView *view = [UIView new];
     view.backgroundColor = FS_VIEW_BGCOLOR;
-    UILabel *label       = [[UILabel alloc] initWithFrame:CGRectMake(16, 0, self.view.bm_width - 32, SEARCH_HEADER_HEIGHT)];
-    label.font           = [UIFont systemFontOfSize:12];
-    label.textColor      = UI_COLOR_B4;
-    label.text           = [NSString stringWithFormat:@"共%ld条", (long)self.m_totalCount];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(16, 0, self.view.bm_width - 32, SEARCH_HEADER_HEIGHT)];
+    label.font = [UIFont systemFontOfSize:12];
+    label.textColor = UI_COLOR_B4;
+    label.text = [NSString stringWithFormat:@"共%ld条", (long)self.m_totalCount];
     [view addSubview:label];
     return view;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if ([_m_lawSearchResultModel bm_isNotEmpty]||[_m_caseSearchResultModel bm_isNotEmpty])
+    if ([_m_lawSearchResultModel bm_isNotEmpty] || [_m_caseSearchResultModel bm_isNotEmpty])
     {
         return SEARCH_HEADER_HEIGHT;
     }
@@ -225,21 +228,22 @@ FSOCRSearchResultVC ()
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (_m_ocrSearchType) {
+    if (_m_ocrSearchType)
+    {
         return _m_lawSearchResultModel.m_resultDataArray.count;
     }
     else
     {
         return _m_caseSearchResultModel.m_resultDataArray.count;
     }
-    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (_m_ocrSearchType) {
+    if (_m_ocrSearchType)
+    {
         FSLawCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSLawCell"];
-        
+
         FSLawResultModel *model = _m_lawSearchResultModel.m_resultDataArray[indexPath.row];
         [cell setLawResultModel:model attributed:YES];
         return cell;
@@ -247,7 +251,7 @@ FSOCRSearchResultVC ()
     else
     {
         FSCaseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCaseCell"];
-        
+
         FSCaseResultModel *model = _m_caseSearchResultModel.m_resultDataArray[indexPath.row];
         [cell setCaseResultModel:model attributed:YES];
         return cell;
@@ -255,10 +259,9 @@ FSOCRSearchResultVC ()
 }
 
 
-
 #pragma mark - networking
 
--(BMEmptyViewType)getNoDataEmptyViewType
+- (BMEmptyViewType)getNoDataEmptyViewType
 {
     return BMEmptyViewType_OcrSearch;
 }
@@ -275,12 +278,12 @@ FSOCRSearchResultVC ()
             }
             else
             {
-//                [self.m_ProgressHUD showAnimated:YES withText:@"图片无文字" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                //                [self.m_ProgressHUD showAnimated:YES withText:@"图片无文字" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
                 [self noTextForSearch];
             }
         }
         failed:^(NSError *error) {
-//            [self.m_ProgressHUD showAnimated:YES withText:@"文字识别出错" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            //            [self.m_ProgressHUD showAnimated:YES withText:@"文字识别出错" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             [self noTextForSearch];
         }];
 }
@@ -288,7 +291,7 @@ FSOCRSearchResultVC ()
 {
     self.m_lawSearchResultModel = nil;
     self.m_caseSearchResultModel = nil;
-    [self loadDataResponseFinished:nil responseDic:@{@"code":@"1000"}];
+    [self loadDataResponseFinished:nil responseDic:@{ @"code" : @"1000" }];
 }
 // 第二步,根据文字提取关键字
 - (void)getkeywordsWithOCRText:(NSString *)ocrText
@@ -297,12 +300,12 @@ FSOCRSearchResultVC ()
     {
         [FSApiRequest getLawsKeywordsWithText:ocrText
             success:^(id _Nullable responseObject) {
-                NSDictionary *data     = responseObject;
+                NSDictionary *data = responseObject;
                 NSArray *     keywords = [data bm_arrayForKey:@"keywords"];
                 [self searchWithKeywords:keywords];
             }
             failure:^(NSError *_Nullable error) {
-//                [self.m_ProgressHUD showAnimated:YES withText:@"关键字解析出错" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                //                [self.m_ProgressHUD showAnimated:YES withText:@"关键字解析出错" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
                 [self noTextForSearch];
             }];
     }
@@ -310,13 +313,13 @@ FSOCRSearchResultVC ()
     {
         [FSApiRequest getCaseKeywordsWithText:ocrText
             success:^(id _Nullable responseObject) {
-                NSDictionary *data     = responseObject;
+                NSDictionary *data = responseObject;
                 NSArray *     keywords = [data bm_arrayForKey:@"keywords"];
                 [self searchWithKeywords:keywords];
             }
             failure:^(NSError *_Nullable error) {
                 [self noTextForSearch];
-//                [self.m_ProgressHUD showAnimated:YES withText:@"关键字解析出错" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                //                [self.m_ProgressHUD showAnimated:YES withText:@"关键字解析出错" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             }];
     }
 }
@@ -324,8 +327,8 @@ FSOCRSearchResultVC ()
 // 第三步,根据关键字,搜索
 - (void)searchWithKeywords:(NSArray *)keywords
 {
-    self.m_keywords              = keywords;
-    self.m_lawSearchResultModel  = nil;
+    self.m_keywords = keywords;
+    self.m_lawSearchResultModel = nil;
     self.m_caseSearchResultModel = nil;
     [self loadApiData];
 }
@@ -336,14 +339,14 @@ FSOCRSearchResultVC ()
 }
 - (BOOL)canLoadApiData
 {
-    if (_m_ocrSearchType) {
-        return ![_m_lawSearchResultModel bm_isNotEmpty]||_m_lawSearchResultModel.m_isMore;
+    if (_m_ocrSearchType)
+    {
+        return ![_m_lawSearchResultModel bm_isNotEmpty] || _m_lawSearchResultModel.m_isMore;
     }
     else
     {
-         return ![_m_caseSearchResultModel bm_isNotEmpty]||_m_caseSearchResultModel.m_isMore;
+        return ![_m_caseSearchResultModel bm_isNotEmpty] || _m_caseSearchResultModel.m_isMore;
     }
-   
 }
 
 - (NSMutableURLRequest *)setLoadDataRequest
@@ -354,7 +357,6 @@ FSOCRSearchResultVC ()
     }
     else
     {
-        
         return [FSApiRequest searchCaseWithKeywords:_m_keywords start:self.loadPage size:self.m_CountPerPage filters:@[]];
     }
 }
@@ -409,14 +411,16 @@ FSOCRSearchResultVC ()
     [super checkLoadFinish:requestDic];
     if (_m_ocrSearchType)
     {
-        if (_m_lawSearchResultModel.m_isMore) {
+        if (_m_lawSearchResultModel.m_isMore)
+        {
             self.loadPage += 1;
         }
         return !_m_lawSearchResultModel.m_isMore;
     }
     else
     {
-        if (_m_caseSearchResultModel.m_isMore) {
+        if (_m_caseSearchResultModel.m_isMore)
+        {
             self.loadPage += 1;
         }
         return !_m_caseSearchResultModel.m_isMore;
