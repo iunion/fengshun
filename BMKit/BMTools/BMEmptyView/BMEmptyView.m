@@ -218,12 +218,14 @@
         }
         case BMEmptyViewType_OcrSearch:
         {
-            NSString *text = @"未匹配到关键词\n换一张试试";
+//            NSString *text = @"未匹配到关键词\n换一张试试";
+//            atrText = [[NSMutableAttributedString alloc] initWithString:text];
+//            [atrText bm_setFont:[UIFont systemFontOfSize:16.0f]];
+//            [atrText bm_setTextColor:[UIColor bm_colorWithHex:0x999999]];
+//            [atrText bm_setTextColor:[UIColor bm_colorWithHex:0x577EEE] range:[text rangeOfString:@"换一张试试"]];
+//            return atrText;
+            NSString *text = @"未匹配到关键词";
             atrText = [[NSMutableAttributedString alloc] initWithString:text];
-            [atrText bm_setFont:[UIFont systemFontOfSize:16.0f]];
-            [atrText bm_setTextColor:[UIColor bm_colorWithHex:0x999999]];
-            [atrText bm_setTextColor:[UIColor bm_colorWithHex:0x577EEE] range:[text rangeOfString:@"换一张试试"]];
-            return atrText;
         }
         case BMEmptyViewType_Custom:
         {
@@ -335,11 +337,14 @@
     
     self.messageLabel.attributedText = [self messsageWithType:type];
     self.imageView.image = [UIImage imageNamed:[self imageNameWithType:type]];
-    
+    [self.freshButton setTitle:@"点击重试" forState:UIControlStateNormal];
+
     self.tapGesture.enabled = NO;
     self.refreshLabel.hidden = YES;
     self.freshButton.hidden = YES;
     
+    self.freshBtnUp = NO;
+
     switch (type)
     {
         case BMEmptyViewType_NoData:
@@ -369,18 +374,30 @@
         case BMEmptyViewType_CollectCOURSE:
             break;
         case BMEmptyViewType_Ocr:
+            break;
         case BMEmptyViewType_OcrSearch:
+            self.freshBtnUp = YES;
+            self.freshButton.hidden = NO;
+            [self.freshButton setTitle:@"换一张试试" forState:UIControlStateNormal];
             break;
         case BMEmptyViewType_Custom:
+            if (self.customFreshMessage)
+            {
+                self.freshButton.hidden = NO;
+                if (self.customFreshMessage.length)
+                {
+                    [self.freshButton setTitle:self.customFreshMessage forState:UIControlStateNormal];
+                }
+            }
             break;
             
         default:
             break;
     }
     
-    [self updateViewFrame];
-    
     _emptyViewType = type;
+    
+    [self updateViewFrame];
 }
 
 - (void)updateViewFrame
@@ -393,7 +410,15 @@
     
     [self.indecator bm_centerInSuperView];
     
-    [self.freshButton bm_centerHorizontallyInSuperViewWithTop:self.messageLabel.bm_bottom+30.0f];
+    if (self.freshBtnUp)
+    {
+        CGSize size = [self.messageLabel sizeThatFits:CGSizeMake(self.messageLabel.bm_width, 1000.0f)];
+        [self.freshButton bm_centerHorizontallyInSuperViewWithTop:self.messageLabel.bm_top+size.height+4.0f];
+    }
+    else
+    {
+        [self.freshButton bm_centerHorizontallyInSuperViewWithTop:self.messageLabel.bm_bottom+30.0f];
+    }
     
     [self.refreshLabel bm_centerHorizontallyInSuperViewWithTop:self.bm_height*0.75f];
     
