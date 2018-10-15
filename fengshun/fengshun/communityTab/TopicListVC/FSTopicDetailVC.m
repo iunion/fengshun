@@ -102,7 +102,7 @@
                      "url": "string"
                  }
                  */
-                [FSShareManager shareWebUrlWithTitle:[responseObject bm_stringForKey:@"title"] descr:[responseObject bm_stringForKey:@"content"] thumImage:[responseObject bm_stringForKey:@"imgUrl"] webpageUrl:[responseObject bm_stringForKey:@"url"]?:self.m_UrlString platform:index currentVC:weakSelf delegate:weakSelf];
+                [FSShareManager shareWebUrlWithTitle:[responseObject bm_stringForKey:@"title"] descr:[responseObject bm_stringForKey:@"content"] thumImage:[responseObject bm_stringForKey:@"imgUrl"] webpageUrl:[responseObject bm_stringForKey:@"url"]?:weakSelf.m_UrlString platform:index currentVC:weakSelf delegate:weakSelf];
             } failure:^(NSError * _Nullable error) {
                 
             }];
