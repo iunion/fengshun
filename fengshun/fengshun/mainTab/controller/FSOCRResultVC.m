@@ -87,7 +87,7 @@ FSMoreViewVCDelegate
 // 分享
 - (void)moreViewClickWithType:(NSInteger)index
 {
-    
+    [FSShareManager shareText:_m_textView.text withTitle:@"文件扫描结果" platform:index currentVC:self delegate:nil];
 }
 
 @end
