@@ -97,7 +97,9 @@
 }
 + (void)shareImagefileModels:(NSArray<FSImageFileModel *> *)models atViewController:(UIViewController *)vc
 {
+    [MBProgressHUD showHUDAddedTo:vc.view animated:YES];
     NSString *pdfPath = [self pdfPathWithImagefileModels:models];
+    [MBProgressHUD hideHUDForView:vc.view animated:YES];
     if (![pdfPath bm_isNotEmpty]) {
         [MBProgressHUD showHUDAddedTo:vc.view animated:YES withText:@"生成PDF文件出错" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         return;
