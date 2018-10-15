@@ -35,7 +35,8 @@
 @interface FSWebViewController ()
 <
     FSWebViewDelegate,
-    FSMoreViewVCDelegate
+    FSMoreViewVCDelegate,
+    FSShareManagerDelegate
 >
 {
     // 显示关闭
@@ -757,7 +758,7 @@
         [weakSelf.m_ProgressHUD hideAnimated:NO];
         NSInteger count = [responseObject integerValue];
         weakSelf.s_isCollect = count>0;
-        [FSMoreViewVC showWebMore:weakSelf delegate:weakSelf isCollection:weakSelf.s_isCollect hasRefresh:self.m_IsRefresh];
+        [FSMoreViewVC showWebMoreDelegate:weakSelf isCollection:weakSelf.s_isCollect hasRefresh:self.m_IsRefresh];
     } failure:^(NSError *error) {
         
     }];
@@ -767,7 +768,21 @@
 {
     if (index < 5)
     {
-        [self.m_ProgressHUD showAnimated:YES withText:[NSString stringWithFormat:@"分享未完成：数据为%@", self.s_ShareJsonSting] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        if (![self.s_ShareJsonSting bm_isNotEmpty])
+        {
+            [self.m_ProgressHUD showAnimated:YES withText:@"分享错误" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            return;
+        }
+        /*f5HM8GUBN3_o1ImUsbSy
+         {"title":"中华人民共和国广告法",
+         "url":"https://devftlsh5.odrcloud.net/Law/lawDetail?ID=TJDjrGUBN3_o1ImUSqS9&keywords=%E5%90%88%E5%90%8C%E7%BA%A0%E7%BA%B7&a=a",
+         "content":"枫调理顺—调解员专属的APP",
+         "imgUrl":"https://devres.odrcloud.net/storm-test//51/200/97c7f2c52c3c4038868f8d04d15ae8c1.png",
+         "id":"TJDjrGUBN3_o1ImUSqS9",
+         "type":"STATUTE"}
+         */
+        NSDictionary *data = [NSDictionary bm_dictionaryWithJsonString:self.s_ShareJsonSting];
+        [FSShareManager shareWebUrlWithTitle:[data bm_stringForKey:@"title"] descr:[data bm_stringForKey:@"content"] thumImage:[data bm_stringForKey:@"imgUrl"] webpageUrl:[data bm_stringForKey:@"url"] platform:index currentVC:self delegate:self];
     }
     else if (index == 5) // 收藏
     {
@@ -805,6 +820,13 @@
         }
         
     }
+}
+
+#pragma mark - 分享成功
+
+- (void)shareDidSucceed:(id)data
+{
+    
 }
 
 #pragma mark - reportAlert

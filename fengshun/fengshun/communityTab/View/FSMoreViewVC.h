@@ -19,12 +19,12 @@
 
 @interface FSMoreViewVC : FSSuperVC
 
-+ (void)showMore:(UIViewController *)presentVC  delegate:(id)delegate isOwner:(BOOL)isOwner isCollection:(BOOL)isCollection;
++ (void)showMoreDelegate:(id)delegate isOwner:(BOOL)isOwner isCollection:(BOOL)isCollection;
 
-+ (void)showWebMore:(UIViewController *)presentVC  delegate:(id)delegate isCollection:(BOOL)isCollection ;
-+ (void)showWebMore:(UIViewController *)presentVC  delegate:(id)delegate isCollection:(BOOL)isCollection hasRefresh:(BOOL)hasRefresh;
++ (void)showWebMoreDelegate:(id)delegate isCollection:(BOOL)isCollection ;
++ (void)showWebMoreDelegate:(id)delegate isCollection:(BOOL)isCollection hasRefresh:(BOOL)hasRefresh;
 
-+ (void)showShareAlertView:(UIViewController *)presentVC  delegate:(id)delegate;
++ (void)showShareAlertViewDelegate:(id)delegate;
 
 @property (nonatomic, assign)id <FSMoreViewVCDelegate> delegate;
 

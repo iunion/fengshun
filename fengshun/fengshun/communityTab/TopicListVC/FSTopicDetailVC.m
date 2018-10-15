@@ -53,6 +53,7 @@
 }
 
 
+
 #pragma mark - 更多弹窗按钮
 - (void)moreAction
 {
@@ -70,7 +71,7 @@
         
         // 根据帖子详情接口 userId判断是否是本人帖子
         BOOL isOwner = [weakSelf.m_TopicDetailModel.m_UserId isEqualToString:[FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId];
-        [FSMoreViewVC showMore:weakSelf delegate:weakSelf isOwner:isOwner isCollection:weakSelf.m_TopicDetailModel.m_IsCollection];
+        [FSMoreViewVC showMoreDelegate:weakSelf isOwner:isOwner isCollection:weakSelf.m_TopicDetailModel.m_IsCollection];
     } failure:^(NSError *error) {
         
     }];
@@ -88,7 +89,22 @@
         case 3:  //QQ空间
         case 4:  //微博
         {
-            [self.m_ProgressHUD showAnimated:YES withDetailText:[NSString stringWithFormat:@"分享:%@", @(index)] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            BMWeakSelf
+            [self.m_ProgressHUD showAnimated:YES];
+            [FSApiRequest getTopicShareContent:[NSString stringWithFormat:@"%@",@(self.m_TopicId)] type:@"POSTS" success:^(id  _Nullable responseObject) {
+                [weakSelf.m_ProgressHUD hideAnimated:YES];
+                /*
+                 {
+                     "content": "string",
+                     "imgUrl": "string",
+                     "title": "string",
+                     "url": "string"
+                 }
+                 */
+                [FSShareManager shareWebUrlWithTitle:[responseObject bm_stringForKey:@"title"] descr:[responseObject bm_stringForKey:@"content"] thumImage:[responseObject bm_stringForKey:@"imgUrl"] webpageUrl:[responseObject bm_stringForKey:@"url"]?:self.m_UrlString platform:index currentVC:weakSelf delegate:nil];
+            } failure:^(NSError * _Nullable error) {
+                
+            }];
         }
             break;
         case 5:  //收藏

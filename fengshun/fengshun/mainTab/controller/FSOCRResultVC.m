@@ -81,7 +81,7 @@ FSMoreViewVCDelegate
     else
     {
         // 分享
-        [FSMoreViewVC showShareAlertView:self delegate:self];
+        [FSMoreViewVC showShareAlertViewDelegate:self];
     }
 }
 // 分享

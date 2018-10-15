@@ -324,6 +324,10 @@ NS_ASSUME_NONNULL_BEGIN
                       success:(nullable XMSuccessBlock)successBlock
                       failure:(nullable XMFailureBlock)failureBlock;
 
++ (XMRequest *)getTopicShareContent:(NSString *)topicId
+                               type:(NSString *)type
+                            success:(nullable XMSuccessBlock)successBlock
+                            failure:(nullable XMFailureBlock)failureBlock;
 
 @end
 

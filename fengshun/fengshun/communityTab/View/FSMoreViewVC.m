@@ -34,7 +34,7 @@ FSMoreViewVC ()
 @implementation FSMoreViewVC
 
 
-+ (void)showMore:(UIViewController *)presentVC  delegate:(id)delegate isOwner:(BOOL)isOwner isCollection:(BOOL)isCollection
++ (void)showMoreDelegate:(id)delegate isOwner:(BOOL)isOwner isCollection:(BOOL)isCollection
 {
     FSMoreViewVC *moreVC = [[FSMoreViewVC alloc]init];
     moreVC.delegate = delegate;
@@ -43,18 +43,16 @@ FSMoreViewVC ()
     moreVC.m_IsWebMore = NO;
     moreVC.m_IsShareSheet = NO;
     moreVC.m_isRefresh = NO;
-    presentVC.definesPresentationContext = YES;
     moreVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-    [presentVC.navigationController presentViewController:moreVC animated:NO completion:^{
-        [UIView animateWithDuration:DEFAULT_DELAY_TIME
-                         animations:^{
-                             moreVC.m_BgView.bm_top = UI_SCREEN_HEIGHT - moreVC.m_BgView.bm_height;
-                         }];
-    }];
     moreVC.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:moreVC animated:NO completion:^{
+        [UIView animateWithDuration:DEFAULT_DELAY_TIME animations:^{
+            moreVC.m_BgView.bm_top = UI_SCREEN_HEIGHT - moreVC.m_BgView.bm_height;
+        }];
+    }];
 }
 
-+ (void)showWebMore:(UIViewController *)presentVC delegate:(id)delegate isCollection:(BOOL)isCollection
++ (void)showWebMoreDelegate:(id)delegate isCollection:(BOOL)isCollection
 {
     FSMoreViewVC *moreVC = [[FSMoreViewVC alloc]init];
     moreVC.delegate = delegate;
@@ -63,18 +61,16 @@ FSMoreViewVC ()
     moreVC.m_Collection = isCollection;
     moreVC.m_IsShareSheet = NO;
     moreVC.m_isRefresh = NO;
-    presentVC.definesPresentationContext = YES;
     moreVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-    [presentVC.navigationController presentViewController:moreVC animated:NO completion:^{
-        [UIView animateWithDuration:DEFAULT_DELAY_TIME
-                         animations:^{
-                             moreVC.m_BgView.bm_top = UI_SCREEN_HEIGHT - moreVC.m_BgView.bm_height;
-                         }];
-    }];
     moreVC.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:moreVC animated:NO completion:^{
+        [UIView animateWithDuration:DEFAULT_DELAY_TIME animations:^{
+            moreVC.m_BgView.bm_top = UI_SCREEN_HEIGHT - moreVC.m_BgView.bm_height;
+        }];
+    }];
 }
 
-+ (void)showWebMore:(UIViewController *)presentVC delegate:(id)delegate isCollection:(BOOL)isCollection hasRefresh:(BOOL)hasRefresh
++ (void)showWebMoreDelegate:(id)delegate isCollection:(BOOL)isCollection hasRefresh:(BOOL)hasRefresh
 {
     FSMoreViewVC *moreVC = [[FSMoreViewVC alloc]init];
     moreVC.delegate = delegate;
@@ -83,19 +79,17 @@ FSMoreViewVC ()
     moreVC.m_Collection = isCollection;
     moreVC.m_IsShareSheet = NO;
     moreVC.m_isRefresh = hasRefresh;
-    presentVC.definesPresentationContext = YES;
     moreVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-    [presentVC.navigationController presentViewController:moreVC animated:NO completion:^{
-        [UIView animateWithDuration:DEFAULT_DELAY_TIME
-                         animations:^{
-                             moreVC.m_BgView.bm_top = UI_SCREEN_HEIGHT - moreVC.m_BgView.bm_height;
-                         }];
-    }];
     moreVC.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:moreVC animated:NO completion:^{
+        [UIView animateWithDuration:DEFAULT_DELAY_TIME animations:^{
+            moreVC.m_BgView.bm_top = UI_SCREEN_HEIGHT - moreVC.m_BgView.bm_height;
+        }];
+    }];
     
 }
 
-+ (void)showShareAlertView:(UIViewController *)presentVC delegate:(id)delegate
++ (void)showShareAlertViewDelegate:(id)delegate
 {
     FSMoreViewVC *moreVC = [[FSMoreViewVC alloc]init];
     moreVC.delegate = delegate;
@@ -104,15 +98,13 @@ FSMoreViewVC ()
     moreVC.m_IsWebMore = NO;
     moreVC.m_Collection = NO;
     moreVC.m_isRefresh = NO;
-    presentVC.definesPresentationContext = YES;
     moreVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-    [presentVC.navigationController presentViewController:moreVC animated:NO completion:^{
-        [UIView animateWithDuration:DEFAULT_DELAY_TIME
-                         animations:^{
-                             moreVC.m_BgView.bm_top = UI_SCREEN_HEIGHT - moreVC.m_BgView.bm_height;
-                         }];
-    }];
     moreVC.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:moreVC animated:NO completion:^{
+        [UIView animateWithDuration:DEFAULT_DELAY_TIME animations:^{
+              moreVC.m_BgView.bm_top = UI_SCREEN_HEIGHT - moreVC.m_BgView.bm_height;
+        }];
+    }];
 }
 
 - (void)viewDidLoad
@@ -172,7 +164,7 @@ FSMoreViewVC ()
             {
                 btn.hidden = !self.m_isOwner;
             }
-            //[btn bm_layoutButtonWithEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageTop imageTitleGap:5];
+//            [btn bm_layoutButtonWithEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageTop imageTitleGap:5];
             
             CGFloat imageWidth = 30.0f;
             CGFloat titleheight = 28.0f;
@@ -184,6 +176,7 @@ FSMoreViewVC ()
         }
     }
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeMoreView)]];
+    [self.view layoutIfNeeded];
 }
 
 

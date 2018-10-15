@@ -20,9 +20,13 @@
 #import "FSAuthenticationVC.h"
 
 #import "FSServiceVC.h"
+#import "FSMoreViewVC.h"
 
 
 @interface FSUserMainVC ()
+<
+    FSMoreViewVCDelegate
+>
 
 @property (strong, nonatomic) UIView *m_TopView;
 
@@ -230,7 +234,7 @@
     self.m_ServiceItem.cellHeight = 50.0f;
     
     self.m_ShareItem = [BMTableViewItem itemWithTitle:@"分享APP" imageName:@"user_shareicon" underLineDrawType:BMTableViewCell_UnderLineDrawType_None accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
-        
+        [weakSelf toShare];
     }];
     self.m_ShareItem.imageH = 16.0f;
     self.m_ShareItem.imageW = 16.0f;
@@ -373,6 +377,24 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+#pragma mark - 分享
+
+- (void)toShare
+{
+    [FSMoreViewVC showShareAlertViewDelegate:self];
+}
+
+- (void)moreViewClickWithType:(NSInteger)index
+{
+    BMWeakSelf
+    [self.m_ProgressHUD showAnimated:YES];
+    [FSApiRequest getTopicShareContent:@"1" type:@"PERSONNEL" success:^(id  _Nullable responseObject) {
+        [weakSelf.m_ProgressHUD hideAnimated:YES];
+        [FSShareManager shareWebUrlWithTitle:[responseObject bm_stringForKey:@"title"] descr:[responseObject bm_stringForKey:@"content"] thumImage:[responseObject bm_stringForKey:@"imgUrl"] webpageUrl:[responseObject bm_stringForKey:@"url"] platform:index currentVC:weakSelf delegate:nil];
+    } failure:^(NSError * _Nullable error) {
+        
+    }];
+}
 
 #pragma mark - UIScrollViewDelegate
 
