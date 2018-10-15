@@ -83,7 +83,7 @@
     NSArray *imageArray = [images copy];
     [imageArray writeToFile:[self p_imageFileListPath] atomically:NO];
 }
-+ (NSString *)pdfPathWithImagefileModels:(NSArray <FSImageFileModel *> *)models
++ (void)pdfPathWithImagefileModels:(NSArray <FSImageFileModel *> *)models completion:(void(^)(NSString *pdfPath))completion
 {
     NSString *timeStamp = [@((long)[NSDate date].timeIntervalSince1970) stringValue];
     NSString *fileName = [[NSString stringWithFormat:@"PDF分享-%@",timeStamp] stringByAppendingPathExtension:@"pdf"];
@@ -93,26 +93,37 @@
             [images addObject:model.previewImage];
         }
     }
-    return [self convertPDFWithImages:[images copy] fileName:fileName];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSString *pdfPath = [self convertPDFWithImages:[images copy] fileName:fileName];
+        if (completion) {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                completion(pdfPath);
+            });
+        }
+    });
 }
 + (void)shareImagefileModels:(NSArray<FSImageFileModel *> *)models atViewController:(UIViewController *)vc
 {
-    NSString *pdfPath = [self pdfPathWithImagefileModels:models];
-    if (![pdfPath bm_isNotEmpty]) {
-        [MBProgressHUD showHUDAddedTo:vc.view animated:YES withText:@"生成PDF文件出错" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-        return;
-    }
-    NSArray *activityItems = @[[NSURL fileURLWithPath:pdfPath]];
-    
-    UIActivityViewController *activityViewController =    [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
-    [vc presentViewController:activityViewController animated:YES completion:nil];
-    
-    [activityViewController setCompletionWithItemsHandler:^(NSString * __nullable activityType, BOOL completed, NSArray * __nullable returnedItems, NSError * __nullable activityError){
-        if([[NSFileManager defaultManager]fileExistsAtPath:pdfPath])
-        {
-            [[NSFileManager defaultManager]removeItemAtPath:pdfPath error:nil];
+    [MBProgressHUD showHUDAddedTo:vc.view animated:YES];
+    [self pdfPathWithImagefileModels:models completion:^(NSString *pdfPath) {
+        [MBProgressHUD hideHUDForView:vc.view animated:YES];
+        if (![pdfPath bm_isNotEmpty]) {
+            [MBProgressHUD showHUDAddedTo:vc.view animated:YES withText:@"生成PDF文件出错" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            return;
         }
+        NSArray *activityItems = @[[NSURL fileURLWithPath:pdfPath]];
+        
+        UIActivityViewController *activityViewController =    [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+        [vc presentViewController:activityViewController animated:YES completion:nil];
+        
+        [activityViewController setCompletionWithItemsHandler:^(NSString * __nullable activityType, BOOL completed, NSArray * __nullable returnedItems, NSError * __nullable activityError){
+            if([[NSFileManager defaultManager]fileExistsAtPath:pdfPath])
+            {
+                [[NSFileManager defaultManager]removeItemAtPath:pdfPath error:nil];
+            }
+        }];
     }];
+    
 
 }
 + (NSString *)convertPDFWithImages:(NSArray<UIImage *>*)images fileName:(NSString *)fileName{

@@ -87,7 +87,34 @@
         }
     }];
 }
-
++ (void)shareText:(NSString *)text withTitle:(NSString *)title platform:(FSShareManagerType)platform currentVC:(UIViewController *)currentVC delegate:(id<FSShareManagerDelegate>)delegate
+{
+    if (text.length == 0)
+    {
+        return;
+    }
+    //创建分享消息对象
+    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+   
+    messageObject.title = title;
+    messageObject.text = text;
+    //分享平台
+    UMSocialPlatformType platformType = [self getPlatform:platform];
+    //调用分享接口
+    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:currentVC completion:^(id data, NSError *error) {
+        if (error) {
+            if (delegate && [delegate respondsToSelector:@selector(shareFailedWithError:)]) {
+                [delegate shareFailedWithError:error];
+            }
+            BMLog(@"************Share fail with error %@*********",error);
+        }else{
+            if (delegate && [delegate respondsToSelector:@selector(shareDidSucceed:)]) {
+                [delegate shareDidSucceed:data];
+            }
+            BMLog(@"response data is %@",data);
+        }
+    }];
+}
 + (UMSocialPlatformType )getPlatform:(FSShareManagerType )platform
 {
     UMSocialPlatformType platformType;

@@ -78,4 +78,11 @@
     
     return [FSApiRequest makeRequestWithURL:urlStr parameters:@{@"documentName":keyword}];
 }
++ (XMRequest *)addShareCountWithId:(NSString *)objId andType:(NSString *)type success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
+{
+    if (objId.length == 0 || type.length == 0) {
+        return nil;
+    }
+    return [XMRequestManager rm_requestWithApi:@"/storm/document/getDocumentHome" parameters:@{@"id":objId,@"type":type} success:successBlock failure:failureBlock];
+}
 @end

@@ -10,6 +10,9 @@
 #import "FSMoreViewVC.h"
 
 @interface FSTextDetailVC ()
+<
+    FSShareManagerDelegate
+>
 
 @property(nonatomic, assign)BOOL s_isCollect;
 @end
@@ -62,13 +65,18 @@
     }];
 }
 #pragma mark - moreAlert
+- (void)shareDidSucceed:(id)data
+{
+    [FSApiRequest addShareCountWithId:_m_docummentId andType:@"DOCUMENT" success:nil failure:nil];
+}
 - (void)moreViewClickWithType:(NSInteger)index
 {
     NSString *url = [NSString stringWithFormat:@"%@%@%@",FS_URL_SERVER,FS_FILE_ADRESS,_m_fileId];
     url = [url stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     if (index < 5)
     {
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:[NSString stringWithFormat:@"%@",url] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+//        [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:[NSString stringWithFormat:@"%@",url] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        [FSShareManager shareWebUrlWithTitle:self.title descr:nil thumImage:nil webpageUrl:url platform:index currentVC:self delegate:self];
     }
     else if (index == 5)//收藏
     {

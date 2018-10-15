@@ -249,6 +249,13 @@ NS_ASSUME_NONNULL_BEGIN
 // http://115.159.33.190:8121/swagger-ui.html#/%E6%96%87%E4%B9%A6%E8%8C%83%E6%9C%AC/getDocumentListUsingPOST
 + (NSMutableURLRequest *)searchTextWithKeyword:(NSString *)keyword;
 
+// 记录分享次数
+// http://115.159.33.190:8121/swagger-ui.html#/%E5%88%86%E4%BA%AB/addShareCountUsingPOST
+// 类型（COURSE-课程 COMMENT-评论 POSTS-帖子 STATUTE-法规 CASE-案例 DOCUMENT-文书范本 FORUM-版块）
++ (XMRequest *)addShareCountWithId:(NSString *)objId andType:(NSString *)type
+                           success:(nullable XMSuccessBlock)successBlock
+                           failure:(nullable XMFailureBlock)failureBlock;
+
 @end
 
 #pragma mark - 社区模块

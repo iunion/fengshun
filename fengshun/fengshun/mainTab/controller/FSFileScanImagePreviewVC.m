@@ -266,7 +266,7 @@ FSFileScanImagePreviewVC ()
 // 分享按钮点击
 - (void)moreViewClickWithType:(NSInteger)index
 {
-    
+    [FSShareManager shareImageWithThumbImage:_m_selectedImageFile.previewImage shareImage:_m_selectedImageFile.previewImage platform:index currentVC:self delegate:nil];
 }
 
 
