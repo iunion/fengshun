@@ -67,7 +67,7 @@
         [SocketHelper destroy];
         [[ASRManager defaultManager] stop];
         [ASRManager defaultManager].delegate = nil;
-        [ASRManager destroy];
+//        [ASRManager destroy];
     }];
 }
 
@@ -370,8 +370,8 @@
 
 - (void)onUserSigExpired
 {
-    NSLog(@"用户登录的userSig过期");
-    [self showAlertWithTitle:@"登录userSig已过期" msg:nil];
+//    NSLog(@"用户登录的userSig过期");
+//    [self showAlertWithTitle:@"登录userSig已过期" msg:nil];
 }
 
 #pragma mark -  TIMConnListener
