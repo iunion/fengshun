@@ -388,7 +388,7 @@
 {
     BMWeakSelf
     [self.m_ProgressHUD showAnimated:YES];
-    [FSApiRequest getTopicShareContent:@"1" type:@"PERSONNEL" success:^(id  _Nullable responseObject) {
+    [FSApiRequest getShareContent:@"1" type:@"PERSONNEL" success:^(id  _Nullable responseObject) {
         [weakSelf.m_ProgressHUD hideAnimated:YES];
         [FSShareManager shareWebUrlWithTitle:[responseObject bm_stringForKey:@"title"] descr:[responseObject bm_stringForKey:@"content"] thumImage:[responseObject bm_stringForKey:@"imgUrl"] webpageUrl:[responseObject bm_stringForKey:@"url"] platform:index currentVC:weakSelf delegate:nil];
     } failure:^(NSError * _Nullable error) {
