@@ -256,7 +256,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 记录分享次数
 // http://115.159.33.190:8121/swagger-ui.html#/%E5%88%86%E4%BA%AB/addShareCountUsingPOST
-// 类型（COURSE-课程 COMMENT-评论 POSTS-帖子 STATUTE-法规 CASE-案例 DOCUMENT-文书范本 FORUM-版块）
+// 类型（COURSE-课程 COMMENT-评论 POSTS-帖子 STATUTE-法规 CASE-案例 DOCUMENT-文书范本 FORUM-版块 SPECIAL-图文系列）
 + (XMRequest *)addShareCountWithId:(NSString *)objId andType:(NSString *)type
                            success:(nullable XMSuccessBlock)successBlock
                            failure:(nullable XMFailureBlock)failureBlock;
