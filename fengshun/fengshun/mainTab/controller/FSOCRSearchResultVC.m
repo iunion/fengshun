@@ -17,23 +17,20 @@
 #import "BMNavigationController.h"
 
 @interface
-FSOCRSearchResultVC ()
-<
-    TZImagePickerControllerDelegate,
-    TOCropViewControllerDelegate
->
+FSOCRSearchResultVC () <TZImagePickerControllerDelegate,
+                        TOCropViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *m_imageView;
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *m_toolButtons;
-@property (nonatomic, assign) BOOL                                  m_notFirstSelected;
+@property (nonatomic, assign) BOOL m_notFirstSelected;
 
-@property (nonatomic, strong) NSArray *                m_keywords;
-@property (nonatomic, strong) FSLawSearchResultModel * m_lawSearchResultModel;
+@property (nonatomic, strong) NSArray *m_keywords;
+@property (nonatomic, strong) FSLawSearchResultModel *m_lawSearchResultModel;
 @property (nonatomic, strong) FSCaseSearchResultModel *m_caseSearchResultModel;
 @property (nonatomic, assign, readonly) NSInteger m_totalCount;
 @property (nonatomic, assign) NSUInteger loadPage;
-@property (nonatomic, strong) UIImage *  m_orignalImage;
+@property (nonatomic, strong) UIImage *m_orignalImage;
 @property (nonatomic, assign) BOOL m_notEmptyViewAction;
 
 @end
@@ -169,7 +166,8 @@ FSOCRSearchResultVC ()
 
 - (void)presentToImagePickerWithAnimated:(BOOL)animated
 {
-    if (animated) {
+    if (animated)
+    {
         self.m_notFirstSelected = YES;
     }
     TZImagePickerController *imagePickerVc = [TZImagePickerController fs_defaultPickerWithImagesCount:1 delegate:self];
@@ -295,7 +293,7 @@ FSOCRSearchResultVC ()
 {
     self.m_lawSearchResultModel = nil;
     self.m_caseSearchResultModel = nil;
-    [self loadDataResponseFinished:nil responseDic:@{ @"code" : @"1000" }];
+    [self loadDataResponseFinished:nil responseDic:@{ @"code": @"1000" }];
 }
 #pragma mark - 第二步,根据文字提取关键字
 - (void)getkeywordsWithOCRText:(NSString *)ocrText
@@ -305,7 +303,7 @@ FSOCRSearchResultVC ()
         [FSApiRequest getLawsKeywordsWithText:ocrText
             success:^(id _Nullable responseObject) {
                 NSDictionary *data = responseObject;
-                NSArray *     keywords = [data bm_arrayForKey:@"keywords"];
+                NSArray *keywords = [data bm_arrayForKey:@"keywords"];
                 [self searchWithKeywords:keywords];
             }
             failure:^(NSError *_Nullable error) {
@@ -318,7 +316,7 @@ FSOCRSearchResultVC ()
         [FSApiRequest getCaseKeywordsWithText:ocrText
             success:^(id _Nullable responseObject) {
                 NSDictionary *data = responseObject;
-                NSArray *     keywords = [data bm_arrayForKey:@"keywords"];
+                NSArray *keywords = [data bm_arrayForKey:@"keywords"];
                 [self searchWithKeywords:keywords];
             }
             failure:^(NSError *_Nullable error) {
@@ -339,7 +337,8 @@ FSOCRSearchResultVC ()
 }
 - (void)loadApiData
 {
-    if (_m_notEmptyViewAction) {
+    if (_m_notEmptyViewAction)
+    {
         self.loadPage = 0;
         [super loadApiData];
     }
@@ -353,11 +352,11 @@ FSOCRSearchResultVC ()
 {
     if (_m_ocrSearchType)
     {
-        return [_m_lawSearchResultModel bm_isNotEmpty]? _m_lawSearchResultModel.m_isMore:YES;
+        return [_m_lawSearchResultModel bm_isNotEmpty] ? _m_lawSearchResultModel.m_isMore : YES;
     }
     else
     {
-        return [_m_caseSearchResultModel bm_isNotEmpty]? _m_caseSearchResultModel.m_isMore:YES;
+        return [_m_caseSearchResultModel bm_isNotEmpty] ? _m_caseSearchResultModel.m_isMore : YES;
     }
 }
 
