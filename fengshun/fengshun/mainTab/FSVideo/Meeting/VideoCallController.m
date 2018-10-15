@@ -67,7 +67,7 @@
         [SocketHelper destroy];
         [[ASRManager defaultManager] stop];
         [ASRManager defaultManager].delegate = nil;
-        [ASRManager destroy];
+//        [ASRManager destroy];
     }];
 }
 
