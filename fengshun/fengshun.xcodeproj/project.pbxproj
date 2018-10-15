@@ -1845,6 +1845,8 @@
 		ADEF1F76214F9F7B00FFE0C3 /* FSMoreViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF1F74214F9F7B00FFE0C3 /* FSMoreViewVC.m */; };
 		ADEF1F77214F9F7B00FFE0C3 /* FSMoreViewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADEF1F75214F9F7B00FFE0C3 /* FSMoreViewVC.xib */; };
 		ADF7AAD821490D1F00B550E6 /* FSTopicDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF7AAD721490D1E00B550E6 /* FSTopicDetailVC.m */; };
+		AF1B5EE6217462FA00125921 /* FSShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1B5EE5217462FA00125921 /* FSShareManager.m */; };
+		AF1B5EE7217462FA00125921 /* FSShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1B5EE5217462FA00125921 /* FSShareManager.m */; };
 		DB14A7AA2139247900E88798 /* FSCourseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB14A7A82139247900E88798 /* FSCourseTableCell.m */; };
 		DB14A7AB2139247900E88798 /* FSCourseTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB14A7A92139247900E88798 /* FSCourseTableCell.xib */; };
 		DB2656C4214619A0002ED713 /* FSCaseSearchResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2656C3214619A0002ED713 /* FSCaseSearchResultVC.m */; };
@@ -3692,6 +3694,8 @@
 		ADEF1F75214F9F7B00FFE0C3 /* FSMoreViewVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSMoreViewVC.xib; sourceTree = "<group>"; };
 		ADF7AAD621490D1E00B550E6 /* FSTopicDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTopicDetailVC.h; sourceTree = "<group>"; };
 		ADF7AAD721490D1E00B550E6 /* FSTopicDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTopicDetailVC.m; sourceTree = "<group>"; };
+		AF1B5EE4217462FA00125921 /* FSShareManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSShareManager.h; sourceTree = "<group>"; };
+		AF1B5EE5217462FA00125921 /* FSShareManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSShareManager.m; sourceTree = "<group>"; };
 		DB14A7A72139247900E88798 /* FSCourseTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCourseTableCell.h; sourceTree = "<group>"; };
 		DB14A7A82139247900E88798 /* FSCourseTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCourseTableCell.m; sourceTree = "<group>"; };
 		DB14A7A92139247900E88798 /* FSCourseTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSCourseTableCell.xib; sourceTree = "<group>"; };
@@ -5797,6 +5801,7 @@
 		87426A9821314996003C52F6 /* FSTools */ = {
 			isa = PBXGroup;
 			children = (
+				AF1B5EE3217462BE00125921 /* FSShareManager */,
 				87E7C6E62151F2C700F7AB14 /* FSTestHelp */,
 				87742019214F522100F72427 /* FSAlertView */,
 				DB4C7E3B21476426008CC6BB /* FSOCR */,
@@ -7411,6 +7416,15 @@
 				ADEF1F5E214F8AF300FFE0C3 /* libSocialQQ.a */,
 			);
 			path = QQ;
+			sourceTree = "<group>";
+		};
+		AF1B5EE3217462BE00125921 /* FSShareManager */ = {
+			isa = PBXGroup;
+			children = (
+				AF1B5EE4217462FA00125921 /* FSShareManager.h */,
+				AF1B5EE5217462FA00125921 /* FSShareManager.m */,
+			);
+			path = FSShareManager;
 			sourceTree = "<group>";
 		};
 		DB2656D521466A65002ED713 /* images */ = {
@@ -9115,6 +9129,7 @@
 				874268EB212E7E36003C52F6 /* UIView+BMSize.m in Sources */,
 				8730B04C2140FFA2004331A9 /* DTHTMLElement.m in Sources */,
 				87D20ABB213920E2001EDD60 /* FLEXFieldEditorViewController.m in Sources */,
+				AF1B5EE6217462FA00125921 /* FSShareManager.m in Sources */,
 				8774200C214C9DE000F72427 /* FSCommentMessageCell.m in Sources */,
 				87426AC92133AC44003C52F6 /* Reachability.m in Sources */,
 				AD932609214B4FDA007F3A93 /* ZSSTextView.m in Sources */,
@@ -9329,6 +9344,7 @@
 				87E7C31C21509AB000F7AB14 /* SDWebImageCoder.m in Sources */,
 				87E7C31D21509AB000F7AB14 /* OpenUDID.m in Sources */,
 				87E7C31E21509AB000F7AB14 /* FMDatabasePool.m in Sources */,
+				AF1B5EE7217462FA00125921 /* FSShareManager.m in Sources */,
 				87E7C31F21509AB000F7AB14 /* FMDatabaseAdditions.m in Sources */,
 				87E7C32021509AB000F7AB14 /* BMTableViewCellStyle.m in Sources */,
 				87E7C32121509AB000F7AB14 /* FSHeaderCommonSelector.m in Sources */,

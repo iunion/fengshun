@@ -7,6 +7,7 @@
 //
 
 #import "FSSuperVC.h"
+#import "FSShareManager.h"
 
 @protocol FSMoreViewVCDelegate <NSObject>
 

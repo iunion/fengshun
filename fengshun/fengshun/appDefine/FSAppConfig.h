@@ -25,13 +25,18 @@
 
 
 // 分享相关
+#define Redirect_URL        @"http://mobile.umeng.com/social"
 // QQ
-#define QQ_AppId            @"101499801"
+#define QQ_AppId            @"100424468"
 #define QQ_AppKey           @"41841d247cf98e781d73e1d455300a0d"
 
 // 微信
 #define Wechat_AppId        @"wx39307cf41337107d"
 #define Wechat_AppSecret    @"134f3aa7376bd9d2b5fdf6a11b396325"
+
+// 微博
+#define Sina_AppId          @"wb3921700954"
+#define Sina_AppSecret      @"41841d247cf98e781d73e1d455300a0d"
 
 
 #ifdef FSVIDEO_ON
