@@ -16,7 +16,8 @@
 @interface FSTopicDetailVC ()
 <
     FSMoreViewVCDelegate,
-    FSReportViewDelegate
+    FSReportViewDelegate,
+    FSShareManagerDelegate
 >
 
 @property (nonatomic, assign) NSInteger m_TopicId;
@@ -101,7 +102,7 @@
                      "url": "string"
                  }
                  */
-                [FSShareManager shareWebUrlWithTitle:[responseObject bm_stringForKey:@"title"] descr:[responseObject bm_stringForKey:@"content"] thumImage:[responseObject bm_stringForKey:@"imgUrl"] webpageUrl:[responseObject bm_stringForKey:@"url"]?:self.m_UrlString platform:index currentVC:weakSelf delegate:nil];
+                [FSShareManager shareWebUrlWithTitle:[responseObject bm_stringForKey:@"title"] descr:[responseObject bm_stringForKey:@"content"] thumImage:[responseObject bm_stringForKey:@"imgUrl"] webpageUrl:[responseObject bm_stringForKey:@"url"]?:self.m_UrlString platform:index currentVC:weakSelf delegate:weakSelf];
             } failure:^(NSError * _Nullable error) {
                 
             }];
@@ -181,6 +182,15 @@
         default:
             break;
     }
+}
+// 分享成功
+- (void)shareDidSucceed:(id)data
+{
+    [FSApiRequest addShareCountWithId:[NSString stringWithFormat:@"%@",@(self.m_TopicId)] andType:@"POSTS" success:^(id  _Nullable responseObject) {
+        
+    } failure:^(NSError * _Nullable error) {
+        
+    }];
 }
 
 // 举报按钮点击

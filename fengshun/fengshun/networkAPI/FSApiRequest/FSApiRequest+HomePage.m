@@ -83,6 +83,6 @@
     if (objId.length == 0 || type.length == 0) {
         return nil;
     }
-    return [XMRequestManager rm_requestWithApi:@"/storm/document/getDocumentHome" parameters:@{@"id":objId,@"type":type} success:successBlock failure:failureBlock];
+    return [XMRequestManager rm_requestWithApi:@"/storm/share/addShareCount" parameters:@{@"id":objId,@"type":type} success:successBlock failure:failureBlock];
 }
 @end

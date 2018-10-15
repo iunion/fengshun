@@ -758,7 +758,7 @@
         [weakSelf.m_ProgressHUD hideAnimated:NO];
         NSInteger count = [responseObject integerValue];
         weakSelf.s_isCollect = count>0;
-        [FSMoreViewVC showWebMoreDelegate:weakSelf isCollection:weakSelf.s_isCollect hasRefresh:self.m_IsRefresh];
+        [FSMoreViewVC showWebMoreDelegate:weakSelf isCollection:weakSelf.s_isCollect hasRefresh:weakSelf.m_IsRefresh];
     } failure:^(NSError *error) {
         
     }];
@@ -826,7 +826,12 @@
 
 - (void)shareDidSucceed:(id)data
 {
-    
+    NSDictionary *params = [NSDictionary bm_dictionaryWithJsonString:self.s_ShareJsonSting];
+    [FSApiRequest addShareCountWithId:[params bm_stringForKey:@"id"] andType:[params bm_stringForKey:@"type"] success:^(id  _Nullable responseObject) {
+        
+    } failure:^(NSError * _Nullable error) {
+        
+    }];
 }
 
 #pragma mark - reportAlert
