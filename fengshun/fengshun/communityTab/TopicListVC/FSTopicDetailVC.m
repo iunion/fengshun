@@ -91,7 +91,7 @@
         {
             BMWeakSelf
             [self.m_ProgressHUD showAnimated:YES];
-            [FSApiRequest getTopicShareContent:[NSString stringWithFormat:@"%@",@(self.m_TopicId)] type:@"POSTS" success:^(id  _Nullable responseObject) {
+            [FSApiRequest getShareContent:[NSString stringWithFormat:@"%@",@(self.m_TopicId)] type:@"POSTS" success:^(id  _Nullable responseObject) {
                 [weakSelf.m_ProgressHUD hideAnimated:YES];
                 /*
                  {

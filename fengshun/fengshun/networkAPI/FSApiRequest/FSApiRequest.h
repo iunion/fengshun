@@ -84,10 +84,6 @@ NS_ASSUME_NONNULL_BEGIN
 // http://115.159.33.190:8121/swagger-ui.html#/%E5%88%86%E4%BA%AB/askShareUsingPOST
 + (nullable NSMutableURLRequest *)getShareDataWithShareItemId:(NSString *)shareItemId shareType:(NSString *)shareType;
 
-+ (XMRequest *)getTopicShareContent:(NSString *)relateId
-                               type:(NSString *)type
-                            success:(nullable XMSuccessBlock)successBlock
-                            failure:(nullable XMFailureBlock)failureBlock;
 
 @end
 
@@ -260,6 +256,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (XMRequest *)addShareCountWithId:(NSString *)objId andType:(NSString *)type
                            success:(nullable XMSuccessBlock)successBlock
                            failure:(nullable XMFailureBlock)failureBlock;
++ (XMRequest *)getShareContent:(NSString *)relateId
+                          type:(NSString *)type
+                       success:(nullable XMSuccessBlock)successBlock
+                       failure:(nullable XMFailureBlock)failureBlock;
 
 @end
 

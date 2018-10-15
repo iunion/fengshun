@@ -76,7 +76,20 @@
     if (index < 5)
     {
 //        [MBProgressHUD showHUDAddedTo:self.view animated:YES withText:[NSString stringWithFormat:@"%@",url] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-        [FSShareManager shareWebUrlWithTitle:self.title descr:nil thumImage:nil webpageUrl:url platform:index currentVC:self delegate:self];
+        BMWeakSelf
+        [self.m_ProgressHUD showAnimated:YES];
+        [FSApiRequest getShareContent:_m_docummentId type:@"DOCUMENT" success:^(id  _Nullable responseObject) {
+            [weakSelf.m_ProgressHUD hideAnimated:YES];
+            /*
+             {
+             "content": "string",
+             "imgUrl": "string",
+             "title": "string",
+             "url": "string"
+             }
+             */
+            [FSShareManager shareWebUrlWithTitle:[responseObject bm_stringForKey:@"title"] descr:[responseObject bm_stringForKey:@"content"] thumImage:[responseObject bm_stringForKey:@"imgUrl"] webpageUrl:[responseObject bm_stringForKey:@"url"]?:url platform:index currentVC:weakSelf delegate:nil];
+        } failure:nil];
     }
     else if (index == 5)//收藏
     {
