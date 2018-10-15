@@ -205,6 +205,9 @@ static CGFloat margin = 10;
         self.backgroundColor = [UIColor bm_colorWithHex:0x313b47];
         _model = model;
         
+        UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(avPackViewDidTap)];
+        [self addGestureRecognizer:gr];
+
         _renderView = ({
             _userId = renderView.identifier;
             [self addSubview:renderView];
@@ -227,8 +230,6 @@ static CGFloat margin = 10;
 
         _avPackView = ({
             UIView *v = [UIView new];
-            UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(avPackViewDidTap)];
-            [v addGestureRecognizer:gr];
             [self addSubview:v];
             [v mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.top.equalTo(self);
