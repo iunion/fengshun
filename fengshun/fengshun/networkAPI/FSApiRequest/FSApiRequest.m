@@ -235,4 +235,16 @@
     return [XMRequestManager rm_requestWithApi:@"/storm/user/collection" parameters:parameters success:successBlock failure:failureBlock];
 }
 
+// 获取帖子分享信息
+
+//类型（COURSE-课程 POSTS-帖子 STATUTE-法规 CASE-案例 DOCUMENT-文书范本 PERSONNEL-个人中心app分享 SPECIAL 专题分享）
++ (XMRequest *)getTopicShareContent:(NSString *)relateId  type:(nonnull NSString *)type success:(nullable XMSuccessBlock)successBlock failure:(nullable XMFailureBlock)failureBlock
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters bm_setString:relateId forKey:@"id"];
+    //POSTS
+    [parameters bm_setString:type forKey:@"type"];
+    return [XMRequestManager rm_requestWithApi:@"/storm/share/askShare" parameters:parameters success:successBlock failure:failureBlock];
+}
+
 @end
