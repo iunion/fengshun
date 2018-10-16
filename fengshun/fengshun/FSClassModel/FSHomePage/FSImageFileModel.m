@@ -113,7 +113,7 @@
         }
         NSArray *activityItems = @[[NSURL fileURLWithPath:pdfPath]];
         
-        UIActivityViewController *activityViewController =    [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+        UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
         [vc presentViewController:activityViewController animated:YES completion:nil];
         
         [activityViewController setCompletionWithItemsHandler:^(NSString * __nullable activityType, BOOL completed, NSArray * __nullable returnedItems, NSError * __nullable activityError){
