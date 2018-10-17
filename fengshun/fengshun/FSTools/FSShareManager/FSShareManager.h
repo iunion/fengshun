@@ -67,7 +67,13 @@ typedef NS_ENUM(NSUInteger, FSShareManagerType) {
  @param currentVC 当前VC
  @param delegate 代理
  */
-+ (void)shareText:(NSString *)text withTitle:(NSString *)title platform:(FSShareManagerType)platform currentVC:(UIViewController *)currentVC delegate:(id<FSShareManagerDelegate>)delegate;
++ (void)shareText:(NSString *)text
+        withTitle:(NSString *)title
+         platform:(FSShareManagerType)platform
+        currentVC:(UIViewController *)currentVC
+         delegate:(id<FSShareManagerDelegate>)delegate;
+
++ (BOOL)isInstall:(FSShareManagerType )platformType;
 
 @end
 

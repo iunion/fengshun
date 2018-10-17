@@ -9,6 +9,10 @@
 #import "FSShareManager.h"
 #import <UMShare/UMShare.h>
 
+@interface FSShareManager()
+
+@end
+
 @implementation FSShareManager
 
 + (void)configSharePlateform
@@ -28,6 +32,11 @@
         BMLog(@"分享内容不能为空");
         return;
     }
+    if (![self isInstallShowHud:platform currentVC:currentVC])
+    {
+        BMLog(@"未安装该平台");
+        return;
+    }
     //创建网页内容对象
     UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:title descr:descr thumImage:thumImage];
     //设置网页地址
@@ -39,12 +48,16 @@
     //调用分享接口
     [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:currentVC completion:^(id data, NSError *error) {
         if (error) {
-            if (delegate && [delegate respondsToSelector:@selector(shareFailedWithError:)]) {
+            if (delegate && [delegate respondsToSelector:@selector(shareFailedWithError:)])
+            {
                 [delegate shareFailedWithError:error];
             }
             BMLog(@"************Share fail with error %@*********",error);
-        }else{
-            if (delegate && [delegate respondsToSelector:@selector(shareDidSucceed:)]) {
+        }
+        else
+        {
+            if (delegate && [delegate respondsToSelector:@selector(shareDidSucceed:)])
+            {
                 [delegate shareDidSucceed:data];
             }
             BMLog(@"response data is %@",data);
@@ -67,6 +80,11 @@
     {
         return;
     }
+    if (![self isInstallShowHud:platform currentVC:currentVC])
+    {
+        BMLog(@"未安装该平台");
+        return;
+    }
     [shareObject setShareImage:shareImage];
     //分享消息对象设置分享内容对象
     messageObject.shareObject = shareObject;
@@ -75,12 +93,16 @@
     //调用分享接口
     [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:currentVC completion:^(id data, NSError *error) {
         if (error) {
-            if (delegate && [delegate respondsToSelector:@selector(shareFailedWithError:)]) {
+            if (delegate && [delegate respondsToSelector:@selector(shareFailedWithError:)])
+            {
                 [delegate shareFailedWithError:error];
             }
             BMLog(@"************Share fail with error %@*********",error);
-        }else{
-            if (delegate && [delegate respondsToSelector:@selector(shareDidSucceed:)]) {
+        }
+        else
+        {
+            if (delegate && [delegate respondsToSelector:@selector(shareDidSucceed:)])
+            {
                 [delegate shareDidSucceed:data];
             }
             BMLog(@"response data is %@",data);
@@ -93,6 +115,11 @@
     {
         return;
     }
+    if (![self isInstallShowHud:platform currentVC:currentVC])
+    {
+        BMLog(@"未安装该平台");
+        return;
+    }
     //创建分享消息对象
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
    
@@ -103,12 +130,16 @@
     //调用分享接口
     [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:currentVC completion:^(id data, NSError *error) {
         if (error) {
-            if (delegate && [delegate respondsToSelector:@selector(shareFailedWithError:)]) {
+            if (delegate && [delegate respondsToSelector:@selector(shareFailedWithError:)])
+            {
                 [delegate shareFailedWithError:error];
             }
             BMLog(@"************Share fail with error %@*********",error);
-        }else{
-            if (delegate && [delegate respondsToSelector:@selector(shareDidSucceed:)]) {
+        }
+        else
+        {
+            if (delegate && [delegate respondsToSelector:@selector(shareDidSucceed:)])
+            {
                 [delegate shareDidSucceed:data];
             }
             BMLog(@"response data is %@",data);
@@ -139,6 +170,24 @@
             break;
     }
     return platformType;
+}
+
++ (BOOL)isInstall:(FSShareManagerType )platformType
+{
+    return [[UMSocialManager defaultManager]isInstall:[self getPlatform:platformType]];
+}
+
++ (BOOL)isInstallShowHud:(FSShareManagerType )platformType currentVC:(UIViewController *)vc
+{
+    BOOL isInstall = [self isInstall:platformType];
+    if (!isInstall)
+    {
+        MBProgressHUD *m_ProgressHUD = [[MBProgressHUD alloc]initWithView:vc.view];
+        m_ProgressHUD.animationType = MBProgressHUDAnimationFade;
+        [vc.view addSubview:m_ProgressHUD];
+        [m_ProgressHUD showAnimated:YES withText:@"未安装该平台" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+    }
+    return isInstall;
 }
 
 @end
