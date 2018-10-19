@@ -445,9 +445,9 @@
                 NSString *msg = [NSString stringWithFormat:@"翻转摄像头操作失败\n%d:%@", errId, errMsg];
                 [weakSelf vc_showMessage:msg];
             }];
+        }else {
+            [self vc_showMessage:@"摄像头已关闭,操作失败"];
         }
-    } else {
-        [self vc_showMessage:@"摄像头关闭状态,操作失败"];
     }
 }
 
