@@ -553,7 +553,7 @@
 }
 
 - (void)videoControlWithModel:(VideoCallMemberModel *)model {
-    [[SocketHelper shareHelper] sendVideoEventWithUserId:model.memberId enable:!model.memberVoiceStatus];
+    [[SocketHelper shareHelper] sendVideoEventWithUserId:model.memberId enable:!model.memberVideoStatus];
 }
 
 #pragma mark - 私聊按钮点击事件
