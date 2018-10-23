@@ -118,6 +118,10 @@
         [weakSelf exitVC];
     }];
     [vc addAction:action];
+    
+    if (self.presentedViewController) {
+        [self.presentedViewController dismissViewControllerAnimated:NO completion:nil];
+    }
     [self presentViewController:vc animated:YES completion:nil];
 }
 
