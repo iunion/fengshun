@@ -120,9 +120,12 @@
     [vc addAction:action];
     
     if (self.presentedViewController) {
-        [self.presentedViewController dismissViewControllerAnimated:NO completion:nil];
+        [self.presentedViewController dismissViewControllerAnimated:NO completion:^{
+            [self presentViewController:vc animated:YES completion:nil];
+        }];
+    } else {
+        [self presentViewController:vc animated:YES completion:nil];
     }
-    [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)sendEndMeetingRequest
