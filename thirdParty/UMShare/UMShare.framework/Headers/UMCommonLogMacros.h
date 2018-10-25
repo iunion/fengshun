@@ -83,7 +83,7 @@ FOUNDATION_EXPORT void UMCommonPrefixSubNameLog(NSInteger component,NSInteger lo
 #define  UMCommonLogTableNameForUMCommonUMShareSuffix  @"UMSocialPromptLocalizable"
 #define  UMCommonLogBundleNameForUMCommonUMShareSuffix  @"UMCommonLog"
 #define  UMCommonLogBundle   UMCommonLogBundle##UMShareSuffix
-FOUNDATION_EXPORT NSBundle* UMCommonLogBundle();
+FOUNDATION_EXPORT NSBundle* UMCommonLogBundle(void);
 #define UMLocalizedStringForUMCommonSuffix(key) NSLocalizedStringWithDefaultValue(key,UMCommonLogTableNameForUMCommonUMShareSuffix,UMCommonLogBundle(), @"", nil)
 
 

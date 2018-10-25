@@ -11,7 +11,8 @@
 #import "FSAPIMacros.h"
 #import "XMRequestManager.h"
 
-typedef NS_ENUM(NSUInteger, FSVerificationCodeType) {
+typedef NS_ENUM(NSUInteger, FSVerificationCodeType)
+{
     FSVerificationCodeType_Unknown = 0,
     FSMVerificationCodeType_Register,
     FSVerificationCodeType_ResetPassword,
@@ -20,7 +21,8 @@ typedef NS_ENUM(NSUInteger, FSVerificationCodeType) {
     FSVerificationCodeType_UpdatePhoneNumNew
 };
 
-typedef NS_ENUM(NSUInteger, FSUpdateUserInfoOperaType) {
+typedef NS_ENUM(NSUInteger, FSUpdateUserInfoOperaType)
+{
     FSUpdateUserInfo_AvatarImageUrl = 0,
     FSUpdateUserInfo_NickName,
     FSUpdateUserInfo_RealName,
@@ -31,7 +33,8 @@ typedef NS_ENUM(NSUInteger, FSUpdateUserInfoOperaType) {
     FSUpdateUserInfo_Signature
 };
 
-typedef NS_ENUM(NSUInteger, FSCollectionType) {
+typedef NS_ENUM(NSUInteger, FSCollectionType)
+{
     FSCollectionType_POSTS = 0,
     FSCollectionType_STATUTE,
     FSCollectionType_CASE,
@@ -39,7 +42,8 @@ typedef NS_ENUM(NSUInteger, FSCollectionType) {
     FSCollectionType_COURSE
 };
 
-typedef NS_ENUM(NSUInteger, FSCommentType) {
+typedef NS_ENUM(NSUInteger, FSCommentType)
+{
     FSCommentType_POSTS = 0,
     FSCommentType_COMMENT,
     FSCommentType_COURSE
@@ -53,17 +57,19 @@ typedef NS_ENUM(NSUInteger, FSCommentType) {
  - FSTopicSortTypeHot: 热门
  - FSTopicSortTypeEssence: 精华
  */
-typedef NS_ENUM(NSUInteger, FSTopicSortType) {
+typedef NS_ENUM(NSUInteger, FSTopicSortType)
+{
     FSTopicSortTypeNewReply,   //最新回复
     FSTopicSortTypeNewPulish,  //最新发布
     FSTopicSortTypeHot,        //热门
     FSTopicSortTypeEssence     //精华
 };
 
-typedef NS_ENUM(NSUInteger, FSForumFollowState) {
-    
-    FSForumFollowState_Cancel_FOLLOW = 0, // 取关
-    FSForumFollowState_Follow         //关注
+typedef NS_ENUM(NSUInteger, FSForumFollowState)
+{
+
+    FSForumFollowState_Cancel_FOLLOW = 0,  // 取关
+    FSForumFollowState_Follow              //关注
 };
 
 NS_ASSUME_NONNULL_BEGIN
@@ -84,6 +90,18 @@ NS_ASSUME_NONNULL_BEGIN
 // http://115.159.33.190:8121/swagger-ui.html#/%E5%88%86%E4%BA%AB/askShareUsingPOST
 + (nullable NSMutableURLRequest *)getShareDataWithShareItemId:(NSString *)shareItemId shareType:(NSString *)shareType;
 
+// 获取帖子分享信息
++ (XMRequest *)getShareContent:(NSString *)relateId
+                          type:(NSString *)type
+                       success:(nullable XMSuccessBlock)successBlock
+                       failure:(nullable XMFailureBlock)failureBlock;
+
+// 记录分享次数
+// http://115.159.33.190:8121/swagger-ui.html#/%E5%88%86%E4%BA%AB/addShareCountUsingPOST
+// 类型（COURSE-课程 COMMENT-评论 POSTS-帖子 STATUTE-法规 CASE-案例 DOCUMENT-文书范本 FORUM-版块 SPECIAL-图文系列）
++ (XMRequest *)addShareCountWithId:(NSString *)objId andType:(NSString *)type
+                           success:(nullable XMSuccessBlock)successBlock
+                           failure:(nullable XMFailureBlock)failureBlock;
 
 @end
 
@@ -218,11 +236,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 案例检索
 // http://122.112.248.222:13000/swagger-ui.html#!/391183584329702390348212821226696203632562832034/searchCasesUsingPOST
-+(NSMutableURLRequest *)searchCaseWithKeywords:(NSArray *)keywords start:(NSUInteger)startLocation size:(NSUInteger)size filters:(NSArray *)filters;
++ (NSMutableURLRequest *)searchCaseWithKeywords:(NSArray *)keywords start:(NSUInteger)startLocation size:(NSUInteger)size filters:(NSArray *)filters;
 
 // 提取案例搜索关键字
 // http://122.112.248.222:13000/swagger-ui.html#!/3911835843297023903482128212256283203424037208552550921475/casesExtractKeywordsUsingPOST
-+(XMRequest *)getCaseKeywordsWithText:(NSString *)text success:(nullable XMSuccessBlock)successBlock failure:(nullable XMFailureBlock)failureBlock;
++ (XMRequest *)getCaseKeywordsWithText:(NSString *)text success:(nullable XMSuccessBlock)successBlock failure:(nullable XMFailureBlock)failureBlock;
 
 // 获取法规检索的法规专题
 // http://122.112.248.222:13000/swagger-ui.html#!/391183584329702390348212821227861352682562832034/casesHotKeywordsUsingGET_1
@@ -231,11 +249,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 法规检索
 // http://122.112.248.222:13000/swagger-ui.html#!/391183584329702390348212821227861352682562832034/searchLawsUsingPOST
-+(NSMutableURLRequest *)searchLawsWithKeywords:(NSArray *)keywords start:(NSUInteger)startLocation size:(NSUInteger)size filters:(NSArray *)filters;
++ (NSMutableURLRequest *)searchLawsWithKeywords:(NSArray *)keywords start:(NSUInteger)startLocation size:(NSUInteger)size filters:(NSArray *)filters;
 
 // 提取法规搜索关键字
 // http://122.112.248.222:13000/swagger-ui.html#!/3911835843297023903482128212256283203424037208552550921475/lawsExtractKeywordsUsingPOST
-+(XMRequest *)getLawsKeywordsWithText:(NSString *)text success:(nullable XMSuccessBlock)successBlock failure:(nullable XMFailureBlock)failureBlock;
++ (XMRequest *)getLawsKeywordsWithText:(NSString *)text success:(nullable XMSuccessBlock)successBlock failure:(nullable XMFailureBlock)failureBlock;
 
 // 文书范本Index页数据
 // http://115.159.33.190:8121/swagger-ui.html#/%E6%96%87%E4%B9%A6%E8%8C%83%E6%9C%AC/getDocumentHomeUsingPOST
@@ -249,17 +267,6 @@ NS_ASSUME_NONNULL_BEGIN
 // 文书搜索
 // http://115.159.33.190:8121/swagger-ui.html#/%E6%96%87%E4%B9%A6%E8%8C%83%E6%9C%AC/getDocumentListUsingPOST
 + (NSMutableURLRequest *)searchTextWithKeyword:(NSString *)keyword;
-
-// 记录分享次数
-// http://115.159.33.190:8121/swagger-ui.html#/%E5%88%86%E4%BA%AB/addShareCountUsingPOST
-// 类型（COURSE-课程 COMMENT-评论 POSTS-帖子 STATUTE-法规 CASE-案例 DOCUMENT-文书范本 FORUM-版块 SPECIAL-图文系列）
-+ (XMRequest *)addShareCountWithId:(NSString *)objId andType:(NSString *)type
-                           success:(nullable XMSuccessBlock)successBlock
-                           failure:(nullable XMFailureBlock)failureBlock;
-+ (XMRequest *)getShareContent:(NSString *)relateId
-                          type:(NSString *)type
-                       success:(nullable XMSuccessBlock)successBlock
-                       failure:(nullable XMFailureBlock)failureBlock;
 
 @end
 
@@ -292,8 +299,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 关注板块/取消关注
 // http://123.206.193.140:8121/swagger-ui.html#/operations/社区首页/followOrUnFollowUsingPOST
-+ (XMRequest *)updateFourmAttentionStateWithFourmId:(NSInteger )fourmId
-                                       followStatus:(FSForumFollowState )followStatus
++ (XMRequest *)updateFourmAttentionStateWithFourmId:(NSInteger)fourmId
+                                       followStatus:(FSForumFollowState)followStatus
                                             success:(nullable XMSuccessBlock)successBlock
                                             failure:(nullable XMFailureBlock)failureBlock;
 
@@ -308,7 +315,7 @@ NS_ASSUME_NONNULL_BEGIN
                           success:(nullable XMSuccessBlock)successBlock
                           failure:(nullable XMFailureBlock)failureBlock;
 // 帖子详情/storm/postInfo/postDetail
-+ (XMRequest *)getTopicDetail:(NSInteger )topicId
++ (XMRequest *)getTopicDetail:(NSInteger)topicId
                       success:(nullable XMSuccessBlock)successBlock
                       failure:(nullable XMFailureBlock)failureBlock;
 // 添加评论
@@ -322,11 +329,11 @@ NS_ASSUME_NONNULL_BEGIN
                  failure:(nullable XMFailureBlock)failureBlock;
 
 // 删除帖子
-+ (XMRequest *)deleteTopicWithId:(NSInteger )topicId
++ (XMRequest *)deleteTopicWithId:(NSInteger)topicId
                          success:(nullable XMSuccessBlock)successBlock
                          failure:(nullable XMFailureBlock)failureBlock;
 // 收藏、取消收藏帖子
-+ (XMRequest *)collectionTopic:(BOOL )isCollection
++ (XMRequest *)collectionTopic:(BOOL)isCollection
                        topicId:(NSString *)topicId
                        success:(nullable XMSuccessBlock)successBlock
                        failure:(nullable XMFailureBlock)failureBlock;

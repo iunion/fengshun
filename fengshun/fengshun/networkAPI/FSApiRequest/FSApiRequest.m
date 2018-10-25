@@ -236,8 +236,7 @@
 }
 
 // 获取帖子分享信息
-
-//类型（COURSE-课程 POSTS-帖子 STATUTE-法规 CASE-案例 DOCUMENT-文书范本 PERSONNEL-个人中心app分享 SPECIAL 专题分享）
+// 类型（COURSE-课程 POSTS-帖子 STATUTE-法规 CASE-案例 DOCUMENT-文书范本 PERSONNEL-个人中心app分享 SPECIAL 专题分享）
 + (XMRequest *)getShareContent:(NSString *)relateId  type:(nonnull NSString *)type success:(nullable XMSuccessBlock)successBlock failure:(nullable XMFailureBlock)failureBlock
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
@@ -245,6 +244,14 @@
     //POSTS
     [parameters bm_setString:type forKey:@"type"];
     return [XMRequestManager rm_requestWithApi:@"/storm/share/askShare" parameters:parameters success:successBlock failure:failureBlock];
+}
+
++ (XMRequest *)addShareCountWithId:(NSString *)objId andType:(NSString *)type success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
+{
+    if (objId.length == 0 || type.length == 0) {
+        return nil;
+    }
+    return [XMRequestManager rm_requestWithApi:@"/storm/share/addShareCount" parameters:@{@"id":objId,@"type":type} success:successBlock failure:failureBlock];
 }
 
 @end
