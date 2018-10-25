@@ -228,6 +228,10 @@
     CGFloat newGreen = fromGreen + (toGreen - fromGreen) * progress;
     CGFloat newBlue = fromBlue + (toBlue - fromBlue) * progress;
     CGFloat newAlpha = fromAlpha + (toAlpha - fromAlpha) * progress;
+//    CGFloat newRed =  fromRed + (toRed - fromRed) * fminf(1, progress * 4) ;
+//    CGFloat newGreen = fromGreen + (toGreen - fromGreen) * fminf(1, progress * 4);
+//    CGFloat newBlue = fromBlue + (toBlue - fromBlue) * fminf(1, progress * 4);
+//    CGFloat newAlpha = fromAlpha + (toAlpha - fromAlpha) * fminf(1, progress * 4);
     return [UIColor colorWithRed:newRed green:newGreen blue:newBlue alpha:newAlpha];
 }
 

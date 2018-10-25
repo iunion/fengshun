@@ -21,6 +21,7 @@
 
 - (UIVisualEffectView *)effectView
 {
+    [UIView setAnimationsEnabled:NO];
     if (self.subviews.count && !_effectView)
     {
         [super setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
@@ -33,7 +34,8 @@
         [view insertSubview:_effectView atIndex:0];
         _effectView.frame = view.bounds;
     }
-    
+    [UIView setAnimationsEnabled:YES];
+
     return _effectView;
 }
 
@@ -49,6 +51,7 @@
 
 - (UIImageView *)backgroundImageView
 {
+    [UIView setAnimationsEnabled:NO];
     if (self.subviews.count && !_backgroundImageView)
     {
         UIView *view = self.subviews.firstObject;
@@ -60,11 +63,14 @@
         _backgroundImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [view insertSubview:_backgroundImageView aboveSubview:self.effectView];
     }
+    [UIView setAnimationsEnabled:YES];
+    
     return _backgroundImageView;
 }
 
 - (UIImageView *)shadowLineImageView
 {
+    [UIView setAnimationsEnabled:NO];
     if (self.subviews.count && !_shadowLineImageView)
     {
         [super setShadowImage:[UIImage new]];
@@ -75,7 +81,8 @@
         _shadowLineImageView.contentScaleFactor = 1;
         [view insertSubview:_shadowLineImageView aboveSubview:self.backgroundImageView];
     }
-    
+    [UIView setAnimationsEnabled:YES];
+
     return _shadowLineImageView;
 }
 

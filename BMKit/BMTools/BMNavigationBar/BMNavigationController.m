@@ -476,7 +476,13 @@
     {
         self.inGesture = YES;
         self.navigationBar.tintColor = [from.bm_NavigationBarTintColor blendWithColor:to.bm_NavigationBarTintColor progress:coordinator.percentComplete];
-    } else {
+    }
+    else
+    {
+        if (coordinator.isCancelled)
+        {
+            self.navigationBar.tintColor = from.bm_NavigationBarTintColor;
+        }
         self.inGesture = NO;
     }
 }
