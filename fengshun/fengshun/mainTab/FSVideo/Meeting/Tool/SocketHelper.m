@@ -24,6 +24,8 @@ NSString * const kNotiReceiveHistoryPrivateMessageListName = @"kNotiReceiveHisto
 @property (nonatomic, strong) VideoCallRoomModel *roomModel;
 @property (nonatomic, assign) BOOL flag;
 
+@property (nonatomic, assign) NSTimeInterval lastRoomEventTime;
+
 @property (nonatomic, assign) NSTimeInterval lastConnectTime;
 @property (nonatomic, assign) NSInteger reconnectCount;
 @property (nonatomic, strong) NSString *m_RoomId;
@@ -87,8 +89,9 @@ static dispatch_once_t onceToken;
     if (!(_socket.readyState == SR_OPEN)) {
         return;
     }
+    NSDictionary *t = @{@"roomTimeStamp" : @(self.lastRoomEventTime)};
     NSDictionary *dict = @{@"event" : @"HEARTBEAT",
-                           @"data" : @"iOS"};
+                           @"data" : t};
     [_socket send:[dict mj_JSONString]];
 }
 
@@ -161,6 +164,7 @@ static dispatch_once_t onceToken;
     
     // room
     if ([event isEqualToString:@"ROOM"]) {
+        self.lastRoomEventTime = [messageDic[@"timestamp"] doubleValue];
         _roomModel = [VideoCallRoomModel modelWithParams:data];
         [self dealRoomEvent];
         return;
