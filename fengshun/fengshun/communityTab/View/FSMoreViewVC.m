@@ -11,8 +11,8 @@
 
 #define MORE_VIEW_HEIGHT 238
 
-@interface
-FSMoreViewVC ()
+@interface FSMoreViewVC ()
+
 // 是否是自己的帖子
 @property (nonatomic , assign) BOOL m_isOwner;
 
@@ -111,11 +111,11 @@ FSMoreViewVC ()
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    CGFloat btnWid = UI_SCREEN_WIDTH /5;
+    CGFloat btnWid = UI_SCREEN_WIDTH / 5.f;
     CGFloat btnHeight = 90.f;
     CGFloat space = 10.f;
     CGFloat cacenlBtnHeight = 44.f;
-    CGFloat totalBtnHeight = self.m_IsShareSheet ? btnHeight:btnHeight*2;
+    CGFloat totalBtnHeight = self.m_IsShareSheet ? btnHeight : btnHeight*2;
     
     self.m_BgView = [[UIView alloc]initWithFrame:CGRectMake(0, UI_SCREEN_HEIGHT, UI_SCREEN_WIDTH, totalBtnHeight + space + cacenlBtnHeight + UI_HOME_INDICATOR_HEIGHT)];
     self.m_BgView.backgroundColor = [UIColor bm_colorWithHex:0xFFFFFF];
@@ -133,11 +133,11 @@ FSMoreViewVC ()
     spaceView.backgroundColor = [UIColor bm_colorWithHex:0xF6F6F6];
     [self.m_BgView addSubview:spaceView];
     
-    NSInteger row = self.m_IsShareSheet ? 1:2;
+    NSInteger row = self.m_IsShareSheet ? 1 : 2;
     
-    for (int i = 0; i < row ; i ++)
+    for (NSUInteger i = 0; i < row ; i ++)
     {
-        for (int j = 0; j < 5; j ++)
+        for (NSUInteger j = 0; j < 5; j ++)
         {
             UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(j*btnWid, i*btnHeight, btnWid, btnHeight)];
             btn.backgroundColor = [UIColor whiteColor];
@@ -169,8 +169,14 @@ FSMoreViewVC ()
             CGFloat imageWidth = 30.0f;
             CGFloat titleheight = 28.0f;
             btn.imageView.contentMode = UIViewContentModeScaleAspectFit;
+
             btn.bm_imageRect = CGRectMake((btnWid-imageWidth)*0.5, (btnHeight-(imageWidth+titleheight))*0.5, imageWidth, imageWidth);
             btn.bm_titleRect = CGRectMake(0, (btnHeight-(imageWidth+titleheight))*0.5+imageWidth, btnWid, titleheight);
+            
+            if (IOS_VERSION >= 12.0)
+            {
+                [btn bm_layoutButtonWithEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageTop imageTitleGap:0];
+            }
             
             [self.m_BgView addSubview:btn];
         }
@@ -178,7 +184,6 @@ FSMoreViewVC ()
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeMoreView)]];
     [self.view layoutIfNeeded];
 }
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -194,7 +199,9 @@ FSMoreViewVC ()
 - (void)moreViewAction:(UIButton *)sender
 {
     BMLog(@"%@", @(sender.tag));
-    if (self.delegate && [self.delegate respondsToSelector:@selector(moreViewClickWithType:)]) {
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(moreViewClickWithType:)])
+    {
         [self.delegate moreViewClickWithType:sender.tag - 100];
     }
     [self dismissViewControllerAnimated:NO completion:nil];
