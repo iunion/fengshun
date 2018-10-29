@@ -18,6 +18,9 @@
 @property (nonatomic, weak) id <FSScrollPageViewDataSource> datasource;
 @property (nonatomic, weak) id <FSScrollPageViewDelegate> delegate;
 
+@property (nonatomic, strong, readonly) FSScrollPageSegment *m_SegmentBar;
+@property (nonatomic, strong, readonly) UIScrollView *m_ScrollView;
+
 // 未选中时的Title颜色
 @property (nonatomic, strong) UIColor *m_TitleColor;
 // 选中时的Title颜色

@@ -67,6 +67,11 @@
     [self.m_ScrollPageView setM_MoveLineColor:UI_COLOR_BL1];
     [self.m_ScrollPageView reloadPage];
     [self.m_ScrollPageView scrollPageWithIndex:0];
+    
+    if (self.navigationController.interactivePopGestureRecognizer)
+    {
+        [self.m_ScrollPageView.m_ScrollView.panGestureRecognizer requireGestureRecognizerToFail:self.navigationController.interactivePopGestureRecognizer];
+    }
 }
 
 - (void)didReceiveMemoryWarning

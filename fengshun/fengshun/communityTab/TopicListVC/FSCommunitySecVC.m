@@ -119,7 +119,12 @@ FSCommunitySecVC ()
     [self.m_ScrollPageView setM_MoveLineColor:UI_COLOR_BL1];
     [self.m_ScrollPageView reloadPage];
     [self.m_ScrollPageView scrollPageWithIndex:0];
-    
+
+    if (self.navigationController.interactivePopGestureRecognizer)
+    {
+        [self.m_ScrollPageView.m_ScrollView.panGestureRecognizer requireGestureRecognizerToFail:self.navigationController.interactivePopGestureRecognizer];
+    }
+
     self.m_PulishBtn = [UIButton bm_buttonWithFrame:CGRectMake(UI_SCREEN_WIDTH - 52 - 20, UI_SCREEN_HEIGHT-UI_STATUS_BAR_HEIGHT-UI_NAVIGATION_BAR_HEIGHT- UI_HOME_INDICATOR_HEIGHT- 20.f - 52.f, 52.f, 52.f) image:[UIImage imageNamed:@"community_comment"]];
     [self.m_PulishBtn addTarget:self action:@selector(pulishTopicAction) forControlEvents:UIControlEventTouchUpInside];
     self.m_PulishBtn.layer.masksToBounds = NO;

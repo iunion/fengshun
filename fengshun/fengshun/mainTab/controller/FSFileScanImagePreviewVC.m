@@ -79,6 +79,11 @@ FSFileScanImagePreviewVC ()
     _m_scrollPageView.datasource = self;
     _m_scrollPageView.delegate   = self;
 
+    if (self.navigationController.interactivePopGestureRecognizer)
+    {
+        [self.m_scrollPageView.m_ScrollView.panGestureRecognizer requireGestureRecognizerToFail:self.navigationController.interactivePopGestureRecognizer];
+    }
+
     [self refreshUIIfNeedReload:YES];
 }
 - (void)editFileName
