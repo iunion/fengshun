@@ -69,7 +69,7 @@ FSMainVC ()
     [self loadApiData];
     
 #if USE_TEST_HELP
-    if (IOS_VERSION > 12.0)
+    if (IOS_VERSION >= 12.0)
     {
         [GetAppDelegate showFPS];
     }
