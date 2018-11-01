@@ -158,6 +158,7 @@
         if ([window isKindOfClass:[iConsoleWindow class]])
         {
             iConsoleWindow *consoleWindow = (iConsoleWindow *)window;
+            [consoleWindow.fpsLabel bm_bringToFront];
             consoleWindow.fpsLabel.hidden = !consoleWindow.fpsLabel.hidden;
             if (consoleWindow.fpsLabel.hidden)
             {

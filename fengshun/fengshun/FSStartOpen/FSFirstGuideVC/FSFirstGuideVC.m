@@ -7,6 +7,7 @@
 //
 
 #import "FSFirstGuideVC.h"
+#import "AppDelegate.h"
 
 #define FSFirstGuide_PageCount  4
 
@@ -112,6 +113,13 @@
     self.m_PageControl.currentPage = 0;
     self.m_PageControl.pageIndicatorTintColor = UI_COLOR_B5;
     self.m_PageControl.currentPageIndicatorTintColor = UI_COLOR_B3;
+    
+#if USE_TEST_HELP
+    if (IOS_VERSION > 12.0)
+    {
+        [GetAppDelegate showFPS];
+    }
+#endif
 }
 
 - (void)didReceiveMemoryWarning

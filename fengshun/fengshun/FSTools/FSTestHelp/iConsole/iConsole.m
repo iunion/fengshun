@@ -104,11 +104,11 @@ static void exceptionHandler(NSException *exception)
 	[[iConsole sharedConsole] saveSettings];
 }
 
-+ (void)load
-{
-    //initialise the console
-    [iConsole performSelectorOnMainThread:@selector(sharedConsole) withObject:nil waitUntilDone:NO];
-}
+//+ (void)load
+//{
+//    //initialise the console
+//    [iConsole performSelectorOnMainThread:@selector(sharedConsole) withObject:nil waitUntilDone:NO];
+//}
 
 - (UIWindow *)mainWindow
 {

@@ -187,6 +187,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 #if USE_TEST_HELP
+    [iConsole performSelectorOnMainThread:@selector(sharedConsole) withObject:nil waitUntilDone:NO];
     self.window = [[iConsoleWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [FSTestHelper sharedInstance];
 #else
@@ -217,13 +218,13 @@
     return YES;
 }
 
-#if USE_TEST_HELP
 - (void)showFPS
 {
+#if USE_TEST_HELP
     iConsoleWindow *window = (iConsoleWindow *)self.window;
     [window.fpsLabel bm_bringToFront];
-}
 #endif
+}
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
 {

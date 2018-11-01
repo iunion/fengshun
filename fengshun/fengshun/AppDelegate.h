@@ -40,5 +40,7 @@
 
 - (void)getUserAbilityInfoWithVc:(FSSetTableViewVC *)vc;
 
+- (void)showFPS;
+
 @end
 
