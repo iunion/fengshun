@@ -3428,7 +3428,6 @@
 		87E7C6902150A4E400F7AB14 /* UIImage+CropRotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CropRotate.m"; sourceTree = "<group>"; };
 		87E7C6912150A4E400F7AB14 /* UIImage+CropRotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CropRotate.h"; sourceTree = "<group>"; };
 		87E7C6922150A4E400F7AB14 /* TOCropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCropViewController.h; sourceTree = "<group>"; };
-		87E7C6A92150A6B000F7AB14 /* video-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "video-Info.plist"; sourceTree = "<group>"; };
 		87E7C6AD2150C10100F7AB14 /* empty_neticon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "empty_neticon@2x.png"; sourceTree = "<group>"; };
 		87E7C6AE2150C10100F7AB14 /* empty_commonicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "empty_commonicon@2x.png"; sourceTree = "<group>"; };
 		87E7C6AF2150C10100F7AB14 /* empty_commonicon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "empty_commonicon@3x.png"; sourceTree = "<group>"; };
@@ -6221,7 +6220,6 @@
 			children = (
 				87426790212E7B2C003C52F6 /* fengshun-Prefix.pch */,
 				87C01351212E7A5300D0AAC3 /* Info.plist */,
-				87E7C6A92150A6B000F7AB14 /* video-Info.plist */,
 				87C01352212E7A5300D0AAC3 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -9999,7 +9997,7 @@
 					/usr/include/libxml2,
 					"$(PROJECT_DIR)/FSEncodeAPI/FSEncodeAPI",
 				);
-				INFOPLIST_FILE = fengshun/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/fengshun/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -10052,7 +10050,7 @@
 					/usr/include/libxml2,
 					"$(PROJECT_DIR)/FSEncodeAPI/FSEncodeAPI",
 				);
-				INFOPLIST_FILE = fengshun/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/fengshun/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -10174,7 +10172,7 @@
 					/usr/include/libxml2,
 					"$(PROJECT_DIR)/FSEncodeAPI/FSEncodeAPI",
 				);
-				INFOPLIST_FILE = "fengshun/video-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/fengshun/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -10232,7 +10230,7 @@
 					/usr/include/libxml2,
 					"$(PROJECT_DIR)/FSEncodeAPI/FSEncodeAPI",
 				);
-				INFOPLIST_FILE = "fengshun/video-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/fengshun/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
