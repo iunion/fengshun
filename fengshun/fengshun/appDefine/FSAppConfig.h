@@ -77,8 +77,8 @@
 #else
 
 // 测试环境
-#define FS_ILiveSDKAPPID            (1400119579)
-#define FS_ILiveAccountType         (32662)
+#define FS_ILiveSDKAPPID            (1400119581)
+#define FS_ILiveAccountType         (32663)
 
 #endif
 
