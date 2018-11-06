@@ -23,8 +23,8 @@
 #define FS_FILE_ADRESS_TEST     (@"/storm/file/download/")
 
 // 线上环境
-#define FS_URL_SERVER_ONLINE    (@"https://devftls.odrcloud.net")
-#define FS_H5_SERVER_ONLINE     (@"https://devftlsh5.odrcloud.net")
+#define FS_URL_SERVER_ONLINE    (@"https://ftlsh5.odrcloud.cn")
+#define FS_H5_SERVER_ONLINE     (@"https://ftlsh5.odrcloud.cn")
 #define FS_FILE_ADRESS_ONLINE   (@"/storm/file/download/")
 
 #define FS_URL_SERVER_INIT      FS_URL_SERVER_DEV
@@ -42,8 +42,8 @@
 
 #else
 
-#define FS_URL_SERVER       (@"https://testapi.bjsjsadr.com")
-#define FS_H5_SERVER        (@"https://devftls.odrcloud.net")
+#define FS_URL_SERVER       (@"https://ftlsh5.odrcloud.cn")
+#define FS_H5_SERVER        (@"https://ftlsh5.odrcloud.cn")
 //#define FS_H5_SERVER        (@"https://devftlsh5.odrcloud.net")
 #define FS_FILE_ADRESS      (@"/storm/file/download/")
 
