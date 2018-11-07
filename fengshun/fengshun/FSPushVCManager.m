@@ -208,7 +208,7 @@
 // 案件详情
 +(void)viewController:(UIViewController *)vc pushToCaseDetailWithId:(NSString *)caseId isGuide:(BOOL)isGuide keywords:(NSString *)keywordsStr
 {
-    [self showWebView:vc url:[NSString stringWithFormat:@"%@/%@?ID=%@&keywords=%@",FS_H5_SERVER,isGuide?@"/caseGuide":@"/caseDetail",caseId,keywordsStr] title:nil showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR animated:YES];
+    [self showWebView:vc url:[NSString stringWithFormat:@"%@%@?ID=%@&keywords=%@",FS_H5_SERVER,isGuide?@"/caseGuide":@"/caseDetail",caseId,keywordsStr] title:nil showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR animated:YES];
     
     
 }
