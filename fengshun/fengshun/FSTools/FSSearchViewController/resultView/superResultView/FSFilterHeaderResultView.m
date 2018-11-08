@@ -115,7 +115,7 @@ FSFilterHeaderResultView ()
     vline.lineColor = UI_COLOR_B6;
     [_m_headerView addSubview:vline];
     // leftButton
-    _m_leftButton = [[UIButton alloc] initWithFrame:CGRectMake(3, FILTER_HEADER_HEIGHT - FILTER_BUTTON_HEIGHT, self.bm_width / 2-6, FILTER_BUTTON_HEIGHT)];
+    _m_leftButton = [[UIButton alloc] initWithFrame:CGRectMake(5, FILTER_HEADER_HEIGHT - FILTER_BUTTON_HEIGHT, self.bm_width / 2-10, FILTER_BUTTON_HEIGHT)];
     [_m_headerView addSubview:_m_leftButton];
     _m_leftButton.hidden = YES;
     _m_leftButton.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
@@ -125,7 +125,7 @@ FSFilterHeaderResultView ()
     [_m_leftButton addTarget:self action:@selector(showLeftFilters:) forControlEvents:UIControlEventTouchUpInside];
 
     // rightButton
-    _m_rightButton = [[UIButton alloc] initWithFrame:CGRectMake(self.bm_width / 2+3, FILTER_HEADER_HEIGHT - FILTER_BUTTON_HEIGHT, self.bm_width / 2-6, FILTER_BUTTON_HEIGHT)];
+    _m_rightButton = [[UIButton alloc] initWithFrame:CGRectMake(self.bm_width / 2+5, FILTER_HEADER_HEIGHT - FILTER_BUTTON_HEIGHT, self.bm_width / 2-10, FILTER_BUTTON_HEIGHT)];
     [_m_headerView addSubview:_m_rightButton];
     _m_rightButton.hidden = YES;
     _m_rightButton.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
