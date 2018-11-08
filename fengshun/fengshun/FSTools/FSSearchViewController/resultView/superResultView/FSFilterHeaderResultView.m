@@ -115,18 +115,20 @@ FSFilterHeaderResultView ()
     vline.lineColor = UI_COLOR_B6;
     [_m_headerView addSubview:vline];
     // leftButton
-    _m_leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, FILTER_HEADER_HEIGHT - FILTER_BUTTON_HEIGHT, self.bm_width / 2, FILTER_BUTTON_HEIGHT)];
+    _m_leftButton = [[UIButton alloc] initWithFrame:CGRectMake(3, FILTER_HEADER_HEIGHT - FILTER_BUTTON_HEIGHT, self.bm_width / 2-6, FILTER_BUTTON_HEIGHT)];
     [_m_headerView addSubview:_m_leftButton];
     _m_leftButton.hidden = YES;
+    _m_leftButton.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     [_m_leftButton setImage:[UIImage imageNamed:@"search_closeFilters"] forState:UIControlStateNormal];
     _m_leftButton.titleLabel.font = [UIFont systemFontOfSize:14];
     [_m_leftButton setTitleColor:UI_COLOR_B1 forState:UIControlStateNormal];
     [_m_leftButton addTarget:self action:@selector(showLeftFilters:) forControlEvents:UIControlEventTouchUpInside];
 
     // rightButton
-    _m_rightButton = [[UIButton alloc] initWithFrame:CGRectMake(self.bm_width / 2, FILTER_HEADER_HEIGHT - FILTER_BUTTON_HEIGHT, self.bm_width / 2, FILTER_BUTTON_HEIGHT)];
+    _m_rightButton = [[UIButton alloc] initWithFrame:CGRectMake(self.bm_width / 2+3, FILTER_HEADER_HEIGHT - FILTER_BUTTON_HEIGHT, self.bm_width / 2-6, FILTER_BUTTON_HEIGHT)];
     [_m_headerView addSubview:_m_rightButton];
     _m_rightButton.hidden = YES;
+    _m_rightButton.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     [_m_rightButton setImage:[UIImage imageNamed:@"search_closeFilters"] forState:UIControlStateNormal];
     _m_rightButton.titleLabel.font = [UIFont systemFontOfSize:14];
     [_m_rightButton setTitleColor:UI_COLOR_B1 forState:UIControlStateNormal];
