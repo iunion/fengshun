@@ -42,6 +42,11 @@
 - (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)requestDic
 {
     NSArray *topicDicArray = [requestDic bm_arrayForKey:@"list"];
+    if (![topicDicArray bm_isNotEmpty])
+    {
+        [self showEmptyViewWithType:BMEmptyViewType_NoData];
+        return YES;
+    }
     if ([topicDicArray bm_isNotEmpty])
     {
         NSMutableArray *topicArray = [[NSMutableArray alloc] initWithCapacity:0];
