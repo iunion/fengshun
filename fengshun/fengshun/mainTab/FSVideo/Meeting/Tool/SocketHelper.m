@@ -128,8 +128,12 @@ static dispatch_once_t onceToken;
 }
 - (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
     NSLog(@"didCloseWithCode");
+    NSDictionary *userInfo = nil;
+    if (reason != nil) {
+        userInfo = @{NSLocalizedDescriptionKey: reason};
+    }
     if ([self.delegate respondsToSelector:@selector(socketHelper:error:)]) {
-        [self.delegate socketHelper:self error:[NSError errorWithDomain:@"webSocketDidClosed" code:code userInfo:@{NSLocalizedDescriptionKey: reason}]];
+        [self.delegate socketHelper:self error:[NSError errorWithDomain:@"webSocketDidClosed" code:code userInfo:userInfo]];
     }
 }
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {
@@ -142,7 +146,12 @@ static dispatch_once_t onceToken;
     // error
     if ([event isEqualToString:@"ERROR"]) {
         NSInteger code = [data[@"code"] integerValue];
-        NSError *error = [NSError errorWithDomain:@"domain" code:code userInfo:@{NSLocalizedFailureReasonErrorKey : data[@"message"]}];
+        NSDictionary *userInfo = nil;
+        if (data[@"message"] != nil) {
+            userInfo = @{NSLocalizedDescriptionKey: data[@"message"]};
+        }
+
+        NSError *error = [NSError errorWithDomain:@"domain" code:code userInfo:userInfo];
         if ([self.delegate respondsToSelector:@selector(socketHelper:error:)]) {
             [self.delegate socketHelper:self error:error];
         }
