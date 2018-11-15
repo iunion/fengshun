@@ -237,14 +237,14 @@ typedef void(^FSSetupClearDiskBlock)(NSString *path, BOOL finished);
         if ([userInfo.m_UserBaseInfo.m_PhoneNum bm_isNotEmpty])
         {
             self.m_PassWordItem.selectionHandler = ^(id item) {
-                FSLoginVerifyVC *vc = [[FSLoginVerifyVC alloc] initWithVerificationType:BMVerificationCodeType_Type3 phoneNum:userInfo.m_UserBaseInfo.m_PhoneNum];
+                FSLoginVerifyVC *vc = [[FSLoginVerifyVC alloc] initWithVerificationType:FSVerificationCodeType_UpdatePassword phoneNum:userInfo.m_UserBaseInfo.m_PhoneNum];
                 [weakSelf.navigationController pushViewController:vc animated:YES];
             };
             
             text = [userInfo.m_UserBaseInfo.m_PhoneNum bm_maskAtRang:NSMakeRange(3, 4) withMask:'*'];
             
             self.m_MobilePhoneItem.selectionHandler = ^(id item) {
-                FSLoginVerifyVC *vc = [[FSLoginVerifyVC alloc] initWithVerificationType:BMVerificationCodeType_Type4 phoneNum:userInfo.m_UserBaseInfo.m_PhoneNum];
+                FSLoginVerifyVC *vc = [[FSLoginVerifyVC alloc] initWithVerificationType:FSVerificationCodeType_UpdatePhoneNumOld phoneNum:userInfo.m_UserBaseInfo.m_PhoneNum];
                 vc.m_PopToViewController = weakSelf;
                 [weakSelf.navigationController pushViewController:vc animated:YES];
             };

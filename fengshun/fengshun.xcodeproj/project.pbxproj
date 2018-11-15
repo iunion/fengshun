@@ -60,6 +60,14 @@
 		45F87DD421547E92001451D5 /* FSCourseHomePageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF7E1C721539F45002CEDA4 /* FSCourseHomePageVC.m */; };
 		45FEF843214D1B720005AD43 /* UIAlertController+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF840214D1B710005AD43 /* UIAlertController+Blocks.m */; };
 		45FEF844214D1B720005AD43 /* UIButton+XQAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF841214D1B710005AD43 /* UIButton+XQAdd.m */; };
+		8704B392219C137800DBBC53 /* UIView+BMCountDownManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8704B38F219C137800DBBC53 /* UIView+BMCountDownManager.m */; };
+		8704B393219C137800DBBC53 /* UIView+BMCountDownManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8704B38F219C137800DBBC53 /* UIView+BMCountDownManager.m */; };
+		8704B394219C137800DBBC53 /* BMCountDownManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8704B390219C137800DBBC53 /* BMCountDownManager.m */; };
+		8704B395219C137800DBBC53 /* BMCountDownManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8704B390219C137800DBBC53 /* BMCountDownManager.m */; };
+		8704B399219D1CC100DBBC53 /* FSCountDownManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8704B398219D1CC100DBBC53 /* FSCountDownManager.m */; };
+		8704B39A219D1CC100DBBC53 /* FSCountDownManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8704B398219D1CC100DBBC53 /* FSCountDownManager.m */; };
+		8704B39D219D57AF00DBBC53 /* UIView+FSCountDownManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8704B39C219D57AF00DBBC53 /* UIView+FSCountDownManager.m */; };
+		8704B39E219D57AF00DBBC53 /* UIView+FSCountDownManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8704B39C219D57AF00DBBC53 /* UIView+FSCountDownManager.m */; };
 		8730AD352140B9BD004331A9 /* FSSetupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730AD332140B9BC004331A9 /* FSSetupVC.m */; };
 		8730AD422140CC28004331A9 /* user_commenticon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730AD362140CC26004331A9 /* user_commenticon@2x.png */; };
 		8730AD432140CC28004331A9 /* user_serviceicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730AD372140CC27004331A9 /* user_serviceicon@3x.png */; };
@@ -321,7 +329,6 @@
 		874268D2212E7E36003C52F6 /* BMCheckBoxGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426801212E7E35003C52F6 /* BMCheckBoxGroup.m */; };
 		874268D3212E7E36003C52F6 /* BMCheckBoxLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426804212E7E35003C52F6 /* BMCheckBoxLabel.m */; };
 		874268D4212E7E36003C52F6 /* BMCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426806212E7E35003C52F6 /* BMCheckBox.m */; };
-		874268D5212E7E36003C52F6 /* BMVerifiTimeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426809212E7E35003C52F6 /* BMVerifiTimeManager.m */; };
 		874268D6212E7E36003C52F6 /* BMDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 8742680B212E7E35003C52F6 /* BMDatePicker.m */; };
 		874268D7212E7E36003C52F6 /* BMDatePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8742680D212E7E35003C52F6 /* BMDatePicker.xib */; };
 		874268D8212E7E36003C52F6 /* BMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8742680F212E7E35003C52F6 /* BMAlertView.m */; };
@@ -954,7 +961,6 @@
 		87E7C36821509AB000F7AB14 /* NSObject+DTRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730AFAF2140FFA2004331A9 /* NSObject+DTRuntime.m */; };
 		87E7C36921509AB000F7AB14 /* FSTopicListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8689521392853005359B5 /* FSTopicListCell.m */; };
 		87E7C36A21509AB000F7AB14 /* DTFolderMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730AF9C2140FFA2004331A9 /* DTFolderMonitor.m */; };
-		87E7C36B21509AB000F7AB14 /* BMVerifiTimeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426809212E7E35003C52F6 /* BMVerifiTimeManager.m */; };
 		87E7C36C21509AB000F7AB14 /* FLEXNetworkHistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D20A1C213920E2001EDD60 /* FLEXNetworkHistoryTableViewController.m */; };
 		87E7C36D21509AB000F7AB14 /* NSData+DTCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730B01C2140FFA2004331A9 /* NSData+DTCrypto.m */; };
 		87E7C36E21509AB000F7AB14 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D209AB2138F1E2001EDD60 /* UIView+WebCacheOperation.m */; };
@@ -2299,6 +2305,14 @@
 		45FEF886214D39300005AD43 /* videocall_default_head@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_default_head@2x.png"; sourceTree = "<group>"; };
 		45FEF887214D39300005AD43 /* videocall_end_record@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocall_end_record@3x.png"; sourceTree = "<group>"; };
 		45FEF888214D39300005AD43 /* chat_message_voice@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_message_voice@3x.png"; sourceTree = "<group>"; };
+		8704B38E219C137800DBBC53 /* BMCountDownManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCountDownManager.h; sourceTree = "<group>"; };
+		8704B38F219C137800DBBC53 /* UIView+BMCountDownManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BMCountDownManager.m"; sourceTree = "<group>"; };
+		8704B390219C137800DBBC53 /* BMCountDownManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCountDownManager.m; sourceTree = "<group>"; };
+		8704B391219C137800DBBC53 /* UIView+BMCountDownManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BMCountDownManager.h"; sourceTree = "<group>"; };
+		8704B397219D1CC100DBBC53 /* FSCountDownManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCountDownManager.h; sourceTree = "<group>"; };
+		8704B398219D1CC100DBBC53 /* FSCountDownManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCountDownManager.m; sourceTree = "<group>"; };
+		8704B39B219D57AF00DBBC53 /* UIView+FSCountDownManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+FSCountDownManager.h"; sourceTree = "<group>"; };
+		8704B39C219D57AF00DBBC53 /* UIView+FSCountDownManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+FSCountDownManager.m"; sourceTree = "<group>"; };
 		8730AD332140B9BC004331A9 /* FSSetupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSetupVC.m; sourceTree = "<group>"; };
 		8730AD342140B9BC004331A9 /* FSSetupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSetupVC.h; sourceTree = "<group>"; };
 		8730AD362140CC26004331A9 /* user_commenticon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_commenticon@2x.png"; sourceTree = "<group>"; };
@@ -2745,8 +2759,6 @@
 		87426804212E7E35003C52F6 /* BMCheckBoxLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCheckBoxLabel.m; sourceTree = "<group>"; };
 		87426805212E7E35003C52F6 /* BMCheckBoxGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCheckBoxGroup.h; sourceTree = "<group>"; };
 		87426806212E7E35003C52F6 /* BMCheckBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCheckBox.m; sourceTree = "<group>"; };
-		87426808212E7E35003C52F6 /* BMVerifiTimeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMVerifiTimeManager.h; sourceTree = "<group>"; };
-		87426809212E7E35003C52F6 /* BMVerifiTimeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMVerifiTimeManager.m; sourceTree = "<group>"; };
 		8742680B212E7E35003C52F6 /* BMDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMDatePicker.m; sourceTree = "<group>"; };
 		8742680C212E7E35003C52F6 /* BMDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMDatePicker.h; sourceTree = "<group>"; };
 		8742680D212E7E35003C52F6 /* BMDatePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BMDatePicker.xib; sourceTree = "<group>"; };
@@ -4478,6 +4490,28 @@
 			path = Image;
 			sourceTree = "<group>";
 		};
+		8704B38D219C137800DBBC53 /* BMCountDownManager */ = {
+			isa = PBXGroup;
+			children = (
+				8704B38E219C137800DBBC53 /* BMCountDownManager.h */,
+				8704B390219C137800DBBC53 /* BMCountDownManager.m */,
+				8704B391219C137800DBBC53 /* UIView+BMCountDownManager.h */,
+				8704B38F219C137800DBBC53 /* UIView+BMCountDownManager.m */,
+			);
+			path = BMCountDownManager;
+			sourceTree = "<group>";
+		};
+		8704B396219D1CAB00DBBC53 /* FSCountDownManager */ = {
+			isa = PBXGroup;
+			children = (
+				8704B397219D1CC100DBBC53 /* FSCountDownManager.h */,
+				8704B398219D1CC100DBBC53 /* FSCountDownManager.m */,
+				8704B39B219D57AF00DBBC53 /* UIView+FSCountDownManager.h */,
+				8704B39C219D57AF00DBBC53 /* UIView+FSCountDownManager.m */,
+			);
+			path = FSCountDownManager;
+			sourceTree = "<group>";
+		};
 		8730AEFB2140FFA1004331A9 /* DTCoreText */ = {
 			isa = PBXGroup;
 			children = (
@@ -5017,6 +5051,7 @@
 				87426820212E7E35003C52F6 /* BMAlignedImageView */,
 				87426827212E7E35003C52F6 /* BMBadge */,
 				87426800212E7E35003C52F6 /* BMCheckBox */,
+				8704B38D219C137800DBBC53 /* BMCountDownManager */,
 				8742680A212E7E35003C52F6 /* BMDatePicker */,
 				874269CA212E9BB6003C52F6 /* BMEmptyView */,
 				8742682B212E7E35003C52F6 /* BMImageTextView */,
@@ -5029,7 +5064,6 @@
 				874267F7212E7E35003C52F6 /* BMTabBar */,
 				874267AB212E7E35003C52F6 /* BMTableViewManager */,
 				87D1867B213549A000037DDF /* BMVerifyField */,
-				87426807212E7E35003C52F6 /* BMVeryifiTimeManager */,
 				87426823212E7E35003C52F6 /* BMTools.h */,
 			);
 			path = BMTools;
@@ -5227,15 +5261,6 @@
 				87426801212E7E35003C52F6 /* BMCheckBoxGroup.m */,
 			);
 			path = BMCheckBox;
-			sourceTree = "<group>";
-		};
-		87426807212E7E35003C52F6 /* BMVeryifiTimeManager */ = {
-			isa = PBXGroup;
-			children = (
-				87426808212E7E35003C52F6 /* BMVerifiTimeManager.h */,
-				87426809212E7E35003C52F6 /* BMVerifiTimeManager.m */,
-			);
-			path = BMVeryifiTimeManager;
 			sourceTree = "<group>";
 		};
 		8742680A212E7E35003C52F6 /* BMDatePicker */ = {
@@ -5800,6 +5825,7 @@
 		87426A9821314996003C52F6 /* FSTools */ = {
 			isa = PBXGroup;
 			children = (
+				8704B396219D1CAB00DBBC53 /* FSCountDownManager */,
 				AF1B5EE3217462BE00125921 /* FSShareManager */,
 				87E7C6E62151F2C700F7AB14 /* FSTestHelp */,
 				87742019214F522100F72427 /* FSAlertView */,
@@ -8591,6 +8617,7 @@
 				8730B0462140FFA2004331A9 /* DTCoreTextConstants.m in Sources */,
 				8730B0632140FFA3004331A9 /* DTZipArchiveNode.m in Sources */,
 				874268C0212E7E36003C52F6 /* BMSegmentItem.m in Sources */,
+				8704B394219C137800DBBC53 /* BMCountDownManager.m in Sources */,
 				874268C8212E7E36003C52F6 /* BMStepperInputItem.m in Sources */,
 				87426AB42133A32E003C52F6 /* FSAppInfo.m in Sources */,
 				87D20AD4213920E2001EDD60 /* FLEXSystemLogTableViewCell.m in Sources */,
@@ -8686,6 +8713,7 @@
 				8730B08F2140FFA3004331A9 /* DTSidePanelControllerSegue.m in Sources */,
 				87D209C52138F1E2001EDD60 /* SDAnimatedImageRep.m in Sources */,
 				87D20AAA213920E2001EDD60 /* FLEXObjectExplorerViewController.m in Sources */,
+				8704B392219C137800DBBC53 /* UIView+BMCountDownManager.m in Sources */,
 				8730B0792140FFA3004331A9 /* DTStripedLayer.m in Sources */,
 				874268BC212E7E36003C52F6 /* BMTableViewCell.m in Sources */,
 				87F639E421533C830035E730 /* FBBlockStrongRelationDetector.m in Sources */,
@@ -8788,6 +8816,7 @@
 				87426A90213146A6003C52F6 /* XMEngine.m in Sources */,
 				DBD4CDF1213E383500857DB3 /* FSCaseSearchResultView.m in Sources */,
 				874268ED212E7E36003C52F6 /* CAAnimation+Animation.m in Sources */,
+				8704B399219D1CC100DBBC53 /* FSCountDownManager.m in Sources */,
 				AD932605214B4FDA007F3A93 /* CYRTextStorage.m in Sources */,
 				DB2656D1214666C4002ED713 /* FSLawCell.m in Sources */,
 				8730B05E2140FFA3004331A9 /* NSString+DTPaths.m in Sources */,
@@ -8802,7 +8831,6 @@
 				ADE8689721392853005359B5 /* FSTopicListCell.m in Sources */,
 				8730B06C2140FFA3004331A9 /* DTFolderMonitor.m in Sources */,
 				87F639CC21533C820035E730 /* UIView+MemoryLeak.m in Sources */,
-				874268D5212E7E36003C52F6 /* BMVerifiTimeManager.m in Sources */,
 				87D20AB1213920E2001EDD60 /* FLEXNetworkHistoryTableViewController.m in Sources */,
 				8730B09E2140FFA3004331A9 /* NSData+DTCrypto.m in Sources */,
 				87BC9E57215491F1000F2011 /* FSFirstGuideVC.m in Sources */,
@@ -9111,6 +9139,7 @@
 				87741FF1214A387100F72427 /* FSMyTopicVC.m in Sources */,
 				87D209BB2138F1E2001EDD60 /* SDWebImageCodersManager.m in Sources */,
 				8730B0722140FFA3004331A9 /* ioapi.c in Sources */,
+				8704B39D219D57AF00DBBC53 /* UIView+FSCountDownManager.m in Sources */,
 				874268A8212E7E36003C52F6 /* BMTableViewTextCell.m in Sources */,
 				87F639D821533C830035E730 /* MLeaksMessenger.m in Sources */,
 				87E7C6F22151F2C700F7AB14 /* iConsole.m in Sources */,
@@ -9317,6 +9346,7 @@
 				87E7C30621509AB000F7AB14 /* DTHTMLParserTextNode.m in Sources */,
 				87E7C30721509AB000F7AB14 /* MKAnnotationView+WebCache.m in Sources */,
 				87E7C30821509AB000F7AB14 /* NSMutableArray+BMCategory.m in Sources */,
+				8704B395219C137800DBBC53 /* BMCountDownManager.m in Sources */,
 				87E7C30921509AB000F7AB14 /* SDImageCacheConfig.m in Sources */,
 				87E7C30A21509AB000F7AB14 /* FLEXKeyboardHelpViewController.m in Sources */,
 				87E7C30B21509AB000F7AB14 /* FSMessageTabVC.m in Sources */,
@@ -9405,6 +9435,7 @@
 				87E7C35821509AB000F7AB14 /* UIViewController+BMNavigationItem.m in Sources */,
 				87E7C35A21509AB000F7AB14 /* DTWebVideoView.m in Sources */,
 				87E7C35B21509AB000F7AB14 /* DTHTMLWriter.m in Sources */,
+				8704B39A219D1CC100DBBC53 /* FSCountDownManager.m in Sources */,
 				87E7C35C21509AB000F7AB14 /* FSSearchResultModel.m in Sources */,
 				87E7C35D21509AB000F7AB14 /* XMEngine.m in Sources */,
 				87E7C35E21509AB000F7AB14 /* FSCaseSearchResultView.m in Sources */,
@@ -9421,7 +9452,6 @@
 				87E7C36821509AB000F7AB14 /* NSObject+DTRuntime.m in Sources */,
 				87E7C36921509AB000F7AB14 /* FSTopicListCell.m in Sources */,
 				87E7C36A21509AB000F7AB14 /* DTFolderMonitor.m in Sources */,
-				87E7C36B21509AB000F7AB14 /* BMVerifiTimeManager.m in Sources */,
 				87E7C36C21509AB000F7AB14 /* FLEXNetworkHistoryTableViewController.m in Sources */,
 				87E7C36D21509AB000F7AB14 /* NSData+DTCrypto.m in Sources */,
 				87E7C6F92151F2C700F7AB14 /* GTMStackTrace.m in Sources */,
@@ -9641,6 +9671,7 @@
 				87E7C42C21509AB000F7AB14 /* View+MASAdditions.m in Sources */,
 				87E7C42E21509AB000F7AB14 /* BMCheckBox.m in Sources */,
 				87E7C42F21509AB000F7AB14 /* FLEXMultilineTableViewCell.m in Sources */,
+				8704B39E219D57AF00DBBC53 /* UIView+FSCountDownManager.m in Sources */,
 				87E7C6F32151F2C700F7AB14 /* iConsole.m in Sources */,
 				87E7C43021509AB000F7AB14 /* NSImage+WebCache.m in Sources */,
 				87E7C43121509AB000F7AB14 /* DTCoreTextGlyphRun.m in Sources */,
@@ -9751,6 +9782,7 @@
 				87F639DB21533C830035E730 /* UIViewController+MemoryLeak.m in Sources */,
 				87E7C6F52151F2C700F7AB14 /* FSTestHelper.m in Sources */,
 				87E7C48F21509AB000F7AB14 /* FLEXRuntimeUtility.m in Sources */,
+				8704B393219C137800DBBC53 /* UIView+BMCountDownManager.m in Sources */,
 				87E7C49021509AB000F7AB14 /* FLEXTableColumnHeader.m in Sources */,
 				87E7C49121509AB000F7AB14 /* FSSearchResultView.m in Sources */,
 				87E7C49221509AB000F7AB14 /* UIButton+BMCategory.m in Sources */,
