@@ -63,6 +63,7 @@
     if (self.m_IsEdited)
     {
         [self getTopicDetail];
+        self.m_contentPlaceHolderLab.hidden = YES;
     }
 }
 
