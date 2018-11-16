@@ -16,6 +16,8 @@
 
 #import "FSPushVCManager.h"
 
+#import "UIView+FSCountDownManager.h"
+
 
 @interface FSLoginVerifyVC ()
 <
@@ -54,7 +56,7 @@
     _m_CheckVerificationCodeTask = nil;
 }
 
-- (instancetype)initWithVerificationType:(BMVerificationCodeType)verificationType phoneNum:(NSString *)phoneNum
+- (instancetype)initWithVerificationType:(FSVerificationCodeType)verificationType phoneNum:(NSString *)phoneNum
 {
     self = [super init];
     
@@ -78,19 +80,19 @@
     
     switch (self.m_VerificationType)
     {
-        case BMVerificationCodeType_Type1:
+        case FSMVerificationCodeType_Register:
             [self bm_setNavigationWithTitle:@"注册" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_popback_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:@"navigationbar_close_icon" rightToucheEvent:@selector(closeAction:)];
             break;
             
-        case BMVerificationCodeType_Type2:
+        case FSVerificationCodeType_ResetPassword:
             [self bm_setNavigationWithTitle:@"验证" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_popback_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:@"navigationbar_close_icon" rightToucheEvent:@selector(closeAction:)];
             break;
             
-        case BMVerificationCodeType_Type3:
+        case FSVerificationCodeType_UpdatePassword:
             [self bm_setNavigationWithTitle:@"变更密码" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
             break;
 
-        case BMVerificationCodeType_Type4:
+        case FSVerificationCodeType_UpdatePhoneNumOld:
             [self bm_setNavigationWithTitle:@"换绑手机" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
             break;
             
@@ -127,11 +129,11 @@
     {
         switch (self.m_VerificationType)
         {
-            case BMVerificationCodeType_Type1:
+            case FSMVerificationCodeType_Register:
                 [self.delegate loginProgressStateChanged:FSLoginProgress_RegistVerify];
                 break;
                 
-            case BMVerificationCodeType_Type2:
+            case FSVerificationCodeType_ResetPassword:
                 [self.delegate loginProgressStateChanged:FSLoginProgress_ForgetVerify];
                 break;
                 
@@ -155,11 +157,11 @@
         {
             switch (self.m_VerificationType)
             {
-                case BMVerificationCodeType_Type1:
+                case FSMVerificationCodeType_Register:
                     [self.delegate loginClosedWithProgressState:FSLoginProgress_RegistVerify];
                     break;
                     
-                case BMVerificationCodeType_Type2:
+                case FSVerificationCodeType_ResetPassword:
                     [self.delegate loginClosedWithProgressState:FSLoginProgress_ForgetVerify];
                     break;
                     
@@ -198,12 +200,15 @@
     [self.m_TableView addSubview:clockBtn];
 
     // 客户端不做计时判断
-    [[BMVerifiTimeManager manager] stopAllType];
-    [self freshClockBtn:0];
-//    BMWeakSelf
-//    [[BMVerifiTimeManager manager] checkTimeWithType:self.m_VerificationType process:^(BMVerificationCodeType type, NSInteger ticket, BOOL stop) {
-//        [weakSelf freshClockBtn:ticket];
-//    }];
+    [[FSCountDownManager manager] stopAllCountDownDoNothing];
+    
+    self.m_ClockBtn.countDownType = self.m_VerificationType;
+    
+    BMWeakSelf
+    self.m_ClockBtn.countDownProcessBlock = ^(id identifier, NSInteger timeInterval, BOOL forcedStop) {
+        [weakSelf freshClockBtn:timeInterval isForcedStop:NO];
+    };
+    [self freshClockBtn:0 isForcedStop:NO];
 
     BMVerifyField *verifyField = [[BMVerifyField alloc] initWithFrame:CGRectMake(15.0f, label2.bm_bottom+20.0f, self.m_TableView.bm_width-30, 60.0f)];
     [self.m_TableView addSubview:verifyField];
@@ -247,19 +252,19 @@
     [btn addTarget:self action:@selector(confirmClick:) forControlEvents:UIControlEventTouchUpInside];
     switch (self.m_VerificationType)
     {
-        case BMVerificationCodeType_Type1:
+        case FSMVerificationCodeType_Register:
             [btn setTitle:@"提交注册" forState:UIControlStateNormal];
             break;
             
-        case BMVerificationCodeType_Type2:
+        case FSVerificationCodeType_ResetPassword:
             [btn setTitle:@"提交验证" forState:UIControlStateNormal];
             break;
             
-        case BMVerificationCodeType_Type3:
+        case FSVerificationCodeType_UpdatePassword:
             [btn setTitle:@"确定变更" forState:UIControlStateNormal];
             break;
             
-        case BMVerificationCodeType_Type4:
+        case FSVerificationCodeType_UpdatePhoneNumOld:
             [btn setTitle:@"确定解绑" forState:UIControlStateNormal];
             break;
             
@@ -276,7 +281,7 @@
     [btn bm_centerHorizontallyInSuperViewWithTop:label3.bm_bottom+20.0f];
     self.m_ConfirmBtn = btn;
     
-    if (self.m_VerificationType == BMVerificationCodeType_Type1)
+    if (self.m_VerificationType == FSMVerificationCodeType_Register)
     {
         UIButton *checkBox = [[UIButton alloc] initWithFrame:CGRectMake(self.m_ConfirmBtn.bm_left, self.m_ConfirmBtn.bm_bottom+12.0f, 124.0f, 24.0f)];
         checkBox.bm_imageRect = CGRectMake(0, 4.0f, 10.0f, 10.0f);
@@ -335,9 +340,9 @@
     [self.m_VerifyField becomeFirstResponder];
 }
 
-- (void)freshClockBtn:(NSInteger)ticket
+- (void)freshClockBtn:(NSInteger)ticket isForcedStop:(BOOL)forcedStop
 {
-    if (ticket > 0)
+    if (ticket > 0 && !forcedStop)
     {
         self.m_ClockBtn.userInteractionEnabled = NO;
         self.m_ClockBtn.titleLabel.font = UI_FONT_12;
@@ -398,7 +403,7 @@
 {
     if (index >= 3 && ![string isEqualToString:@""])
     {
-        if (self.m_VerificationType == BMVerificationCodeType_Type1)
+        if (self.m_VerificationType == FSMVerificationCodeType_Register)
         {
             self.m_ConfirmBtn.enabled = self.m_RegistCheckBoxBtn.selected;
         }
@@ -433,10 +438,7 @@
     
     //[self.m_ProgressHUD showAnimated:YES showBackground:NO];
     
-    BMWeakSelf
-    [[BMVerifiTimeManager manager] startTimeWithType:self.m_VerificationType process:^(BMVerificationCodeType type, NSInteger ticket, BOOL stop) {
-        [weakSelf freshClockBtn:ticket];
-    }];
+    [self.m_ClockBtn startCountDown];
 
     [self sendGetVerificationCodeWithType:self.m_VerificationType phoneNum:self.m_PhoneNum];
 }
@@ -456,48 +458,13 @@
 #pragma mark -
 #pragma mark send request
 
-- (FSVerificationCodeType)getFSVerificationCodeType:(BMVerificationCodeType)verificationCodeType
-{
-    FSVerificationCodeType verificationType = FSVerificationCodeType_Unknown;
-    switch (verificationCodeType)
-    {
-        case BMVerificationCodeType_Type1:
-            verificationType = FSMVerificationCodeType_Register;
-            break;
-            
-        case BMVerificationCodeType_Type2:
-            verificationType = FSVerificationCodeType_ResetPassword;
-            break;
-            
-        case BMVerificationCodeType_Type3:
-            verificationType = FSVerificationCodeType_UpdatePassword;
-            break;
-            
-        case BMVerificationCodeType_Type4:
-            verificationType = FSVerificationCodeType_UpdatePhoneNumOld;
-            break;
-            
-        case BMVerificationCodeType_Type5:
-            verificationType = FSVerificationCodeType_UpdatePhoneNumNew;
-            break;
-            
-        default:
-            verificationType = FSVerificationCodeType_Unknown;
-            break;
-    }
-    
-    return verificationType;
-}
-
 // 获取短信验证码
-- (void)sendGetVerificationCodeWithType:(BMVerificationCodeType)verificationCodeType phoneNum:(NSString *)phoneNum
+- (void)sendGetVerificationCodeWithType:(FSVerificationCodeType)verificationCodeType phoneNum:(NSString *)phoneNum
 {
     self.m_ErrorLabel.hidden = YES;
 
-    FSVerificationCodeType verificationType = [self getFSVerificationCodeType:verificationCodeType];
-    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSMutableURLRequest *request = [FSApiRequest getVerificationCodeWithType:verificationType phoneNum:phoneNum];
+    NSMutableURLRequest *request = [FSApiRequest getVerificationCodeWithType:verificationCodeType phoneNum:phoneNum];
     if (request)
     {
         [self.m_ProgressHUD showAnimated:YES showBackground:NO];
@@ -526,8 +493,7 @@
     }
     else
     {
-        [[BMVerifiTimeManager manager] stopTimeWithType:self.m_VerificationType];
-        [self freshClockBtn:0];
+        [self.m_ClockBtn stopCountDown];
     }
 }
 
@@ -537,8 +503,7 @@
     {
         [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
 
-        [[BMVerifiTimeManager manager] stopTimeWithType:self.m_VerificationType];
-        [self freshClockBtn:0];
+        [self.m_ClockBtn stopCountDown];
 
         if (self.delegate && [self.delegate respondsToSelector:@selector(loginFailedWithProgressState:)])
         {
@@ -546,11 +511,11 @@
             {
                 switch (self.m_VerificationType)
                 {
-                    case BMVerificationCodeType_Type1:
+                    case FSMVerificationCodeType_Register:
                         [self.delegate loginFailedWithProgressState:FSLoginProgress_RegistVerify];
                         break;
                         
-                    case BMVerificationCodeType_Type2:
+                    case FSVerificationCodeType_ResetPassword:
                         [self.delegate loginFailedWithProgressState:FSLoginProgress_ForgetVerify];
                         break;
                         
@@ -591,18 +556,17 @@
         }
     }
 
-    [[BMVerifiTimeManager manager] stopTimeWithType:self.m_VerificationType];
-    [self freshClockBtn:0];
+    [self.m_ClockBtn stopCountDown];
 
     if (self.delegate && [self.delegate respondsToSelector:@selector(loginFailedWithProgressState:)])
     {
         switch (self.m_VerificationType)
         {
-            case BMVerificationCodeType_Type1:
+            case FSMVerificationCodeType_Register:
                 [self.delegate loginFailedWithProgressState:FSLoginProgress_RegistVerify];
                 break;
                 
-            case BMVerificationCodeType_Type2:
+            case FSVerificationCodeType_ResetPassword:
                 [self.delegate loginFailedWithProgressState:FSLoginProgress_ForgetVerify];
                 break;
                 
@@ -616,8 +580,7 @@
 {
     BMLog(@"获取短信验证码失败的错误:++++%@", [FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE]);
     
-    [[BMVerifiTimeManager manager] stopTimeWithType:self.m_VerificationType];
-    [self freshClockBtn:0];
+    [self.m_ClockBtn stopCountDown];
 
     [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     
@@ -625,11 +588,11 @@
     {
         switch (self.m_VerificationType)
         {
-            case BMVerificationCodeType_Type1:
+            case FSMVerificationCodeType_Register:
                 [self.delegate loginFailedWithProgressState:FSLoginProgress_RegistVerify];
                 break;
                 
-            case BMVerificationCodeType_Type2:
+            case FSVerificationCodeType_ResetPassword:
                 [self.delegate loginFailedWithProgressState:FSLoginProgress_ForgetVerify];
                 break;
                 
@@ -640,14 +603,12 @@
 }
 
 // 验证验证码
-- (void)sendCheckVerificationCodeWithType:(BMVerificationCodeType)verificationCodeType phoneNum:(NSString *)phoneNum verificationCode:(NSString *)verificationCode
+- (void)sendCheckVerificationCodeWithType:(FSVerificationCodeType)verificationCodeType phoneNum:(NSString *)phoneNum verificationCode:(NSString *)verificationCode
 {
     self.m_ErrorLabel.hidden = YES;
     
-    FSVerificationCodeType verificationType = [self getFSVerificationCodeType:verificationCodeType];
-    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSMutableURLRequest *request = [FSApiRequest checkVerificationCodeWithType:verificationType phoneNum:phoneNum verificationCode:verificationCode];
+    NSMutableURLRequest *request = [FSApiRequest checkVerificationCodeWithType:verificationCodeType phoneNum:phoneNum verificationCode:verificationCode];
     if (request)
     {
         [self.m_ProgressHUD showAnimated:YES showBackground:NO];
@@ -688,11 +649,11 @@
             {
                 switch (self.m_VerificationType)
                 {
-                    case BMVerificationCodeType_Type1:
+                    case FSMVerificationCodeType_Register:
                         [self.delegate loginFailedWithProgressState:FSLoginProgress_RegistVerify];
                         break;
                         
-                    case BMVerificationCodeType_Type2:
+                    case FSVerificationCodeType_ResetPassword:
                         [self.delegate loginFailedWithProgressState:FSLoginProgress_ForgetVerify];
                         break;
                         
@@ -714,7 +675,7 @@
     {
         [self.m_ProgressHUD hideAnimated:NO];
         
-        if (self.m_VerificationType == BMVerificationCodeType_Type4)
+        if (self.m_VerificationType == FSVerificationCodeType_UpdatePhoneNumOld)
         {
             FSSetPhoneVC *vc = [[FSSetPhoneVC alloc] init];
             vc.m_OldPhoneNum = self.m_PhoneNum;
@@ -730,8 +691,7 @@
         }
 
         // 停止计时
-        [[BMVerifiTimeManager manager] stopTimeWithType:self.m_VerificationType];
-        [self freshClockBtn:0];
+        [self.m_ClockBtn stopCountDown];
 
         return;
     }
@@ -748,11 +708,11 @@
     {
         switch (self.m_VerificationType)
         {
-            case BMVerificationCodeType_Type1:
+            case FSMVerificationCodeType_Register:
                 [self.delegate loginFailedWithProgressState:FSLoginProgress_RegistVerify];
                 break;
                 
-            case BMVerificationCodeType_Type2:
+            case FSVerificationCodeType_ResetPassword:
                 [self.delegate loginFailedWithProgressState:FSLoginProgress_ForgetVerify];
                 break;
                 
@@ -772,11 +732,11 @@
     {
         switch (self.m_VerificationType)
         {
-            case BMVerificationCodeType_Type1:
+            case FSMVerificationCodeType_Register:
                 [self.delegate loginFailedWithProgressState:FSLoginProgress_RegistVerify];
                 break;
                 
-            case BMVerificationCodeType_Type2:
+            case FSVerificationCodeType_ResetPassword:
                 [self.delegate loginFailedWithProgressState:FSLoginProgress_ForgetVerify];
                 break;
                 

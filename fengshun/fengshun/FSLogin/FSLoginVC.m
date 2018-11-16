@@ -368,7 +368,7 @@
 {
     [self.view endEditing:YES];
     
-    FSLoginVerifyVC *loginVerifyVC = [[FSLoginVerifyVC alloc] initWithVerificationType:BMVerificationCodeType_Type2 phoneNum:self.m_PhoneNum];
+    FSLoginVerifyVC *loginVerifyVC = [[FSLoginVerifyVC alloc] initWithVerificationType:FSVerificationCodeType_ResetPassword phoneNum:self.m_PhoneNum];
     loginVerifyVC.delegate = self.delegate;
     [self.navigationController pushViewController:loginVerifyVC animated:YES];
 }
@@ -460,7 +460,7 @@
             self.m_PhoneNum = [self.m_PhoneItem.value bm_trim];
             [FSAppInfo setCurrentPhoneNum:self.m_PhoneNum];
             
-            FSLoginVerifyVC *loginVerifyVC = [[FSLoginVerifyVC alloc] initWithVerificationType:BMVerificationCodeType_Type1 phoneNum:self.m_PhoneNum];
+            FSLoginVerifyVC *loginVerifyVC = [[FSLoginVerifyVC alloc] initWithVerificationType:FSMVerificationCodeType_Register phoneNum:self.m_PhoneNum];
             loginVerifyVC.delegate = self.delegate;
             [self.navigationController pushViewController:loginVerifyVC animated:YES];
         }

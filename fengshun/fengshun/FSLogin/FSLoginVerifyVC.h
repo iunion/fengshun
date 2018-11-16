@@ -8,13 +8,13 @@
 
 #import "FSSetTableViewVC.h"
 #import "FSLoginProtocol.h"
-#import "BMVerifiTimeManager.h"
+#import "FSCountDownManager.h"
 
 @interface FSLoginVerifyVC : FSSetTableViewVC
 
 @property (nonatomic, weak) id <FSLoginDelegate> delegate;
 
-@property (nonatomic, assign, readonly) BMVerificationCodeType m_VerificationType;
+@property (nonatomic, assign, readonly) FSVerificationCodeType m_VerificationType;
 
 @property (nonatomic, strong, readonly) NSString *m_PhoneNum;
 
@@ -22,6 +22,6 @@
 @property (nonatomic, weak) FSSetTableViewVC *m_PopToViewController;
 
 
-- (instancetype)initWithVerificationType:(BMVerificationCodeType)verificationType phoneNum:(NSString *)phoneNum;
+- (instancetype)initWithVerificationType:(FSVerificationCodeType)verificationType phoneNum:(NSString *)phoneNum;
 
 @end

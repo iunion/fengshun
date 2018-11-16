@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "FSAppInfo.h"
 
-#import "BMVerifiTimeManager.h"
+#import "UIView+FSCountDownManager.h"
 
 @interface FSSetPhoneVC ()
 
@@ -102,11 +102,14 @@
     clockBtn.exclusiveTouch = YES;
 
     // 客户端不做计时判断
-    [[BMVerifiTimeManager manager] stopAllType];
-    [self freshClockBtn:0];
-//    [[BMVerifiTimeManager manager] checkTimeWithType:BMVerificationCodeType_Type5 process:^(BMVerificationCodeType type, NSInteger ticket, BOOL stop) {
-//        [weakSelf freshClockBtn:ticket];
-//    }];
+    [[FSCountDownManager manager] stopAllCountDownDoNothing];
+    
+    self.m_ClockBtn.countDownType = FSVerificationCodeType_UpdatePhoneNumNew;
+    
+    self.m_ClockBtn.countDownProcessBlock = ^(id identifier, NSInteger timeInterval, BOOL forcedStop) {
+        [weakSelf freshClockBtn:timeInterval isForcedStop:NO];
+    };
+    [self freshClockBtn:0 isForcedStop:NO];
 
     self.m_VerifyItem = [BMTextItem itemWithTitle:@"验证码" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_None accessoryView:clockBtn selectionHandler:nil];
     self.m_VerifyItem.placeholder = @"输入验证码";
@@ -212,9 +215,9 @@
     }
 }
 
-- (void)freshClockBtn:(NSInteger)ticket
+- (void)freshClockBtn:(NSInteger)ticket isForcedStop:(BOOL)forcedStop
 {
-    if (ticket > 0)
+    if (ticket > 0 && !forcedStop)
     {
         self.m_ClockBtn.userInteractionEnabled = NO;
         self.m_ClockBtn.titleLabel.font = UI_FONT_12;
@@ -277,23 +280,18 @@
     
     //[self.m_ProgressHUD showAnimated:YES showBackground:NO];
     
-    BMWeakSelf
-    [[BMVerifiTimeManager manager] startTimeWithType:BMVerificationCodeType_Type5 process:^(BMVerificationCodeType type, NSInteger ticket, BOOL stop) {
-        [weakSelf freshClockBtn:ticket];
-    }];
+    [self.m_ClockBtn startCountDown];
     
-    [self sendGetVerificationCodeWithType:BMVerificationCodeType_Type5 phoneNum:self.m_PhoneNum];
+    [self sendGetVerificationCodeWithType:FSVerificationCodeType_UpdatePhoneNumNew phoneNum:self.m_PhoneNum];
 }
 
 // 获取短信验证码
-- (void)sendGetVerificationCodeWithType:(BMVerificationCodeType)verificationCodeType phoneNum:(NSString *)phoneNum
+- (void)sendGetVerificationCodeWithType:(FSVerificationCodeType)verificationCodeType phoneNum:(NSString *)phoneNum
 {
     self.m_ErrorLabel.hidden = YES;
     
-    FSVerificationCodeType verificationType = FSVerificationCodeType_UpdatePhoneNumNew;
-    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSMutableURLRequest *request = [FSApiRequest getVerificationCodeWithType:verificationType phoneNum:phoneNum];
+    NSMutableURLRequest *request = [FSApiRequest getVerificationCodeWithType:verificationCodeType phoneNum:phoneNum];
     if (request)
     {
         [self.m_ProgressHUD showAnimated:YES showBackground:NO];
@@ -322,8 +320,7 @@
     }
     else
     {
-        [[BMVerifiTimeManager manager] stopTimeWithType:BMVerificationCodeType_Type5];
-        [self freshClockBtn:0];
+        [self.m_ClockBtn stopCountDown];
     }
 }
 
@@ -333,8 +330,7 @@
     {
         [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_JSON_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
 
-        [[BMVerifiTimeManager manager] stopTimeWithType:BMVerificationCodeType_Type5];
-        [self freshClockBtn:0];
+        [self.m_ClockBtn stopCountDown];
 
         return;
     }
@@ -359,8 +355,7 @@
         //[self.m_ProgressHUD showAnimated:YES withDetailText:message delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         [self.m_ProgressHUD hideAnimated:NO];
         
-        [[BMVerifiTimeManager manager] stopTimeWithType:BMVerificationCodeType_Type5];
-        [self freshClockBtn:0];
+        [self.m_ClockBtn stopCountDown];
 
         [self freshErrorLabelWithMessage:message];
     }
@@ -370,8 +365,7 @@
 {
     BMLog(@"获取短信验证码失败的错误:++++%@", [FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE]);
     
-    [[BMVerifiTimeManager manager] stopTimeWithType:BMVerificationCodeType_Type5];
-    [self freshClockBtn:0];
+    [self.m_ClockBtn stopCountDown];
 
     [self.m_ProgressHUD showAnimated:YES withDetailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
 }
@@ -455,8 +449,7 @@
         GetAppDelegate.m_UserInfo = userInfo;
         
         // 停止计时
-        [[BMVerifiTimeManager manager] stopTimeWithType:BMVerificationCodeType_Type5];
-        [self freshClockBtn:0];
+        [self.m_ClockBtn stopCountDown];
 
         if (self.m_PopToViewController)
         {

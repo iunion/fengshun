@@ -16,7 +16,7 @@
 #import "FSDBVersionCheck.h"
 
 #import "FSUserInfo.h"
-#import "BMVerifiTimeManager.h"
+#import "FSCountDownManager.h"
 
 #import "FSFirstGuideVC.h"
 
@@ -449,7 +449,7 @@
 - (void)logOutQuit:(BOOL)quit showLogin:(BOOL)show
 {
     // 重置所有倒计时
-    [[BMVerifiTimeManager manager] stopAllType];
+    [[FSCountDownManager manager] stopAllCountDownDoNothing];
     
     [FSUserInfoModel logOut];
     
