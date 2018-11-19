@@ -188,6 +188,8 @@ static const float kCursorVelocity = 1.0f/8.0f;
 
 - (void)setText:(NSString *)text
 {
+    if (!text)
+        return;
     UITextRange *textRange = [self textRangeFromPosition:self.beginningOfDocument toPosition:self.endOfDocument];
     [self replaceRange:textRange withText:text];
 }
