@@ -15,8 +15,8 @@
 #define FSAppConfig_h
 
 // APPSTORE
-#define APPSTORE_DOWNLOADAPP_ADDRESS    @"itms-apps://itunes.apple.com/app/id1187154311"
-#define APPID                           @"1187154311"
+#define APPSTORE_DOWNLOADAPP_ADDRESS    @"itms-apps://itunes.apple.com/app/id1443980533"
+#define APPID                           @"1443980533"
 
 //#define APPSTORE_CHECK_VERSON_ADDRESS @"http://itunes.apple.com/lookup?id=628470263"
 
@@ -27,7 +27,7 @@
 // 分享相关
 #define Redirect_URL        @"http://mobile.umeng.com/social"
 // QQ
-#define QQ_AppId            @"100424468"
+#define QQ_AppId            @"101499801"
 #define QQ_AppKey           @"41841d247cf98e781d73e1d455300a0d"
 
 // 微信
@@ -35,8 +35,8 @@
 #define Wechat_AppSecret    @"134f3aa7376bd9d2b5fdf6a11b396325"
 
 // 微博
-#define Sina_AppId          @"wb3921700954"
-#define Sina_AppSecret      @"41841d247cf98e781d73e1d455300a0d"
+#define Sina_AppId          @"4252476878"
+#define Sina_AppSecret      @"962744c41629dee8a6034b66c667e813"
 
 
 #ifdef FSVIDEO_ON
