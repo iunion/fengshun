@@ -490,6 +490,12 @@
 		876A195A216DFFCD008A04F4 /* FSMyCourseCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 876A1956216DF0B4008A04F4 /* FSMyCourseCollectionCell.xib */; };
 		876A195C216F11B5008A04F4 /* fsdefault_image100x80@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 876A195B216F11B4008A04F4 /* fsdefault_image100x80@2x.png */; };
 		876A195D216F11B5008A04F4 /* fsdefault_image100x80@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 876A195B216F11B4008A04F4 /* fsdefault_image100x80@2x.png */; };
+		876BB7AF21AE34E700FC205D /* BMConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = 876BB7AD21AE34E700FC205D /* BMConsole.m */; };
+		876BB7B021AE34E700FC205D /* BMConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = 876BB7AD21AE34E700FC205D /* BMConsole.m */; };
+		876BB7B721AE358300FC205D /* GTMStackTrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 876BB7B321AE358200FC205D /* GTMStackTrace.m */; };
+		876BB7B821AE358300FC205D /* GTMStackTrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 876BB7B321AE358200FC205D /* GTMStackTrace.m */; };
+		876BB7B921AE358300FC205D /* YYFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 876BB7B621AE358200FC205D /* YYFPSLabel.m */; };
+		876BB7BA21AE358300FC205D /* YYFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 876BB7B621AE358200FC205D /* YYFPSLabel.m */; };
 		87741FDC214A0C8A00F72427 /* FSServiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87741FDA214A0C8A00F72427 /* FSServiceVC.m */; };
 		87741FDD214A0C8A00F72427 /* FSServiceVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87741FDB214A0C8A00F72427 /* FSServiceVC.xib */; };
 		87741FE3214A132200F72427 /* user_wechaticon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87741FDF214A132200F72427 /* user_wechaticon@3x.png */; };
@@ -1656,14 +1662,8 @@
 		87E7C6CE2150C10200F7AB14 /* empty_404icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87E7C6BC2150C10100F7AB14 /* empty_404icon@3x.png */; };
 		87E7C6CF2150C10200F7AB14 /* empty_ocricon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87E7C6BD2150C10100F7AB14 /* empty_ocricon@2x.png */; };
 		87E7C6D02150C10200F7AB14 /* empty_collecticon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87E7C6BE2150C10100F7AB14 /* empty_collecticon@3x.png */; };
-		87E7C6F22151F2C700F7AB14 /* iConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6E92151F2C700F7AB14 /* iConsole.m */; };
-		87E7C6F32151F2C700F7AB14 /* iConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6E92151F2C700F7AB14 /* iConsole.m */; };
 		87E7C6F42151F2C700F7AB14 /* FSTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6EA2151F2C700F7AB14 /* FSTestHelper.m */; };
 		87E7C6F52151F2C700F7AB14 /* FSTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6EA2151F2C700F7AB14 /* FSTestHelper.m */; };
-		87E7C6F62151F2C700F7AB14 /* YYFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6ED2151F2C700F7AB14 /* YYFPSLabel.m */; };
-		87E7C6F72151F2C700F7AB14 /* YYFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6ED2151F2C700F7AB14 /* YYFPSLabel.m */; };
-		87E7C6F82151F2C700F7AB14 /* GTMStackTrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6F02151F2C700F7AB14 /* GTMStackTrace.m */; };
-		87E7C6F92151F2C700F7AB14 /* GTMStackTrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6F02151F2C700F7AB14 /* GTMStackTrace.m */; };
 		87E7C70221532DA000F7AB14 /* FSApiErrorLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C70021532D9F00F7AB14 /* FSApiErrorLog.m */; };
 		87E7C70321532DA000F7AB14 /* FSApiErrorLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C70021532D9F00F7AB14 /* FSApiErrorLog.m */; };
 		87F6397121533ADB0035E730 /* PLArrayTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6396D21533ADB0035E730 /* PLArrayTableViewController.m */; };
@@ -3047,6 +3047,12 @@
 		876A1955216DF0B4008A04F4 /* FSMyCourseCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMyCourseCollectionCell.m; sourceTree = "<group>"; };
 		876A1956216DF0B4008A04F4 /* FSMyCourseCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSMyCourseCollectionCell.xib; sourceTree = "<group>"; };
 		876A195B216F11B4008A04F4 /* fsdefault_image100x80@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fsdefault_image100x80@2x.png"; sourceTree = "<group>"; };
+		876BB7AD21AE34E700FC205D /* BMConsole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMConsole.m; sourceTree = "<group>"; };
+		876BB7AE21AE34E700FC205D /* BMConsole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMConsole.h; sourceTree = "<group>"; };
+		876BB7B221AE358200FC205D /* GTMStackTrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMStackTrace.h; sourceTree = "<group>"; };
+		876BB7B321AE358200FC205D /* GTMStackTrace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMStackTrace.m; sourceTree = "<group>"; };
+		876BB7B521AE358200FC205D /* YYFPSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYFPSLabel.h; sourceTree = "<group>"; };
+		876BB7B621AE358200FC205D /* YYFPSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYFPSLabel.m; sourceTree = "<group>"; };
 		87741FD72149FF5F00F72427 /* ExampleApp.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = ExampleApp.html; path = "../../../../gitHubs/WebViewJavascriptBridge/Example Apps/ExampleApp.html"; sourceTree = "<group>"; };
 		87741FD9214A0C8A00F72427 /* FSServiceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSServiceVC.h; sourceTree = "<group>"; };
 		87741FDA214A0C8A00F72427 /* FSServiceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSServiceVC.m; sourceTree = "<group>"; };
@@ -3458,13 +3464,7 @@
 		87E7C6BC2150C10100F7AB14 /* empty_404icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "empty_404icon@3x.png"; sourceTree = "<group>"; };
 		87E7C6BD2150C10100F7AB14 /* empty_ocricon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "empty_ocricon@2x.png"; sourceTree = "<group>"; };
 		87E7C6BE2150C10100F7AB14 /* empty_collecticon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "empty_collecticon@3x.png"; sourceTree = "<group>"; };
-		87E7C6E82151F2C700F7AB14 /* iConsole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iConsole.h; sourceTree = "<group>"; };
-		87E7C6E92151F2C700F7AB14 /* iConsole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iConsole.m; sourceTree = "<group>"; };
 		87E7C6EA2151F2C700F7AB14 /* FSTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSTestHelper.m; sourceTree = "<group>"; };
-		87E7C6EC2151F2C700F7AB14 /* YYFPSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYFPSLabel.h; sourceTree = "<group>"; };
-		87E7C6ED2151F2C700F7AB14 /* YYFPSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYFPSLabel.m; sourceTree = "<group>"; };
-		87E7C6EF2151F2C700F7AB14 /* GTMStackTrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMStackTrace.h; sourceTree = "<group>"; };
-		87E7C6F02151F2C700F7AB14 /* GTMStackTrace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMStackTrace.m; sourceTree = "<group>"; };
 		87E7C6F12151F2C700F7AB14 /* FSTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSTestHelper.h; sourceTree = "<group>"; };
 		87E7C70021532D9F00F7AB14 /* FSApiErrorLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSApiErrorLog.m; sourceTree = "<group>"; };
 		87E7C70121532DA000F7AB14 /* FSApiErrorLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSApiErrorLog.h; sourceTree = "<group>"; };
@@ -5051,6 +5051,7 @@
 				87426820212E7E35003C52F6 /* BMAlignedImageView */,
 				87426827212E7E35003C52F6 /* BMBadge */,
 				87426800212E7E35003C52F6 /* BMCheckBox */,
+				876BB7AC21AE34E700FC205D /* BMConsole */,
 				8704B38D219C137800DBBC53 /* BMCountDownManager */,
 				8742680A212E7E35003C52F6 /* BMDatePicker */,
 				874269CA212E9BB6003C52F6 /* BMEmptyView */,
@@ -6016,6 +6017,35 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		876BB7AC21AE34E700FC205D /* BMConsole */ = {
+			isa = PBXGroup;
+			children = (
+				876BB7B121AE358200FC205D /* GTM */,
+				876BB7B421AE358200FC205D /* YYFPSLabel */,
+				876BB7AE21AE34E700FC205D /* BMConsole.h */,
+				876BB7AD21AE34E700FC205D /* BMConsole.m */,
+			);
+			path = BMConsole;
+			sourceTree = "<group>";
+		};
+		876BB7B121AE358200FC205D /* GTM */ = {
+			isa = PBXGroup;
+			children = (
+				876BB7B221AE358200FC205D /* GTMStackTrace.h */,
+				876BB7B321AE358200FC205D /* GTMStackTrace.m */,
+			);
+			path = GTM;
+			sourceTree = "<group>";
+		};
+		876BB7B421AE358200FC205D /* YYFPSLabel */ = {
+			isa = PBXGroup;
+			children = (
+				876BB7B521AE358200FC205D /* YYFPSLabel.h */,
+				876BB7B621AE358200FC205D /* YYFPSLabel.m */,
+			);
+			path = YYFPSLabel;
+			sourceTree = "<group>";
+		};
 		87741FE8214A37C200F72427 /* mine */ = {
 			isa = PBXGroup;
 			children = (
@@ -6920,40 +6950,10 @@
 		87E7C6E62151F2C700F7AB14 /* FSTestHelp */ = {
 			isa = PBXGroup;
 			children = (
-				87E7C6EE2151F2C700F7AB14 /* GTM */,
-				87E7C6E72151F2C700F7AB14 /* iConsole */,
-				87E7C6EB2151F2C700F7AB14 /* YYFPSLabel */,
 				87E7C6F12151F2C700F7AB14 /* FSTestHelper.h */,
 				87E7C6EA2151F2C700F7AB14 /* FSTestHelper.m */,
 			);
 			path = FSTestHelp;
-			sourceTree = "<group>";
-		};
-		87E7C6E72151F2C700F7AB14 /* iConsole */ = {
-			isa = PBXGroup;
-			children = (
-				87E7C6E82151F2C700F7AB14 /* iConsole.h */,
-				87E7C6E92151F2C700F7AB14 /* iConsole.m */,
-			);
-			path = iConsole;
-			sourceTree = "<group>";
-		};
-		87E7C6EB2151F2C700F7AB14 /* YYFPSLabel */ = {
-			isa = PBXGroup;
-			children = (
-				87E7C6EC2151F2C700F7AB14 /* YYFPSLabel.h */,
-				87E7C6ED2151F2C700F7AB14 /* YYFPSLabel.m */,
-			);
-			path = YYFPSLabel;
-			sourceTree = "<group>";
-		};
-		87E7C6EE2151F2C700F7AB14 /* GTM */ = {
-			isa = PBXGroup;
-			children = (
-				87E7C6EF2151F2C700F7AB14 /* GTMStackTrace.h */,
-				87E7C6F02151F2C700F7AB14 /* GTMStackTrace.m */,
-			);
-			path = GTM;
 			sourceTree = "<group>";
 		};
 		87F6396C21533ADB0035E730 /* PListNavigatorLibs */ = {
@@ -8672,6 +8672,7 @@
 				ADA1228B214614BE00CF0D87 /* FSTopicListVC.m in Sources */,
 				87D20AA2213920E2001EDD60 /* FLEXImageExplorerViewController.m in Sources */,
 				87F6397121533ADB0035E730 /* PLArrayTableViewController.m in Sources */,
+				876BB7AF21AE34E700FC205D /* BMConsole.m in Sources */,
 				8730B08B2140FFA3004331A9 /* UIView+DTDebug.m in Sources */,
 				8730B08D2140FFA3004331A9 /* DTSidePanelPanGestureRecognizer.m in Sources */,
 				87426A9721314747003C52F6 /* AFNetworkActivityIndicatorManager.m in Sources */,
@@ -8761,6 +8762,7 @@
 				8742690D212E7E36003C52F6 /* NSNumber+BMCategory.m in Sources */,
 				AD5102A8213E783E008CD74D /* FSSendTopicVC.m in Sources */,
 				87D20AC7213920E2001EDD60 /* FLEXArgumentInputViewFactory.m in Sources */,
+				876BB7B921AE358300FC205D /* YYFPSLabel.m in Sources */,
 				87D20ACD213920E2001EDD60 /* FLEXObjectRef.m in Sources */,
 				87D209C32138F1E2001EDD60 /* SDWebImageCoder.m in Sources */,
 				87426AB82133A504003C52F6 /* OpenUDID.m in Sources */,
@@ -8774,7 +8776,6 @@
 				87D20ADB213920E2001EDD60 /* FLEXTableContentCell.m in Sources */,
 				87D20AC9213920E2001EDD60 /* FLEXFieldEditorView.m in Sources */,
 				874268F5212E7E36003C52F6 /* UIImage+BMAssets.m in Sources */,
-				87E7C6F62151F2C700F7AB14 /* YYFPSLabel.m in Sources */,
 				8730B09B2140FFA3004331A9 /* NSString+DTFormatNumbers.m in Sources */,
 				AD93559F2137D24100735C2E /* TZImageCropManager.m in Sources */,
 				87D20AD7213920E2001EDD60 /* FLEXTableContentViewController.m in Sources */,
@@ -8874,6 +8875,7 @@
 				87D209BE2138F1E2001EDD60 /* UIImage+GIF.m in Sources */,
 				874C23AE215B288F001C8BE9 /* FSMyCollectionCell.m in Sources */,
 				AD22449B213CD6C300F2DC47 /* ViewController+MASAdditions.m in Sources */,
+				876BB7B721AE358300FC205D /* GTMStackTrace.m in Sources */,
 				AD932602214B4FDA007F3A93 /* HRBrightnessCursor.m in Sources */,
 				874269C8212E9B78003C52F6 /* BMFreshFooterView.m in Sources */,
 				87D20AD8213920E2001EDD60 /* FLEXTableListViewController.m in Sources */,
@@ -8917,7 +8919,6 @@
 				DB487441214A6E5B00AB0805 /* FSImageFileModel.m in Sources */,
 				87D20AB5213920E2001EDD60 /* FLEXExplorerToolbar.m in Sources */,
 				87D20ACA213920E2001EDD60 /* FLEXExplorerViewController.m in Sources */,
-				87E7C6F82151F2C700F7AB14 /* GTMStackTrace.m in Sources */,
 				87426AF521353510003C52F6 /* FSDB.m in Sources */,
 				DB487445214B642600AB0805 /* FSImageFileCell.m in Sources */,
 				87F6397321533ADB0035E730 /* PLDictionaryTableViewController.m in Sources */,
@@ -9142,7 +9143,6 @@
 				8704B39D219D57AF00DBBC53 /* UIView+FSCountDownManager.m in Sources */,
 				874268A8212E7E36003C52F6 /* BMTableViewTextCell.m in Sources */,
 				87F639D821533C830035E730 /* MLeaksMessenger.m in Sources */,
-				87E7C6F22151F2C700F7AB14 /* iConsole.m in Sources */,
 				AD22449E213CD6C300F2DC47 /* MASLayoutConstraint.m in Sources */,
 				8730B0802140FFA3004331A9 /* UIView+DTFoundation.m in Sources */,
 				87426902212E7E36003C52F6 /* NSData+BMCategory.m in Sources */,
@@ -9454,7 +9454,6 @@
 				87E7C36A21509AB000F7AB14 /* DTFolderMonitor.m in Sources */,
 				87E7C36C21509AB000F7AB14 /* FLEXNetworkHistoryTableViewController.m in Sources */,
 				87E7C36D21509AB000F7AB14 /* NSData+DTCrypto.m in Sources */,
-				87E7C6F92151F2C700F7AB14 /* GTMStackTrace.m in Sources */,
 				87E7C36E21509AB000F7AB14 /* UIView+WebCacheOperation.m in Sources */,
 				87E7C36F21509AB000F7AB14 /* TZPhotoPreviewController.m in Sources */,
 				87E7C37021509AB000F7AB14 /* DTTextBlock.m in Sources */,
@@ -9562,6 +9561,7 @@
 				87E7C3CC21509AB000F7AB14 /* FLEXArgumentInputNotSupportedView.m in Sources */,
 				874C23B6215B4FF9001C8BE9 /* FSMyTopicCell.m in Sources */,
 				87E7C3CD21509AB000F7AB14 /* FSSetPhoneVC.m in Sources */,
+				876BB7B021AE34E700FC205D /* BMConsole.m in Sources */,
 				87E7C3CE21509AB000F7AB14 /* UIView+DTActionHandlers.m in Sources */,
 				87E7C3CF21509AB000F7AB14 /* BMCheckBoxLabel.m in Sources */,
 				87E7C3D021509AB000F7AB14 /* BMTableViewItem.m in Sources */,
@@ -9672,7 +9672,6 @@
 				87E7C42E21509AB000F7AB14 /* BMCheckBox.m in Sources */,
 				87E7C42F21509AB000F7AB14 /* FLEXMultilineTableViewCell.m in Sources */,
 				8704B39E219D57AF00DBBC53 /* UIView+FSCountDownManager.m in Sources */,
-				87E7C6F32151F2C700F7AB14 /* iConsole.m in Sources */,
 				87E7C43021509AB000F7AB14 /* NSImage+WebCache.m in Sources */,
 				87E7C43121509AB000F7AB14 /* DTCoreTextGlyphRun.m in Sources */,
 				87E7C43221509AB000F7AB14 /* BMVerifyField.m in Sources */,
@@ -9724,6 +9723,7 @@
 				87E7C45B21509AB000F7AB14 /* SDWebImageDownloaderOperation.m in Sources */,
 				87E7C45C21509AB000F7AB14 /* FSLocation.m in Sources */,
 				87E7C45D21509AB000F7AB14 /* DTLinkButton.m in Sources */,
+				876BB7B821AE358300FC205D /* GTMStackTrace.m in Sources */,
 				87E7C45E21509AB000F7AB14 /* FLEXFileBrowserSearchOperation.m in Sources */,
 				87E7C45F21509AB000F7AB14 /* CYRToken.m in Sources */,
 				87E7C46021509AB000F7AB14 /* DTCoreTextLayoutFrame+Cursor.m in Sources */,
@@ -9744,7 +9744,6 @@
 				87E7C46E21509AB000F7AB14 /* DTAsyncFileDeleter.m in Sources */,
 				87E7C46F21509AB000F7AB14 /* DTFoundationConstants.m in Sources */,
 				87E7C47021509AB000F7AB14 /* MASViewConstraint.m in Sources */,
-				87E7C6F72151F2C700F7AB14 /* YYFPSLabel.m in Sources */,
 				876A1959216DFFC6008A04F4 /* FSMyCourseCollectionCell.m in Sources */,
 				87E7C47121509AB000F7AB14 /* TZImageManager.m in Sources */,
 				87F639FD21533C830035E730 /* FBNodeEnumerator.mm in Sources */,
@@ -9760,6 +9759,7 @@
 				87E7C47A21509AB000F7AB14 /* FSCommunityModel.m in Sources */,
 				87E7C47B21509AB000F7AB14 /* UIImage+ForceDecode.m in Sources */,
 				87E7C47C21509AB000F7AB14 /* DTCoreTextParagraphStyle.m in Sources */,
+				876BB7BA21AE358300FC205D /* YYFPSLabel.m in Sources */,
 				87E7C47D21509AB000F7AB14 /* NSCoder+DTCompatibility.m in Sources */,
 				87E7C47E21509AB000F7AB14 /* CYRLayoutManager.m in Sources */,
 				87E7C47F21509AB000F7AB14 /* TZGifPhotoPreviewController.m in Sources */,

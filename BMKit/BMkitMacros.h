@@ -99,11 +99,15 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #pragma mark - Func
 
 // 测试
-//#ifdef __OPTIMIZE__
-//#define USE_TEST_HELP           0
-//#else
-//#define USE_TEST_HELP           1
-//#endif
+#ifdef __OPTIMIZE__
+#define USE_TEST_HELP           0
+#else
+#define USE_TEST_HELP           1
+#endif
+
+#if USE_TEST_HELP
+#define FLEX_BM                 1
+#endif
 
 
 #pragma mark -

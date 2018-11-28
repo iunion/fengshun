@@ -67,13 +67,6 @@ FSMainVC ()
     [self.m_TableView registerNib:[UINib nibWithNibName:@"FSTopicListCell" bundle:nil] forCellReuseIdentifier:@"FSTopicListCell"];
     
     [self loadApiData];
-    
-#if USE_TEST_HELP
-    if (IOS_VERSION >= 12.0)
-    {
-        [GetAppDelegate showFPS];
-    }
-#endif
 }
 
 - (void)setupUI

@@ -187,9 +187,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 #if USE_TEST_HELP
-    [iConsole performSelectorOnMainThread:@selector(sharedConsole) withObject:nil waitUntilDone:NO];
-    self.window = [[iConsoleWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [FSTestHelper sharedInstance];
+    self.window = [[BMConsoleWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 #else
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 #endif
@@ -216,14 +215,6 @@
     [self getUserAbilityInfoWithVc:nil];
     
     return YES;
-}
-
-- (void)showFPS
-{
-#if USE_TEST_HELP
-    iConsoleWindow *window = (iConsoleWindow *)self.window;
-    [window.fpsLabel bm_bringToFront];
-#endif
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context
@@ -398,9 +389,6 @@
         FSFirstGuideVC *firstGuideVC = [[FSFirstGuideVC alloc] init];
         firstGuideVC.delegate = self;
         self.window.rootViewController = firstGuideVC;
-#if USE_TEST_HELP
-        [self showFPS];
-#endif
     }
     else
     {
@@ -425,9 +413,6 @@
     self.m_TabBarController = tabBarController;
     
     self.window.rootViewController = tabBarController;
-#if USE_TEST_HELP
-    [self showFPS];
-#endif
 }
 
 

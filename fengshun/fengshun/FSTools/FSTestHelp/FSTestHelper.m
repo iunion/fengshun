@@ -37,15 +37,15 @@
     return sharedTestHelper;
 }
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     
     if (self)
     {
-        //iConsole初始化，deviceShakeToShow(摇动开启)默认设为NO，开启请设为YES
-        [iConsole sharedConsole].delegate = self;
-        [iConsole sharedConsole].deviceShakeToShow = YES;
+        // BMConsole初始化，deviceShakeToShow(摇动开启)默认设为NO，开启请设为YES
+        [BMConsole sharedConsole].delegate = self;
+        [BMConsole sharedConsole].deviceShakeToShow = YES;
         
         [self setDebugServer];
     }
@@ -94,7 +94,13 @@
 #endif
 }
 
-#pragma mark - iConsole Delegate
+#pragma mark - BMConsole Delegate
+
+// 按键事件
+- (void)handleConsoleButton:(UIButton *)sender
+{
+    
+}
 
 - (void)handleConsoleCommand:(NSString *)command
 {
@@ -103,80 +109,74 @@
 
 - (void)handleConsoleCommand:(NSString *)command withParameter:(id)parameter
 {
-    [iConsole log:@"\n==========================================="];
+    [BMConsole log:@"\n==========================================="];
     
     if ([command isEqualToString:@"version"])   // 显示app版本信息
 	{
-        [iConsole log:@"%@ version %@ - build %@",
+        [BMConsole log:@"%@ version %@ - build %@",
          [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"],
          [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],
          [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]];
 	}
-    else if ([command isEqualToString:@"cl"])
+    else if ([command isEqualToString:@"cl"])   //清除存储并刷新屏幕
     {
-        [iConsole clean];
+        [BMConsole clean];
     }
-    else if ([command isEqualToString:@"clear"])
+    else if ([command isEqualToString:@"clear"])    // 清除屏幕
     {
-        [iConsole clear];
+        [BMConsole clear];
     }
     else if ([command isEqualToString:@"log"])  // 打印所有log
     {
-        aslmsg q, m;
-        int i;
-        const char *key, *val;
-        q = asl_new(ASL_TYPE_QUERY);
-        asl_set_query(q, ASL_KEY_SENDER,"Home", ASL_QUERY_OP_EQUAL);
-        aslresponse r = asl_search(NULL, q);
-        
-        //while (NULL != (m = aslresponse_next(r)))
-        while (NULL != (m = asl_next(r)))
+        static NSString *pidString = nil;
+        if (!pidString) {
+            pidString = @([[NSProcessInfo processInfo] processIdentifier]).stringValue;
+        }
+
+        asl_object_t query, m;
+        query = asl_new(ASL_TYPE_QUERY);
+        asl_set_query(query, ASL_KEY_PID, pidString.UTF8String, ASL_QUERY_OP_EQUAL);
+
+        aslresponse response = asl_search(NULL, query);
+         while (NULL != (m = asl_next(response)))
         {
-            NSMutableDictionary *tmpDict = [NSMutableDictionary dictionary];
-            
-            for (i = 0; (NULL != (key = asl_key(m, i))); i++)
+            const char *messageText = asl_get(m, ASL_KEY_MSG);
+            if (messageText)
             {
-                NSString *keyString = [NSString stringWithUTF8String:(char *)key];
-                if ([keyString isEqualToString:@"Message"])
-                {
-                    val = asl_get(m, key);
-                    
-                    NSString *string = val?[NSString stringWithUTF8String:val]:@"";
-                    [tmpDict setObject:string forKey:keyString];
-                }
+                NSString *text = [NSString stringWithUTF8String:messageText];
+                text = [NSString bm_convertUnicode:text];
+                
+                [BMConsole log:@"%@", [self getObjectDescription:text andIndent:0]];
             }
-            
-            [iConsole log:@"%@", [self getObjectDescription:tmpDict andIndent:0]];
         }
         
-        //aslresponse_free(r);
-        asl_release(r);
+        asl_release(response);
     }
     else if ([command isEqualToString:@"fps"]) // help命令
     {
         UIWindow *window = [UIApplication sharedApplication].delegate.window;
-        if ([window isKindOfClass:[iConsoleWindow class]])
+        if ([window isKindOfClass:[BMConsoleWindow class]])
         {
-            iConsoleWindow *consoleWindow = (iConsoleWindow *)window;
+            BMConsoleWindow *consoleWindow = (BMConsoleWindow *)window;
             [consoleWindow.fpsLabel bm_bringToFront];
             consoleWindow.fpsLabel.hidden = !consoleWindow.fpsLabel.hidden;
             if (consoleWindow.fpsLabel.hidden)
             {
-                [iConsole log:@"fps监测关闭"];
+                [BMConsole log:@"fps监测关闭"];
             }
             else
             {
-                [iConsole log:@"fps监测打开"];
+                [BMConsole log:@"fps监测打开"];
             }
         }
     }
     else if ([command isEqualToString:@"api"])  // 查看API路径情况
     {
-        [iConsole log:@"当前API运行环境是'%@'", FS_URL_SERVER];
-        [iConsole log:@"当前H5运行环境是'%@'", FS_H5_SERVER];
-        [iConsole log:@"当前文件链接地址是'%@'", FS_FILE_ADRESS];
+        [BMConsole log:@"当前API运行环境是'%@'", FS_URL_SERVER];
+        [BMConsole log:@"当前H5运行环境是'%@'", FS_H5_SERVER];
+        [BMConsole log:@"当前文件链接地址是'%@'", FS_FILE_ADRESS];
 #ifdef FSVIDEO_ON
-        [iConsole log:@"当前腾讯RTC环境是'%@ %@'", @(FS_ILiveSDKAPPID), @(FS_ILiveAccountType)];
+        [FSConsole log:@"当前腾讯RTC环境是'%@ %@'", @(FS_ILiveSDKAPPID), @(FS_ILiveAccountType)];
 #endif
     }
     else if ([command isEqualToString:@"www"] || [command isEqualToString:@"on"])
@@ -194,7 +194,7 @@
         [self initILiveSDK];
 #endif
         
-        [iConsole log:@"当前api已经变更为线上"];
+        [BMConsole log:@"当前api已经变更为线上"];
     }
     else if ([command isEqualToString:@"dev"])
     {
@@ -211,7 +211,7 @@
         [self initILiveSDK];
 #endif
         
-        [iConsole log:@"当前api已经变更为'开发'"];
+        [BMConsole log:@"当前api已经变更为'开发'"];
     }
     else if ([command isEqualToString:@"test"])
     {
@@ -228,7 +228,12 @@
         [self initILiveSDK];
 #endif
 
-        [iConsole log:@"当前api已经变更为'测试'"];
+        [BMConsole log:@"当前api已经变更为'测试'"];
+    }
+    else if ([command rangeOfString:@"email:"].length > 0)  // 设置反馈邮件
+    {
+        [BMConsole sharedConsole].logSubmissionEmail = [command stringByReplacingCharactersInRange:[command rangeOfString:@"email:"] withString:@""];
+        [BMConsole log:@"变更email: %@", [BMConsole sharedConsole].logSubmissionEmail];
     }
     else if ([command isEqualToString:@"help"]) // help命令
     {
@@ -243,12 +248,7 @@
         [helpStr appendString:@"(09) 'test' 切换API环境到测试\n"];
         [helpStr appendString:@"(10) 'fps' 显示隐藏FPS监测\n"];
 
-        [iConsole log:@"%@", helpStr];
-    }
-    else if ([command rangeOfString:@"email:"].length > 0)  // 设置反馈邮件
-    {
-        [iConsole sharedConsole].logSubmissionEmail = [command stringByReplacingCharactersInRange:[command rangeOfString:@"email:"] withString:@""];
-        [iConsole log:@"%@", [iConsole sharedConsole].logSubmissionEmail];
+        [BMConsole log:@"%@", helpStr];
     }
     else
     {

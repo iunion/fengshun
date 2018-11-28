@@ -122,7 +122,7 @@
 
 + (NSArray<NSString *> *)supportedSQLiteExtensions
 {
-#if FLEX_FS
+#if FLEX_BM
     return @[@"db", @"sqlite", @"sqlite3", @"dat"];
 #else
     return @[@"db", @"sqlite", @"sqlite3"];

@@ -37,14 +37,21 @@ https://github.com/nicklockwood/iConsole
 #endif
 
  */
-#import "iConsole.h"
 
+#import "BMConsole.h"
 
-@interface FSTestHelper : NSObject<iConsoleDelegate>
+NS_ASSUME_NONNULL_BEGIN
 
-+ (FSTestHelper *)sharedInstance;
+@interface FSTestHelper : NSObject <BMConsoleDelegate>
+
 @property (strong, nonatomic) NSString *preCommand;
+
++ (instancetype)sharedInstance;
 
 @end
 
+NS_ASSUME_NONNULL_END
+
 #endif
+
+

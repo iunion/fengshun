@@ -17,7 +17,19 @@
  The maximum fps on iPhone is 59.97.
  The maxmium fps on iPad is 60.0.
  */
+
+typedef NS_OPTIONS(NSUInteger, YYFPSLabelType)
+{
+    YYFPSLabelType_FPS = 0,
+    YYFPSLabelType_CPU = 1 << 0,
+    YYFPSLabelType_MEM = 1 << 1,
+    YYFPSLabelType_ALL = YYFPSLabelType_CPU | YYFPSLabelType_MEM,
+};
+
+
 @interface YYFPSLabel : UILabel
+
+@property (nonatomic, assign) YYFPSLabelType type;
 
 @end
 

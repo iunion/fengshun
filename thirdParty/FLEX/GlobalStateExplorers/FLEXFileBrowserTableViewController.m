@@ -13,7 +13,7 @@
 #import "FLEXImagePreviewViewController.h"
 #import "FLEXTableListViewController.h"
 
-#if FLEX_FS
+#if FLEX_BM
 #import "PLDictionaryTableViewController.h"
 #import "PLArrayTableViewController.h"
 #endif
@@ -211,7 +211,7 @@
             } else if ([pathExtension isEqualToString:@"json"]) {
                 prettyString = [FLEXUtility prettyJSONStringFromData:[NSData dataWithContentsOfFile:fullPath]];
             } else if ([pathExtension isEqualToString:@"plist"]) {
-#if FLEX_FS
+#if FLEX_BM
                 NSMutableArray *dataArray = [NSMutableArray arrayWithContentsOfFile:fullPath];
                 if (dataArray)
                 {
@@ -248,7 +248,7 @@
             else {
                 NSString *fileString = [NSString stringWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:NULL];
                 if ([fileString length] > 0) {
-#if FLEX_FS
+#if FLEX_BM
                     drillInViewController = [[FLEXWebViewController alloc] initWithText:fileString filePath:fullPath];
 #else
                     drillInViewController = [[FLEXWebViewController alloc] initWithText:fileString];

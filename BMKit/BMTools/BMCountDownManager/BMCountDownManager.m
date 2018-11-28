@@ -72,7 +72,7 @@
     return (countDownItem.timeInterval > 0);
 }
 
-- (void)startCountDownWithIdentifier:(id)identifier processBlock:(nullable BMCountDownProcessBlock)processBlock
+- (void)startCountDownWithIdentifier:(id)identifier processBlock:(BMCountDownProcessBlock)processBlock
 {
     [self startCountDownWithIdentifier:identifier timeInterval:BMCountDown_DefaultTimeInterval processBlock:processBlock];
 }

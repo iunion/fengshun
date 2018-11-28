@@ -13,7 +13,7 @@
 - (id)initWithURL:(NSURL *)url;
 - (id)initWithText:(NSString *)text;
 
-#if FLEX_FS
+#if FLEX_BM
 - (id)initWithText:(NSString *)text filePath:(NSString *)filePath;
 #endif
 

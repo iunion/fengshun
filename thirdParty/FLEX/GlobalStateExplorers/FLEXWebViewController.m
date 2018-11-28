@@ -14,7 +14,7 @@
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) NSString *originalText;
 
-#if FLEX_FS
+#if FLEX_BM
 @property (nonatomic, strong) NSString *filePath;
 
 @property (nonatomic, strong) UIDocumentInteractionController *document;
@@ -47,7 +47,7 @@
     return self;
 }
 
-#if FLEX_FS
+#if FLEX_BM
 - (id)initWithText:(NSString *)text filePath:(NSString *)filePath
 {
     self = [self initWithNibName:nil bundle:nil];
@@ -78,7 +78,7 @@
         _webView.delegate = nil;
     }
     
-#if FLEX_FS
+#if FLEX_BM
     self.document.delegate = nil;
 #endif
 }
@@ -91,7 +91,7 @@
     self.webView.frame = self.view.bounds;
     self.webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
-#if FLEX_FS
+#if FLEX_BM
     NSMutableArray *itemArray = [[NSMutableArray alloc] initWithCapacity:0];
     if ([self.originalText length] > 0) {
         //self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Copy" style:UIBarButtonItemStylePlain target:self action:@selector(copyButtonTapped:)];
@@ -116,7 +116,7 @@
     [[UIPasteboard generalPasteboard] setString:self.originalText];
 }
 
-#if FLEX_FS
+#if FLEX_BM
 - (void)shareButtonTapped:(id)sender
 {
     NSURL *url = [NSURL fileURLWithPath:self.filePath];
@@ -153,7 +153,7 @@
 }
 
 
-#if FLEX_FS
+#if FLEX_BM
 #pragma mark - UIDocumentInteractionControllerDelegate
 
 - (UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller
