@@ -496,6 +496,12 @@
 		876BB7B821AE358300FC205D /* GTMStackTrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 876BB7B321AE358200FC205D /* GTMStackTrace.m */; };
 		876BB7B921AE358300FC205D /* YYFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 876BB7B621AE358200FC205D /* YYFPSLabel.m */; };
 		876BB7BA21AE358300FC205D /* YYFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 876BB7B621AE358200FC205D /* YYFPSLabel.m */; };
+		876BB7BF21AE864C00FC205D /* BMTestAlignView.m in Sources */ = {isa = PBXBuildFile; fileRef = 876BB7BE21AE864C00FC205D /* BMTestAlignView.m */; };
+		876BB7C021AE864C00FC205D /* BMTestAlignView.m in Sources */ = {isa = PBXBuildFile; fileRef = 876BB7BE21AE864C00FC205D /* BMTestAlignView.m */; };
+		876BB7C321AE86E200FC205D /* BMTestAlignManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 876BB7C221AE86E200FC205D /* BMTestAlignManager.m */; };
+		876BB7C421AE86E200FC205D /* BMTestAlignManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 876BB7C221AE86E200FC205D /* BMTestAlignManager.m */; };
+		876BB7C721AE923A00FC205D /* testalignsight_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 876BB7C621AE923A00FC205D /* testalignsight_icon@2x.png */; };
+		876BB7C821AE923A00FC205D /* testalignsight_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 876BB7C621AE923A00FC205D /* testalignsight_icon@2x.png */; };
 		87741FDC214A0C8A00F72427 /* FSServiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87741FDA214A0C8A00F72427 /* FSServiceVC.m */; };
 		87741FDD214A0C8A00F72427 /* FSServiceVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87741FDB214A0C8A00F72427 /* FSServiceVC.xib */; };
 		87741FE3214A132200F72427 /* user_wechaticon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87741FDF214A132200F72427 /* user_wechaticon@3x.png */; };
@@ -3053,6 +3059,11 @@
 		876BB7B321AE358200FC205D /* GTMStackTrace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMStackTrace.m; sourceTree = "<group>"; };
 		876BB7B521AE358200FC205D /* YYFPSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYFPSLabel.h; sourceTree = "<group>"; };
 		876BB7B621AE358200FC205D /* YYFPSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYFPSLabel.m; sourceTree = "<group>"; };
+		876BB7BD21AE864C00FC205D /* BMTestAlignView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMTestAlignView.h; sourceTree = "<group>"; };
+		876BB7BE21AE864C00FC205D /* BMTestAlignView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMTestAlignView.m; sourceTree = "<group>"; };
+		876BB7C121AE86E200FC205D /* BMTestAlignManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMTestAlignManager.h; sourceTree = "<group>"; };
+		876BB7C221AE86E200FC205D /* BMTestAlignManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMTestAlignManager.m; sourceTree = "<group>"; };
+		876BB7C621AE923A00FC205D /* testalignsight_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "testalignsight_icon@2x.png"; sourceTree = "<group>"; };
 		87741FD72149FF5F00F72427 /* ExampleApp.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = ExampleApp.html; path = "../../../../gitHubs/WebViewJavascriptBridge/Example Apps/ExampleApp.html"; sourceTree = "<group>"; };
 		87741FD9214A0C8A00F72427 /* FSServiceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSServiceVC.h; sourceTree = "<group>"; };
 		87741FDA214A0C8A00F72427 /* FSServiceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSServiceVC.m; sourceTree = "<group>"; };
@@ -6022,6 +6033,7 @@
 			children = (
 				876BB7B121AE358200FC205D /* GTM */,
 				876BB7B421AE358200FC205D /* YYFPSLabel */,
+				876BB7BC21AE487200FC205D /* BMTestViewAlign */,
 				876BB7AE21AE34E700FC205D /* BMConsole.h */,
 				876BB7AD21AE34E700FC205D /* BMConsole.m */,
 			);
@@ -6044,6 +6056,26 @@
 				876BB7B621AE358200FC205D /* YYFPSLabel.m */,
 			);
 			path = YYFPSLabel;
+			sourceTree = "<group>";
+		};
+		876BB7BC21AE487200FC205D /* BMTestViewAlign */ = {
+			isa = PBXGroup;
+			children = (
+				876BB7C521AE923A00FC205D /* images */,
+				876BB7BD21AE864C00FC205D /* BMTestAlignView.h */,
+				876BB7BE21AE864C00FC205D /* BMTestAlignView.m */,
+				876BB7C121AE86E200FC205D /* BMTestAlignManager.h */,
+				876BB7C221AE86E200FC205D /* BMTestAlignManager.m */,
+			);
+			path = BMTestViewAlign;
+			sourceTree = "<group>";
+		};
+		876BB7C521AE923A00FC205D /* images */ = {
+			isa = PBXGroup;
+			children = (
+				876BB7C621AE923A00FC205D /* testalignsight_icon@2x.png */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 		87741FE8214A37C200F72427 /* mine */ = {
@@ -7999,6 +8031,7 @@
 				DB48744D214B887F00AB0805 /* scanfile_camera@2x.png in Resources */,
 				87741FE3214A132200F72427 /* user_wechaticon@3x.png in Resources */,
 				87BC9E3521548E0D000F2011 /* fsintroguide_640x1136_3@2x.png in Resources */,
+				876BB7C721AE923A00FC205D /* testalignsight_icon@2x.png in Resources */,
 				87E7C6C92150C10200F7AB14 /* empty_collecticon@2x.png in Resources */,
 				8730B11B2148E5D1004331A9 /* fsfreshidle_icon16@2x.png in Resources */,
 				DB48743E214A5CCD00AB0805 /* FSFileScanVC.xib in Resources */,
@@ -8267,6 +8300,7 @@
 				87E7C52621509AB000F7AB14 /* login_checked@3x.png in Resources */,
 				87E7C52921509AB000F7AB14 /* login_closeeye@2x.png in Resources */,
 				ADC591F9215395100054BE72 /* fstab_btn4_highIcon@3x.png in Resources */,
+				876BB7C821AE923A00FC205D /* testalignsight_icon@2x.png in Resources */,
 				87BC9E3C2154913B000F2011 /* fsintroguide_640x960_2@2x.png in Resources */,
 				87E7C52A21509AB000F7AB14 /* video_unselect@3x.png in Resources */,
 				87E7C52B21509AB000F7AB14 /* videocall_chat_voice@3x.png in Resources */,
@@ -8684,6 +8718,7 @@
 				87426AED2135348D003C52F6 /* FMDatabase.m in Sources */,
 				8730B06E2140FFA3004331A9 /* NSString+DTUTI.m in Sources */,
 				8730B0552140FFA3004331A9 /* DTHTMLParserNode.m in Sources */,
+				876BB7C321AE86E200FC205D /* BMTestAlignManager.m in Sources */,
 				87D20B052139492F001EDD60 /* WebViewJavascriptBridge.m in Sources */,
 				87E7C69D2150A4E500F7AB14 /* TOCropScrollView.m in Sources */,
 				8730B08A2140FFA3004331A9 /* UIColor+DTDebug.m in Sources */,
@@ -8854,6 +8889,7 @@
 				874269C4212E9B78003C52F6 /* BMFreshGifHeader.m in Sources */,
 				874268EF212E7E36003C52F6 /* UIDevice+BMCategory.m in Sources */,
 				87D20AC1213920E2001EDD60 /* FLEXArgumentInputStructView.m in Sources */,
+				876BB7BF21AE864C00FC205D /* BMTestAlignView.m in Sources */,
 				874269D5212E9E21003C52F6 /* BMFreshBackContainerFooterView.m in Sources */,
 				874268EA212E7E36003C52F6 /* UIView+BMNibLoading.m in Sources */,
 				DB2656C721461A9F002ED713 /* FSSearchResultVC.m in Sources */,
@@ -9767,6 +9803,7 @@
 				87E7C48021509AB000F7AB14 /* DTAlertView.m in Sources */,
 				87E7C48121509AB000F7AB14 /* FLEXViewControllerExplorerViewController.m in Sources */,
 				87E7C48221509AB000F7AB14 /* NSObject+MJKeyValue.m in Sources */,
+				876BB7C021AE864C00FC205D /* BMTestAlignView.m in Sources */,
 				87E7C48321509AB000F7AB14 /* BMAlertView.m in Sources */,
 				87E7C48421509AB000F7AB14 /* UIScrollView+BMEmpty.m in Sources */,
 				87E7C48521509AB000F7AB14 /* FSEditorVC.m in Sources */,
@@ -9794,6 +9831,7 @@
 				87E7C49721509AB000F7AB14 /* UIFont+DTCoreText.m in Sources */,
 				87E7C49821509AB000F7AB14 /* DTLog.m in Sources */,
 				87E7C49921509AB000F7AB14 /* FSFileScanVC.m in Sources */,
+				876BB7C421AE86E200FC205D /* BMTestAlignManager.m in Sources */,
 				87E7C49B21509AB000F7AB14 /* NSAttributedString+SmallCaps.m in Sources */,
 				87E7C49C21509AB000F7AB14 /* FLEXArgumentInputDateView.m in Sources */,
 				87E7C49D21509AB000F7AB14 /* NSURL+DTUnshorten.m in Sources */,

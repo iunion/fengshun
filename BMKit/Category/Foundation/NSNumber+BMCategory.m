@@ -25,12 +25,12 @@
 
 - (NSString *)bm_stringWithNormalDecimalStyle
 {
-        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
     numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
     numberFormatter.maximumFractionDigits = 2;
     numberFormatter.minimumFractionDigits = 0;
     
-        return [self bm_stringWithNumberFormat:numberFormatter];
+    return [self bm_stringWithNumberFormat:numberFormatter];
 }
 
 - (NSString *)bm_stringWithNoStyleDecimalScale:(short)scale

@@ -15,6 +15,9 @@
 
 #import "FLEX.h"
 
+#import "BMTestAlignManager.h"
+#import "BMCheckBoxLabel.h"
+
 
 #define TOOLBAR_GAP 5.0f
 
@@ -562,8 +565,80 @@ static void exceptionHandler(NSException *exception)
     }
     
     NSInteger k = self.environmentArray.count % 3 ? 1 : 0;
-    self.environmentScrollView.contentSize =  CGSizeMake(UI_SCREEN_WIDTH, (self.environmentArray.count/3+k)*36+10);
+    CGFloat contentHeight = (self.environmentArray.count/3+k)*36+10;
     
+    // fps设置
+    UILabel *label = [UILabel bm_labelWithFrame:CGRectMake(10.0f, contentHeight+6.0f, 200.0f, 30.0f) text:@"FPS监测" fontSize:14.0f color:[UIColor whiteColor] alignment:NSTextAlignmentLeft lines:1];
+    [self.environmentScrollView addSubview:label];
+
+    UISwitch *switchView = [[UISwitch alloc] init];
+    switchView.exclusiveTouch = YES;
+    [switchView addTarget:self action:@selector(fpsSwitchValueDidChange:) forControlEvents:UIControlEventValueChanged];
+    [self.environmentScrollView addSubview:switchView];
+    switchView.bm_top = contentHeight + 6.0f;
+    switchView.bm_left = label.bm_right+10.0f;
+    switchView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+    
+    YYFPSLabel *fpsLabel = nil;
+    UIWindow *window = [UIApplication sharedApplication].delegate.window;
+    if ([window isKindOfClass:[BMConsoleWindow class]])
+    {
+        BMConsoleWindow *consoleWindow = (BMConsoleWindow *)window;
+        fpsLabel = consoleWindow.fpsLabel;
+        [fpsLabel bm_bringToFront];
+        switchView.on = !fpsLabel.hidden;
+    }
+    
+    // CPU
+    BMCheckBoxLabel *checkBoxLabel1 = [[BMCheckBoxLabel alloc] initWithFrame:CGRectMake(15.0f, label.bm_bottom, 100, 30) checkWidth:0 labelText:@"监测CPU" useGesture:NO];
+    checkBoxLabel1.labelTextCheckedColor = [UIColor whiteColor];
+    checkBoxLabel1.labelTextUnCheckedColor = [UIColor whiteColor];
+    checkBoxLabel1.boxUnCheckedStrokeColor = [UIColor lightGrayColor];
+    checkBoxLabel1.boxCheckedStrokeColor = [UIColor whiteColor];
+    checkBoxLabel1.markCheckedStrokeColor = [UIColor whiteColor];
+    checkBoxLabel1.verticallyType = BMCheckBoxVerticallyType_Center;
+    checkBoxLabel1.tag = 1;
+    [checkBoxLabel1 addTarget:self action:@selector(fpsTypeValueDidChange:) forControlEvents:UIControlEventValueChanged];
+    checkBoxLabel1.enabled = NO;
+    [self.environmentScrollView addSubview:checkBoxLabel1];
+    
+    // Mem
+    BMCheckBoxLabel *checkBoxLabel2 = [[BMCheckBoxLabel alloc] initWithFrame:CGRectMake(125.0f, label.bm_bottom, 100, 30) checkWidth:0 labelText:@"监测内存" useGesture:NO];
+    checkBoxLabel2.labelTextCheckedColor = [UIColor whiteColor];
+    checkBoxLabel2.labelTextUnCheckedColor = [UIColor whiteColor];
+    checkBoxLabel2.boxUnCheckedStrokeColor = [UIColor lightGrayColor];
+    checkBoxLabel2.boxCheckedStrokeColor = [UIColor whiteColor];
+    checkBoxLabel2.markCheckedStrokeColor = [UIColor whiteColor];
+    checkBoxLabel2.verticallyType = BMCheckBoxVerticallyType_Center;
+    checkBoxLabel2.tag = 2;
+    [checkBoxLabel2 addTarget:self action:@selector(fpsTypeValueDidChange:) forControlEvents:UIControlEventValueChanged];
+    checkBoxLabel2.enabled = NO;
+    [self.environmentScrollView addSubview:checkBoxLabel2];
+    
+    if (fpsLabel && !fpsLabel.hidden)
+    {
+        checkBoxLabel1.enabled = YES;
+        checkBoxLabel1.checkState = (fpsLabel.type & YYFPSLabelType_CPU) > 0;
+
+        checkBoxLabel2.enabled = YES;
+        checkBoxLabel2.checkState = (fpsLabel.type & YYFPSLabelType_MEM) > 0;
+    }
+    
+    // 标尺设置
+    label = [UILabel bm_labelWithFrame:CGRectMake(10.0f, checkBoxLabel1.bm_bottom+6.0f, 200.0f, 30.0f) text:@"测量标尺" fontSize:14.0f color:[UIColor whiteColor] alignment:NSTextAlignmentLeft lines:1];
+    [self.environmentScrollView addSubview:label];
+    
+    switchView = [[UISwitch alloc] init];
+    switchView.exclusiveTouch = YES;
+    [switchView addTarget:self action:@selector(alignSwitchValueDidChange:) forControlEvents:UIControlEventValueChanged];
+    [self.environmentScrollView addSubview:switchView];
+    switchView.bm_top = checkBoxLabel1.bm_bottom + 6.0f;
+    switchView.bm_left = label.bm_right+10.0f;
+    switchView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+    switchView.on = [BMConsole isShowAlign];
+
+    self.environmentScrollView.contentSize =  CGSizeMake(UI_SCREEN_WIDTH, checkBoxLabel1.bm_bottom+10.0f);
+                                                         
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.25f];
     self.environmentBgView.bm_top = UI_SCREEN_HEIGHT-300;
@@ -598,6 +673,50 @@ static void exceptionHandler(NSException *exception)
     }
     
     [self environmentCloseAction:sender];
+}
+
+- (void)fpsSwitchValueDidChange:(UISwitch *)switchView
+{
+    [self.delegate handleConsoleCommand:@"fps"];
+}
+
+- (void)fpsTypeValueDidChange:(BMCheckBoxLabel *)checkBoxLabel
+{
+    YYFPSLabel *fpsLabel = nil;
+    UIWindow *window = [UIApplication sharedApplication].delegate.window;
+    if ([window isKindOfClass:[BMConsoleWindow class]])
+    {
+        BMConsoleWindow *consoleWindow = (BMConsoleWindow *)window;
+        fpsLabel = consoleWindow.fpsLabel;
+    }
+    
+    if (checkBoxLabel.tag == 1)
+    {
+        if (checkBoxLabel.checkState)
+        {
+            fpsLabel.type |= YYFPSLabelType_CPU;
+        }
+        else
+        {
+            fpsLabel.type &= ~YYFPSLabelType_CPU;
+        }
+    }
+    else if (checkBoxLabel.tag == 2)
+    {
+        if (checkBoxLabel.checkState)
+        {
+            fpsLabel.type |= YYFPSLabelType_MEM;
+        }
+        else
+        {
+            fpsLabel.type &= ~YYFPSLabelType_MEM;
+        }
+    }
+}
+
+- (void)alignSwitchValueDidChange:(UISwitch *)switchView
+{
+    [self.delegate handleConsoleCommand:@"align"];
 }
 
 - (void)infoAction
@@ -1102,11 +1221,38 @@ static void exceptionHandler(NSException *exception)
 + (void)show
 {
     [[BMConsole sharedConsole] showConsole];
+    
+    UIWindow *window = [UIApplication sharedApplication].delegate.window;
+    if ([window isKindOfClass:[BMConsoleWindow class]])
+    {
+        BMConsoleWindow *consoleWindow = (BMConsoleWindow *)window;
+        [consoleWindow.fpsLabel bm_bringToFront];
+    }
+    
+    if ([BMConsole isShowAlign])
+    {
+        [[BMTestAlignManager shareInstance] show];
+    }
 }
 
 + (void)hide
 {
     [[BMConsole sharedConsole] hideConsole];
+}
+
++ (void)showAlign
+{
+    [[BMTestAlignManager shareInstance] show];
+}
+
++ (void)closeAlign
+{
+    [[BMTestAlignManager shareInstance] close];
+}
+
++ (BOOL)isShowAlign
+{
+    return [[BMTestAlignManager shareInstance] isShow];
 }
 
 @end

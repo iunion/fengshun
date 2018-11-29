@@ -18,6 +18,9 @@
 #import <ILiveSDK/ILiveCoreHeader.h>
 #endif
 
+#import "AppDelegate.h"
+#import "FSWebViewController.h"
+
 @implementation FSTestHelper
 
 - (void)dealloc
@@ -109,6 +112,11 @@
 
 - (void)handleConsoleCommand:(NSString *)command withParameter:(id)parameter
 {
+    if (![command bm_isNotEmpty])
+    {
+        return;
+    }
+    
     [BMConsole log:@"\n==========================================="];
     
     if ([command isEqualToString:@"version"])   // 显示app版本信息
@@ -235,6 +243,18 @@
         [BMConsole sharedConsole].logSubmissionEmail = [command stringByReplacingCharactersInRange:[command rangeOfString:@"email:"] withString:@""];
         [BMConsole log:@"变更email: %@", [BMConsole sharedConsole].logSubmissionEmail];
     }
+    else if ([command isEqualToString:@"align"])
+    {
+        [BMConsole hide];
+        if ([BMConsole isShowAlign])
+        {
+            [BMConsole closeAlign];
+        }
+        else
+        {
+            [BMConsole showAlign];
+        }
+    }
     else if ([command isEqualToString:@"help"]) // help命令
     {
         NSMutableString *helpStr = [[NSMutableString alloc] init];
@@ -252,6 +272,20 @@
     }
     else
     {
+        if (![command containsString:@"://"])
+        {
+            command = [NSString stringWithFormat:@"http://%@", command];
+        }
+        
+        if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:command]])
+        {
+            [BMConsole hide];
+            
+            FSWebViewController *vc = [[FSWebViewController alloc] initWithTitle:nil url:command];
+            [[GetAppDelegate.m_TabBarController getCurrentViewController].navigationController pushViewController:vc animated:YES];
+            
+            [BMConsole log:@"浏览 %@", command];
+        }
     }
     
     self.preCommand = command;

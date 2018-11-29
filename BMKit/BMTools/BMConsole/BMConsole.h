@@ -110,6 +110,12 @@ typedef NS_ENUM(NSUInteger, BMConsoleLogLevel)
 + (void)show;
 + (void)hide;
 
+
++ (void)showAlign;
++ (void)closeAlign;
+
++ (BOOL)isShowAlign;
+
 @end
 
 
