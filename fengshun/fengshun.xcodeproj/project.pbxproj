@@ -10147,7 +10147,8 @@
 				ENABLE_BITCODE = NO;
 				EXCLUDED_SOURCE_FILE_NAMES = (
 					"FLEX*",
-					"iConsole*",
+					"BMConsole*",
+					"BMTest*",
 					"FSTest*",
 					"YYFPS*",
 					"GTMStackTrace*",
@@ -10323,7 +10324,8 @@
 				ENABLE_BITCODE = NO;
 				EXCLUDED_SOURCE_FILE_NAMES = (
 					"FLEX*",
-					"iConsole*",
+					"BMConsole*",
+					"BMTest*",
 					"FSTest*",
 					"YYFPS*",
 					"GTMStackTrace*",
