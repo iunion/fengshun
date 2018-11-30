@@ -243,7 +243,8 @@
         [BMConsole sharedConsole].logSubmissionEmail = [command stringByReplacingCharactersInRange:[command rangeOfString:@"email:"] withString:@""];
         [BMConsole log:@"变更email: %@", [BMConsole sharedConsole].logSubmissionEmail];
     }
-    else if ([command isEqualToString:@"align"])
+    // 标尺
+    else if ([command isEqualToString:@"al"] || [command isEqualToString:@"align"])
     {
         [BMConsole hide];
         if ([BMConsole isShowAlign])
@@ -255,7 +256,20 @@
             [BMConsole showAlign];
         }
     }
-    else if ([command isEqualToString:@"help"]) // help命令
+    // 颜色提取
+    else if ([command isEqualToString:@"cp"] || [command isEqualToString:@"color"])
+    {
+        [BMConsole hide];
+        if ([BMConsole isShowColorPicker])
+        {
+            [BMConsole closeColorPicker];
+        }
+        else
+        {
+            [BMConsole showColorPicker];
+        }
+    }
+    else if ([command isEqualToString:@"h"] || [command isEqualToString:@"help"]) // help命令
     {
         NSMutableString *helpStr = [[NSMutableString alloc] init];
         [helpStr appendString:@"\n(01) 'help' 显示命令帮助文档\n"];
@@ -267,6 +281,8 @@
         [helpStr appendString:@"(08) 'dev' 切换API环境到开发\n"];
         [helpStr appendString:@"(09) 'test' 切换API环境到测试\n"];
         [helpStr appendString:@"(10) 'fps' 显示隐藏FPS监测\n"];
+        [helpStr appendString:@"(11) 'al' 显示隐藏标尺\n"];
+        [helpStr appendString:@"(12) 'cp' 显示隐藏颜色提取\n"];
 
         [BMConsole log:@"%@", helpStr];
     }

@@ -16,6 +16,7 @@
 #import "FLEX.h"
 
 #import "BMTestAlignManager.h"
+#import "BMTestColorPickerManager.h"
 #import "BMCheckBoxLabel.h"
 
 
@@ -303,6 +304,61 @@ static void exceptionHandler(NSException *exception)
     self.colorSetButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin;
     [self.colorSetButton bm_roundedRect:3.0f];
     [self.toolBar addSubview:self.colorSetButton];
+    
+    [self makeAdditionBtn];
+}
+
+- (void)makeAdditionBtn
+{
+    if (!self.commandArray)
+    {
+        self.commandArray = [[NSMutableArray alloc] initWithCapacity:4];
+        [self.commandArray addObject:[[BMConsoleEnvironment alloc] initWithTitle:@"当前" command:@"api"]];
+        [self.commandArray addObject:[[BMConsoleEnvironment alloc] initWithTitle:@"线上" command:@"on"]];
+        [self.commandArray addObject:[[BMConsoleEnvironment alloc] initWithTitle:@"开发" command:@"dev"]];
+        [self.commandArray addObject:[[BMConsoleEnvironment alloc] initWithTitle:@"测试" command:@"test"]];
+    }
+
+    for (NSInteger i=0; i<6 && i<self.commandArray.count; i++)
+    {
+        BMConsoleEnvironment *environment = self.commandArray[i];
+        
+        UIButton *itemButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        itemButton.exclusiveTouch = YES;
+        itemButton.frame = CGRectMake(TOOLBAR_GAP+(i%6)*(TOOL_BUTTON_WIDTH+TOOLBAR_GAP), self.inputField.bm_height+TOOLBAR_GAP*2 , TOOL_BUTTON_WIDTH, TOOL_BUTTON_HEIGHT);
+        
+        [itemButton setTitle:environment.title forState:UIControlStateNormal];
+        [itemButton setTitleColor:self.textColor forState:UIControlStateNormal];
+        [itemButton setTitleColor:[self.textColor colorWithAlphaComponent:0.5f] forState:UIControlStateHighlighted];
+        itemButton.backgroundColor = [UIColor bm_colorWithHex:0x666666];
+        itemButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+        itemButton.tag = i;
+        itemButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
+        [itemButton addTarget:self action:@selector(commandItemAction:) forControlEvents:UIControlEventTouchUpInside];
+        [itemButton bm_roundedRect:3.0f];
+        [self.toolBar addSubview:itemButton];
+    }
+}
+
+- (void)commandItemAction:(UIButton *)sender
+{
+    NSInteger index = sender.tag;
+    
+    BMConsoleEnvironment *environment = self.commandArray[index];
+    
+    if (self.delegate)
+    {
+        if ([self.delegate respondsToSelector:@selector(handleConsoleCommand:withParameter:)])
+        {
+            [self.delegate handleConsoleCommand:environment.command withParameter:environment.parameter];
+        }
+        else
+        {
+            [self.delegate handleConsoleCommand:environment.command];
+        }
+    }
+    
+    [self environmentCloseAction:sender];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -625,19 +681,32 @@ static void exceptionHandler(NSException *exception)
     }
     
     // 标尺设置
-    label = [UILabel bm_labelWithFrame:CGRectMake(10.0f, checkBoxLabel1.bm_bottom+6.0f, 200.0f, 30.0f) text:@"测量标尺" fontSize:14.0f color:[UIColor whiteColor] alignment:NSTextAlignmentLeft lines:1];
-    [self.environmentScrollView addSubview:label];
+    UILabel *alignLabel = [UILabel bm_labelWithFrame:CGRectMake(10.0f, checkBoxLabel1.bm_bottom+6.0f, 200.0f, 30.0f) text:@"测量标尺" fontSize:14.0f color:[UIColor whiteColor] alignment:NSTextAlignmentLeft lines:1];
+    [self.environmentScrollView addSubview:alignLabel];
     
     switchView = [[UISwitch alloc] init];
     switchView.exclusiveTouch = YES;
     [switchView addTarget:self action:@selector(alignSwitchValueDidChange:) forControlEvents:UIControlEventValueChanged];
     [self.environmentScrollView addSubview:switchView];
     switchView.bm_top = checkBoxLabel1.bm_bottom + 6.0f;
-    switchView.bm_left = label.bm_right+10.0f;
+    switchView.bm_left = alignLabel.bm_right+10.0f;
     switchView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
     switchView.on = [BMConsole isShowAlign];
 
-    self.environmentScrollView.contentSize =  CGSizeMake(UI_SCREEN_WIDTH, checkBoxLabel1.bm_bottom+10.0f);
+    // 颜色提取设置
+    UILabel *colorLabel = [UILabel bm_labelWithFrame:CGRectMake(10.0f, alignLabel.bm_bottom+12.0f, 200.0f, 30.0f) text:@"颜色提取" fontSize:14.0f color:[UIColor whiteColor] alignment:NSTextAlignmentLeft lines:1];
+    [self.environmentScrollView addSubview:colorLabel];
+    
+    switchView = [[UISwitch alloc] init];
+    switchView.exclusiveTouch = YES;
+    [switchView addTarget:self action:@selector(colorPickerSwitchValueDidChange:) forControlEvents:UIControlEventValueChanged];
+    [self.environmentScrollView addSubview:switchView];
+    switchView.bm_top = alignLabel.bm_bottom + 12.0f;
+    switchView.bm_left = colorLabel.bm_right+10.0f;
+    switchView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+    switchView.on = [BMConsole isShowColorPicker];
+    
+    self.environmentScrollView.contentSize =  CGSizeMake(UI_SCREEN_WIDTH, colorLabel.bm_bottom+10.0f);
                                                          
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.25f];
@@ -717,6 +786,11 @@ static void exceptionHandler(NSException *exception)
 - (void)alignSwitchValueDidChange:(UISwitch *)switchView
 {
     [self.delegate handleConsoleCommand:@"align"];
+}
+
+- (void)colorPickerSwitchValueDidChange:(UISwitch *)switchView
+{
+    [self.delegate handleConsoleCommand:@"cp"];
 }
 
 - (void)infoAction
@@ -1106,6 +1180,8 @@ static void exceptionHandler(NSException *exception)
 {
     animating = NO;
     [[[BMConsole sharedConsole] view] removeFromSuperview];
+    
+    [self environmentCloseAction:nil];
 }
 
 
@@ -1233,6 +1309,11 @@ static void exceptionHandler(NSException *exception)
     {
         [[BMTestAlignManager shareInstance] show];
     }
+
+    if ([BMConsole isShowColorPicker])
+    {
+        [[BMTestColorPickerManager shareInstance] show];
+    }
 }
 
 + (void)hide
@@ -1253,6 +1334,21 @@ static void exceptionHandler(NSException *exception)
 + (BOOL)isShowAlign
 {
     return [[BMTestAlignManager shareInstance] isShow];
+}
+
++ (void)showColorPicker
+{
+    [[BMTestColorPickerManager shareInstance] show];
+}
+
++ (void)closeColorPicker
+{
+    [[BMTestColorPickerManager shareInstance] close];
+}
+
++ (BOOL)isShowColorPicker
+{
+    return [[BMTestColorPickerManager shareInstance] isShow];
 }
 
 @end

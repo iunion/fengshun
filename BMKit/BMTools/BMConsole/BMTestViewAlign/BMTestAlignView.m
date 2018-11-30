@@ -31,9 +31,9 @@ static const CGFloat kImageIconSize = 32.0f;
 
 @implementation BMTestAlignView
 
-- (instancetype)init
+- (instancetype)initWithFrame:(CGRect)frame
 {
-    if (self = [super init])
+    if (self = [super initWithFrame:frame])
     {
         self.frame = CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT);
         self.backgroundColor = [UIColor clearColor];

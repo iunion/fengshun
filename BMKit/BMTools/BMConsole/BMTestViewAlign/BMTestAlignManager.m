@@ -8,6 +8,7 @@
 
 #import "BMTestAlignManager.h"
 #import "BMTestAlignView.h"
+#import "BMConsole.h"
 
 @interface BMTestAlignManager ()
 
@@ -33,7 +34,7 @@
     {
         self.alignView = [[BMTestAlignView alloc] init];
         UIWindow *delegateWindow = [[UIApplication sharedApplication].delegate window];
-        if (delegateWindow)
+        if (delegateWindow && [delegateWindow isKindOfClass:[BMConsoleWindow class]])
         {
             [delegateWindow addSubview:self.alignView];
         }

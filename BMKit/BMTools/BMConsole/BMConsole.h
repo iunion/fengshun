@@ -10,6 +10,7 @@
 
 #import <UIKit/UIKit.h>
 #import "YYFPSLabel.h"
+#import "BMTestColorPickerView.h"
 
 
 #define ICONSOLE_ADD_EXCEPTION_HANDLER 1 //add automatic crash logging
@@ -110,11 +111,13 @@ typedef NS_ENUM(NSUInteger, BMConsoleLogLevel)
 + (void)show;
 + (void)hide;
 
-
 + (void)showAlign;
 + (void)closeAlign;
-
 + (BOOL)isShowAlign;
+
++ (void)showColorPicker;
++ (void)closeColorPicker;
++ (BOOL)isShowColorPicker;
 
 @end
 

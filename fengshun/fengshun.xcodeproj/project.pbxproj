@@ -502,6 +502,14 @@
 		876BB7C421AE86E200FC205D /* BMTestAlignManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 876BB7C221AE86E200FC205D /* BMTestAlignManager.m */; };
 		876BB7C721AE923A00FC205D /* testalignsight_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 876BB7C621AE923A00FC205D /* testalignsight_icon@2x.png */; };
 		876BB7C821AE923A00FC205D /* testalignsight_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 876BB7C621AE923A00FC205D /* testalignsight_icon@2x.png */; };
+		876BB7D021AFDD2100FC205D /* BMTestColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 876BB7CF21AFDD2100FC205D /* BMTestColorPickerView.m */; };
+		876BB7D121AFDD2100FC205D /* BMTestColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 876BB7CF21AFDD2100FC205D /* BMTestColorPickerView.m */; };
+		876BB7D521AFE87700FC205D /* testcolorpalette@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 876BB7D321AFE87600FC205D /* testcolorpalette@2x.png */; };
+		876BB7D621AFE87700FC205D /* testcolorpalette@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 876BB7D321AFE87600FC205D /* testcolorpalette@2x.png */; };
+		876BB7D721AFE87700FC205D /* testcolorpicker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 876BB7D421AFE87600FC205D /* testcolorpicker@2x.png */; };
+		876BB7D821AFE87700FC205D /* testcolorpicker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 876BB7D421AFE87600FC205D /* testcolorpicker@2x.png */; };
+		876BB7DB21B0CD9800FC205D /* BMTestColorPickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 876BB7DA21B0CD9800FC205D /* BMTestColorPickerManager.m */; };
+		876BB7DC21B0CD9800FC205D /* BMTestColorPickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 876BB7DA21B0CD9800FC205D /* BMTestColorPickerManager.m */; };
 		87741FDC214A0C8A00F72427 /* FSServiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87741FDA214A0C8A00F72427 /* FSServiceVC.m */; };
 		87741FDD214A0C8A00F72427 /* FSServiceVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87741FDB214A0C8A00F72427 /* FSServiceVC.xib */; };
 		87741FE3214A132200F72427 /* user_wechaticon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87741FDF214A132200F72427 /* user_wechaticon@3x.png */; };
@@ -3064,6 +3072,12 @@
 		876BB7C121AE86E200FC205D /* BMTestAlignManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMTestAlignManager.h; sourceTree = "<group>"; };
 		876BB7C221AE86E200FC205D /* BMTestAlignManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMTestAlignManager.m; sourceTree = "<group>"; };
 		876BB7C621AE923A00FC205D /* testalignsight_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "testalignsight_icon@2x.png"; sourceTree = "<group>"; };
+		876BB7CE21AFDD2100FC205D /* BMTestColorPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMTestColorPickerView.h; sourceTree = "<group>"; };
+		876BB7CF21AFDD2100FC205D /* BMTestColorPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMTestColorPickerView.m; sourceTree = "<group>"; };
+		876BB7D321AFE87600FC205D /* testcolorpalette@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "testcolorpalette@2x.png"; sourceTree = "<group>"; };
+		876BB7D421AFE87600FC205D /* testcolorpicker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "testcolorpicker@2x.png"; sourceTree = "<group>"; };
+		876BB7D921B0CD9800FC205D /* BMTestColorPickerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMTestColorPickerManager.h; sourceTree = "<group>"; };
+		876BB7DA21B0CD9800FC205D /* BMTestColorPickerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMTestColorPickerManager.m; sourceTree = "<group>"; };
 		87741FD72149FF5F00F72427 /* ExampleApp.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = ExampleApp.html; path = "../../../../gitHubs/WebViewJavascriptBridge/Example Apps/ExampleApp.html"; sourceTree = "<group>"; };
 		87741FD9214A0C8A00F72427 /* FSServiceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSServiceVC.h; sourceTree = "<group>"; };
 		87741FDA214A0C8A00F72427 /* FSServiceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSServiceVC.m; sourceTree = "<group>"; };
@@ -6033,6 +6047,7 @@
 			children = (
 				876BB7B121AE358200FC205D /* GTM */,
 				876BB7B421AE358200FC205D /* YYFPSLabel */,
+				876BB7C921AFDCE100FC205D /* BMTestColorPicker */,
 				876BB7BC21AE487200FC205D /* BMTestViewAlign */,
 				876BB7AE21AE34E700FC205D /* BMConsole.h */,
 				876BB7AD21AE34E700FC205D /* BMConsole.m */,
@@ -6074,6 +6089,27 @@
 			isa = PBXGroup;
 			children = (
 				876BB7C621AE923A00FC205D /* testalignsight_icon@2x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		876BB7C921AFDCE100FC205D /* BMTestColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				876BB7D221AFE87600FC205D /* images */,
+				876BB7CE21AFDD2100FC205D /* BMTestColorPickerView.h */,
+				876BB7CF21AFDD2100FC205D /* BMTestColorPickerView.m */,
+				876BB7D921B0CD9800FC205D /* BMTestColorPickerManager.h */,
+				876BB7DA21B0CD9800FC205D /* BMTestColorPickerManager.m */,
+			);
+			path = BMTestColorPicker;
+			sourceTree = "<group>";
+		};
+		876BB7D221AFE87600FC205D /* images */ = {
+			isa = PBXGroup;
+			children = (
+				876BB7D321AFE87600FC205D /* testcolorpalette@2x.png */,
+				876BB7D421AFE87600FC205D /* testcolorpicker@2x.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -8036,6 +8072,7 @@
 				8730B11B2148E5D1004331A9 /* fsfreshidle_icon16@2x.png in Resources */,
 				DB48743E214A5CCD00AB0805 /* FSFileScanVC.xib in Resources */,
 				DBD4CE972141229400857DB3 /* home_message@3x.png in Resources */,
+				876BB7D721AFE87700FC205D /* testcolorpicker@2x.png in Resources */,
 				DBF7E18A21523CB6002CEDA4 /* search_lawTopic_1@3x.png in Resources */,
 				87BC9E2621548E0D000F2011 /* fsintroguide_1242x2208_1@2x.png in Resources */,
 				87E7C6C62150C10200F7AB14 /* empty_topicicon@3x.png in Resources */,
@@ -8111,6 +8148,7 @@
 				DBB73F81215CC01F00E65230 /* placeholder_banner@2x.png in Resources */,
 				AD2244DC213D158800F2DC47 /* FSForumDetailListCell.xib in Resources */,
 				87741FE6214A132200F72427 /* user_qqicon@3x.png in Resources */,
+				876BB7D521AFE87700FC205D /* testcolorpalette@2x.png in Resources */,
 				87D209732137F399001EDD60 /* FSUserMainVC.xib in Resources */,
 				AD2244A4213CD6C300F2DC47 /* Info.plist in Resources */,
 				AD9355A62137D24100735C2E /* TZImagePickerController.bundle in Resources */,
@@ -8468,6 +8506,7 @@
 				45F68F4C2150E58F00628DC8 /* empty_searchicon@2x.png in Resources */,
 				87E7C5A421509AB000F7AB14 /* login_unchecked@3x.png in Resources */,
 				87E7C5A621509AB000F7AB14 /* home_courses@2x.png in Resources */,
+				876BB7D621AFE87700FC205D /* testcolorpalette@2x.png in Resources */,
 				AD671245215A59DE0081E08D /* FSMyCommentCell.xib in Resources */,
 				DB7B1953215A0F1300EB585D /* search_openFilters@3x.png in Resources */,
 				87E7C5A721509AB000F7AB14 /* fsfreshfreshing_icon1@2x.png in Resources */,
@@ -8478,6 +8517,7 @@
 				87E7C5AC21509AB000F7AB14 /* videocall_default_head@2x.png in Resources */,
 				87E7C5AD21509AB000F7AB14 /* FSTextTypeCell.xib in Resources */,
 				87E7C5AE21509AB000F7AB14 /* fsfreshidle_icon5@2x.png in Resources */,
+				876BB7D821AFE87700FC205D /* testcolorpicker@2x.png in Resources */,
 				87E7C5AF21509AB000F7AB14 /* FSForumDetailListCell.xib in Resources */,
 				87E7C5B021509AB000F7AB14 /* videocall_chat_voice@2x.png in Resources */,
 				87BC9E4721549149000F2011 /* fsintroguide_1125x2436_1@2x.png in Resources */,
@@ -8894,6 +8934,7 @@
 				874268EA212E7E36003C52F6 /* UIView+BMNibLoading.m in Sources */,
 				DB2656C721461A9F002ED713 /* FSSearchResultVC.m in Sources */,
 				DB2656CD214664FF002ED713 /* FSLawSearchResultVC.m in Sources */,
+				876BB7D021AFDD2100FC205D /* BMTestColorPickerView.m in Sources */,
 				8730B0812140FFA3004331A9 /* DTAnimatedGIF.m in Sources */,
 				874268CC212E7E36003C52F6 /* BMTableViewActionBar.m in Sources */,
 				AD2244A3213CD6C300F2DC47 /* MASViewAttribute.m in Sources */,
@@ -9123,6 +9164,7 @@
 				AD932608214B4FDA007F3A93 /* HRColorCursor.m in Sources */,
 				87F639F021533C830035E730 /* FBObjectInStructReference.m in Sources */,
 				87D20AE5213920E2001EDD60 /* FLEXHierarchyTableViewController.m in Sources */,
+				876BB7DB21B0CD9800FC205D /* BMTestColorPickerManager.m in Sources */,
 				874268BE212E7E36003C52F6 /* BMTableViewManager.m in Sources */,
 				87426AEF2135348D003C52F6 /* FMResultSet.m in Sources */,
 				AD51029C213E6212008CD74D /* FSCommunityModel.m in Sources */,
@@ -9240,6 +9282,7 @@
 				87E7C28121509AB000F7AB14 /* DTDictationPlaceholderView.m in Sources */,
 				87E7C28221509AB000F7AB14 /* SDWebImageFrame.m in Sources */,
 				87E7C28321509AB000F7AB14 /* FLEXArgumentInputColorView.m in Sources */,
+				876BB7D121AFDD2100FC205D /* BMTestColorPickerView.m in Sources */,
 				87BC9E58215491F1000F2011 /* FSFirstGuideVC.m in Sources */,
 				87E7C28421509AB000F7AB14 /* BMTableViewImageDetailCell.m in Sources */,
 				87E7C28521509AB000F7AB14 /* SDWebImageCompat.m in Sources */,
@@ -9794,6 +9837,7 @@
 				87E7C47921509AB000F7AB14 /* FMResultSet.m in Sources */,
 				87E7C47A21509AB000F7AB14 /* FSCommunityModel.m in Sources */,
 				87E7C47B21509AB000F7AB14 /* UIImage+ForceDecode.m in Sources */,
+				876BB7DC21B0CD9800FC205D /* BMTestColorPickerManager.m in Sources */,
 				87E7C47C21509AB000F7AB14 /* DTCoreTextParagraphStyle.m in Sources */,
 				876BB7BA21AE358300FC205D /* YYFPSLabel.m in Sources */,
 				87E7C47D21509AB000F7AB14 /* NSCoder+DTCompatibility.m in Sources */,
