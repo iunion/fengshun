@@ -1391,6 +1391,11 @@ static void exceptionHandler(NSException *exception)
 
 - (void)windowDidBecomeVisibleNotification:(NSNotification *)notification
 {
+    [self bringSubviews];
+}
+
+- (void)bringSubviews
+{
     [self.fpsLabel bm_bringToFront];
 }
 
@@ -1534,6 +1539,13 @@ static void exceptionHandler(NSException *exception)
     }
     
     return YES;
+}
+
+- (void)setRootViewController:(UIViewController *)rootViewController
+{
+    [super setRootViewController:rootViewController];
+    
+    [self bringSubviews];
 }
 
 @end
