@@ -317,6 +317,7 @@ static void exceptionHandler(NSException *exception)
         [self.commandArray addObject:[[BMConsoleEnvironment alloc] initWithTitle:@"线上" command:@"on"]];
         [self.commandArray addObject:[[BMConsoleEnvironment alloc] initWithTitle:@"开发" command:@"dev"]];
         [self.commandArray addObject:[[BMConsoleEnvironment alloc] initWithTitle:@"测试" command:@"test"]];
+        [self.commandArray addObject:[[BMConsoleEnvironment alloc] initWithTitle:@"GPS" command:@"gps"]];
     }
 
     for (NSInteger i=0; i<6 && i<self.commandArray.count; i++)
@@ -1307,12 +1308,12 @@ static void exceptionHandler(NSException *exception)
     
     if ([BMConsole isShowAlign])
     {
-        [[BMTestAlignManager shareInstance] show];
+        [[BMTestAlignManager sharedInstance] show];
     }
 
     if ([BMConsole isShowColorPicker])
     {
-        [[BMTestColorPickerManager shareInstance] show];
+        [[BMTestColorPickerManager sharedInstance] show];
     }
 }
 
@@ -1323,32 +1324,32 @@ static void exceptionHandler(NSException *exception)
 
 + (void)showAlign
 {
-    [[BMTestAlignManager shareInstance] show];
+    [[BMTestAlignManager sharedInstance] show];
 }
 
 + (void)closeAlign
 {
-    [[BMTestAlignManager shareInstance] close];
+    [[BMTestAlignManager sharedInstance] close];
 }
 
 + (BOOL)isShowAlign
 {
-    return [[BMTestAlignManager shareInstance] isShow];
+    return [[BMTestAlignManager sharedInstance] isShow];
 }
 
 + (void)showColorPicker
 {
-    [[BMTestColorPickerManager shareInstance] show];
+    [[BMTestColorPickerManager sharedInstance] show];
 }
 
 + (void)closeColorPicker
 {
-    [[BMTestColorPickerManager shareInstance] close];
+    [[BMTestColorPickerManager sharedInstance] close];
 }
 
 + (BOOL)isShowColorPicker
 {
-    return [[BMTestColorPickerManager shareInstance] isShow];
+    return [[BMTestColorPickerManager sharedInstance] isShow];
 }
 
 @end
@@ -1378,6 +1379,9 @@ static void exceptionHandler(NSException *exception)
         fpsLabel.bm_top = self.bm_top + 6 + UI_NAVIGATION_BAR_HEIGHT + UI_STATUS_BAR_HEIGHT;
         //fpsLabel.center = self.center;
         self.fpsLabel = fpsLabel;
+        
+        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(fpsPanGestureAction:)];
+        [fpsLabel addGestureRecognizer:pan];
     }
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(windowDidBecomeVisibleNotification:) name:UIWindowDidBecomeVisibleNotification object:nil];
@@ -1388,6 +1392,22 @@ static void exceptionHandler(NSException *exception)
 - (void)windowDidBecomeVisibleNotification:(NSNotification *)notification
 {
     [self.fpsLabel bm_bringToFront];
+}
+
+- (void)fpsPanGestureAction:(UIPanGestureRecognizer *)panGesture
+{
+    NSLog(@"fpsPanGestureAction");
+    UIView *panView = panGesture.view;
+    
+    //1、获得拖动位移
+    CGPoint offsetPoint = [panGesture translationInView:panView];
+    //2、清空拖动位移
+    [panGesture setTranslation:CGPointZero inView:panView];
+    //3、重新设置控件位置
+    CGFloat newX = panView.bm_centerX+offsetPoint.x;
+    CGFloat newY = panView.bm_centerY+offsetPoint.y;
+    CGPoint centerPoint = CGPointMake(newX, newY);
+    panView.center = centerPoint;
 }
 
 - (void)sendEvent:(UIEvent *)event

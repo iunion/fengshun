@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BMTestColorPickerManager : NSObject
 
-+ (instancetype)shareInstance;
++ (instancetype)sharedInstance;
 
 - (void)show;
 - (void)close;

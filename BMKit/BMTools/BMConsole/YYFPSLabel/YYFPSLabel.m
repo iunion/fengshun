@@ -45,7 +45,8 @@
     self.layer.cornerRadius = 5;
     self.clipsToBounds = YES;
     self.textAlignment = NSTextAlignmentCenter;
-    self.userInteractionEnabled = NO;
+    //self.userInteractionEnabled = NO;
+    self.userInteractionEnabled = YES;
     self.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.700];
     
     _font = [UIFont fontWithName:@"Menlo" size:14];

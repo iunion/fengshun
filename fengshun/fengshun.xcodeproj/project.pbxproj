@@ -510,6 +510,12 @@
 		876BB7D821AFE87700FC205D /* testcolorpicker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 876BB7D421AFE87600FC205D /* testcolorpicker@2x.png */; };
 		876BB7DB21B0CD9800FC205D /* BMTestColorPickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 876BB7DA21B0CD9800FC205D /* BMTestColorPickerManager.m */; };
 		876BB7DC21B0CD9800FC205D /* BMTestColorPickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 876BB7DA21B0CD9800FC205D /* BMTestColorPickerManager.m */; };
+		876BB7E421B11D8500FC205D /* BMTestGPSMocker.m in Sources */ = {isa = PBXBuildFile; fileRef = 876BB7E321B11D8500FC205D /* BMTestGPSMocker.m */; };
+		876BB7E521B11D8500FC205D /* BMTestGPSMocker.m in Sources */ = {isa = PBXBuildFile; fileRef = 876BB7E321B11D8500FC205D /* BMTestGPSMocker.m */; };
+		876BB7E821B11F7C00FC205D /* BMTestGPSMockVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 876BB7E721B11F7C00FC205D /* BMTestGPSMockVC.m */; };
+		876BB7E921B11F7C00FC205D /* BMTestGPSMockVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 876BB7E721B11F7C00FC205D /* BMTestGPSMockVC.m */; };
+		876BB7EC21B4CEA700FC205D /* testgpsmoker_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 876BB7EB21B4CEA700FC205D /* testgpsmoker_icon@2x.png */; };
+		876BB7ED21B4CEA700FC205D /* testgpsmoker_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 876BB7EB21B4CEA700FC205D /* testgpsmoker_icon@2x.png */; };
 		87741FDC214A0C8A00F72427 /* FSServiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87741FDA214A0C8A00F72427 /* FSServiceVC.m */; };
 		87741FDD214A0C8A00F72427 /* FSServiceVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87741FDB214A0C8A00F72427 /* FSServiceVC.xib */; };
 		87741FE3214A132200F72427 /* user_wechaticon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87741FDF214A132200F72427 /* user_wechaticon@3x.png */; };
@@ -3078,6 +3084,11 @@
 		876BB7D421AFE87600FC205D /* testcolorpicker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "testcolorpicker@2x.png"; sourceTree = "<group>"; };
 		876BB7D921B0CD9800FC205D /* BMTestColorPickerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMTestColorPickerManager.h; sourceTree = "<group>"; };
 		876BB7DA21B0CD9800FC205D /* BMTestColorPickerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMTestColorPickerManager.m; sourceTree = "<group>"; };
+		876BB7E221B11D8500FC205D /* BMTestGPSMocker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMTestGPSMocker.h; sourceTree = "<group>"; };
+		876BB7E321B11D8500FC205D /* BMTestGPSMocker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMTestGPSMocker.m; sourceTree = "<group>"; };
+		876BB7E621B11F7C00FC205D /* BMTestGPSMockVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMTestGPSMockVC.h; sourceTree = "<group>"; };
+		876BB7E721B11F7C00FC205D /* BMTestGPSMockVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMTestGPSMockVC.m; sourceTree = "<group>"; };
+		876BB7EB21B4CEA700FC205D /* testgpsmoker_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "testgpsmoker_icon@2x.png"; sourceTree = "<group>"; };
 		87741FD72149FF5F00F72427 /* ExampleApp.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = ExampleApp.html; path = "../../../../gitHubs/WebViewJavascriptBridge/Example Apps/ExampleApp.html"; sourceTree = "<group>"; };
 		87741FD9214A0C8A00F72427 /* FSServiceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSServiceVC.h; sourceTree = "<group>"; };
 		87741FDA214A0C8A00F72427 /* FSServiceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSServiceVC.m; sourceTree = "<group>"; };
@@ -6048,6 +6059,7 @@
 				876BB7B121AE358200FC205D /* GTM */,
 				876BB7B421AE358200FC205D /* YYFPSLabel */,
 				876BB7C921AFDCE100FC205D /* BMTestColorPicker */,
+				876BB7E121B11D7100FC205D /* BMTestGPSMocker */,
 				876BB7BC21AE487200FC205D /* BMTestViewAlign */,
 				876BB7AE21AE34E700FC205D /* BMConsole.h */,
 				876BB7AD21AE34E700FC205D /* BMConsole.m */,
@@ -6110,6 +6122,26 @@
 			children = (
 				876BB7D321AFE87600FC205D /* testcolorpalette@2x.png */,
 				876BB7D421AFE87600FC205D /* testcolorpicker@2x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		876BB7E121B11D7100FC205D /* BMTestGPSMocker */ = {
+			isa = PBXGroup;
+			children = (
+				876BB7EA21B4CEA700FC205D /* images */,
+				876BB7E221B11D8500FC205D /* BMTestGPSMocker.h */,
+				876BB7E321B11D8500FC205D /* BMTestGPSMocker.m */,
+				876BB7E621B11F7C00FC205D /* BMTestGPSMockVC.h */,
+				876BB7E721B11F7C00FC205D /* BMTestGPSMockVC.m */,
+			);
+			path = BMTestGPSMocker;
+			sourceTree = "<group>";
+		};
+		876BB7EA21B4CEA700FC205D /* images */ = {
+			isa = PBXGroup;
+			children = (
+				876BB7EB21B4CEA700FC205D /* testgpsmoker_icon@2x.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -8087,6 +8119,7 @@
 				87426896212E7E36003C52F6 /* decrease_eleme@3x.png in Resources */,
 				87BC9E3621548E0D000F2011 /* fsintroguide_1242x2688_3@2x.png in Resources */,
 				874268D7212E7E36003C52F6 /* BMDatePicker.xib in Resources */,
+				876BB7EC21B4CEA700FC205D /* testgpsmoker_icon@2x.png in Resources */,
 				874269BA212E9B78003C52F6 /* bmfresh_arrow@3x.png in Resources */,
 				DB804FE521422548007F7B19 /* search_delKey@3x.png in Resources */,
 				DBB73F7D215CC01F00E65230 /* placeholder_topic@2x.png in Resources */,
@@ -8364,6 +8397,7 @@
 				87E7C53621509AB000F7AB14 /* home_arrow@3x.png in Resources */,
 				87BC9E4B2154914E000F2011 /* fsintroguide_1242x2208_1@2x.png in Resources */,
 				87E7C53721509AB000F7AB14 /* chat_message_voice@3x.png in Resources */,
+				876BB7ED21B4CEA700FC205D /* testgpsmoker_icon@2x.png in Resources */,
 				AD6712342159DBD50081E08D /* fstab_btn4_icon@2x.png in Resources */,
 				87E7C53821509AB000F7AB14 /* chat_left_bg@3x.png in Resources */,
 				45F68F4B2150E58F00628DC8 /* empty_ocricon@3x.png in Resources */,
@@ -8834,6 +8868,7 @@
 				87E7C6F42151F2C700F7AB14 /* FSTestHelper.m in Sources */,
 				DB7584A9214F5C630002A1FE /* FSOCRSearchResultVC.m in Sources */,
 				8742690B212E7E36003C52F6 /* NSArray+BMCategory.m in Sources */,
+				876BB7E821B11F7C00FC205D /* BMTestGPSMockVC.m in Sources */,
 				8742690D212E7E36003C52F6 /* NSNumber+BMCategory.m in Sources */,
 				AD5102A8213E783E008CD74D /* FSSendTopicVC.m in Sources */,
 				87D20AC7213920E2001EDD60 /* FLEXArgumentInputViewFactory.m in Sources */,
@@ -9011,6 +9046,7 @@
 				874269C7212E9B78003C52F6 /* BMFreshAutoNormalFooter.m in Sources */,
 				AD932606214B4FDA007F3A93 /* CYRTextView.m in Sources */,
 				8730B0292140FFA2004331A9 /* NSAttributedStringRunDelegates.m in Sources */,
+				876BB7E421B11D8500FC205D /* BMTestGPSMocker.m in Sources */,
 				DBD4CE0F213FD3E100857DB3 /* FSSuperModel.m in Sources */,
 				8730B04D2140FFA2004331A9 /* NSNumber+RomanNumerals.m in Sources */,
 				87D20AE3213920E2001EDD60 /* FLEXHierarchyTableViewCell.m in Sources */,
@@ -9788,6 +9824,7 @@
 				87E7C44E21509AB000F7AB14 /* BMFreshDotCircleHeader.m in Sources */,
 				87E7C44F21509AB000F7AB14 /* FLEXLiveObjectsTableViewController.m in Sources */,
 				87E7C45021509AB000F7AB14 /* FLEXNetworkCurlLogger.m in Sources */,
+				876BB7E521B11D8500FC205D /* BMTestGPSMocker.m in Sources */,
 				87E7C45121509AB000F7AB14 /* FSEditorAbilityVC.m in Sources */,
 				45D7D75421538239009E8E7A /* FSMeetingDataEnum.m in Sources */,
 				87E7C45221509AB000F7AB14 /* BMSliderItem.m in Sources */,
@@ -9864,6 +9901,7 @@
 				87E7C6F52151F2C700F7AB14 /* FSTestHelper.m in Sources */,
 				87E7C48F21509AB000F7AB14 /* FLEXRuntimeUtility.m in Sources */,
 				8704B393219C137800DBBC53 /* UIView+BMCountDownManager.m in Sources */,
+				876BB7E921B11F7C00FC205D /* BMTestGPSMockVC.m in Sources */,
 				87E7C49021509AB000F7AB14 /* FLEXTableColumnHeader.m in Sources */,
 				87E7C49121509AB000F7AB14 /* FSSearchResultView.m in Sources */,
 				87E7C49221509AB000F7AB14 /* UIButton+BMCategory.m in Sources */,

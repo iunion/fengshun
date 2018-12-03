@@ -18,7 +18,7 @@
 
 @implementation BMTestColorPickerManager
 
-+ (instancetype)shareInstance
++ (instancetype)sharedInstance
 {
     static dispatch_once_t once;
     static BMTestColorPickerManager *instance;

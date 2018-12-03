@@ -21,6 +21,8 @@
 #import "AppDelegate.h"
 #import "FSWebViewController.h"
 
+#import "BMTestGPSMockVC.h"
+
 @implementation FSTestHelper
 
 - (void)dealloc
@@ -269,6 +271,15 @@
             [BMConsole showColorPicker];
         }
     }
+    else if ([command isEqualToString:@"gps"])
+    {
+        [BMConsole hide];
+        
+        BMTestGPSMockVC *vc = [[BMTestGPSMockVC alloc] init];
+        BMNavigationController *nav = [[BMNavigationController alloc] initWithRootViewController:vc];
+       [[BMConsole sharedConsole] presentViewController:nav animated:YES completion:^{
+        }];
+    }
     else if ([command isEqualToString:@"h"] || [command isEqualToString:@"help"]) // help命令
     {
         NSMutableString *helpStr = [[NSMutableString alloc] init];
@@ -283,7 +294,8 @@
         [helpStr appendString:@"(10) 'fps' 显示隐藏FPS监测\n"];
         [helpStr appendString:@"(11) 'al' 显示隐藏标尺\n"];
         [helpStr appendString:@"(12) 'cp' 显示隐藏颜色提取\n"];
-
+        [helpStr appendString:@"(13) 'gps' 模拟GPS定位数据\n"];
+        
         [BMConsole log:@"%@", helpStr];
     }
     else
