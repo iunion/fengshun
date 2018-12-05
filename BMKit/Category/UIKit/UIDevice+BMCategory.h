@@ -190,3 +190,38 @@
 + (BOOL)bm_hasJailBroken;
 
 @end
+
+
+@interface UIDevice (Authority)
+
+// 地理位置权限
++ (nonnull NSString *)locationAuthority;
+
+// 网络权限
++ (nonnull NSString *)netAuthority;
+
+// push权限
++ (nonnull NSString *)pushAuthority;
+
+// 拍照权限
++ (nonnull NSString *)cameraAuthority;
+
+// 相册权限
++ (nonnull NSString *)photoAuthority;
+
+// 麦克风权限
++ (nonnull NSString *)audioAuthority;
+
+// 通讯录权限
++ (nonnull NSString *)addressAuthority;
+
+// 日历权限
++ (nonnull NSString *)calendarAuthority;
+
+// 提醒事项权限
++ (nonnull NSString *)remindAuthority;
+
+// 蓝牙权限
++ (nonnull NSString *)bluetoothAuthority;
+
+@end

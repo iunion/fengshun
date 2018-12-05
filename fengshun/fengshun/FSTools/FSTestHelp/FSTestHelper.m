@@ -22,6 +22,7 @@
 #import "FSWebViewController.h"
 
 #import "BMTestGPSMockVC.h"
+#import "BMTestAppInfoVC.h"
 
 @implementation FSTestHelper
 
@@ -273,11 +274,17 @@
     }
     else if ([command isEqualToString:@"gps"])
     {
-        [BMConsole hide];
-        
         BMTestGPSMockVC *vc = [[BMTestGPSMockVC alloc] init];
         BMNavigationController *nav = [[BMNavigationController alloc] initWithRootViewController:vc];
        [[BMConsole sharedConsole] presentViewController:nav animated:YES completion:^{
+        }];
+    }
+    else if ([command isEqualToString:@"app"])
+    {
+        BMTestAppInfoVC *vc = [[BMTestAppInfoVC alloc] init];
+        BMNavigationController *nav = [[BMNavigationController alloc] initWithRootViewController:vc];
+        [[BMConsole sharedConsole] presentViewController:nav animated:YES completion:^{
+            [BMConsole hide];
         }];
     }
     else if ([command isEqualToString:@"h"] || [command isEqualToString:@"help"]) // help命令
@@ -287,7 +294,8 @@
         [helpStr appendString:@"(02) 'version' 显示app版本\n"];
         [helpStr appendString:@"(03) 'clear' 清除控制台信息\n"];
         [helpStr appendString:@"(04) 'log' 打印所有NSLog\n"];
-        [helpStr appendString:@"(05) 'api' 显示当前所处API环境信息\n"];
+        [helpStr appendString:@"(05) 'app' 显示APP基本信息\n"];
+        [helpStr appendString:@"(06) 'api' 显示当前所处API环境信息\n"];
         [helpStr appendString:@"(07) 'on' or 'www' 切换API环境到线上\n"];
         [helpStr appendString:@"(08) 'dev' 切换API环境到开发\n"];
         [helpStr appendString:@"(09) 'test' 切换API环境到测试\n"];
@@ -295,7 +303,8 @@
         [helpStr appendString:@"(11) 'al' 显示隐藏标尺\n"];
         [helpStr appendString:@"(12) 'cp' 显示隐藏颜色提取\n"];
         [helpStr appendString:@"(13) 'gps' 模拟GPS定位数据\n"];
-        
+        [helpStr appendString:@"(14) 'net' 网络监测\n"];
+
         [BMConsole log:@"%@", helpStr];
     }
     else

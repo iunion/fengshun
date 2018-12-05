@@ -516,6 +516,8 @@
 		876BB7E921B11F7C00FC205D /* BMTestGPSMockVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 876BB7E721B11F7C00FC205D /* BMTestGPSMockVC.m */; };
 		876BB7EC21B4CEA700FC205D /* testgpsmoker_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 876BB7EB21B4CEA700FC205D /* testgpsmoker_icon@2x.png */; };
 		876BB7ED21B4CEA700FC205D /* testgpsmoker_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 876BB7EB21B4CEA700FC205D /* testgpsmoker_icon@2x.png */; };
+		876BB7F321B6310D00FC205D /* BMTestAppInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 876BB7F221B6310D00FC205D /* BMTestAppInfoVC.m */; };
+		876BB7F421B6310D00FC205D /* BMTestAppInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 876BB7F221B6310D00FC205D /* BMTestAppInfoVC.m */; };
 		87741FDC214A0C8A00F72427 /* FSServiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87741FDA214A0C8A00F72427 /* FSServiceVC.m */; };
 		87741FDD214A0C8A00F72427 /* FSServiceVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87741FDB214A0C8A00F72427 /* FSServiceVC.xib */; };
 		87741FE3214A132200F72427 /* user_wechaticon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87741FDF214A132200F72427 /* user_wechaticon@3x.png */; };
@@ -3089,6 +3091,8 @@
 		876BB7E621B11F7C00FC205D /* BMTestGPSMockVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMTestGPSMockVC.h; sourceTree = "<group>"; };
 		876BB7E721B11F7C00FC205D /* BMTestGPSMockVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMTestGPSMockVC.m; sourceTree = "<group>"; };
 		876BB7EB21B4CEA700FC205D /* testgpsmoker_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "testgpsmoker_icon@2x.png"; sourceTree = "<group>"; };
+		876BB7F121B6310D00FC205D /* BMTestAppInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMTestAppInfoVC.h; sourceTree = "<group>"; };
+		876BB7F221B6310D00FC205D /* BMTestAppInfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMTestAppInfoVC.m; sourceTree = "<group>"; };
 		87741FD72149FF5F00F72427 /* ExampleApp.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = ExampleApp.html; path = "../../../../gitHubs/WebViewJavascriptBridge/Example Apps/ExampleApp.html"; sourceTree = "<group>"; };
 		87741FD9214A0C8A00F72427 /* FSServiceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSServiceVC.h; sourceTree = "<group>"; };
 		87741FDA214A0C8A00F72427 /* FSServiceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSServiceVC.m; sourceTree = "<group>"; };
@@ -6058,6 +6062,7 @@
 			children = (
 				876BB7B121AE358200FC205D /* GTM */,
 				876BB7B421AE358200FC205D /* YYFPSLabel */,
+				876BB7F021B630F500FC205D /* BMTestAppInfo */,
 				876BB7C921AFDCE100FC205D /* BMTestColorPicker */,
 				876BB7E121B11D7100FC205D /* BMTestGPSMocker */,
 				876BB7BC21AE487200FC205D /* BMTestViewAlign */,
@@ -6144,6 +6149,15 @@
 				876BB7EB21B4CEA700FC205D /* testgpsmoker_icon@2x.png */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		876BB7F021B630F500FC205D /* BMTestAppInfo */ = {
+			isa = PBXGroup;
+			children = (
+				876BB7F121B6310D00FC205D /* BMTestAppInfoVC.h */,
+				876BB7F221B6310D00FC205D /* BMTestAppInfoVC.m */,
+			);
+			path = BMTestAppInfo;
 			sourceTree = "<group>";
 		};
 		87741FE8214A37C200F72427 /* mine */ = {
@@ -8732,6 +8746,7 @@
 				87D209B52138F1E2001EDD60 /* UIImage+WebP.m in Sources */,
 				87D20ADC213920E2001EDD60 /* FLEXRealmDatabaseManager.m in Sources */,
 				87F639FE21533C830035E730 /* FBRetainCycleDetector.mm in Sources */,
+				876BB7F321B6310D00FC205D /* BMTestAppInfoVC.m in Sources */,
 				87426A92213146A6003C52F6 /* XMRequest.m in Sources */,
 				DB48742E2148DFFE00AB0805 /* FSTextTypeCell.m in Sources */,
 				874268EE212E7E36003C52F6 /* UIColor+BMCategory.m in Sources */,
@@ -9657,6 +9672,7 @@
 				87F6397421533ADB0035E730 /* PLDictionaryTableViewController.m in Sources */,
 				87E7C3BA21509AB000F7AB14 /* UIView+BMOutSide.m in Sources */,
 				87E7C3BB21509AB000F7AB14 /* BMEmptyView.m in Sources */,
+				876BB7F421B6310D00FC205D /* BMTestAppInfoVC.m in Sources */,
 				87E7C3BC21509AB000F7AB14 /* FSWebView.m in Sources */,
 				87E7C3BD21509AB000F7AB14 /* FLEXNetworkSettingsTableViewController.m in Sources */,
 				87E7C3BE21509AB000F7AB14 /* FLEXSQLiteDatabaseManager.m in Sources */,
