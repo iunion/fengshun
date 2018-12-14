@@ -43,6 +43,7 @@
 
 // 得到一个时间格式为:02天 14时 49分 16秒
 + (NSString *)bm_dayHourMinuteSecondStringWithSecond:(NSUInteger)second;
++ (NSString *)bm_secondStringWithSecond:(NSTimeInterval)second;
 
 // 判断是否为整形
 - (BOOL)bm_isPureInt;

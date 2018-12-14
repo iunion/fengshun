@@ -97,11 +97,12 @@ FSForumListVC ()
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    static NSString *         Identifier = @"Header";
+    static NSString *         Identifier = @"FSForumSectionHeaderView";
     FSForumSectionHeaderView *aView      = [tableView dequeueReusableHeaderFooterViewWithIdentifier:Identifier];
     if (!aView)
     {
         aView = [[NSBundle mainBundle] loadNibNamed:@"FSForumSectionHeaderView" owner:self options:nil].firstObject;
+        [aView setValue:Identifier forKey:@"reuseIdentifier"];
     }
     [aView showWithFSCommunityForumModel:self.m_DataArray[section]];
     return aView;
@@ -125,7 +126,7 @@ FSForumListVC ()
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *taskCellIdentifier = @"FSCell";
+    static NSString *taskCellIdentifier = @"FSForumListCell";
     FSForumListCell *cell               = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
     if (!cell)
     {

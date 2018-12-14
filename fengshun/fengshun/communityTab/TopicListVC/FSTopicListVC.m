@@ -168,7 +168,7 @@ FSTopicListVC ()
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *      cellId = @"cellId";
+    static NSString *      cellId = @"FSForumDetailListCell";
     FSForumDetailListCell *cell   = [tableView dequeueReusableCellWithIdentifier:cellId];
     if (!cell)
     {

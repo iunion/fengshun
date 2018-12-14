@@ -103,7 +103,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *taskCellIdentifier = @"FSCell";
+    static NSString *taskCellIdentifier = @"FSMyCommentCell";
     FSMyCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
     
     if (cell == nil)

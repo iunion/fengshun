@@ -92,7 +92,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *taskCellIdentifier = @"FSCell";
+    static NSString *taskCellIdentifier = @"FSMyTopicCell";
     FSMyTopicCell *cell = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
     
     if (cell == nil)

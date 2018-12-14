@@ -192,25 +192,37 @@
 
 + (NSString *)bm_storeStringWithBitSize:(double)bsize
 {
-    if (bsize < 1024)
+//    if (bsize < 1024)
+//    {
+//        return [NSString stringWithFormat:@"%ldB", (long)bsize];
+//    }
+//    else if (bsize < 1024*1024)
+//    {
+//        double kbsize = (CGFloat)bsize / 1024;
+//        return [NSString stringWithFormat:@"%0.2fKB", kbsize];
+//    }
+//    else if (bsize < 1024*1024*1024)
+//    {
+//        double kbsize = (CGFloat)bsize / (1024*1024);
+//        return [NSString stringWithFormat:@"%0.2fMB", kbsize];
+//    }
+//    else
+//    {
+//        double kbsize = (CGFloat)bsize / (1024*1024*1024);
+//        return [NSString stringWithFormat:@"%0.2fGB", kbsize];
+//    }
+    
+    double convertedValue = bsize;
+    NSInteger multiplyFactor = 0;
+    NSArray *tokens = [NSArray arrayWithObjects:@"B", @"KB", @"MB", @"GB", @"TB", nil];
+    
+    while (convertedValue > 1024 && multiplyFactor < tokens.count)
     {
-        return [NSString stringWithFormat:@"%ldB", (long)bsize];
+        convertedValue /= 1024.0f;
+        multiplyFactor++;
     }
-    else if (bsize < 1024*1024)
-    {
-        double kbsize = (CGFloat)bsize / 1024;
-        return [NSString stringWithFormat:@"%0.2fKB", kbsize];
-    }
-    else if (bsize < 1024*1024*1024)
-    {
-        double kbsize = (CGFloat)bsize / (1024*1024);
-        return [NSString stringWithFormat:@"%0.2fMB", kbsize];
-    }
-    else
-    {
-        double kbsize = (CGFloat)bsize / (1024*1024*1024);
-        return [NSString stringWithFormat:@"%0.2fGB", kbsize];
-    }
+    
+    return [NSString stringWithFormat:@"%0.2f%@", convertedValue, [tokens objectAtIndex:multiplyFactor]];
 }
 
 + (NSString *)bm_countStringWithCount:(NSUInteger)count
@@ -239,6 +251,68 @@
     NSUInteger seconds = second % 60;
     
     return [NSString stringWithFormat:@"%@天 %@时 %@分 %@秒", @(days), @(hours), @(minutes), @(seconds)];
+}
+
++ (NSString *)bm_secondStringWithSecond:(NSTimeInterval)second
+{
+    NSUInteger days = (NSUInteger)(second) / SECONDS_IN_DAY;
+    NSUInteger hours = ((NSUInteger)(second) / SECONDS_IN_HOUR) % 24;
+    NSUInteger minutes = ((NSUInteger)(second) / SECONDS_IN_MINUTE) % 60;
+    NSUInteger seconds = (NSUInteger)(second) % 60;
+    
+    NSTimeInterval ms = (second - (NSUInteger)(second)) * 1000.0f;
+    
+    NSMutableString *time = [[NSMutableString alloc] init];
+    if (days)
+    {
+        [time appendFormat:@"%@天", @(days)];
+    }
+    if (hours)
+    {
+        if ([time bm_isNotEmpty])
+        {
+            [time appendFormat:@" %@时", @(hours)];
+        }
+        else
+        {
+            [time appendFormat:@"%@时", @(hours)];
+        }
+    }
+    if (minutes)
+    {
+        if ([time bm_isNotEmpty])
+        {
+            [time appendFormat:@" %@分", @(minutes)];
+        }
+        else
+        {
+            [time appendFormat:@"%@分", @(minutes)];
+        }
+    }
+    if (seconds)
+    {
+        if ([time bm_isNotEmpty])
+        {
+            [time appendFormat:@" %@秒", @(seconds)];
+        }
+        else
+        {
+            [time appendFormat:@"%@秒", @(seconds)];
+        }
+    }
+    if (ms)
+    {
+        if ([time bm_isNotEmpty])
+        {
+            [time appendFormat:@" %@毫秒", @(ms)];
+        }
+        else
+        {
+            [time appendFormat:@"%@毫秒", @(ms)];
+        }
+    }
+    
+    return time;
 }
 
 // 判断是否为整形

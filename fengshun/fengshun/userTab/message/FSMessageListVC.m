@@ -131,12 +131,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *taskCellIdentifier = @"FSCell";
+    NSString *taskCellIdentifier;
     
     switch (self.m_MessageType)
     {
         case FSMessageType_COMMENT:
         {
+            taskCellIdentifier = @"FSCommentMessageCell";
             FSCommentMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
             
             if (cell == nil)
@@ -151,6 +152,7 @@
             
         case FSMessageType_NOTICE:
         {
+            taskCellIdentifier = @"FSNoticeMessageCell";
             FSNoticeMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
             
             if (cell == nil)

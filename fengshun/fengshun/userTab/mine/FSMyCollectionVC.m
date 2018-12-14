@@ -150,10 +150,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *taskCellIdentifier = @"FSCell";
+    NSString *taskCellIdentifier;
     
     if (self.m_CollectionType == FSCollectionType_COURSE)
     {
+        taskCellIdentifier = @"FSMyCourseCollectionCell";
         FSMyCourseCollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
         
         if (cell == nil)
@@ -166,6 +167,7 @@
     }
     else
     {
+        taskCellIdentifier = @"FSMyCollectionCell";
         FSMyCollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
         
         if (cell == nil)
