@@ -15,25 +15,21 @@
 #define FS_URL_SERVER_DEV       (@"https://devftls.odrcloud.net")
 #define FS_H5_SERVER_DEV        (@"https://devftlsh5.odrcloud.net")
 #define FS_FILE_ADRESS_DEV      (@"/storm/file/download/")
-#define FS_CASE_STATUTE_DEV     (@"https://lawsearch-pre.odrcloud.cn")
 
 // 测试环境
 #define FS_URL_SERVER_TEST      (@"https://testapi.bjsjsadr.com")
 #define FS_H5_SERVER_TEST       (@"https://devftls.odrcloud.net")
 //#define FS_H5_SERVER_TEST        (@"https://devftlsh5.odrcloud.net")
 #define FS_FILE_ADRESS_TEST     (@"/storm/file/download/")
-#define FS_CASE_STATUTE_TEST    (@"https://lawsearch-pre.odrcloud.cn")
 
 // 线上环境
 #define FS_URL_SERVER_ONLINE    (@"https://ftlsh5.odrcloud.cn")
 #define FS_H5_SERVER_ONLINE     (@"https://ftlsh5.odrcloud.cn")
 #define FS_FILE_ADRESS_ONLINE   (@"/storm/file/download/")
-#define FS_CASE_STATUTE_ONLINE  (@"https://lawsearch.odrcloud.cn")
 
 #define FS_URL_SERVER_INIT      FS_URL_SERVER_DEV
 #define FS_H5_SERVER_INIT       FS_H5_SERVER_DEV
 #define FS_FILE_ADRESS_INIT     FS_FILE_ADRESS_DEV
-#define FS_CASE_STATUTE_INIT    FS_CASE_STATUTE_DEV
 
 #define FS_URL_SERVER_KEY       (@"debug_api_server")
 #define FS_URL_SERVER           [[NSUserDefaults standardUserDefaults] objectForKey:FS_URL_SERVER_KEY]
@@ -44,17 +40,12 @@
 #define FS_FILE_ADRESS_KEY      (@"debug_file_adress")
 #define FS_FILE_ADRESS          [[NSUserDefaults standardUserDefaults] objectForKey:FS_FILE_ADRESS_KEY]
 
-// v1.1法规及案例检索的h5域名和其他h5域名分离,开始不一样
-#define FS_CASE_STATUTE_H5_KEY  (@"debug_case_statute_h5")
-#define FS_CASE_STATUTE_H5      [[NSUserDefaults standardUserDefaults] objectForKey:FS_CASE_STATUTE_H5_KEY]
-
 #else
 
 #define FS_URL_SERVER       (@"https://ftlsh5.odrcloud.cn")
 #define FS_H5_SERVER        (@"https://ftlsh5.odrcloud.cn")
 //#define FS_H5_SERVER        (@"https://devftlsh5.odrcloud.net")
 #define FS_FILE_ADRESS      (@"/storm/file/download/")
-#define FS_CASE_STATUTE_H5  (@"ttps://lawsearch.odrcloud.cn")
 
 #endif
 
