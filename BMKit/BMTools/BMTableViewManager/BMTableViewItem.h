@@ -53,8 +53,15 @@ NS_ASSUME_NONNULL_BEGIN
 // 字体
 @property (nullable, nonatomic, strong) UIFont *textFont;
 @property (nullable, nonatomic, strong) UIFont *detailTextFont;
+
+// title文本行数
+@property (nonatomic, assign) NSInteger titleNumberOfLines;
+// title文本BreakMode
+@property (nonatomic, assign) NSLineBreakMode titleLineBreakMode;
 // detailLabel文本行数
 @property (nonatomic, assign) NSInteger detailNumberOfLines;
+// detailLabel文本BreakMode
+@property (nonatomic, assign) NSLineBreakMode detailLineBreakMode;
 
 // for UITableViewCellStyleSubtitle with caleCellHeightWithTableView
 // 使用caleCellHeightWithTableView计算时的上下间距
@@ -163,7 +170,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)deleteRowWithAnimation:(UITableViewRowAnimation)animation;
 
 - (void)caleCellHeightWithTableView:(UITableView *)tableView;
-
 
 @end
 

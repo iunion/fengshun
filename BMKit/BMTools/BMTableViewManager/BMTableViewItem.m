@@ -80,7 +80,9 @@
         self.textFont = [UIFont systemFontOfSize:16.0f];
         self.detailTextFont = [UIFont systemFontOfSize:12.0f];
         self.textAlignment = NSTextAlignmentLeft;
+        self.titleLineBreakMode = NSLineBreakByCharWrapping;
         self.detailTextAlignment = NSTextAlignmentLeft;
+        self.detailLineBreakMode = NSLineBreakByCharWrapping;
         
         //self.isDrawUnderLine = YES;
         self.underLineDrawType = BMTableViewCell_UnderLineDrawType_SeparatorInset;
@@ -160,7 +162,8 @@
     self.title = title;
     self.textFont = UI_BM_FONT(16.0f);
     self.textColor = [UIColor darkGrayColor];;
-    
+    self.titleNumberOfLines = 1;
+
     self.detailLabelText = subTitle;
     self.detailTextFont = UI_BM_FONT(12.0f);
     self.detailTextColor = [UIColor grayColor];
@@ -286,7 +289,7 @@
     {
         return;
     }
-    if (self.detailNumberOfLines == 1)
+    if (self.detailNumberOfLines == 1 && self.titleNumberOfLines == 1)
     {
         return;
     }

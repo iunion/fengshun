@@ -119,6 +119,13 @@ typedef NS_ENUM(NSUInteger, BMConsoleLogLevel)
 + (void)closeColorPicker;
 + (BOOL)isShowColorPicker;
 
++ (BOOL)isMonitorNet;
++ (void)startMonitorNet;
++ (void)stopMonitorNet;
+
+- (void)handleConsoleCommand:(NSString *)command;
+- (void)handleConsoleCommand:(NSString *)command withParameter:(id)parameter;
+
 @end
 
 
@@ -128,13 +135,13 @@ typedef NS_ENUM(NSUInteger, BMConsoleLogLevel)
 @protocol BMConsoleDelegate <NSObject>
 
 // 命令行命令事件
-- (void)handleConsoleCommand:(NSString *)command;
+- (BOOL)handleConsoleCommand:(NSString *)command;
 // 按键事件
 - (void)handleConsoleButton:(UIButton *)sender;
 
 @optional
 // 带参数的命令行命令事件
-- (void)handleConsoleCommand:(NSString *)command withParameter:(nullable id)parameter;
+- (BOOL)handleConsoleCommand:(NSString *)command withParameter:(nullable id)parameter;
 
 @end
 

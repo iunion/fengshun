@@ -220,6 +220,9 @@
         }
         self.textLabel.textAlignment = item.textAlignment;
         
+        self.textLabel.numberOfLines = item.titleNumberOfLines;
+        self.textLabel.lineBreakMode = item.titleLineBreakMode;
+
         if (item.detailAttrStr)
         {
             self.detailTextLabel.attributedText = item.detailAttrStr;
@@ -251,6 +254,7 @@
         self.detailTextLabel.textAlignment = item.detailTextAlignment;
         
         self.detailTextLabel.numberOfLines = item.detailNumberOfLines;
+        self.detailTextLabel.lineBreakMode = item.detailLineBreakMode;
 
         self.accessoryType = item.accessoryType;
         self.accessoryView = item.accessoryView;

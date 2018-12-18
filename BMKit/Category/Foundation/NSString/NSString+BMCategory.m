@@ -304,11 +304,11 @@
     {
         if ([time bm_isNotEmpty])
         {
-            [time appendFormat:@" %@毫秒", @(ms)];
+            [time appendFormat:@" %@毫秒", [[NSDecimalNumber bm_decimalNumberWithDouble:ms] bm_stringWithDecimalStyle]];
         }
         else
         {
-            [time appendFormat:@"%@毫秒", @(ms)];
+            [time appendFormat:@"%@毫秒", [[NSDecimalNumber bm_decimalNumberWithDouble:ms] bm_stringWithDecimalStyle]];
         }
     }
     
