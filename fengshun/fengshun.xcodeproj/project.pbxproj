@@ -68,6 +68,10 @@
 		8704B39A219D1CC100DBBC53 /* FSCountDownManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8704B398219D1CC100DBBC53 /* FSCountDownManager.m */; };
 		8704B39D219D57AF00DBBC53 /* UIView+FSCountDownManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8704B39C219D57AF00DBBC53 /* UIView+FSCountDownManager.m */; };
 		8704B39E219D57AF00DBBC53 /* UIView+FSCountDownManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8704B39C219D57AF00DBBC53 /* UIView+FSCountDownManager.m */; };
+		871D64D621C8D38300698AC1 /* GrowingCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 871D64D321C8D38300698AC1 /* GrowingCoreKit.framework */; };
+		871D64D721C8D38300698AC1 /* GrowingCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 871D64D321C8D38300698AC1 /* GrowingCoreKit.framework */; };
+		871D64D821C8D38300698AC1 /* GrowingAutoTrackKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 871D64D521C8D38300698AC1 /* GrowingAutoTrackKit.framework */; };
+		871D64D921C8D38300698AC1 /* GrowingAutoTrackKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 871D64D521C8D38300698AC1 /* GrowingAutoTrackKit.framework */; };
 		8730AD352140B9BD004331A9 /* FSSetupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730AD332140B9BC004331A9 /* FSSetupVC.m */; };
 		8730AD422140CC28004331A9 /* user_commenticon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730AD362140CC26004331A9 /* user_commenticon@2x.png */; };
 		8730AD432140CC28004331A9 /* user_serviceicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730AD372140CC27004331A9 /* user_serviceicon@3x.png */; };
@@ -2355,6 +2359,9 @@
 		8704B398219D1CC100DBBC53 /* FSCountDownManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCountDownManager.m; sourceTree = "<group>"; };
 		8704B39B219D57AF00DBBC53 /* UIView+FSCountDownManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+FSCountDownManager.h"; sourceTree = "<group>"; };
 		8704B39C219D57AF00DBBC53 /* UIView+FSCountDownManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+FSCountDownManager.m"; sourceTree = "<group>"; };
+		871D64D321C8D38300698AC1 /* GrowingCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GrowingCoreKit.framework; sourceTree = "<group>"; };
+		871D64D421C8D38300698AC1 /* Growing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Growing.h; sourceTree = "<group>"; };
+		871D64D521C8D38300698AC1 /* GrowingAutoTrackKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GrowingAutoTrackKit.framework; sourceTree = "<group>"; };
 		8730AD332140B9BC004331A9 /* FSSetupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSetupVC.m; sourceTree = "<group>"; };
 		8730AD342140B9BC004331A9 /* FSSetupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSetupVC.h; sourceTree = "<group>"; };
 		8730AD362140CC26004331A9 /* user_commenticon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_commenticon@2x.png"; sourceTree = "<group>"; };
@@ -3949,6 +3956,7 @@
 				ADEF1F6F214F9B7500FFE0C3 /* ImageIO.framework in Frameworks */,
 				ADEF1F6D214F9B6300FFE0C3 /* CoreTelephony.framework in Frameworks */,
 				ADEF1F32214F546800FFE0C3 /* libsqlite3.tbd in Frameworks */,
+				871D64D821C8D38300698AC1 /* GrowingAutoTrackKit.framework in Frameworks */,
 				ADEF1F6B214F9B4700FFE0C3 /* libz.tbd in Frameworks */,
 				ADEF1F69214F9B3C00FFE0C3 /* libc++.tbd in Frameworks */,
 				AD3B821C214A467900D72DE9 /* CoreGraphics.framework in Frameworks */,
@@ -3983,6 +3991,7 @@
 				AD3B821C214A467900D72DE9 /* CoreGraphics.framework in Frameworks */,
 				453444BE214D0DFA00EA7BFA /* AVFoundation.framework in Frameworks */,
 				453444C0214D0DFA00EA7BFA /* AssetsLibrary.framework in Frameworks */,
+				871D64D621C8D38300698AC1 /* GrowingCoreKit.framework in Frameworks */,
 				453444C2214D0DFA00EA7BFA /* Accelerate.framework in Frameworks */,
 				87D1867921353C9000037DDF /* libFSEncodeAPI.a in Frameworks */,
 			);
@@ -4022,6 +4031,7 @@
 				87E7C4D521509AB000F7AB14 /* libSocialWeChat.a in Frameworks */,
 				87E7C4D621509AB000F7AB14 /* libSocialSina.a in Frameworks */,
 				87E7C4D721509AB000F7AB14 /* CoreText.framework in Frameworks */,
+				871D64D921C8D38300698AC1 /* GrowingAutoTrackKit.framework in Frameworks */,
 				87E7C4D821509AB000F7AB14 /* TILLiveSDK.framework in Frameworks */,
 				87E7C4D921509AB000F7AB14 /* libz.tbd in Frameworks */,
 				87E7C4DA21509AB000F7AB14 /* ILiveLogReport.framework in Frameworks */,
@@ -4048,6 +4058,7 @@
 				87E7C4F021509AB000F7AB14 /* JavaScriptCore.framework in Frameworks */,
 				87E7C4F121509AB000F7AB14 /* ImageIO.framework in Frameworks */,
 				87E7C4F221509AB000F7AB14 /* CoreVideo.framework in Frameworks */,
+				871D64D721C8D38300698AC1 /* GrowingCoreKit.framework in Frameworks */,
 				87E7C4F321509AB000F7AB14 /* CoreTelephony.framework in Frameworks */,
 				87E7C4F421509AB000F7AB14 /* CoreMedia.framework in Frameworks */,
 				87E7C4F521509AB000F7AB14 /* libQCloudAAIClient.a in Frameworks */,
@@ -4587,6 +4598,16 @@
 				8704B39C219D57AF00DBBC53 /* UIView+FSCountDownManager.m */,
 			);
 			path = FSCountDownManager;
+			sourceTree = "<group>";
+		};
+		871D64D221C8D38300698AC1 /* GrowingIO */ = {
+			isa = PBXGroup;
+			children = (
+				871D64D421C8D38300698AC1 /* Growing.h */,
+				871D64D321C8D38300698AC1 /* GrowingCoreKit.framework */,
+				871D64D521C8D38300698AC1 /* GrowingAutoTrackKit.framework */,
+			);
+			path = GrowingIO;
 			sourceTree = "<group>";
 		};
 		8730AEFB2140FFA1004331A9 /* DTCoreText */ = {
@@ -5570,6 +5591,7 @@
 		87426910212E8254003C52F6 /* thirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				871D64D221C8D38300698AC1 /* GrowingIO */,
 				87426A6F2131461F003C52F6 /* AFNetworking */,
 				8730AEFB2140FFA1004331A9 /* DTCoreText */,
 				87D209F3213920E2001EDD60 /* FLEX */,
@@ -10256,6 +10278,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(SRCROOT)/../thirdParty/UMShare/**",
+					"$(SRCROOT)/../thirdParty/GrowingIO",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fengshun/fengshun-Prefix.pch";
@@ -10310,6 +10333,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(SRCROOT)/../thirdParty/UMShare/**",
+					"$(SRCROOT)/../thirdParty/GrowingIO",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fengshun/fengshun-Prefix.pch";
@@ -10428,6 +10452,7 @@
 					"$(PROJECT_DIR)/ILiveSDKT/AVSDK",
 					"$(PROJECT_DIR)/ILiveSDKT/ILiveSDK",
 					"$(SRCROOT)/../thirdParty/UMShare/**",
+					"$(SRCROOT)/../thirdParty/GrowingIO",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fengshun/fengshun-Prefix.pch";
@@ -10490,6 +10515,7 @@
 					"$(PROJECT_DIR)/ILiveSDKT/AVSDK",
 					"$(PROJECT_DIR)/ILiveSDKT/ILiveSDK",
 					"$(SRCROOT)/../thirdParty/UMShare/**",
+					"$(SRCROOT)/../thirdParty/GrowingIO",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fengshun/fengshun-Prefix.pch";
