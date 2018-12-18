@@ -124,7 +124,7 @@ typedef NS_ENUM(NSUInteger, BMConsoleLogLevel)
 + (void)stopMonitorNet;
 
 - (void)handleConsoleCommand:(NSString *)command;
-- (void)handleConsoleCommand:(NSString *)command withParameter:(id)parameter;
+- (void)handleConsoleCommand:(NSString *)command withParameter:(nullable id)parameter;
 
 @end
 

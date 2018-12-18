@@ -235,7 +235,7 @@ typedef NS_ENUM(NSUInteger, NetFlowSelectState)
     }
     if (responseHeaderString.length == 0)
     {
-        [allHTTPHeaderString appendString:@"NULL"];
+        [responseHeaderString appendString:@"NULL"];
     }
     [section2 addItem:[self makeHeightenItemWithTitle:responseHeaderString content:nil last:NO]];
     
