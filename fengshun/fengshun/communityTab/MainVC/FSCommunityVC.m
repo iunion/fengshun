@@ -97,7 +97,7 @@
             break;
 
         case 1:
-            return @"板块";
+            return @"版块";
             break;
 
         default:
