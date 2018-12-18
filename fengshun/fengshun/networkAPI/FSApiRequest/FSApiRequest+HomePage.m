@@ -25,12 +25,12 @@
 // 案例检索
 + (XMRequest *)getCaseSearchHotkeysSuccess:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
 {
-    return [XMRequestManager rm_getRequestWithApi:@"/search/ftls/cases/hotKeywords" parameters:nil success:successBlock failure:failureBlock];
+    return [XMRequestManager rm_requestWithServer:FS_CASE_STATUTE_URL api:@"/search/ftls/cases/hotKeywords" method:kXMHTTPMethodGET parameters:nil timeoutInterval:FSAPI_TIMEOUT_SECONDS success:successBlock failure:failureBlock];
 }
 
 + (NSMutableURLRequest *)searchCaseWithKeywords:(NSArray *)keywords start:(NSUInteger)startLocation size:(NSUInteger)size filters:(NSArray *)filters
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@/search/ftls/searchCases", FS_URL_SERVER];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/search/ftls/searchCases", FS_CASE_STATUTE_URL];
 
     NSMutableDictionary *parames = [@{ @"keywords": keywords,
                                        @"size": @(size),
@@ -45,12 +45,12 @@
 // 法规检索
 + (XMRequest *)getLawTopicSuccess:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
 {
-    return [XMRequestManager rm_getRequestWithApi:@"/search/ftls/laws/thematic" parameters:nil success:successBlock failure:failureBlock];
+    return [XMRequestManager rm_requestWithServer:FS_CASE_STATUTE_URL api:@"/search/ftls/laws/thematic" method:kXMHTTPMethodGET parameters:nil timeoutInterval:FSAPI_TIMEOUT_SECONDS success:successBlock failure:failureBlock];
 }
 
 + (NSMutableURLRequest *)searchLawsWithKeywords:(NSArray *)keywords start:(NSUInteger)startLocation size:(NSUInteger)size filters:(NSArray *)filters
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@/search/ftls/searchLaws", FS_URL_SERVER];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/search/ftls/searchLaws", FS_CASE_STATUTE_URL];
 
     NSMutableDictionary *parames = [@{ @"keywords": keywords,
                                        @"size": @(size),
@@ -65,12 +65,12 @@
 // 案例和法规提取关键字
 + (XMRequest *)getCaseKeywordsWithText:(NSString *)text success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
 {
-    return [XMRequestManager rm_requestWithApi:@"/search/ftls/util/cases/extractKeywords" parameters:@{ @"keywords": text } success:successBlock failure:failureBlock];
+    return [XMRequestManager rm_requestWithServer:FS_CASE_STATUTE_URL api:@"/search/ftls/util/cases/extractKeywords" method:kXMHTTPMethodPOST parameters:@{ @"keywords": text } timeoutInterval:FSAPI_TIMEOUT_SECONDS success:successBlock failure:failureBlock];
 }
 
 + (XMRequest *)getLawsKeywordsWithText:(NSString *)text success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
 {
-    return [XMRequestManager rm_requestWithApi:@"/search/ftls/util/laws/extractKeywords" parameters:@{ @"keywords": text } success:successBlock failure:failureBlock];
+    return [XMRequestManager rm_requestWithServer:FS_CASE_STATUTE_URL api:@"/search/ftls/util/laws/extractKeywords" method:kXMHTTPMethodPOST parameters:@{ @"keywords": text } timeoutInterval:FSAPI_TIMEOUT_SECONDS success:successBlock failure:failureBlock];
 }
 
 // 文书范本

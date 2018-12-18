@@ -83,9 +83,9 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
-    NSString *caseStatuteH5Url = [[NSUserDefaults standardUserDefaults]objectForKey:FS_CASE_STATUTE_H5_KEY];
+    NSString *caseStatuteH5Url = [[NSUserDefaults standardUserDefaults]objectForKey:FS_CASE_STATUTE_URL_KEY];
     if (!caseStatuteH5Url) {
-        [[NSUserDefaults standardUserDefaults] setObject:FS_CASE_STATUTE_INIT forKey:FS_CASE_STATUTE_H5_KEY];
+        [[NSUserDefaults standardUserDefaults] setObject:FS_CASE_STATUTE_INIT forKey:FS_CASE_STATUTE_URL_KEY];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
@@ -201,7 +201,7 @@
         [[NSUserDefaults standardUserDefaults] setObject:FS_URL_SERVER_ONLINE forKey:FS_URL_SERVER_KEY];
         [[NSUserDefaults standardUserDefaults] setObject:FS_H5_SERVER_ONLINE forKey:FS_H5_SERVER_KEY];
         [[NSUserDefaults standardUserDefaults] setObject:FS_FILE_ADRESS_ONLINE forKey:FS_FILE_ADRESS_KEY];
-        [[NSUserDefaults standardUserDefaults] setObject:FS_CASE_STATUTE_ONLINE forKey:FS_CASE_STATUTE_H5_KEY];
+        [[NSUserDefaults standardUserDefaults] setObject:FS_CASE_STATUTE_ONLINE forKey:FS_CASE_STATUTE_URL_KEY];
 #ifdef FSVIDEO_ON
         [[NSUserDefaults standardUserDefaults] setObject:@(FS_ILiveSDKAPPID_ONLINE) forKey:FS_ILiveSDKAPPID_KEY];
         [[NSUserDefaults standardUserDefaults] setObject:@(FS_ILiveAccountType_ONLINE) forKey:FS_ILiveAccountType_KEY];
@@ -219,7 +219,7 @@
         [[NSUserDefaults standardUserDefaults] setObject:FS_URL_SERVER_DEV forKey:FS_URL_SERVER_KEY];
         [[NSUserDefaults standardUserDefaults] setObject:FS_H5_SERVER_DEV forKey:FS_H5_SERVER_KEY];
         [[NSUserDefaults standardUserDefaults] setObject:FS_FILE_ADRESS_DEV forKey:FS_FILE_ADRESS_KEY];
-        [[NSUserDefaults standardUserDefaults] setObject:FS_CASE_STATUTE_DEV forKey:FS_CASE_STATUTE_H5_KEY];
+        [[NSUserDefaults standardUserDefaults] setObject:FS_CASE_STATUTE_DEV forKey:FS_CASE_STATUTE_URL_KEY];
 #ifdef FSVIDEO_ON
         [[NSUserDefaults standardUserDefaults] setObject:@(FS_ILiveSDKAPPID_DEV) forKey:FS_ILiveSDKAPPID_KEY];
         [[NSUserDefaults standardUserDefaults] setObject:@(FS_ILiveAccountType_DEV) forKey:FS_ILiveAccountType_KEY];
@@ -237,7 +237,7 @@
         [[NSUserDefaults standardUserDefaults] setObject:FS_URL_SERVER_TEST forKey:FS_URL_SERVER_KEY];
         [[NSUserDefaults standardUserDefaults] setObject:FS_H5_SERVER_TEST forKey:FS_H5_SERVER_KEY];
         [[NSUserDefaults standardUserDefaults] setObject:FS_FILE_ADRESS_TEST forKey:FS_FILE_ADRESS_KEY];
-        [[NSUserDefaults standardUserDefaults] setObject:FS_CASE_STATUTE_TEST forKey:FS_CASE_STATUTE_H5_KEY];
+        [[NSUserDefaults standardUserDefaults] setObject:FS_CASE_STATUTE_TEST forKey:FS_CASE_STATUTE_URL_KEY];
 #ifdef FSVIDEO_ON
         [[NSUserDefaults standardUserDefaults] setObject:@(FS_ILiveSDKAPPID_TEST) forKey:FS_ILiveSDKAPPID_KEY];
         [[NSUserDefaults standardUserDefaults] setObject:@(FS_ILiveAccountType_TEST) forKey:FS_ILiveAccountType_KEY];

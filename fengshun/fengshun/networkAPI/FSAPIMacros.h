@@ -44,9 +44,9 @@
 #define FS_FILE_ADRESS_KEY      (@"debug_file_adress")
 #define FS_FILE_ADRESS          [[NSUserDefaults standardUserDefaults] objectForKey:FS_FILE_ADRESS_KEY]
 
-// v1.1法规及案例检索的h5域名和其他h5域名分离,开始不一样
-#define FS_CASE_STATUTE_H5_KEY  (@"debug_case_statute_h5")
-#define FS_CASE_STATUTE_H5      [[NSUserDefaults standardUserDefaults] objectForKey:FS_CASE_STATUTE_H5_KEY]
+// v1.1法规及案例检索变更为专门的服务器提供的服务,相关接口请求域名变更
+#define FS_CASE_STATUTE_URL_KEY  (@"debug_case_statute_h5")
+#define FS_CASE_STATUTE_URL      [[NSUserDefaults standardUserDefaults] objectForKey:FS_CASE_STATUTE_URL_KEY]
 
 #else
 
@@ -54,7 +54,7 @@
 #define FS_H5_SERVER        (@"https://ftlsh5.odrcloud.cn")
 //#define FS_H5_SERVER        (@"https://devftlsh5.odrcloud.net")
 #define FS_FILE_ADRESS      (@"/storm/file/download/")
-#define FS_CASE_STATUTE_H5  (@"ttps://lawsearch.odrcloud.cn")
+#define FS_CASE_STATUTE_URL  (@"ttps://lawsearch.odrcloud.cn")
 
 #endif
 
