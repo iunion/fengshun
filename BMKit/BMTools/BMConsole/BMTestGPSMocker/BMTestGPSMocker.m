@@ -285,12 +285,12 @@ static NSString * const kBMTestGPSMockCoordinateKey = @"bmtest_gpsmock_coordinat
 {
     if (delegate)
     {
-        //1、让所有的CLLocationManager的代理都设置为[DoraemonGPSMocker shareInstance]，让他做中间转发
+        //1、让所有的CLLocationManager的代理都设置为[DoraemonGPSMocker sharedInstance]，让他做中间转发
         [self bmtest_swizzleLocationDelegate:[BMTestGPSMocker sharedInstance]];
-        //2、绑定所有CLLocationManager实例与delegate的关系，用于[DoraemonGPSMocker shareInstance]做目标转发用。
+        //2、绑定所有CLLocationManager实例与delegate的关系，用于[DoraemonGPSMocker sharedInstance]做目标转发用。
         [[BMTestGPSMocker sharedInstance] addLocationBinder:self delegate:delegate];
         
-        //3、处理[DoraemonGPSMocker shareInstance]没有实现的selector，并且给用户提示。
+        //3、处理[DoraemonGPSMocker sharedInstance]没有实现的selector，并且给用户提示。
         Protocol *proto = objc_getProtocol("CLLocationManagerDelegate");
         unsigned int count;
         struct objc_method_description *methods = protocol_copyMethodDescriptionList(proto, NO, YES, &count);

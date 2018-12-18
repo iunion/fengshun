@@ -21,9 +21,6 @@
 #import "AppDelegate.h"
 #import "FSWebViewController.h"
 
-#import "BMTestGPSMockVC.h"
-#import "BMTestAppInfoVC.h"
-
 @implementation FSTestHelper
 
 - (void)dealloc
@@ -83,9 +80,16 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
+<<<<<<< HEAD
     NSString *caseStatuteH5Url = [[NSUserDefaults standardUserDefaults]objectForKey:FS_CASE_STATUTE_URL_KEY];
     if (!caseStatuteH5Url) {
         [[NSUserDefaults standardUserDefaults] setObject:FS_CASE_STATUTE_INIT forKey:FS_CASE_STATUTE_URL_KEY];
+=======
+    NSString *caseStatuteH5Url = [[NSUserDefaults standardUserDefaults]objectForKey:FS_CASE_STATUTE_H5_KEY];
+    if (!caseStatuteH5Url)
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:FS_CASE_STATUTE_INIT forKey:FS_CASE_STATUTE_H5_KEY];
+>>>>>>> origin/master
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
@@ -114,90 +118,35 @@
     
 }
 
-- (void)handleConsoleCommand:(NSString *)command
+- (BOOL)handleConsoleCommand:(NSString *)command
 {
-    [self handleConsoleCommand:command withParameter:nil];
+    return [self handleConsoleCommand:command withParameter:nil];
 }
 
-- (void)handleConsoleCommand:(NSString *)command withParameter:(id)parameter
+- (BOOL)handleConsoleCommand:(NSString *)command withParameter:(id)parameter
 {
     if (![command bm_isNotEmpty])
     {
-        return;
+        return YES;
     }
     
+    BOOL ret = NO;
     [BMConsole log:@"\n==========================================="];
     
-    if ([command isEqualToString:@"version"])   // 显示app版本信息
-	{
-        [BMConsole log:@"%@ version %@ - build %@",
-         [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"],
-         [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],
-         [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]];
-	}
-    else if ([command isEqualToString:@"cl"])   //清除存储并刷新屏幕
+    if ([command isEqualToString:@"api"])  // 查看API路径情况
     {
-        [BMConsole clean];
-    }
-    else if ([command isEqualToString:@"clear"])    // 清除屏幕
-    {
-        [BMConsole clear];
-    }
-    else if ([command isEqualToString:@"log"])  // 打印所有log
-    {
-        static NSString *pidString = nil;
-        if (!pidString) {
-            pidString = @([[NSProcessInfo processInfo] processIdentifier]).stringValue;
-        }
-
-        asl_object_t query, m;
-        query = asl_new(ASL_TYPE_QUERY);
-        asl_set_query(query, ASL_KEY_PID, pidString.UTF8String, ASL_QUERY_OP_EQUAL);
-
-        aslresponse response = asl_search(NULL, query);
-         while (NULL != (m = asl_next(response)))
-        {
-            const char *messageText = asl_get(m, ASL_KEY_MSG);
-            if (messageText)
-            {
-                NSString *text = [NSString stringWithUTF8String:messageText];
-                text = [NSString bm_convertUnicode:text];
-                
-                [BMConsole log:@"%@", [self getObjectDescription:text andIndent:0]];
-            }
-        }
-        
-        asl_release(response);
-    }
-    else if ([command isEqualToString:@"fps"]) // help命令
-    {
-        UIWindow *window = [UIApplication sharedApplication].delegate.window;
-        if ([window isKindOfClass:[BMConsoleWindow class]])
-        {
-            BMConsoleWindow *consoleWindow = (BMConsoleWindow *)window;
-            [consoleWindow.fpsLabel bm_bringToFront];
-            consoleWindow.fpsLabel.hidden = !consoleWindow.fpsLabel.hidden;
-            if (consoleWindow.fpsLabel.hidden)
-            {
-                [BMConsole log:@"fps监测关闭"];
-            }
-            else
-            {
-                [BMConsole log:@"fps监测打开"];
-            }
-        }
-    }
-    else if ([command isEqualToString:@"api"])  // 查看API路径情况
-    {
+        ret = YES;
         [BMConsole log:@"当前API运行环境是'%@'", FS_URL_SERVER];
         [BMConsole log:@"当前H5运行环境是'%@'", FS_H5_SERVER];
         [BMConsole log:@"当前文件链接地址是'%@'", FS_FILE_ADRESS];
+        [BMConsole log:@"当前法规案例检索地址是'%@'", FS_CASE_STATUTE_H5];
 #ifdef FSVIDEO_ON
         [FSConsole log:@"当前腾讯RTC环境是'%@ %@'", @(FS_ILiveSDKAPPID), @(FS_ILiveAccountType)];
 #endif
     }
     else if ([command isEqualToString:@"www"] || [command isEqualToString:@"on"])
     {
+        ret = YES;
         [[NSUserDefaults standardUserDefaults] setObject:FS_URL_SERVER_ONLINE forKey:FS_URL_SERVER_KEY];
         [[NSUserDefaults standardUserDefaults] setObject:FS_H5_SERVER_ONLINE forKey:FS_H5_SERVER_KEY];
         [[NSUserDefaults standardUserDefaults] setObject:FS_FILE_ADRESS_ONLINE forKey:FS_FILE_ADRESS_KEY];
@@ -216,6 +165,7 @@
     }
     else if ([command isEqualToString:@"dev"])
     {
+        ret = YES;
         [[NSUserDefaults standardUserDefaults] setObject:FS_URL_SERVER_DEV forKey:FS_URL_SERVER_KEY];
         [[NSUserDefaults standardUserDefaults] setObject:FS_H5_SERVER_DEV forKey:FS_H5_SERVER_KEY];
         [[NSUserDefaults standardUserDefaults] setObject:FS_FILE_ADRESS_DEV forKey:FS_FILE_ADRESS_KEY];
@@ -234,6 +184,7 @@
     }
     else if ([command isEqualToString:@"test"])
     {
+        ret = YES;
         [[NSUserDefaults standardUserDefaults] setObject:FS_URL_SERVER_TEST forKey:FS_URL_SERVER_KEY];
         [[NSUserDefaults standardUserDefaults] setObject:FS_H5_SERVER_TEST forKey:FS_H5_SERVER_KEY];
         [[NSUserDefaults standardUserDefaults] setObject:FS_FILE_ADRESS_TEST forKey:FS_FILE_ADRESS_KEY];
@@ -250,54 +201,9 @@
 
         [BMConsole log:@"当前api已经变更为'测试'"];
     }
-    else if ([command rangeOfString:@"email:"].length > 0)  // 设置反馈邮件
-    {
-        [BMConsole sharedConsole].logSubmissionEmail = [command stringByReplacingCharactersInRange:[command rangeOfString:@"email:"] withString:@""];
-        [BMConsole log:@"变更email: %@", [BMConsole sharedConsole].logSubmissionEmail];
-    }
-    // 标尺
-    else if ([command isEqualToString:@"al"] || [command isEqualToString:@"align"])
-    {
-        [BMConsole hide];
-        if ([BMConsole isShowAlign])
-        {
-            [BMConsole closeAlign];
-        }
-        else
-        {
-            [BMConsole showAlign];
-        }
-    }
-    // 颜色提取
-    else if ([command isEqualToString:@"cp"] || [command isEqualToString:@"color"])
-    {
-        [BMConsole hide];
-        if ([BMConsole isShowColorPicker])
-        {
-            [BMConsole closeColorPicker];
-        }
-        else
-        {
-            [BMConsole showColorPicker];
-        }
-    }
-    else if ([command isEqualToString:@"gps"])
-    {
-        BMTestGPSMockVC *vc = [[BMTestGPSMockVC alloc] init];
-        BMNavigationController *nav = [[BMNavigationController alloc] initWithRootViewController:vc];
-       [[BMConsole sharedConsole] presentViewController:nav animated:YES completion:^{
-        }];
-    }
-    else if ([command isEqualToString:@"app"])
-    {
-        BMTestAppInfoVC *vc = [[BMTestAppInfoVC alloc] init];
-        BMNavigationController *nav = [[BMNavigationController alloc] initWithRootViewController:vc];
-        [[BMConsole sharedConsole] presentViewController:nav animated:YES completion:^{
-            [BMConsole hide];
-        }];
-    }
     else if ([command isEqualToString:@"h"] || [command isEqualToString:@"help"]) // help命令
     {
+        ret = YES;
         NSMutableString *helpStr = [[NSMutableString alloc] init];
         [helpStr appendString:@"\n(01) 'help' 显示命令帮助文档\n"];
         [helpStr appendString:@"(02) 'version' 显示app版本\n"];
@@ -312,19 +218,16 @@
         [helpStr appendString:@"(11) 'al' 显示隐藏标尺\n"];
         [helpStr appendString:@"(12) 'cp' 显示隐藏颜色提取\n"];
         [helpStr appendString:@"(13) 'gps' 模拟GPS定位数据\n"];
-        [helpStr appendString:@"(14) 'net' 网络监测\n"];
+        [helpStr appendString:@"(14) 'mn' 网络监控开关\n"];
+        [helpStr appendString:@"(15) 'mf' 网络监控表\n"];
 
         [BMConsole log:@"%@", helpStr];
     }
-    else
+    else if ([command containsString:@"://"])
     {
-        if (![command containsString:@"://"])
-        {
-            command = [NSString stringWithFormat:@"http://%@", command];
-        }
-        
         if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:command]])
         {
+            ret = YES;
             [BMConsole hide];
             
             FSWebViewController *vc = [[FSWebViewController alloc] initWithTitle:nil url:command];
@@ -335,6 +238,8 @@
     }
     
     self.preCommand = command;
+    
+    return ret;
 }
 
 #ifdef FSVIDEO_ON
@@ -350,67 +255,6 @@
     NSLog(@"IMSDK version:%@", [[TIMManager sharedInstance] GetVersion]);
 }
 #endif
-
-/*
- 该函数用于解析中文log，也可以提取出来作为工具使用
- */
-- (NSMutableString*)getObjectDescription:(NSObject*)obj andIndent:(NSUInteger)level
-{
-    NSMutableString *str = [NSMutableString string];
-    NSString * strIndent = @"";
-    if (level>0)
-    {
-        NSArray *indentAry = [self generateArrayWithFillItem:@"\t" andArrayLength:level];
-        strIndent = [indentAry componentsJoinedByString:@""];
-    }
-    
-    if ([obj isKindOfClass:NSString.class])
-    {
-        [str appendFormat:@"\n%@%@", strIndent, obj];
-    }
-    else if([obj isKindOfClass:NSArray.class])
-    {
-        [str appendFormat:@"\n%@(", strIndent];
-        NSArray *ary = (NSArray *)obj;
-        for (NSUInteger i=0; i<ary.count; i++)
-        {
-            NSString *s = [self getObjectDescription:ary[i] andIndent:level+1];
-            [str appendFormat:@"%@ ,", s];
-        }
-        [str appendFormat:@"\n%@)", strIndent];
-    }
-    else if([obj isKindOfClass:NSDictionary.class])
-    {
-        [str appendFormat:@"\n%@{",strIndent];
-        NSDictionary *dict = (NSDictionary *)obj;
-        for (NSString *key in dict)
-        {
-            NSObject *val = dict[key];
-            [str appendFormat:@"\n\t%@%@=",strIndent,key];
-            NSString *s = [self getObjectDescription:val andIndent:level+2];
-            [str appendFormat:@"%@ ;", s];
-        }
-        [str appendFormat:@"\n%@}",strIndent];
-        
-    }
-    else
-    {
-        [str appendFormat:@"\n%@%@", strIndent, [obj debugDescription]];
-    }
-    
-    return str;
-}
-
-- (NSMutableArray*)generateArrayWithFillItem:(NSObject*)fillItem andArrayLength:(NSInteger)length
-{
-    NSMutableArray *ary = [NSMutableArray arrayWithCapacity:length];
-    for (NSInteger i=0; i<length; i++)
-    {
-        [ary addObject:fillItem];
-    }
-    
-    return ary;
-}
 
 @end
 

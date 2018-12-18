@@ -7,6 +7,7 @@
 //
 
 #import "BMConsole.h"
+#include <asl.h>
 #import "NSString+BMURLEncode.h"
 
 #if ICONSOLE_USE_GOOGLE_STACK_TRACE
@@ -18,6 +19,12 @@
 #import "BMTestAlignManager.h"
 #import "BMTestColorPickerManager.h"
 #import "BMCheckBoxLabel.h"
+
+#import "BMTestGPSMockVC.h"
+#import "BMTestAppInfoVC.h"
+
+#import "BMTestNetFlowManager.h"
+#import "BMTestNetFlowSummaryVC.h"
 
 
 #define TOOLBAR_GAP 5.0f
@@ -347,17 +354,7 @@ static void exceptionHandler(NSException *exception)
     
     BMConsoleEnvironment *environment = self.commandArray[index];
     
-    if (self.delegate)
-    {
-        if ([self.delegate respondsToSelector:@selector(handleConsoleCommand:withParameter:)])
-        {
-            [self.delegate handleConsoleCommand:environment.command withParameter:environment.parameter];
-        }
-        else
-        {
-            [self.delegate handleConsoleCommand:environment.command];
-        }
-    }
+    [self handleConsoleCommand:environment.command withParameter:environment.parameter];
     
     [self environmentCloseAction:sender];
 }
@@ -706,8 +703,21 @@ static void exceptionHandler(NSException *exception)
     switchView.bm_left = colorLabel.bm_right+10.0f;
     switchView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
     switchView.on = [BMConsole isShowColorPicker];
+
+    // 网络监控开关
+    UILabel *netLabel = [UILabel bm_labelWithFrame:CGRectMake(10.0f, colorLabel.bm_bottom+12.0f, 200.0f, 30.0f) text:@"网络监控" fontSize:14.0f color:[UIColor whiteColor] alignment:NSTextAlignmentLeft lines:1];
+    [self.environmentScrollView addSubview:netLabel];
     
-    self.environmentScrollView.contentSize =  CGSizeMake(UI_SCREEN_WIDTH, colorLabel.bm_bottom+10.0f);
+    switchView = [[UISwitch alloc] init];
+    switchView.exclusiveTouch = YES;
+    [switchView addTarget:self action:@selector(netSwitchValueDidChange:) forControlEvents:UIControlEventValueChanged];
+    [self.environmentScrollView addSubview:switchView];
+    switchView.bm_top = colorLabel.bm_bottom + 12.0f;
+    switchView.bm_left = netLabel.bm_right+10.0f;
+    switchView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+    switchView.on = [BMConsole isMonitorNet];
+
+    self.environmentScrollView.contentSize =  CGSizeMake(UI_SCREEN_WIDTH, netLabel.bm_bottom+10.0f);
                                                          
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.25f];
@@ -730,24 +740,14 @@ static void exceptionHandler(NSException *exception)
     
     BMConsoleEnvironment *environment = self.environmentArray[index];
 
-    if (self.delegate)
-    {
-        if ([self.delegate respondsToSelector:@selector(handleConsoleCommand:withParameter:)])
-        {
-            [self.delegate handleConsoleCommand:environment.command withParameter:environment.parameter];
-        }
-        else
-        {
-            [self.delegate handleConsoleCommand:environment.command];
-        }
-    }
+    [self handleConsoleCommand:environment.command withParameter:environment.parameter];
     
     [self environmentCloseAction:sender];
 }
 
 - (void)fpsSwitchValueDidChange:(UISwitch *)switchView
 {
-    [self.delegate handleConsoleCommand:@"fps"];
+    [self handleConsoleCommand:@"fps"];
 }
 
 - (void)fpsTypeValueDidChange:(BMCheckBoxLabel *)checkBoxLabel
@@ -786,12 +786,17 @@ static void exceptionHandler(NSException *exception)
 
 - (void)alignSwitchValueDidChange:(UISwitch *)switchView
 {
-    [self.delegate handleConsoleCommand:@"align"];
+    [self handleConsoleCommand:@"align"];
 }
 
 - (void)colorPickerSwitchValueDidChange:(UISwitch *)switchView
 {
-    [self.delegate handleConsoleCommand:@"cp"];
+    [self handleConsoleCommand:@"cp"];
+}
+
+- (void)netSwitchValueDidChange:(UISwitch *)switchView
+{
+    [self handleConsoleCommand:@"mn"];
 }
 
 - (void)infoAction
@@ -816,7 +821,7 @@ static void exceptionHandler(NSException *exception)
     }];
     
     UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"帮助" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self.delegate handleConsoleCommand:@"help"];
+        [self handleConsoleCommand:@"help"];
     }];
     
     UIAlertAction *action4 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
@@ -1021,7 +1026,7 @@ static void exceptionHandler(NSException *exception)
 
 #pragma mark - UISlider
 
--(void)sliderAction:(UISlider *)slider
+- (void)sliderAction:(UISlider *)slider
 {
     self.consoleView.font = [UIFont fontWithName:@"Courier" size:slider.value];
 }
@@ -1038,7 +1043,7 @@ static void exceptionHandler(NSException *exception)
         for (NSString *str in strArray)
         {
             [BMConsole log:@"%@", str];
-            [self.delegate handleConsoleCommand:str];
+            [self handleConsoleCommand:str];
         }
         textField.text = @"";
     }
@@ -1350,6 +1355,299 @@ static void exceptionHandler(NSException *exception)
 + (BOOL)isShowColorPicker
 {
     return [[BMTestColorPickerManager sharedInstance] isShow];
+}
+
++ (BOOL)isMonitorNet
+{
+    return [BMTestNetFlowManager sharedInstance].canIntercept;
+}
+
++ (void)startMonitorNet
+{
+    if (![BMTestNetFlowManager sharedInstance].canIntercept)
+    {
+        [[BMTestNetFlowManager sharedInstance] canInterceptNetFlow:YES];
+    }
+}
+
++ (void)stopMonitorNet
+{
+    [[BMTestNetFlowManager sharedInstance] canInterceptNetFlow:NO];
+}
+
+
+#pragma mark -
+#pragma mark handleConsole
+
+// 按键事件
+- (void)handleConsoleButton:(UIButton *)sender
+{
+    [self.delegate handleConsoleButton:sender];
+}
+
+- (void)handleConsoleCommand:(NSString *)command
+{
+    [self handleConsoleCommand:command withParameter:nil];
+}
+
+- (void)handleConsoleCommand:(NSString *)command withParameter:(id)parameter
+{
+    if (![command bm_isNotEmpty])
+    {
+        return;
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(handleConsoleCommand:withParameter:)])
+    {
+        if ([self.delegate handleConsoleCommand:command withParameter:parameter])
+        {
+            return;
+        }
+    }
+    else
+    {
+        if ([self.delegate handleConsoleCommand:command])
+        {
+            return;
+        }
+    }
+
+    [BMConsole log:@"\n==========================================="];
+    
+    BOOL ret = NO;
+    
+    if ([command isEqualToString:@"version"])   // 显示app版本信息
+    {
+        ret = YES;
+        [BMConsole log:@"%@ version %@ - build %@",
+         [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"],
+         [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],
+         [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]];
+    }
+    else if ([command isEqualToString:@"cl"])   //清除存储并刷新屏幕
+    {
+        ret = YES;
+        [BMConsole clean];
+    }
+    else if ([command isEqualToString:@"clear"])    // 清除屏幕
+    {
+        ret = YES;
+        [BMConsole clear];
+    }
+    else if ([command isEqualToString:@"log"])  // 打印所有log
+    {
+        ret = YES;
+        static NSString *pidString = nil;
+        if (!pidString) {
+            pidString = @([[NSProcessInfo processInfo] processIdentifier]).stringValue;
+        }
+        
+        asl_object_t query, m;
+        query = asl_new(ASL_TYPE_QUERY);
+        asl_set_query(query, ASL_KEY_PID, pidString.UTF8String, ASL_QUERY_OP_EQUAL);
+        
+        aslresponse response = asl_search(NULL, query);
+        while (NULL != (m = asl_next(response)))
+        {
+            const char *messageText = asl_get(m, ASL_KEY_MSG);
+            if (messageText)
+            {
+                NSString *text = [NSString stringWithUTF8String:messageText];
+                text = [NSString bm_convertUnicode:text];
+                
+                [BMConsole log:@"%@", [self getObjectDescription:text andIndent:0]];
+            }
+        }
+        
+        asl_release(response);
+    }
+    else if ([command isEqualToString:@"fps"]) // help命令
+    {
+        ret = YES;
+        UIWindow *window = [UIApplication sharedApplication].delegate.window;
+        if ([window isKindOfClass:[BMConsoleWindow class]])
+        {
+            BMConsoleWindow *consoleWindow = (BMConsoleWindow *)window;
+            [consoleWindow.fpsLabel bm_bringToFront];
+            consoleWindow.fpsLabel.hidden = !consoleWindow.fpsLabel.hidden;
+            if (consoleWindow.fpsLabel.hidden)
+            {
+                [BMConsole log:@"fps监测关闭"];
+            }
+            else
+            {
+                [BMConsole log:@"fps监测打开"];
+            }
+        }
+    }
+    else if ([command rangeOfString:@"email:"].length > 0)  // 设置反馈邮件
+    {
+        ret = YES;
+        [BMConsole sharedConsole].logSubmissionEmail = [command stringByReplacingCharactersInRange:[command rangeOfString:@"email:"] withString:@""];
+        [BMConsole log:@"变更email: %@", [BMConsole sharedConsole].logSubmissionEmail];
+    }
+    // 标尺
+    else if ([command isEqualToString:@"al"] || [command isEqualToString:@"align"])
+    {
+        ret = YES;
+        [BMConsole hide];
+        if ([BMConsole isShowAlign])
+        {
+            [BMConsole closeAlign];
+        }
+        else
+        {
+            [BMConsole showAlign];
+        }
+    }
+    // 颜色提取
+    else if ([command isEqualToString:@"cp"] || [command isEqualToString:@"color"])
+    {
+        ret = YES;
+        [BMConsole hide];
+        if ([BMConsole isShowColorPicker])
+        {
+            [BMConsole closeColorPicker];
+        }
+        else
+        {
+            [BMConsole showColorPicker];
+        }
+    }
+    else if ([command isEqualToString:@"gps"])
+    {
+        ret = YES;
+        BMTestGPSMockVC *vc = [[BMTestGPSMockVC alloc] init];
+        BMNavigationController *nav = [[BMNavigationController alloc] initWithRootViewController:vc];
+        [[BMConsole sharedConsole] presentViewController:nav animated:YES completion:^{
+        }];
+    }
+    else if ([command isEqualToString:@"app"])
+    {
+        ret = YES;
+        BMTestAppInfoVC *vc = [[BMTestAppInfoVC alloc] init];
+        BMNavigationController *nav = [[BMNavigationController alloc] initWithRootViewController:vc];
+        [[BMConsole sharedConsole] presentViewController:nav animated:YES completion:^{
+            [BMConsole hide];
+        }];
+    }
+    // 网络监控开关
+    else if ([command isEqualToString:@"mn"])
+    {
+        ret = YES;
+        if ([BMConsole isMonitorNet])
+        {
+            [BMConsole stopMonitorNet];
+        }
+        else
+        {
+            [BMConsole startMonitorNet];
+        }
+    }
+    // 网络监控表
+    else if ([command isEqualToString:@"nf"])
+    {
+        ret = YES;
+        BMTestNetFlowSummaryVC *vc = [[BMTestNetFlowSummaryVC alloc] init];
+        BMNavigationController *nav = [[BMNavigationController alloc] initWithRootViewController:vc];
+        [[BMConsole sharedConsole] presentViewController:nav animated:YES completion:^{
+            [BMConsole hide];
+        }];
+    }
+    else if ([command isEqualToString:@"h"] || [command isEqualToString:@"help"]) // help命令
+    {
+        ret = YES;
+        NSMutableString *helpStr = [[NSMutableString alloc] init];
+        [helpStr appendString:@"\n(01) 'help' 显示命令帮助文档\n"];
+        [helpStr appendString:@"(02) 'version' 显示app版本\n"];
+        [helpStr appendString:@"(03) 'clear' 清除控制台信息\n"];
+        [helpStr appendString:@"(04) 'log' 打印所有NSLog\n"];
+        [helpStr appendString:@"(05) 'fps' 显示隐藏FPS监测\n"];
+        [helpStr appendString:@"(06) 'al' 显示隐藏标尺\n"];
+        [helpStr appendString:@"(07) 'cp' 显示隐藏颜色提取\n"];
+        [helpStr appendString:@"(08) 'gps' 模拟GPS定位数据\n"];
+        [helpStr appendString:@"(09) 'mn' 网络监控开关\n"];
+        [helpStr appendString:@"(10) 'mf' 网络监控表\n"];
+
+        [BMConsole log:@"%@", helpStr];
+    }
+    
+    if (!ret)
+    {
+        if (![command containsString:@"://"])
+        {
+            NSString *newcommand = [NSString stringWithFormat:@"http://%@", command];
+            if ([self.delegate respondsToSelector:@selector(handleConsoleCommand:withParameter:)])
+            {
+                [self.delegate handleConsoleCommand:newcommand withParameter:parameter];
+            }
+            else
+            {
+                [self.delegate handleConsoleCommand:newcommand];
+            }
+        }
+    }
+}
+
+/*
+ 该函数用于解析中文log，也可以提取出来作为工具使用
+ */
+- (NSMutableString*)getObjectDescription:(NSObject*)obj andIndent:(NSUInteger)level
+{
+    NSMutableString *str = [NSMutableString string];
+    NSString * strIndent = @"";
+    if (level>0)
+    {
+        NSArray *indentAry = [self generateArrayWithFillItem:@"\t" andArrayLength:level];
+        strIndent = [indentAry componentsJoinedByString:@""];
+    }
+    
+    if ([obj isKindOfClass:NSString.class])
+    {
+        [str appendFormat:@"\n%@%@", strIndent, obj];
+    }
+    else if([obj isKindOfClass:NSArray.class])
+    {
+        [str appendFormat:@"\n%@(", strIndent];
+        NSArray *ary = (NSArray *)obj;
+        for (NSUInteger i=0; i<ary.count; i++)
+        {
+            NSString *s = [self getObjectDescription:ary[i] andIndent:level+1];
+            [str appendFormat:@"%@ ,", s];
+        }
+        [str appendFormat:@"\n%@)", strIndent];
+    }
+    else if([obj isKindOfClass:NSDictionary.class])
+    {
+        [str appendFormat:@"\n%@{",strIndent];
+        NSDictionary *dict = (NSDictionary *)obj;
+        for (NSString *key in dict)
+        {
+            NSObject *val = dict[key];
+            [str appendFormat:@"\n\t%@%@=",strIndent,key];
+            NSString *s = [self getObjectDescription:val andIndent:level+2];
+            [str appendFormat:@"%@ ;", s];
+        }
+        [str appendFormat:@"\n%@}",strIndent];
+        
+    }
+    else
+    {
+        [str appendFormat:@"\n%@%@", strIndent, [obj debugDescription]];
+    }
+    
+    return str;
+}
+
+- (NSMutableArray*)generateArrayWithFillItem:(NSObject*)fillItem andArrayLength:(NSInteger)length
+{
+    NSMutableArray *ary = [NSMutableArray arrayWithCapacity:length];
+    for (NSInteger i=0; i<length; i++)
+    {
+        [ary addObject:fillItem];
+    }
+    
+    return ary;
 }
 
 @end

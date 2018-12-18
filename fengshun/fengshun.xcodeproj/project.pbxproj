@@ -1688,6 +1688,26 @@
 		87E7C6F52151F2C700F7AB14 /* FSTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6EA2151F2C700F7AB14 /* FSTestHelper.m */; };
 		87E7C70221532DA000F7AB14 /* FSApiErrorLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C70021532D9F00F7AB14 /* FSApiErrorLog.m */; };
 		87E7C70321532DA000F7AB14 /* FSApiErrorLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C70021532D9F00F7AB14 /* FSApiErrorLog.m */; };
+		87EE6CC521C09E24002BD296 /* BMTestNSURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE6CC421C09E24002BD296 /* BMTestNSURLProtocol.m */; };
+		87EE6CC621C09E2D002BD296 /* BMTestNSURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE6CC421C09E24002BD296 /* BMTestNSURLProtocol.m */; };
+		87EE6CC921C09EA7002BD296 /* BMTestNetFlowManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE6CC821C09EA7002BD296 /* BMTestNetFlowManager.m */; };
+		87EE6CCA21C09EA7002BD296 /* BMTestNetFlowManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE6CC821C09EA7002BD296 /* BMTestNetFlowManager.m */; };
+		87EE6CCD21C0A897002BD296 /* BMTestNetFlowHttpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE6CCC21C0A897002BD296 /* BMTestNetFlowHttpModel.m */; };
+		87EE6CCE21C0A897002BD296 /* BMTestNetFlowHttpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE6CCC21C0A897002BD296 /* BMTestNetFlowHttpModel.m */; };
+		87EE6CD221C0AB34002BD296 /* BMApiUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE6CD121C0AB34002BD296 /* BMApiUtil.m */; };
+		87EE6CD321C0AB34002BD296 /* BMApiUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE6CD121C0AB34002BD296 /* BMApiUtil.m */; };
+		87EE6CD821C204E4002BD296 /* BMTestNetFlowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE6CD621C204E4002BD296 /* BMTestNetFlowCell.m */; };
+		87EE6CD921C204E4002BD296 /* BMTestNetFlowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE6CD621C204E4002BD296 /* BMTestNetFlowCell.m */; };
+		87EE6CDA21C204E4002BD296 /* BMTestNetFlowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87EE6CD721C204E4002BD296 /* BMTestNetFlowCell.xib */; };
+		87EE6CDB21C204E4002BD296 /* BMTestNetFlowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87EE6CD721C204E4002BD296 /* BMTestNetFlowCell.xib */; };
+		87EE6CE021C3A8B9002BD296 /* navigationbar_fresh_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87EE6CDE21C3A8B8002BD296 /* navigationbar_fresh_icon@2x.png */; };
+		87EE6CE121C3A8B9002BD296 /* navigationbar_fresh_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87EE6CDE21C3A8B8002BD296 /* navigationbar_fresh_icon@2x.png */; };
+		87EE6CE221C3A8B9002BD296 /* navigationbar_fresh_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87EE6CDF21C3A8B8002BD296 /* navigationbar_fresh_icon@3x.png */; };
+		87EE6CE321C3A8B9002BD296 /* navigationbar_fresh_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87EE6CDF21C3A8B8002BD296 /* navigationbar_fresh_icon@3x.png */; };
+		87EE6CE621C3AA7F002BD296 /* BMTestNetFlowDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE6CE521C3AA7F002BD296 /* BMTestNetFlowDetailVC.m */; };
+		87EE6CE721C3AA7F002BD296 /* BMTestNetFlowDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE6CE521C3AA7F002BD296 /* BMTestNetFlowDetailVC.m */; };
+		87F2CC5121B8B2CC008BEC8D /* BMTestNetFlowSummaryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F2CC5021B8B2CC008BEC8D /* BMTestNetFlowSummaryVC.m */; };
+		87F2CC5221B8B2CC008BEC8D /* BMTestNetFlowSummaryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F2CC5021B8B2CC008BEC8D /* BMTestNetFlowSummaryVC.m */; };
 		87F6397121533ADB0035E730 /* PLArrayTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6396D21533ADB0035E730 /* PLArrayTableViewController.m */; };
 		87F6397221533ADB0035E730 /* PLArrayTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6396D21533ADB0035E730 /* PLArrayTableViewController.m */; };
 		87F6397321533ADB0035E730 /* PLDictionaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F6397021533ADB0035E730 /* PLDictionaryTableViewController.m */; };
@@ -3508,6 +3528,23 @@
 		87E7C6F12151F2C700F7AB14 /* FSTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSTestHelper.h; sourceTree = "<group>"; };
 		87E7C70021532D9F00F7AB14 /* FSApiErrorLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSApiErrorLog.m; sourceTree = "<group>"; };
 		87E7C70121532DA000F7AB14 /* FSApiErrorLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSApiErrorLog.h; sourceTree = "<group>"; };
+		87EE6CC321C09E24002BD296 /* BMTestNSURLProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMTestNSURLProtocol.h; sourceTree = "<group>"; };
+		87EE6CC421C09E24002BD296 /* BMTestNSURLProtocol.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMTestNSURLProtocol.m; sourceTree = "<group>"; };
+		87EE6CC721C09EA7002BD296 /* BMTestNetFlowManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMTestNetFlowManager.h; sourceTree = "<group>"; };
+		87EE6CC821C09EA7002BD296 /* BMTestNetFlowManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMTestNetFlowManager.m; sourceTree = "<group>"; };
+		87EE6CCB21C0A897002BD296 /* BMTestNetFlowHttpModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMTestNetFlowHttpModel.h; sourceTree = "<group>"; };
+		87EE6CCC21C0A897002BD296 /* BMTestNetFlowHttpModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMTestNetFlowHttpModel.m; sourceTree = "<group>"; };
+		87EE6CD021C0AB34002BD296 /* BMApiUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMApiUtil.h; sourceTree = "<group>"; };
+		87EE6CD121C0AB34002BD296 /* BMApiUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMApiUtil.m; sourceTree = "<group>"; };
+		87EE6CD521C204E4002BD296 /* BMTestNetFlowCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMTestNetFlowCell.h; sourceTree = "<group>"; };
+		87EE6CD621C204E4002BD296 /* BMTestNetFlowCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMTestNetFlowCell.m; sourceTree = "<group>"; };
+		87EE6CD721C204E4002BD296 /* BMTestNetFlowCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BMTestNetFlowCell.xib; sourceTree = "<group>"; };
+		87EE6CDE21C3A8B8002BD296 /* navigationbar_fresh_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationbar_fresh_icon@2x.png"; sourceTree = "<group>"; };
+		87EE6CDF21C3A8B8002BD296 /* navigationbar_fresh_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationbar_fresh_icon@3x.png"; sourceTree = "<group>"; };
+		87EE6CE421C3AA7F002BD296 /* BMTestNetFlowDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMTestNetFlowDetailVC.h; sourceTree = "<group>"; };
+		87EE6CE521C3AA7F002BD296 /* BMTestNetFlowDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMTestNetFlowDetailVC.m; sourceTree = "<group>"; };
+		87F2CC4F21B8B2CC008BEC8D /* BMTestNetFlowSummaryVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMTestNetFlowSummaryVC.h; sourceTree = "<group>"; };
+		87F2CC5021B8B2CC008BEC8D /* BMTestNetFlowSummaryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMTestNetFlowSummaryVC.m; sourceTree = "<group>"; };
 		87F6396D21533ADB0035E730 /* PLArrayTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLArrayTableViewController.m; sourceTree = "<group>"; };
 		87F6396E21533ADB0035E730 /* PLDictionaryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLDictionaryTableViewController.h; sourceTree = "<group>"; };
 		87F6396F21533ADB0035E730 /* PLArrayTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLArrayTableViewController.h; sourceTree = "<group>"; };
@@ -5087,6 +5124,7 @@
 		87426792212E7E35003C52F6 /* BMTools */ = {
 			isa = PBXGroup;
 			children = (
+				87EE6CCF21C0AB23002BD296 /* BMApiUtil */,
 				8742680E212E7E35003C52F6 /* BMAlertView */,
 				87426820212E7E35003C52F6 /* BMAlignedImageView */,
 				87426827212E7E35003C52F6 /* BMBadge */,
@@ -5735,6 +5773,8 @@
 				874269EB212F9657003C52F6 /* navigationbar_close_icon@3x.png */,
 				87D20AF121393B90001EDD60 /* navigationbar_collect_icon@2x.png */,
 				87D20AF221393B90001EDD60 /* navigationbar_collect_icon@3x.png */,
+				87EE6CDE21C3A8B8002BD296 /* navigationbar_fresh_icon@2x.png */,
+				87EE6CDF21C3A8B8002BD296 /* navigationbar_fresh_icon@3x.png */,
 				874269E7212F9657003C52F6 /* navigationbar_help_icon@2x.png */,
 				874269E6212F9657003C52F6 /* navigationbar_help_icon@3x.png */,
 				874269F0212F9657003C52F6 /* navigationbar_message_icon@2x.png */,
@@ -6065,6 +6105,7 @@
 				876BB7F021B630F500FC205D /* BMTestAppInfo */,
 				876BB7C921AFDCE100FC205D /* BMTestColorPicker */,
 				876BB7E121B11D7100FC205D /* BMTestGPSMocker */,
+				87F2CC4E21B8B24D008BEC8D /* BMTestNetFlow */,
 				876BB7BC21AE487200FC205D /* BMTestViewAlign */,
 				876BB7AE21AE34E700FC205D /* BMConsole.h */,
 				876BB7AD21AE34E700FC205D /* BMConsole.m */,
@@ -7068,6 +7109,43 @@
 				87E7C6EA2151F2C700F7AB14 /* FSTestHelper.m */,
 			);
 			path = FSTestHelp;
+			sourceTree = "<group>";
+		};
+		87EE6CCF21C0AB23002BD296 /* BMApiUtil */ = {
+			isa = PBXGroup;
+			children = (
+				87EE6CD021C0AB34002BD296 /* BMApiUtil.h */,
+				87EE6CD121C0AB34002BD296 /* BMApiUtil.m */,
+			);
+			path = BMApiUtil;
+			sourceTree = "<group>";
+		};
+		87EE6CD421C204B6002BD296 /* BMTestNetFlowCell */ = {
+			isa = PBXGroup;
+			children = (
+				87EE6CD521C204E4002BD296 /* BMTestNetFlowCell.h */,
+				87EE6CD621C204E4002BD296 /* BMTestNetFlowCell.m */,
+				87EE6CD721C204E4002BD296 /* BMTestNetFlowCell.xib */,
+			);
+			path = BMTestNetFlowCell;
+			sourceTree = "<group>";
+		};
+		87F2CC4E21B8B24D008BEC8D /* BMTestNetFlow */ = {
+			isa = PBXGroup;
+			children = (
+				87EE6CD421C204B6002BD296 /* BMTestNetFlowCell */,
+				87EE6CC321C09E24002BD296 /* BMTestNSURLProtocol.h */,
+				87EE6CC421C09E24002BD296 /* BMTestNSURLProtocol.m */,
+				87EE6CCB21C0A897002BD296 /* BMTestNetFlowHttpModel.h */,
+				87EE6CCC21C0A897002BD296 /* BMTestNetFlowHttpModel.m */,
+				87EE6CC721C09EA7002BD296 /* BMTestNetFlowManager.h */,
+				87EE6CC821C09EA7002BD296 /* BMTestNetFlowManager.m */,
+				87F2CC4F21B8B2CC008BEC8D /* BMTestNetFlowSummaryVC.h */,
+				87F2CC5021B8B2CC008BEC8D /* BMTestNetFlowSummaryVC.m */,
+				87EE6CE421C3AA7F002BD296 /* BMTestNetFlowDetailVC.h */,
+				87EE6CE521C3AA7F002BD296 /* BMTestNetFlowDetailVC.m */,
+			);
+			path = BMTestNetFlow;
 			sourceTree = "<group>";
 		};
 		87F6396C21533ADB0035E730 /* PListNavigatorLibs */ = {
@@ -8247,6 +8325,7 @@
 				8774200D214C9DE000F72427 /* FSCommentMessageCell.xib in Resources */,
 				874C23BD215B5DF2001C8BE9 /* user_praiseicon@2x.png in Resources */,
 				8742689F212E7E36003C52F6 /* decrease_baiduwaimai@3x.png in Resources */,
+				87EE6CE021C3A8B9002BD296 /* navigationbar_fresh_icon@2x.png in Resources */,
 				8730B11E2148E5D1004331A9 /* fsfreshidle_icon3@2x.png in Resources */,
 				ADE8689D21393469005359B5 /* FSForumListCell.xib in Resources */,
 				DB804FE121422539007F7B19 /* search_hotKey@2x.png in Resources */,
@@ -8284,6 +8363,7 @@
 				87D186AB213679F800037DDF /* login_error@2x.png in Resources */,
 				87E7C6BF2150C10100F7AB14 /* empty_neticon@2x.png in Resources */,
 				DB7584AA214F5C630002A1FE /* FSOCRSearchResultVC.xib in Resources */,
+				87EE6CDA21C204E4002BD296 /* BMTestNetFlowCell.xib in Resources */,
 				AD67122F2159DBD50081E08D /* fstab_btn1_icon@2x.png in Resources */,
 				8730B1152148E5D1004331A9 /* fsfreshidle_icon24@2x.png in Resources */,
 				DBF7E19921523CB6002CEDA4 /* search_lawTopic_3@2x.png in Resources */,
@@ -8293,6 +8373,7 @@
 				ADE8689821392853005359B5 /* FSTopicListCell.xib in Resources */,
 				87426895212E7E36003C52F6 /* increase_baiduwaimai@3x.png in Resources */,
 				DB804FE021422539007F7B19 /* search_hotKey@3x.png in Resources */,
+				87EE6CE221C3A8B9002BD296 /* navigationbar_fresh_icon@3x.png in Resources */,
 				DBF7E19621523CB6002CEDA4 /* search_lawTopic_5@2x.png in Resources */,
 				87E7C6C12150C10100F7AB14 /* empty_commonicon@3x.png in Resources */,
 				87426A23213100BB003C52F6 /* bmsearch_history@3x.png in Resources */,
@@ -8519,6 +8600,7 @@
 				87E7C58721509AB000F7AB14 /* video_not_selected@2x.png in Resources */,
 				45F68F4A2150E58F00628DC8 /* empty_ocricon@2x.png in Resources */,
 				87E7C58921509AB000F7AB14 /* navigationbar_share_icon@2x.png in Resources */,
+				87EE6CE321C3A8B9002BD296 /* navigationbar_fresh_icon@3x.png in Resources */,
 				87E7C58A21509AB000F7AB14 /* user_qqicon@2x.png in Resources */,
 				87E7C58B21509AB000F7AB14 /* video_message_icon@2x.png in Resources */,
 				87E7C58C21509AB000F7AB14 /* bmsearch_history@2x.png in Resources */,
@@ -8552,6 +8634,7 @@
 				DBF7E19B21524ECE002CEDA4 /* FSLawTopicInfos.plist in Resources */,
 				87E7C5A221509AB000F7AB14 /* steppersinput_minusicon@2x.png in Resources */,
 				45F68F4C2150E58F00628DC8 /* empty_searchicon@2x.png in Resources */,
+				87EE6CDB21C204E4002BD296 /* BMTestNetFlowCell.xib in Resources */,
 				87E7C5A421509AB000F7AB14 /* login_unchecked@3x.png in Resources */,
 				87E7C5A621509AB000F7AB14 /* home_courses@2x.png in Resources */,
 				876BB7D621AFE87700FC205D /* testcolorpalette@2x.png in Resources */,
@@ -8603,6 +8686,7 @@
 				87BC9E5121549153000F2011 /* fsintroguide_1242x2688_3@2x.png in Resources */,
 				87E7C5D121509AB000F7AB14 /* search_icon@2x.png in Resources */,
 				87E7C5D221509AB000F7AB14 /* increase_meituan@3x.png in Resources */,
+				87EE6CE121C3A8B9002BD296 /* navigationbar_fresh_icon@2x.png in Resources */,
 				87E7C5D321509AB000F7AB14 /* bmtab_clear_line@2x.png in Resources */,
 				87E7C5D421509AB000F7AB14 /* navigationbar_webclose_icon@2x.png in Resources */,
 				87E7C5D521509AB000F7AB14 /* chat_right_bg@3x.png in Resources */,
@@ -8792,6 +8876,7 @@
 				DBD4CDFD213FB2D800857DB3 /* FSMainToolCell.m in Sources */,
 				87426A5F21313940003C52F6 /* FSMainVC.m in Sources */,
 				AD9325FE214B4FDA007F3A93 /* ZSSFontsViewController.m in Sources */,
+				87EE6CCD21C0A897002BD296 /* BMTestNetFlowHttpModel.m in Sources */,
 				ADA1228B214614BE00CF0D87 /* FSTopicListVC.m in Sources */,
 				87D20AA2213920E2001EDD60 /* FLEXImageExplorerViewController.m in Sources */,
 				87F6397121533ADB0035E730 /* PLArrayTableViewController.m in Sources */,
@@ -8981,6 +9066,7 @@
 				87D20AC1213920E2001EDD60 /* FLEXArgumentInputStructView.m in Sources */,
 				876BB7BF21AE864C00FC205D /* BMTestAlignView.m in Sources */,
 				874269D5212E9E21003C52F6 /* BMFreshBackContainerFooterView.m in Sources */,
+				87EE6CC921C09EA7002BD296 /* BMTestNetFlowManager.m in Sources */,
 				874268EA212E7E36003C52F6 /* UIView+BMNibLoading.m in Sources */,
 				DB2656C721461A9F002ED713 /* FSSearchResultVC.m in Sources */,
 				DB2656CD214664FF002ED713 /* FSLawSearchResultVC.m in Sources */,
@@ -9027,6 +9113,7 @@
 				874269C0212E9B78003C52F6 /* BMFreshCircleHeader.m in Sources */,
 				874268EC212E7E36003C52F6 /* UILocalNotification+BMCategory.m in Sources */,
 				8730B0352140FFA2004331A9 /* NSDictionary+DTCoreText.m in Sources */,
+				87EE6CD821C204E4002BD296 /* BMTestNetFlowCell.m in Sources */,
 				87D20AA8213920E2001EDD60 /* FLEXLayerExplorerViewController.m in Sources */,
 				45FEF843214D1B720005AD43 /* UIAlertController+Blocks.m in Sources */,
 				874268D6212E7E36003C52F6 /* BMDatePicker.m in Sources */,
@@ -9090,6 +9177,7 @@
 				8730B0622140FFA3004331A9 /* DTZipArchivePKZip.m in Sources */,
 				87D20AE4213920E2001EDD60 /* FLEXImagePreviewViewController.m in Sources */,
 				AD9355A22137D24100735C2E /* TZAssetModel.m in Sources */,
+				87EE6CC521C09E24002BD296 /* BMTestNSURLProtocol.m in Sources */,
 				87D20AA7213920E2001EDD60 /* FLEXSetExplorerViewController.m in Sources */,
 				874268C1212E7E36003C52F6 /* BMBoolItem.m in Sources */,
 				8730B07F2140FFA3004331A9 /* DTActionSheet.m in Sources */,
@@ -9105,6 +9193,7 @@
 				87D209D02138F1E2001EDD60 /* SDWebImageImageIOCoder.m in Sources */,
 				87F639D021533C820035E730 /* UISplitViewController+MemoryLeak.m in Sources */,
 				8730B0602140FFA3004331A9 /* DTExtendedFileAttributes.m in Sources */,
+				87EE6CD221C0AB34002BD296 /* BMApiUtil.m in Sources */,
 				AD932601214B4FDA007F3A93 /* HRColorPickerView.m in Sources */,
 				874268CB212E7E36003C52F6 /* BMInputItem.m in Sources */,
 				87F639E621533C830035E730 /* FBBlockStrongLayout.m in Sources */,
@@ -9136,6 +9225,7 @@
 				8730B02E2140FFA2004331A9 /* DTAccessibilityElement.m in Sources */,
 				87D20B032139492F001EDD60 /* WebViewJavascriptBridgeBase.m in Sources */,
 				874268F8212E7E36003C52F6 /* UIImage+BMTint.m in Sources */,
+				87EE6CE621C3AA7F002BD296 /* BMTestNetFlowDetailVC.m in Sources */,
 				874268E8212E7E36003C52F6 /* UIView+BMInnerShadow.m in Sources */,
 				87D20AB4213920E2001EDD60 /* FLEXToolbarItem.m in Sources */,
 				8730B0542140FFA3004331A9 /* DTHTMLAttributedStringBuilder.m in Sources */,
@@ -9178,6 +9268,7 @@
 				87D20AB6213920E2001EDD60 /* FLEXManager.m in Sources */,
 				8730B0852140FFA3004331A9 /* DTSmartPagingScrollView.m in Sources */,
 				874269C2212E9B78003C52F6 /* BMFreshDotCircleHeader.m in Sources */,
+				87F2CC5121B8B2CC008BEC8D /* BMTestNetFlowSummaryVC.m in Sources */,
 				87D20AE1213920E2001EDD60 /* FLEXLiveObjectsTableViewController.m in Sources */,
 				87D20AAF213920E2001EDD60 /* FLEXNetworkCurlLogger.m in Sources */,
 				8730B0A921427A85004331A9 /* FSEditorAbilityVC.m in Sources */,
@@ -9407,6 +9498,7 @@
 				87E7C2C221509AB000F7AB14 /* BMLongTextItem.m in Sources */,
 				87E7C2C321509AB000F7AB14 /* DTCustomColoredAccessory.m in Sources */,
 				87E7C2C421509AB000F7AB14 /* FSMainToolCell.m in Sources */,
+				87EE6CD321C0AB34002BD296 /* BMApiUtil.m in Sources */,
 				87E7C2C521509AB000F7AB14 /* FSMainVC.m in Sources */,
 				87E7C2C621509AB000F7AB14 /* ZSSFontsViewController.m in Sources */,
 				87E7C2C721509AB000F7AB14 /* UIView+ZFFrame.m in Sources */,
@@ -9454,6 +9546,7 @@
 				87E7C2F021509AB000F7AB14 /* SDAnimatedImageRep.m in Sources */,
 				87E7C2F121509AB000F7AB14 /* FLEXObjectExplorerViewController.m in Sources */,
 				87E7C2F221509AB000F7AB14 /* DTStripedLayer.m in Sources */,
+				87EE6CD921C204E4002BD296 /* BMTestNetFlowCell.m in Sources */,
 				87E7C2F321509AB000F7AB14 /* BMTableViewCell.m in Sources */,
 				87E7C2F421509AB000F7AB14 /* CALayer+BMSize.m in Sources */,
 				87E7C2F521509AB000F7AB14 /* FSTextSearchResultVC.m in Sources */,
@@ -9496,6 +9589,7 @@
 				87E7C6A42150A4E500F7AB14 /* TOCropToolbar.m in Sources */,
 				87E7C31821509AB000F7AB14 /* MJPropertyKey.m in Sources */,
 				87F639D521533C820035E730 /* UIPageViewController+MemoryLeak.m in Sources */,
+				87EE6CC621C09E2D002BD296 /* BMTestNSURLProtocol.m in Sources */,
 				87E7C31921509AB000F7AB14 /* FSSendTopicVC.m in Sources */,
 				87E7C31A21509AB000F7AB14 /* FLEXArgumentInputViewFactory.m in Sources */,
 				87E7C31B21509AB000F7AB14 /* FLEXObjectRef.m in Sources */,
@@ -9505,6 +9599,7 @@
 				AF1B5EE7217462FA00125921 /* FSShareManager.m in Sources */,
 				87E7C31F21509AB000F7AB14 /* FMDatabaseAdditions.m in Sources */,
 				87E7C32021509AB000F7AB14 /* BMTableViewCellStyle.m in Sources */,
+				87EE6CCA21C09EA7002BD296 /* BMTestNetFlowManager.m in Sources */,
 				87E7C32121509AB000F7AB14 /* FSHeaderCommonSelector.m in Sources */,
 				87E7C32221509AB000F7AB14 /* FSVideoInviteLitigantVC.m in Sources */,
 				87E7C32321509AB000F7AB14 /* NSMutableArray+DTMoving.m in Sources */,
@@ -9588,6 +9683,7 @@
 				87E7C36F21509AB000F7AB14 /* TZPhotoPreviewController.m in Sources */,
 				87E7C37021509AB000F7AB14 /* DTTextBlock.m in Sources */,
 				87E7C37121509AB000F7AB14 /* BMTableViewLongTextCell.m in Sources */,
+				87EE6CE721C3AA7F002BD296 /* BMTestNetFlowDetailVC.m in Sources */,
 				87E7C37221509AB000F7AB14 /* DTScriptExpression.m in Sources */,
 				87E7C37321509AB000F7AB14 /* BMNavigationTitleLabel.m in Sources */,
 				87E7C37421509AB000F7AB14 /* FLEXObjectExplorerFactory.m in Sources */,
@@ -9686,6 +9782,7 @@
 				87E7C3C621509AB000F7AB14 /* FSImageFileModel.m in Sources */,
 				87E7C3C721509AB000F7AB14 /* FLEXExplorerToolbar.m in Sources */,
 				87E7C3C821509AB000F7AB14 /* FLEXExplorerViewController.m in Sources */,
+				87EE6CCE21C0A897002BD296 /* BMTestNetFlowHttpModel.m in Sources */,
 				87E7C3C921509AB000F7AB14 /* FSVideoMediatePersonalCell.m in Sources */,
 				87E7C3CA21509AB000F7AB14 /* FSDB.m in Sources */,
 				87E7C3CB21509AB000F7AB14 /* FSImageFileCell.m in Sources */,
@@ -9924,6 +10021,7 @@
 				87E7C49321509AB000F7AB14 /* NSString+BMEncrypt.m in Sources */,
 				87E7C49421509AB000F7AB14 /* DTBase64Coding.m in Sources */,
 				87F639CD21533C820035E730 /* UIView+MemoryLeak.m in Sources */,
+				87F2CC5221B8B2CC008BEC8D /* BMTestNetFlowSummaryVC.m in Sources */,
 				87E7C49521509AB000F7AB14 /* FLEXNetworkTransactionDetailTableViewController.m in Sources */,
 				87E7C49621509AB000F7AB14 /* FSManualBannerView.m in Sources */,
 				87E7C49721509AB000F7AB14 /* UIFont+DTCoreText.m in Sources */,

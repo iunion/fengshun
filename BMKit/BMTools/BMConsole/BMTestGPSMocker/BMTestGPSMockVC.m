@@ -24,7 +24,7 @@
 @property (nonatomic, strong) UIView *operatorView;
 @property (nonatomic, strong) UILabel *tipLabel;
 @property (nonatomic, strong) UISwitch *switchView;
-@property (nonatomic, strong) UILabel *mockLabel;
+
 @property (nonatomic, strong) UIButton *inputBtn;
 @property (nonatomic, strong) UILabel *longitudeTipLabel;
 @property (nonatomic, strong) UITextField *longitudeField;
@@ -32,7 +32,11 @@
 @property (nonatomic, strong) UITextField *latitudeField;
 @property (nonatomic, strong) UIButton *okBtn;
 
+@property (nonatomic, strong) UILabel *gpsLabel;
 @property (nonatomic, strong) UIImageView *centerImageView;
+
+@property (nonatomic, strong) UIButton *zoomin;
+@property (nonatomic, strong) UIButton *zoomout;
 
 @end
 
@@ -97,14 +101,6 @@
     [switchView addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
     self.switchView = switchView;
 
-    self.mockLabel = [[UILabel alloc] init];
-    self.mockLabel.textColor = [UIColor blackColor];
-    self.mockLabel.font = [UIFont boldSystemFontOfSize:18];
-    self.mockLabel.frame = CGRectMake(self.switchView.bm_right+10.0f, self.tipLabel.bm_top, UI_SCREEN_WIDTH-self.switchView.bm_right-20.0f, 20);
-    self.mockLabel.textAlignment = NSTextAlignmentRight;
-    self.mockLabel.hidden = YES;
-    [self.operatorView addSubview:self.mockLabel];
-
     self.longitudeTipLabel = [[UILabel alloc] init];
     self.longitudeTipLabel.textColor = [UIColor blackColor];
     self.longitudeTipLabel.font = [UIFont systemFontOfSize:14];
@@ -136,22 +132,106 @@
     [self.okBtn addTarget:self action:@selector(okBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [self.operatorView addSubview:self.okBtn];
 
-    //获取定位服务授权
+    // 获取定位服务授权
     [self requestUserLocationAuthor];
 
-    //初始化地图
+    // 初始化地图
     MKMapView *mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 100.0f, UI_SCREEN_WIDTH, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT-100.0f)];
     mapView.mapType = MKMapTypeStandard;
     mapView.delegate = self;
     [self.view addSubview:mapView];
     self.mapView = mapView;
+    self.mapView.showsUserLocation = YES;
+    self.mapView.userTrackingMode = MKUserTrackingModeFollow;
+
+    if (@available(iOS 9.0, *)) {
+        // 显示指南针
+        self.mapView.showsCompass = YES;
+        // 显示感兴趣的点，默认是显示的
+        self.mapView.showsPointsOfInterest = YES;
+        // 显示标尺(单位：mi 英尺)
+        self.mapView.showsScale = YES;
+        // 显示交通情况
+        self.mapView.showsTraffic = NO;
+        // 显示定位大头针，默认是显示的
+        self.mapView.showsUserLocation = NO;
+        // 显示建筑物的3D模型，设置3D/沙盘/航拍模式(高德地图不支持)
+        self.mapView.showsBuildings = NO;
+    }
     
+    //MKCoordinateSpan span=MKCoordinateSpanMake(0.021251, 0.016093);
+    //[self.mapView setRegion:MKCoordinateRegionMake(self.mapView.userLocation.coordinate, span) animated:YES];
+    
+
     UIImageView *iconView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     iconView.image = [UIImage imageNamed:@"testgpsmoker_icon"];
     [self.view addSubview:iconView];
     self.centerImageView = iconView;
     self.centerImageView.center = self.mapView.center;
- }
+ 
+    self.gpsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100.0f, 30.0f)];
+    self.gpsLabel.textColor = [UIColor blueColor];
+    self.gpsLabel.font = [UIFont systemFontOfSize:16.0f];
+    self.gpsLabel.backgroundColor = [UIColor colorWithWhite:0.9f alpha:0.7f];
+    self.gpsLabel.textAlignment = NSTextAlignmentCenter;
+    [self.gpsLabel bm_roundedRect:15.0f];
+    [self.view addSubview:self.gpsLabel];
+    self.gpsLabel.hidden = YES;
+    self.gpsLabel.bm_top = self.centerImageView.bm_top - 34.0f;
+    
+    [self addMapScale];
+    
+    self.switchView.on = [[BMTestGPSMocker sharedInstance] isMocking];
+    mockGPSSwitch = self.switchView.on;
+    if (mockGPSSwitch)
+    {
+        [self switchAction:self.switchView];
+    }
+}
+
+- (void)addMapScale
+{
+    // 放大
+    UIButton *zoomin = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 60, self.mapView.bm_height, 50, 25)];
+    zoomin.backgroundColor = [UIColor greenColor];
+    [zoomin setTitle:@"+" forState:UIControlStateNormal];
+    [zoomin setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [self.view addSubview:zoomin];
+    [zoomin addTarget:self action:@selector(clickZoom:) forControlEvents:UIControlEventTouchUpInside];
+    self.zoomin = zoomin;
+    
+    // 缩小
+    UIButton *zoomout = [[UIButton alloc] initWithFrame:CGRectMake(zoomin.bm_left, zoomin.bm_bottom + 5, 50, 25)];
+    zoomout.backgroundColor = [UIColor greenColor];
+    [zoomout setTitle:@"-" forState:UIControlStateNormal];
+    [zoomout setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [self.view addSubview:zoomout];
+    [zoomout addTarget:self action:@selector(clickZoom:) forControlEvents:UIControlEventTouchUpInside];
+    self.zoomout = zoomout;
+}
+
+- (void)clickZoom:(UIButton *)sender
+{
+    CLLocationCoordinate2D coordinate = self.mapView.region.center;
+    MKCoordinateSpan spn;
+    if (sender == self.zoomin)
+    {
+        self.zoomout.hidden = NO;
+        spn = MKCoordinateSpanMake(self.mapView.region.span.latitudeDelta * 0.5, self.mapView.region.span.longitudeDelta * 0.5);
+        
+    }
+    else
+    {
+        spn = MKCoordinateSpanMake(self.mapView.region.span.latitudeDelta * 2, self.mapView.region.span.longitudeDelta * 2);
+        if (spn.latitudeDelta >= 114 && spn.longitudeDelta >= 102)
+        {
+            self.zoomout.hidden = YES;
+            return;
+        }
+    }
+    
+    [self.mapView setRegion:MKCoordinateRegionMake(coordinate, spn) animated:YES];
+}
 
 - (void)switchAction:(id)sender
 {
@@ -160,19 +240,20 @@
     mockGPSSwitch = [switchButton isOn];
     if (mockGPSSwitch)
     {
-        self.mockLabel.hidden = NO;
+        self.gpsLabel.hidden = NO;
         CLLocationCoordinate2D coordinate = [[BMTestGPSMocker sharedInstance] mockCoordinate];
         if (coordinate.longitude>0 && coordinate.latitude>0)
         {
-            self.mockLabel.text = [NSString stringWithFormat:@"(%f , %f)",coordinate.longitude,coordinate.latitude];
-            [self.mapView setCenterCoordinate:coordinate animated:NO];
+            self.mapView.showsUserLocation = NO;
+            [self redrawGpsLabelWithGPS:[NSString stringWithFormat:@"%f, %f", coordinate.longitude, coordinate.latitude]];
+            [self.mapView setCenterCoordinate:coordinate animated:YES];
             CLLocation *loc = [[CLLocation alloc] initWithLatitude:coordinate.latitude longitude:coordinate.longitude];
             [[BMTestGPSMocker sharedInstance] mockPoint:loc];
         }
     }
     else
     {
-        self.mockLabel.hidden = YES;
+        self.gpsLabel.hidden = YES;
         [[BMTestGPSMocker sharedInstance] stopMockPoint];
         //[[NSNotificationCenter defaultCenter] postNotificationName:DoraemonMockCoordinateNotification object:nil userInfo:@{@"mockSwitch":@NO}];
     }
@@ -211,7 +292,8 @@
     coordinate.longitude = longitude;
     coordinate.latitude = latitude;
     
-    self.mockLabel.text = [NSString stringWithFormat:@"(%f , %f)",coordinate.longitude,coordinate.latitude];
+    [self redrawGpsLabelWithGPS:[NSString stringWithFormat:@"%f, %f", coordinate.longitude, coordinate.latitude]];
+    
     [self.mapView setCenterCoordinate:coordinate animated:NO];
     
     CLLocation *loc = [[CLLocation alloc] initWithLatitude:coordinate.latitude longitude:coordinate.longitude];
@@ -231,6 +313,16 @@
     }
 }
 
+- (void)redrawGpsLabelWithGPS:(NSString *)gps
+{
+    self.gpsLabel.text = gps;
+    [self.gpsLabel sizeToFit];
+    self.gpsLabel.bm_height = 30.0f;
+    self.gpsLabel.bm_width += 20.0f;
+    
+    self.gpsLabel.bm_centerX = self.centerImageView.bm_centerX;
+}
+
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
     CLLocationCoordinate2D centerCoordinate = mapView.region.center;
@@ -242,7 +334,8 @@
     
     [[BMTestGPSMocker sharedInstance] saveMockCoordinate:centerCoordinate];
     
-    self.mockLabel.text = [NSString stringWithFormat:@"(%f , %f)",centerCoordinate.longitude,centerCoordinate.latitude];
+    [self redrawGpsLabelWithGPS:[NSString stringWithFormat:@"%f, %f", centerCoordinate.longitude, centerCoordinate.latitude]];
+    
     //[[NSNotificationCenter defaultCenter] postNotificationName:DoraemonMockCoordinateNotification object:nil userInfo:@{@"mockSwitch":@YES}];
     
     CLLocation *loc = [[CLLocation alloc] initWithLatitude:centerCoordinate.latitude longitude:centerCoordinate.longitude];
