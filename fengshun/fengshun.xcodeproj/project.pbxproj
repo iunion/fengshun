@@ -7,24 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		45344496214D0DFA00EA7BFA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 45344495214D0DFA00EA7BFA /* libz.tbd */; };
 		45344498214D0DFA00EA7BFA /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 45344497214D0DFA00EA7BFA /* libstdc++.tbd */; };
-		4534449C214D0DFA00EA7BFA /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4534449B214D0DFA00EA7BFA /* libsqlite3.tbd */; };
 		4534449E214D0DFA00EA7BFA /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4534449D214D0DFA00EA7BFA /* libresolv.tbd */; };
 		453444A0214D0DFA00EA7BFA /* libprotobuf.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4534449F214D0DFA00EA7BFA /* libprotobuf.tbd */; };
 		453444A2214D0DFA00EA7BFA /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444A1214D0DFA00EA7BFA /* libicucore.tbd */; };
 		453444A4214D0DFA00EA7BFA /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444A3214D0DFA00EA7BFA /* libiconv.tbd */; };
-		453444A6214D0DFA00EA7BFA /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444A5214D0DFA00EA7BFA /* libc++.tbd */; };
 		453444A8214D0DFA00EA7BFA /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444A7214D0DFA00EA7BFA /* libbz2.tbd */; };
 		453444AA214D0DFA00EA7BFA /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444A9214D0DFA00EA7BFA /* VideoToolbox.framework */; };
-		453444AC214D0DFA00EA7BFA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444AB214D0DFA00EA7BFA /* SystemConfiguration.framework */; };
 		453444AE214D0DFA00EA7BFA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444AD214D0DFA00EA7BFA /* QuartzCore.framework */; };
 		453444B0214D0DFA00EA7BFA /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444AF214D0DFA00EA7BFA /* OpenGLES.framework */; };
 		453444B2214D0DFA00EA7BFA /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444B1214D0DFA00EA7BFA /* OpenAL.framework */; };
 		453444B4214D0DFA00EA7BFA /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444B3214D0DFA00EA7BFA /* JavaScriptCore.framework */; };
-		453444B6214D0DFA00EA7BFA /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444B5214D0DFA00EA7BFA /* ImageIO.framework */; };
 		453444B8214D0DFA00EA7BFA /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444B7214D0DFA00EA7BFA /* CoreVideo.framework */; };
-		453444BA214D0DFA00EA7BFA /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444B9214D0DFA00EA7BFA /* CoreTelephony.framework */; };
 		453444BC214D0DFA00EA7BFA /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444BB214D0DFA00EA7BFA /* CoreMedia.framework */; };
 		453444BE214D0DFA00EA7BFA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444BD214D0DFA00EA7BFA /* AVFoundation.framework */; };
 		453444C0214D0DFA00EA7BFA /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444BF214D0DFA00EA7BFA /* AssetsLibrary.framework */; };
@@ -1344,7 +1338,6 @@
 		87E7C4CB21509AB000F7AB14 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEF1F31214F546800FFE0C3 /* libsqlite3.tbd */; };
 		87E7C4CC21509AB000F7AB14 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEF1F6A214F9B4600FFE0C3 /* libz.tbd */; };
 		87E7C4CD21509AB000F7AB14 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEF1F68214F9B3C00FFE0C3 /* libc++.tbd */; };
-		87E7C4CE21509AB000F7AB14 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD3B821B214A467800D72DE9 /* CoreGraphics.framework */; };
 		87E7C4CF21509AB000F7AB14 /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEF1F5E214F8AF300FFE0C3 /* libSocialQQ.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		87E7C4D021509AB000F7AB14 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEF1F35214F549000FFE0C3 /* Photos.framework */; };
 		87E7C4D121509AB000F7AB14 /* UMShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEF1F54214F8AF300FFE0C3 /* UMShare.framework */; };
@@ -1355,32 +1348,26 @@
 		87E7C4D621509AB000F7AB14 /* libSocialSina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEF1F5A214F8AF300FFE0C3 /* libSocialSina.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		87E7C4D721509AB000F7AB14 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD3B821D214A468100D72DE9 /* CoreText.framework */; };
 		87E7C4D821509AB000F7AB14 /* TILLiveSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF764214D11060005AD43 /* TILLiveSDK.framework */; };
-		87E7C4D921509AB000F7AB14 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 45344495214D0DFA00EA7BFA /* libz.tbd */; };
 		87E7C4DA21509AB000F7AB14 /* ILiveLogReport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF763214D11060005AD43 /* ILiveLogReport.framework */; };
 		87E7C4DB21509AB000F7AB14 /* ImSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF749214D11060005AD43 /* ImSDK.framework */; };
 		87E7C4DC21509AB000F7AB14 /* TLSSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF74A214D11060005AD43 /* TLSSDK.framework */; };
 		87E7C4DD21509AB000F7AB14 /* QALSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF74C214D11060005AD43 /* QALSDK.framework */; };
 		87E7C4DE21509AB000F7AB14 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 45344497214D0DFA00EA7BFA /* libstdc++.tbd */; };
 		87E7C4E021509AB000F7AB14 /* IMCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF74B214D11060005AD43 /* IMCore.framework */; };
-		87E7C4E121509AB000F7AB14 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4534449B214D0DFA00EA7BFA /* libsqlite3.tbd */; };
 		87E7C4E221509AB000F7AB14 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4534449D214D0DFA00EA7BFA /* libresolv.tbd */; };
 		87E7C4E321509AB000F7AB14 /* IMSDKBugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF74D214D11060005AD43 /* IMSDKBugly.framework */; };
 		87E7C4E421509AB000F7AB14 /* libprotobuf.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4534449F214D0DFA00EA7BFA /* libprotobuf.tbd */; };
 		87E7C4E521509AB000F7AB14 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444A1214D0DFA00EA7BFA /* libicucore.tbd */; };
 		87E7C4E621509AB000F7AB14 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444A3214D0DFA00EA7BFA /* libiconv.tbd */; };
-		87E7C4E721509AB000F7AB14 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444A5214D0DFA00EA7BFA /* libc++.tbd */; };
 		87E7C4E821509AB000F7AB14 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444A7214D0DFA00EA7BFA /* libbz2.tbd */; };
 		87E7C4E921509AB000F7AB14 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444A9214D0DFA00EA7BFA /* VideoToolbox.framework */; };
-		87E7C4EA21509AB000F7AB14 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444AB214D0DFA00EA7BFA /* SystemConfiguration.framework */; };
 		87E7C4EB21509AB000F7AB14 /* QAVSDKInternal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF74F214D11060005AD43 /* QAVSDKInternal.framework */; };
 		87E7C4EC21509AB000F7AB14 /* ILiveSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF762214D11060005AD43 /* ILiveSDK.framework */; };
 		87E7C4ED21509AB000F7AB14 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444AD214D0DFA00EA7BFA /* QuartzCore.framework */; };
 		87E7C4EE21509AB000F7AB14 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444AF214D0DFA00EA7BFA /* OpenGLES.framework */; };
 		87E7C4EF21509AB000F7AB14 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444B1214D0DFA00EA7BFA /* OpenAL.framework */; };
 		87E7C4F021509AB000F7AB14 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444B3214D0DFA00EA7BFA /* JavaScriptCore.framework */; };
-		87E7C4F121509AB000F7AB14 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444B5214D0DFA00EA7BFA /* ImageIO.framework */; };
 		87E7C4F221509AB000F7AB14 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444B7214D0DFA00EA7BFA /* CoreVideo.framework */; };
-		87E7C4F321509AB000F7AB14 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444B9214D0DFA00EA7BFA /* CoreTelephony.framework */; };
 		87E7C4F421509AB000F7AB14 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444BB214D0DFA00EA7BFA /* CoreMedia.framework */; };
 		87E7C4F521509AB000F7AB14 /* libQCloudAAIClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF7A4214D1A580005AD43 /* libQCloudAAIClient.a */; };
 		87E7C4F621509AB000F7AB14 /* QAVSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF750214D11060005AD43 /* QAVSDK.framework */; };
@@ -1798,7 +1785,6 @@
 		AD2244DC213D158800F2DC47 /* FSForumDetailListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD2244DA213D158800F2DC47 /* FSForumDetailListCell.xib */; };
 		AD2244DF213D1FE700F2DC47 /* FSCommunityHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD2244DE213D1FE700F2DC47 /* FSCommunityHeaderView.xib */; };
 		AD2244E2213D1FF900F2DC47 /* FSCommunityHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2244E1213D1FF900F2DC47 /* FSCommunityHeaderView.m */; };
-		AD3B821C214A467900D72DE9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD3B821B214A467800D72DE9 /* CoreGraphics.framework */; };
 		AD3B821E214A468100D72DE9 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD3B821D214A468100D72DE9 /* CoreText.framework */; };
 		AD412AEA215221C800A9C12B /* FSReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD412AE9215221C800A9C12B /* FSReportView.m */; };
 		AD510298213E560F008CD74D /* FSApiRequest+Community.m in Sources */ = {isa = PBXBuildFile; fileRef = AD510297213E560F008CD74D /* FSApiRequest+Community.m */; };
@@ -1866,6 +1852,8 @@
 		AD9CAAE4212EA0F40071B941 /* UIScrollView+BMEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9CAAE3212EA0F40071B941 /* UIScrollView+BMEmpty.m */; };
 		ADA1228B214614BE00CF0D87 /* FSTopicListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA12289214614BE00CF0D87 /* FSTopicListVC.m */; };
 		ADA1228C214614BE00CF0D87 /* FSTopicListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADA1228A214614BE00CF0D87 /* FSTopicListVC.xib */; };
+		ADA4DB5E21C9E6DD002AEEFE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD3B821B214A467800D72DE9 /* CoreGraphics.framework */; };
+		ADA4DB5F21C9E6DD002AEEFE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD3B821B214A467800D72DE9 /* CoreGraphics.framework */; };
 		ADC591F2215395100054BE72 /* fstab_btn3_highIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591E1215395100054BE72 /* fstab_btn3_highIcon@3x.png */; };
 		ADC591F3215395100054BE72 /* fstab_btn3_highIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591E1215395100054BE72 /* fstab_btn3_highIcon@3x.png */; };
 		ADC591F4215395100054BE72 /* fstab_btn4_highIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591E2215395100054BE72 /* fstab_btn4_highIcon@2x.png */; };
@@ -3967,7 +3955,7 @@
 				871D64D821C8D38300698AC1 /* GrowingAutoTrackKit.framework in Frameworks */,
 				ADEF1F6B214F9B4700FFE0C3 /* libz.tbd in Frameworks */,
 				ADEF1F69214F9B3C00FFE0C3 /* libc++.tbd in Frameworks */,
-				AD3B821C214A467900D72DE9 /* CoreGraphics.framework in Frameworks */,
+				ADA4DB5E21C9E6DD002AEEFE /* CoreGraphics.framework in Frameworks */,
 				ADEF1F64214F8AF300FFE0C3 /* libSocialQQ.a in Frameworks */,
 				ADEF1F36214F549000FFE0C3 /* Photos.framework in Frameworks */,
 				ADEF1F61214F8AF300FFE0C3 /* UMShare.framework in Frameworks */,
@@ -3977,26 +3965,19 @@
 				ADEF1F62214F8AF300FFE0C3 /* libSocialWeChat.a in Frameworks */,
 				ADEF1F63214F8AF300FFE0C3 /* libSocialSina.a in Frameworks */,
 				AD3B821E214A468100D72DE9 /* CoreText.framework in Frameworks */,
-				45344496214D0DFA00EA7BFA /* libz.tbd in Frameworks */,
 				45344498214D0DFA00EA7BFA /* libstdc++.tbd in Frameworks */,
-				4534449C214D0DFA00EA7BFA /* libsqlite3.tbd in Frameworks */,
 				4534449E214D0DFA00EA7BFA /* libresolv.tbd in Frameworks */,
 				453444A0214D0DFA00EA7BFA /* libprotobuf.tbd in Frameworks */,
 				453444A2214D0DFA00EA7BFA /* libicucore.tbd in Frameworks */,
 				453444A4214D0DFA00EA7BFA /* libiconv.tbd in Frameworks */,
-				453444A6214D0DFA00EA7BFA /* libc++.tbd in Frameworks */,
 				453444A8214D0DFA00EA7BFA /* libbz2.tbd in Frameworks */,
 				453444AA214D0DFA00EA7BFA /* VideoToolbox.framework in Frameworks */,
-				453444AC214D0DFA00EA7BFA /* SystemConfiguration.framework in Frameworks */,
 				453444AE214D0DFA00EA7BFA /* QuartzCore.framework in Frameworks */,
 				453444B0214D0DFA00EA7BFA /* OpenGLES.framework in Frameworks */,
 				453444B2214D0DFA00EA7BFA /* OpenAL.framework in Frameworks */,
 				453444B4214D0DFA00EA7BFA /* JavaScriptCore.framework in Frameworks */,
-				453444B6214D0DFA00EA7BFA /* ImageIO.framework in Frameworks */,
 				453444B8214D0DFA00EA7BFA /* CoreVideo.framework in Frameworks */,
-				453444BA214D0DFA00EA7BFA /* CoreTelephony.framework in Frameworks */,
 				453444BC214D0DFA00EA7BFA /* CoreMedia.framework in Frameworks */,
-				AD3B821C214A467900D72DE9 /* CoreGraphics.framework in Frameworks */,
 				453444BE214D0DFA00EA7BFA /* AVFoundation.framework in Frameworks */,
 				453444C0214D0DFA00EA7BFA /* AssetsLibrary.framework in Frameworks */,
 				871D64D621C8D38300698AC1 /* GrowingCoreKit.framework in Frameworks */,
@@ -4029,7 +4010,7 @@
 				87E7C4CB21509AB000F7AB14 /* libsqlite3.tbd in Frameworks */,
 				87E7C4CC21509AB000F7AB14 /* libz.tbd in Frameworks */,
 				87E7C4CD21509AB000F7AB14 /* libc++.tbd in Frameworks */,
-				87E7C4CE21509AB000F7AB14 /* CoreGraphics.framework in Frameworks */,
+				ADA4DB5F21C9E6DD002AEEFE /* CoreGraphics.framework in Frameworks */,
 				87E7C4CF21509AB000F7AB14 /* libSocialQQ.a in Frameworks */,
 				87E7C4D021509AB000F7AB14 /* Photos.framework in Frameworks */,
 				87E7C4D121509AB000F7AB14 /* UMShare.framework in Frameworks */,
@@ -4041,37 +4022,30 @@
 				87E7C4D721509AB000F7AB14 /* CoreText.framework in Frameworks */,
 				871D64D921C8D38300698AC1 /* GrowingAutoTrackKit.framework in Frameworks */,
 				87E7C4D821509AB000F7AB14 /* TILLiveSDK.framework in Frameworks */,
-				87E7C4D921509AB000F7AB14 /* libz.tbd in Frameworks */,
 				87E7C4DA21509AB000F7AB14 /* ILiveLogReport.framework in Frameworks */,
 				87E7C4DB21509AB000F7AB14 /* ImSDK.framework in Frameworks */,
 				87E7C4DC21509AB000F7AB14 /* TLSSDK.framework in Frameworks */,
 				87E7C4DD21509AB000F7AB14 /* QALSDK.framework in Frameworks */,
 				87E7C4DE21509AB000F7AB14 /* libstdc++.tbd in Frameworks */,
 				87E7C4E021509AB000F7AB14 /* IMCore.framework in Frameworks */,
-				87E7C4E121509AB000F7AB14 /* libsqlite3.tbd in Frameworks */,
 				87E7C4E221509AB000F7AB14 /* libresolv.tbd in Frameworks */,
 				87E7C4E321509AB000F7AB14 /* IMSDKBugly.framework in Frameworks */,
 				87E7C4E421509AB000F7AB14 /* libprotobuf.tbd in Frameworks */,
 				87E7C4E521509AB000F7AB14 /* libicucore.tbd in Frameworks */,
 				87E7C4E621509AB000F7AB14 /* libiconv.tbd in Frameworks */,
-				87E7C4E721509AB000F7AB14 /* libc++.tbd in Frameworks */,
 				87E7C4E821509AB000F7AB14 /* libbz2.tbd in Frameworks */,
 				87E7C4E921509AB000F7AB14 /* VideoToolbox.framework in Frameworks */,
-				87E7C4EA21509AB000F7AB14 /* SystemConfiguration.framework in Frameworks */,
 				87E7C4EB21509AB000F7AB14 /* QAVSDKInternal.framework in Frameworks */,
 				87E7C4EC21509AB000F7AB14 /* ILiveSDK.framework in Frameworks */,
 				87E7C4ED21509AB000F7AB14 /* QuartzCore.framework in Frameworks */,
 				87E7C4EE21509AB000F7AB14 /* OpenGLES.framework in Frameworks */,
 				87E7C4EF21509AB000F7AB14 /* OpenAL.framework in Frameworks */,
 				87E7C4F021509AB000F7AB14 /* JavaScriptCore.framework in Frameworks */,
-				87E7C4F121509AB000F7AB14 /* ImageIO.framework in Frameworks */,
 				87E7C4F221509AB000F7AB14 /* CoreVideo.framework in Frameworks */,
 				871D64D721C8D38300698AC1 /* GrowingCoreKit.framework in Frameworks */,
-				87E7C4F321509AB000F7AB14 /* CoreTelephony.framework in Frameworks */,
 				87E7C4F421509AB000F7AB14 /* CoreMedia.framework in Frameworks */,
 				87E7C4F521509AB000F7AB14 /* libQCloudAAIClient.a in Frameworks */,
 				87E7C4F621509AB000F7AB14 /* QAVSDK.framework in Frameworks */,
-				87E7C4CE21509AB000F7AB14 /* CoreGraphics.framework in Frameworks */,
 				87E7C4F721509AB000F7AB14 /* AVFoundation.framework in Frameworks */,
 				87E7C4F821509AB000F7AB14 /* AssetsLibrary.framework in Frameworks */,
 				87E7C4F921509AB000F7AB14 /* Accelerate.framework in Frameworks */,
@@ -8032,7 +8006,7 @@
 		87C0133E212E7A5200D0AAC3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = FS;
 				TargetAttributes = {
 					87C01345212E7A5200D0AAC3 = {
@@ -10174,6 +10148,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -10232,6 +10207,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

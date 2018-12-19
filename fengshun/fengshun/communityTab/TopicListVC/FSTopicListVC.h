@@ -14,4 +14,6 @@
 - (instancetype)initWithTopicSortType:(NSString *)sortType
                                formId:(NSInteger )formId;
 
+- (void)refreshVC;
+
 @end

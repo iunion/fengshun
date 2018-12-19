@@ -69,7 +69,6 @@
         {
             return;
         }
-        
         // 根据帖子详情接口 userId判断是否是本人帖子
         BOOL isOwner = [weakSelf.m_TopicDetailModel.m_UserId isEqualToString:[FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId];
         [FSMoreViewVC showMoreDelegate:weakSelf isOwner:isOwner isCollection:weakSelf.m_TopicDetailModel.m_IsCollection];

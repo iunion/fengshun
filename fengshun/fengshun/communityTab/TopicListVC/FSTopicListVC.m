@@ -36,10 +36,16 @@ FSTopicListVC ()
     [self loadApiData];
 }
 
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)refreshVC{
+    _currentPages = 1;
+    [self loadApiData];
 }
 
 - (instancetype)initWithTopicSortType:(NSString *)sortType formId:(NSInteger)formId
