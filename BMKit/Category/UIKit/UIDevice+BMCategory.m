@@ -410,7 +410,9 @@
 @end
 
 
-#pragma mark - <#mark#>
+#if USE_TEST_HELP
+
+#pragma mark - Authority
 
 @implementation UIDevice (Authority)
 
@@ -754,3 +756,6 @@
 }
 
 @end
+
+#endif
+

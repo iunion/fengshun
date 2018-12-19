@@ -14,7 +14,7 @@
 #import "FSAlertView.h"
 #import "TOCropViewController.h"
 
-#define Topic_MaxTextCount  32
+#define Topic_MaxTextCount  64 ///< 1.1需求 标题，标题长度限64个字。光标放进去时，显示出64个字
 
 @interface FSSendTopicVC ()
 <
@@ -179,7 +179,7 @@
 {
     if ([self.m_TitleTextField.text bm_isNotEmpty] || [[self getHTML] bm_isNotEmpty])
     {
-        BMWeakSelf;
+        BMWeakSelf
         [FSAlertView showAlertWithTitle:@"退出编辑"
                                 message:@"您确定放弃当前编辑内容？"
                             cancelTitle:@"取消"
@@ -189,6 +189,7 @@
                                  if (buttonIndex == 1)
                                  {
                                      [weakSelf backAction:nil];
+                                     
                                  }
                              }];
     }
@@ -207,7 +208,7 @@
         [self.m_ProgressHUD showAnimated:YES withText:@"请输入完整信息" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         return;
     }
-    BMWeakSelf;
+    BMWeakSelf
     [FSAlertView showAlertWithTitle:@"确认提交"
                             message:@"您确定发布当前帖子内容"
                         cancelTitle:@"取消"
