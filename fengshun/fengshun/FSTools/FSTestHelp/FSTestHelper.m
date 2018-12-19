@@ -81,7 +81,9 @@
     }
     
     NSString *caseStatuteH5Url = [[NSUserDefaults standardUserDefaults]objectForKey:FS_CASE_STATUTE_URL_KEY];
-    if (!caseStatuteH5Url) {
+
+    if (!caseStatuteH5Url)
+    {
         [[NSUserDefaults standardUserDefaults] setObject:FS_CASE_STATUTE_INIT forKey:FS_CASE_STATUTE_URL_KEY];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }

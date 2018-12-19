@@ -40,6 +40,8 @@
 #import <UMShare/UMShare.h>
 #import "FSShareManager.h"
 
+#import "Growing.h"
+
 //#import "SDWebImageCodersManager.h"
 //#import "SDWebImageGIFCoder.h"
 
@@ -114,6 +116,11 @@
 }
 
 
+// 启动GrowingIO
+- (void)setupGrowingIO
+{
+    [Growing startWithAccountId:GrowingIO_AccountID];
+}
 
 - (void)setupThirdPartyWithOptions:(NSDictionary *)launchOptions
 {
@@ -124,7 +131,11 @@
 
     // Umeng统计/分享
     [self setupUmeng];
+    // 极光推送
     [self setupJPushWithOptions:launchOptions];
+    
+    // 启动GrowingIO
+    [self setupGrowingIO];
 }
 
 - (void)setUpApp
@@ -200,6 +211,7 @@
 #if USE_TEST_HELP
     [FSTestHelper sharedInstance];
     self.window = [[BMConsoleWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    //[[BMConsole sharedConsole] handleConsoleCommand:@"mn"];
 #else
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 #endif
@@ -281,6 +293,10 @@
     BOOL result = [[UMSocialManager defaultManager]  handleOpenURL:url options:options];
     if (!result) {
         // 其他如支付等SDK的回调
+        if ([Growing handleUrl:url]) // 请务必确保该函数被调用
+        {
+            return YES;
+        }
     }
     return NO;
 }
@@ -291,6 +307,10 @@
     BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
     if (!result) {
         // 其他如支付等SDK的回调
+        if ([Growing handleUrl:url]) // 请务必确保该函数被调用
+        {
+            return YES;
+        }
     }
     return result;
 }

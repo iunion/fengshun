@@ -192,6 +192,8 @@
 @end
 
 
+#if USE_TEST_HELP
+
 @interface UIDevice (Authority)
 
 // 地理位置权限
@@ -225,3 +227,5 @@
 + (nonnull NSString *)bluetoothAuthority;
 
 @end
+
+#endif

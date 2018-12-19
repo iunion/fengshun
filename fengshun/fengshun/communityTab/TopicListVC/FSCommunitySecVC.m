@@ -168,6 +168,13 @@ FSCommunitySecVC ()
         if (weakSelf.m_AttentionChangeBlock) {
             weakSelf.m_AttentionChangeBlock();
         }
+        // 1.1 需求 发帖完成回到最新帖子刷新数据
+        if (weakSelf.m_dataArray.count > 1) {
+            [weakSelf.m_SegmentBar selectBtnAtIndex:1];
+            [weakSelf.m_ScrollPageView scrollPageWithIndex:1];
+            FSTopicListVC *vc = weakSelf.m_vcArray[1];
+            [vc refreshVC];
+        }
     }];
 }
 //认证完成
