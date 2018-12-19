@@ -274,6 +274,7 @@ typedef void(^SDWebImageCalculateSizeBlock)(NSUInteger fileCount, NSUInteger tot
 /**
  * Get the cache store path
  */
+// add by DJ
 - (nonnull NSString *)getDiskCachePath;
 
 /**

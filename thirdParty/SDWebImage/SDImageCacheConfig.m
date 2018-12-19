@@ -9,6 +9,7 @@
 #import "SDImageCacheConfig.h"
 
 //static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7; // 1 week
+// add by DJ
 static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 30; // 1 week
 
 @implementation SDImageCacheConfig
