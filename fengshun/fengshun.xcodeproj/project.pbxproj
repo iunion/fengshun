@@ -1332,7 +1332,6 @@
 		87E7C4C621509AB000F7AB14 /* NSMutableAttributedString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730AF542140FFA2004331A9 /* NSMutableAttributedString+HTML.m */; };
 		87E7C4C721509AB000F7AB14 /* DTLazyImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730AF0A2140FFA1004331A9 /* DTLazyImageView.m */; };
 		87E7C4C921509AB000F7AB14 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEF1F6E214F9B7500FFE0C3 /* ImageIO.framework */; };
-		87E7C4CA21509AB000F7AB14 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEF1F6C214F9B6300FFE0C3 /* CoreTelephony.framework */; };
 		87E7C4CB21509AB000F7AB14 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEF1F31214F546800FFE0C3 /* libsqlite3.tbd */; };
 		87E7C4CC21509AB000F7AB14 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEF1F6A214F9B4600FFE0C3 /* libz.tbd */; };
 		87E7C4CD21509AB000F7AB14 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ADEF1F68214F9B3C00FFE0C3 /* libc++.tbd */; };
@@ -1897,6 +1896,15 @@
 		AF1B5EE7217462FA00125921 /* FSShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1B5EE5217462FA00125921 /* FSShareManager.m */; };
 		DB14A7AA2139247900E88798 /* FSCourseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB14A7A82139247900E88798 /* FSCourseTableCell.m */; };
 		DB14A7AB2139247900E88798 /* FSCourseTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB14A7A92139247900E88798 /* FSCourseTableCell.xib */; };
+		DB16488A21C8CEE800F9FB9D /* jpush-extension-ios-1.1.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB16488521C8CEE700F9FB9D /* jpush-extension-ios-1.1.1.a */; };
+		DB16488B21C8CEE800F9FB9D /* jpush-extension-ios-1.1.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB16488521C8CEE700F9FB9D /* jpush-extension-ios-1.1.1.a */; };
+		DB16488C21C8CEE800F9FB9D /* jpush-ios-3.1.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB16488621C8CEE700F9FB9D /* jpush-ios-3.1.2.a */; };
+		DB16488D21C8CEE800F9FB9D /* jpush-ios-3.1.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB16488621C8CEE700F9FB9D /* jpush-ios-3.1.2.a */; };
+		DB16489221C8D32400F9FB9D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB16489021C8D1B600F9FB9D /* CFNetwork.framework */; };
+		DB16489421C8D34500F9FB9D /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB16489321C8D34500F9FB9D /* CoreFoundation.framework */; };
+		DB16489621C8D37B00F9FB9D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB16489521C8D37B00F9FB9D /* Foundation.framework */; };
+		DB16489821C8F44200F9FB9D /* jcore-ios-1.2.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB16489721C8F44100F9FB9D /* jcore-ios-1.2.6.a */; };
+		DB16489921C8F44200F9FB9D /* jcore-ios-1.2.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB16489721C8F44100F9FB9D /* jcore-ios-1.2.6.a */; };
 		DB2656C4214619A0002ED713 /* FSCaseSearchResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2656C3214619A0002ED713 /* FSCaseSearchResultVC.m */; };
 		DB2656C721461A9F002ED713 /* FSSearchResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2656C621461A9F002ED713 /* FSSearchResultVC.m */; };
 		DB2656CA214660ED002ED713 /* FSLawSearchResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2656C9214660ED002ED713 /* FSLawSearchResultView.m */; };
@@ -3787,6 +3795,17 @@
 		DB14A7A72139247900E88798 /* FSCourseTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCourseTableCell.h; sourceTree = "<group>"; };
 		DB14A7A82139247900E88798 /* FSCourseTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCourseTableCell.m; sourceTree = "<group>"; };
 		DB14A7A92139247900E88798 /* FSCourseTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSCourseTableCell.xib; sourceTree = "<group>"; };
+		DB16488121C8A3DB00F9FB9D /* FSEnumDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSEnumDefine.h; sourceTree = "<group>"; };
+		DB16488321C8CEE500F9FB9D /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
+		DB16488521C8CEE700F9FB9D /* jpush-extension-ios-1.1.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-extension-ios-1.1.1.a"; sourceTree = "<group>"; };
+		DB16488621C8CEE700F9FB9D /* jpush-ios-3.1.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-3.1.2.a"; sourceTree = "<group>"; };
+		DB16488721C8CEE800F9FB9D /* JPushNotificationExtensionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPushNotificationExtensionService.h; sourceTree = "<group>"; };
+		DB16488E21C8D06C00F9FB9D /* fengshun.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = fengshun.entitlements; sourceTree = "<group>"; };
+		DB16488F21C8D0AF00F9FB9D /* fengshun_video.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = fengshun_video.entitlements; sourceTree = "<group>"; };
+		DB16489021C8D1B600F9FB9D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		DB16489321C8D34500F9FB9D /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		DB16489521C8D37B00F9FB9D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DB16489721C8F44100F9FB9D /* jcore-ios-1.2.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jcore-ios-1.2.6.a"; sourceTree = "<group>"; };
 		DB2656C2214619A0002ED713 /* FSCaseSearchResultVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCaseSearchResultVC.h; sourceTree = "<group>"; };
 		DB2656C3214619A0002ED713 /* FSCaseSearchResultVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCaseSearchResultVC.m; sourceTree = "<group>"; };
 		DB2656C521461A9F002ED713 /* FSSearchResultVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSearchResultVC.h; sourceTree = "<group>"; };
@@ -3946,6 +3965,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				874C23C7215E216A001C8BE9 /* UMAnalytics.framework in Frameworks */,
+				DB16489821C8F44200F9FB9D /* jcore-ios-1.2.6.a in Frameworks */,
 				ADEF1F6F214F9B7500FFE0C3 /* ImageIO.framework in Frameworks */,
 				ADEF1F6D214F9B6300FFE0C3 /* CoreTelephony.framework in Frameworks */,
 				ADEF1F32214F546800FFE0C3 /* libsqlite3.tbd in Frameworks */,
@@ -3956,10 +3976,12 @@
 				ADEF1F36214F549000FFE0C3 /* Photos.framework in Frameworks */,
 				ADEF1F61214F8AF300FFE0C3 /* UMShare.framework in Frameworks */,
 				ADEF1F71214F9C6500FFE0C3 /* UMCommon.framework in Frameworks */,
+				DB16488A21C8CEE800F9FB9D /* jpush-extension-ios-1.1.1.a in Frameworks */,
 				ADEF1F34214F547D00FFE0C3 /* SystemConfiguration.framework in Frameworks */,
 				AD9326DA214B66FD007F3A93 /* UIKit.framework in Frameworks */,
 				ADEF1F62214F8AF300FFE0C3 /* libSocialWeChat.a in Frameworks */,
 				ADEF1F63214F8AF300FFE0C3 /* libSocialSina.a in Frameworks */,
+				DB16488C21C8CEE800F9FB9D /* jpush-ios-3.1.2.a in Frameworks */,
 				AD3B821E214A468100D72DE9 /* CoreText.framework in Frameworks */,
 				45344496214D0DFA00EA7BFA /* libz.tbd in Frameworks */,
 				45344498214D0DFA00EA7BFA /* libstdc++.tbd in Frameworks */,
@@ -4006,20 +4028,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB16489621C8D37B00F9FB9D /* Foundation.framework in Frameworks */,
+				87E7C4F321509AB000F7AB14 /* CoreTelephony.framework in Frameworks */,
+				DB16489421C8D34500F9FB9D /* CoreFoundation.framework in Frameworks */,
+				DB16489221C8D32400F9FB9D /* CFNetwork.framework in Frameworks */,
+				87E7C4D421509AB000F7AB14 /* UIKit.framework in Frameworks */,
 				874C23C8215E21BD001C8BE9 /* UMAnalytics.framework in Frameworks */,
 				87E7C4C921509AB000F7AB14 /* ImageIO.framework in Frameworks */,
-				87E7C4CA21509AB000F7AB14 /* CoreTelephony.framework in Frameworks */,
 				87E7C4CB21509AB000F7AB14 /* libsqlite3.tbd in Frameworks */,
 				87E7C4CC21509AB000F7AB14 /* libz.tbd in Frameworks */,
 				87E7C4CD21509AB000F7AB14 /* libc++.tbd in Frameworks */,
 				87E7C4CE21509AB000F7AB14 /* CoreGraphics.framework in Frameworks */,
 				87E7C4CF21509AB000F7AB14 /* libSocialQQ.a in Frameworks */,
 				87E7C4D021509AB000F7AB14 /* Photos.framework in Frameworks */,
+				DB16489921C8F44200F9FB9D /* jcore-ios-1.2.6.a in Frameworks */,
 				87E7C4D121509AB000F7AB14 /* UMShare.framework in Frameworks */,
 				87E7C4D221509AB000F7AB14 /* UMCommon.framework in Frameworks */,
 				87E7C4D321509AB000F7AB14 /* SystemConfiguration.framework in Frameworks */,
-				87E7C4D421509AB000F7AB14 /* UIKit.framework in Frameworks */,
 				87E7C4D521509AB000F7AB14 /* libSocialWeChat.a in Frameworks */,
+				DB16488B21C8CEE800F9FB9D /* jpush-extension-ios-1.1.1.a in Frameworks */,
 				87E7C4D621509AB000F7AB14 /* libSocialSina.a in Frameworks */,
 				87E7C4D721509AB000F7AB14 /* CoreText.framework in Frameworks */,
 				87E7C4D821509AB000F7AB14 /* TILLiveSDK.framework in Frameworks */,
@@ -4055,6 +4082,7 @@
 				87E7C4CE21509AB000F7AB14 /* CoreGraphics.framework in Frameworks */,
 				87E7C4F721509AB000F7AB14 /* AVFoundation.framework in Frameworks */,
 				87E7C4F821509AB000F7AB14 /* AssetsLibrary.framework in Frameworks */,
+				DB16488D21C8CEE800F9FB9D /* jpush-ios-3.1.2.a in Frameworks */,
 				87E7C4F921509AB000F7AB14 /* Accelerate.framework in Frameworks */,
 				87E7C4FA21509AB000F7AB14 /* libFSEncodeAPI.a in Frameworks */,
 			);
@@ -5570,6 +5598,7 @@
 		87426910212E8254003C52F6 /* thirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				DB16488221C8CE1900F9FB9D /* JPush */,
 				87426A6F2131461F003C52F6 /* AFNetworking */,
 				8730AEFB2140FFA1004331A9 /* DTCoreText */,
 				87D209F3213920E2001EDD60 /* FLEX */,
@@ -5851,6 +5880,7 @@
 				87426A6E213141CD003C52F6 /* FSAppUIDef.h */,
 				87426AB22133A32E003C52F6 /* FSAppInfo.h */,
 				87426AB32133A32E003C52F6 /* FSAppInfo.m */,
+				DB16488121C8A3DB00F9FB9D /* FSEnumDefine.h */,
 			);
 			path = appDefine;
 			sourceTree = "<group>";
@@ -6360,6 +6390,7 @@
 		87C0133D212E7A5200D0AAC3 = {
 			isa = PBXGroup;
 			children = (
+				DB16488F21C8D0AF00F9FB9D /* fengshun_video.entitlements */,
 				45FEF746214D11060005AD43 /* ILiveSDKT */,
 				87426791212E7E35003C52F6 /* BMKit */,
 				87426910212E8254003C52F6 /* thirdParty */,
@@ -6385,6 +6416,7 @@
 		87C01348212E7A5200D0AAC3 /* fengshun */ = {
 			isa = PBXGroup;
 			children = (
+				DB16488E21C8D06C00F9FB9D /* fengshun.entitlements */,
 				87426A6B21314039003C52F6 /* appDefine */,
 				87C01349212E7A5200D0AAC3 /* AppDelegate.h */,
 				87C0134A212E7A5200D0AAC3 /* AppDelegate.m */,
@@ -6439,6 +6471,9 @@
 		87D18659213539EE00037DDF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DB16489521C8D37B00F9FB9D /* Foundation.framework */,
+				DB16489321C8D34500F9FB9D /* CoreFoundation.framework */,
+				DB16489021C8D1B600F9FB9D /* CFNetwork.framework */,
 				ADEF1F6E214F9B7500FFE0C3 /* ImageIO.framework */,
 				ADEF1F6C214F9B6300FFE0C3 /* CoreTelephony.framework */,
 				ADEF1F6A214F9B4600FFE0C3 /* libz.tbd */,
@@ -7643,6 +7678,18 @@
 			path = FSShareManager;
 			sourceTree = "<group>";
 		};
+		DB16488221C8CE1900F9FB9D /* JPush */ = {
+			isa = PBXGroup;
+			children = (
+				DB16489721C8F44100F9FB9D /* jcore-ios-1.2.6.a */,
+				DB16488521C8CEE700F9FB9D /* jpush-extension-ios-1.1.1.a */,
+				DB16488621C8CEE700F9FB9D /* jpush-ios-3.1.2.a */,
+				DB16488721C8CEE800F9FB9D /* JPushNotificationExtensionService.h */,
+				DB16488321C8CEE500F9FB9D /* JPUSHService.h */,
+			);
+			path = JPush;
+			sourceTree = "<group>";
+		};
 		DB2656D521466A65002ED713 /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -8003,6 +8050,11 @@
 				TargetAttributes = {
 					87C01345212E7A5200D0AAC3 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					87C01357212E7A5300D0AAC3 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -8011,6 +8063,13 @@
 					87C01362212E7A5300D0AAC3 = {
 						CreatedOnToolsVersion = 9.4.1;
 						TestTargetID = 87C01345212E7A5200D0AAC3;
+					};
+					87E7C27221509AB000F7AB14 = {
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -10248,14 +10307,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
+				CODE_SIGN_ENTITLEMENTS = fengshun/fengshun.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5V3CUNZ42F;
+				DEVELOPMENT_TEAM = 2847G25NTJ;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_SOURCE_FILE_NAMES = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(SRCROOT)/../thirdParty/UMShare/**",
+					"$(SRCROOT)/../thirdParty/JPush",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fengshun/fengshun-Prefix.pch";
@@ -10293,9 +10355,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
+				CODE_SIGN_ENTITLEMENTS = fengshun/fengshun.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5V3CUNZ42F;
+				DEVELOPMENT_TEAM = 2847G25NTJ;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_SOURCE_FILE_NAMES = (
 					"FLEX*",
@@ -10310,6 +10374,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(SRCROOT)/../thirdParty/UMShare/**",
+					"$(SRCROOT)/../thirdParty/JPush",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fengshun/fengshun-Prefix.pch";
@@ -10417,9 +10482,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
+				CODE_SIGN_ENTITLEMENTS = fengshun_video.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5V3CUNZ42F;
+				DEVELOPMENT_TEAM = 2847G25NTJ;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_SOURCE_FILE_NAMES = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -10428,6 +10495,7 @@
 					"$(PROJECT_DIR)/ILiveSDKT/AVSDK",
 					"$(PROJECT_DIR)/ILiveSDKT/ILiveSDK",
 					"$(SRCROOT)/../thirdParty/UMShare/**",
+					"$(SRCROOT)/../thirdParty/JPush",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fengshun/fengshun-Prefix.pch";
@@ -10456,7 +10524,7 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bmsoft.FSfengshun;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bmsoft.FS.fengshun;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -10470,9 +10538,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
+				CODE_SIGN_ENTITLEMENTS = fengshun_video.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5V3CUNZ42F;
+				DEVELOPMENT_TEAM = 2847G25NTJ;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_SOURCE_FILE_NAMES = (
 					"FLEX*",
@@ -10490,6 +10560,7 @@
 					"$(PROJECT_DIR)/ILiveSDKT/AVSDK",
 					"$(PROJECT_DIR)/ILiveSDKT/ILiveSDK",
 					"$(SRCROOT)/../thirdParty/UMShare/**",
+					"$(SRCROOT)/../thirdParty/JPush",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fengshun/fengshun-Prefix.pch";
@@ -10515,7 +10586,7 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bmsoft.FSfengshun;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bmsoft.FS.fengshun;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

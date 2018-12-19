@@ -10,6 +10,7 @@
 
 #import "FSAppMacros.h"
 #import "FSAppUIDef.h"
+#import "FSEnumDefine.h"
 
 #ifndef FSAppConfig_h
 #define FSAppConfig_h
@@ -19,6 +20,9 @@
 #define APPID                           @"1443980533"
 
 //#define APPSTORE_CHECK_VERSON_ADDRESS @"http://itunes.apple.com/lookup?id=628470263"
+
+// 极光推送
+#define JPush_AppKey        @"25c33b46402da58fca2c055c"
 
 // 友盟
 #define UMeng_AppKey        @"5b9b22b1f43e484912000027"

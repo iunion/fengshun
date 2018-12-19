@@ -134,7 +134,7 @@
         [BMConsole log:@"当前文件链接地址是'%@'", FS_FILE_ADRESS];
         [BMConsole log:@"当前法规案例检索地址是'%@'", FS_CASE_STATUTE_URL];
 #ifdef FSVIDEO_ON
-        [FSConsole log:@"当前腾讯RTC环境是'%@ %@'", @(FS_ILiveSDKAPPID), @(FS_ILiveAccountType)];
+        [BMConsole log:@"当前腾讯RTC环境是'%@ %@'", @(FS_ILiveSDKAPPID), @(FS_ILiveAccountType)];
 #endif
     }
     else if ([command isEqualToString:@"www"] || [command isEqualToString:@"on"])

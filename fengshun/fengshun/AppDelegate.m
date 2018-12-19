@@ -43,11 +43,19 @@
 //#import "SDWebImageCodersManager.h"
 //#import "SDWebImageGIFCoder.h"
 
+#import "JPUSHService.h"
+#import <AdSupport/AdSupport.h>
+// iOS10 注册 APNs 所需头文件
+#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+#import <UserNotifications/UserNotifications.h>
+#endif
+
 @interface AppDelegate ()
 <
     CLLocationManagerDelegate,
     FSCoreNetWorkStatusProtocol,
-    FSFirstGuideVCDelegate
+    FSFirstGuideVCDelegate,
+    JPUSHRegisterDelegate
 >
 {
     BOOL s_IsShownFirstGuide;
@@ -105,7 +113,9 @@
     [FSShareManager configSharePlateform];
 }
 
-- (void)setupThirdParty
+
+
+- (void)setupThirdPartyWithOptions:(NSDictionary *)launchOptions
 {
 #ifdef FSVIDEO_ON
     // 腾讯视频
@@ -114,6 +124,7 @@
 
     // Umeng统计/分享
     [self setupUmeng];
+    [self setupJPushWithOptions:launchOptions];
 }
 
 - (void)setUpApp
@@ -197,7 +208,7 @@
 
     [self setUpApp];
     
-    [self setupThirdParty];
+    [self setupThirdPartyWithOptions:launchOptions];
 
     // 添加观察者，监听用户信息的改变
     [self addObserver:self forKeyPath:@"m_UserInfo" options:NSKeyValueObservingOptionNew context:nil];
@@ -283,7 +294,113 @@
     }
     return result;
 }
+#pragma mark -
+#pragma mark 远程推送
 
+//  关于宏命令NSFoundationVersionNumber_iOS_9_x_Max，由于在iOS9(XCode7)中Apple已经提前支持了宏命令__IPHONE_10_0，所以这儿添加了NSFoundationVersionNumber_iOS_9_x_Max做判断
+#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+#pragma mark- 通知到达/进入的不同iOS版本的回调
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler  API_AVAILABLE(ios(10.0)){
+    
+    // >iOS10,在前台收到通知
+    NSDictionary * userInfo = notification.request.content.userInfo;
+    
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [JPUSHService handleRemoteNotification:userInfo];
+    }
+    completionHandler(UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionSound|UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以设置
+}
+
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler  API_AVAILABLE(ios(10.0)){
+    
+    // >iOS10, 通过通知进入APP
+    NSDictionary * userInfo = response.notification.request.content.userInfo;
+    
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [JPUSHService handleRemoteNotification:userInfo];
+        
+    }
+    completionHandler();  // 系统要求执行这个方法
+}
+#endif
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    // <iOS10, 通知到达(包括APP在前台和后台)
+    [JPUSHService handleRemoteNotification:userInfo];
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+#ifdef __IPHONE_12_0
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center openSettingsForNotification:(UNNotification *)notification API_AVAILABLE(ios(12.0)){
+    if (notification) {
+//      从通知界面直接进入应
+    }else{
+//      从系统设置界面进入应用
+    }
+}
+#endif
+
+
+#pragma mark 注册远程推送相关API
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(nonnull NSData *)deviceToken
+{
+    // 注册 DeviceToken
+    [JPUSHService registerDeviceToken:deviceToken];
+}
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    //Optional
+    BMLog(@"[JPush]+++++++APNs注册失败")
+}
+// 配置&注册极光推送
+- (void)setupJPushWithOptions:(NSDictionary *)launchOptions
+{
+//    NSString *advertisingId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+    NSString *advertisingId = nil;
+    // 3.0.0及以后版本注册
+    JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
+    if (@available(iOS 12.0, *)) {
+        entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound|JPAuthorizationOptionProvidesAppNotificationSettings;
+    } else {
+        entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound;
+    }
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        //可以添加自定义categories
+        //    if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
+        //      NSSet<UNNotificationCategory *> *categories;
+        //      entity.categories = categories;
+        //    }
+        //    else {
+        //      NSSet<UIUserNotificationCategory *> *categories;
+        //      entity.categories = categories;
+        //    }
+    }
+    [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
+    
+    
+#ifdef DEBUG
+    //如不需要使用IDFA，advertisingIdentifier 可为nil
+    [JPUSHService setupWithOption:launchOptions appKey:JPush_AppKey
+                          channel:@"App Store"
+                 apsForProduction:NO
+            advertisingIdentifier:advertisingId];
+#else
+    [JPUSHService setupWithOption:launchOptions appKey:JPush_AppKey
+                          channel:@"App Store"
+                 apsForProduction:YES
+            advertisingIdentifier:advertisingId];
+#endif
+    
+    //2.1.9版本新增获取registration id block接口。
+    [JPUSHService registrationIDCompletionHandler:^(int resCode, NSString *registrationID) {
+        if(resCode == 0){
+            BMLog(@"[JPush]+++++++registrationID获取成功：%@",registrationID);
+        }
+        else{
+            BMLog(@"[JPush]+++++++registrationID获取失败，code：%d",resCode);
+        }
+    }];
+}
 
 #pragma mark -
 #pragma mark CLAuthorizationStatus
