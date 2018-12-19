@@ -746,6 +746,10 @@
 		87D20B1D213CF9DD001EDD60 /* FSApiUserRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D20B1C213CF9DD001EDD60 /* FSApiUserRequest.m */; };
 		87D20B23213F87A8001EDD60 /* FSCustomInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D20B22213F87A8001EDD60 /* FSCustomInfoVC.m */; };
 		87D20B2C213FB7F8001EDD60 /* default_avatariconlarge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D20B2B213FB7F7001EDD60 /* default_avatariconlarge@2x.png */; };
+		87D34E4C21C9E5BE00EC5873 /* FLEXMutableFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D34E4A21C9E5BE00EC5873 /* FLEXMutableFieldEditorViewController.m */; };
+		87D34E4D21C9E5BE00EC5873 /* FLEXMutableFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D34E4A21C9E5BE00EC5873 /* FLEXMutableFieldEditorViewController.m */; };
+		87D34E5021C9E5D000EC5873 /* FLEXColorExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D34E4F21C9E5D000EC5873 /* FLEXColorExplorerViewController.m */; };
+		87D34E5121C9E5D000EC5873 /* FLEXColorExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D34E4F21C9E5D000EC5873 /* FLEXColorExplorerViewController.m */; };
 		87D9C606215368B6009F8492 /* fs_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D9C604215368B6009F8492 /* fs_icon@3x.png */; };
 		87D9C607215368B6009F8492 /* fs_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D9C604215368B6009F8492 /* fs_icon@3x.png */; };
 		87D9C608215368B6009F8492 /* fs_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87D9C605215368B6009F8492 /* fs_icon@2x.png */; };
@@ -3466,6 +3470,10 @@
 		87D20B21213F87A8001EDD60 /* FSCustomInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCustomInfoVC.h; sourceTree = "<group>"; };
 		87D20B22213F87A8001EDD60 /* FSCustomInfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCustomInfoVC.m; sourceTree = "<group>"; };
 		87D20B2B213FB7F7001EDD60 /* default_avatariconlarge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_avatariconlarge@2x.png"; sourceTree = "<group>"; };
+		87D34E4A21C9E5BE00EC5873 /* FLEXMutableFieldEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXMutableFieldEditorViewController.m; sourceTree = "<group>"; };
+		87D34E4B21C9E5BE00EC5873 /* FLEXMutableFieldEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXMutableFieldEditorViewController.h; sourceTree = "<group>"; };
+		87D34E4E21C9E5CF00EC5873 /* FLEXColorExplorerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXColorExplorerViewController.h; sourceTree = "<group>"; };
+		87D34E4F21C9E5D000EC5873 /* FLEXColorExplorerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXColorExplorerViewController.m; sourceTree = "<group>"; };
 		87D9C604215368B6009F8492 /* fs_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fs_icon@3x.png"; sourceTree = "<group>"; };
 		87D9C605215368B6009F8492 /* fs_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fs_icon@2x.png"; sourceTree = "<group>"; };
 		87D9C60A21536A04009F8492 /* FSAboutVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSAboutVC.h; sourceTree = "<group>"; };
@@ -6714,6 +6722,8 @@
 				87D209F7213920E2001EDD60 /* FLEXArrayExplorerViewController.m */,
 				87D20A09213920E2001EDD60 /* FLEXClassExplorerViewController.h */,
 				87D209FE213920E2001EDD60 /* FLEXClassExplorerViewController.m */,
+				87D34E4E21C9E5CF00EC5873 /* FLEXColorExplorerViewController.h */,
+				87D34E4F21C9E5D000EC5873 /* FLEXColorExplorerViewController.m */,
 				87D20A0D213920E2001EDD60 /* FLEXDefaultsExplorerViewController.h */,
 				87D20A00213920E2001EDD60 /* FLEXDefaultsExplorerViewController.m */,
 				87D20A0C213920E2001EDD60 /* FLEXDictionaryExplorerViewController.h */,
@@ -6803,6 +6813,8 @@
 				87D20A31213920E2001EDD60 /* FLEXIvarEditorViewController.m */,
 				87D20A50213920E2001EDD60 /* FLEXMethodCallingViewController.h */,
 				87D20A30213920E2001EDD60 /* FLEXMethodCallingViewController.m */,
+				87D34E4B21C9E5BE00EC5873 /* FLEXMutableFieldEditorViewController.h */,
+				87D34E4A21C9E5BE00EC5873 /* FLEXMutableFieldEditorViewController.m */,
 				87D20A4F213920E2001EDD60 /* FLEXPropertyEditorViewController.h */,
 				87D20A2C213920E2001EDD60 /* FLEXPropertyEditorViewController.m */,
 			);
@@ -8855,6 +8867,7 @@
 				876BB7F321B6310D00FC205D /* BMTestAppInfoVC.m in Sources */,
 				87426A92213146A6003C52F6 /* XMRequest.m in Sources */,
 				DB48742E2148DFFE00AB0805 /* FSTextTypeCell.m in Sources */,
+				87D34E4C21C9E5BE00EC5873 /* FLEXMutableFieldEditorViewController.m in Sources */,
 				874268EE212E7E36003C52F6 /* UIColor+BMCategory.m in Sources */,
 				8730B0B621464B56004331A9 /* BMCombineItem.m in Sources */,
 				87D20AA5213920E2001EDD60 /* FLEXDefaultsExplorerViewController.m in Sources */,
@@ -9059,6 +9072,7 @@
 				87D20ADF213920E2001EDD60 /* FLEXLibrariesTableViewController.m in Sources */,
 				87F639E021533C830035E730 /* FBStandardGraphEdgeFilters.mm in Sources */,
 				AD9325FF214B4FDA007F3A93 /* HRCgUtil.m in Sources */,
+				87D34E5021C9E5D000EC5873 /* FLEXColorExplorerViewController.m in Sources */,
 				87D20AE7213920E2001EDD60 /* FLEXHeapEnumerator.m in Sources */,
 				8730B0742140FFA3004331A9 /* NSObject+DTRuntime.m in Sources */,
 				ADE8689721392853005359B5 /* FSTopicListCell.m in Sources */,
@@ -9467,6 +9481,7 @@
 				87E7C29121509AB000F7AB14 /* DTCoreTextConstants.m in Sources */,
 				87E7C29221509AB000F7AB14 /* DTZipArchiveNode.m in Sources */,
 				87E7C29321509AB000F7AB14 /* BMSegmentItem.m in Sources */,
+				87D34E5121C9E5D000EC5873 /* FLEXColorExplorerViewController.m in Sources */,
 				87E7C29421509AB000F7AB14 /* BMStepperInputItem.m in Sources */,
 				87E7C29521509AB000F7AB14 /* FSAppInfo.m in Sources */,
 				87E7C29621509AB000F7AB14 /* FLEXSystemLogTableViewCell.m in Sources */,
@@ -9496,6 +9511,7 @@
 				DBF7E1BE2153759A002CEDA4 /* FSCaseModel.m in Sources */,
 				87E7C2AE21509AB000F7AB14 /* FSTopicDetailVC.m in Sources */,
 				87F639F121533C830035E730 /* FBObjectInStructReference.m in Sources */,
+				87D34E4D21C9E5BE00EC5873 /* FLEXMutableFieldEditorViewController.m in Sources */,
 				87E7C2AF21509AB000F7AB14 /* DTAttributedTextView.m in Sources */,
 				87E7C2B021509AB000F7AB14 /* SDWebImageCoderHelper.m in Sources */,
 				87E7C2B121509AB000F7AB14 /* SDWebImageWebPCoder.m in Sources */,
