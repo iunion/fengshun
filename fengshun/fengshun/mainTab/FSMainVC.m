@@ -322,11 +322,6 @@ FSMainVC ()
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section)
-    {
-        return [FSTopicListCell cellHeight];
-    }
-    
     return UITableViewAutomaticDimension;
 }
 

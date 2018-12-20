@@ -24,6 +24,7 @@
     self.view.backgroundColor = [UIColor bm_colorWithHex:0xf5f6f7];
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.m_TableView.bm_width, 12)];
     self.m_TableView.tableHeaderView = headerView;
+    self.m_TableView.estimatedRowHeight = 150;
     [self loadApiData];
 }
 
@@ -94,7 +95,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [FSTopicListCell cellHeight];
+    return UITableViewAutomaticDimension;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

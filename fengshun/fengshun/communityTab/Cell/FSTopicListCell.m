@@ -34,8 +34,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *m_UserNameLabel;
 // 评论按钮
 @property (weak, nonatomic) IBOutlet UIButton *m_CommentBtn;
-
-@property (nonatomic, strong) BMSingleLineView *m_UnderLineView;
+@property (weak, nonatomic) IBOutlet UIView *m_UnderLineView;
 
 @property (nonatomic, strong) FSTopicModel *m_TopicModel;
 
@@ -99,11 +98,6 @@
     self.m_CommentBtn.titleLabel.font = UI_FONT_12;
     [self.m_CommentBtn setTitleColor:[UIColor bm_colorWithHex:0x999999] forState:UIControlStateNormal];
     [self.m_CommentBtn bm_layoutButtonWithEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:5.0f];
-    
-    CGRect underLineFrame = CGRectMake(15.0f, self.contentView.bm_height-1, UI_SCREEN_WIDTH-30.0f, 1);
-    self.m_UnderLineView = [[BMSingleLineView alloc] initWithFrame:underLineFrame];
-    self.m_UnderLineView.lineColor = UI_DEFAULT_LINECOLOR;
-    [self.contentView addSubview:self.m_UnderLineView];
 }
 
 - (void)setM_TopicModel:(FSTopicModel *)topicModel
@@ -165,13 +159,8 @@
     [self.m_HeaderImageView sd_setImageWithURL:[model.m_IconUrl bm_toURL] placeholderImage:[UIImage imageNamed:@"default_avataricon"] options:SDWebImageRetryFailed|SDWebImageLowPriority];
     
     self.m_ForumLabel.text = model.m_ForumName;
-    CGSize size = [self.m_ForumLabel sizeThatFits:CGSizeMake(1000, self.m_ForumLabel.bm_height)];
-    self.m_ForumLabel.bm_width = size.width;
-    self.m_ForumBgView.bm_width = self.m_ForumLabel.bm_right + 12.0f;
     
     self.m_TitleLabel.text = model.m_Title;
-//    size = [self.m_TitleLabel sizeThatFits:CGSizeMake(self.m_TitleLabel.bm_width, 1000)];
-//    self.m_TitleLabel.bm_height = size.height;
     
     self.m_TimeLabel.text = [NSDate fsStringDateFromTs:model.m_CreateTime];
     // 最后回复时间不为空，显示
@@ -179,8 +168,6 @@
     {
         self.m_TimeLabel.text = [NSDate fsStringDateFromTs:model.m_LastReplyTime];
     }
-    size = [self.m_TimeLabel sizeThatFits:CGSizeMake(1000, self.m_TimeLabel.bm_height)];
-    self.m_UserNameLabel.bm_left = size.width + 6.0f;
 
     self.m_UserNameLabel.text = model.m_NickName;
     [self.m_CommentBtn setTitle:[NSString stringWithFormat:@"%@", @(model.m_CommentCount)] forState:UIControlStateNormal];
