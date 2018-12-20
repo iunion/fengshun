@@ -7,6 +7,7 @@
 //
 
 #import "FSForumDetailListCell.h"
+#import "NSAttributedString+BMCategory.h"
 
 @interface FSForumDetailListCell()
 
@@ -43,7 +44,9 @@
 
 
 - (void)showWithTopicModel:(FSTopicModel *)model{
-    self.m_TitleLab.text    = model.m_Title;
+    NSMutableAttributedString *titleStr = [[NSMutableAttributedString alloc]initWithString:model.m_Title];
+    [titleStr bm_setAttributeAlignmentStyle:NSTextAlignmentLeft lineSpaceStyle:5 paragraphSpaceStyle:5 lineBreakStyle:0];
+    self.m_TitleLab.attributedText    = titleStr;
     // 最后回复时间不为空，显示
 //    if (model.m_LastReplyTime == 0)
 //    {

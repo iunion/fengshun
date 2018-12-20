@@ -100,7 +100,7 @@
                 <outlet property="m_TitleLabel" destination="h91-ZY-cXv" id="awC-Lg-KyR"/>
                 <outlet property="m_UserNameLabel" destination="okL-69-L6k" id="c8s-iA-Z8n"/>
             </connections>
-            <point key="canvasLocation" x="-483" y="-421"/>
+            <point key="canvasLocation" x="-483.19999999999999" y="-421.88905547226392"/>
         </tableViewCell>
     </objects>
     <resources>

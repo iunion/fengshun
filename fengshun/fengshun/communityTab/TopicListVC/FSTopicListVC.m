@@ -63,6 +63,7 @@ FSTopicListVC ()
     self.m_TableView.tableFooterView = [UIView new];
     self.m_TableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.m_TableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    self.m_TableView.estimatedRowHeight = 114;
 }
 
 - (NSMutableURLRequest *)setLoadDataRequestWithFresh:(BOOL)isLoadNew
@@ -169,7 +170,7 @@ FSTopicListVC ()
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [FSForumDetailListCell cellHeight];
+    return UITableViewAutomaticDimension;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
