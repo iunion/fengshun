@@ -10,6 +10,9 @@
 #import "FSTopicDetailVC.h"
 
 @class FSWebViewController, FSFileScanImagePreviewVC,FSCommunitySecVC,FSSendTopicVC;
+
+@class FSVideoMediateDetailVC;
+
 @protocol FSWebViewControllerDelegate;
 
 // 跳转回调
@@ -47,6 +50,7 @@ typedef void (^PushVCCallBack)(void);
 #ifdef FSVIDEO_ON
 // 视频调解
 + (void)pushVideoMediateList:(UINavigationController *)nav;
++ (FSVideoMediateDetailVC *)meetingDetailVCShowInVC:(UIViewController *)selfVC withMeetingId:(NSString *)meetingId;
 #endif
 // 文书范本
 + (void)homePagePushToTextSplitVC:(UIViewController *)mainVC;
@@ -61,7 +65,7 @@ typedef void (^PushVCCallBack)(void);
 +(void)viewController:(UIViewController *)vc pushToOCRResultVCWithImage:(UIImage *)image;
 
 // 显示个人信息
-+ (void)showMessageVC:(UIViewController *)pushVC;
++ (void)showMessageVC:(UIViewController *)pushVC withNoficationId:(NSString *)notificationId;
 
 #pragma mark - H5跳转
 

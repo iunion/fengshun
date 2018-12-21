@@ -272,15 +272,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FSVideoMediateDetailVC *vc = [FSVideoMediateDetailVC new];
+    FSMeetingDetailModel *model = self.m_DataArray[indexPath.row];
+    FSVideoMediateDetailVC *vc = [FSPushVCManager meetingDetailVCShowInVC:self withMeetingId:[@(model.meetingId) stringValue]];
     BMWeakSelf
     vc.changedBlock = ^{
         [weakSelf loadApiData];
     };
-    FSMeetingDetailModel *model = self.m_DataArray[indexPath.row];
-    vc.m_MeetingId = model.meetingId;
-    [self.navigationController pushViewController:vc animated:YES];
-    
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 

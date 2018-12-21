@@ -12,6 +12,7 @@
 #import "FSUserMainVC.h"
 //#import "FSH5DemoVC.h"
 #import "FSCourseHomePageVC.h"
+#import "UIViewController+FSPushVCAPI.h"
 
 //正常色
 #define ITEM_NOR_COLOR [UIColor bm_colorWithHex:0x979797]
@@ -122,6 +123,12 @@
         default:
             break;
     }
+}
+
+- (void)topVCPushWithModel:(FSPushVCModel *)pushModel
+{
+    UIViewController *vc = [self getCurrentViewController];
+    [vc fspush_withModel:pushModel];
 }
 
 @end

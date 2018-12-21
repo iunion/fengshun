@@ -134,7 +134,7 @@
 {
     if ([FSUserInfoModel isLogin])
     {
-        [FSPushVCManager showMessageVC:self];
+        [FSPushVCManager showMessageVC:self withNoficationId:nil];
     }
     else
     {

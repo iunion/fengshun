@@ -13,6 +13,7 @@
 
 #ifdef FSVIDEO_ON
 #import "FSVideoMediateListVC.h"
+#import "FSVideoMediateDetailVC.h"
 #endif
 #import "FSWebViewController.h"
 
@@ -26,6 +27,7 @@
 #import "FSMessageTabVC.h"
 #import "FSOCRSearchResultVC.h"
 #import "FSTextDetailVC.h"
+
 
 
 @implementation FSPushVCManager
@@ -135,6 +137,13 @@
     vc.hidesBottomBarWhenPushed = YES;
     [nav pushViewController:vc animated:YES];
 }
++ (FSVideoMediateDetailVC *)meetingDetailVCShowInVC:(UIViewController *)selfVC withMeetingId:(NSString *)meetingId
+{
+    FSVideoMediateDetailVC *vc = [FSVideoMediateDetailVC new];
+    vc.m_MeetingId = [meetingId integerValue];
+    [selfVC.navigationController pushViewController:vc animated:YES];
+    return vc;
+}
 #endif
 
 + (void)homePagePushToTextSplitVC:(UIViewController *)mainVC
@@ -177,7 +186,7 @@
 }
 
 
-+ (void)showMessageVC:(UIViewController *)pushVC
++ (void)showMessageVC:(UIViewController *)pushVC withNoficationId:(NSString *)notificationId
 {
     FSMessageTabVC *vc = [[FSMessageTabVC alloc] init];
     vc.hidesBottomBarWhenPushed = YES;

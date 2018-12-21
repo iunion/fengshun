@@ -10,4 +10,6 @@
 
 @interface FSMessageTabVC : FSSuperNetVC
 
+@property (nonatomic, copy)NSString *m_notificationId;
+
 @end

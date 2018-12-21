@@ -331,7 +331,7 @@
         return nil;
     }
     
-    // 获取rootVC
+    // 获取topVC
     UIViewController *vc = [carray lastObject];
     return vc;
 }

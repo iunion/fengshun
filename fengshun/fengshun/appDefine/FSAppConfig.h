@@ -11,6 +11,7 @@
 #import "FSAppMacros.h"
 #import "FSAppUIDef.h"
 #import "FSEnumDefine.h"
+#import "FSGlobalEnum.h"
 
 #ifndef FSAppConfig_h
 #define FSAppConfig_h

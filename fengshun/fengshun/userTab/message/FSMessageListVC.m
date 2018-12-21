@@ -186,6 +186,7 @@
             //if (model.m_JumpType == FSJumpType_H5)
             {
                 [FSPushVCManager showWebView:self.m_PushVC url:model.m_JumpAddress title:nil];
+                
             }
         }
             
