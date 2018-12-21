@@ -9,6 +9,7 @@
 #import "BMTestGPSMockVC.h"
 #import "BMTestGPSMocker.h"
 #import <MapKit/MapKit.h>
+#import "BMAlertView.h"
 
 @interface BMTestGPSMockVC ()
 <
@@ -264,6 +265,7 @@
     if (!mockGPSSwitch)
     {
         NSLog(@"mock开关没有打开");
+        [BMAlertView showAlertWithTitle:@"mock开关没有打开"];
         return;
     }
     
@@ -272,6 +274,7 @@
     if (longitudeValue.length==0 || latitudeValue.length==0)
     {
         NSLog(@"经纬度不能为空");
+        [BMAlertView showAlertWithTitle:@"经纬度不能为空"];
         return;
     }
     
@@ -280,11 +283,13 @@
     if (longitude < -180 || longitude > 180)
     {
         NSLog(@"经度不合法");
+        [BMAlertView showAlertWithTitle:@"经度不合法"];
         return;
     }
     if (latitude < -90 || latitude > 90)
     {
         NSLog(@"纬度不合法");
+        [BMAlertView showAlertWithTitle:@"经度不合法"];
         return;
     }
     

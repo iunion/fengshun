@@ -17,7 +17,7 @@ typedef void (^PushVCCallBack)(void);
 
 @interface FSPushVCManager : NSObject
 // 社区二级页面
-+ (FSCommunitySecVC *)showCommunitySecVCPushVC:(UIViewController *)pushVC FourmId:(NSInteger)fourId;
++ (FSCommunitySecVC *)showCommunitySecVCPushVC:(UIViewController *)pushVC fourmId:(NSInteger)fourId fourmName:(NSString *)fourmName;
 
 // 社区详情
 + (void)showPostDetailVCWithPushVC:(UIViewController *)pushVC url:(NSString *)url;

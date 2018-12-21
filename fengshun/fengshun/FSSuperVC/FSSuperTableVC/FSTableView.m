@@ -29,6 +29,7 @@
     if (self = [super initWithFrame:frame style:style])
     {
         _m_FreshViewType = freshViewType;
+        _m_MultiResponse = NO;
         [self setupTableView];
     }
     
@@ -135,6 +136,12 @@
 - (void)bringSomeViewToFront
 {
     [self.bm_emptyView bm_bringToFront];
+}
+
+// 允许同时识别多个手势
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return self.m_MultiResponse;
 }
 
 - (void)freshView:(BMFreshBaseView *)freshView changeState:(BMFreshState)state
