@@ -29,6 +29,8 @@
 - (void)makeCellStyle
 {
     [_m_UserHeaderImgView bm_roundedRect:4];
+    _m_HeaderBGView.contentMode = UIViewContentModeScaleAspectFill;
+    
     [_m_AttentionBtn bm_roundedRect:_m_AttentionBtn.bm_height * 0.5];
     self.m_AttentionBtn.userInteractionEnabled = YES;
     [self.m_AttentionBtn addTarget:self action:@selector(followAction) forControlEvents:UIControlEventTouchUpInside];

@@ -7,26 +7,48 @@
 //
 
 #import "FSCommunitySecVC.h"
-#import "FSScrollPageView.h"
+
 #import "FSCommunityHeaderView.h"
+
+#import "FSComTopicListVC.h"
+
+#import "FSScrollPageView.h"
+
 #import "FSApiRequest.h"
-#import "FSTopicListVC.h"
+//#import "FSTopicListVC.h"
+
 #import "FSCommunityModel.h"
-#import "BMAlertView.h"
+
 #import "FSPushVCManager.h"
 #import "FSAuthenticationVC.h"
+
 #import "FSAlertView.h"
 
-@interface
-FSCommunitySecVC ()
+
+@interface FSCommunitySecVC ()
 <
     FSScrollPageViewDataSource,
     FSScrollPageViewDelegate,
     FSCommunityHeaderViewDelegate,
-    FSAuthenticationDelegate
+    FSAuthenticationDelegate,
+    FSBaseComTopicScrollTopDelegate
 >
+{
+    CGRect initialHeaderFrame;
+    CGFloat defaultHeaderViewHeight;
+}
+
+@property (nonatomic, assign) NSUInteger m_PageIndex;
+
+// 能否滑动，默认YES;
+@property (nonatomic, assign) BOOL m_CanScroll;
+
 // 板块id
 @property (nonatomic, assign) NSInteger m_FourmId;
+@property (nonatomic, strong) NSString *m_FourmName;
+
+@property (nonatomic, strong) UIView *m_TableHeaderView;
+
 // headerView
 @property (nonatomic, strong) FSCommunityHeaderView *m_HeaderView;
 @property (nonatomic, strong) FSScrollPageSegment *  m_SegmentBar;
@@ -40,33 +62,49 @@ FSCommunitySecVC ()
 @end
 
 @implementation FSCommunitySecVC
+@synthesize m_FreshViewType = _m_FreshViewType;
 
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:userInfoChangedNotification object:nil];
 }
 
-- (instancetype)initWithFourmId:(NSInteger)fourmId
+- (instancetype)initWithFourmId:(NSInteger)fourmId fourmName:(NSString *)fourmName
 {
     if (self = [super init])
     {
         self.m_FourmId = fourmId;
+        self.m_FourmName = fourmName;
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
+    self.m_TableViewStyle = BMFreshViewType_NONE;
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib
-    [self bm_setNavigationWithTitle:@"" barTintColor:nil leftDicArray:@[ [self bm_makeBarButtonDictionaryWithTitle:@"   " image:@"community_white_back" toucheEvent:@"popViewController" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:5] ] rightDicArray:nil];
-    self.bm_NavigationBarHidden = YES;
-    [self bm_getNavigationLeftItemAtIndex:0].tintColor = [UIColor whiteColor];
+    
+    self.m_PageIndex = 0;
+    
+    self.m_TableView.m_MultiResponse = YES;
+    self.m_CanScroll = YES;
+    
+    self.m_showEmptyView = NO;
+
+    [self bm_setNavigationWithTitle:self.m_FourmName?self.m_FourmName:@"" barTintColor:nil leftDicArray:@[ [self bm_makeBarButtonDictionaryWithTitle:@"   " image:@"community_white_back" toucheEvent:@"popViewController" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:5] ] rightDicArray:nil];
+    self.bm_NavigationBarAlpha = 0.0f;
+    self.bm_NavigationTitleAlpha = 0.0f;
+    self.bm_NavigationTitleTintColor = [UIColor clearColor];
+    self.bm_NavigationItemTintColor = [UIColor colorWithWhite:1.0f alpha:1.0f];
     [self bm_setNeedsUpdateNavigationBar];
     
     self.view.backgroundColor = FS_VIEW_BGCOLOR;
     self.m_dataArray          = [NSMutableArray arrayWithCapacity:0];
     self.m_vcArray            = [NSMutableArray array];
+
+    self.m_TableView.frame = CGRectMake(0, -(UI_NAVIGATION_BAR_HEIGHT+UI_STATUS_BAR_HEIGHT), UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT);
 
     [self createUI];
     [self loadApiData];
@@ -101,19 +139,23 @@ FSCommunitySecVC ()
 
 - (void)createUI
 {
-    _m_HeaderView          = (FSCommunityHeaderView *)[[NSBundle mainBundle] loadNibNamed:@"FSCommunityHeaderView" owner:self options:nil].firstObject;
-    _m_HeaderView.delegate = self;
-    [self.view addSubview:_m_HeaderView];
-    _m_HeaderView.frame = CGRectMake(0, -(UI_NAVIGATION_BAR_HEIGHT+UI_STATUS_BAR_HEIGHT), UI_SCREEN_WIDTH, 200);
+    self.m_TableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, ComTopicHeaderImageHeight+ComTopicHeaderImageGap+ComTopicSegmentBarHeight)];
+    self.m_TableHeaderView.backgroundColor = [UIColor clearColor];
+    
+    self.m_HeaderView = (FSCommunityHeaderView *)[[NSBundle mainBundle] loadNibNamed:@"FSCommunityHeaderView" owner:self options:nil].firstObject;
+    self.m_HeaderView.delegate = self;
+    [self.m_TableHeaderView addSubview:_m_HeaderView];
+    self.m_HeaderView.frame = CGRectMake(0, 0, UI_SCREEN_WIDTH, ComTopicHeaderImageHeight);
 
     // 切换视图
-    self.m_SegmentBar = [[FSScrollPageSegment alloc] initWithFrame:CGRectMake(0, _m_HeaderView.bm_bottom + 8, UI_SCREEN_WIDTH, 44) titles:nil titleColor:nil selectTitleColor:nil showUnderLine:YES moveLineFrame:CGRectZero isEqualDivide:YES fresh:YES];
-    [self.view addSubview:_m_SegmentBar];
-    _m_SegmentBar.backgroundColor = [UIColor whiteColor];
+    self.m_SegmentBar = [[FSScrollPageSegment alloc] initWithFrame:CGRectMake(0, self.m_HeaderView.bm_bottom + ComTopicHeaderImageGap, UI_SCREEN_WIDTH, ComTopicSegmentBarHeight) titles:nil titleColor:nil selectTitleColor:nil showUnderLine:YES moveLineFrame:CGRectZero isEqualDivide:YES fresh:YES];
+    [self.m_TableHeaderView addSubview:_m_SegmentBar];
+    self.m_SegmentBar.backgroundColor = [UIColor whiteColor];
+    self.m_SegmentBar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
 
     // 内容视图
-    self.m_ScrollPageView = [[FSScrollPageView alloc] initWithFrame:CGRectMake(0, _m_SegmentBar.bm_bottom, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT -UI_STATUS_BAR_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - UI_HOME_INDICATOR_HEIGHT- _m_SegmentBar.bm_bottom) titleColor:UI_COLOR_B1 selectTitleColor:UI_COLOR_BL1 scrollPageSegment:_m_SegmentBar isSubViewPageSegment:NO];
-    [self.view addSubview:self.m_ScrollPageView];
+    self.m_ScrollPageView = [[FSScrollPageView alloc] initWithFrame:CGRectMake(0, _m_SegmentBar.bm_bottom, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT - UI_STATUS_BAR_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - UI_HOME_INDICATOR_HEIGHT - ComTopicSegmentBarHeight) titleColor:UI_COLOR_B1 selectTitleColor:UI_COLOR_BL1 scrollPageSegment:_m_SegmentBar isSubViewPageSegment:NO];
+    //[self.view addSubview:self.m_ScrollPageView];
     self.m_ScrollPageView.datasource = self;
     self.m_ScrollPageView.delegate   = self;
     [self.m_ScrollPageView setM_MoveLineColor:UI_COLOR_BL1];
@@ -134,6 +176,79 @@ FSCommunitySecVC ()
     self.m_PulishBtn.layer.shadowColor = [UIColor blueColor].CGColor;
     [self.view addSubview:self.m_PulishBtn];
     
+    // 下拉放大
+    [self stretchHeaderForTableView];
+    
+    self.m_TableView.tableFooterView = self.m_ScrollPageView;
+
+}
+
+
+#pragma mark -
+#pragma mark headerView
+
+- (void)stretchHeaderForTableView
+{
+    initialHeaderFrame = self.m_TableHeaderView.frame;
+    defaultHeaderViewHeight = initialHeaderFrame.size.height;
+    
+    UIView *emptyTableHeaderView = [[UIView alloc] initWithFrame:initialHeaderFrame];
+    self.m_TableView.tableHeaderView = emptyTableHeaderView;
+    
+    [self.m_TableView addSubview:self.m_TableHeaderView];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView*)scrollView
+{
+    CGRect frame = self.m_TableHeaderView.frame;
+    frame.size.width = self.m_TableView.frame.size.width;
+    self.m_TableHeaderView.frame = frame;
+    
+    if(scrollView.contentOffset.y < 0)
+    {
+        CGFloat offsetY = (scrollView.contentOffset.y + scrollView.contentInset.top) * -1;
+        initialHeaderFrame.origin.y = offsetY * -1;
+        initialHeaderFrame.size.height = defaultHeaderViewHeight + offsetY;
+        self.m_TableHeaderView.frame = initialHeaderFrame;
+    }
+    
+    // 子控制器和主控制器之间的滑动状态切换
+    CGFloat tabOffsetY = ComTopicHeaderImageHeight + ComTopicHeaderImageGap - (UI_STATUS_BAR_HEIGHT + UI_NAVIGATION_BAR_HEIGHT);
+    
+    if (scrollView.contentOffset.y >= tabOffsetY)
+    {
+        scrollView.contentOffset = CGPointMake(0, tabOffsetY);
+        if (self.m_CanScroll)
+        {
+            NSLog(@"++++++++++++++++++NO");
+            
+            [self comTopicScrollToTop:nil];
+            
+            self.m_CanScroll = NO;
+            
+            FSComTopicListVC *vc = self.m_vcArray[self.m_PageIndex];
+            vc.m_CanScroll = YES;
+        }
+    }
+    else
+    {
+        if (!self.m_CanScroll)
+        {
+            scrollView.contentOffset = CGPointMake(0, tabOffsetY);
+        }
+    }
+}
+
+- (void)resizeView
+{
+    initialHeaderFrame.size.width = self.m_TableView.frame.size.width;
+    self.m_TableHeaderView.frame = initialHeaderFrame;
+}
+
+// 下拉放大必须实现
+- (void)viewDidLayoutSubviews
+{
+    [self resizeView];
 }
 
 #pragma mark - Action
@@ -142,9 +257,10 @@ FSCommunitySecVC ()
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 // 发帖
-- (void)pulishTopicAction{
-    
+- (void)pulishTopicAction
+{
     if (![FSUserInfoModel isLogin])
     {
         [self showLogin];
@@ -165,18 +281,21 @@ FSCommunitySecVC ()
     }
     [FSPushVCManager showSendPostWithPushVC:self isEdited:NO relatedId:self.m_FourmId callBack:^ {
         [weakSelf getHeaderInfoMsg];
-        if (weakSelf.m_AttentionChangeBlock) {
+        if (weakSelf.m_AttentionChangeBlock)
+        {
             weakSelf.m_AttentionChangeBlock();
         }
         // 1.1 需求 发帖完成回到最新帖子刷新数据
-        if (weakSelf.m_dataArray.count > 1) {
+        if (weakSelf.m_dataArray.count > 1)
+        {
             [weakSelf.m_SegmentBar selectBtnAtIndex:1];
             [weakSelf.m_ScrollPageView scrollPageWithIndex:1];
-            FSTopicListVC *vc = weakSelf.m_vcArray[1];
+            FSComTopicListVC *vc = weakSelf.m_vcArray[1];
             [vc refreshVC];
         }
     }];
 }
+
 //认证完成
 - (void)authenticationFinished:(FSAuthenticationVC *)vc
 {
@@ -199,10 +318,46 @@ FSCommunitySecVC ()
 - (id)scrollPageView:(FSScrollPageView *)scrollPageView pageAtIndex:(NSUInteger)index
 {
     FSTopicTypeModel *model = self.m_dataArray[index];
-    FSTopicListVC *vc       = [[FSTopicListVC alloc] initWithTopicSortType:model.m_PostListType formId:self.m_FourmId];
+    FSComTopicListVC *vc = [[FSComTopicListVC alloc] initWithTopicSortType:model.m_PostListType formId:self.m_FourmId];
+    vc.scrollTopDelegate = self;
     [self.m_vcArray addObject:vc];
     return vc;
 }
+
+- (void)scrollPageViewChangeToIndex:(NSUInteger)index
+{
+    self.m_PageIndex = index;
+    
+    self.m_CanScroll = YES;
+    
+    for (FSComTopicListVC *vc in self.m_vcArray)
+    {
+        vc.m_CanScroll = NO;
+        
+        UIView *view = vc.view;
+        UITableView *tableView = (UITableView *)[view bm_viewOfClass:[UITableView class]];
+        if (tableView)
+        {
+            [tableView setContentOffset:CGPointZero animated:NO];
+        }
+    }
+}
+
+
+#pragma mark -
+#pragma mark FSBaseComTopicScrollTopDelegate
+
+- (void)comTopicScrollToTop:(UITableView *)tableView
+{
+    NSLog(@"++++++++++++++++++YES");
+    self.m_CanScroll = YES;
+    
+    for (FSComTopicListVC *vc in self.m_vcArray)
+    {
+        vc.m_CanScroll = NO;
+    }
+}
+
 
 #pragma mark - 关注
 
@@ -215,7 +370,8 @@ FSCommunitySecVC ()
     }
     FSForumFollowState state = self.m_ForumModel.m_AttentionFlag;
     [FSApiRequest updateFourmAttentionStateWithFourmId:self.m_ForumModel.m_Id followStatus:!state success:^(id  _Nullable responseObject) {
-        if (self.m_AttentionChangeBlock) {
+        if (self.m_AttentionChangeBlock)
+        {
             self.m_AttentionChangeBlock();
         }
         [self getHeaderInfoMsg];
@@ -265,14 +421,5 @@ FSCommunitySecVC ()
         
     }];
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
