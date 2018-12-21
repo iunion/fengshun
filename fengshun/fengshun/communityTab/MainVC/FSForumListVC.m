@@ -154,7 +154,7 @@ FSForumListVC ()
 {
     FSCommunityForumModel *model      = self.m_DataArray[indexPath.section];
     FSForumModel *         forumModel = model.m_List[indexPath.row];
-    FSCommunitySecVC *vc = [FSPushVCManager showCommunitySecVCPushVC:[self.view.superview bm_viewController] FourmId:forumModel.m_Id];
+    FSCommunitySecVC *vc = [FSPushVCManager showCommunitySecVCPushVC:[self.view.superview bm_viewController] fourmId:forumModel.m_Id fourmName:forumModel.m_ForumNameSecond];
     BMWeakSelf;
     vc.m_AttentionChangeBlock = ^{
         [weakSelf loadApiData];

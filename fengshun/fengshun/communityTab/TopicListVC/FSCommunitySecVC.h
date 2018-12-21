@@ -6,13 +6,13 @@
 //  Copyright © 2018年 FS. All rights reserved.
 //
 
-#import "FSSuperNetVC.h"
+#import "FSTableViewVC.h"
 
-@interface FSCommunitySecVC : FSSuperNetVC
+@interface FSCommunitySecVC : FSTableViewVC
 
 @property (nonatomic, copy)void (^m_AttentionChangeBlock)(void);
 
 // 板块id
-- (instancetype)initWithFourmId:(NSInteger )fourmId;
+- (instancetype)initWithFourmId:(NSInteger )fourmId fourmName:(NSString *)fourmName;
 
 @end

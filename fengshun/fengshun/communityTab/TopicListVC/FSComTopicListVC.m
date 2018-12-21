@@ -1,22 +1,25 @@
 //
-//  FSTopicListVC.m
+//  FSComTopicListVC.m
 //  fengshun
 //
-//  Created by best2wa on 2018/9/10.
-//  Copyright © 2018年 FS. All rights reserved.
+//  Created by jiang deng on 2018/12/21.
+//  Copyright © 2018 FS. All rights reserved.
 //
 
-#import "FSTopicListVC.h"
+#import "FSComTopicListVC.h"
 #import "FSForumDetailListCell.h"
 #import "FSCommunityModel.h"
 #import "FSPushVCManager.h"
 
-@interface
-FSTopicListVC ()
+@interface FSComTopicListVC ()
+<
+    UIScrollViewDelegate
+>
 {
     NSInteger _currentPages;
     BOOL _isLoadFinish;
 }
+
 // 排序类型
 @property (nonatomic, strong) NSString *m_SortType;
 // 板块id
@@ -24,7 +27,17 @@ FSTopicListVC ()
 
 @end
 
-@implementation FSTopicListVC
+@implementation FSComTopicListVC
+
+- (instancetype)initWithTopicSortType:(NSString *)sortType formId:(NSInteger)formId
+{
+    if (self = [super init])
+    {
+        self.m_SortType = sortType;
+        self.m_ForumId  = formId;
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -36,26 +49,10 @@ FSTopicListVC ()
     [self loadApiData];
 }
 
-
-- (void)didReceiveMemoryWarning
+- (void)refreshVC
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)refreshVC{
     _currentPages = 1;
     [self loadApiData];
-}
-
-- (instancetype)initWithTopicSortType:(NSString *)sortType formId:(NSInteger)formId
-{
-    if (self = [super init])
-    {
-        self.m_SortType = sortType;
-        self.m_ForumId  = formId;
-    }
-    return self;
 }
 
 - (void)createUI
@@ -68,7 +65,8 @@ FSTopicListVC ()
 
 - (NSMutableURLRequest *)setLoadDataRequestWithFresh:(BOOL)isLoadNew
 {
-    if (isLoadNew) {
+    if (isLoadNew)
+    {
         _currentPages = 1;
     }
     return [FSApiRequest getTopicListWithType:self.m_SortType forumId:self.m_ForumId pageIndex:_currentPages pageSize:10];
@@ -89,10 +87,12 @@ FSTopicListVC ()
             NSArray *list = [[dic bm_dictionaryForKey:@"postInfo"] bm_arrayForKey:@"list"];
             NSInteger totalPages = [[dic bm_dictionaryForKey:@"postInfo"]bm_intForKey:@"totalPages"];
             _isLoadFinish = _currentPages >= totalPages;
-            if (!_isLoadFinish) {
+            if (!_isLoadFinish)
+            {
                 _currentPages ++;
             }
-            if (self.m_IsLoadNew) {
+            if (self.m_IsLoadNew)
+            {
                 [self.m_DataArray removeAllObjects];
             }
             if ([list bm_isNotEmpty])
@@ -111,60 +111,29 @@ FSTopicListVC ()
     [self.m_DataArray addObjectsFromArray:arr];
     [self.m_TableView reloadData];
     [self.m_ProgressHUD hideAnimated:YES];
+    
+    if ([self.scrollTopDelegate respondsToSelector:@selector(finishedDataRequest)])
+    {
+        [self.scrollTopDelegate finishedDataRequest];
+    }
+    
     return YES;
 }
 
-- (BOOL)checkLoadFinish:(NSDictionary *)requestDic{
+- (BOOL)checkLoadFinish:(NSDictionary *)requestDic
+{
     return _isLoadFinish;
 }
 
-//- (void)loadDataResponseFinished:(NSURLResponse *)response responseDic:(NSDictionary *)responseDic
-//{
-//    [self.m_ProgressHUD hideAnimated:NO];
-//    if (![responseDic bm_isNotEmptyDictionary]) {
-//        return;
-//    }
-//    if ([responseDic bm_intForKey:@"code"] != 1000) {
-//        return;
-//    }
-//    if (![[responseDic bm_arrayForKey:@"data"] bm_isNotEmpty]) {
-//        return;
-//    }
-//    NSArray *requestArray =[responseDic bm_arrayForKey:@"data"];
-//    NSMutableArray *arr = [NSMutableArray arrayWithCapacity:0];
-//    for (NSDictionary *dic in requestArray)
-//    {
-//        FSTopicTypeModel *model = [FSTopicTypeModel topicTypeModelWithDic:dic];
-//        if (model && model.m_IsActive)
-//        {
-//            NSArray *list = [[dic bm_dictionaryForKey:@"postInfo"] bm_arrayForKey:@"list"];
-//            NSInteger totalPages = [[dic bm_dictionaryForKey:@"postInfo"]bm_intForKey:@"totalPages"];
-//            if (_currentPages == 1) {
-//                [self.m_DataArray removeAllObjects];
-//                [self.m_TableView resetFreshHeaderState];
-//            }
-//            if (_currentPages >= totalPages) {
-//                [self.m_TableView resetFreshFooterStateWithNoMoreData];
-//            }else{
-//                _currentPages ++;
-//                [self.m_TableView resetFreshFooterState];
-//            }
-//            if ([list bm_isNotEmpty])
-//            {
-//                for (NSDictionary *data in list)
-//                {
-//                    FSTopicModel *topicModel = [FSTopicModel topicWithServerDic:data];
-//                    if (topicModel)
-//                    {
-//                        [arr addObject:topicModel];
-//                    }
-//                }
-//            }
-//        }
-//    }
-//    [self.m_DataArray addObjectsFromArray:arr];
-//    [self.m_TableView reloadData];
-//}
+- (void)failLoadedResponse:(NSURLResponse *)response responseDic:(NSDictionary *)responseDic withErrorCode:(NSInteger)errorCode
+{
+    [super failLoadedResponse:response responseDic:responseDic withErrorCode:errorCode];
+    
+    if ([self.scrollTopDelegate respondsToSelector:@selector(finishedDataRequest)])
+    {
+        [self.scrollTopDelegate finishedDataRequest];
+    }
+}
 
 #pragma mark - tableViewDelegate
 
@@ -175,8 +144,8 @@ FSTopicListVC ()
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *      cellId = @"FSForumDetailListCell";
-    FSForumDetailListCell *cell   = [tableView dequeueReusableCellWithIdentifier:cellId];
+    static NSString *cellId = @"FSForumDetailListCell";
+    FSForumDetailListCell *cell= [tableView dequeueReusableCellWithIdentifier:cellId];
     if (!cell)
     {
         cell = [[NSBundle mainBundle] loadNibNamed:@"FSForumDetailListCell" owner:self options:nil].firstObject;
@@ -193,14 +162,6 @@ FSTopicListVC ()
     [FSPushVCManager showTopicDetail:[self.view.superview bm_viewController]  topicId:model.m_Id];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

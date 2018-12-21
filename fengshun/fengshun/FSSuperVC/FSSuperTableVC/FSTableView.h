@@ -21,6 +21,9 @@
 // 上拉下拉类型
 @property (nonatomic, assign, readonly) BMFreshViewType m_FreshViewType;
 
+// 允许同时识别多个手势，默认NO
+@property (nonatomic, assign) BOOL m_MultiResponse;
+
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style freshViewType:(BMFreshViewType)freshViewType;
 - (void)bringSomeViewToFront;
 

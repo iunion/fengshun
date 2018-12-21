@@ -1699,7 +1699,7 @@ static void exceptionHandler(NSException *exception)
 
 - (void)fpsPanGestureAction:(UIPanGestureRecognizer *)panGesture
 {
-    NSLog(@"fpsPanGestureAction");
+    //NSLog(@"fpsPanGestureAction");
     UIView *panView = panGesture.view;
     
     //1、获得拖动位移
