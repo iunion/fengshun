@@ -49,6 +49,9 @@
 
 @property (nonatomic, strong) UIView *m_TableHeaderView;
 
+@property (nonatomic, strong) UIActivityIndicatorView *m_ActivityIndicatorView;
+@property (nonatomic, assign) BOOL m_CanFreshDate;
+
 // headerView
 @property (nonatomic, strong) FSCommunityHeaderView *m_HeaderView;
 @property (nonatomic, strong) FSScrollPageSegment *  m_SegmentBar;
@@ -99,7 +102,11 @@
     self.bm_NavigationTitleTintColor = [UIColor clearColor];
     self.bm_NavigationItemTintColor = [UIColor colorWithWhite:1.0f alpha:1.0f];
     [self bm_setNeedsUpdateNavigationBar];
-    
+    [self bm_setNeedsUpdateNavigationBarAlpha];
+    [self bm_setNeedsUpdateNavigationTitleAlpha];
+    [self bm_setNeedsUpdateNavigationTitleTintColor];
+    [self bm_setNeedsUpdateNavigationItemTintColor];
+
     self.view.backgroundColor = FS_VIEW_BGCOLOR;
     self.m_dataArray          = [NSMutableArray arrayWithCapacity:0];
     self.m_vcArray            = [NSMutableArray array];
@@ -122,6 +129,11 @@
     [self bm_setNeedsUpdateNavigationBarStyle];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
@@ -139,6 +151,11 @@
 
 - (void)createUI
 {
+    self.m_ActivityIndicatorView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyleWhite)];
+    self.m_ActivityIndicatorView.frame= CGRectMake(UI_SCREEN_WIDTH - 60, 0, 30, 30);
+    self.m_ActivityIndicatorView.hidesWhenStopped = YES;
+    [self.view addSubview:self.m_ActivityIndicatorView];
+    
     self.m_TableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, ComTopicHeaderImageHeight+ComTopicHeaderImageGap+ComTopicSegmentBarHeight)];
     self.m_TableHeaderView.backgroundColor = [UIColor clearColor];
     
@@ -200,18 +217,11 @@
 
 - (void)scrollViewDidScroll:(UIScrollView*)scrollView
 {
-    CGRect frame = self.m_TableHeaderView.frame;
-    frame.size.width = self.m_TableView.frame.size.width;
-    self.m_TableHeaderView.frame = frame;
+    self.m_CanFreshDate = NO;
     
-    if(scrollView.contentOffset.y < 0)
-    {
-        CGFloat offsetY = (scrollView.contentOffset.y + scrollView.contentInset.top) * -1;
-        initialHeaderFrame.origin.y = offsetY * -1;
-        initialHeaderFrame.size.height = defaultHeaderViewHeight + offsetY;
-        self.m_TableHeaderView.frame = initialHeaderFrame;
-    }
-    
+    self.bm_NavigationTitleTintColor = [UIColor blackColor];
+    [self bm_setNeedsUpdateNavigationTitleTintColor];
+
     // 子控制器和主控制器之间的滑动状态切换
     CGFloat tabOffsetY = ComTopicHeaderImageHeight + ComTopicHeaderImageGap - (UI_STATUS_BAR_HEIGHT + UI_NAVIGATION_BAR_HEIGHT);
     
@@ -220,14 +230,20 @@
         scrollView.contentOffset = CGPointMake(0, tabOffsetY);
         if (self.m_CanScroll)
         {
-            NSLog(@"++++++++++++++++++NO");
-            
             [self comTopicScrollToTop:nil];
             
             self.m_CanScroll = NO;
             
             FSComTopicListVC *vc = self.m_vcArray[self.m_PageIndex];
             vc.m_CanScroll = YES;
+            
+            self.bm_NavigationBarAlpha = 1.0f;
+            self.bm_NavigationTitleAlpha = 1.0f;
+            self.bm_NavigationItemTintColor = [UIColor colorWithWhite:0.0f alpha:1.0f];
+            
+            [self bm_setNeedsUpdateNavigationBarAlpha];
+            [self bm_setNeedsUpdateNavigationTitleAlpha];
+            [self bm_setNeedsUpdateNavigationItemTintColor];
         }
     }
     else
@@ -236,6 +252,48 @@
         {
             scrollView.contentOffset = CGPointMake(0, tabOffsetY);
         }
+        
+        CGFloat alpha = scrollView.contentOffset.y / tabOffsetY;
+        self.bm_NavigationBarAlpha = alpha;
+        self.bm_NavigationTitleAlpha = alpha;
+        self.bm_NavigationItemTintColor = [UIColor colorWithWhite:1.0f-alpha alpha:1.0f];
+        
+        [self bm_setNeedsUpdateNavigationBarAlpha];
+        [self bm_setNeedsUpdateNavigationTitleAlpha];
+        [self bm_setNeedsUpdateNavigationItemTintColor];
+    }
+    
+    // 控制头图拉伸
+    CGRect frame = self.m_TableHeaderView.frame;
+    frame.size.width = self.m_TableView.frame.size.width;
+    self.m_TableHeaderView.frame = frame;
+    
+    if (scrollView.contentOffset.y < 0)
+    {
+        CGFloat offsetY = (scrollView.contentOffset.y + scrollView.contentInset.top) * -1;
+        initialHeaderFrame.origin.y = offsetY * -1;
+        initialHeaderFrame.size.height = defaultHeaderViewHeight + offsetY;
+        self.m_TableHeaderView.frame = initialHeaderFrame;
+        
+        if (scrollView.contentOffset.y < 30.0f)
+        {
+            self.m_CanFreshDate = YES;
+        }
+    }
+}
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
+{
+    NSLog(@"scrollViewWillBeginDecelerating");
+    
+    if (self.m_CanFreshDate)
+    {
+        self.m_CanFreshDate = NO;
+        [self.m_ActivityIndicatorView startAnimating];
+        self.view.userInteractionEnabled = NO;
+        
+        FSComTopicListVC *vc = self.m_vcArray[self.m_PageIndex];
+        [vc refreshVC];
     }
 }
 
@@ -249,6 +307,12 @@
 - (void)viewDidLayoutSubviews
 {
     [self resizeView];
+}
+
+- (void)finishedDataRequest
+{
+    [self.m_ActivityIndicatorView stopAnimating];
+    self.view.userInteractionEnabled = YES;
 }
 
 #pragma mark - Action
@@ -349,7 +413,6 @@
 
 - (void)comTopicScrollToTop:(UITableView *)tableView
 {
-    NSLog(@"++++++++++++++++++YES");
     self.m_CanScroll = YES;
     
     for (FSComTopicListVC *vc in self.m_vcArray)

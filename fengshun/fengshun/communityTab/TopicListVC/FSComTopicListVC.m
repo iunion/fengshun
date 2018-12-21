@@ -111,6 +111,12 @@
     [self.m_DataArray addObjectsFromArray:arr];
     [self.m_TableView reloadData];
     [self.m_ProgressHUD hideAnimated:YES];
+    
+    if ([self.scrollTopDelegate respondsToSelector:@selector(finishedDataRequest)])
+    {
+        [self.scrollTopDelegate finishedDataRequest];
+    }
+    
     return YES;
 }
 
@@ -119,6 +125,15 @@
     return _isLoadFinish;
 }
 
+- (void)failLoadedResponse:(NSURLResponse *)response responseDic:(NSDictionary *)responseDic withErrorCode:(NSInteger)errorCode
+{
+    [super failLoadedResponse:response responseDic:responseDic withErrorCode:errorCode];
+    
+    if ([self.scrollTopDelegate respondsToSelector:@selector(finishedDataRequest)])
+    {
+        [self.scrollTopDelegate finishedDataRequest];
+    }
+}
 
 #pragma mark - tableViewDelegate
 
