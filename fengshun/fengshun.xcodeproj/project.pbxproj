@@ -537,6 +537,8 @@
 		87A0C16121CC814800B2BF1A /* FSComTopicListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A0C16021CC814800B2BF1A /* FSComTopicListVC.m */; };
 		87A0C16821CC8D3700B2BF1A /* FSBaseComTopicListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A0C16721CC8D3700B2BF1A /* FSBaseComTopicListVC.m */; };
 		87A0C16921CC8D3700B2BF1A /* FSBaseComTopicListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A0C16721CC8D3700B2BF1A /* FSBaseComTopicListVC.m */; };
+		87A0C17121CCD39300B2BF1A /* TZImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A0C16F21CCD39200B2BF1A /* TZImageRequestOperation.m */; };
+		87A0C17221CCD39300B2BF1A /* TZImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A0C16F21CCD39200B2BF1A /* TZImageRequestOperation.m */; };
 		87BC9E2221548E0D000F2011 /* fsintroguide_750x1334_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87BC9E0521548E0D000F2011 /* fsintroguide_750x1334_3@2x.png */; };
 		87BC9E2321548E0D000F2011 /* fsintroguide_750x1334_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87BC9E0621548E0D000F2011 /* fsintroguide_750x1334_1@2x.png */; };
 		87BC9E2421548E0D000F2011 /* fsintroguide_750x1334_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87BC9E0721548E0D000F2011 /* fsintroguide_750x1334_4@2x.png */; };
@@ -3157,6 +3159,8 @@
 		87A0C16021CC814800B2BF1A /* FSComTopicListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSComTopicListVC.m; sourceTree = "<group>"; };
 		87A0C16621CC8D3700B2BF1A /* FSBaseComTopicListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSBaseComTopicListVC.h; sourceTree = "<group>"; };
 		87A0C16721CC8D3700B2BF1A /* FSBaseComTopicListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSBaseComTopicListVC.m; sourceTree = "<group>"; };
+		87A0C16F21CCD39200B2BF1A /* TZImageRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZImageRequestOperation.m; sourceTree = "<group>"; };
+		87A0C17021CCD39300B2BF1A /* TZImageRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZImageRequestOperation.h; sourceTree = "<group>"; };
 		87BC9E0521548E0D000F2011 /* fsintroguide_750x1334_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fsintroguide_750x1334_3@2x.png"; sourceTree = "<group>"; };
 		87BC9E0621548E0D000F2011 /* fsintroguide_750x1334_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fsintroguide_750x1334_1@2x.png"; sourceTree = "<group>"; };
 		87BC9E0721548E0D000F2011 /* fsintroguide_750x1334_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fsintroguide_750x1334_4@2x.png"; sourceTree = "<group>"; };
@@ -7549,6 +7553,8 @@
 				AD93558E2137D24100735C2E /* TZImagePickerController.bundle */,
 				AD93558B2137D24100735C2E /* TZImagePickerController.h */,
 				AD93559B2137D24100735C2E /* TZImagePickerController.m */,
+				87A0C17021CCD39300B2BF1A /* TZImageRequestOperation.h */,
+				87A0C16F21CCD39200B2BF1A /* TZImageRequestOperation.m */,
 				AD93558A2137D24100735C2E /* TZLocationManager.h */,
 				AD93559C2137D24100735C2E /* TZLocationManager.m */,
 				AD9355832137D24100735C2E /* TZPhotoPickerController.h */,
@@ -8885,6 +8891,7 @@
 				87D20ABD213920E2001EDD60 /* FLEXArgumentInputColorView.m in Sources */,
 				87E7C6992150A4E400F7AB14 /* TOCroppedImageAttributes.m in Sources */,
 				874268B0212E7E36003C52F6 /* BMTableViewImageDetailCell.m in Sources */,
+				87A0C17121CCD39300B2BF1A /* TZImageRequestOperation.m in Sources */,
 				87D209C12138F1E2001EDD60 /* SDWebImageCompat.m in Sources */,
 				8730B03B2140FFA2004331A9 /* DTAttributedTextContentView.m in Sources */,
 				874269D7212E9E21003C52F6 /* BMFreshBackNormalFooter.m in Sources */,
@@ -9747,6 +9754,7 @@
 				87A0C16921CC8D3700B2BF1A /* FSBaseComTopicListVC.m in Sources */,
 				87E7C35C21509AB000F7AB14 /* FSSearchResultModel.m in Sources */,
 				87E7C35D21509AB000F7AB14 /* XMEngine.m in Sources */,
+				87A0C17221CCD39300B2BF1A /* TZImageRequestOperation.m in Sources */,
 				87E7C35E21509AB000F7AB14 /* FSCaseSearchResultView.m in Sources */,
 				87E7C35F21509AB000F7AB14 /* CAAnimation+Animation.m in Sources */,
 				87E7C36021509AB000F7AB14 /* CYRTextStorage.m in Sources */,
