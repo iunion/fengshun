@@ -10,6 +10,8 @@
 #import "FSInputTextView.h"
 #import "AppDelegate.h"
 
+#define NickName_MaxTextCount 16
+
 @interface FSAuthVC ()
 
 @property (nonatomic , assign) FSAuthState m_AuthState;//认证和昵称状态
@@ -49,6 +51,7 @@
         _m_NikeNameLab = [UILabel bm_labelWithFrame:CGRectMake(20, 0, width - 40, height) text:@"发布内容前请设置昵称" fontSize:14.f color:RGBColor(153, 153, 153, 1) alignment:NSTextAlignmentLeft lines:1];
         [self.view addSubview:_m_NikeNameLab];
         _m_NikeName = [[FSInputTextView alloc]initWithFrame:CGRectMake(0, 0, width , height) title:@"昵称" content:@"" placeHolder:@"支持中英文数字及下划线，不超过16个字符"];
+        [_m_NikeName.m_contentTextfield addTarget:self action:@selector(nickNameTextChange:) forControlEvents:UIControlEventEditingChanged];
         _m_NikeName.m_IsShowBottomLine = NO;
         [self.view addSubview:_m_NikeName];
     }
@@ -105,7 +108,38 @@
     }];
 }
 
-
+- (void)nickNameTextChange:(UITextField *)sender
+{
+    if (sender != self.m_NikeName.m_contentTextfield)
+    {
+        return;
+    }
+    
+    NSString *lang = [[UIApplication sharedApplication] textInputMode].primaryLanguage;
+    if ([lang isEqualToString:@"zh-Hans"])
+    {
+        //判断markedTextRange是不是为Nil，如果为Nil的话就说明你现在没有未选中的字符，
+        //可以计算文字长度。否则此时计算出来的字符长度可能不正确
+        UITextRange *selectedRange = [sender markedTextRange];
+        //获取高亮部分(感觉输入中文的时候才有)
+        UITextPosition *position = [sender positionFromPosition:selectedRange.start offset:0];
+        // 没有高亮选择的字，则对已输入的文字进行字数统计和限制
+        if (!position)
+        {
+            if (self.m_NikeName.m_contentTextfield.text.length > NickName_MaxTextCount)
+            {
+                self.m_NikeName.m_contentTextfield.text = [self.m_NikeName.m_contentTextfield.text substringToIndex:NickName_MaxTextCount];
+            }
+        }
+    }
+    else
+    {
+        if (self.m_NikeName.m_contentTextfield.text.length > NickName_MaxTextCount)
+        {
+            self.m_NikeName.m_contentTextfield.text = [self.m_NikeName.m_contentTextfield.text substringToIndex:NickName_MaxTextCount];
+        }
+    }
+}
 
 /**
  刷新视图
