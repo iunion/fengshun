@@ -357,7 +357,7 @@
     BMWeakSelf
     if (![FSUserInfoModel userInfo].m_UserBaseInfo.m_IsRealName || ![[FSUserInfoModel userInfo].m_UserBaseInfo.m_NickName bm_isNotEmpty])
     {
-        [FSAlertView showAlertWithTitle:@"温馨提示" message:@"完善用户信息后才能发帖" cancelTitle:@"取消" otherTitle:@"去认证" completion:^(BOOL cancelled, NSInteger buttonIndex) {
+        [FSAlertView showAlertWithTitle:@"温馨提示" message:@"完善用户信息后才能发帖" cancelTitle:@"取消" otherTitle:@"去完善" completion:^(BOOL cancelled, NSInteger buttonIndex) {
             if (buttonIndex == 1)
             {
                 FSAuthState state ;
