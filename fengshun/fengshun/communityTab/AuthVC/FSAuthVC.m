@@ -98,11 +98,11 @@
     BMWeakSelf
     [FSApiRequest completeUserMessageWithRealName:_m_RealName.m_Content idCard:_m_IdCard.m_Content nikeName:_m_NikeName.m_Content Success:^(id  _Nullable responseObject) {
         [weakSelf updateUserMsg];
-        if (weakSelf.complateUserMessage)
-        {
-            weakSelf.complateUserMessage();
-        }
-        [self backAction:nil];
+//        if (weakSelf.complateUserMessage)
+//        {
+//            weakSelf.complateUserMessage();
+//        }
+        [weakSelf backAction:nil];
     } failure:^(NSError * _Nullable error) {
         
     }];
@@ -267,7 +267,8 @@
             return NO;
         }
         return YES;
-    }else if (self.m_AuthState == FSAuthStateNone)
+    }
+    else if (self.m_AuthState == FSAuthStateNone)
     {
         if (![self.m_RealName.m_Content bm_isNotEmpty])
         {

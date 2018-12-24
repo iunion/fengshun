@@ -51,9 +51,6 @@
     [self registerHander:@"toAuth" handler:^(id data, WVJBResponseCallback responseCallback) {
         NSDictionary *resultDic = [NSDictionary bm_dictionaryWithJsonString:[NSString stringWithFormat:@"%@",data]];
         FSAuthVC *vc = [FSAuthVC vcWithAuthType:[resultDic bm_intForKey:@"type"]];
-        vc.complateUserMessage = ^{
-            [weakSelf refreshWebView];
-        };
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
 }
