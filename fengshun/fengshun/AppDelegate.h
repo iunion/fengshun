@@ -20,6 +20,9 @@
 
 @property (nonatomic, strong) FSUserInfoModel *m_UserInfo;
 
+// V1.1添加这个pushModel用于根据推送信息跳转,以后可添加从其他APP跳转进入的跳转
+@property (nonatomic, strong) FSPushVCModel *m_PushModel;
+
 // 用户擅长领域数据
 @property (nonatomic, strong) NSMutableArray *m_Globle_UserAbilityInfo;
 

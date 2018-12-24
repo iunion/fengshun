@@ -38,7 +38,7 @@
 ///用于判断手指是否离开了 要做到当用户手指离开了，tableview滑道顶部，也不显示出主控制器
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
-    NSLog(@"手指离开了");
+    //NSLog(@"手指离开了");
     self.m_IsTouch = NO;
 }
 

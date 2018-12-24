@@ -160,6 +160,7 @@
         {
             titleLabel = [[BMNavigationTitleLabel alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_NAVIGATION_BAR_HEIGHT)];
             titleLabel.textColor = self.bm_NavigationTitleTintColor;
+            titleLabel.alpha = self.bm_NavigationTitleAlpha;
         
             self.navigationItem.titleView = titleLabel;
         }

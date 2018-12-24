@@ -115,14 +115,7 @@
     // 跳转类型（H5）: jumpType
     NSString *jumpType = [dic bm_stringTrimForKey:@"jumpType"];
     // H5
-    if ([jumpType isEqualToString:@"H5"])
-    {
-        self.m_JumpType = FSJumpType_H5;
-    }
-    else
-    {
-        self.m_JumpType = FSJumpType_NONE;
-    }
+    self.m_JumpType = [FSGlobalEnum jumpTypeWithString:jumpType];
     
     // 关联用户id: relationUserId
     self.m_RelationUserId = [dic bm_stringTrimForKey:@"relationUserId"];
@@ -197,19 +190,7 @@
     // 跳转类型（H5、图文系列COURSE_SERIES）: jumpType
     NSString *jumpType = [dic bm_stringTrimForKey:@"jumpType"];
     // H5
-    if ([jumpType isEqualToString:@"H5"])
-    {
-        self.m_JumpType = FSJumpType_H5;
-    }
-    // 图文系列COURSE_SERIES
-    else if ([jumpType isEqualToString:@"COURSE_SERIES"])
-    {
-        self.m_JumpType = FSJumpType_COURSE_SERIES;
-    }
-    else
-    {
-        self.m_JumpType = FSJumpType_NONE;
-    }
+    self.m_JumpType = [FSGlobalEnum jumpTypeWithString:jumpType];
 }
 
 @end

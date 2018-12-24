@@ -24,6 +24,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)comTopicScrollToTop:(nullable UITableView *)tableView;
 
+@optional
+
+- (void)finishedDataRequest;
+
 @end
 
 NS_ASSUME_NONNULL_END

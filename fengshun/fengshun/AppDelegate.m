@@ -221,6 +221,14 @@
     [self setUpApp];
     
     [self setupThirdPartyWithOptions:launchOptions];
+    
+    
+    // 处理通过通知启动APP的情况
+    NSDictionary *userInfo = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (userInfo) {
+        [self handleAPNsContent:userInfo withRecieveState:FSReceivePushInfoState_PushInfoLaunching];
+    }
+    [self cleanBadge];
 
     // 添加观察者，监听用户信息的改变
     [self addObserver:self forKeyPath:@"m_UserInfo" options:NSKeyValueObservingOptionNew context:nil];
@@ -251,6 +259,10 @@
         {
             // 用户数据变更，包括登录注册，退出登录
             [[NSNotificationCenter defaultCenter] postNotificationName:userInfoChangedNotification object:nil userInfo:nil];
+            NSString *phoneNum = _m_UserInfo.m_UserBaseInfo.m_PhoneNum;
+            if ([phoneNum bm_isNotEmpty]) {
+                [JPUSHService setAlias:phoneNum completion:nil seq:0];
+            }
         }
     }
 }
@@ -280,6 +292,7 @@
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
     [self getNewLocation];
+    [self cleanBadge];
 }
 
 
@@ -315,8 +328,42 @@
     return result;
 }
 #pragma mark -
+#pragma mark 外部跳转信息
+// 根据外部跳转信息进行跳转(远程推送,Safari进入等)
+- (void)externalPushWithModel:(FSPushVCModel *)model andRevieveState:(FSReceivePushInfoState)recieveState
+{
+    switch (recieveState) {
+        case FSReceivePushInfoState_Active:
+            break;
+            
+        case FSReceivePushInfoState_PushInfoEnter:
+            [self.m_TabBarController topVCPushWithModel:model];
+            break;
+        case FSReceivePushInfoState_PushInfoLaunching:
+            self.m_PushModel = model;
+            break;
+    }
+}
+#pragma mark -
 #pragma mark 远程推送
 
+// 处理远程推送
+- (void)handleAPNsContent:(NSDictionary *)userInfo withRecieveState:(FSReceivePushInfoState)recieveState
+{
+    BMLog(@"++++++[FTLS]APNs content:%@",userInfo);
+    FSAPNsNotificationModel *model = [FSAPNsNotificationModel modelWithParams:userInfo];
+    [self externalPushWithModel:model andRevieveState:recieveState];
+    [self cleanBadge];
+}
+
+- (void)cleanBadge
+{
+    // 角标清零
+    [JPUSHService resetBadge];
+    // 先1在零,是为了防止通知中心的通知出现未被清除的情况
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+}
 //  关于宏命令NSFoundationVersionNumber_iOS_9_x_Max，由于在iOS9(XCode7)中Apple已经提前支持了宏命令__IPHONE_10_0，所以这儿添加了NSFoundationVersionNumber_iOS_9_x_Max做判断
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #pragma mark- 通知到达/进入的不同iOS版本的回调
@@ -327,8 +374,9 @@
     
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
+        [self handleAPNsContent:userInfo withRecieveState:FSReceivePushInfoState_Active];
     }
-    completionHandler(UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionSound|UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以设置
+    completionHandler(0);
 }
 
 - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler  API_AVAILABLE(ios(10.0)){
@@ -338,6 +386,7 @@
     
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
+        [self handleAPNsContent:userInfo withRecieveState:FSReceivePushInfoState_PushInfoEnter];
         
     }
     completionHandler();  // 系统要求执行这个方法
@@ -347,13 +396,15 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     // <iOS10, 通知到达(包括APP在前台和后台)
     [JPUSHService handleRemoteNotification:userInfo];
+    [self handleAPNsContent:userInfo withRecieveState:(application.applicationState == UIApplicationStateActive)?FSReceivePushInfoState_Active:FSReceivePushInfoState_PushInfoEnter];
+    
     completionHandler(UIBackgroundFetchResultNewData);
 }
 
 #ifdef __IPHONE_12_0
 - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center openSettingsForNotification:(UNNotification *)notification API_AVAILABLE(ios(12.0)){
     if (notification) {
-//      从通知界面直接进入应
+//      从通知界面直接进入应用
     }else{
 //      从系统设置界面进入应用
     }
@@ -375,8 +426,7 @@
 // 配置&注册极光推送
 - (void)setupJPushWithOptions:(NSDictionary *)launchOptions
 {
-//    NSString *advertisingId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
-    NSString *advertisingId = nil;
+    NSString *advertisingId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
     // 3.0.0及以后版本注册
     JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
     if (@available(iOS 12.0, *)) {
@@ -556,6 +606,7 @@
 #pragma mark -
 #pragma mark logOut
 
+
 // 踢出登录, 同logOut
 - (void)kickOut
 {
@@ -574,6 +625,7 @@
     [[FSCountDownManager manager] stopAllCountDownDoNothing];
     
     [FSUserInfoModel logOut];
+    [JPUSHService deleteAlias:nil seq:0];
     
     if (quit)
     {

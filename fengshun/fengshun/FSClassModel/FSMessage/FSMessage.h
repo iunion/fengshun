@@ -34,15 +34,6 @@ typedef NS_OPTIONS(NSUInteger, FSCommentTargetType)
     FSCommentTargetType_FORUM
 };
 
-typedef NS_OPTIONS(NSUInteger, FSJumpType)
-{
-    FSJumpType_NONE = 0,
-    // H5
-    FSJumpType_H5,
-    // 图文系列COURSE_SERIES
-    FSJumpType_COURSE_SERIES,
-};
-
 
 @interface FSCommentMessageModel : NSObject
 

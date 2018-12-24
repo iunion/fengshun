@@ -16,5 +16,4 @@ typedef NS_ENUM(NSUInteger, FSAuthState) {
     FSAuthStateNoNickName,///<昵称未完善
 };
 
-
 #endif /* FSEnumDefine_h */

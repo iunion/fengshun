@@ -19,7 +19,7 @@
 #import "FSApiRequest.h"
 #import "UIView+BMBadge.h"
 
-#import "FSOCRManager.h"
+#import "UIViewController+FSPushVCAPI.h"
 
 #define SECTION_HEDER_HEIGHT 52.0f
 
@@ -67,6 +67,12 @@ FSMainVC ()
     [self.m_TableView registerNib:[UINib nibWithNibName:@"FSTopicListCell" bundle:nil] forCellReuseIdentifier:@"FSTopicListCell"];
     
     [self loadApiData];
+    
+    // 通过点击推送进入APP
+    FSPushVCModel *pushModel = GetAppDelegate.m_PushModel;
+    if (pushModel) {
+        [self fspush_withModel:pushModel];
+    }
 }
 
 - (void)setupUI
@@ -241,7 +247,7 @@ FSMainVC ()
 {
     if ([FSUserInfoModel isLogin])
     {
-        [FSPushVCManager showMessageVC:self];
+        [FSPushVCManager showMessageVC:self andShowNotificationTab:NO];
     }
     else
     {

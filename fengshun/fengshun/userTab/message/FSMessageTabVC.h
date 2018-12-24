@@ -10,4 +10,6 @@
 
 @interface FSMessageTabVC : FSSuperNetVC
 
+@property (nonatomic, assign)BOOL m_showNotificationTab;
+
 @end

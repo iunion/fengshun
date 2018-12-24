@@ -7,11 +7,14 @@
 //
 
 #import "BMTabBarController.h"
+#import "FSPushVCModel.h"
 
 @interface FSTabBarController : BMTabBarController
 
 - (instancetype)initWithDefaultItems;
 
 - (void)addViewControllers;
+
+- (void)topVCPushWithModel:(FSPushVCModel *)pushModel;
 
 @end

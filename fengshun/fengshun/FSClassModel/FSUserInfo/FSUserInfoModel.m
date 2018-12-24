@@ -310,7 +310,6 @@
 {
     [FSUserInfoModel setCurrentUserID:nil];
     [FSUserInfoModel setCurrentUserToken:nil];
-    
     GetAppDelegate.m_UserInfo = nil;
 }
 
