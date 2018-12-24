@@ -15,6 +15,7 @@ typedef NS_ENUM(NSUInteger, FSJumpType) {
     FSJumpType_Native,
     FSJumpType_H5,      // webview
     FSJumpType_Course,  //课堂
+    FSJumpType_VideoMeeting,
 };
 + (FSJumpType)jumpTypeWithString:(NSString *)jumpString;
 

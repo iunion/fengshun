@@ -1924,6 +1924,7 @@
 		DB34724021CC900F00950C33 /* UIViewController+FSPushVCAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34723E21CC900F00950C33 /* UIViewController+FSPushVCAPI.m */; };
 		DB34724321CCDF7300950C33 /* FSGlobalEnum.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34724221CCDF7300950C33 /* FSGlobalEnum.m */; };
 		DB34724421CCDF7300950C33 /* FSGlobalEnum.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34724221CCDF7300950C33 /* FSGlobalEnum.m */; };
+		DB34724621CCF38100950C33 /* FSComTopicListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A0C16021CC814800B2BF1A /* FSComTopicListVC.m */; };
 		DB4874202148A90D00AB0805 /* search_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB48741E2148A90D00AB0805 /* search_icon@2x.png */; };
 		DB4874212148A90D00AB0805 /* search_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB48741F2148A90D00AB0805 /* search_icon@3x.png */; };
 		DB4874242148BD3F00AB0805 /* FSTextModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4874232148BD3F00AB0805 /* FSTextModel.m */; };
@@ -9929,6 +9930,7 @@
 				87E7C3E021509AB000F7AB14 /* BMTableViewSection.m in Sources */,
 				87E7C6A22150A4E500F7AB14 /* TOCropOverlayView.m in Sources */,
 				87E7C3E121509AB000F7AB14 /* BMTableViewCombineCell.m in Sources */,
+				DB34724621CCF38100950C33 /* FSComTopicListVC.m in Sources */,
 				87E7C3E221509AB000F7AB14 /* zip.c in Sources */,
 				87E7C3E321509AB000F7AB14 /* TZImagePickerController.m in Sources */,
 				87E7C3E421509AB000F7AB14 /* NSString+BMRoundNumber.m in Sources */,

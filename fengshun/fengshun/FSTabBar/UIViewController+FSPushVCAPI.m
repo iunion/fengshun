@@ -18,7 +18,7 @@
             break;
             
         case FSPushToVCType_NotificationCenter:
-            [FSPushVCManager showMessageVC:self withNoficationId:pushModel.m_requestId];
+            [FSPushVCManager showMessageVC:self andShowNotificationTab:YES];
             break;
         case FSPushToVCType_VideoMeeting:
 #ifdef FSVIDEO_ON

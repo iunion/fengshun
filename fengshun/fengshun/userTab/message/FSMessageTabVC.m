@@ -64,7 +64,7 @@
     self.m_ScrollPageView.delegate = self;
     [self.m_ScrollPageView setM_MoveLineColor:UI_COLOR_BL1];
     [self.m_ScrollPageView reloadPage];
-    [self.m_ScrollPageView scrollPageWithIndex:0];
+    [self.m_ScrollPageView scrollPageWithIndex:_m_showNotificationTab?1:0];
     
     if (self.navigationController.interactivePopGestureRecognizer)
     {

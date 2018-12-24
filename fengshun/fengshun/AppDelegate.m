@@ -259,6 +259,10 @@
         {
             // 用户数据变更，包括登录注册，退出登录
             [[NSNotificationCenter defaultCenter] postNotificationName:userInfoChangedNotification object:nil userInfo:nil];
+            NSString *phoneNum = _m_UserInfo.m_UserBaseInfo.m_PhoneNum;
+            if ([phoneNum bm_isNotEmpty]) {
+                [JPUSHService setAlias:phoneNum completion:nil seq:0];
+            }
         }
     }
 }
@@ -600,16 +604,9 @@
 
 
 #pragma mark -
-#pragma mark logOut & setUserInfo
+#pragma mark logOut
 
-- (void)setM_UserInfo:(FSUserInfoModel *)m_UserInfo
-{
-    _m_UserInfo = m_UserInfo;
-    NSString *phoneNum = _m_UserInfo.m_UserBaseInfo.m_PhoneNum;
-    if ([phoneNum bm_isNotEmpty]) {
-        [JPUSHService setAlias:phoneNum completion:nil seq:0];
-    }
-}
+
 // 踢出登录, 同logOut
 - (void)kickOut
 {

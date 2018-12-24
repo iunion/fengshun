@@ -10,6 +10,6 @@
 
 @interface FSMessageTabVC : FSSuperNetVC
 
-@property (nonatomic, copy)NSString *m_notificationId;
+@property (nonatomic, assign)BOOL m_showNotificationTab;
 
 @end

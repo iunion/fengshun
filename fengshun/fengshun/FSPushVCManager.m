@@ -186,10 +186,11 @@
 }
 
 
-+ (void)showMessageVC:(UIViewController *)pushVC withNoficationId:(NSString *)notificationId
++ (void)showMessageVC:(UIViewController *)pushVC andShowNotificationTab:(BOOL)showNotificationTab
 {
     FSMessageTabVC *vc = [[FSMessageTabVC alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
+    vc.m_showNotificationTab = showNotificationTab;
     [pushVC.navigationController pushViewController:vc animated:YES];
 }
 

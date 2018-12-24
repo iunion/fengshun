@@ -65,7 +65,7 @@ typedef void (^PushVCCallBack)(void);
 +(void)viewController:(UIViewController *)vc pushToOCRResultVCWithImage:(UIImage *)image;
 
 // 显示个人信息
-+ (void)showMessageVC:(UIViewController *)pushVC withNoficationId:(NSString *)notificationId;
++ (void)showMessageVC:(UIViewController *)pushVC andShowNotificationTab:(BOOL)showNotificationTab;
 
 #pragma mark - H5跳转
 

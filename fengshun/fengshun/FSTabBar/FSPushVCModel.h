@@ -15,6 +15,8 @@
 @property (nonatomic, copy) NSString *m_url;  // web类跳转专用
 @property (nonatomic, strong) NSDictionary *m_pushInfo; // 额外的跳转信息
 
++ (instancetype)generalModelWithType:(FSPushToVCType)m_pushType andId:(NSString *)requestId;
+
 @end
 
 

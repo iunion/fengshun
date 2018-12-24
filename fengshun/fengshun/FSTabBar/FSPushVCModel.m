@@ -10,6 +10,14 @@
 
 @implementation FSPushVCModel
 
++ (instancetype)generalModelWithType:(FSPushToVCType)m_pushType andId:(NSString *)requestId
+{
+    FSPushVCModel *model = [self new];
+    model.m_pushType = m_pushType;
+    model.m_requestId = requestId;
+    return model;
+}
+
 @end
 
 @implementation FSAPNsNotificationModel

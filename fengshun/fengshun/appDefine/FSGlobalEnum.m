@@ -24,6 +24,10 @@
     {
         return FSJumpType_Course;
     }
+    else if ([jumpString isEqualToString:@"VEDIO"])
+    {
+        return FSJumpType_VideoMeeting;
+    }
     return FSJumpType_None;
 }
 
