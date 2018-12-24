@@ -158,6 +158,11 @@ NS_ASSUME_NONNULL_BEGIN
 // http://123.206.193.140:8121/swagger-ui.html#/%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF/setRealNameAuthenticationUsingPOST
 + (nullable NSMutableURLRequest *)authenticationWithId:(NSString *)idCard name:(NSString *)name;
 
+// 完善用户信息 （实名认证、昵称）
+
++ (XMRequest *)completeUserMessageWithRealName:(NSString *)realName idCard:(NSString *)idCard nikeName:(NSString *)nikeName Success:(nullable XMSuccessBlock)successBlock
+               failure:(nullable XMFailureBlock)failureBlock;
+
 
 // 联系客服
 // http://115.159.33.190:8121/swagger-ui.html#/%E6%88%91%E7%9A%84%E7%9B%B8%E5%85%B3/getCustomerServiceUsingPOST

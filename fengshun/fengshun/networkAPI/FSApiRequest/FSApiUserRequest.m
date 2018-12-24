@@ -355,4 +355,19 @@
     return [FSApiRequest makeRequestWithURL:urlStr parameters:parameters];
 }
 
++ (XMRequest *)completeUserMessageWithRealName:(NSString *)realName idCard:(NSString *)idCard nikeName:(NSString *)nikeName Success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    if ([realName bm_isNotEmpty]) {
+        [parameters bm_setString:realName forKey:@"userName"];
+    }
+    if ([idCard bm_isNotEmpty]) {
+        [parameters bm_setString:idCard forKey:@"idCard"];
+    }
+    if ([nikeName bm_isNotEmpty]) {
+        [parameters bm_setString:nikeName forKey:@"nickName"];
+    }
+    return [XMRequestManager rm_requestWithApi:@"/storm/user/userPerfectInfo" parameters:parameters success:successBlock failure:failureBlock];
+}
+
 @end
