@@ -540,7 +540,9 @@
     imagePickerVc.allowCrop = YES;
     // 设置竖屏下的裁剪尺寸
     // 200X200
-    CGFloat cropRectWidth = 200.0f/320.0f*UI_SCREEN_WIDTH;
+//    CGFloat cropRectWidth = 200.0f/320.0f*UI_SCREEN_WIDTH;
+//    CGFloat cropRectHeight = cropRectWidth;
+    CGFloat cropRectWidth = UI_SCREEN_WIDTH;
     CGFloat cropRectHeight = cropRectWidth;
 
     imagePickerVc.cropRect = CGRectMake((UI_SCREEN_WIDTH-cropRectWidth)*0.5f, (UI_SCREEN_HEIGHT-cropRectHeight)*0.5f, cropRectWidth, cropRectHeight);

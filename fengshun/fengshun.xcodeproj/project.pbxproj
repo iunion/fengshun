@@ -1774,6 +1774,8 @@
 		AD1A5D4F21534BEA00ACADDF /* FSReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD412AE9215221C800A9C12B /* FSReportView.m */; };
 		AD1BE2122141238B0018AF2C /* FSForumSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1BE2112141238B0018AF2C /* FSForumSectionHeaderView.m */; };
 		AD1BE214214127180018AF2C /* FSForumSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD1BE213214127180018AF2C /* FSForumSectionHeaderView.xib */; };
+		AD20272B21D0B7740055576D /* FSIdCardTextFeild.m in Sources */ = {isa = PBXBuildFile; fileRef = AD20272A21D0B7740055576D /* FSIdCardTextFeild.m */; };
+		AD20272C21D0B7740055576D /* FSIdCardTextFeild.m in Sources */ = {isa = PBXBuildFile; fileRef = AD20272A21D0B7740055576D /* FSIdCardTextFeild.m */; };
 		AD22449A213CD6C300F2DC47 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AD224481213CD6C300F2DC47 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		AD22449B213CD6C300F2DC47 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AD22448A213CD6C300F2DC47 /* ViewController+MASAdditions.m */; };
 		AD22449C213CD6C300F2DC47 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = AD22448E213CD6C300F2DC47 /* MASCompositeConstraint.m */; };
@@ -1789,6 +1791,14 @@
 		AD2244DC213D158800F2DC47 /* FSForumDetailListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD2244DA213D158800F2DC47 /* FSForumDetailListCell.xib */; };
 		AD2244DF213D1FE700F2DC47 /* FSCommunityHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD2244DE213D1FE700F2DC47 /* FSCommunityHeaderView.xib */; };
 		AD2244E2213D1FF900F2DC47 /* FSCommunityHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD2244E1213D1FF900F2DC47 /* FSCommunityHeaderView.m */; };
+		AD28473721CCC355001009E9 /* FSAuthVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD28473521CCC355001009E9 /* FSAuthVC.m */; };
+		AD28473821CCC355001009E9 /* FSAuthVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AD28473521CCC355001009E9 /* FSAuthVC.m */; };
+		AD28473921CCC355001009E9 /* FSAuthVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD28473621CCC355001009E9 /* FSAuthVC.xib */; };
+		AD28473A21CCC355001009E9 /* FSAuthVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD28473621CCC355001009E9 /* FSAuthVC.xib */; };
+		AD28473D21CCC751001009E9 /* FSInputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD28473C21CCC751001009E9 /* FSInputTextView.m */; };
+		AD28473E21CCC751001009E9 /* FSInputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD28473C21CCC751001009E9 /* FSInputTextView.m */; };
+		AD28474021CCC7C6001009E9 /* FSInputTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD28473F21CCC7C6001009E9 /* FSInputTextView.xib */; };
+		AD28474121CCC7C6001009E9 /* FSInputTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD28473F21CCC7C6001009E9 /* FSInputTextView.xib */; };
 		AD3B821E214A468100D72DE9 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD3B821D214A468100D72DE9 /* CoreText.framework */; };
 		AD412AEA215221C800A9C12B /* FSReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD412AE9215221C800A9C12B /* FSReportView.m */; };
 		AD510298213E560F008CD74D /* FSApiRequest+Community.m in Sources */ = {isa = PBXBuildFile; fileRef = AD510297213E560F008CD74D /* FSApiRequest+Community.m */; };
@@ -3653,6 +3663,8 @@
 		AD1BE2102141238B0018AF2C /* FSForumSectionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSForumSectionHeaderView.h; sourceTree = "<group>"; };
 		AD1BE2112141238B0018AF2C /* FSForumSectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSForumSectionHeaderView.m; sourceTree = "<group>"; };
 		AD1BE213214127180018AF2C /* FSForumSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSForumSectionHeaderView.xib; sourceTree = "<group>"; };
+		AD20272921D0B7740055576D /* FSIdCardTextFeild.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSIdCardTextFeild.h; sourceTree = "<group>"; };
+		AD20272A21D0B7740055576D /* FSIdCardTextFeild.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSIdCardTextFeild.m; sourceTree = "<group>"; };
 		AD224480213CD6C300F2DC47 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		AD224481213CD6C300F2DC47 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
 		AD224482213CD6C300F2DC47 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -3685,6 +3697,12 @@
 		AD2244DE213D1FE700F2DC47 /* FSCommunityHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSCommunityHeaderView.xib; sourceTree = "<group>"; };
 		AD2244E0213D1FF900F2DC47 /* FSCommunityHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCommunityHeaderView.h; sourceTree = "<group>"; };
 		AD2244E1213D1FF900F2DC47 /* FSCommunityHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCommunityHeaderView.m; sourceTree = "<group>"; };
+		AD28473421CCC355001009E9 /* FSAuthVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSAuthVC.h; sourceTree = "<group>"; };
+		AD28473521CCC355001009E9 /* FSAuthVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSAuthVC.m; sourceTree = "<group>"; };
+		AD28473621CCC355001009E9 /* FSAuthVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSAuthVC.xib; sourceTree = "<group>"; };
+		AD28473B21CCC751001009E9 /* FSInputTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSInputTextView.h; sourceTree = "<group>"; };
+		AD28473C21CCC751001009E9 /* FSInputTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSInputTextView.m; sourceTree = "<group>"; };
+		AD28473F21CCC7C6001009E9 /* FSInputTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSInputTextView.xib; sourceTree = "<group>"; };
 		AD3B821B214A467800D72DE9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		AD3B821D214A468100D72DE9 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		AD412AE8215221C800A9C12B /* FSReportView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSReportView.h; sourceTree = "<group>"; };
@@ -7479,6 +7497,21 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		AD28473321CCC337001009E9 /* AuthVC */ = {
+			isa = PBXGroup;
+			children = (
+				AD20272921D0B7740055576D /* FSIdCardTextFeild.h */,
+				AD20272A21D0B7740055576D /* FSIdCardTextFeild.m */,
+				AD28473B21CCC751001009E9 /* FSInputTextView.h */,
+				AD28473C21CCC751001009E9 /* FSInputTextView.m */,
+				AD28473F21CCC7C6001009E9 /* FSInputTextView.xib */,
+				AD28473421CCC355001009E9 /* FSAuthVC.h */,
+				AD28473521CCC355001009E9 /* FSAuthVC.m */,
+				AD28473621CCC355001009E9 /* FSAuthVC.xib */,
+			);
+			path = AuthVC;
+			sourceTree = "<group>";
+		};
 		AD510299213E61E2008CD74D /* FSCommunity */ = {
 			isa = PBXGroup;
 			children = (
@@ -7804,6 +7837,7 @@
 		DB5722372133A1830065DC30 /* communityTab */ = {
 			isa = PBXGroup;
 			children = (
+				AD28473321CCC337001009E9 /* AuthVC */,
 				ADC3CA722146777400CC4A82 /* MainVC */,
 				ADC3CA732146779500CC4A82 /* TopicListVC */,
 				AD2244DD213D1F9B00F2DC47 /* View */,
@@ -8229,9 +8263,11 @@
 				87426A01212F9657003C52F6 /* navigationbar_close_icon@3x.png in Resources */,
 				87BC9E2A21548E0D000F2011 /* fsintroguide_1125x2436_3@2x.png in Resources */,
 				45F3FD21214BBF48007712EE /* video_history_icon@2x.png in Resources */,
+				AD28473921CCC355001009E9 /* FSAuthVC.xib in Resources */,
 				8730B1162148E5D1004331A9 /* fsfreshidle_icon22@2x.png in Resources */,
 				87426A20213100BB003C52F6 /* bmsearch_close@3x.png in Resources */,
 				DBF7E18D21523CB6002CEDA4 /* search_lawTopic_2@2x.png in Resources */,
+				AD28474021CCC7C6001009E9 /* FSInputTextView.xib in Resources */,
 				87426A06212F9657003C52F6 /* navigationbar_message_icon@2x.png in Resources */,
 				DB2656D42146678A002ED713 /* FSLawCell.xib in Resources */,
 				874268BA212E7E36003C52F6 /* BMTableView_UIButtonBarArrowLeft.png in Resources */,
@@ -8639,6 +8675,7 @@
 				87E7C55021509AB000F7AB14 /* BMCombine_up@2x.png in Resources */,
 				87E7C55121509AB000F7AB14 /* FSMoreViewVC.xib in Resources */,
 				87E7C55221509AB000F7AB14 /* user_serviceicon@2x.png in Resources */,
+				AD28474121CCC7C6001009E9 /* FSInputTextView.xib in Resources */,
 				87E7C55321509AB000F7AB14 /* BMTableView_UIButtonBarArrowLeft@2x.png in Resources */,
 				87E7C55421509AB000F7AB14 /* decrease_eleme@2x.png in Resources */,
 				87E7C6942150A4E400F7AB14 /* TOCropViewControllerLocalizable.strings in Resources */,
@@ -8720,6 +8757,7 @@
 				87E7C58D21509AB000F7AB14 /* home_courses@3x.png in Resources */,
 				87E7C58E21509AB000F7AB14 /* steppersinput_plusicon@2x.png in Resources */,
 				87E7C58F21509AB000F7AB14 /* videocall_voice_open@2x.png in Resources */,
+				AD28473A21CCC355001009E9 /* FSAuthVC.xib in Resources */,
 				87E7C59021509AB000F7AB14 /* navigationbar_collect_icon@3x.png in Resources */,
 				87E7C59121509AB000F7AB14 /* user_serviceicon@3x.png in Resources */,
 				DBF7E19F21524EDB002CEDA4 /* search_lawTopic_2@3x.png in Resources */,
@@ -8983,6 +9021,7 @@
 				87D20B062139492F001EDD60 /* WebViewJavascriptBridge_JS.m in Sources */,
 				DB4C7E452147C13A008CC6BB /* FSTextSplitVC.m in Sources */,
 				87D20AEB213920E2001EDD60 /* FLEXResources.m in Sources */,
+				AD28473D21CCC751001009E9 /* FSInputTextView.m in Sources */,
 				874268E1212E7E36003C52F6 /* UIView+BMBadge.m in Sources */,
 				8730B06D2140FFA3004331A9 /* NSDictionary+DTError.m in Sources */,
 				874269C6212E9B78003C52F6 /* BMFreshAutoContainerFooterView.m in Sources */,
@@ -9142,6 +9181,7 @@
 				8730B03C2140FFA2004331A9 /* DTWebVideoView.m in Sources */,
 				8730B0502140FFA2004331A9 /* DTHTMLWriter.m in Sources */,
 				DB804FEE2142669E007F7B19 /* FSSearchResultModel.m in Sources */,
+				AD28473721CCC355001009E9 /* FSAuthVC.m in Sources */,
 				87426A90213146A6003C52F6 /* XMEngine.m in Sources */,
 				DBD4CDF1213E383500857DB3 /* FSCaseSearchResultView.m in Sources */,
 				874268ED212E7E36003C52F6 /* CAAnimation+Animation.m in Sources */,
@@ -9266,6 +9306,7 @@
 				DB2656C4214619A0002ED713 /* FSCaseSearchResultVC.m in Sources */,
 				DB804FE921425CE9007F7B19 /* FSCaseCell.m in Sources */,
 				AD9355A02137D24100735C2E /* TZAssetCell.m in Sources */,
+				AD20272B21D0B7740055576D /* FSIdCardTextFeild.m in Sources */,
 				874269C7212E9B78003C52F6 /* BMFreshAutoNormalFooter.m in Sources */,
 				AD932606214B4FDA007F3A93 /* CYRTextView.m in Sources */,
 				8730B0292140FFA2004331A9 /* NSAttributedStringRunDelegates.m in Sources */,
@@ -9628,6 +9669,7 @@
 				87E7C2C521509AB000F7AB14 /* FSMainVC.m in Sources */,
 				87E7C2C621509AB000F7AB14 /* ZSSFontsViewController.m in Sources */,
 				87E7C2C721509AB000F7AB14 /* UIView+ZFFrame.m in Sources */,
+				AD28473E21CCC751001009E9 /* FSInputTextView.m in Sources */,
 				87E7C2C821509AB000F7AB14 /* ZFPlayerGestureControl.m in Sources */,
 				87E7C2C921509AB000F7AB14 /* FSTopicListVC.m in Sources */,
 				87E7C2CA21509AB000F7AB14 /* FLEXImageExplorerViewController.m in Sources */,
@@ -9640,6 +9682,7 @@
 				DBBF3043215BAE0B003AB3F2 /* FSTextDetailVC.m in Sources */,
 				87E7C2D121509AB000F7AB14 /* BMCheckBoxGroupItem.m in Sources */,
 				87E7C2D221509AB000F7AB14 /* FMDatabase.m in Sources */,
+				AD28473821CCC355001009E9 /* FSAuthVC.m in Sources */,
 				87E7C2D321509AB000F7AB14 /* NSString+DTUTI.m in Sources */,
 				87E7C2D421509AB000F7AB14 /* DTHTMLParserNode.m in Sources */,
 				87E7C2D521509AB000F7AB14 /* WebViewJavascriptBridge.m in Sources */,
@@ -9699,6 +9742,7 @@
 				87E7C30921509AB000F7AB14 /* SDImageCacheConfig.m in Sources */,
 				87E7C30A21509AB000F7AB14 /* FLEXKeyboardHelpViewController.m in Sources */,
 				87E7C30B21509AB000F7AB14 /* FSMessageTabVC.m in Sources */,
+				AD20272C21D0B7740055576D /* FSIdCardTextFeild.m in Sources */,
 				87E7C30C21509AB000F7AB14 /* NSDate+BMCategory.m in Sources */,
 				87E7C30D21509AB000F7AB14 /* SDImageCache.m in Sources */,
 				87E7C30E21509AB000F7AB14 /* BMDateTimeItem.m in Sources */,

@@ -12,6 +12,8 @@
 #import "FSPushVCManager.h"
 #import "FSReportView.h"
 #import "FSCommunityModel.h"
+#import "NSDictionary+BMCategory.h"
+#import "FSAuthVC.h"
 
 @interface FSTopicDetailVC ()
 <
@@ -45,6 +47,12 @@
     [self bm_setNavigationWithTitle:@"" barTintColor:nil leftDicArray:nil rightDicArray:@[ [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"community_more" toucheEvent:@"moreAction" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0]]];
     
     [self bringSomeViewToFront];
+    BMWeakSelf
+    [self registerHander:@"toAuth" handler:^(id data, WVJBResponseCallback responseCallback) {
+        NSDictionary *resultDic = [NSDictionary bm_dictionaryWithJsonString:[NSString stringWithFormat:@"%@",data]];
+        FSAuthVC *vc = [FSAuthVC vcWithAuthType:[resultDic bm_intForKey:@"type"]];
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -236,10 +244,6 @@
 {
     BMWeakSelf
     [FSApiRequest deleteTopicWithId:self.m_TopicId success:^(id responseObject) {
-        
-//        if (self.m_DeleteTopicBlock) {
-//            self.m_DeleteTopicBlock();
-//        }
         [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"删除成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         [weakSelf.navigationController popViewControllerAnimated:YES];
     } failure:^(NSError *error) {
