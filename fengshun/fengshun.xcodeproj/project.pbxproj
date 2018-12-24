@@ -2016,6 +2016,10 @@
 		DBD8D4732160A7A900752B14 /* home_robot@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBD8D4702160A7A800752B14 /* home_robot@3x.png */; };
 		DBD8D4742160A7A900752B14 /* home_robot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBD8D4712160A7A800752B14 /* home_robot@2x.png */; };
 		DBD8D4752160A7A900752B14 /* home_robot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBD8D4712160A7A800752B14 /* home_robot@2x.png */; };
+		DBEE30A921D0DE41009EAE60 /* FSNoticeMessagesDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DBEE30A721D0DE41009EAE60 /* FSNoticeMessagesDetailVC.m */; };
+		DBEE30AA21D0DE41009EAE60 /* FSNoticeMessagesDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBEE30A821D0DE41009EAE60 /* FSNoticeMessagesDetailVC.xib */; };
+		DBEE30AB21D0E281009EAE60 /* FSNoticeMessagesDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DBEE30A721D0DE41009EAE60 /* FSNoticeMessagesDetailVC.m */; };
+		DBEE30AC21D0E284009EAE60 /* FSNoticeMessagesDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBEE30A821D0DE41009EAE60 /* FSNoticeMessagesDetailVC.xib */; };
 		DBF7E17921523B73002CEDA4 /* FSLawTopicInfos.plist in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E17821523B73002CEDA4 /* FSLawTopicInfos.plist */; };
 		DBF7E18A21523CB6002CEDA4 /* search_lawTopic_1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E17A21523CAE002CEDA4 /* search_lawTopic_1@3x.png */; };
 		DBF7E18B21523CB6002CEDA4 /* search_lawTopic_3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF7E17B21523CAE002CEDA4 /* search_lawTopic_3@3x.png */; };
@@ -3957,6 +3961,9 @@
 		DBD4CE892141229400857DB3 /* home_message@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_message@3x.png"; sourceTree = "<group>"; };
 		DBD8D4702160A7A800752B14 /* home_robot@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_robot@3x.png"; sourceTree = "<group>"; };
 		DBD8D4712160A7A800752B14 /* home_robot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_robot@2x.png"; sourceTree = "<group>"; };
+		DBEE30A621D0DE41009EAE60 /* FSNoticeMessagesDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSNoticeMessagesDetailVC.h; sourceTree = "<group>"; };
+		DBEE30A721D0DE41009EAE60 /* FSNoticeMessagesDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSNoticeMessagesDetailVC.m; sourceTree = "<group>"; };
+		DBEE30A821D0DE41009EAE60 /* FSNoticeMessagesDetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSNoticeMessagesDetailVC.xib; sourceTree = "<group>"; };
 		DBF7E17821523B73002CEDA4 /* FSLawTopicInfos.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = FSLawTopicInfos.plist; sourceTree = "<group>"; };
 		DBF7E17A21523CAE002CEDA4 /* search_lawTopic_1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_lawTopic_1@3x.png"; sourceTree = "<group>"; };
 		DBF7E17B21523CAE002CEDA4 /* search_lawTopic_3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_lawTopic_3@3x.png"; sourceTree = "<group>"; };
@@ -6289,6 +6296,9 @@
 				87742003214C999100F72427 /* FSMessageTabVC.m */,
 				87742005214C9C9800F72427 /* FSMessageListVC.h */,
 				87742006214C9C9800F72427 /* FSMessageListVC.m */,
+				DBEE30A621D0DE41009EAE60 /* FSNoticeMessagesDetailVC.h */,
+				DBEE30A721D0DE41009EAE60 /* FSNoticeMessagesDetailVC.m */,
+				DBEE30A821D0DE41009EAE60 /* FSNoticeMessagesDetailVC.xib */,
 			);
 			path = message;
 			sourceTree = "<group>";
@@ -8445,6 +8455,7 @@
 				DBF7E19021523CB6002CEDA4 /* search_lawTopic_5@3x.png in Resources */,
 				87BC9E2321548E0D000F2011 /* fsintroguide_750x1334_1@2x.png in Resources */,
 				DBB73F7F215CC01F00E65230 /* placeholder_courseDetail@2x.png in Resources */,
+				DBEE30AA21D0DE41009EAE60 /* FSNoticeMessagesDetailVC.xib in Resources */,
 				DBB73F79215CC01F00E65230 /* placeholder_topic@3x.png in Resources */,
 				ADA1228C214614BE00CF0D87 /* FSTopicListVC.xib in Resources */,
 				8742689D212E7E36003C52F6 /* increase_eleme@2x.png in Resources */,
@@ -8841,6 +8852,7 @@
 				ADC591F3215395100054BE72 /* fstab_btn3_highIcon@3x.png in Resources */,
 				87E7C5F821509AB000F7AB14 /* login_openeye@3x.png in Resources */,
 				87E7C5F921509AB000F7AB14 /* videocall_open_video@3x.png in Resources */,
+				DBEE30AC21D0E284009EAE60 /* FSNoticeMessagesDetailVC.xib in Resources */,
 				87BC9E4E2154914E000F2011 /* fsintroguide_1242x2208_4@2x.png in Resources */,
 				87E7C5FA21509AB000F7AB14 /* navigationbar_popback_icon@2x.png in Resources */,
 				87E7C5FB21509AB000F7AB14 /* videocall_end_record@3x.png in Resources */,
@@ -9319,6 +9331,7 @@
 				8730B0642140FFA3004331A9 /* DTZipArchive.m in Sources */,
 				DB5722362133A0FC0065DC30 /* FSScrollPageView.m in Sources */,
 				87742016214C9EB200F72427 /* FSMessage.m in Sources */,
+				DBEE30A921D0DE41009EAE60 /* FSNoticeMessagesDetailVC.m in Sources */,
 				87426A822131461F003C52F6 /* AFNetworkReachabilityManager.m in Sources */,
 				87D20AB8213920E2001EDD60 /* FLEXDefaultEditorViewController.m in Sources */,
 				874269C9212E9B78003C52F6 /* UIScrollView+BMFresh.m in Sources */,
@@ -9592,6 +9605,7 @@
 				87E7C2B221509AB000F7AB14 /* FLEXGlobalsTableViewControllerEntry.m in Sources */,
 				87E7C2B321509AB000F7AB14 /* DTStripedLayerTile.m in Sources */,
 				87E7C2B421509AB000F7AB14 /* BMPickerItem.m in Sources */,
+				DBEE30AB21D0E281009EAE60 /* FSNoticeMessagesDetailVC.m in Sources */,
 				874C23AA215B2400001C8BE9 /* FSMyCollectionModel.m in Sources */,
 				87E7C2B521509AB000F7AB14 /* DTAccessibilityViewProxy.m in Sources */,
 				87E7C2B621509AB000F7AB14 /* FLEXClassesTableViewController.m in Sources */,

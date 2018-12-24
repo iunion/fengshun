@@ -25,6 +25,7 @@
 #import "FSOCRResultVC.h"
 
 #import "FSMessageTabVC.h"
+#import "FSNoticeMessagesDetailVC.h"
 #import "FSOCRSearchResultVC.h"
 #import "FSTextDetailVC.h"
 
@@ -192,6 +193,13 @@
     vc.hidesBottomBarWhenPushed = YES;
     vc.m_showNotificationTab = showNotificationTab;
     [pushVC.navigationController pushViewController:vc animated:YES];
+}
+
++ (void)viewController:(UIViewController *)selfVC pushToNotificationDetailWithId:(NSString *)notificationId
+{
+    FSNoticeMessagesDetailVC *vc = [[FSNoticeMessagesDetailVC alloc]initWithNibName:@"FSNoticeMessagesDetailVC" bundle:nil freshViewType:BMFreshViewType_NONE];
+    vc.m_NoticeMessagesId = notificationId;
+    [selfVC.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark H5 跳转

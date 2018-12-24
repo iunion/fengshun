@@ -64,8 +64,11 @@ typedef void (^PushVCCallBack)(void);
 // 文字识别结果
 +(void)viewController:(UIViewController *)vc pushToOCRResultVCWithImage:(UIImage *)image;
 
-// 显示个人信息
+// 显示站内消息
 + (void)showMessageVC:(UIViewController *)pushVC andShowNotificationTab:(BOOL)showNotificationTab;
+
+// 站内通知详情
++ (void)viewController:(UIViewController *)selfVC pushToNotificationDetailWithId:(NSString *)notificationId;
 
 #pragma mark - H5跳转
 

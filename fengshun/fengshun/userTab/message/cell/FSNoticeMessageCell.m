@@ -24,7 +24,7 @@
 
 + (CGFloat)cellHeight
 {
-    return 118.0f;
+    return 138.0f;
 }
 
 - (void)dealloc
@@ -69,9 +69,9 @@
     
     CGSize size = [self.m_ContentLabel sizeThatFits:CGSizeMake(self.m_ContentLabel.bm_width, 1000)];
     CGFloat height = size.height;
-    if (height > 40.0f)
+    if (height > 60.0f)
     {
-        height = 40;
+        height = 60;
     }
     self.m_ContentLabel.bm_height = height;
 }

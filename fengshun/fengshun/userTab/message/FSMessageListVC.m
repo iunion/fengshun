@@ -11,6 +11,7 @@
 #import "FSCommentMessageCell.h"
 #import "FSNoticeMessageCell.h"
 
+
 @interface FSMessageListVC ()
 
 @property (nonatomic, assign) FSMessageType m_MessageType;
@@ -196,7 +197,8 @@
             
             //if (model.m_JumpType == FSJumpType_H5)
             {
-                [FSPushVCManager showWebView:self.m_PushVC url:model.m_JumpAddress title:nil];
+//                [FSPushVCManager showWebView:self.m_PushVC url:model.m_JumpAddress title:nil];
+                [FSPushVCManager viewController:self.m_PushVC pushToNotificationDetailWithId:model.m_NoticeId];
             }
         }
     }
