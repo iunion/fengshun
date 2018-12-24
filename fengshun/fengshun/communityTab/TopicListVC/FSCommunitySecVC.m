@@ -20,9 +20,10 @@
 #import "FSCommunityModel.h"
 
 #import "FSPushVCManager.h"
-#import "FSAuthenticationVC.h"
 
 #import "FSAlertView.h"
+
+#import "FSAuthVC.h"
 
 
 @interface FSCommunitySecVC ()
@@ -30,7 +31,6 @@
     FSScrollPageViewDataSource,
     FSScrollPageViewDelegate,
     FSCommunityHeaderViewDelegate,
-    FSAuthenticationDelegate,
     FSBaseComTopicScrollTopDelegate
 >
 {
@@ -325,24 +325,11 @@
 // 发帖
 - (void)pulishTopicAction
 {
-    if (![FSUserInfoModel isLogin])
+    if (![self canSendTopic])
     {
-        [self showLogin];
         return;
     }
     BMWeakSelf
-    if (![FSUserInfoModel userInfo].m_UserBaseInfo.m_IsRealName)
-    {
-        [FSAlertView showAlertWithTitle:@"温馨提示" message:@"认证后才能发帖" cancelTitle:@"取消" otherTitle:@"去认证" completion:^(BOOL cancelled, NSInteger buttonIndex) {
-            if (buttonIndex == 1)
-            {
-                FSAuthenticationVC *vc = [[FSAuthenticationVC alloc] init];
-                vc.delegate = weakSelf;
-                [weakSelf.navigationController pushViewController:vc animated:YES];
-            }
-        }];
-        return;
-    }
     [FSPushVCManager showSendPostWithPushVC:self isEdited:NO relatedId:self.m_FourmId callBack:^ {
         [weakSelf getHeaderInfoMsg];
         if (weakSelf.m_AttentionChangeBlock)
@@ -360,11 +347,45 @@
     }];
 }
 
-//认证完成
-- (void)authenticationFinished:(FSAuthenticationVC *)vc
+- (BOOL)canSendTopic
 {
-    BMLog(@"认证完成");
+    if (![FSUserInfoModel isLogin])
+    {
+        [self showLogin];
+        return NO;
+    }
+    BMWeakSelf
+    if (![FSUserInfoModel userInfo].m_UserBaseInfo.m_IsRealName || ![[FSUserInfoModel userInfo].m_UserBaseInfo.m_NickName bm_isNotEmpty])
+    {
+        [FSAlertView showAlertWithTitle:@"温馨提示" message:@"完善用户信息后才能发帖" cancelTitle:@"取消" otherTitle:@"去认证" completion:^(BOOL cancelled, NSInteger buttonIndex) {
+            if (buttonIndex == 1)
+            {
+                FSAuthState state ;
+                if (![FSUserInfoModel userInfo].m_UserBaseInfo.m_IsRealName && ![[FSUserInfoModel userInfo].m_UserBaseInfo.m_NickName bm_isNotEmpty])
+                {
+                    state = FSAuthStateNone;
+                }
+                else if (![FSUserInfoModel userInfo].m_UserBaseInfo.m_IsRealName)
+                {
+                    state = FSAuthStateNoAuth;
+                }
+                else if(![[FSUserInfoModel userInfo].m_UserBaseInfo.m_NickName bm_isNotEmpty])
+                {
+                    state = FSAuthStateNoNickName;
+                }
+                else
+                {
+                    state = FSAuthStateAllDone;
+                }
+                FSAuthVC *vc = [FSAuthVC vcWithAuthType:state] ;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            }
+        }];
+        return NO;
+    }
+    return YES;
 }
+
 
 #pragma mark - FSScrollPageView Delegate & DataSource
 
