@@ -41,8 +41,7 @@
 
 - (void)createUI
 {
-    self.title = @"完善账户信息";
-    
+    [self bm_setNavigationWithTitle:@"完善账户信息" barTintColor:nil leftDicArray:@[[self bm_makeBarButtonDictionaryWithTitle:@" " image:@"navigationbar_back_icon" toucheEvent:@"backAction:" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0]] rightDicArray:nil];
     CGFloat height = 45.f;
     CGFloat width  = UI_SCREEN_WIDTH;
     
@@ -86,6 +85,11 @@
     [self bringSomeViewToFront];
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+    [self.view endEditing:YES];
+}
 
 - (void)submitBtnClick:(UIButton *)sender
 {
