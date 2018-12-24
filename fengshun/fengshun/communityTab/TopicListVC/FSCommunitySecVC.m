@@ -54,11 +54,11 @@
 
 // headerView
 @property (nonatomic, strong) FSCommunityHeaderView *m_HeaderView;
-@property (nonatomic, strong) FSScrollPageSegment *  m_SegmentBar;
-@property (nonatomic, strong) FSScrollPageView *     m_ScrollPageView;
+@property (nonatomic, strong) FSScrollPageSegment *m_SegmentBar;
+@property (nonatomic, strong) FSScrollPageView *m_ScrollPageView;
 @property (nonatomic, strong) UIButton *m_PulishBtn;
-@property (nonatomic, strong) NSMutableArray *       m_dataArray;
-@property (nonatomic, strong) NSMutableArray *       m_vcArray;
+@property (nonatomic, strong) NSMutableArray *m_dataArray;
+@property (nonatomic, strong) NSMutableArray *m_VcArray;
 
 @property (nonatomic, strong) FSForumModel *m_ForumModel;
 
@@ -96,7 +96,8 @@
     
     self.m_showEmptyView = NO;
 
-    [self bm_setNavigationWithTitle:self.m_FourmName?self.m_FourmName:@"" barTintColor:nil leftDicArray:@[ [self bm_makeBarButtonDictionaryWithTitle:@"   " image:@"community_white_back" toucheEvent:@"popViewController" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:5] ] rightDicArray:nil];
+    [self bm_setNavigationWithTitle:self.m_FourmName?self.m_FourmName:@"" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:nil rightItemImage:nil rightToucheEvent:nil];
+
     self.bm_NavigationBarAlpha = 0.0f;
     self.bm_NavigationTitleAlpha = 0.0f;
     self.bm_NavigationTitleTintColor = [UIColor clearColor];
@@ -108,11 +109,11 @@
     [self bm_setNeedsUpdateNavigationItemTintColor];
 
     self.view.backgroundColor = FS_VIEW_BGCOLOR;
-    self.m_dataArray          = [NSMutableArray arrayWithCapacity:0];
-    self.m_vcArray            = [NSMutableArray array];
+    self.m_dataArray= [NSMutableArray arrayWithCapacity:0];
+    self.m_VcArray= [NSMutableArray array];
 
     self.m_TableView.frame = CGRectMake(0, -(UI_NAVIGATION_BAR_HEIGHT+UI_STATUS_BAR_HEIGHT), UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT);
-
+    
     [self createUI];
     [self loadApiData];
     [self getHeaderInfoMsg];
@@ -125,8 +126,18 @@
 {
     [super viewWillAppear:animated];
     
-    self.bm_NavigationBarStyle = UIBarStyleBlack;
-    [self bm_setNeedsUpdateNavigationBarStyle];
+    CGFloat tabOffsetY = ComTopicHeaderImageHeight + ComTopicHeaderImageGap - (UI_STATUS_BAR_HEIGHT + UI_NAVIGATION_BAR_HEIGHT);
+    
+    if (self.m_TableView.contentOffset.y >= tabOffsetY)
+    {
+        self.bm_NavigationBarStyle = UIBarStyleDefault;
+        [self bm_setNeedsUpdateNavigationBarStyle];
+    }
+    else
+    {
+        self.bm_NavigationBarStyle = UIBarStyleBlack;
+        [self bm_setNeedsUpdateNavigationBarStyle];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -147,6 +158,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 #pragma mark - UI
 
 - (void)createUI
@@ -197,7 +210,6 @@
     [self stretchHeaderForTableView];
     
     self.m_TableView.tableFooterView = self.m_ScrollPageView;
-
 }
 
 
@@ -234,12 +246,15 @@
             
             self.m_CanScroll = NO;
             
-            FSComTopicListVC *vc = self.m_vcArray[self.m_PageIndex];
+            FSComTopicListVC *vc = self.m_VcArray[self.m_PageIndex];
             vc.m_CanScroll = YES;
             
             self.bm_NavigationBarAlpha = 1.0f;
             self.bm_NavigationTitleAlpha = 1.0f;
             self.bm_NavigationItemTintColor = [UIColor colorWithWhite:0.0f alpha:1.0f];
+            
+            self.bm_NavigationBarStyle = UIBarStyleDefault;
+            [self bm_setNeedsUpdateNavigationBarStyle];
             
             [self bm_setNeedsUpdateNavigationBarAlpha];
             [self bm_setNeedsUpdateNavigationTitleAlpha];
@@ -261,6 +276,12 @@
         [self bm_setNeedsUpdateNavigationBarAlpha];
         [self bm_setNeedsUpdateNavigationTitleAlpha];
         [self bm_setNeedsUpdateNavigationItemTintColor];
+        
+        if (alpha < 0.5)
+        {
+            self.bm_NavigationBarStyle = UIBarStyleBlack;
+            [self bm_setNeedsUpdateNavigationBarStyle];
+        }
     }
     
     // 控制头图拉伸
@@ -292,7 +313,7 @@
         [self.m_ActivityIndicatorView startAnimating];
         self.view.userInteractionEnabled = NO;
         
-        FSComTopicListVC *vc = self.m_vcArray[self.m_PageIndex];
+        FSComTopicListVC *vc = self.m_VcArray[self.m_PageIndex];
         [vc refreshVC];
     }
 }
@@ -315,12 +336,8 @@
     self.view.userInteractionEnabled = YES;
 }
 
-#pragma mark - Action
 
-- (void)popViewController
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
+#pragma mark - Action
 
 // 发帖
 - (void)pulishTopicAction
@@ -329,6 +346,7 @@
     {
         return;
     }
+    
     BMWeakSelf
     [FSPushVCManager showSendPostWithPushVC:self isEdited:NO relatedId:self.m_FourmId callBack:^ {
         [weakSelf getHeaderInfoMsg];
@@ -341,8 +359,11 @@
         {
             [weakSelf.m_SegmentBar selectBtnAtIndex:1];
             [weakSelf.m_ScrollPageView scrollPageWithIndex:1];
-            FSComTopicListVC *vc = weakSelf.m_vcArray[1];
-            [vc refreshVC];
+            FSComTopicListVC *vc = weakSelf.m_VcArray[1];
+            if ([vc bm_isNotEmpty])
+            {
+                [vc refreshVC];
+            }
         }
     }];
 }
@@ -405,18 +426,24 @@
     FSTopicTypeModel *model = self.m_dataArray[index];
     FSComTopicListVC *vc = [[FSComTopicListVC alloc] initWithTopicSortType:model.m_PostListType formId:self.m_FourmId];
     vc.scrollTopDelegate = self;
-    [self.m_vcArray addObject:vc];
+    [self.m_VcArray replaceObjectAtIndex:index withObject:vc];
     return vc;
 }
 
 - (void)scrollPageViewChangeToIndex:(NSUInteger)index
 {
+    //NSLog(@"index: %@", @(index));
     self.m_PageIndex = index;
     
     self.m_CanScroll = YES;
     
-    for (FSComTopicListVC *vc in self.m_vcArray)
+    for (FSComTopicListVC *vc in self.m_VcArray)
     {
+        if (![vc bm_isNotEmpty])
+        {
+            continue;
+        }
+        
         vc.m_CanScroll = NO;
         
         UIView *view = vc.view;
@@ -436,8 +463,13 @@
 {
     self.m_CanScroll = YES;
     
-    for (FSComTopicListVC *vc in self.m_vcArray)
+    for (FSComTopicListVC *vc in self.m_VcArray)
     {
+        if (![vc bm_isNotEmpty])
+        {
+            continue;
+        }
+        
         vc.m_CanScroll = NO;
     }
 }
@@ -453,12 +485,14 @@
         return ;
     }
     FSForumFollowState state = self.m_ForumModel.m_AttentionFlag;
+    
+    BMWeakSelf
     [FSApiRequest updateFourmAttentionStateWithFourmId:self.m_ForumModel.m_Id followStatus:!state success:^(id  _Nullable responseObject) {
-        if (self.m_AttentionChangeBlock)
+        if (weakSelf.m_AttentionChangeBlock)
         {
-            self.m_AttentionChangeBlock();
+            weakSelf.m_AttentionChangeBlock();
         }
-        [self getHeaderInfoMsg];
+        [weakSelf getHeaderInfoMsg];
     } failure:^(NSError * _Nullable error) {
         
     }];
@@ -485,6 +519,13 @@
             }
         }
         [self.m_dataArray addObjectsFromArray:data];
+        
+        [self.m_VcArray removeAllObjects];
+        for (NSUInteger index=0; index<self.m_dataArray.count; index++)
+        {
+            [self.m_VcArray addObject:[NSNull null]];
+        }
+
         [self.m_ScrollPageView reloadPage];
         [self.m_ScrollPageView scrollPageWithIndex:0];
         return YES;
@@ -494,11 +535,12 @@
 
 - (void)getHeaderInfoMsg
 {
+    BMWeakSelf
     [FSApiRequest getTwoLevelFourmInfoWithId:self.m_FourmId success:^(id  _Nullable responseObject) {
         if ([responseObject bm_isNotEmptyDictionary])
         {
             FSForumModel *model = [FSForumModel forumModelWithServerDic:responseObject];
-            self.m_ForumModel = model;
+            weakSelf.m_ForumModel = model;
             [_m_HeaderView updateHeaderViewWith:model];
         }
     } failure:^(NSError * _Nullable error) {

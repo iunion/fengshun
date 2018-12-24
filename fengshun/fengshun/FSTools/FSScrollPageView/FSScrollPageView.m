@@ -287,6 +287,11 @@
     if (self.m_CurrentIndex != index)
     {
         [self moveScrollPageWithIndex:index];
+
+        if ([self.delegate respondsToSelector:@selector(scrollPageViewChangeToIndex:)])
+        {
+            [self.delegate scrollPageViewChangeToIndex:self.m_CurrentIndex];
+        }
     }
 }
 
