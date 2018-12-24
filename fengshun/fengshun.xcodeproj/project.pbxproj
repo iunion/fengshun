@@ -1774,6 +1774,8 @@
 		AD1A5D4F21534BEA00ACADDF /* FSReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD412AE9215221C800A9C12B /* FSReportView.m */; };
 		AD1BE2122141238B0018AF2C /* FSForumSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1BE2112141238B0018AF2C /* FSForumSectionHeaderView.m */; };
 		AD1BE214214127180018AF2C /* FSForumSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD1BE213214127180018AF2C /* FSForumSectionHeaderView.xib */; };
+		AD20272B21D0B7740055576D /* FSIdCardTextFeild.m in Sources */ = {isa = PBXBuildFile; fileRef = AD20272A21D0B7740055576D /* FSIdCardTextFeild.m */; };
+		AD20272C21D0B7740055576D /* FSIdCardTextFeild.m in Sources */ = {isa = PBXBuildFile; fileRef = AD20272A21D0B7740055576D /* FSIdCardTextFeild.m */; };
 		AD22449A213CD6C300F2DC47 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AD224481213CD6C300F2DC47 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		AD22449B213CD6C300F2DC47 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AD22448A213CD6C300F2DC47 /* ViewController+MASAdditions.m */; };
 		AD22449C213CD6C300F2DC47 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = AD22448E213CD6C300F2DC47 /* MASCompositeConstraint.m */; };
@@ -3657,6 +3659,8 @@
 		AD1BE2102141238B0018AF2C /* FSForumSectionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSForumSectionHeaderView.h; sourceTree = "<group>"; };
 		AD1BE2112141238B0018AF2C /* FSForumSectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSForumSectionHeaderView.m; sourceTree = "<group>"; };
 		AD1BE213214127180018AF2C /* FSForumSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSForumSectionHeaderView.xib; sourceTree = "<group>"; };
+		AD20272921D0B7740055576D /* FSIdCardTextFeild.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSIdCardTextFeild.h; sourceTree = "<group>"; };
+		AD20272A21D0B7740055576D /* FSIdCardTextFeild.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSIdCardTextFeild.m; sourceTree = "<group>"; };
 		AD224480213CD6C300F2DC47 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		AD224481213CD6C300F2DC47 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
 		AD224482213CD6C300F2DC47 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -7486,6 +7490,8 @@
 		AD28473321CCC337001009E9 /* AuthVC */ = {
 			isa = PBXGroup;
 			children = (
+				AD20272921D0B7740055576D /* FSIdCardTextFeild.h */,
+				AD20272A21D0B7740055576D /* FSIdCardTextFeild.m */,
 				AD28473B21CCC751001009E9 /* FSInputTextView.h */,
 				AD28473C21CCC751001009E9 /* FSInputTextView.m */,
 				AD28473F21CCC7C6001009E9 /* FSInputTextView.xib */,
@@ -9288,6 +9294,7 @@
 				DB2656C4214619A0002ED713 /* FSCaseSearchResultVC.m in Sources */,
 				DB804FE921425CE9007F7B19 /* FSCaseCell.m in Sources */,
 				AD9355A02137D24100735C2E /* TZAssetCell.m in Sources */,
+				AD20272B21D0B7740055576D /* FSIdCardTextFeild.m in Sources */,
 				874269C7212E9B78003C52F6 /* BMFreshAutoNormalFooter.m in Sources */,
 				AD932606214B4FDA007F3A93 /* CYRTextView.m in Sources */,
 				8730B0292140FFA2004331A9 /* NSAttributedStringRunDelegates.m in Sources */,
@@ -9721,6 +9728,7 @@
 				87E7C30921509AB000F7AB14 /* SDImageCacheConfig.m in Sources */,
 				87E7C30A21509AB000F7AB14 /* FLEXKeyboardHelpViewController.m in Sources */,
 				87E7C30B21509AB000F7AB14 /* FSMessageTabVC.m in Sources */,
+				AD20272C21D0B7740055576D /* FSIdCardTextFeild.m in Sources */,
 				87E7C30C21509AB000F7AB14 /* NSDate+BMCategory.m in Sources */,
 				87E7C30D21509AB000F7AB14 /* SDImageCache.m in Sources */,
 				87E7C30E21509AB000F7AB14 /* BMDateTimeItem.m in Sources */,

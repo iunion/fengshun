@@ -50,8 +50,6 @@
         [self.view addSubview:_m_NikeNameLab];
         _m_NikeName = [[FSInputTextView alloc]initWithFrame:CGRectMake(0, 0, width , height) title:@"昵称" content:@"" placeHolder:@"支持中英文数字及下划线，不超过16个字符"];
         _m_NikeName.m_IsShowBottomLine = NO;
-        _m_NikeName.bm_width = width;
-        _m_NikeName.bm_height = height;
         [self.view addSubview:_m_NikeName];
     }
     
@@ -60,14 +58,11 @@
         [self.view addSubview:_m_AuthLab];
         
         _m_RealName = [[FSInputTextView alloc]initWithFrame:CGRectMake(0, 0, width , height) title:@"姓名" content:@"" placeHolder:@"请输入您的姓名"];
-        _m_RealName.bm_width = width;
-        _m_RealName.bm_height = height;
         [self.view addSubview:_m_RealName];
         
         _m_IdCard = [[FSInputTextView alloc]initWithFrame:CGRectMake(0, 0, width , height) title:@"身份证号" content:@"" placeHolder:@"请输入您的身份证号码"];
         _m_IdCard.m_IsShowBottomLine = NO;
-        _m_IdCard.bm_width = width;
-        _m_IdCard.bm_height = height;
+        _m_IdCard.m_contentTextfield.keyboardType = UIKeyboardTypeNumberPad;
         [self.view addSubview:_m_IdCard];
     }
     {
@@ -220,12 +215,12 @@
     {
         if (![self.m_RealName.m_Content bm_isNotEmpty])
         {
-            [self.m_ProgressHUD showAnimated:YES withText:@"请输入真实姓名" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            [self.m_ProgressHUD showAnimated:YES withText:@"请输入您的姓名" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             return NO;
         }
         if (![self.m_IdCard.m_Content bm_isNotEmpty] || self.m_IdCard.m_Content.length != 18)
         {
-            [self.m_ProgressHUD showAnimated:YES withText:@"请输入正确身份证号码" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            [self.m_ProgressHUD showAnimated:YES withText:@"请输入您的身份证账号" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             return NO;
         }
         return YES;
@@ -234,7 +229,7 @@
     {
         if (![self.m_NikeName.m_Content bm_isNotEmpty])
         {
-            [self.m_ProgressHUD showAnimated:YES withText:@"请输入昵称" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            [self.m_ProgressHUD showAnimated:YES withText:@"请输入您的昵称" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             return NO;
         }
         return YES;
@@ -242,17 +237,17 @@
     {
         if (![self.m_RealName.m_Content bm_isNotEmpty])
         {
-            [self.m_ProgressHUD showAnimated:YES withText:@"请输入真实姓名" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            [self.m_ProgressHUD showAnimated:YES withText:@"请输入您的姓名" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             return NO;
         }
         if (![self.m_IdCard.m_Content bm_isNotEmpty] || self.m_IdCard.m_Content.length != 18)
         {
-            [self.m_ProgressHUD showAnimated:YES withText:@"请输入正确身份证号码" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            [self.m_ProgressHUD showAnimated:YES withText:@"请输入您的身份证账号" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             return NO;
         }
         if (![self.m_NikeName.m_Content bm_isNotEmpty])
         {
-            [self.m_ProgressHUD showAnimated:YES withText:@"请输入昵称" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            [self.m_ProgressHUD showAnimated:YES withText:@"请输入您的昵称" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             return NO;
         }
         return YES;

@@ -10,13 +10,6 @@
 
 @interface FSInputTextView()
 
-@property (weak, nonatomic) IBOutlet UILabel *m_TitleLab;
-
-@property (weak, nonatomic) IBOutlet UITextField *m_contentTextfield;
-@property (weak, nonatomic) IBOutlet UIView *m_BottomLine;
-
-
-
 @end
 
 @implementation FSInputTextView

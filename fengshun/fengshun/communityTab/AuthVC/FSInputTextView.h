@@ -7,10 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FSIdCardTextFeild.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FSInputTextView : UIView
+
+@property (weak, nonatomic) IBOutlet UILabel *m_TitleLab;
+
+@property (weak, nonatomic) IBOutlet FSIdCardTextFeild *m_contentTextfield;
+
+@property (weak, nonatomic) IBOutlet UIView *m_BottomLine;
 
 @property (nonatomic , copy) NSString *m_PlaceHolder;
 
