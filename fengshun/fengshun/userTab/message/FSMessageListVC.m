@@ -10,6 +10,7 @@
 
 #import "FSCommentMessageCell.h"
 #import "FSNoticeMessageCell.h"
+#import "UIViewController+FSPushVCAPI.h"
 
 
 @interface FSMessageListVC ()
@@ -195,9 +196,16 @@
         {
             FSNoticeMessageModel *model = self.m_DataArray[indexPath.row];
             
-            //if (model.m_JumpType == FSJumpType_H5)
+            if (model.m_JumpType == FSJumpType_VideoMeeting) {
+                FSPushVCModel *pushModel = [FSPushVCModel generalModelWithType:FSPushToVCType_VideoMeeting andId:model.m_RelationId];
+                [self.m_PushVC fspush_withModel:pushModel];
+            }
+            else if ([model.m_JumpAddress bm_isNotEmpty])
             {
-//                [FSPushVCManager showWebView:self.m_PushVC url:model.m_JumpAddress title:nil];
+                [FSPushVCManager showWebView:self.m_PushVC url:model.m_JumpAddress title:nil];
+            }
+            else
+            {
                 [FSPushVCManager viewController:self.m_PushVC pushToNotificationDetailWithId:model.m_NoticeId];
             }
         }

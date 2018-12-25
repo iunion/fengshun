@@ -6,9 +6,9 @@
 //  Copyright © 2018年 FS. All rights reserved.
 //
 
-#import "FSTableViewVC.h"
+#import "FSSuperNetVC.h"
 
-@interface FSNoticeMessagesDetailVC : FSTableViewVC
+@interface FSNoticeMessagesDetailVC : FSSuperNetVC
 
 @property (nonatomic, copy)NSString *m_NoticeMessagesId;
 

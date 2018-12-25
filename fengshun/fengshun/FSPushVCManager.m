@@ -197,7 +197,7 @@
 
 + (void)viewController:(UIViewController *)selfVC pushToNotificationDetailWithId:(NSString *)notificationId
 {
-    FSNoticeMessagesDetailVC *vc = [[FSNoticeMessagesDetailVC alloc]initWithNibName:@"FSNoticeMessagesDetailVC" bundle:nil freshViewType:BMFreshViewType_NONE];
+    FSNoticeMessagesDetailVC *vc = [[FSNoticeMessagesDetailVC alloc]initWithNibName:@"FSNoticeMessagesDetailVC" bundle:nil];
     vc.m_NoticeMessagesId = notificationId;
     [selfVC.navigationController pushViewController:vc animated:YES];
 }
