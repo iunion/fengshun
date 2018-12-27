@@ -342,9 +342,10 @@ NS_ASSUME_NONNULL_BEGIN
                        topicId:(NSString *)topicId
                        success:(nullable XMSuccessBlock)successBlock
                        failure:(nullable XMFailureBlock)failureBlock;
-// 举报帖子
+// 举报帖子/评论
 + (XMRequest *)addReportTopic:(NSString *)topicId
                       content:(NSString *)content
+                         type:(NSString *)type
                       success:(nullable XMSuccessBlock)successBlock
                       failure:(nullable XMFailureBlock)failureBlock;
 
