@@ -71,7 +71,7 @@
 }
 - (void)moreViewClickWithType:(NSInteger)index
 {
-    NSString *url = [NSString stringWithFormat:@"%@%@%@",FS_URL_SERVER,FS_FILE_ADRESS,_m_fileId];
+    NSString *url = [NSString stringWithFormat:@"%@%@%@", FS_URL_SERVER, FS_FILE_ADDRESS, _m_fileId];
     url = [url stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     if (index < 5)
     {
@@ -115,7 +115,7 @@
 - (void)downloadFile
 {
     if ([_m_fileId bm_isNotEmpty]) {
-        NSString *url = [NSString stringWithFormat:@"%@%@%@",FS_URL_SERVER,FS_FILE_ADRESS,_m_fileId];
+        NSString *url = [NSString stringWithFormat:@"%@%@%@", FS_URL_SERVER, FS_FILE_ADDRESS, _m_fileId];
         url = [url stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [[UIApplication  sharedApplication]openURL:[NSURL URLWithString:url]];
     }
