@@ -7,9 +7,9 @@
 //
 
 #import "FSWebView.h"
+#import <WebKit/WebKit.h>
 
 #import <TargetConditionals.h>
-#import <WebKit/WebKit.h>
 #import <dlfcn.h>
 
 #import "FSWebViewProgress.h"
@@ -130,38 +130,7 @@
     [self addSubview:self.realWebView];
 }
 
-#pragma mark - 原生对键盘事件的优化
-//- (void)needAddNotificationObserver:(BOOL)added
-//{
-//    if (!added) {
-//        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-//        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-//    }
-//    else
-//    {
-//        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-//        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-//    }
-//}
-//- (void)keyBoardWillShow:(NSNotification *)note
-//{
-//    NSDictionary *info = [note userInfo];
-//    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
-//    //目标视图view
-//    WKWebView *webView = self.realWebView;
-//
-//    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
-//        webView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height - keyboardSize.height);
-//    }];
-//}
-//键盘隐藏后将视图恢复到原始状态
-//- (void)keyBoardWillHide:(NSNotification *)note
-//{
-//    WKWebView *webView = self.realWebView;
-//    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
-//        webView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-//    }];
-//}
+
 
 #pragma mark -
 
@@ -184,7 +153,13 @@
     WKWebView *webView = [[NSClassFromString(@"WKWebView") alloc] initWithFrame:self.bounds configuration:configuration];
     webView.UIDelegate = self;
     webView.navigationDelegate = self;
-    
+#ifdef __IPHONE_11_0
+    if (@available(iOS 11.0, *))
+    {
+        // 默认 UIScrollViewContentInsetAdjustmentAutomatic
+        webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+#endif
     webView.backgroundColor = [UIColor clearColor];
     webView.opaque = NO;
     webView.allowsBackForwardNavigationGestures = YES;
@@ -233,6 +208,7 @@
     webView.scalesPageToFit = YES;
     webView.dataDetectorTypes = UIDataDetectorTypeNone;
     webView.scrollView.bounces = NO;
+    webView.keyboardDisplayRequiresUserAction = NO;
     
     webView.allowsInlineMediaPlayback = YES;
     webView.mediaPlaybackRequiresUserAction = NO;

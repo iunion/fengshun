@@ -262,13 +262,7 @@
         }
     }];
 }
-- (void)dealloc
-{
-    if (_resultType) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-    }
-}
+
 - (void)makeTagViewArray
 {
     self.tagViewArray = [NSMutableArray arrayWithCapacity:0];

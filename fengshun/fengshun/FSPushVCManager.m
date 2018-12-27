@@ -58,6 +58,7 @@
 + (FSTopicDetailVC *)showTopicDetail:(UIViewController *)pushVC topicId:(NSString *)topicId{
     FSTopicDetailVC *vc = [[FSTopicDetailVC alloc] initWithTitle:@"" url:[NSString stringWithFormat:@"%@/note/%@",FS_H5_SERVER,topicId] showLoadingBar:NO  loadingBarColor:nil delegate:nil topicId:[topicId integerValue]];
     vc.hidesBottomBarWhenPushed = YES;
+    vc.m_ManageKeyBoard = YES;
     [pushVC.navigationController pushViewController:vc animated:YES];
     return vc;
 }
@@ -214,7 +215,7 @@
     FSWebViewController *vc = [[FSWebViewController alloc] initWithTitle:lawTopic url:url showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR delegate:nil];
     vc.hidesBottomBarWhenPushed = YES;
     vc.m_ShowPageTitles = NO;
-//    vc.m_UsingUIWebView = YES;
+    vc.m_UsingUIWebView = YES;
     [pushVC.navigationController pushViewController:vc animated:YES];
 }
 
@@ -232,8 +233,11 @@
 }
 + (void)viewController:(UIViewController *)vc pushToCourseDetailWithId:(NSString *)CourseId andIsSerial:(BOOL)isSerial
 {
+    FSWebViewController *webVC = [[FSWebViewController alloc] initWithTitle:nil url:[NSString stringWithFormat:@"%@/%@/%@",FS_H5_SERVER,isSerial?@"imgWordsSeries":@"comment",CourseId] showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR delegate:nil];
+    webVC.m_ManageKeyBoard = YES;
+    webVC.hidesBottomBarWhenPushed = YES;
+    [vc.navigationController pushViewController:webVC animated:YES];
 
-    [self showWebView:vc url:[NSString stringWithFormat:@"%@/%@/%@",FS_H5_SERVER,isSerial?@"imgWordsSeries":@"comment",CourseId] title:nil showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR animated:YES];
 }
 
 + (void)pushToTextDetail:(UIViewController *)pushVC url:(NSString *)url withFileId:(NSString *)fileId documentId:(NSString *)documentId title:(NSString *)title
@@ -244,7 +248,6 @@
     vc.m_fileId = fileId;
     vc.m_docummentId = documentId;
     vc.m_ShowPageTitles = NO;
-    vc.m_UsingUIWebView = YES;
     [pushVC.navigationController pushViewController:vc animated:YES];
     
 }

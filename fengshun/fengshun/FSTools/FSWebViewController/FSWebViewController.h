@@ -28,6 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 // 使用UIWebView，默认: YES
 @property (nonatomic, assign) BOOL m_UsingUIWebView;
 
+// 监听键盘事件,改变webview尺寸,以解决键盘遮挡输入框的问题
+@property (nonatomic, assign) BOOL m_ManageKeyBoard;
+
 // 是否是post请求
 @property (nonatomic, assign) BOOL m_IsPost;
 

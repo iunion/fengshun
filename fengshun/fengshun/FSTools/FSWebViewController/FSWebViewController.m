@@ -1,4 +1,4 @@
-//
+ //
 //  FSWebViewController.m
 //  miaoqian
 //
@@ -112,6 +112,7 @@
         _m_ShowNavBack = YES;
         _m_ShowPageTitles = YES;
         _delegate = delegate;
+        self.automaticallyAdjustsScrollViewInsets = NO;
     }
     
     return self;
@@ -205,6 +206,7 @@
     
     [self makeWebView];
     
+    [self needAddKeyBoardNotificationObserver:_m_ManageKeyBoard];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(makeWebView) name:userInfoChangedNotification object:nil];
     // 案例、法规、文书详情右上角…分享菜单中“复制链接”功能 改为刷新 
      self.m_IsRefresh = [self.m_UrlString containsString:@"Law"] || [self.m_UrlString containsString:@"caseGuide"] || [self.m_UrlString containsString:@"caseDetail"] || [self.m_UrlString containsString:@"law"];
@@ -291,7 +293,39 @@
 {
     [self.m_WebView setFrame:frame];
 }
+#pragma mark - 原生对键盘事件的优化
+- (void)needAddKeyBoardNotificationObserver:(BOOL)added
+{
+    if (added) {
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyBoardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    }
+}
+- (void)keyBoardDidShow:(NSNotification *)note
+{
+    UIView *webView = self.m_WebView.realWebView;
+    NSDictionary *info = [note userInfo];
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    //目标视图view
 
+    CGFloat fullWidth = self.m_WebView.frame.size.width;
+    CGFloat fullHeight = self.m_WebView.frame.size.height;
+    
+    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
+        webView.frame = CGRectMake(0, 0, fullWidth, fullHeight - keyboardSize.height);
+    }];
+}
+// 键盘隐藏后将视图恢复到原始状态
+- (void)keyBoardWillHide:(NSNotification *)note
+{
+    UIView *webView = self.m_WebView.realWebView;
+    CGFloat fullWidth = self.m_WebView.frame.size.width;
+    CGFloat fullHeight = self.m_WebView.frame.size.height;
+    
+    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
+        webView.frame = CGRectMake(0, 0, fullWidth, fullHeight);
+    }];
+}
 
 #pragma mark -
 #pragma mark UserAgent
