@@ -303,16 +303,19 @@
             else
             {
                 [self updateNavigationBarForController:viewController];
+                [self updateNavigationItemForController:viewController];
             }
         } completion:^(id<UIViewControllerTransitionCoordinatorContext> _Nonnull context) {
             if (context.isCancelled)
             {
                 [self updateNavigationBarForController:from];
+                [self updateNavigationItemForController:from];
             }
             else
             {
                 // 当 present 时 to 不等于 viewController
                 [self updateNavigationBarForController:viewController];
+                [self updateNavigationItemForController:viewController];
             }
             
             if (to == viewController)
@@ -340,6 +343,7 @@
     else
     {
         [self updateNavigationBarForController:viewController];
+        [self updateNavigationItemForController:viewController];
     }
 }
 
@@ -476,12 +480,14 @@
     {
         self.inGesture = YES;
         self.navigationBar.tintColor = [from.bm_NavigationBarTintColor blendWithColor:to.bm_NavigationBarTintColor progress:coordinator.percentComplete];
+        [self updateNavigationItemForController:to];
     }
     else
     {
         if (coordinator.isCancelled)
         {
             self.navigationBar.tintColor = from.bm_NavigationBarTintColor;
+            [self updateNavigationItemForController:from];
         }
         self.inGesture = NO;
     }
@@ -566,6 +572,11 @@
 
 #pragma mark -
 #pragma mark actions
+- (void)updateNavigationItemForController:(UIViewController *)vc
+{
+    [self updateNavigationTitleAlphaForViewController:vc];
+    [self updateNavigationTitleTintColorForViewController:vc];
+}
 
 - (void)updateNavigationBarForController:(UIViewController *)vc
 {
@@ -637,6 +648,16 @@
 - (void)updateNavigationBarTintColorForViewController:(UIViewController *)vc
 {
     self.navigationBar.tintColor = vc.bm_NavigationBarTintColor;
+}
+
+- (void)updateNavigationTitleAlphaForViewController:(UIViewController *)vc
+{
+    [vc bm_setNeedsUpdateNavigationTitleAlpha];
+}
+
+- (void)updateNavigationTitleTintColorForViewController:(UIViewController *)vc
+{
+    [vc bm_setNeedsUpdateNavigationTitleTintColor];
 }
 
 @end

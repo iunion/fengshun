@@ -395,7 +395,7 @@
     }
     else
     {
-        newAgent = @"";
+        newAgent = oldAgent;
     }
     
     //add my info to the new agent
@@ -913,7 +913,7 @@
 - (void)addReportContent:(NSString *)content commentId:(NSString *)commentId
 {
     BMWeakSelf
-    [FSApiRequest addReportTopic:[NSString stringWithFormat:@"%@",commentId] content:content success:^(id  responseObject) {
+    [FSApiRequest addReportTopic:[NSString stringWithFormat:@"%@",commentId] content:content type:@"COMMENT"  success:^(id  responseObject) {
         [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"已举报该评论" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     } failure:^(NSError *error) {
         [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:[NSString stringWithFormat:@"%@",[error.userInfo bm_stringForKey:@"NSLocalizedDescription"]] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];

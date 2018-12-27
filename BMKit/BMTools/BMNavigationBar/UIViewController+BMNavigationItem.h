@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 控制系统title和btnItem颜色，使用本category请使用bm_NavigationTitleTintColor和bm_NavigationItemTintColor设置颜色
 @property (nonatomic, strong) UIColor *bm_NavigationBarTintColor;
 
-// Title透明度
+// Title透明度，注：push页面透明度设置，第一次显示请使用bm_NavigationTitleTintColor设置，TitleAlpha会有延时
 @property (nonatomic, assign) CGFloat bm_NavigationTitleAlpha;
 // Title是否隐藏
 @property (nonatomic, assign) BOOL bm_NavigationTitleHidden;
