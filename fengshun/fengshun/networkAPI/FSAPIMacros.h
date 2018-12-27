@@ -19,7 +19,7 @@
 
 // 测试环境
 #define FS_URL_SERVER_TEST      (@"https://testapi.bjsjsadr.com")
-#define FS_H5_SERVER_TEST       (@"https://devftls.odrcloud.net")
+#define FS_H5_SERVER_TEST       (@"https://testftls.odrcloud.cn")
 //#define FS_H5_SERVER_TEST        (@"https://devftlsh5.odrcloud.net")
 #define FS_FILE_ADRESS_TEST     (@"/storm/file/download/")
 #define FS_CASE_STATUTE_TEST    (@"https://lawsearch-pre.odrcloud.cn")
