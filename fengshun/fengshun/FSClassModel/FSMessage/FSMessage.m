@@ -148,7 +148,7 @@
         return nil;
     }
     
-    FSNoticeMessageModel *noticeMessageModel = [[FSNoticeMessageModel alloc] init];
+    FSNoticeMessageModel *noticeMessageModel = [[self alloc] init];
     [noticeMessageModel updateWithServerDic:dic];
     
     if ([noticeMessageModel.m_NoticeId bm_isNotEmpty])
@@ -191,6 +191,19 @@
     NSString *jumpType = [dic bm_stringTrimForKey:@"jumpType"];
     // H5
     self.m_JumpType = [FSGlobalEnum jumpTypeWithString:jumpType];
+    
+    // (v1.1添加)跳转视频详情,视频详情id
+    self.m_RelationId = [dic bm_stringTrimForKey:@"relationId"];
+}
+
+@end
+
+@implementation FSNoticeDetailModel
+
+- (void)updateWithServerDic:(NSDictionary *)dic
+{
+    [super updateWithServerDic:dic];
+    self.m_signature = @"枫调理顺运营部";
 }
 
 @end

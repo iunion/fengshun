@@ -97,8 +97,17 @@ typedef NS_OPTIONS(NSUInteger, FSCommentTargetType)
 // 跳转类型（H5、图文系列COURSE_SERIES）: jumpType
 @property (nonatomic, assign) FSJumpType m_JumpType;
 
+// (v1.1)跳转到视频详情的id
+@property (nonatomic, copy) NSString *m_RelationId;
+
 + (instancetype)noticeMessageModelWithServerDic:(NSDictionary *)dic;
 - (void)updateWithServerDic:(NSDictionary *)dic;
+
+@end
+
+@interface FSNoticeDetailModel :FSNoticeMessageModel
+
+@property (nonatomic, copy)NSString *m_signature;
 
 @end
 
