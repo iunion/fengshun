@@ -570,7 +570,7 @@
 
     BMWeakSelf
     [FSApiRequest uploadImg:UIImageJPEGRepresentation(image, 0.8f) success:^(id responseObject) {
-        NSString *url = [NSString stringWithFormat:@"%@%@%@", FS_URL_SERVER, FS_FILE_ADRESS, [responseObject bm_stringTrimForKey:@"fileId"]];
+        NSString *url = [NSString stringWithFormat:@"%@%@%@", FS_URL_SERVER, FS_FILE_ADDRESS, [responseObject bm_stringTrimForKey:@"fileId"]];
         
         weakSelf.m_AvatarUrl = url;
         

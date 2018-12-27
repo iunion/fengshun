@@ -14,26 +14,30 @@
 // 开发环境
 #define FS_URL_SERVER_DEV       (@"https://devftls.odrcloud.net")
 #define FS_H5_SERVER_DEV        (@"https://devftlsh5.odrcloud.net")
-#define FS_FILE_ADRESS_DEV      (@"/storm/file/download/")
+#define FS_FILE_ADDRESS_DEV     (@"/storm/file/download/")
 #define FS_CASE_STATUTE_DEV     (@"https://lawsearch-pre.odrcloud.cn")
+#define FS_AI_SERVER_DEV        (@"https://www.odrcloud.net:19095")
 
 // 测试环境
 #define FS_URL_SERVER_TEST      (@"https://testapi.bjsjsadr.com")
 #define FS_H5_SERVER_TEST       (@"https://testftls.odrcloud.cn")
 //#define FS_H5_SERVER_TEST        (@"https://devftlsh5.odrcloud.net")
-#define FS_FILE_ADRESS_TEST     (@"/storm/file/download/")
+#define FS_FILE_ADDRESS_TEST    (@"/storm/file/download/")
 #define FS_CASE_STATUTE_TEST    (@"https://lawsearch-pre.odrcloud.cn")
+#define FS_AI_SERVER_TEST       (@"https://www.odrcloud.net:19095")
 
 // 线上环境
 #define FS_URL_SERVER_ONLINE    (@"https://ftlsh5.odrcloud.cn")
 #define FS_H5_SERVER_ONLINE     (@"https://ftlsh5.odrcloud.cn")
-#define FS_FILE_ADRESS_ONLINE   (@"/storm/file/download/")
+#define FS_FILE_ADDRESS_ONLINE  (@"/storm/file/download/")
 #define FS_CASE_STATUTE_ONLINE  (@"https://lawsearch.odrcloud.cn")
+#define FS_AI_SERVER_ONLINE     (@"https://robot.odrcloud.cn")
 
 #define FS_URL_SERVER_INIT      FS_URL_SERVER_DEV
 #define FS_H5_SERVER_INIT       FS_H5_SERVER_DEV
-#define FS_FILE_ADRESS_INIT     FS_FILE_ADRESS_DEV
+#define FS_FILE_ADDRESS_INIT    FS_FILE_ADDRESS_DEV
 #define FS_CASE_STATUTE_INIT    FS_CASE_STATUTE_DEV
+#define FS_AI_SERVER_INIT       FS_AI_SERVER_DEV
 
 #define FS_URL_SERVER_KEY       (@"debug_api_server")
 #define FS_URL_SERVER           [[NSUserDefaults standardUserDefaults] objectForKey:FS_URL_SERVER_KEY]
@@ -41,20 +45,29 @@
 #define FS_H5_SERVER_KEY        (@"debug_h5_server")
 #define FS_H5_SERVER            [[NSUserDefaults standardUserDefaults] objectForKey:FS_H5_SERVER_KEY]
 
-#define FS_FILE_ADRESS_KEY      (@"debug_file_adress")
-#define FS_FILE_ADRESS          [[NSUserDefaults standardUserDefaults] objectForKey:FS_FILE_ADRESS_KEY]
+#define FS_FILE_ADDRESS_KEY     (@"debug_file_address")
+#define FS_FILE_ADDRESS         [[NSUserDefaults standardUserDefaults] objectForKey:FS_FILE_ADDRESS_KEY]
 
 // v1.1法规及案例检索变更为专门的服务器提供的服务,相关接口请求域名变更
 #define FS_CASE_STATUTE_URL_KEY  (@"debug_case_statute_h5")
 #define FS_CASE_STATUTE_URL      [[NSUserDefaults standardUserDefaults] objectForKey:FS_CASE_STATUTE_URL_KEY]
 
+#define FS_AI_SERVER_KEY        (@"debug_ai_server")
+#define FS_AI_SERVER            [[NSUserDefaults standardUserDefaults] objectForKey:FS_AI_SERVER_KEY]
+
 #else
 
-#define FS_URL_SERVER       (@"https://ftlsh5.odrcloud.cn")
-#define FS_H5_SERVER        (@"https://ftlsh5.odrcloud.cn")
+#define FS_URL_SERVER           (@"https://ftlsh5.odrcloud.cn")
+#define FS_H5_SERVER            (@"https://ftlsh5.odrcloud.cn")
 //#define FS_H5_SERVER        (@"https://devftlsh5.odrcloud.net")
+<<<<<<< HEAD
 #define FS_FILE_ADRESS      (@"/storm/file/download/")
 #define FS_CASE_STATUTE_URL  (@"https://lawsearch.odrcloud.cn")
+=======
+#define FS_FILE_ADDRESS         (@"/storm/file/download/")
+#define FS_CASE_STATUTE_URL     (@"ttps://lawsearch.odrcloud.cn")
+#define FS_AI_SERVER            (@"https://robot.odrcloud.cn")
+>>>>>>> 7b9b069... 修改智能咨询地址
 
 #endif
 
