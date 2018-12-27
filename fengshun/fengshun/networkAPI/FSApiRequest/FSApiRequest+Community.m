@@ -124,12 +124,12 @@
     return [XMRequestManager rm_requestWithApi:@"/storm/user/collection" parameters:parameters success:successBlock failure:failureBlock];
 }
 
-// 举报帖子
-+ (XMRequest *)addReportTopic:(NSString *)topicId content:(NSString *)content success:(nullable XMSuccessBlock)successBlock failure:(nullable XMFailureBlock)failureBlock
+// 举报帖子/评论
++ (XMRequest *)addReportTopic:(NSString *)topicId content:(NSString *)content type:(NSString *)type success:(nullable XMSuccessBlock)successBlock failure:(nullable XMFailureBlock)failureBlock
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters bm_setString:topicId forKey:@"detailId"];
-    [parameters bm_setString:@"POSTS" forKey:@"type"];
+    [parameters bm_setString:type forKey:@"type"];
     [parameters bm_setString:content forKey:@"content"];
     return [XMRequestManager rm_requestWithApi:@"/storm/user/addReport" parameters:parameters success:successBlock failure:failureBlock];
 }

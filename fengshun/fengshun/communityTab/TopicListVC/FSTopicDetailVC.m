@@ -265,8 +265,7 @@
 - (void)addReportContent:(NSString *)content
 {
     BMWeakSelf
-    [FSApiRequest addReportTopic:[NSString stringWithFormat:@"%@", @(self.m_TopicId)] content:content success:^(id responseObject) {
-        
+    [FSApiRequest addReportTopic:[NSString stringWithFormat:@"%@", @(self.m_TopicId)]  content:content type:@"POSTS"  success:^(id responseObject) {
        [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"已举报该帖子" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     } failure:^(NSError *error) {
         

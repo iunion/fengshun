@@ -102,7 +102,6 @@
     {
         self.m_NickName = [dic bm_stringForKey:@"createName"];
     }
-    
 
     // 是否置顶
     self.m_TopFlag = [dic bm_boolForKey:@"topFlag"];
