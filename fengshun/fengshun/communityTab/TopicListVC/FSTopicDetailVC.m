@@ -44,9 +44,10 @@
 {
     [super viewDidLoad];
 
-    [self bm_setNavigationWithTitle:@"" barTintColor:nil leftDicArray:nil rightDicArray:@[ [self bm_makeBarButtonDictionaryWithTitle:nil image:@"community_more" toucheEvent:@"moreAction" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0]]];
+    [self setNavWithTitle:@"" leftArray:nil rightArray:@[ [self bm_makeBarButtonDictionaryWithTitle:nil image:@"navigationbar_more_icon" toucheEvent:@"moreAction" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0]]];
     
     [self bringSomeViewToFront];
+    
     BMWeakSelf
     [self registerHander:@"toAuth" handler:^(id data, WVJBResponseCallback responseCallback) {
         NSDictionary *resultDic = [NSDictionary bm_dictionaryWithJsonString:[NSString stringWithFormat:@"%@",data]];
@@ -60,7 +61,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 
 #pragma mark - 更多弹窗按钮
@@ -190,6 +190,7 @@
             break;
     }
 }
+
 // 分享成功
 - (void)shareDidSucceed:(id)data
 {
@@ -237,6 +238,7 @@
         }];
     }
 }
+
 
 #pragma mark - Request
 
