@@ -54,8 +54,6 @@
 		45F87DD421547E92001451D5 /* FSCourseHomePageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF7E1C721539F45002CEDA4 /* FSCourseHomePageVC.m */; };
 		45FEF843214D1B720005AD43 /* UIAlertController+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF840214D1B710005AD43 /* UIAlertController+Blocks.m */; };
 		45FEF844214D1B720005AD43 /* UIButton+XQAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF841214D1B710005AD43 /* UIButton+XQAdd.m */; };
-		8704B392219C137800DBBC53 /* UIView+BMCountDownManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8704B38F219C137800DBBC53 /* UIView+BMCountDownManager.m */; };
-		8704B393219C137800DBBC53 /* UIView+BMCountDownManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8704B38F219C137800DBBC53 /* UIView+BMCountDownManager.m */; };
 		8704B394219C137800DBBC53 /* BMCountDownManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8704B390219C137800DBBC53 /* BMCountDownManager.m */; };
 		8704B395219C137800DBBC53 /* BMCountDownManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8704B390219C137800DBBC53 /* BMCountDownManager.m */; };
 		8704B399219D1CC100DBBC53 /* FSCountDownManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8704B398219D1CC100DBBC53 /* FSCountDownManager.m */; };
@@ -9105,7 +9103,6 @@
 				8730B08F2140FFA3004331A9 /* DTSidePanelControllerSegue.m in Sources */,
 				87D209C52138F1E2001EDD60 /* SDAnimatedImageRep.m in Sources */,
 				87D20AAA213920E2001EDD60 /* FLEXObjectExplorerViewController.m in Sources */,
-				8704B392219C137800DBBC53 /* UIView+BMCountDownManager.m in Sources */,
 				8730B0792140FFA3004331A9 /* DTStripedLayer.m in Sources */,
 				874268BC212E7E36003C52F6 /* BMTableViewCell.m in Sources */,
 				87F639E421533C830035E730 /* FBBlockStrongRelationDetector.m in Sources */,
@@ -10217,7 +10214,6 @@
 				87F639DB21533C830035E730 /* UIViewController+MemoryLeak.m in Sources */,
 				87E7C6F52151F2C700F7AB14 /* FSTestHelper.m in Sources */,
 				87E7C48F21509AB000F7AB14 /* FLEXRuntimeUtility.m in Sources */,
-				8704B393219C137800DBBC53 /* UIView+BMCountDownManager.m in Sources */,
 				876BB7E921B11F7C00FC205D /* BMTestGPSMockVC.m in Sources */,
 				87E7C49021509AB000F7AB14 /* FLEXTableColumnHeader.m in Sources */,
 				87E7C49121509AB000F7AB14 /* FSSearchResultView.m in Sources */,
