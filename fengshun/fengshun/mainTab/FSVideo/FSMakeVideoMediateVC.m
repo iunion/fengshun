@@ -389,7 +389,7 @@
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor clearColor];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(14, 0, self.m_TableView.bm_width-28, 24)];
-    label.text = [NSString stringWithFormat:@"参与人员：%@人",@(_m_AttendedList.count)];
+    label.text = [NSString stringWithFormat:@"参与人员：%@人",@(self.m_AttendedList.count)];
     label.textColor = UI_COLOR_B4;
     label.font = UI_FONT_12;
     [view addSubview:label];
