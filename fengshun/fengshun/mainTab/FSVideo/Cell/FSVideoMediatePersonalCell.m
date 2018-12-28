@@ -138,6 +138,14 @@
         _model.selectState = 0;
         [_m_SelectButton setImage:[UIImage imageNamed:@"video_not_selected"] forState:UIControlStateNormal] ;
     }
+    
+    if ([self.item respondsToSelector:@selector(setPersonnelSelectionHandler:)])
+    {
+        if (self.item.personnelSelectionHandler)
+        {
+            self.item.personnelSelectionHandler(_model);
+        }
+    }
 }
 
 @end

@@ -399,6 +399,10 @@
     for (FSMeetingPersonnelModel *model in self.m_AttendedList) {
         FSMeetingPersonnelItem *item = [FSMeetingPersonnelItem item];
         item.personModel = model;
+        item.personnelSelectionHandler = ^(FSMeetingPersonnelModel *personModel) {
+#warning personnelSelectionHandler
+            NSLog(@"personnelSelectionHandler");
+        };
         [self.m_PersonSection addItem:item];
     }
     
