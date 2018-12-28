@@ -9,6 +9,12 @@
 #import "BMTableViewItem.h"
 #import "FSVideoMediateModel.h"
 
+typedef void (^FSMeetingPersonnelSelectionHandler)(FSMeetingPersonnelModel *personModel);
+
 @interface FSMeetingPersonnelItem : BMTableViewItem
+
 @property (nonatomic, strong) FSMeetingPersonnelModel *personModel;
+
+@property (nonatomic, copy) FSMeetingPersonnelSelectionHandler personnelSelectionHandler;
+
 @end
