@@ -60,14 +60,11 @@
 #define FS_URL_SERVER           (@"https://ftlsh5.odrcloud.cn")
 #define FS_H5_SERVER            (@"https://ftlsh5.odrcloud.cn")
 //#define FS_H5_SERVER        (@"https://devftlsh5.odrcloud.net")
-<<<<<<< HEAD
-#define FS_FILE_ADRESS      (@"/storm/file/download/")
-#define FS_CASE_STATUTE_URL  (@"https://lawsearch.odrcloud.cn")
-=======
+
 #define FS_FILE_ADDRESS         (@"/storm/file/download/")
-#define FS_CASE_STATUTE_URL     (@"ttps://lawsearch.odrcloud.cn")
+#define FS_CASE_STATUTE_URL     (@"https://lawsearch.odrcloud.cn")
 #define FS_AI_SERVER            (@"https://robot.odrcloud.cn")
->>>>>>> 7b9b069... 修改智能咨询地址
+
 
 #endif
 
