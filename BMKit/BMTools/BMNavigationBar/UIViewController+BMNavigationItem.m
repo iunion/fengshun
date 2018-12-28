@@ -233,7 +233,7 @@
     return dic;
 }
 
-- (UIBarButtonItem *)makeBarButton:(NSString *)title image:(id)image toucheEvent:(SEL)selector buttonEdgeInsetsStyle:(BMButtonEdgeInsetsStyle)edgeInsetsStyle imageTitleGap:(CGFloat)gap
+- (UIBarButtonItem *)makeBarButton:(NSString *)title image:(id)image toucheEvent:(SEL)selector buttonEdgeInsetsStyle:(BMButtonEdgeInsetsStyle)edgeInsetsStyle imageTitleGap:(CGFloat)gap isRightItem:(BOOL)isRightItem
 {
 // 直接使用UIBarButtonItem
 //    if (selector != nil)
@@ -342,13 +342,14 @@
                         if (max < BMNAVIGATION_ITEM_MINWIDTH)
                         {
                             width = width * BMNAVIGATION_ITEM_MINWIDTH / max;
-                            height = width * BMNAVIGATION_ITEM_MINWIDTH / max;
+                            height = height * BMNAVIGATION_ITEM_MINWIDTH / max;
                         }
                     }
                 }
                 btn.frame = CGRectMake(0, 0, width, height);
-                [btn setBackgroundImage:tintItemImage forState:UIControlStateNormal];
-                [btn setImage:nil forState:UIControlStateNormal];
+                btn.contentHorizontalAlignment = isRightItem?2:1;
+//                [btn setBackgroundImage:tintItemImage forState:UIControlStateNormal];
+                [btn setImage:tintItemImage forState:UIControlStateNormal];
             }
         }
         
@@ -361,7 +362,7 @@
     }
 }
 
-- (NSArray *)makeButtonItemsWithDicArray:(NSArray *)dicArray
+- (NSArray *)makeButtonItemsWithDicArray:(NSArray *)dicArray isRightItem:(BOOL)isRightItem
 {
     if ([dicArray bm_isNotEmpty])
     {
@@ -374,7 +375,7 @@
             BMButtonEdgeInsetsStyle edgeInsetsStyle = [dic bm_uintForKey:BMNAVIGATION_BTNITEM_EDGESTYLE_KEY withDefault:BMButtonEdgeInsetsStyleImageRight];
             CGFloat gap = [dic bm_uintForKey:BMNAVIGATION_BTNITEM_GAP_KEY withDefault:2];
             
-            UIBarButtonItem *buttonItem = [self makeBarButton:title image:imageName toucheEvent:aSelector buttonEdgeInsetsStyle:edgeInsetsStyle imageTitleGap:gap];
+            UIBarButtonItem *buttonItem = [self makeBarButton:title image:imageName toucheEvent:aSelector buttonEdgeInsetsStyle:edgeInsetsStyle imageTitleGap:gap isRightItem:isRightItem];
             [btnArray addObject:buttonItem];
         }
         
@@ -446,11 +447,11 @@
     [self bm_setNeedsUpdateNavigationItemTintColor];
     
     // 设置左按键
-    UIBarButtonItem *lButtonItem = [self makeBarButton:lTitle image:lImage toucheEvent:lSelector buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:2.0f];
+    UIBarButtonItem *lButtonItem = [self makeBarButton:lTitle image:lImage toucheEvent:lSelector buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:2.0f isRightItem:NO];
     self.navigationItem.leftBarButtonItem = lButtonItem;
     
     // 设置右按键
-    UIBarButtonItem *rButtonItem = [self makeBarButton:rTitle image:rImage toucheEvent:rSelector buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageRight imageTitleGap:2.0f];
+    UIBarButtonItem *rButtonItem = [self makeBarButton:rTitle image:rImage toucheEvent:rSelector buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageRight imageTitleGap:2.0f isRightItem:YES];
     self.navigationItem.rightBarButtonItem = rButtonItem;
 }
 
@@ -483,13 +484,13 @@
     [self bm_setNeedsUpdateNavigationItemTintColor];
     
     // 设置左按键
-    UIBarButtonItem *lButtonItem = [self makeBarButton:lTitle image:lImage toucheEvent:lSelector buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:2.0f];
+    UIBarButtonItem *lButtonItem = [self makeBarButton:lTitle image:lImage toucheEvent:lSelector buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:2.0f isRightItem:NO];
     self.navigationItem.leftBarButtonItem = lButtonItem;
     
     // 设置右Items
     if ([rarray bm_isNotEmpty])
     {
-        NSArray *btnArray = [self makeButtonItemsWithDicArray:rarray];
+        NSArray *btnArray = [self makeButtonItemsWithDicArray:rarray isRightItem:YES];
         self.navigationItem.rightBarButtonItems = btnArray;
     }
 }
@@ -525,14 +526,14 @@
     // 设置左Items
     if ([larray bm_isNotEmpty])
     {
-        NSArray *btnArray = [self makeButtonItemsWithDicArray:larray];
+        NSArray *btnArray = [self makeButtonItemsWithDicArray:larray isRightItem:NO];
         self.navigationItem.leftBarButtonItems = btnArray;
     }
 
     // 设置右Items
     if ([rarray bm_isNotEmpty])
     {
-        NSArray *btnArray = [self makeButtonItemsWithDicArray:rarray];
+        NSArray *btnArray = [self makeButtonItemsWithDicArray:rarray isRightItem:YES];
         self.navigationItem.rightBarButtonItems = btnArray;
     }
 }

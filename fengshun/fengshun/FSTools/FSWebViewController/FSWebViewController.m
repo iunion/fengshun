@@ -376,7 +376,7 @@
         oldAgent = [oldAgent substringToIndex:rang.location];
     }
     
-    oldAgent = [oldAgent stringByAppendingString:USER_AGENT_TAG];
+    NSString *agent = [oldAgent stringByAppendingString:USER_AGENT_TAG];
     
     NSMutableDictionary *agentDic = [[NSMutableDictionary alloc] init];
     FSUserInfoModel *userInfo = GetAppDelegate.m_UserInfo;
@@ -399,7 +399,7 @@
         [agentDic bm_setString:[FSCoreStatus currentFSNetWorkStatusString] forKey:@"netWorkStandard"];
         
         [agentDic bm_setString:userInfo.m_Token forKey:@"JWTToken"];
-         newAgent = [oldAgent stringByAppendingString:[agentDic bm_toJSON]];
+         newAgent = [agent stringByAppendingString:[agentDic bm_toJSON]];
     }
     else
     {
