@@ -834,13 +834,13 @@
             
         }];
     }
-    else if (index == 6) // 刷新
+    else if (index == 6)
     {
-        if (self.m_IsRefresh)
+        if (self.m_IsRefresh) // 刷新
         {
             [self.m_WebView reload];
         }
-        else
+        else // 复制
         {
             if ([self.m_UrlString bm_isNotEmpty])
             {

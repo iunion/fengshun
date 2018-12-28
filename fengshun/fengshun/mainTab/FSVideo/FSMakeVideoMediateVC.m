@@ -271,7 +271,7 @@
         weakSelf.m_CreateModel.startTime = [item.pickerDate timeIntervalSince1970] * 1000;
     };
 
-    NSArray *timeArray = @[@"1小时", @"1.5小时", @"2小时", @"2.5小时", @"3小时", @"3.5小时", @"4小时"];
+    NSArray *timeArray = @[@"0.5小时",@"1小时", @"1.5小时", @"2小时", @"2.5小时", @"3小时", @"3.5小时", @"4小时"];
     self.m_TimeLengthItem = [BMPickerItem itemWithTitle:@"时长" placeholder:@"请选择" components:@[timeArray]];
     self.m_TimeLengthItem.textColor = UI_COLOR_B1;
     self.m_TimeLengthItem.textFont = FS_VIDEOPAGE_TEXTFONT;
@@ -355,7 +355,7 @@
     else
     {
         self.m_CreateModel.meetingType = [FSMeetingDataEnum meetingTypeMediateEnglish];
-        self.m_CreateModel.orderHour = @"1";
+        self.m_CreateModel.orderHour = @"0.5";
         NSString *value = [NSString stringWithFormat:@"%@小时", self.m_CreateModel.orderHour];
         self.m_TimeLengthItem.values = @[value];
     }
