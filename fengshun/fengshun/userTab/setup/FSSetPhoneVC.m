@@ -107,7 +107,7 @@
     self.m_ClockBtn.countDownType = FSVerificationCodeType_UpdatePhoneNumNew;
     
     self.m_ClockBtn.countDownProcessBlock = ^(id identifier, NSInteger timeInterval, BOOL forcedStop) {
-        [weakSelf freshClockBtn:timeInterval isForcedStop:NO];
+        [weakSelf freshClockBtn:timeInterval isForcedStop:forcedStop];
     };
     [self freshClockBtn:0 isForcedStop:NO];
 
