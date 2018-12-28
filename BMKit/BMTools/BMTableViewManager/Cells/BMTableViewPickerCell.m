@@ -40,9 +40,16 @@
     
     return NO;
 }
-
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pickeViewWillShow) name:UIKeyboardWillShowNotification object:nil];
+    }
+    return self;
+}
 - (void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     if (_item != nil)
     {
         [_item removeObserver:self forKeyPath:@"enabled"];
@@ -81,6 +88,7 @@
     self.pickerView.dataSource = self;
     
     self.hidenTextField.inputView = self.pickerView;
+    
 }
 
 - (void)cellWillAppear
@@ -216,13 +224,16 @@
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
     [self shouldUpdatePickerText];
-    if (self.item.onChange)
-    {
-        self.item.onChange(self.item);
-    }
+
     return YES;
 }
-
+- (void)pickeViewWillShow
+{
+    if ([self.item.values bm_isNotEmpty]) {
+        NSArray *componentList = self.item.components.firstObject;
+        [self.pickerView selectRow:[componentList indexOfObject:self.item.values.firstObject] inComponent:0 animated:NO];
+    }
+}
 
 #pragma mark -
 #pragma mark UIPickerViewDataSource

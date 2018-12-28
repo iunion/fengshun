@@ -398,10 +398,11 @@
     [self.m_PersonSection removeAllItems];
     for (FSMeetingPersonnelModel *model in self.m_AttendedList)
     {
+        BMWeakSelf
         FSMeetingPersonnelItem *item = [FSMeetingPersonnelItem item];
         item.personModel = model;
         item.personnelSelectionHandler = ^(FSMeetingPersonnelModel *personModel) {
-            [self freshViews];
+            [weakSelf freshViews];
         };
         [self.m_PersonSection addItem:item];
     }
