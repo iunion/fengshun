@@ -389,19 +389,19 @@
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor clearColor];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(14, 0, self.m_TableView.bm_width-28, 24)];
-    label.text = [NSString stringWithFormat:@"参与人员：%@人",@(self.m_AttendedList.count)];
+    label.text = [self selectedLitigantCount];
     label.textColor = UI_COLOR_B4;
     label.font = UI_FONT_12;
     [view addSubview:label];
     self.m_PersonSection.headerView = view;
     
     [self.m_PersonSection removeAllItems];
-    for (FSMeetingPersonnelModel *model in self.m_AttendedList) {
+    for (FSMeetingPersonnelModel *model in self.m_AttendedList)
+    {
         FSMeetingPersonnelItem *item = [FSMeetingPersonnelItem item];
         item.personModel = model;
         item.personnelSelectionHandler = ^(FSMeetingPersonnelModel *personModel) {
-#warning personnelSelectionHandler
-            NSLog(@"personnelSelectionHandler");
+            [self freshViews];
         };
         [self.m_PersonSection addItem:item];
     }
@@ -439,6 +439,17 @@
     }
 
     return [NSArray arrayWithArray:temp];
+}
+
+- (NSString *)selectedLitigantCount {
+    NSInteger count = 0;
+    for (FSMeetingPersonnelModel *model in self.m_AttendedList)
+    {
+        if (model.isMediatorPerson || model.selectState == 1) {
+            count ++;
+        }
+    }
+    return [NSString stringWithFormat:@"参与人员：%@人",@(count)];
 }
 
 - (void)updateAttendedLitWithoutMediator:(NSArray *)list
