@@ -216,7 +216,10 @@
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
     [self shouldUpdatePickerText];
-    
+    if (self.item.onChange)
+    {
+        self.item.onChange(self.item);
+    }
     return YES;
 }
 
