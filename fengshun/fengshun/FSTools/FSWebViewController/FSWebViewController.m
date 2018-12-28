@@ -361,7 +361,7 @@
     }
     else
     {
-        newAgent = @"";
+        newAgent = oldAgent;
     }
     
     //add my info to the new agent
