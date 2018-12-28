@@ -45,6 +45,17 @@
     [self bm_setNavigationWithTitle:@"" barTintColor:nil leftDicArray:nil rightDicArray:@[ [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"community_more" toucheEvent:@"moreAction" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0]]];
     
     [self bringSomeViewToFront];
+<<<<<<< HEAD
+=======
+    
+    // 1.1需求 添加完善资料功能，是否有昵称，是否认证
+    BMWeakSelf
+    [self registerHander:@"toAuth" handler:^(id data, WVJBResponseCallback responseCallback) {
+        NSDictionary *resultDic = [NSDictionary bm_dictionaryWithJsonString:[NSString stringWithFormat:@"%@",data]];
+        FSAuthVC *vc = [FSAuthVC vcWithAuthType:[resultDic bm_intForKey:@"type"]];
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+    }];
+>>>>>>> c363078... 添加0.5小时，加了点备注
 }
 
 - (void)didReceiveMemoryWarning
