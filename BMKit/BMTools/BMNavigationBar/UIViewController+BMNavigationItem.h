@@ -14,7 +14,7 @@
 #define BMNAVIGATION_BTNITEM_SELECTOR_KEY   @"selector"
 #define BMNAVIGATION_BTNITEM_EDGESTYLE_KEY  @"edgeStyle"
 #define BMNAVIGATION_BTNITEM_GAP_KEY        @"gap"
-#define BMNAVIGATION_ITEM_MIXWIDTH        44.0f
+#define BMNAVIGATION_ITEM_MINWIDTH          (40.0f)
 
 #pragma mark - NavigationItem
 

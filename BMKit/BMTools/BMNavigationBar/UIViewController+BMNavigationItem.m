@@ -301,7 +301,7 @@
                     // Set the rendering mode to respect tint color
                     UIImage *tintItemImage = [itemImage imageWithRenderingMode:UIImageRenderingModeAutomatic];
                     CGFloat width = itemImage.size.width+size.width+gap;
-                    CGFloat height = itemImage.size.height>size.height ? itemImage.size.height  : size.height;
+                    CGFloat height = itemImage.size.height>size.height ? itemImage.size.height : size.height;
                     btn.frame = CGRectMake(0, 0, width, height);
                     [btn setImage:tintItemImage forState:UIControlStateNormal];
                     [btn setBackgroundImage:nil forState:UIControlStateNormal];
@@ -327,7 +327,26 @@
             {
                 // Set the rendering mode to respect tint color
                 UIImage *tintItemImage = [itemImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-                btn.frame = CGRectMake(0, 0, itemImage.size.width, itemImage.size.height);
+                CGFloat width = itemImage.size.width;
+                CGFloat height = itemImage.size.height;
+                if (width < BMNAVIGATION_ITEM_MINWIDTH || height < BMNAVIGATION_ITEM_MINWIDTH)
+                {
+                    if (width == height)
+                    {
+                        width = BMNAVIGATION_ITEM_MINWIDTH;
+                        height = BMNAVIGATION_ITEM_MINWIDTH;
+                    }
+                    else
+                    {
+                        CGFloat max = MAX(width, height);
+                        if (max < BMNAVIGATION_ITEM_MINWIDTH)
+                        {
+                            width = width * BMNAVIGATION_ITEM_MINWIDTH / max;
+                            height = width * BMNAVIGATION_ITEM_MINWIDTH / max;
+                        }
+                    }
+                }
+                btn.frame = CGRectMake(0, 0, width, height);
                 [btn setBackgroundImage:tintItemImage forState:UIControlStateNormal];
                 [btn setImage:nil forState:UIControlStateNormal];
             }
