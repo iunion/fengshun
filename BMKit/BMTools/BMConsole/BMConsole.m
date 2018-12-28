@@ -1567,7 +1567,7 @@ static void exceptionHandler(NSException *exception)
         [helpStr appendString:@"(07) 'cp' 显示隐藏颜色提取\n"];
         [helpStr appendString:@"(08) 'gps' 模拟GPS定位数据\n"];
         [helpStr appendString:@"(09) 'mn' 网络监控开关\n"];
-        [helpStr appendString:@"(10) 'mf' 网络监控表\n"];
+        [helpStr appendString:@"(10) 'nf' 网络监控表\n"];
 
         [BMConsole log:@"%@", helpStr];
     }
