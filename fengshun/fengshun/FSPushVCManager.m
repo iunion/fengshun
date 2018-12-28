@@ -58,7 +58,6 @@
 + (FSTopicDetailVC *)showTopicDetail:(UIViewController *)pushVC topicId:(NSString *)topicId{
     FSTopicDetailVC *vc = [[FSTopicDetailVC alloc] initWithTitle:@"" url:[NSString stringWithFormat:@"%@/note/%@",FS_H5_SERVER,topicId] showLoadingBar:NO  loadingBarColor:nil delegate:nil topicId:[topicId integerValue]];
     vc.hidesBottomBarWhenPushed = YES;
-    vc.m_ManageKeyBoard = YES;
     [pushVC.navigationController pushViewController:vc animated:YES];
     return vc;
 }
@@ -236,7 +235,6 @@
 + (void)viewController:(UIViewController *)vc pushToCourseDetailWithId:(NSString *)CourseId andIsSerial:(BOOL)isSerial
 {
     FSWebViewController *webVC = [[FSWebViewController alloc] initWithTitle:nil url:[NSString stringWithFormat:@"%@/%@/%@",FS_H5_SERVER,isSerial?@"imgWordsSeries":@"comment",CourseId] showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR delegate:nil];
-    webVC.m_ManageKeyBoard = YES;
     webVC.hidesBottomBarWhenPushed = YES;
     [vc.navigationController pushViewController:webVC animated:YES];
 

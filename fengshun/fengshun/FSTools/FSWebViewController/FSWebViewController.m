@@ -68,6 +68,9 @@
 // 刷新还是复制
 @property (nonatomic, assign) BOOL m_IsRefresh;
 
+// 监听键盘事件,改变webview尺寸,以解决键盘遮挡输入框的问题(暂时不开放)
+//@property (nonatomic, assign) BOOL m_ManageKeyBoard;
+
 @end
 
 @implementation FSWebViewController
@@ -206,7 +209,7 @@
     
     [self makeWebView];
     
-    [self needAddKeyBoardNotificationObserver:_m_ManageKeyBoard];
+    [self needAddKeyBoardNotificationObserver:NO];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(makeWebView) name:userInfoChangedNotification object:nil];
     // 案例、法规、文书详情右上角…分享菜单中“复制链接”功能 改为刷新 
      self.m_IsRefresh = [self.m_UrlString containsString:@"Law"] || [self.m_UrlString containsString:@"caseGuide"] || [self.m_UrlString containsString:@"caseDetail"] || [self.m_UrlString containsString:@"law"];
@@ -299,6 +302,11 @@
     if (added) {
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyBoardDidShow:) name:UIKeyboardDidShowNotification object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    }
+    else
+    {
+        [[NSNotificationCenter defaultCenter]removeObserver:self name:UIKeyboardDidShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter]removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     }
 }
 - (void)keyBoardDidShow:(NSNotification *)note
@@ -687,6 +695,7 @@
 //        [weakSelf showPhoto:newURL];
     }];
     
+    
     // 复制文本到粘贴板
     [self.m_WebView registerHandler:@"copy" handler:^(id data, WVJBResponseCallback responseCallback) {
         BMLog(@"copy called: %@", data);
@@ -711,6 +720,12 @@
 #endif
     
     BMWeakSelf
+    //  添加键盘管理
+    [self.m_WebView registerHandler:@"manageKeyboard" handler:^(NSString *jsonStr, WVJBResponseCallback responseCallback) {
+        NSDictionary *data = [NSDictionary bm_dictionaryWithJsonString:jsonStr];
+        [weakSelf needAddKeyBoardNotificationObserver:[data bm_boolForKey:@"shouldManage"]];
+    }];
+    
     // 登录
     [self.m_WebView registerHandler:@"toLogin" handler:^(id data, WVJBResponseCallback responseCallback) {
         BMLog(@"login called: %@", data);
