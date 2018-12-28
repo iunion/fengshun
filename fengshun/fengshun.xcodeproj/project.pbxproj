@@ -466,6 +466,8 @@
 		87426AF521353510003C52F6 /* FSDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AF321353510003C52F6 /* FSDB.m */; };
 		87426AF621353510003C52F6 /* FSDBVersionCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AF421353510003C52F6 /* FSDBVersionCheck.m */; };
 		87426AF9213536AC003C52F6 /* FSUserInfoDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426AF8213536AC003C52F6 /* FSUserInfoDB.m */; };
+		87470BC421D5C69A00BBE340 /* BMChineseSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 87470BC321D5C69A00BBE340 /* BMChineseSort.m */; };
+		87470BC521D5C69A00BBE340 /* BMChineseSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 87470BC321D5C69A00BBE340 /* BMChineseSort.m */; };
 		874C23A9215B2400001C8BE9 /* FSMyCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 874C23A8215B2400001C8BE9 /* FSMyCollectionModel.m */; };
 		874C23AA215B2400001C8BE9 /* FSMyCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 874C23A8215B2400001C8BE9 /* FSMyCollectionModel.m */; };
 		874C23AE215B288F001C8BE9 /* FSMyCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 874C23AC215B288F001C8BE9 /* FSMyCollectionCell.m */; };
@@ -3108,6 +3110,8 @@
 		87426AF421353510003C52F6 /* FSDBVersionCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSDBVersionCheck.m; sourceTree = "<group>"; };
 		87426AF7213536AC003C52F6 /* FSUserInfoDB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSUserInfoDB.h; sourceTree = "<group>"; };
 		87426AF8213536AC003C52F6 /* FSUserInfoDB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSUserInfoDB.m; sourceTree = "<group>"; };
+		87470BC221D5C69A00BBE340 /* BMChineseSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMChineseSort.h; sourceTree = "<group>"; };
+		87470BC321D5C69A00BBE340 /* BMChineseSort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMChineseSort.m; sourceTree = "<group>"; };
 		874C23A7215B2400001C8BE9 /* FSMyCollectionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMyCollectionModel.h; sourceTree = "<group>"; };
 		874C23A8215B2400001C8BE9 /* FSMyCollectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMyCollectionModel.m; sourceTree = "<group>"; };
 		874C23AB215B288F001C8BE9 /* FSMyCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMyCollectionCell.h; sourceTree = "<group>"; };
@@ -5208,6 +5212,7 @@
 				87426820212E7E35003C52F6 /* BMAlignedImageView */,
 				87426827212E7E35003C52F6 /* BMBadge */,
 				87426800212E7E35003C52F6 /* BMCheckBox */,
+				87470BC121D5C69A00BBE340 /* BMChineseStringSort */,
 				876BB7AC21AE34E700FC205D /* BMConsole */,
 				8704B38D219C137800DBBC53 /* BMCountDownManager */,
 				8742680A212E7E35003C52F6 /* BMDatePicker */,
@@ -6165,6 +6170,15 @@
 				87426AF421353510003C52F6 /* FSDBVersionCheck.m */,
 			);
 			path = FSDB;
+			sourceTree = "<group>";
+		};
+		87470BC121D5C69A00BBE340 /* BMChineseStringSort */ = {
+			isa = PBXGroup;
+			children = (
+				87470BC221D5C69A00BBE340 /* BMChineseSort.h */,
+				87470BC321D5C69A00BBE340 /* BMChineseSort.m */,
+			);
+			path = BMChineseStringSort;
 			sourceTree = "<group>";
 		};
 		874C23A6215B23E5001C8BE9 /* FSCollection */ = {
@@ -9393,6 +9407,7 @@
 				87D20AB4213920E2001EDD60 /* FLEXToolbarItem.m in Sources */,
 				8730B0542140FFA3004331A9 /* DTHTMLAttributedStringBuilder.m in Sources */,
 				874268AD212E7E36003C52F6 /* BMTableViewMaskTextCell.m in Sources */,
+				87470BC421D5C69A00BBE340 /* BMChineseSort.m in Sources */,
 				AD9355A42137D24100735C2E /* UIView+Layout.m in Sources */,
 				AD2244A0213CD6C300F2DC47 /* View+MASAdditions.m in Sources */,
 				874268D4212E7E36003C52F6 /* BMCheckBox.m in Sources */,
@@ -9887,6 +9902,7 @@
 				87E7C38A21509AB000F7AB14 /* BMTableViewActionBar.m in Sources */,
 				87E7C38B21509AB000F7AB14 /* MASViewAttribute.m in Sources */,
 				87E7C38C21509AB000F7AB14 /* FLEXArgumentInputTextView.m in Sources */,
+				87470BC521D5C69A00BBE340 /* BMChineseSort.m in Sources */,
 				87E7C38D21509AB000F7AB14 /* ZFUtilities.m in Sources */,
 				87E7C38E21509AB000F7AB14 /* DTObjectBlockExecutor.m in Sources */,
 				87E7C38F21509AB000F7AB14 /* FLEXInstancesTableViewController.m in Sources */,
