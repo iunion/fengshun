@@ -502,7 +502,7 @@
             }
             else
             {
-                NSDictionary *btnItem1 = [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"navigationbar_back_icon" toucheEvent:@"backAction:" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0];
+                NSDictionary *btnItem1 = [self bm_makeBarButtonDictionaryWithTitle:nil image:@"navigationbar_back_icon" toucheEvent:@"backAction:" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0];
                 self.m_NavLeftBtnArray = @[btnItem1];
                 [self updateNavWithLeftArray:self.m_NavLeftBtnArray rightArray:self.m_NavRightBtnArray];
                 
@@ -530,13 +530,20 @@
     }
 }
 
+- (void)setNavWithTitle:(NSString *)title leftArray:(NSArray *)larray rightArray:(NSArray *)rarray;
+{
+    self.m_Title = title;
+    
+    [self updateNavWithLeftArray:larray rightArray:rarray];
+}
+
 - (void)updateNavWithLeftArray:(NSArray *)larray rightArray:(NSArray *)rarray
 {
     if (self.m_ShowNavBack)
     {
         if (![larray bm_isNotEmpty])
         {
-            NSDictionary *btnItem = [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"navigationbar_back_icon" toucheEvent:@"backAction:" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0];
+            NSDictionary *btnItem = [self bm_makeBarButtonDictionaryWithTitle:nil image:@"navigationbar_back_icon" toucheEvent:@"backAction:" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0];
             larray = @[btnItem];
         }
     }
@@ -547,8 +554,6 @@
     [self bm_setNavigationWithTitle:self.m_Title barTintColor:nil leftDicArray:larray rightDicArray:rarray];
     [GetAppDelegate.m_TabBarController hideOriginTabBar];
 }
-
-
 
 
 #pragma mark -
@@ -769,7 +774,8 @@
 // 添加更多按钮
 - (void)addRightBtn
 {
-    [self bm_setNavigationWithTitle:self.m_WebView.title barTintColor:nil leftDicArray:nil rightDicArray:@[ [self bm_makeBarButtonDictionaryWithTitle:nil image:@"community_more" toucheEvent:@"moreAction" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0]]];
+    [self updateNavWithLeftArray:self.m_NavLeftBtnArray rightArray:@[ [self bm_makeBarButtonDictionaryWithTitle:nil image:@"navigationbar_more_icon" toucheEvent:@"moreAction" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0]]];
+    //[self bm_setNavigationWithTitle:self.m_WebView.title barTintColor:nil leftDicArray:nil rightDicArray:@[ [self bm_makeBarButtonDictionaryWithTitle:nil image:@"navigationbar_more_icon" toucheEvent:@"moreAction" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0]]];
 }
 
 // 更多按钮
@@ -797,7 +803,10 @@
         
     }];
 }
+
+
 #pragma mark - moreAlert
+
 - (void)moreViewClickWithType:(NSInteger)index
 {
     if (index < 5)

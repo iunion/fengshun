@@ -58,6 +58,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setWebFrame:(CGRect)frame;
 
+- (void)setNavWithTitle:(nullable NSString *)title leftArray:(nullable NSArray *)larray rightArray:(nullable  NSArray *)rarray;
+
 @end
 
 @protocol FSWebViewControllerDelegate <NSObject>
