@@ -46,7 +46,7 @@
 // 添加更多按钮
 - (void)addRightBtn
 {
-    [self bm_setNavigationWithTitle:@"文书范本" barTintColor:nil leftDicArray:nil rightDicArray:@[ [self bm_makeBarButtonDictionaryWithTitle:nil image:@"community_more" toucheEvent:@"moreAction" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0]]];
+    [self setNavWithTitle:@"文书范本" leftArray:nil rightArray:@[ [self bm_makeBarButtonDictionaryWithTitle:nil image:@"navigationbar_more_icon" toucheEvent:@"moreAction" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0]]];
 }
 // 更多按钮
 - (void)moreAction
