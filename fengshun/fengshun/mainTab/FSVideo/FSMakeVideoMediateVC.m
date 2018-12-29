@@ -402,12 +402,9 @@
         FSMeetingPersonnelItem *item = [FSMeetingPersonnelItem item];
         item.personModel = model;
         item.personnelSelectionHandler = ^(FSMeetingPersonnelModel *personModel) {
-<<<<<<< HEAD
 #warning personnelSelectionHandler
             NSLog(@"personnelSelectionHandler");
-=======
             [weakSelf freshViews];
->>>>>>> origin/master
         };
         [self.m_PersonSection addItem:item];
     }
