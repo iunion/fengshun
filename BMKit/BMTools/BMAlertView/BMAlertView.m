@@ -1080,7 +1080,7 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
 - (void)doCompletion:(id)sender
 {
     BOOL cancelled = NO;
-    if (sender == self.tapOutside || self.topRightCloseBtn || (self.buttonArray.count > 0 && sender == self.buttonArray[0]))
+    if (sender == self.tapOutside || sender == self.topRightCloseBtn || (self.buttonArray.count > 0 && sender == self.buttonArray[0]))
     {
         cancelled = YES;
     }
