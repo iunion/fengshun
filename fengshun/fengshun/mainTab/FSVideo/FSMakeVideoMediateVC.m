@@ -396,9 +396,9 @@
     self.m_PersonSection.headerView = view;
     
     [self.m_PersonSection removeAllItems];
+    BMWeakSelf
     for (FSMeetingPersonnelModel *model in self.m_AttendedList)
     {
-        BMWeakSelf
         FSMeetingPersonnelItem *item = [FSMeetingPersonnelItem item];
         item.personModel = model;
         item.personnelSelectionHandler = ^(FSMeetingPersonnelModel *personModel) {
