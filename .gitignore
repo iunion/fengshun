@@ -2,6 +2,7 @@
 .DS_Store
 *.xcbkptlist
 IDEWorkspaceChecks.plist
+IDEFindNavigatorScopes.plist
 UserInterfaceState.xcuserstate
 xcschememanagement.plist
 WorkspaceSettings.xcsettings
