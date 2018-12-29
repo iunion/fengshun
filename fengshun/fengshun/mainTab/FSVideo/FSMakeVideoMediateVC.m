@@ -355,7 +355,7 @@
     else
     {
         self.m_CreateModel.meetingType = [FSMeetingDataEnum meetingTypeMediateEnglish];
-        self.m_CreateModel.orderHour = @"0.5";
+        self.m_CreateModel.orderHour = @"1";
         NSString *value = [NSString stringWithFormat:@"%@小时", self.m_CreateModel.orderHour];
         self.m_TimeLengthItem.values = @[value];
     }

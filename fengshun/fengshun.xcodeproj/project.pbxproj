@@ -10674,7 +10674,7 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bmsoft.FSfengshun;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bmsoft.FS.fengshun;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -10737,7 +10737,7 @@
 					"-ObjC",
 					"-lxml2",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bmsoft.FSfengshun;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bmsoft.FS.fengshun;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
