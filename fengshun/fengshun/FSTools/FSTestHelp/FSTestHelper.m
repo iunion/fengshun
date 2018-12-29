@@ -290,8 +290,11 @@
     
     [BMConsole log:@"切换环境，视频功能需要重启app"];
     
-    [BMAlertView showAlertWithTitle:@"切换环境，视频功能需要重启app" message:nil cancelTitle:@"确定" completion:^(BOOL cancelled, NSInteger buttonIndex) {
-        [self exitApplication ];
+    [BMAlertView showAlertWithTitle:@"切换环境，视频功能需要重启app" message:nil cancelTitle:@"取消" otherTitle:@"重启" completion:^(BOOL cancelled, NSInteger buttonIndex) {
+        if (!cancelled)
+        {
+            [self exitApplication ];
+        }
     }];
 }
 
