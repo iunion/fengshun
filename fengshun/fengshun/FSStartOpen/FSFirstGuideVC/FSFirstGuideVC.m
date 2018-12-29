@@ -46,7 +46,7 @@
         }
         else if (IS_IPHONE5)
         {
-            imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"fsintroguide_640X1136_%@", @(i+1)]];
+            imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"fsintroguide_640x1136_%@", @(i+1)]];
         }
         else if (IS_IPHONE6)
         {

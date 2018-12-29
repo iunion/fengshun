@@ -226,7 +226,7 @@
         [helpStr appendString:@"(12) 'cp' 显示隐藏颜色提取\n"];
         [helpStr appendString:@"(13) 'gps' 模拟GPS定位数据\n"];
         [helpStr appendString:@"(14) 'mn' 网络监控开关\n"];
-        [helpStr appendString:@"(15) 'mf' 网络监控表\n"];
+        [helpStr appendString:@"(15) 'nf' 网络监控表\n"];
 
         [BMConsole log:@"%@", helpStr];
     }

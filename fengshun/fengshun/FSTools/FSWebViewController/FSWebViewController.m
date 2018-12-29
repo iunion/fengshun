@@ -408,7 +408,7 @@
     
     //add my info to the new agent
    
-    BMLog(@"new agent :%@", newAgent);
+    BMLog(@"++++[new agent]:%@", newAgent);
     
     //regist the new agent
     NSDictionary *dictionnary = [[NSDictionary alloc] initWithObjectsAndKeys:newAgent, @"UserAgent", nil];
