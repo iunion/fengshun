@@ -304,7 +304,7 @@
                     CGFloat height = itemImage.size.height>size.height ? itemImage.size.height : size.height;
                     btn.frame = CGRectMake(0, 0, width, height);
                     [btn setImage:tintItemImage forState:UIControlStateNormal];
-                    [btn setBackgroundImage:nil forState:UIControlStateNormal];
+                    //[btn setBackgroundImage:nil forState:UIControlStateNormal];
                     
                     [btn bm_layoutButtonWithEdgeInsetsStyle:edgeInsetsStyle imageTitleGap:gap];
                 }
@@ -347,8 +347,8 @@
                     }
                 }
                 btn.frame = CGRectMake(0, 0, width, height);
-                btn.contentHorizontalAlignment = isRightItem?2:1;
-//                [btn setBackgroundImage:tintItemImage forState:UIControlStateNormal];
+                btn.contentHorizontalAlignment = isRightItem ? UIControlContentHorizontalAlignmentRight : UIControlContentHorizontalAlignmentLeft;
+                //[btn setBackgroundImage:tintItemImage forState:UIControlStateNormal];
                 [btn setImage:tintItemImage forState:UIControlStateNormal];
             }
         }
@@ -373,7 +373,7 @@
             NSString *imageName = [dic objectForKey:BMNAVIGATION_BTNITEM_IMAGE_KEY];
             SEL aSelector = NSSelectorFromString([dic objectForKey:BMNAVIGATION_BTNITEM_SELECTOR_KEY]);
             BMButtonEdgeInsetsStyle edgeInsetsStyle = [dic bm_uintForKey:BMNAVIGATION_BTNITEM_EDGESTYLE_KEY withDefault:BMButtonEdgeInsetsStyleImageRight];
-            CGFloat gap = [dic bm_uintForKey:BMNAVIGATION_BTNITEM_GAP_KEY withDefault:2];
+            CGFloat gap = [dic bm_uintForKey:BMNAVIGATION_BTNITEM_GAP_KEY withDefault:2.0f];
             
             UIBarButtonItem *buttonItem = [self makeBarButton:title image:imageName toucheEvent:aSelector buttonEdgeInsetsStyle:edgeInsetsStyle imageTitleGap:gap isRightItem:isRightItem];
             [btnArray addObject:buttonItem];
