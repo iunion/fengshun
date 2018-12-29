@@ -21,6 +21,8 @@
 #import "AppDelegate.h"
 #import "FSWebViewController.h"
 
+#import "BMAlertView.h"
+
 @implementation FSTestHelper
 
 - (void)dealloc
@@ -151,62 +153,86 @@
     else if ([command isEqualToString:@"www"] || [command isEqualToString:@"on"])
     {
         ret = YES;
-        [[NSUserDefaults standardUserDefaults] setObject:FS_URL_SERVER_ONLINE forKey:FS_URL_SERVER_KEY];
-        [[NSUserDefaults standardUserDefaults] setObject:FS_H5_SERVER_ONLINE forKey:FS_H5_SERVER_KEY];
-        [[NSUserDefaults standardUserDefaults] setObject:FS_FILE_ADDRESS_ONLINE forKey:FS_FILE_ADDRESS_KEY];
-        [[NSUserDefaults standardUserDefaults] setObject:FS_CASE_STATUTE_ONLINE forKey:FS_CASE_STATUTE_URL_KEY];
-        [[NSUserDefaults standardUserDefaults] setObject:FS_AI_SERVER_ONLINE forKey:FS_AI_SERVER_KEY];
+        NSString *server = [[NSUserDefaults standardUserDefaults] objectForKey:FS_URL_SERVER_KEY];
+        if (![server isEqualToString:FS_URL_SERVER_ONLINE])
+        {
+            [[NSUserDefaults standardUserDefaults] setObject:FS_URL_SERVER_ONLINE forKey:FS_URL_SERVER_KEY];
+            [[NSUserDefaults standardUserDefaults] setObject:FS_H5_SERVER_ONLINE forKey:FS_H5_SERVER_KEY];
+            [[NSUserDefaults standardUserDefaults] setObject:FS_FILE_ADDRESS_ONLINE forKey:FS_FILE_ADDRESS_KEY];
+            [[NSUserDefaults standardUserDefaults] setObject:FS_CASE_STATUTE_ONLINE forKey:FS_CASE_STATUTE_URL_KEY];
+            [[NSUserDefaults standardUserDefaults] setObject:FS_AI_SERVER_ONLINE forKey:FS_AI_SERVER_KEY];
 #ifdef FSVIDEO_ON
-        [[NSUserDefaults standardUserDefaults] setObject:@(FS_ILiveSDKAPPID_ONLINE) forKey:FS_ILiveSDKAPPID_KEY];
-        [[NSUserDefaults standardUserDefaults] setObject:@(FS_ILiveAccountType_ONLINE) forKey:FS_ILiveAccountType_KEY];
+            [[NSUserDefaults standardUserDefaults] setObject:@(FS_ILiveSDKAPPID_ONLINE) forKey:FS_ILiveSDKAPPID_KEY];
+            [[NSUserDefaults standardUserDefaults] setObject:@(FS_ILiveAccountType_ONLINE) forKey:FS_ILiveAccountType_KEY];
 #endif
-        [[NSUserDefaults standardUserDefaults] synchronize];
-
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
 #ifdef FSVIDEO_ON
-        [self initILiveSDK];
+            [self initILiveSDK];
 #endif
-        
-        [BMConsole log:@"当前api已经变更为线上"];
+            
+            [BMConsole log:@"当前api已经变更为'线上'"];
+        }
+        else
+        {
+            [BMConsole log:@"当前api运行环境为'线上'"];
+        }
     }
     else if ([command isEqualToString:@"dev"])
     {
         ret = YES;
-        [[NSUserDefaults standardUserDefaults] setObject:FS_URL_SERVER_DEV forKey:FS_URL_SERVER_KEY];
-        [[NSUserDefaults standardUserDefaults] setObject:FS_H5_SERVER_DEV forKey:FS_H5_SERVER_KEY];
-        [[NSUserDefaults standardUserDefaults] setObject:FS_FILE_ADDRESS_DEV forKey:FS_FILE_ADDRESS_KEY];
-        [[NSUserDefaults standardUserDefaults] setObject:FS_CASE_STATUTE_DEV forKey:FS_CASE_STATUTE_URL_KEY];
-        [[NSUserDefaults standardUserDefaults] setObject:FS_AI_SERVER_DEV forKey:FS_AI_SERVER_KEY];
+        NSString *server = [[NSUserDefaults standardUserDefaults] objectForKey:FS_URL_SERVER_KEY];
+        if (![server isEqualToString:FS_URL_SERVER_DEV])
+        {
+            [[NSUserDefaults standardUserDefaults] setObject:FS_URL_SERVER_DEV forKey:FS_URL_SERVER_KEY];
+            [[NSUserDefaults standardUserDefaults] setObject:FS_H5_SERVER_DEV forKey:FS_H5_SERVER_KEY];
+            [[NSUserDefaults standardUserDefaults] setObject:FS_FILE_ADDRESS_DEV forKey:FS_FILE_ADDRESS_KEY];
+            [[NSUserDefaults standardUserDefaults] setObject:FS_CASE_STATUTE_DEV forKey:FS_CASE_STATUTE_URL_KEY];
+            [[NSUserDefaults standardUserDefaults] setObject:FS_AI_SERVER_DEV forKey:FS_AI_SERVER_KEY];
 #ifdef FSVIDEO_ON
-        [[NSUserDefaults standardUserDefaults] setObject:@(FS_ILiveSDKAPPID_DEV) forKey:FS_ILiveSDKAPPID_KEY];
-        [[NSUserDefaults standardUserDefaults] setObject:@(FS_ILiveAccountType_DEV) forKey:FS_ILiveAccountType_KEY];
+            [[NSUserDefaults standardUserDefaults] setObject:@(FS_ILiveSDKAPPID_DEV) forKey:FS_ILiveSDKAPPID_KEY];
+            [[NSUserDefaults standardUserDefaults] setObject:@(FS_ILiveAccountType_DEV) forKey:FS_ILiveAccountType_KEY];
 #endif
-        [[NSUserDefaults standardUserDefaults] synchronize];
+            [[NSUserDefaults standardUserDefaults] synchronize];
 
 #ifdef FSVIDEO_ON
-        [self initILiveSDK];
+            [self initILiveSDK];
 #endif
         
-        [BMConsole log:@"当前api已经变更为'开发'"];
+            [BMConsole log:@"当前api已经变更为'开发'"];
+        }
+        else
+        {
+            [BMConsole log:@"当前api运行环境为'开发'"];
+        }
     }
     else if ([command isEqualToString:@"test"])
     {
         ret = YES;
-        [[NSUserDefaults standardUserDefaults] setObject:FS_URL_SERVER_TEST forKey:FS_URL_SERVER_KEY];
-        [[NSUserDefaults standardUserDefaults] setObject:FS_H5_SERVER_TEST forKey:FS_H5_SERVER_KEY];
-        [[NSUserDefaults standardUserDefaults] setObject:FS_FILE_ADDRESS_TEST forKey:FS_FILE_ADDRESS_KEY];
-        [[NSUserDefaults standardUserDefaults] setObject:FS_CASE_STATUTE_TEST forKey:FS_CASE_STATUTE_URL_KEY];
-        [[NSUserDefaults standardUserDefaults] setObject:FS_AI_SERVER_TEST forKey:FS_AI_SERVER_KEY];
+        NSString *server = [[NSUserDefaults standardUserDefaults] objectForKey:FS_URL_SERVER_KEY];
+        if (![server isEqualToString:FS_URL_SERVER_TEST])
+        {
+            [[NSUserDefaults standardUserDefaults] setObject:FS_URL_SERVER_TEST forKey:FS_URL_SERVER_KEY];
+            [[NSUserDefaults standardUserDefaults] setObject:FS_H5_SERVER_TEST forKey:FS_H5_SERVER_KEY];
+            [[NSUserDefaults standardUserDefaults] setObject:FS_FILE_ADDRESS_TEST forKey:FS_FILE_ADDRESS_KEY];
+            [[NSUserDefaults standardUserDefaults] setObject:FS_CASE_STATUTE_TEST forKey:FS_CASE_STATUTE_URL_KEY];
+            [[NSUserDefaults standardUserDefaults] setObject:FS_AI_SERVER_TEST forKey:FS_AI_SERVER_KEY];
 #ifdef FSVIDEO_ON
-        [[NSUserDefaults standardUserDefaults] setObject:@(FS_ILiveSDKAPPID_TEST) forKey:FS_ILiveSDKAPPID_KEY];
-        [[NSUserDefaults standardUserDefaults] setObject:@(FS_ILiveAccountType_TEST) forKey:FS_ILiveAccountType_KEY];
+            [[NSUserDefaults standardUserDefaults] setObject:@(FS_ILiveSDKAPPID_TEST) forKey:FS_ILiveSDKAPPID_KEY];
+            [[NSUserDefaults standardUserDefaults] setObject:@(FS_ILiveAccountType_TEST) forKey:FS_ILiveAccountType_KEY];
 #endif
-        [[NSUserDefaults standardUserDefaults] synchronize];
+            [[NSUserDefaults standardUserDefaults] synchronize];
 
 #ifdef FSVIDEO_ON
-        [self initILiveSDK];
+            [self initILiveSDK];
 #endif
 
-        [BMConsole log:@"当前api已经变更为'测试'"];
+            [BMConsole log:@"当前api已经变更为'测试'"];
+        }
+        else
+        {
+            [BMConsole log:@"当前api运行环境为'测试'"];
+        }
     }
     else if ([command isEqualToString:@"h"] || [command isEqualToString:@"help"]) // help命令
     {
@@ -252,14 +278,33 @@
 #ifdef FSVIDEO_ON
 - (void)initILiveSDK
 {
+    // 重新初始化无用，所以需要重启app
     // 初始化SDK
-    [[ILiveSDK getInstance] initSdk:(int)FS_ILiveSDKAPPID accountType:(int)FS_ILiveAccountType];
-    [[ILiveSDK getInstance] setChannelMode:E_ChannelIMSDK withHost:@""];
+    //[[ILiveSDK getInstance] initSdk:(int)FS_ILiveSDKAPPID accountType:(int)FS_ILiveAccountType];
+    //[[ILiveSDK getInstance] setChannelMode:E_ChannelIMSDK withHost:@""];
     
     // 获取版本号
-    NSLog(@"ILiveSDK version:%@", [[ILiveSDK getInstance] getVersion]);
-    NSLog(@"AVSDK version:%@", [QAVContext getVersion]);
-    NSLog(@"IMSDK version:%@", [[TIMManager sharedInstance] GetVersion]);
+    //NSLog(@"ILiveSDK version:%@", [[ILiveSDK getInstance] getVersion]);
+    //NSLog(@"AVSDK version:%@", [QAVContext getVersion]);
+    //NSLog(@"IMSDK version:%@", [[TIMManager sharedInstance] GetVersion]);
+    
+    [BMConsole log:@"切换环境，视频功能需要重启app"];
+    
+    [BMAlertView showAlertWithTitle:@"切换环境，视频功能需要重启app" message:nil cancelTitle:@"确定" completion:^(BOOL cancelled, NSInteger buttonIndex) {
+        [self exitApplication ];
+    }];
+}
+
+- (void)exitApplication
+{
+    UIWindow *window = GetAppDelegate.window;
+    
+    [UIView animateWithDuration:1.0f animations:^{
+        window.alpha = 0;
+        window.frame = CGRectMake(0, window.bounds.size.width, 0, 0);
+    } completion:^(BOOL finished) {
+        exit(0);
+    }];
 }
 #endif
 
