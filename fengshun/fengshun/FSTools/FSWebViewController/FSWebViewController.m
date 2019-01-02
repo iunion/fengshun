@@ -1,4 +1,4 @@
- //
+//
 //  FSWebViewController.m
 //  miaoqian
 //
@@ -123,8 +123,8 @@
 
 - (void)loadJsExamplePage:(UIWebView *)webView
 {
-    NSString* htmlPath = [[NSBundle mainBundle] pathForResource:@"ExampleApp" ofType:@"html"];
-    NSString* appHtml = [NSString stringWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:nil];
+    NSString *htmlPath = [[NSBundle mainBundle] pathForResource:@"ExampleApp" ofType:@"html"];
+    NSString *appHtml = [NSString stringWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:nil];
     NSURL *baseURL = [NSURL fileURLWithPath:htmlPath];
     [webView loadHTMLString:appHtml baseURL:baseURL];
 }
@@ -158,7 +158,7 @@
         }
         else if ([loadUrl containsString:@"www."])
         {
-            NSURLRequest * urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://%@",loadUrl]]];
+            NSURLRequest * urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://%@", loadUrl]]];
             [self.m_WebView loadRequest:urlRequest];
         }
         else
@@ -167,11 +167,14 @@
             NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
             NSString *filePath = [resourcePath stringByAppendingPathComponent:loadUrl];
             NSString *appHtml = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-            if (appHtml) {
+            if (appHtml)
+            {
                 NSURL *baseURL = [NSURL fileURLWithPath:filePath];
                 [self.m_WebView loadHTMLString:appHtml baseURL:baseURL];
-            }else{
-                NSURLRequest * urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://www.%@",loadUrl]]];
+            }
+            else
+            {
+                NSURLRequest * urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://www.%@", loadUrl]]];
                 [self.m_WebView loadRequest:urlRequest];
             }
 
@@ -210,7 +213,9 @@
     [self makeWebView];
     
     [self needAddKeyBoardNotificationObserver:NO];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(makeWebView) name:userInfoChangedNotification object:nil];
+    
     // 案例、法规、文书详情右上角…分享菜单中“复制链接”功能 改为刷新 
      self.m_IsRefresh = [self.m_UrlString containsString:@"Law"] || [self.m_UrlString containsString:@"caseGuide"] || [self.m_UrlString containsString:@"caseDetail"] || [self.m_UrlString containsString:@"law"];
 }
@@ -296,7 +301,10 @@
 {
     [self.m_WebView setFrame:frame];
 }
+
+
 #pragma mark - 原生对键盘事件的优化
+
 - (void)needAddKeyBoardNotificationObserver:(BOOL)added
 {
     if (added) {
@@ -309,6 +317,7 @@
         [[NSNotificationCenter defaultCenter]removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     }
 }
+
 - (void)keyBoardDidShow:(NSNotification *)note
 {
     UIView *webView = self.m_WebView.realWebView;
@@ -323,6 +332,7 @@
         webView.frame = CGRectMake(0, 0, fullWidth, fullHeight - keyboardSize.height);
     }];
 }
+
 // 键盘隐藏后将视图恢复到原始状态
 - (void)keyBoardWillHide:(NSNotification *)note
 {
@@ -334,6 +344,7 @@
         webView.frame = CGRectMake(0, 0, fullWidth, fullHeight);
     }];
 }
+
 
 #pragma mark -
 #pragma mark UserAgent
@@ -406,11 +417,11 @@
         newAgent = oldAgent;
     }
     
-    //add my info to the new agent
+    // add my info to the new agent
    
     BMLog(@"++++[new agent]:%@", newAgent);
     
-    //regist the new agent
+    // regist the new agent
     NSDictionary *dictionnary = [[NSDictionary alloc] initWithObjectsAndKeys:newAgent, @"UserAgent", nil];
     [[NSUserDefaults standardUserDefaults] registerDefaults:dictionnary];
 }
