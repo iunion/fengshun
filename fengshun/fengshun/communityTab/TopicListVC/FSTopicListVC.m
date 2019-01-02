@@ -33,17 +33,64 @@ FSTopicListVC ()
     self.m_LoadDataType = FSAPILoadDataType_Page;
     _currentPages = 1;
     [self createUI];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(freshTopic:) name:freshTopicNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteTopic:) name:deleteTopicNotification object:nil];
+    
     [self loadApiData];
 }
 
-
-- (void)didReceiveMemoryWarning
+- (void)freshTopic:(NSNotification *)notification
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    BOOL freshed = NO;
+    NSInteger topicId = [notification.userInfo bm_intForKey:@"topicId"];
+    if (topicId == 0)
+    {
+        return;
+    }
+    
+    for (FSTopicModel *topicModel in self.m_DataArray)
+    {
+        if ([topicModel.m_Id integerValue] == topicId)
+        {
+            freshed = YES;
+            break;
+        }
+    }
+    
+    if (freshed)
+    {
+        [self refreshVC];
+    }
 }
 
-- (void)refreshVC{
+- (void)deleteTopic:(NSNotification *)notification
+{
+    BOOL deleted = NO;
+    NSInteger topicId = [notification.userInfo bm_intForKey:@"topicId"];
+    if (topicId == 0)
+    {
+        return;
+    }
+    
+    for (FSTopicModel *topicModel in self.m_DataArray)
+    {
+        if ([topicModel.m_Id integerValue] == topicId)
+        {
+            [self.m_DataArray removeObject:topicModel];
+            deleted = YES;
+            break;
+        }
+    }
+    
+    if (deleted)
+    {
+        [self.m_TableView reloadData];
+    }
+}
+
+- (void)refreshVC
+{
     _currentPages = 1;
     [self loadApiData];
 }
@@ -68,7 +115,8 @@ FSTopicListVC ()
 
 - (NSMutableURLRequest *)setLoadDataRequestWithFresh:(BOOL)isLoadNew
 {
-    if (isLoadNew) {
+    if (isLoadNew)
+    {
         _currentPages = 1;
     }
     return [FSApiRequest getTopicListWithType:self.m_SortType forumId:self.m_ForumId pageIndex:_currentPages pageSize:10];
@@ -80,6 +128,7 @@ FSTopicListVC ()
     {
         return NO;
     }
+    
     NSMutableArray *arr = [NSMutableArray arrayWithCapacity:0];
     for (NSDictionary *dic in requestArray)
     {
@@ -89,10 +138,12 @@ FSTopicListVC ()
             NSArray *list = [[dic bm_dictionaryForKey:@"postInfo"] bm_arrayForKey:@"list"];
             NSInteger totalPages = [[dic bm_dictionaryForKey:@"postInfo"]bm_intForKey:@"totalPages"];
             _isLoadFinish = _currentPages >= totalPages;
-            if (!_isLoadFinish) {
-                _currentPages ++;
+            if (!_isLoadFinish)
+            {
+                _currentPages++;
             }
-            if (self.m_IsLoadNew) {
+            if (self.m_IsLoadNew)
+            {
                 [self.m_DataArray removeAllObjects];
             }
             if ([list bm_isNotEmpty])
@@ -108,13 +159,16 @@ FSTopicListVC ()
             }
         }
     }
+    
     [self.m_DataArray addObjectsFromArray:arr];
     [self.m_TableView reloadData];
     [self.m_ProgressHUD hideAnimated:YES];
+    
     return YES;
 }
 
-- (BOOL)checkLoadFinish:(NSDictionary *)requestDic{
+- (BOOL)checkLoadFinish:(NSDictionary *)requestDic
+{
     return _isLoadFinish;
 }
 
