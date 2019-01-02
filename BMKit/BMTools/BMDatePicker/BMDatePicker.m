@@ -75,7 +75,6 @@
     {
         scrollToDate = [NSDate date];
     }
-    self.pickerDate = scrollToDate;
     
     [self defaultConfig];
     
@@ -718,16 +717,16 @@
 
 - (void)yearChange:(NSInteger)row
 {
-    monthIndex = row%12;
+    monthIndex = row % 12;
     
     //年份状态变化
-    if (row-preIndex <12 && row-preIndex>0 && [_monthArray[monthIndex] integerValue] < [_monthArray[preIndex%12] integerValue])
+    if (row-preIndex < 12 && row-preIndex>0 && [_monthArray[monthIndex] integerValue] < [_monthArray[preIndex%12] integerValue])
     {
-        yearIndex ++;
+        yearIndex++;
     }
-    else if(preIndex-row <12 && preIndex-row > 0 && [_monthArray[monthIndex] integerValue] > [_monthArray[preIndex%12] integerValue])
+    else if(preIndex-row < 12 && preIndex-row > 0 && [_monthArray[monthIndex] integerValue] > [_monthArray[preIndex%12] integerValue])
     {
-        yearIndex --;
+        yearIndex--;
     }
     else
     {
@@ -808,6 +807,8 @@
         date = [NSDate date];
     }
     
+    self.pickerDate = date;
+
     [self DaysfromYear:date.bm_year andMonth:date.bm_month];
     
     yearIndex = date.bm_year-Picker_MinYear;

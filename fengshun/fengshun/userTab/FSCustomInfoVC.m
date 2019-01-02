@@ -325,6 +325,7 @@
         if (userInfo.m_UserBaseInfo.m_WorkingLife > 0)
         {
             text = [NSString stringWithFormat:@"%@年", @(userInfo.m_UserBaseInfo.m_WorkingLife)];
+            [self.m_PickerView scrollToDate:[NSDate bm_dateWithYear:userInfo.m_UserBaseInfo.m_EmploymentTime month:1 day:1] animated:YES];
         }
         else
         {
