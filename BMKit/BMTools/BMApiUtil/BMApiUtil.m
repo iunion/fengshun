@@ -14,9 +14,9 @@
 {
     if (!data)
     {
-        return nil;
+        return @"";
     }
-    NSString *jsonString = nil;
+    NSString *jsonString = @"";
     
     id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
     if ([NSJSONSerialization isValidJSONObject:jsonObject])
@@ -65,7 +65,7 @@
 
 + (NSData *)getHttpBodyFromRequest:(NSURLRequest *)request
 {
-    NSData *httpBody;
+    NSData *httpBody = nil;
     if (request.HTTPBody)
     {
         httpBody = request.HTTPBody;
@@ -99,7 +99,7 @@
 
 + (NSDictionary<NSString *, NSString *> *)getCookies:(NSURLRequest *)request
 {
-    NSDictionary<NSString *, NSString *> *cookiesHeader;
+    NSDictionary<NSString *, NSString *> *cookiesHeader = nil;
     NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     NSArray<NSHTTPCookie *> *cookies = [cookieStorage cookiesForURL:request.URL];
     if (cookies.count)
