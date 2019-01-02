@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSArray *components;
 @property (nullable, nonatomic, strong) NSArray *values;
 
+@property (nullable, nonatomic, strong) NSArray <NSNumber *> *pickerSelectedRowInComponent;
+
 @property (nullable, nonatomic, copy) NSString *placeholder;
 
 @property (nonatomic, assign) NSTextAlignment pickerTextAlignment;
