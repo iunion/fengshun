@@ -164,6 +164,12 @@
             {
                 btn.hidden = !self.m_isOwner;
             }
+            
+            // 举报不可用
+            if (btn.tag == 107)
+            {
+                btn.enabled = !self.m_isOwner;
+            }
 //            [btn bm_layoutButtonWithEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageTop imageTitleGap:5];
             
             CGFloat imageWidth = 30.0f;
