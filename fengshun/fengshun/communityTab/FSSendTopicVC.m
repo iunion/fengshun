@@ -316,6 +316,7 @@
         
         [weakSelf setHTML:[responseObject bm_stringForKey:@"content"]];
         weakSelf.m_TitleTextField.text = [responseObject bm_stringForKey:@"title"];
+        self.m_PlaceHolderLab.text = [NSString stringWithFormat:@"%@个字", @(Topic_MaxTextCount - self.m_TitleTextField.text.length)];
     } failure:^(NSError * _Nullable error) {
         
     }];
