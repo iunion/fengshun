@@ -316,11 +316,11 @@
         
         [weakSelf setHTML:[responseObject bm_stringForKey:@"content"]];
         weakSelf.m_TitleTextField.text = [responseObject bm_stringForKey:@"title"];
-        if (self.m_TitleTextField.text.length > Topic_MaxTextCount)
+        if (weakSelf.m_TitleTextField.text.length > Topic_MaxTextCount)
         {
-            self.m_TitleTextField.text = [self.m_TitleTextField.text substringToIndex:Topic_MaxTextCount];
+            weakSelf.m_TitleTextField.text = [weakSelf.m_TitleTextField.text substringToIndex:Topic_MaxTextCount];
         }
-        self.m_PlaceHolderLab.text = [NSString stringWithFormat:@"%@个字", @(Topic_MaxTextCount - self.m_TitleTextField.text.length)];
+        weakSelf.m_PlaceHolderLab.text = [NSString stringWithFormat:@"%@个字", @(Topic_MaxTextCount - weakSelf.m_TitleTextField.text.length)];
     } failure:^(NSError * _Nullable error) {
         
     }];
