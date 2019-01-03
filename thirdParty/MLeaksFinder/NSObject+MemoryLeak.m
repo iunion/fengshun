@@ -121,6 +121,8 @@ const void *const kLatestSenderKey = &kLatestSenderKey;
                      @"_UIAlertControllerActionView",
                      @"_UIVisualEffectBackdropView",
                      @"PublicTextChatViewController",
+                     @"FSTopicDetailVC",
+                     @"FSWebViewController",
                      nil];
         
         // System's bug since iOS 10 and not fixed yet up to this ci.
@@ -130,6 +132,7 @@ const void *const kLatestSenderKey = &kLatestSenderKey;
         }
         if ([systemVersion compare:@"11.0" options:NSNumericSearch] != NSOrderedAscending) {
             [whitelist addObject:@"UITextField"];
+            [whitelist addObject:@"BMInsetTextField"];
         }
     });
     return whitelist;
