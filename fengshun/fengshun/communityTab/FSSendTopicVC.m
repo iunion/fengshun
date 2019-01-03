@@ -302,6 +302,7 @@
                                  {
                                      weakSelf.sendPostsCallBack();
                                  }
+                                 [MBProgressHUD showHUDAddedTo:GetAppDelegate.window animated:YES withText:@"发帖成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
                                  [weakSelf.navigationController popViewControllerAnimated:YES];
                              }
                              failure:^(NSError *_Nullable error){
