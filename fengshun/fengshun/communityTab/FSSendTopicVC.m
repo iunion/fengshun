@@ -315,7 +315,6 @@
 {
     BMWeakSelf
     [FSApiRequest getTopicDetail:self.m_RelateId success:^(id  _Nullable responseObject) {
-        
         [weakSelf setHTML:[responseObject bm_stringForKey:@"content"]];
         weakSelf.m_TitleTextField.text = [responseObject bm_stringForKey:@"title"];
         if (weakSelf.m_TitleTextField.text.length > Topic_MaxTextCount)

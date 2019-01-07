@@ -538,6 +538,8 @@
 		87742012214C9E1600F72427 /* FSNoticeMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87742010214C9E1600F72427 /* FSNoticeMessageCell.xib */; };
 		87742016214C9EB200F72427 /* FSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 87742015214C9EB200F72427 /* FSMessage.m */; };
 		8774201C214F523700F72427 /* FSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8774201B214F523700F72427 /* FSAlertView.m */; };
+		8799F10B21E2E983006F6C5B /* UIDevice+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 8799F10A21E2E983006F6C5B /* UIDevice+Private.m */; };
+		8799F10C21E2E983006F6C5B /* UIDevice+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 8799F10A21E2E983006F6C5B /* UIDevice+Private.m */; };
 		87A0C16121CC814800B2BF1A /* FSComTopicListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A0C16021CC814800B2BF1A /* FSComTopicListVC.m */; };
 		87A0C16821CC8D3700B2BF1A /* FSBaseComTopicListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A0C16721CC8D3700B2BF1A /* FSBaseComTopicListVC.m */; };
 		87A0C16921CC8D3700B2BF1A /* FSBaseComTopicListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A0C16721CC8D3700B2BF1A /* FSBaseComTopicListVC.m */; };
@@ -3184,6 +3186,8 @@
 		87742015214C9EB200F72427 /* FSMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMessage.m; sourceTree = "<group>"; };
 		8774201A214F523700F72427 /* FSAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSAlertView.h; sourceTree = "<group>"; };
 		8774201B214F523700F72427 /* FSAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSAlertView.m; sourceTree = "<group>"; };
+		8799F10921E2E983006F6C5B /* UIDevice+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Private.h"; sourceTree = "<group>"; };
+		8799F10A21E2E983006F6C5B /* UIDevice+Private.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Private.m"; sourceTree = "<group>"; };
 		87A0C15F21CC814800B2BF1A /* FSComTopicListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSComTopicListVC.h; sourceTree = "<group>"; };
 		87A0C16021CC814800B2BF1A /* FSComTopicListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSComTopicListVC.m; sourceTree = "<group>"; };
 		87A0C16621CC8D3700B2BF1A /* FSBaseComTopicListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSBaseComTopicListVC.h; sourceTree = "<group>"; };
@@ -5545,6 +5549,8 @@
 				8742684D212E7E35003C52F6 /* UIColor+BMCategory.m */,
 				87426860212E7E35003C52F6 /* UIDevice+BMCategory.h */,
 				8742684F212E7E35003C52F6 /* UIDevice+BMCategory.m */,
+				8799F10921E2E983006F6C5B /* UIDevice+Private.h */,
+				8799F10A21E2E983006F6C5B /* UIDevice+Private.m */,
 				8742684B212E7E35003C52F6 /* UIFont+BMCategory.h */,
 				8742685A212E7E35003C52F6 /* UIFont+BMCategory.m */,
 				8742684E212E7E35003C52F6 /* UIImage+BMAssets.h */,
@@ -9322,6 +9328,7 @@
 				87F6397321533ADB0035E730 /* PLDictionaryTableViewController.m in Sources */,
 				87D20AC8213920E2001EDD60 /* FLEXArgumentInputNotSupportedView.m in Sources */,
 				8730B0C6214758F0004331A9 /* FSSetPhoneVC.m in Sources */,
+				8799F10B21E2E983006F6C5B /* UIDevice+Private.m in Sources */,
 				8730B07E2140FFA3004331A9 /* UIView+DTActionHandlers.m in Sources */,
 				874268D3212E7E36003C52F6 /* BMCheckBoxLabel.m in Sources */,
 				874268BD212E7E36003C52F6 /* BMTableViewItem.m in Sources */,
@@ -9694,6 +9701,7 @@
 				87E7C2C621509AB000F7AB14 /* ZSSFontsViewController.m in Sources */,
 				87E7C2C721509AB000F7AB14 /* UIView+ZFFrame.m in Sources */,
 				AD28473E21CCC751001009E9 /* FSInputTextView.m in Sources */,
+				8799F10C21E2E983006F6C5B /* UIDevice+Private.m in Sources */,
 				87E7C2C821509AB000F7AB14 /* ZFPlayerGestureControl.m in Sources */,
 				87E7C2C921509AB000F7AB14 /* FSTopicListVC.m in Sources */,
 				87E7C2CA21509AB000F7AB14 /* FLEXImageExplorerViewController.m in Sources */,
@@ -10519,6 +10527,7 @@
 					"GTMStackTrace*",
 					"PLArray*",
 					"PLDictionaryT*",
+					"UIDevice+Private*",
 				);
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
@@ -10707,6 +10716,7 @@
 					"GTMStackTrace*",
 					"PLArray*",
 					"PLDictionaryT*",
+					"UIDevice+Private*",
 				);
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",

@@ -11,6 +11,9 @@
 
 @interface UIDevice (BMCategory)
 
++ (NSString * _Nonnull)bm_deviceModel;
++ (NSString * _Nonnull)bm_localizedModel;
+
 /**
  *  平台
  *  Returns the device platform string
@@ -92,7 +95,13 @@
  */
 + (CGFloat)bm_iOSVersion;
 
+/** 获取设备上次重启的时间 */
++ (NSDate * _Nullable)bm_systemUptime;
+
+#pragma mark - CPU
+
 /**
+ *  获取CPU频率
  *  Returns the current device CPU frequency
  *
  *  @return Returns the current device CPU frequency
@@ -100,6 +109,7 @@
 + (NSUInteger)bm_cpuFrequency;
 
 /**
+ *  获取总线程频率
  *  Returns the current device BUS frequency
  *
  *  @return Returns the current device BUS frequency
@@ -121,6 +131,8 @@
  */
 + (NSUInteger)bm_cpuNumber;
 + (NSUInteger)bm_cpuAvailableCount;
+
+#pragma mark - Memory
 
 /**
  *  内存总量
@@ -144,6 +156,22 @@
 + (NSUInteger)bm_freeMemory;
 
 + (NSUInteger)bm_maxSocketBufferSize;
+
+/** 获取活跃的内存空间 */
++ (int64_t)bm_activeMemory;
+
+/** 获取不活跃的内存空间 */
++ (int64_t)bm_inActiveMemory;
+
+/** 获取存放内核的内存空间 */
++ (int64_t)bm_wiredMemory;
+
+/** 获取可释放的内存空间 */
++ (int64_t)bm_purgableMemory;
+
+#pragma mark - Disk
+
++ (NSString * _Nonnull)bm_applicationSize;
 
 /**
  *  磁盘总大小
@@ -190,42 +218,3 @@
 + (BOOL)bm_hasJailBroken;
 
 @end
-
-
-#if USE_TEST_HELP
-
-@interface UIDevice (Authority)
-
-// 地理位置权限
-+ (nonnull NSString *)locationAuthority;
-
-// 网络权限
-+ (nonnull NSString *)netAuthority;
-
-// push权限
-+ (nonnull NSString *)pushAuthority;
-
-// 拍照权限
-+ (nonnull NSString *)cameraAuthority;
-
-// 相册权限
-+ (nonnull NSString *)photoAuthority;
-
-// 麦克风权限
-+ (nonnull NSString *)audioAuthority;
-
-// 通讯录权限
-+ (nonnull NSString *)addressAuthority;
-
-// 日历权限
-+ (nonnull NSString *)calendarAuthority;
-
-// 提醒事项权限
-+ (nonnull NSString *)remindAuthority;
-
-// 蓝牙权限
-+ (nonnull NSString *)bluetoothAuthority;
-
-@end
-
-#endif
