@@ -150,7 +150,7 @@
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters bm_setInteger:topicId forKey:@"id"];
-    return [XMRequestManager rm_requestWithApi:@"/storm/postInfo/postDetail" parameters:parameters success:successBlock failure:failureBlock];
+    return [XMRequestManager rm_requestWithApi:@"/storm/postInfo/postDetailNoRead" parameters:parameters success:successBlock failure:failureBlock];
 }
 
 @end
