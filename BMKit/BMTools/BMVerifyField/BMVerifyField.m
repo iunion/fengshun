@@ -37,11 +37,17 @@
 
 - (instancetype)initWithInputCount:(NSUInteger)count
 {
+    return [self initWithInputCount:count style:BMVerifyFieldStyle_Border];
+}
+
+- (instancetype)initWithInputCount:(NSUInteger)count style:(BMVerifyFieldStyle)style
+{
     if (self = [super initWithFrame:CGRectZero])
     {
         NSCAssert(count <= 8, @"WLUnitField can not have more than 8 input units.");
         
         _inputMaxCount = count;
+        _style = style;
         [self initialize];
     }
     
@@ -170,6 +176,14 @@
 - (void)setAutocorrectionType:(UITextAutocorrectionType)autocorrectionType
 {
     _autocorrectionType = UITextAutocorrectionTypeNo;
+}
+
+- (void)setStyle:(BMVerifyFieldStyle)style
+{
+    _style = style;
+    
+    [self setNeedsDisplay];
+    [self resetCursorLayerIfNeeded];
 }
 
 - (void)setInputMaxCount:(NSUInteger)inputMaxCount
@@ -419,32 +433,49 @@
     //CGFloat startX = (self.bounds.size.width - self.inputMaxCount * (itemSize.width + self.itemSpace)) * 0.5;
     CGFloat startX = self.itemSpace * 0.5;//(self.bounds.size.width - self.inputMaxCount * (itemSize.width + self.itemSpace)) * 0.5;
 
-    if (self.itemSpace < 2)
+    if (self.style == BMVerifyFieldStyle_Border)
     {
-        UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:bounds cornerRadius:self.borderRadius];
-        CGContextAddPath(ctx, bezierPath.CGPath);
-        
-        for (NSUInteger i = 1; i < self.inputMaxCount; ++i)
+        if (self.itemSpace < 2)
         {
-            CGContextMoveToPoint(ctx, (startX + i * itemSize.width), 0);
-            CGContextAddLineToPoint(ctx, (startX + i * itemSize.width), (itemSize.height));
+            UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:bounds cornerRadius:self.borderRadius];
+            CGContextAddPath(ctx, bezierPath.CGPath);
+            
+            for (NSUInteger i = 1; i < self.inputMaxCount; ++i)
+            {
+                CGContextMoveToPoint(ctx, (startX + i * itemSize.width), 0);
+                CGContextAddLineToPoint(ctx, (startX + i * itemSize.width), (itemSize.height));
+            }
         }
+        else
+        {
+            for (NSUInteger i = self.characterArray.count; i < self.inputMaxCount; i++)
+            {
+                CGRect itemRect = CGRectMake(startX + i * (itemSize.width + self.itemSpace),
+                                             0,
+                                             itemSize.width,
+                                             itemSize.height);
+                itemRect = CGRectInset(itemRect, self.borderWidth * 0.5, self.borderWidth * 0.5);
+                UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:itemRect cornerRadius:self.borderRadius];
+                CGContextAddPath(ctx, bezierPath.CGPath);
+            }
+        }
+        
+        CGContextDrawPath(ctx, kCGPathStroke);
     }
     else
     {
         for (NSUInteger i = self.characterArray.count; i < self.inputMaxCount; i++)
         {
-            CGRect itemRect = CGRectMake(startX + i * (itemSize.width + self.itemSpace),
-                                         0,
-                                         itemSize.width,
-                                         itemSize.height);
-            itemRect = CGRectInset(itemRect, self.borderWidth * 0.5, self.borderWidth * 0.5);
-            UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:itemRect cornerRadius:self.borderRadius];
+            CGRect unitLineRect = CGRectMake(startX + i * (itemSize.width + self.itemSpace),
+                                             itemSize.height - self.borderWidth,
+                                             itemSize.width,
+                                             self.borderWidth);
+            UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:unitLineRect cornerRadius:0];
             CGContextAddPath(ctx, bezierPath.CGPath);
         }
+        
+        CGContextDrawPath(ctx, kCGPathFill);
     }
-    
-    CGContextDrawPath(ctx, kCGPathStroke);
 }
 
 // 绘制文本
@@ -459,8 +490,9 @@
                            NSFontAttributeName: self.textFont};
     for (NSUInteger i = 0; i < self.characterArray.count; i++)
     {
-        CGFloat startX = (self.bounds.size.width - self.inputMaxCount * (itemSize.width + self.itemSpace)) * 0.5;
-        
+        //CGFloat startX = (self.bounds.size.width - self.inputMaxCount * (itemSize.width + self.itemSpace)) * 0.5;
+        CGFloat startX = self.itemSpace * 0.5;
+
         CGRect itemRect = CGRectMake(startX + i * (itemSize.width + self.itemSpace),
                                      0,
                                      itemSize.width,
@@ -500,20 +532,38 @@
     CGContextSetLineWidth(ctx, self.borderWidth);
     CGContextSetLineCap(ctx, kCGLineCapRound);
     
-    CGFloat startX = (self.bounds.size.width - self.inputMaxCount * (itemSize.width + self.itemSpace)) * 0.5;
+    //CGFloat startX = (self.bounds.size.width - self.inputMaxCount * (itemSize.width + self.itemSpace)) * 0.5;
+    CGFloat startX = self.itemSpace * 0.5;
     
-    for (NSUInteger i = 0; i < self.characterArray.count; i++)
+    if (self.style == BMVerifyFieldStyle_Border)
     {
-        CGRect itemRect = CGRectMake(startX + i * (itemSize.width + self.itemSpace),
-                                     0,
-                                     itemSize.width,
-                                     itemSize.height);
-        itemRect = CGRectInset(itemRect, self.borderWidth * 0.5, self.borderWidth * 0.5);
-        UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:itemRect cornerRadius:self.borderRadius];
-        CGContextAddPath(ctx, bezierPath.CGPath);
+        for (NSUInteger i = 0; i < self.characterArray.count; i++)
+        {
+            CGRect itemRect = CGRectMake(startX + i * (itemSize.width + self.itemSpace),
+                                         0,
+                                         itemSize.width,
+                                         itemSize.height);
+            itemRect = CGRectInset(itemRect, self.borderWidth * 0.5, self.borderWidth * 0.5);
+            UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:itemRect cornerRadius:self.borderRadius];
+            CGContextAddPath(ctx, bezierPath.CGPath);
+        }
+        
+        CGContextDrawPath(ctx, kCGPathStroke);
     }
-    
-    CGContextDrawPath(ctx, kCGPathStroke);
+    else
+    {
+        for (NSUInteger i = 0; i < self.characterArray.count; i++)
+        {
+            CGRect unitLineRect = CGRectMake(startX + i * (itemSize.width + self.itemSpace),
+                                             itemSize.height - self.borderWidth,
+                                             itemSize.width,
+                                             self.borderWidth);
+            UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:unitLineRect cornerRadius:0];
+            CGContextAddPath(ctx, bezierPath.CGPath);
+        }
+        
+        CGContextDrawPath(ctx, kCGPathFill);
+    }
 }
 
 

@@ -10,11 +10,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, BMVerifyFieldStyle)
+{
+    BMVerifyFieldStyle_Border,
+    BMVerifyFieldStyle_Underline
+};
+
 @protocol BMVerifyFieldDelegate;
 
 @interface BMVerifyField : UIControl <UIKeyInput>
 
 @property (nullable, nonatomic, weak) id <BMVerifyFieldDelegate> delegate;
+
+@property (nonatomic, assign) BMVerifyFieldStyle style;
 
 // 输入的字符串
 @property (nullable, nonatomic, strong, readonly) NSString *text;
