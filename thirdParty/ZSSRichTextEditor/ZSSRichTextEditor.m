@@ -1127,6 +1127,9 @@ static CGFloat kDefaultScale    = 0.5;
 {
     NSString *html        = self.internalHTML;
     self.sourceView.text  = html;
+    if (![html bm_isNotEmpty]) {
+        return;
+    }
     NSString *cleanedHTML = [self removeQuotesFromHTML:html];
     NSString *trigger     = [NSString stringWithFormat:@"zss_editor.setHTML(\"%@\");", cleanedHTML];
     [self.editorView stringByEvaluatingJavaScriptFromString:trigger];

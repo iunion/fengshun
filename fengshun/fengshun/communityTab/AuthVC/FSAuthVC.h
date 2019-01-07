@@ -13,8 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FSAuthVC : FSSuperNetVC
 // 类型 0：所有信息未完善；1：所有信息已完善；2：实名认证信息未完善；3：昵称未完善
 
-//@property (nonatomic , copy) void (^complateUserMessage)(void);
-
 + (instancetype)vcWithAuthType:(FSAuthState ) type;
 
 @end

@@ -13,6 +13,9 @@
 #define NickName_MaxTextCount 16
 
 @interface FSAuthVC ()
+<
+    UITextFieldDelegate
+>
 
 @property (nonatomic , assign) FSAuthState m_AuthState;//认证和昵称状态
 @property (nonatomic , strong) FSInputTextView *m_NikeName;///< 昵称
@@ -51,6 +54,7 @@
         _m_NikeNameLab = [UILabel bm_labelWithFrame:CGRectMake(20, 0, width - 40, height) text:@"发布内容前请设置昵称" fontSize:14.f color:RGBColor(153, 153, 153, 1) alignment:NSTextAlignmentLeft lines:1];
         [self.view addSubview:_m_NikeNameLab];
         _m_NikeName = [[FSInputTextView alloc]initWithFrame:CGRectMake(0, 0, width , height) title:@"昵称" content:@"" placeHolder:@"支持中英文数字及下划线，不超过16个字符"];
+        _m_NikeName.m_contentTextfield.delegate = self;
         [_m_NikeName.m_contentTextfield addTarget:self action:@selector(nickNameTextChange:) forControlEvents:UIControlEventEditingChanged];
         _m_NikeName.m_IsShowBottomLine = NO;
         [self.view addSubview:_m_NikeName];
@@ -98,14 +102,18 @@
     BMWeakSelf
     [FSApiRequest completeUserMessageWithRealName:_m_RealName.m_Content idCard:_m_IdCard.m_Content nikeName:_m_NikeName.m_Content Success:^(id  _Nullable responseObject) {
         [weakSelf updateUserMsg];
-//        if (weakSelf.complateUserMessage)
-//        {
-//            weakSelf.complateUserMessage();
-//        }
         [weakSelf backAction:nil];
     } failure:^(NSError * _Nullable error) {
         
     }];
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (textField != self.m_NikeName.m_contentTextfield) {
+        return YES;
+    }
+    return [self isMatchesString:string];
 }
 
 - (void)nickNameTextChange:(UITextField *)sender
@@ -289,6 +297,12 @@
     }
     return NO;
 }
+
+- (BOOL)isMatchesString:(NSString *)string{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"[0-9a-zA-Z\\u4E00-\\u9FA5\\_]*"];
+    return [predicate evaluateWithObject:string];
+}
+
 
 /*
 #pragma mark - Navigation
