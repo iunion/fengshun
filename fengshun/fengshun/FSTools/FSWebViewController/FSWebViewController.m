@@ -20,6 +20,7 @@
 #import "FSMoreViewVC.h"
 #import "NSString+BMURLEncode.h"
 #import "NSAttributedString+BMCategory.h"
+#import "FSAuthVC.h"
 
 #define SHOW_CLOSEBTN_CANGOEBACK    1
 
@@ -789,12 +790,12 @@
         [weakSelf addRightBtn];
     }];
     
-    
-    // 跳转客服
-//    [self.m_WebView registerHandler:@"contactCustomerService" handler:^(id data, WVJBResponseCallback responseCallback) {
-//
-//        [MQVCShow showFeedbackVC:weakSelf];
-//    }];
+    // 1.1需求 添加完善资料功能，是否有昵称，是否认证
+    [self.m_WebView registerHandler:@"toAuth" handler:^(id data, WVJBResponseCallback responseCallback) {
+        NSDictionary *resultDic = [NSDictionary bm_dictionaryWithJsonString:[NSString stringWithFormat:@"%@",data]];
+        FSAuthVC *vc = [FSAuthVC vcWithAuthType:[resultDic bm_intForKey:@"type"]];
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+    }];
 }
 
 // 添加更多按钮

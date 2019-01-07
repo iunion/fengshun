@@ -42,7 +42,7 @@
 #define deleteTopicNotification                 @"deleteTopicNotification"
 
 // 刷新收藏状态
-#define refreshCollectionNotification           @"deleteTopicNotification"
+#define refreshCollectionNotification           @"refreshCollectionNotification"
 
 
 
