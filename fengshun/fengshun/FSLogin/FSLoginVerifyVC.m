@@ -216,7 +216,8 @@
     verifyField.itemSpace = (self.m_TableView.bm_width-30-60.0f*4)/4;
     verifyField.trackBorderColor = UI_COLOR_BL1;
     verifyField.autoResignFirstResponderWhenInputFinished = YES;
-    verifyField.userInteractionEnabled = NO;
+    //verifyField.style = BMVerifyFieldStyle_Underline;
+    verifyField.userInteractionEnabled = YES;
     self.m_VerifyField = verifyField;
     
     self.actionBar = [[BMTableViewActionBar alloc] initWithDelegate:self];
