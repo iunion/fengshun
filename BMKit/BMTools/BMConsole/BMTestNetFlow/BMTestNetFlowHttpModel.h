@@ -16,11 +16,11 @@
 @property (nonatomic, copy) NSString *url;
 @property (nonatomic, copy) NSString *method;
 
-@property (nonatomic, copy) NSString *requestBody;
+@property (nullable, nonatomic, copy) NSString *requestBody;
 @property (nonatomic, copy) NSString *statusCode;
 
-@property (nonatomic, copy) NSData *responseData;
-@property (nonatomic, copy) NSString *responseBody;
+@property (nullable, nonatomic, copy) NSData *responseData;
+@property (nullable, nonatomic, copy) NSString *responseBody;
 @property (nonatomic, copy) NSString *mineType;
 
 @property (nonatomic, assign) NSTimeInterval startTime;

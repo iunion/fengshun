@@ -32,7 +32,15 @@
 // 刷新网页
 #define freshWebViewNotification                @"freshWebViewNotification"
 
+// 用户数据更新
 #define userInfoChangedNotification             @"userInfoChangedNotification"
+
+// 帖子更新
+#define freshTopicNotification                  @"freshTopicNotification"
+
+// 帖子删除
+#define deleteTopicNotification                 @"deleteTopicNotification"
+
 
 
 

@@ -165,6 +165,8 @@
                                                                        relatedId:weakSelf.m_TopicId
                                                                         callBack:^{
                                                                             [weakSelf refreshWebView];
+                                                                            
+                                                                            [[NSNotificationCenter defaultCenter] postNotificationName:freshTopicNotification object:nil userInfo:@{@"topicId" : @(self.m_TopicId)}];
                                                                         }];
                                      }
                                  }];
@@ -182,6 +184,8 @@
                                      if (buttonIndex == 1)
                                      {
                                          [weakSelf deleteTopic];
+                                         
+                                         [[NSNotificationCenter defaultCenter] postNotificationName:deleteTopicNotification object:nil userInfo:@{@"topicId" : @(self.m_TopicId)}];
                                      }
                                  }];
         }

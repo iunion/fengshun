@@ -273,6 +273,7 @@
 
     NSArray *timeArray = @[@"0.5小时",@"1小时", @"1.5小时", @"2小时", @"2.5小时", @"3小时", @"3.5小时", @"4小时"];
     self.m_TimeLengthItem = [BMPickerItem itemWithTitle:@"时长" placeholder:@"请选择" components:@[timeArray]];
+    self.m_TimeLengthItem.pickerSelectedRowInComponent = @[@(1)];
     self.m_TimeLengthItem.textColor = UI_COLOR_B1;
     self.m_TimeLengthItem.textFont = FS_VIDEOPAGE_TEXTFONT;
     self.m_TimeLengthItem.pickerValueColor = UI_COLOR_B1;
@@ -402,8 +403,6 @@
         FSMeetingPersonnelItem *item = [FSMeetingPersonnelItem item];
         item.personModel = model;
         item.personnelSelectionHandler = ^(FSMeetingPersonnelModel *personModel) {
-#warning personnelSelectionHandler
-            NSLog(@"personnelSelectionHandler");
             [weakSelf freshViews];
         };
         [self.m_PersonSection addItem:item];

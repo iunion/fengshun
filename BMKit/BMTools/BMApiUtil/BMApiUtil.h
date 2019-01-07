@@ -12,14 +12,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BMApiUtil : NSObject
 
-+ (NSString *)serializeJsonFromData:(NSData *)data;
++ (NSString *)serializeJsonFromData:(nullable NSData *)data;
 
 + (NSUInteger)getHeadersLength:(NSDictionary *)headers;
 + (NSUInteger)getRequestLength:(NSURLRequest *)request;
 
-+ (NSData *)getHttpBodyFromRequest:(NSURLRequest *)request;
++ (nullable NSData *)getHttpBodyFromRequest:(NSURLRequest *)request;
 
-+ (NSDictionary<NSString *, NSString *> *)getCookies:(NSURLRequest *)request;
++ (nullable NSDictionary<NSString *, NSString *> *)getCookies:(NSURLRequest *)request;
 
 + (int64_t)getResponseLength:(NSHTTPURLResponse *)response data:(NSData *)responseData;
 

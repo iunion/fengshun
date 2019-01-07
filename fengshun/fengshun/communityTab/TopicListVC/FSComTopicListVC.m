@@ -46,7 +46,60 @@
     self.m_LoadDataType = FSAPILoadDataType_Page;
     _currentPages = 1;
     [self createUI];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(freshTopic:) name:freshTopicNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteTopic:) name:deleteTopicNotification object:nil];
+
     [self loadApiData];
+}
+
+- (void)freshTopic:(NSNotification *)notification
+{
+    BOOL freshed = NO;
+    NSInteger topicId = [notification.userInfo bm_intForKey:@"topicId"];
+    if (topicId == 0)
+    {
+        return;
+    }
+    
+    for (FSTopicModel *topicModel in self.m_DataArray)
+    {
+        if ([topicModel.m_Id integerValue] == topicId)
+        {
+            freshed = YES;
+            break;
+        }
+    }
+    
+    if (freshed)
+    {
+        [self refreshVC];
+    }
+}
+
+- (void)deleteTopic:(NSNotification *)notification
+{
+    BOOL deleted = NO;
+    NSInteger topicId = [notification.userInfo bm_intForKey:@"topicId"];
+    if (topicId == 0)
+    {
+        return;
+    }
+    
+    for (FSTopicModel *topicModel in self.m_DataArray)
+    {
+        if ([topicModel.m_Id integerValue] == topicId)
+        {
+            [self.m_DataArray removeObject:topicModel];
+            deleted = YES;
+            break;
+        }
+    }
+    
+    if (deleted)
+    {
+        [self.m_TableView reloadData];
+    }
 }
 
 - (void)refreshVC
@@ -89,7 +142,7 @@
             _isLoadFinish = _currentPages >= totalPages;
             if (!_isLoadFinish)
             {
-                _currentPages ++;
+                _currentPages++;
             }
             if (self.m_IsLoadNew)
             {

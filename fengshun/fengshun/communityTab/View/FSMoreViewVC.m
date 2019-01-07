@@ -155,9 +155,11 @@
                 [btn setImage:[UIImage imageNamed:@"community_collect_selected"] forState:UIControlStateSelected];
                 btn.selected = self.m_Collection;
             }
+            // 举报
             if (btn.tag == 107)
             {
                 btn.hidden = self.m_IsWebMore;
+                btn.enabled = !self.m_isOwner;
             }
             // 编辑和删除按钮是否隐藏
             if (btn.tag == 108 || btn.tag == 109)

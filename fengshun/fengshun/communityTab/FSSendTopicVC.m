@@ -270,15 +270,16 @@
 
 - (void)uploadImg:(NSData *)data
 {
+    BMWeakSelf
     [FSApiRequest uploadImg:data
                     success:^(id _Nullable responseObject) {
 
                         NSString *url = [NSString stringWithFormat:@"%@", [responseObject bm_stringTrimForKey:@"previewUrl"]];
                         // 9865 ios 发帖时上传图片没任何反应
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                           [self insertImage:url alt:@""];
+                           [weakSelf insertImage:url alt:@""];
                         });
-                        [self begainEditor];
+                        [weakSelf begainEditor];
                     }
                     failure:^(NSError *_Nullable error){
                         
@@ -301,6 +302,7 @@
                                  {
                                      weakSelf.sendPostsCallBack();
                                  }
+                                 [MBProgressHUD showHUDAddedTo:GetAppDelegate.window animated:YES withText:@"发帖成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
                                  [weakSelf.navigationController popViewControllerAnimated:YES];
                              }
                              failure:^(NSError *_Nullable error){
@@ -316,6 +318,11 @@
         
         [weakSelf setHTML:[responseObject bm_stringForKey:@"content"]];
         weakSelf.m_TitleTextField.text = [responseObject bm_stringForKey:@"title"];
+        if (weakSelf.m_TitleTextField.text.length > Topic_MaxTextCount)
+        {
+            weakSelf.m_TitleTextField.text = [weakSelf.m_TitleTextField.text substringToIndex:Topic_MaxTextCount];
+        }
+        weakSelf.m_PlaceHolderLab.text = [NSString stringWithFormat:@"%@个字", @(Topic_MaxTextCount - weakSelf.m_TitleTextField.text.length)];
     } failure:^(NSError * _Nullable error) {
         
     }];
