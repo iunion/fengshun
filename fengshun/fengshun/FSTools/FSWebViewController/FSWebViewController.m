@@ -865,6 +865,7 @@
         NSDictionary *data = [NSDictionary bm_dictionaryWithJsonString:self.s_CollectJsonSting];
         [FSApiRequest updateCollectStateID:[data bm_stringForKey:@"id"] isCollect:!self.s_isCollect guidingCase:[data bm_stringForKey:@"guidingCase"] source:[data bm_stringForKey:@"source"] title:[data bm_stringForKey:@"title"] type:[data bm_stringForKey:@"type"] Success:^(id responseObject) {
             [weakSelf.m_ProgressHUD showAnimated:YES withText:weakSelf.s_isCollect ? @"取消收藏" : @"收藏成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            [[NSNotificationCenter defaultCenter]postNotificationName:refreshCollectionNotification object:nil];
         } failure:^(NSError *error) {
             
         }];

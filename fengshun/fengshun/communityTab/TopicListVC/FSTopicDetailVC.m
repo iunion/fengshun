@@ -264,6 +264,7 @@
     [FSApiRequest collectionTopic:!self.m_TopicDetailModel.m_IsCollection topicId:[NSString stringWithFormat:@"%@", @(self.m_TopicId)] success:^(id responseObject) {
         
         [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:weakSelf.m_TopicDetailModel.m_IsCollection ? @"取消收藏成功" : @"收藏成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        [[NSNotificationCenter defaultCenter]postNotificationName:refreshCollectionNotification object:nil userInfo:nil];
     } failure:^(NSError * _Nullable error) {
         
     }];

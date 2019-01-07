@@ -58,12 +58,19 @@
 //            break;
 //    }
     [self loadApiData];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshList) name:refreshCollectionNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)refreshList
+{
+    s_BakLoadedPage = 0;
+    [self loadApiData];
 }
 
 - (NSMutableURLRequest *)setLoadDataRequestWithFresh:(BOOL)isLoadNew
@@ -74,6 +81,10 @@
 - (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)requestDic
 {
     NSArray *dicArray = [requestDic bm_arrayForKey:@"list"];
+    if (self.m_IsLoadNew)
+    {
+        [self.m_DataArray removeAllObjects];
+    }
     if ([dicArray bm_isNotEmpty])
     {
         NSMutableArray *dataArray = [[NSMutableArray alloc] initWithCapacity:0];
@@ -97,10 +108,7 @@
         
         if ([dataArray bm_isNotEmpty])
         {
-            if (self.m_IsLoadNew)
-            {
-                [self.m_DataArray removeAllObjects];
-            }
+            
 
             FSMyCollectionModel *firstModel = [self.m_DataArray firstObject];
             if (!firstModel)
@@ -115,11 +123,9 @@
             
             FSMyCollectionModel *lastModel = [self.m_DataArray lastObject];
             lastModel.m_PositionType |= BMTableViewCell_PositionType_Last;
-
-            [self.m_TableView reloadData];
         }
     }
-    
+    [self.m_TableView reloadData];
     return YES;
 }
 

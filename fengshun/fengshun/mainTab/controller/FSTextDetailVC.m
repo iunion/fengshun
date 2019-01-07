@@ -102,6 +102,7 @@
         BMWeakSelf
         [FSApiRequest updateCollectStateID:self.m_docummentId isCollect:!weakSelf.s_isCollect guidingCase:@"" source:@"" title:@"" type:@"DOCUMENT" Success:^(id  _Nullable responseObject) {
             [MBProgressHUD showHUDAddedTo:weakSelf.view animated:YES withText:weakSelf.s_isCollect?@"取消收藏":@"收藏成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            [[NSNotificationCenter defaultCenter]postNotificationName:refreshCollectionNotification object:nil];
         } failure:^(NSError * _Nullable error) {
             
         }];

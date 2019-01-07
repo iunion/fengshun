@@ -41,6 +41,8 @@
 // 帖子删除
 #define deleteTopicNotification                 @"deleteTopicNotification"
 
+// 刷新收藏状态
+#define refreshCollectionNotification           @"deleteTopicNotification"
 
 
 
