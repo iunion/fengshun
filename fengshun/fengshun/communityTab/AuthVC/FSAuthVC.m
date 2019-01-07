@@ -38,7 +38,8 @@
     return vc;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self createUI];
@@ -110,7 +111,8 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    if (textField != self.m_NikeName.m_contentTextfield) {
+    if (textField != self.m_NikeName.m_contentTextfield)
+    {
         return YES;
     }
     return [self isMatchesString:string];
@@ -298,7 +300,8 @@
     return NO;
 }
 
-- (BOOL)isMatchesString:(NSString *)string{
+- (BOOL)isMatchesString:(NSString *)string
+{
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"[0-9a-zA-Z\\u4E00-\\u9FA5\\_]*"];
     return [predicate evaluateWithObject:string];
 }
