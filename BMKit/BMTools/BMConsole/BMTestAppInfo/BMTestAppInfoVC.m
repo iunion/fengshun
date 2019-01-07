@@ -8,6 +8,7 @@
 
 #import "BMTestAppInfoVC.h"
 #import "BMTableViewManager.h"
+#import "UIDevice+Private.h"
 
 @interface BMTestAppInfoVC ()
 <
@@ -82,10 +83,22 @@
     // 获取手机型号
     NSString *iphoneType = [UIDevice bm_devicePlatformString];
     [section1 addItem:[self makeItemWithTitle:@"设备型号" content:iphoneType last:NO]];
+    
+    NSString *device_model = [UIDevice bm_deviceModel];
+    NSString *modle = [NSString stringWithFormat:@"%@-%@", device_model, [UIDevice bm_localizedModel]];
+    [section1 addItem:[self makeItemWithTitle:@"device_model" content:modle last:NO]];
 
     //获取手机系统版本
     NSString *phoneVersion = [UIDevice bm_OSVersion];
-    [section1 addItem:[self makeItemWithTitle:@"系统版本" content:phoneVersion last:YES]];
+    [section1 addItem:[self makeItemWithTitle:@"系统版本" content:phoneVersion last:NO]];
+
+    // 获取设备颜色
+    NSString *deviceColor = [UIDevice bm_deviceColor];
+    [section1 addItem:[self makeItemWithTitle:@"设备颜色" content:deviceColor last:NO]];
+
+    // 获取设备外壳颜色
+    NSString *deviceEnclosureColor = [UIDevice bm_deviceEnclosureColor];
+    [section1 addItem:[self makeItemWithTitle:@"外壳颜色" content:deviceEnclosureColor last:YES]];
 
     BMTableViewSection *section2 = [BMTableViewSection section];
     section2.headerTitle = @"APP信息";
@@ -110,48 +123,63 @@
     section3.footerHeight = 0;
 
     // 地理位置权限
-    NSString *locationAuthority = [UIDevice locationAuthority];
+    NSString *locationAuthority = [UIDevice bm_locationAuthority];
     [section3 addItem:[self makeItemWithTitle:@"地理位置权限" content:locationAuthority last:NO]];
 
     // 网络权限
-    NSString *netAuthority = [UIDevice netAuthority];
+    NSString *netAuthority = [UIDevice bm_netAuthority];
     [section3 addItem:[self makeItemWithTitle:@"网络权限" content:netAuthority last:NO]];
 
     // push权限
-    NSString *pushAuthority = [UIDevice pushAuthority];
+    NSString *pushAuthority = [UIDevice bm_pushAuthority];
     [section3 addItem:[self makeItemWithTitle:@"push权限" content:pushAuthority last:NO]];
 
     // 拍照权限
-    NSString *cameraAuthority = [UIDevice cameraAuthority];
+    NSString *cameraAuthority = [UIDevice bm_cameraAuthority];
     [section3 addItem:[self makeItemWithTitle:@"拍照权限" content:cameraAuthority last:NO]];
 
     // 相册权限
-    NSString *photoAuthority = [UIDevice photoAuthority];
+    NSString *photoAuthority = [UIDevice bm_photoAuthority];
     [section3 addItem:[self makeItemWithTitle:@"相册权限" content:photoAuthority last:NO]];
 
     // 麦克风权限
-    NSString *audioAuthority = [UIDevice audioAuthority];
+    NSString *audioAuthority = [UIDevice bm_audioAuthority];
     [section3 addItem:[self makeItemWithTitle:@"麦克风权限" content:audioAuthority last:NO]];
     
     // 通讯录权限
-    NSString *addressAuthority = [UIDevice addressAuthority];
+    NSString *addressAuthority = [UIDevice bm_addressAuthority];
     [section3 addItem:[self makeItemWithTitle:@"通讯录权限" content:addressAuthority last:NO]];
     
     // 日历权限
-    NSString *calendarAuthority = [UIDevice calendarAuthority];
+    NSString *calendarAuthority = [UIDevice bm_calendarAuthority];
     [section3 addItem:[self makeItemWithTitle:@"通讯录权限" content:calendarAuthority last:NO]];
     
     // 提醒事项权限
-    NSString *remindAuthority = [UIDevice remindAuthority];
+    NSString *remindAuthority = [UIDevice bm_remindAuthority];
     [section3 addItem:[self makeItemWithTitle:@"提醒事项权限" content:remindAuthority last:NO]];
     
     // 蓝牙权限
-    NSString *bluetoothAuthority = [UIDevice bluetoothAuthority];
+    NSString *bluetoothAuthority = [UIDevice bm_bluetoothAuthority];
     [section3 addItem:[self makeItemWithTitle:@"蓝牙权限" content:bluetoothAuthority last:YES]];
+
+    BMTableViewSection *section4 = [BMTableViewSection section];
+    section4.headerTitle = @"运行数据";
+    section4.headerHeight = 30.0f;
+    section4.footerHeight = 0;
+
+    // 获取设备上次重启的时间
+    NSDate *systemUptime = [UIDevice bm_systemUptime];
+    [section4 addItem:[self makeItemWithTitle:@"上次重启时间" content:[NSDate bm_stringFromDate:systemUptime] last:NO]];
+
+    NSString *applicationSize = [UIDevice bm_applicationSize];
+    [section4 addItem:[self makeItemWithTitle:@"当前 App 占用存储空间" content:applicationSize last:NO]];
+
 
     [self.tableManager addSection:section1];
     [self.tableManager addSection:section2];
     [self.tableManager addSection:section3];
+    [self.tableManager addSection:section4];
+    
 }
 
 - (BMTableViewItem *)makeItemWithTitle:(NSString *)title content:(NSString *)content last:(BOOL)last

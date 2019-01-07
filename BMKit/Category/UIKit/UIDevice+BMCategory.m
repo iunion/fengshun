@@ -13,22 +13,24 @@
 #include <sys/socket.h>
 #include <net/if.h>
 #include <net/if_dl.h>
+#include <mach/mach.h>
 
-#import <CoreLocation/CLLocationManager.h>
-#import <CoreTelephony/CTCellularData.h>
-#import <AVFoundation/AVFoundation.h>
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_8_0
-#import <AssetsLibrary/AssetsLibrary.h>
-#else
-#import <Photos/Photos.h>
-#endif
-#import <AddressBook/AddressBook.h>
-#import <Contacts/Contacts.h>
-#import <EventKit/EventKit.h>
-#import <CoreBluetooth/CoreBluetooth.h>
-
+#import "sys/utsname.h"
 
 @implementation UIDevice (BMCategory)
+
++ (NSString *)bm_deviceModel
+{
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    NSString *deviceModel = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+    return deviceModel;
+}
+
++ (NSString *)bm_localizedModel
+{
+    return [UIDevice currentDevice].localizedModel;
+}
 
 + (NSString *)bm_devicePlatform
 {
@@ -74,6 +76,10 @@
     if ([platform isEqualToString:@"iPhone10,4"])   return @"iPhone 8";
     if ([platform isEqualToString:@"iPhone10,5"])   return @"iPhone 8 Plus";
     if ([platform isEqualToString:@"iPhone10,6"])   return @"iPhone X";
+    if ([platform isEqualToString:@"iPhone11,2"])   return @"iPhone XS";
+    if ([platform isEqualToString:@"iPhone11,4"])   return @"iPhone XS MAX";
+    if ([platform isEqualToString:@"iPhone11,6"])   return @"iPhone XS MAX";
+    if ([platform isEqualToString:@"iPhone11,8"])   return @"iPhone XR";
 
     // iPod
     if ([platform isEqualToString:@"iPod1,1"])      return @"iPod Touch 1G";
@@ -126,6 +132,7 @@
     // iPad Pro (10.5-inch)
     if ([platform isEqualToString:@"iPad7,3"])      return @"iPad Pro (10.5-inch)";
     if ([platform isEqualToString:@"iPad7,4"])      return @"iPad Pro (10.5-inch)";
+    if ([platform isEqualToString:@"iPad7,6"])      return @"iPad_6";
 
     // Apple TV
     if ([platform isEqualToString:@"AppleTV2,1"])   return @"Apple TV (2nd generation)";
@@ -258,6 +265,15 @@
     return (NSUInteger) results;
 }
 
++ (NSDate *)bm_systemUptime
+{
+    NSTimeInterval time = [[NSProcessInfo processInfo] systemUptime];
+    return [[NSDate alloc] initWithTimeIntervalSinceNow:(0.0f - time)];
+}
+
+
+#pragma mark - CPU
+
 + (NSUInteger)bm_cpuFrequency
 {
     return [self getSysInfo:HW_CPU_FREQ];
@@ -283,6 +299,9 @@
     return [self getSysInfo:HW_AVAILCPU];
 }
 
+
+#pragma mark - Memory
+
 + (NSUInteger)bm_totalMemory
 {
     return [self getSysInfo:HW_PHYSMEM];
@@ -301,6 +320,81 @@
 + (NSUInteger)bm_maxSocketBufferSize
 {
     return [self getSysInfo:KIPC_MAXSOCKBUF];
+}
+
++ (int64_t)bm_activeMemory
+{
+    mach_port_t host_port = mach_host_self();
+    mach_msg_type_number_t host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);
+    vm_size_t page_size;
+    vm_statistics_data_t vm_stat;
+    kern_return_t kern;
+    
+    kern = host_page_size(host_port, &page_size);
+    if (kern != KERN_SUCCESS) return -1;
+    kern = host_statistics(host_port, HOST_VM_INFO, (host_info_t)&vm_stat, &host_size);
+    if (kern != KERN_SUCCESS) return -1;
+    return vm_stat.active_count * page_size;
+}
+
++ (int64_t)bm_inActiveMemory
+{
+    mach_port_t host_port = mach_host_self();
+    mach_msg_type_number_t host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);
+    vm_size_t page_size;
+    vm_statistics_data_t vm_stat;
+    kern_return_t kern;
+    
+    kern = host_page_size(host_port, &page_size);
+    if (kern != KERN_SUCCESS) return -1;
+    kern = host_statistics(host_port, HOST_VM_INFO, (host_info_t)&vm_stat, &host_size);
+    if (kern != KERN_SUCCESS) return -1;
+    return vm_stat.inactive_count * page_size;
+}
+
++ (int64_t)bm_wiredMemory
+{
+    mach_port_t host_port = mach_host_self();
+    mach_msg_type_number_t host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);
+    vm_size_t page_size;
+    vm_statistics_data_t vm_stat;
+    kern_return_t kern;
+    
+    kern = host_page_size(host_port, &page_size);
+    if (kern != KERN_SUCCESS) return -1;
+    kern = host_statistics(host_port, HOST_VM_INFO, (host_info_t)&vm_stat, &host_size);
+    if (kern != KERN_SUCCESS) return -1;
+    return vm_stat.wire_count * page_size;
+}
+
++ (int64_t)bm_purgableMemory
+{
+    mach_port_t host_port = mach_host_self();
+    mach_msg_type_number_t host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);
+    vm_size_t page_size;
+    vm_statistics_data_t vm_stat;
+    kern_return_t kern;
+    
+    kern = host_page_size(host_port, &page_size);
+    if (kern != KERN_SUCCESS) return -1;
+    kern = host_statistics(host_port, HOST_VM_INFO, (host_info_t)&vm_stat, &host_size);
+    if (kern != KERN_SUCCESS) return -1;
+    return vm_stat.purgeable_count * page_size;
+}
+
+
+#pragma mark - Disk
+
++ (NSString *)bm_applicationSize
+{
+    unsigned long long documentSize = [NSString bm_sizeOfFolder:[NSString bm_documentsPath]];
+    unsigned long long librarySize = [NSString bm_sizeOfFolder:[NSString bm_libraryPath]];
+    unsigned long long cacheSize = [NSString bm_sizeOfFolder:[NSString bm_cachesPath]];
+    
+    unsigned long long total = documentSize + librarySize + cacheSize;
+    
+    NSString *applicationSize = [NSByteCountFormatter stringFromByteCount:total countStyle:NSByteCountFormatterCountStyleFile];
+    return applicationSize;
 }
 
 + (NSNumber *)bm_totalDiskSpace
@@ -408,354 +502,3 @@
 }
 
 @end
-
-
-#if USE_TEST_HELP
-
-#pragma mark - Authority
-
-@implementation UIDevice (Authority)
-
-+ (NSString *)locationAuthority
-{
-    NSString *authority = @"";
-    if ([CLLocationManager locationServicesEnabled])
-    {
-        CLAuthorizationStatus state = [CLLocationManager authorizationStatus];
-        switch (state)
-        {
-            case kCLAuthorizationStatusNotDetermined:
-                authority = @"NotDetermined";
-                break;
-                
-            case kCLAuthorizationStatusRestricted:
-                authority = @"Restricted";
-                break;
-                
-            case kCLAuthorizationStatusDenied:
-                authority = @"Denied";
-                break;
-                
-            case kCLAuthorizationStatusAuthorizedAlways:
-                authority = @"Always";
-                break;
-                
-            case kCLAuthorizationStatusAuthorizedWhenInUse:
-                authority = @"WhenInUse";
-                break;
-
-            default:
-                break;
-        }
-    }
-    else
-    {
-        authority = @"NoEnabled";
-    }
-
-    return authority;
-}
-
-+ (NSString *)netAuthority
-{
-    NSString *authority = @"Unknown";
-    
-    if (@available(iOS 9.0, *))
-    {
-        CTCellularData *cellularData = [[CTCellularData alloc] init];
-        CTCellularDataRestrictedState state = cellularData.restrictedState;
-        switch (state)
-        {
-            case kCTCellularDataRestricted:
-                authority = @"Restricted";
-                break;
-            case kCTCellularDataNotRestricted:
-                authority = @"NotRestricted";
-                break;
-            case kCTCellularDataRestrictedStateUnknown:
-                authority = @"Unknown";
-                break;
-            default:
-                break;
-        }
-    }
-
-    return authority;
-}
-
-+ (NSString *)pushAuthority
-{
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    if (IOS_VERSION >= 8.0)
-    { // iOS8以上包含iOS8
-        if ([[UIApplication sharedApplication] currentUserNotificationSettings].types  == UIRemoteNotificationTypeNone)
-        {
-            return @"NO";
-        }
-    }
-    else
-    { // iOS7以下
-        if ([[UIApplication sharedApplication] enabledRemoteNotificationTypes]  == UIRemoteNotificationTypeNone)
-        {
-            return @"NO";
-        }
-    }
-#pragma clang diagnostic pop
-
-    return @"YES";
-}
-
-+ (NSString *)cameraAuthority
-{
-    NSString *authority = @"";
-    // 读取媒体类型
-    NSString *mediaType = AVMediaTypeVideo;
-    // 读取设备授权状态
-    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];
-    switch (authStatus)
-    {
-        case AVAuthorizationStatusNotDetermined:
-            authority = @"NotDetermined";
-            break;
-        case AVAuthorizationStatusRestricted:
-            authority = @"Restricted";
-            break;
-        case AVAuthorizationStatusDenied:
-            authority = @"Denied";
-            break;
-        case AVAuthorizationStatusAuthorized:
-            authority = @"Authorized";
-            break;
-        default:
-            break;
-    }
-    return authority;
-}
-
-+ (NSString *)photoAuthority
-{
-    NSString *authority = @"";
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_8_0 //iOS 8.0以下使用AssetsLibrary.framework
-    ALAuthorizationStatus status = [ALAssetsLibrary authorizationStatus];
-    switch (status)
-    {
-        case ALAuthorizationStatusNotDetermined:    //用户还没有选择
-        {
-            authority = @"NotDetermined";
-        }
-            break;
-        case ALAuthorizationStatusRestricted:       //家长控制
-        {
-            authority = @"Restricted";
-        }
-            break;
-        case ALAuthorizationStatusDenied:           //用户拒绝
-        {
-            authority = @"Denied";
-        }
-            break;
-        case ALAuthorizationStatusAuthorized:       //已授权
-        {
-            authority = @"Authorized";
-        }
-            break;
-            
-        default:
-            break;
-    }
-#else   //iOS 8.0以上使用Photos.framework
-    PHAuthorizationStatus current = [PHPhotoLibrary authorizationStatus];
-    switch (current)
-    {
-        case PHAuthorizationStatusNotDetermined:    //用户还没有选择(第一次)
-        {
-            authority = @"NotDetermined";
-        }
-            break;
-        case PHAuthorizationStatusRestricted:       //家长控制
-        {
-            authority = @"Restricted";
-        }
-            break;
-        case PHAuthorizationStatusDenied:           //用户拒绝
-        {
-            authority = @"Denied";
-        }
-            break;
-        case PHAuthorizationStatusAuthorized:       //已授权
-        {
-            authority = @"Authorized";
-        }
-            break;
-            
-        default:
-            break;
-    }
-#endif
-    return authority;
-}
-
-+ (NSString *)audioAuthority
-{
-    NSString *authority = @"";
-    // 读取媒体类型
-    NSString *mediaType = AVMediaTypeAudio;
-    // 读取设备授权状态
-    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];
-    switch (authStatus)
-    {
-        case AVAuthorizationStatusNotDetermined:
-            authority = @"NotDetermined";
-            break;
-        case AVAuthorizationStatusRestricted:
-            authority = @"Restricted";
-            break;
-        case AVAuthorizationStatusDenied:
-            authority = @"Denied";
-            break;
-        case AVAuthorizationStatusAuthorized:
-            authority = @"Authorized";
-            break;
-        default:
-            break;
-    }
-    return authority;
-}
-
-+ (NSString *)addressAuthority
-{
-    NSString *authority = @"";
-    
-    if (@available(iOS 9.0, *))
-    {
-        CNAuthorizationStatus authStatus = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
-        switch (authStatus)
-        {
-            case CNAuthorizationStatusAuthorized:
-                authority = @"Authorized";
-                break;
-            case CNAuthorizationStatusDenied:
-            {
-                authority = @"Denied";
-            }
-                break;
-            case CNAuthorizationStatusNotDetermined:
-            {
-                authority = @"NotDetermined";
-            }
-                break;
-            case CNAuthorizationStatusRestricted:
-                authority = @"Restricted";
-                break;
-        }
-    }
-    else
-    {
-        ABAuthorizationStatus authorStatus = ABAddressBookGetAuthorizationStatus();
-        switch (authorStatus) {
-            case kABAuthorizationStatusAuthorized:
-                authority = @"Authorized";
-                break;
-            case kABAuthorizationStatusDenied:
-            {
-                authority = @"Denied";
-            }
-                break;
-            case kABAuthorizationStatusNotDetermined:
-            {
-                authority = @"NotDetermined";
-            }
-                break;
-            case kABAuthorizationStatusRestricted:
-                authority = @"Restricted";
-                break;
-            default:
-                break;
-        }
-    }
-    
-    return authority;
-}
-
-+ (NSString *)calendarAuthority
-{
-    NSString *authority = @"";
-    EKAuthorizationStatus status = [EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent];
-    switch (status)
-    {
-        case EKAuthorizationStatusNotDetermined:
-            authority = @"NotDetermined";
-            break;
-        case EKAuthorizationStatusRestricted:
-            authority = @"Restricted";
-            break;
-        case EKAuthorizationStatusDenied:
-            authority = @"Denied";
-            break;
-        case EKAuthorizationStatusAuthorized:
-            authority = @"Authorized";
-            break;
-        default:
-            break;
-    }
-    return authority;
-}
-
-+ (NSString *)remindAuthority
-{
-    NSString *authority = @"";
-    EKAuthorizationStatus status = [EKEventStore authorizationStatusForEntityType:EKEntityTypeReminder];
-    switch (status)
-    {
-        case EKAuthorizationStatusNotDetermined:
-            authority = @"NotDetermined";
-            break;
-        case EKAuthorizationStatusRestricted:
-            authority = @"Restricted";
-            break;
-        case EKAuthorizationStatusDenied:
-            authority = @"Denied";
-            break;
-        case EKAuthorizationStatusAuthorized:
-            authority = @"Authorized";
-            break;
-        default:
-            break;
-    }
-    return authority;
-}
-
-+ (NSString *)bluetoothAuthority
-{
-//    CBPeripheralManagerAuthorizationStatusNotDetermined = 0,// 未进行授权选择
-//    CBPeripheralManagerAuthorizationStatusRestricted,　　　　// 未授权，且用户无法更新，如家长控制情况下
-//    CBPeripheralManagerAuthorizationStatusDenied,　　　　　　 // 用户拒绝App使用
-//    CBPeripheralManagerAuthorizationStatusAuthorized,　　　　// 已授权，可使用
-    
-    NSString *authority = @"";
-    CBPeripheralManagerAuthorizationStatus status = [CBPeripheralManager authorizationStatus];
-    switch (status)
-    {
-        case CBPeripheralManagerAuthorizationStatusNotDetermined:
-            authority = @"NotDetermined";
-            break;
-        case CBPeripheralManagerAuthorizationStatusRestricted:
-            authority = @"Restricted";
-            break;
-        case CBPeripheralManagerAuthorizationStatusDenied:
-            authority = @"Denied";
-            break;
-        case CBPeripheralManagerAuthorizationStatusAuthorized:
-            authority = @"Authorized";
-            break;
-        default:
-            break;
-    }
-    return authority;
-}
-
-@end
-
-#endif
-

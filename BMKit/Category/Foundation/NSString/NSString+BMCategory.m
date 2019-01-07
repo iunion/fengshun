@@ -736,6 +736,21 @@
     return self;
 }
 
++ (unsigned long long)bm_sizeOfFolder:(NSString *)folderPath
+{
+    NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:folderPath error:nil];
+    NSEnumerator *contentsEnumurator = [contents objectEnumerator];
+    
+    NSString *file;
+    unsigned long long folderSize = 0;
+    
+    while (file = [contentsEnumurator nextObject]) {
+        NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[folderPath stringByAppendingPathComponent:file] error:nil];
+        folderSize += [[fileAttributes objectForKey:NSFileSize] intValue];
+    }
+    return folderSize;
+}
+
 @end
 
 

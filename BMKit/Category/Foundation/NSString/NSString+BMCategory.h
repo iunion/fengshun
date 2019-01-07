@@ -217,5 +217,8 @@
  */
 - (NSString *)bm_pathByDeletingSequenceNumber;
 
+// 目录存储空间
++ (unsigned long long)bm_sizeOfFolder:(NSString *)folderPath;
+
 @end
 
