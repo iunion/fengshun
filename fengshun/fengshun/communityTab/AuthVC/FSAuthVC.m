@@ -262,9 +262,14 @@
             [self.m_ProgressHUD showAnimated:YES withText:@"请输入您的姓名" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             return NO;
         }
-        if (![self.m_IdCard.m_Content bm_isNotEmpty] || self.m_IdCard.m_Content.length != 18)
+        if (![self.m_IdCard.m_Content bm_isNotEmpty])
         {
             [self.m_ProgressHUD showAnimated:YES withText:@"请输入您的身份证账号" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            return NO;
+        }
+        if (self.m_IdCard.m_Content.length != 18)
+        {
+            [self.m_ProgressHUD showAnimated:YES withText:@"请输入正确的身份证号" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             return NO;
         }
         return YES;
@@ -285,9 +290,14 @@
             [self.m_ProgressHUD showAnimated:YES withText:@"请输入您的姓名" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             return NO;
         }
-        if (![self.m_IdCard.m_Content bm_isNotEmpty] || self.m_IdCard.m_Content.length != 18)
+        if (![self.m_IdCard.m_Content bm_isNotEmpty])
         {
             [self.m_ProgressHUD showAnimated:YES withText:@"请输入您的身份证账号" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            return NO;
+        }
+        if (self.m_IdCard.m_Content.length != 18)
+        {
+            [self.m_ProgressHUD showAnimated:YES withText:@"请输入正确的身份证号" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             return NO;
         }
         if (![self.m_NikeName.m_Content bm_isNotEmpty])
