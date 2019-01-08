@@ -68,6 +68,7 @@
 // 刷新还是复制
 @property (nonatomic, assign) BOOL m_IsRefresh;
 
+@property (nonatomic, assign)dispatch_once_t addNotificationOnceToken;
 // 监听键盘事件,改变webview尺寸,以解决键盘遮挡输入框的问题(暂时不开放)
 //@property (nonatomic, assign) BOOL m_ManageKeyBoard;
 
@@ -212,8 +213,6 @@
     
     [self makeWebView];
     
-    [self needAddKeyBoardNotificationObserver:NO];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(makeWebView) name:userInfoChangedNotification object:nil];
     
     // 案例、法规、文书详情右上角…分享菜单中“复制链接”功能 改为刷新 
@@ -305,20 +304,23 @@
 
 #pragma mark - 原生对键盘事件的优化
 
-- (void)needAddKeyBoardNotificationObserver:(BOOL)added
+- (void)needAddKeyBoardNotificationObserver
 {
-    if (added) {
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyBoardDidShow:) name:UIKeyboardDidShowNotification object:nil];
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    }
-    else
-    {
-        [[NSNotificationCenter defaultCenter]removeObserver:self name:UIKeyboardDidShowNotification object:nil];
-        [[NSNotificationCenter defaultCenter]removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-    }
+    BMLog(@"接管WebView的键盘事件...");
+    dispatch_once(&_addNotificationOnceToken, ^{
+        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+        [nc addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+        [nc addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+        
+        [nc removeObserver:self.m_WebView.realWebView name:UIKeyboardWillHideNotification object:nil];
+        [nc removeObserver:self.m_WebView.realWebView name:UIKeyboardWillShowNotification object:nil];
+        [nc removeObserver:self.m_WebView.realWebView name:UIKeyboardWillChangeFrameNotification object:nil];
+        [nc removeObserver:self.m_WebView.realWebView name:UIKeyboardDidChangeFrameNotification object:nil];
+    });
+    
 }
 
-- (void)keyBoardDidShow:(NSNotification *)note
+- (void)keyBoardWillShow:(NSNotification *)note
 {
     UIView *webView = self.m_WebView.realWebView;
     NSDictionary *info = [note userInfo];
@@ -739,7 +741,10 @@
     //  添加键盘管理
     [self.m_WebView registerHandler:@"manageKeyboard" handler:^(NSString *jsonStr, WVJBResponseCallback responseCallback) {
         NSDictionary *data = [NSDictionary bm_dictionaryWithJsonString:jsonStr];
-        [weakSelf needAddKeyBoardNotificationObserver:[data bm_boolForKey:@"shouldManage"]];
+        if ([data bm_boolForKey:@"shouldManage"]) {
+            [weakSelf needAddKeyBoardNotificationObserver];
+        }
+        
     }];
     
     // 登录
