@@ -1882,6 +1882,10 @@
 		ADC59207215395100054BE72 /* fstab_btn1_highIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591EB215395100054BE72 /* fstab_btn1_highIcon@3x.png */; };
 		ADC5920C215395100054BE72 /* fstab_btn1_highIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591EE215395100054BE72 /* fstab_btn1_highIcon@2x.png */; };
 		ADC5920D215395100054BE72 /* fstab_btn1_highIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591EE215395100054BE72 /* fstab_btn1_highIcon@2x.png */; };
+		ADDBB81721E44ADA00135C03 /* applogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDBB81521E44ADA00135C03 /* applogo@2x.png */; };
+		ADDBB81821E44ADA00135C03 /* applogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDBB81521E44ADA00135C03 /* applogo@2x.png */; };
+		ADDBB81921E44ADA00135C03 /* applogo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDBB81621E44ADA00135C03 /* applogo@3x.png */; };
+		ADDBB81A21E44ADA00135C03 /* applogo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDBB81621E44ADA00135C03 /* applogo@3x.png */; };
 		ADE8689721392853005359B5 /* FSTopicListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8689521392853005359B5 /* FSTopicListCell.m */; };
 		ADE8689821392853005359B5 /* FSTopicListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADE8689621392853005359B5 /* FSTopicListCell.xib */; };
 		ADE8689C21393469005359B5 /* FSForumListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE8689A21393469005359B5 /* FSForumListCell.m */; };
@@ -3815,6 +3819,8 @@
 		ADC591E7215395100054BE72 /* fstab_btn2_highIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn2_highIcon@3x.png"; sourceTree = "<group>"; };
 		ADC591EB215395100054BE72 /* fstab_btn1_highIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn1_highIcon@3x.png"; sourceTree = "<group>"; };
 		ADC591EE215395100054BE72 /* fstab_btn1_highIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn1_highIcon@2x.png"; sourceTree = "<group>"; };
+		ADDBB81521E44ADA00135C03 /* applogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "applogo@2x.png"; sourceTree = "<group>"; };
+		ADDBB81621E44ADA00135C03 /* applogo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "applogo@3x.png"; sourceTree = "<group>"; };
 		ADE8689421392853005359B5 /* FSTopicListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTopicListCell.h; sourceTree = "<group>"; };
 		ADE8689521392853005359B5 /* FSTopicListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTopicListCell.m; sourceTree = "<group>"; };
 		ADE8689621392853005359B5 /* FSTopicListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSTopicListCell.xib; sourceTree = "<group>"; };
@@ -7717,6 +7723,15 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		ADDBB81421E44AAC00135C03 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				ADDBB81521E44ADA00135C03 /* applogo@2x.png */,
+				ADDBB81621E44ADA00135C03 /* applogo@3x.png */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
 		ADE86893213927B2005359B5 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -7784,6 +7799,7 @@
 		AF1B5EE3217462BE00125921 /* FSShareManager */ = {
 			isa = PBXGroup;
 			children = (
+				ADDBB81421E44AAC00135C03 /* image */,
 				AF1B5EE4217462FA00125921 /* FSShareManager.h */,
 				AF1B5EE5217462FA00125921 /* FSShareManager.m */,
 			);
@@ -8417,6 +8433,7 @@
 				8730AD432140CC28004331A9 /* user_serviceicon@3x.png in Resources */,
 				87426A0C212F9657003C52F6 /* navigationbar_message_icon@3x.png in Resources */,
 				8730B1222148E5D1004331A9 /* fsfreshidle_icon20@2x.png in Resources */,
+				ADDBB81721E44ADA00135C03 /* applogo@2x.png in Resources */,
 				874268CF212E7E36003C52F6 /* bmtab_bg@3x.png in Resources */,
 				8730B1232148E5D1004331A9 /* fsfreshfreshing_icon5@2x.png in Resources */,
 				87BC9E3121548E0D000F2011 /* fsintroguide_640x960_2@2x.png in Resources */,
@@ -8544,6 +8561,7 @@
 				8730B1152148E5D1004331A9 /* fsfreshidle_icon24@2x.png in Resources */,
 				DBF7E19921523CB6002CEDA4 /* search_lawTopic_3@2x.png in Resources */,
 				DBB73F77215CC01F00E65230 /* placeholder_hp_hot@2x.png in Resources */,
+				ADDBB81921E44ADA00135C03 /* applogo@3x.png in Resources */,
 				8730B0C121465034004331A9 /* BMCombine_down@3x.png in Resources */,
 				ADE8689821392853005359B5 /* FSTopicListCell.xib in Resources */,
 				87426895212E7E36003C52F6 /* increase_baiduwaimai@3x.png in Resources */,
@@ -8603,6 +8621,7 @@
 				DBB73F7E215CC01F00E65230 /* placeholder_topic@2x.png in Resources */,
 				874C23BE215B5DF2001C8BE9 /* user_praiseicon@2x.png in Resources */,
 				87E7C50821509AB000F7AB14 /* FSTextCell.xib in Resources */,
+				ADDBB81821E44ADA00135C03 /* applogo@2x.png in Resources */,
 				87E7C50921509AB000F7AB14 /* video_bottom_message@2x.png in Resources */,
 				87E7C50A21509AB000F7AB14 /* video_more_btn@2x.png in Resources */,
 				87E7C50B21509AB000F7AB14 /* videocall_open_audio@2x.png in Resources */,
@@ -8692,6 +8711,7 @@
 				87E7C54621509AB000F7AB14 /* videocall_open_video@2x.png in Resources */,
 				87E7C54721509AB000F7AB14 /* fsfreshidle_icon1@2x.png in Resources */,
 				87E7C54821509AB000F7AB14 /* bmsearch_close@2x.png in Resources */,
+				ADDBB81A21E44ADA00135C03 /* applogo@3x.png in Resources */,
 				45F68F4F2150E58F00628DC8 /* empty_topicicon@3x.png in Resources */,
 				87E7C54921509AB000F7AB14 /* navigationbar_webclose_icon@3x.png in Resources */,
 				DBF7E19D21524EDB002CEDA4 /* search_lawTopic_1@3x.png in Resources */,

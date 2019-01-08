@@ -29,7 +29,7 @@
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
     if (![thumImage bm_isNotEmpty])// 图片为空时显示本地icon
     {
-        thumImage = [UIImage imageNamed:@""];
+        thumImage = [UIImage imageNamed:@"applogo"];
     }
     if (![title bm_isNotEmpty] || ![descr bm_isNotEmpty] || ![webpageUrl bm_isNotEmpty])
     {
