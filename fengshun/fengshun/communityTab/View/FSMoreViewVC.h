@@ -18,13 +18,29 @@
 @end
 
 @interface FSMoreViewVC : FSSuperVC
+/**
+ 帖子详情页用
 
-+ (void)showMoreDelegate:(id)delegate isOwner:(BOOL)isOwner isCollection:(BOOL)isCollection;
+ @param delegate 代理
+ @param isOwner 是否本人帖子
+ @param isCollection 是否收藏过
+ */
++ (FSMoreViewVC *)showTopicMoreDelegate:(id)delegate isOwner:(BOOL)isOwner isCollection:(BOOL)isCollection;
 
-+ (void)showWebMoreDelegate:(id)delegate isCollection:(BOOL)isCollection ;
-+ (void)showWebMoreDelegate:(id)delegate isCollection:(BOOL)isCollection hasRefresh:(BOOL)hasRefresh;
+/**
+ web详情页使用
 
-+ (void)showShareAlertViewDelegate:(id)delegate;
+ @param delegate 代理
+ @param isCollection 是否收藏过
+ @param hasRefresh yes为刷新功能、no为复制功能
+ */
++ (FSMoreViewVC *)showWebMoreDelegate:(id)delegate isCollection:(BOOL)isCollection hasRefresh:(BOOL)hasRefresh;
+
+// 只有分享功能
++ (FSMoreViewVC *)showSingleShareAlertViewDelegate:(id)delegate;
+
+// 课堂案例详情（只有分享刷新功能）
++ (FSMoreViewVC *)showClassroomCaseDetailShareAlertViewDelegate:(id)delegate;
 
 @property (nonatomic, assign)id <FSMoreViewVCDelegate> delegate;
 

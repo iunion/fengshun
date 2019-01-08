@@ -671,71 +671,6 @@
 
 - (void)registerJSHandler
 {
-#if 0
-    // 分享
-    [self.m_WebView registerHandler:@"toShare" handler:^(id data, WVJBResponseCallback responseCallback) {
-        BMLog(@"share called: %@", data);
-        //responseCallback(@"Response from register");
-        
-        NSDictionary *shareDic = (NSDictionary *)data;
-        
-        NSString *title = [shareDic bm_stringTrimForKey:@"share_title"];
-        NSString *shareText = [shareDic bm_stringTrimForKey:@"share_content"];
-        NSString *imageBase64 = [shareDic bm_stringTrimForKey:@"share_imagebase64"];
-        NSData *imageData = [NSString bm_base64DecodeString:imageBase64];
-        id image = [UIImage imageWithData:imageData];
-        if (!image)
-        {
-            image = imageBase64;
-        }
-        NSString *url = [shareDic bm_stringTrimForKey:@"share_url"];
-        [weakSelf shareSDKWithTitle:title shareImage:image content:shareText shareUrlStr:url];
-    }];
-
-    
-    // 跳转页
-    [self.m_WebView registerHandler:@"showtab" handler:^(id data, WVJBResponseCallback responseCallback) {
-        
-        BMLog(@"showmain called: %@", data);
-        
-        NSDictionary *tabDic = (NSDictionary *)data;
-        [GetAppDelegate.m_TabBarController selectedTabWithIndex:[tabDic bm_uintForKey:@"tabindex"]];
-    }];
-    
-    // 查看大图
-    [self.m_WebView registerHandler:@"showpic" handler:^(id data, WVJBResponseCallback responseCallback) {
-        BMLog(@"showpic called: %@", data);
-        
-//        NSDictionary *photoDic = (NSDictionary *)data;
-//        NSString *photoUrl = [photoDic stringTrimForKey:@"img_url"];
-//        NSString *newURL = [photoUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//        [weakSelf showPhoto:newURL];
-    }];
-    
-    
-    // 复制文本到粘贴板
-    [self.m_WebView registerHandler:@"copy" handler:^(id data, WVJBResponseCallback responseCallback) {
-        BMLog(@"copy called: %@", data);
-        
-        NSDictionary *copyDic = (NSDictionary *)data;
-        NSString *text = [copyDic bm_stringTrimForKey:@"content"];
-        if ([text bm_isNotEmpty])
-        {
-            [[UIPasteboard generalPasteboard] setString:text];
-            [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"复制成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-        }
-        else
-        {
-            [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"复制失败" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-        }
-    }];
-    // 显示分享面板
-    [self.m_WebView registerHandler:@"showShareBoard" handler:^(id data, WVJBResponseCallback responseCallback) {
-        BMLog(@"showShareBoard called: %@", data);
-        
-    }];
-#endif
-    
     BMWeakSelf
     //  添加键盘管理
     [self.m_WebView registerHandler:@"manageKeyboard" handler:^(NSString *jsonStr, WVJBResponseCallback responseCallback) {
@@ -761,9 +696,14 @@
          "type":"STATUTE"}
          */
         weakSelf.s_ShareJsonSting = data;
+        NSDictionary *dataDic = [NSDictionary bm_dictionaryWithJsonString:weakSelf.s_ShareJsonSting];
+        if ([[dataDic bm_stringForKey:@"type"] isEqualToString:@"MEDIATE"])//课堂案例精选
+        {
+            [weakSelf addRightBtn];
+        }
     }];
     
-    // 举报
+    // 举报 (帖子详情评论举报弹窗)
     [self.m_WebView registerHandler:@"toReport" handler:^(id data, WVJBResponseCallback responseCallback) {
         /*
          {"id":"3","type":"COMMENT","commentPerson":"用户林1","commentContent":"这是0评论内容"}
@@ -773,7 +713,7 @@
         [weakSelf showReportAlertWithData:data];
     }];
     
-    //收藏按钮
+    // 收藏按钮
     [self.m_WebView registerHandler:@"toCollect" handler:^(id data, WVJBResponseCallback responseCallback) {
         /*
          {
@@ -802,43 +742,46 @@
 - (void)addRightBtn
 {
     [self updateNavWithLeftArray:self.m_NavLeftBtnArray rightArray:@[ [self bm_makeBarButtonDictionaryWithTitle:nil image:@"navigationbar_more_icon" toucheEvent:@"moreAction" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0]]];
-    //[self bm_setNavigationWithTitle:self.m_WebView.title barTintColor:nil leftDicArray:nil rightDicArray:@[ [self bm_makeBarButtonDictionaryWithTitle:nil image:@"navigationbar_more_icon" toucheEvent:@"moreAction" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0]]];
 }
 
 // 更多按钮
 - (void)moreAction
 {
     NSDictionary *data = [NSDictionary bm_dictionaryWithJsonString:self.s_CollectJsonSting];
-    
-    if (![data bm_isNotEmptyDictionary])
+    NSDictionary *shareData = [NSDictionary bm_dictionaryWithJsonString:self.s_ShareJsonSting];
+    if (![data bm_isNotEmptyDictionary] && ![shareData bm_isNotEmptyDictionary])
     {
         [self.m_ProgressHUD showAnimated:YES withText:@"数据错误" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         return;
     }
-    
-    // 获取收藏状态
-    [self.m_ProgressHUD showAnimated:YES];
-    
-    BMWeakSelf;
-    [FSApiRequest getCollectStateID:[data bm_stringForKey:@"id"] type:[data bm_stringForKey:@"type"] Success:^(id responseObject) {
-        
-        [weakSelf.m_ProgressHUD hideAnimated:NO];
-        NSInteger count = [responseObject integerValue];
-        weakSelf.s_isCollect = count>0;
-        [FSMoreViewVC showWebMoreDelegate:weakSelf isCollection:weakSelf.s_isCollect hasRefresh:weakSelf.m_IsRefresh];
-    } failure:^(NSError *error) {
-        
-    }];
+    BMWeakSelf
+    if ([[shareData bm_stringForKey:@"type"] isEqualToString:@"MEDIATE"])//课堂案例精选
+    {
+        [FSMoreViewVC showClassroomCaseDetailShareAlertViewDelegate:self];
+    }
+    else //其他
+    {
+        // 获取收藏状态
+        [self.m_ProgressHUD showAnimated:YES];
+        [FSApiRequest getCollectStateID:[data bm_stringForKey:@"id"] type:[data bm_stringForKey:@"type"] Success:^(id responseObject) {
+            [weakSelf.m_ProgressHUD hideAnimated:NO];
+            NSInteger count = [responseObject integerValue];
+            weakSelf.s_isCollect = count>0;
+            [FSMoreViewVC showWebMoreDelegate:weakSelf isCollection:weakSelf.s_isCollect hasRefresh:weakSelf.m_IsRefresh];
+        } failure:^(NSError *error) {
+            
+        }];
+    }
 }
-
 
 #pragma mark - moreAlert
 
 - (void)moreViewClickWithType:(NSInteger)index
 {
+    NSDictionary *shareData = [NSDictionary bm_dictionaryWithJsonString:self.s_ShareJsonSting];
     if (index < 5)
     {
-        if (![self.s_ShareJsonSting bm_isNotEmpty])
+        if (![shareData bm_isNotEmptyDictionary])
         {
             [self.m_ProgressHUD showAnimated:YES withText:@"分享错误" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             return;
@@ -851,17 +794,20 @@
          "id":"TJDjrGUBN3_o1ImUSqS9",
          "type":"STATUTE"}
          */
-        NSDictionary *data = [NSDictionary bm_dictionaryWithJsonString:self.s_ShareJsonSting];
-        [FSShareManager shareWebUrlWithTitle:[data bm_stringForKey:@"title"] descr:[data bm_stringForKey:@"content"] thumImage:[data bm_stringForKey:@"imgUrl"] webpageUrl:[data bm_stringForKey:@"url"] platform:index currentVC:self delegate:self];
+        [FSShareManager shareWebUrlWithTitle:[shareData bm_stringForKey:@"title"] descr:[shareData bm_stringForKey:@"content"] thumImage:[shareData bm_stringForKey:@"imgUrl"] webpageUrl:[shareData bm_stringForKey:@"url"] platform:index currentVC:self delegate:self];
     }
     else if (index == 5) // 收藏
     {
+        if ([[shareData bm_stringForKey:@"type"]isEqualToString:@"MEDIATE"])//课堂案例精选 收藏改为刷新功能
+        {
+            [self.m_WebView reload];
+            return;
+        }
         if (![FSUserInfoModel isLogin])
         {
             [self showLogin];
             return;
         }
-
         BMWeakSelf
         NSDictionary *data = [NSDictionary bm_dictionaryWithJsonString:self.s_CollectJsonSting];
         [FSApiRequest updateCollectStateID:[data bm_stringForKey:@"id"] isCollect:!self.s_isCollect guidingCase:[data bm_stringForKey:@"guidingCase"] source:[data bm_stringForKey:@"source"] title:[data bm_stringForKey:@"title"] type:[data bm_stringForKey:@"type"] Success:^(id responseObject) {
@@ -889,7 +835,6 @@
                 [self.m_ProgressHUD showAnimated:YES withDetailText:@"复制失败" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             }
         }
-        
     }
 }
 
@@ -934,7 +879,6 @@
     
     BMWeakSelf
     [FSAlertView showAlertWithTitle:@"举报理由说明" message:nil contentView:contentView cancelTitle:@"取消" otherTitle:@"确定" completion:^(BOOL cancelled, NSInteger buttonIndex) {
-        
         BMLog(@"%@", textField.text);
         if (buttonIndex == 1) {
             if (![textField.text bm_isNotEmpty])
@@ -956,120 +900,5 @@
         [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:[NSString stringWithFormat:@"%@",[error.userInfo bm_stringForKey:@"NSLocalizedDescription"]] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     }];
 }
-
-//- (void)showPhoto:(NSString *)photoUrl
-//{
-//    if (![photoUrl bm_isNotEmpty])
-//    {
-//        return;
-//    }
-//
-//    s_PhtoUrlStr = photoUrl;
-//
-//    SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] init];
-//    //browser.sourceImagesContainerView = self; // 原图的父控件
-//    browser.imageCount = 1; // 图片总数
-//    browser.currentImageIndex = 0;
-//    browser.delegate = self;
-//    [browser show];
-//}
-
-
-#pragma mark -
-#pragma mark SDPhotoBrowserDelegate
-
-//// 返回临时占位图片（即原来的小图）
-//- (UIImage *)photoBrowser:(SDPhotoBrowser *)browser placeholderImageForIndex:(NSInteger)index
-//{
-//    UIImage *image = [UIImage imageNamed:@"placeholderimage_260X150"];
-//    return image;
-//}
-//
-//// 返回高质量图片的url
-//- (NSURL *)photoBrowser:(SDPhotoBrowser *)browser highQualityImageURLForIndex:(NSInteger)index
-//{
-//    return [NSURL URLWithString:s_PhtoUrlStr];
-//}
-
-
-#pragma mark -
-#pragma mark FSLoginViewDelegate
-
-
-#pragma mark -
-#pragma mark 界面点击事件
-
-//- (void)navRightBtnClick
-//{
-//    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickNavRightBtnWithWebViewController:)])
-//    {
-//        [self.delegate didClickNavRightBtnWithWebViewController:self];
-//    }
-//}
-
-#if 0
-#pragma mark -
-#pragma mark share
-
-//    1 -- 微信好友
-//    2 -- 微信朋友圈
-//    3 -- QQ好友
-//    4 -- 新浪微博
-//    5 -- 短信
-//    6 -- 邮件
-//    7 -- QQ空间
-- (NSUInteger)getShareType:(SSDKPlatformType)type
-{
-    switch (type)
-    {
-        case SSDKPlatformSubTypeWechatSession:
-            return 1;
-        case SSDKPlatformSubTypeWechatTimeline:
-            return 2;
-        case SSDKPlatformSubTypeQQFriend:
-            return 3;
-        case SSDKPlatformTypeSinaWeibo:
-            return 4;
-        case SSDKPlatformTypeSMS:
-            return 5;
-        case SSDKPlatformTypeMail:
-            return 6;
-        case SSDKPlatformSubTypeQZone:
-            return 7;
-        default:
-            return 0;
-    }
-    
-    return 0;
-}
-
-- (void)shareSucceed:(SSDKPlatformType)type
-{
-    [super shareSucceed:type];
-    
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters setBool:YES forKey:@"is_success"];
-    NSUInteger platformType = [self getShareType:type];
-    [parameters setObject:@(platformType) forKey:@"platform"];
-    //[self callJsHandler:@"webview.share_log" withData:parameters];
-    
-    //[self.m_WebView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"webview.share_log(%@)", [parameters toJSON]]];
-    [self.m_WebView evaluateJavaScript:[NSString stringWithFormat:@"webview.share_log(%@)", [parameters toJSON]] completionHandler:nil];
-}
-
-- (void)shareFailedWithError:(NSString *)errorMessage withType:(SSDKPlatformType)type
-{
-    [super shareFailedWithError:errorMessage withType:type];
-    
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters setBool:NO forKey:@"is_success"];
-    NSUInteger platformType = [self getShareType:type];
-    [parameters setObject:@(platformType) forKey:@"platform"];
-    //[self callJsHandler:@"share_log" withData:parameters];
-    
-    //[self.m_WebView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"webview.share_log(%@)", [parameters toJSON]]];
-    [self.m_WebView evaluateJavaScript:[NSString stringWithFormat:@"webview.share_log(%@)", [parameters toJSON]] completionHandler:nil];
-}
-#endif
 
 @end
