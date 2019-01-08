@@ -28,6 +28,7 @@
 #import "FSNoticeMessagesDetailVC.h"
 #import "FSOCRSearchResultVC.h"
 #import "FSTextDetailVC.h"
+#import "FSAuthVC.h"
 
 
 
@@ -90,6 +91,13 @@
     vc.hidesBottomBarWhenPushed = YES;
     [pushVC.navigationController pushViewController:vc animated:animated];
     
+    return vc;
+}
+
++ (FSAuthVC *)showAuth:(UIViewController *)pushVC type:(FSAuthState)type
+{
+    FSAuthVC *vc = [FSAuthVC vcWithAuthType:type];
+    [pushVC.navigationController pushViewController:vc animated:YES];
     return vc;
 }
 

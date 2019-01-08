@@ -733,8 +733,7 @@
     // 1.1需求 添加完善资料功能，是否有昵称，是否认证
     [self.m_WebView registerHandler:@"toAuth" handler:^(id data, WVJBResponseCallback responseCallback) {
         NSDictionary *resultDic = [NSDictionary bm_dictionaryWithJsonString:[NSString stringWithFormat:@"%@",data]];
-        FSAuthVC *vc = [FSAuthVC vcWithAuthType:[resultDic bm_intForKey:@"type"]];
-        [weakSelf.navigationController pushViewController:vc animated:YES];
+        [FSPushVCManager showAuth:weakSelf type:[resultDic bm_intForKey:@"type"]];
     }];
 }
 

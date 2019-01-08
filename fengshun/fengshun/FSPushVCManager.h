@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FSTopicDetailVC.h"
 
-@class FSWebViewController, FSFileScanImagePreviewVC,FSCommunitySecVC,FSSendTopicVC;
+@class FSWebViewController, FSFileScanImagePreviewVC,FSCommunitySecVC,FSSendTopicVC,FSAuthVC;
 
 @class FSVideoMediateDetailVC;
 
@@ -19,22 +19,29 @@
 typedef void (^PushVCCallBack)(void);
 
 @interface FSPushVCManager : NSObject
+
+#pragma mark - 社区 push
 // 社区二级页面
 + (FSCommunitySecVC *)showCommunitySecVCPushVC:(UIViewController *)pushVC fourmId:(NSInteger)fourId fourmName:(NSString *)fourmName;
 
 // 社区详情
 + (void)showPostDetailVCWithPushVC:(UIViewController *)pushVC url:(NSString *)url;
 
-// 发帖|| 编辑帖子
+// 发帖||编辑帖子
 + (FSSendTopicVC *)showSendPostWithPushVC:(UIViewController *)pushVC isEdited:(BOOL )isEdited relatedId:(NSInteger )relatedId callBack:(PushVCCallBack)callBack;
 
-//帖子详情
+// 帖子详情
 + (FSTopicDetailVC *)showTopicDetail:(UIViewController *)pushVC  topicId:(NSString *)topicId;
+
+// 完善账户信息
++ (FSAuthVC *)showAuth:(UIViewController *)pushVC type:(FSAuthState)type;
 
 + (FSWebViewController *)showWebView:(UIViewController *)pushVC url:(NSString *)url title:(NSString *)title;
 + (FSWebViewController *)showWebView:(UIViewController *)pushVC url:(NSString *)url title:(NSString *)title animated:(BOOL)animated;
 + (FSWebViewController *)showWebView:(UIViewController *)pushVC url:(NSString *)url title:(NSString *)title showLoadingBar:(BOOL)showLoadingBar loadingBarColor:(UIColor *)color animated:(BOOL)animated;
 + (FSWebViewController *)showWebView:(UIViewController *)pushVC url:(NSString *)url title:(NSString *)title showLoadingBar:(BOOL)showLoadingBar loadingBarColor:(UIColor *)color delegate:(id<FSWebViewControllerDelegate>)delegate animated:(BOOL)animated;
+
+
 
 #pragma mark - homePage push
 
