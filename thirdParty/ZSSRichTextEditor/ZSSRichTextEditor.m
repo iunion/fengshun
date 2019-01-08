@@ -1127,7 +1127,8 @@ static CGFloat kDefaultScale    = 0.5;
 {
     NSString *html        = self.internalHTML;
     self.sourceView.text  = html;
-    if (![html bm_isNotEmpty]) {
+    if (![html bm_isNotEmpty])
+    {
         return;
     }
     NSString *cleanedHTML = [self removeQuotesFromHTML:html];

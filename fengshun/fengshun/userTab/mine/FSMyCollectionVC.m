@@ -31,6 +31,11 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:refreshCollectionNotification object:nil];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

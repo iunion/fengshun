@@ -381,7 +381,7 @@
 
 - (void)toShare
 {
-    [FSMoreViewVC showShareAlertViewDelegate:self];
+    [FSMoreViewVC showSingleShareAlertViewDelegate:self];
 }
 
 - (void)moreViewClickWithType:(NSInteger)index

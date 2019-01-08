@@ -47,14 +47,6 @@
     [self setNavWithTitle:@"" leftArray:nil rightArray:@[ [self bm_makeBarButtonDictionaryWithTitle:nil image:@"navigationbar_more_icon" toucheEvent:@"moreAction" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0]]];
     
     [self bringSomeViewToFront];
-    
-    // 1.1需求 添加完善资料功能，是否有昵称，是否认证
-    BMWeakSelf
-    [self registerHander:@"toAuth" handler:^(id data, WVJBResponseCallback responseCallback) {
-        NSDictionary *resultDic = [NSDictionary bm_dictionaryWithJsonString:[NSString stringWithFormat:@"%@",data]];
-        FSAuthVC *vc = [FSAuthVC vcWithAuthType:[resultDic bm_intForKey:@"type"]];
-        [weakSelf.navigationController pushViewController:vc animated:YES];
-    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -80,7 +72,7 @@
         }
         // 根据帖子详情接口 userId判断是否是本人帖子
         BOOL isOwner = [weakSelf.m_TopicDetailModel.m_UserId isEqualToString:[FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId];
-        [FSMoreViewVC showMoreDelegate:weakSelf isOwner:isOwner isCollection:weakSelf.m_TopicDetailModel.m_IsCollection];
+        [FSMoreViewVC showTopicMoreDelegate:weakSelf isOwner:isOwner isCollection:weakSelf.m_TopicDetailModel.m_IsCollection];
     } failure:^(NSError *error) {
         
     }];

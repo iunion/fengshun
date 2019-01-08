@@ -38,7 +38,8 @@
     return vc;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self createUI];
@@ -110,7 +111,8 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    if (textField != self.m_NikeName.m_contentTextfield) {
+    if (textField != self.m_NikeName.m_contentTextfield)
+    {
         return YES;
     }
     return [self isMatchesString:string];
@@ -260,9 +262,14 @@
             [self.m_ProgressHUD showAnimated:YES withText:@"请输入您的姓名" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             return NO;
         }
-        if (![self.m_IdCard.m_Content bm_isNotEmpty] || self.m_IdCard.m_Content.length != 18)
+        if (![self.m_IdCard.m_Content bm_isNotEmpty])
         {
             [self.m_ProgressHUD showAnimated:YES withText:@"请输入您的身份证账号" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            return NO;
+        }
+        if (self.m_IdCard.m_Content.length != 18)
+        {
+            [self.m_ProgressHUD showAnimated:YES withText:@"请输入正确的身份证号" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             return NO;
         }
         return YES;
@@ -283,9 +290,14 @@
             [self.m_ProgressHUD showAnimated:YES withText:@"请输入您的姓名" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             return NO;
         }
-        if (![self.m_IdCard.m_Content bm_isNotEmpty] || self.m_IdCard.m_Content.length != 18)
+        if (![self.m_IdCard.m_Content bm_isNotEmpty])
         {
             [self.m_ProgressHUD showAnimated:YES withText:@"请输入您的身份证账号" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            return NO;
+        }
+        if (self.m_IdCard.m_Content.length != 18)
+        {
+            [self.m_ProgressHUD showAnimated:YES withText:@"请输入正确的身份证号" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             return NO;
         }
         if (![self.m_NikeName.m_Content bm_isNotEmpty])
@@ -298,7 +310,8 @@
     return NO;
 }
 
-- (BOOL)isMatchesString:(NSString *)string{
+- (BOOL)isMatchesString:(NSString *)string
+{
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"[0-9a-zA-Z\\u4E00-\\u9FA5\\_]*"];
     return [predicate evaluateWithObject:string];
 }

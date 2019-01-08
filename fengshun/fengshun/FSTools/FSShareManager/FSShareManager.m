@@ -27,6 +27,10 @@
 {
     //创建分享消息对象
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+    if (![thumImage bm_isNotEmpty])// 图片为空时显示本地icon
+    {
+        thumImage = [UIImage imageNamed:@"applogo"];
+    }
     if (![title bm_isNotEmpty] || ![descr bm_isNotEmpty] || ![webpageUrl bm_isNotEmpty])
     {
         BMLog(@"分享内容不能为空");

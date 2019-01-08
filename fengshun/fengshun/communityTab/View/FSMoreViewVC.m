@@ -13,28 +13,30 @@
 
 @interface FSMoreViewVC ()
 
-// 是否是自己的帖子
+// 是否是自己的帖子 （是否显示编辑、删除功能）
 @property (nonatomic , assign) BOOL m_isOwner;
 
-// 是否收藏
+// 是否收藏 （收藏按钮选中状态）
 @property (nonatomic , assign) BOOL m_Collection;
 
 @property (nonatomic, strong) UIView *m_BgView;
 
 @property (nonatomic, strong) UIButton *m_CancelBtn;
-// 是否是web more按钮（不显示举报）
+// 是否是web more按钮（是否显示举报 web不显示，帖子显示）
 @property (nonatomic, assign)BOOL m_IsWebMore;
-// 是否只有分享按钮
+// 是否只有分享按钮 （单行 只显示分享）
 @property (nonatomic, assign) BOOL m_IsShareSheet;
 // yes=刷新、no=复制
 @property (nonatomic, assign) BOOL m_isRefresh;
+// 是否只有刷新功能（课堂案例详情页面使用1.1版本）
+@property (nonatomic, assign) BOOL m_isSingleRefresh;
 
 @end
 
 @implementation FSMoreViewVC
 
 
-+ (void)showMoreDelegate:(id)delegate isOwner:(BOOL)isOwner isCollection:(BOOL)isCollection
++ (FSMoreViewVC *)showTopicMoreDelegate:(id)delegate isOwner:(BOOL)isOwner isCollection:(BOOL)isCollection
 {
     FSMoreViewVC *moreVC = [[FSMoreViewVC alloc]init];
     moreVC.delegate = delegate;
@@ -43,6 +45,7 @@
     moreVC.m_IsWebMore = NO;
     moreVC.m_IsShareSheet = NO;
     moreVC.m_isRefresh = NO;
+    moreVC.m_isSingleRefresh = NO;
     moreVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     moreVC.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:moreVC animated:NO completion:^{
@@ -50,35 +53,19 @@
             moreVC.m_BgView.bm_top = UI_SCREEN_HEIGHT - moreVC.m_BgView.bm_height;
         }];
     }];
+    return moreVC;
 }
 
-+ (void)showWebMoreDelegate:(id)delegate isCollection:(BOOL)isCollection
++ (FSMoreViewVC *)showWebMoreDelegate:(id)delegate isCollection:(BOOL)isCollection hasRefresh:(BOOL)hasRefresh
 {
     FSMoreViewVC *moreVC = [[FSMoreViewVC alloc]init];
     moreVC.delegate = delegate;
-    moreVC.m_isOwner = NO;
-    moreVC.m_IsWebMore = YES;
-    moreVC.m_Collection = isCollection;
-    moreVC.m_IsShareSheet = NO;
-    moreVC.m_isRefresh = NO;
-    moreVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-    moreVC.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:moreVC animated:NO completion:^{
-        [UIView animateWithDuration:DEFAULT_DELAY_TIME animations:^{
-            moreVC.m_BgView.bm_top = UI_SCREEN_HEIGHT - moreVC.m_BgView.bm_height;
-        }];
-    }];
-}
-
-+ (void)showWebMoreDelegate:(id)delegate isCollection:(BOOL)isCollection hasRefresh:(BOOL)hasRefresh
-{
-    FSMoreViewVC *moreVC = [[FSMoreViewVC alloc]init];
-    moreVC.delegate = delegate;
-    moreVC.m_isOwner = NO;
-    moreVC.m_IsWebMore = YES;
+    moreVC.m_isOwner = NO;//隐藏编辑删除
+    moreVC.m_IsWebMore = YES;//隐藏举报
     moreVC.m_Collection = isCollection;
     moreVC.m_IsShareSheet = NO;
     moreVC.m_isRefresh = hasRefresh;
+    moreVC.m_isSingleRefresh = NO;
     moreVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     moreVC.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:moreVC animated:NO completion:^{
@@ -86,18 +73,19 @@
             moreVC.m_BgView.bm_top = UI_SCREEN_HEIGHT - moreVC.m_BgView.bm_height;
         }];
     }];
-    
+    return moreVC;
 }
 
-+ (void)showShareAlertViewDelegate:(id)delegate
++ (FSMoreViewVC *)showSingleShareAlertViewDelegate:(id)delegate
 {
     FSMoreViewVC *moreVC = [[FSMoreViewVC alloc]init];
     moreVC.delegate = delegate;
-    moreVC.m_IsShareSheet = YES;
+    moreVC.m_IsShareSheet = YES;//单行
     moreVC.m_isOwner = NO;
     moreVC.m_IsWebMore = NO;
     moreVC.m_Collection = NO;
     moreVC.m_isRefresh = NO;
+    moreVC.m_isSingleRefresh = NO;
     moreVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     moreVC.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:moreVC animated:NO completion:^{
@@ -105,6 +93,27 @@
               moreVC.m_BgView.bm_top = UI_SCREEN_HEIGHT - moreVC.m_BgView.bm_height;
         }];
     }];
+    return moreVC;
+}
+
++ (FSMoreViewVC *)showClassroomCaseDetailShareAlertViewDelegate:(id)delegate
+{
+    FSMoreViewVC *moreVC = [[FSMoreViewVC alloc]init];
+    moreVC.delegate = delegate;
+    moreVC.m_isOwner = NO;//隐藏编辑删除
+    moreVC.m_Collection = NO;
+    moreVC.m_IsWebMore = YES;//隐藏举报
+    moreVC.m_IsShareSheet = NO;
+    moreVC.m_isRefresh = NO;
+    moreVC.m_isSingleRefresh = YES;
+    moreVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    moreVC.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:moreVC animated:NO completion:^{
+        [UIView animateWithDuration:DEFAULT_DELAY_TIME animations:^{
+            moreVC.m_BgView.bm_top = UI_SCREEN_HEIGHT - moreVC.m_BgView.bm_height;
+        }];
+    }];
+    return moreVC;
 }
 
 - (void)viewDidLoad
@@ -143,17 +152,28 @@
             btn.backgroundColor = [UIColor whiteColor];
             btn.titleLabel.font = [UIFont systemFontOfSize:11.f];
             btn.titleLabel.textAlignment = NSTextAlignmentCenter;
-            [btn setTitle:@[@[@"微信",@"朋友圈",@"QQ",@"QQ空间",@"微博"],@[@"收藏",self.m_isRefresh?@"刷新":@"复制链接",@"举报",@"编辑",@"删除"]][i][j] forState:UIControlStateNormal];
-            [btn setImage:[UIImage imageNamed:@[@[@"community_wechat",@"community_friends_cycle",@"community_QQ",@"community_zone",@"community_weibo"],@[@"community_collect",self.m_isRefresh?@"more_refresh":@"community_copy",@"community_report",@"community_edit",@"community_delete"]][i][j]] forState:UIControlStateNormal];
+            [btn setTitle:@[@[@"微信",@"朋友圈",@"QQ",@"QQ空间",@"微博"],@[self.m_isSingleRefresh?@"刷新":@"收藏",self.m_isRefresh ? @"刷新":@"复制链接",@"举报",@"编辑",@"删除"]][i][j] forState:UIControlStateNormal];
+            [btn setImage:[UIImage imageNamed:@[@[@"community_wechat",@"community_friends_cycle",@"community_QQ",@"community_zone",@"community_weibo"],@[self.m_isSingleRefresh?@"more_refresh":@"community_collect",self.m_isRefresh?@"more_refresh":@"community_copy",@"community_report",@"community_edit",@"community_delete"]][i][j]] forState:UIControlStateNormal];
             [btn setTitleColor:[UIColor bm_colorWithHex:0x333333] forState:UIControlStateNormal];
             [btn addTarget:self action:@selector(moreViewAction:) forControlEvents:UIControlEventTouchUpInside];
             btn.tag = (i*5 + j) + 100;
-            // 收藏按钮
+            // 收藏||刷新
             if (btn.tag == 105)
             {
-                [btn setTitle:@"取消收藏" forState:UIControlStateSelected];
-                [btn setImage:[UIImage imageNamed:@"community_collect_selected"] forState:UIControlStateSelected];
-                btn.selected = self.m_Collection;
+                if (!self.m_isSingleRefresh)//收藏
+                {
+                    [btn setTitle:@"取消收藏" forState:UIControlStateSelected];
+                    [btn setImage:[UIImage imageNamed:@"community_collect_selected"] forState:UIControlStateSelected];
+                    btn.selected = self.m_Collection;
+                }
+                else// 刷新
+                {
+                    
+                }
+            }
+            if (btn.tag == 106)// 刷新||复制
+            {
+                btn.hidden = self.m_isSingleRefresh;
             }
             // 举报
             if (btn.tag == 107)
@@ -166,7 +186,6 @@
             {
                 btn.hidden = !self.m_isOwner;
             }
-//            [btn bm_layoutButtonWithEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageTop imageTitleGap:5];
             
             CGFloat imageWidth = 30.0f;
             CGFloat titleheight = 28.0f;
