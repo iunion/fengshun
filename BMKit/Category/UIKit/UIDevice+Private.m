@@ -106,6 +106,7 @@
     return authority;
 }
 
+// 是否有联网功能
 + (NSString *)bm_netAuthority
 {
     NSString *authority = @"Unknown";

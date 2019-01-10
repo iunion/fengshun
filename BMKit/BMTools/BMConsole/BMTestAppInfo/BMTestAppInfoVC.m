@@ -9,6 +9,7 @@
 #import "BMTestAppInfoVC.h"
 #import "BMTableViewManager.h"
 #import "UIDevice+Private.h"
+#import <CoreTelephony/CTCellularData.h>
 
 @interface BMTestAppInfoVC ()
 <
@@ -18,6 +19,9 @@
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong) BMTableViewManager *tableManager;
+
+@property (nonatomic, strong) CTCellularData *cellularData __OSX_AVAILABLE_STARTING(__MAC_NA, __IPHONE_9_0);
+@property (nonatomic, strong) NSString *netAuthority __OSX_AVAILABLE_STARTING(__MAC_NA, __IPHONE_9_0);
 
 @end
 
@@ -56,6 +60,12 @@
 
 - (void)close
 {
+    if (@available(iOS 9.0, *))
+    {
+        self.cellularData.cellularDataRestrictionDidUpdateNotifier = nil;
+        self.cellularData = nil;
+    }
+    
     [self dismissViewControllerAnimated:YES completion:^{
     }];
 }
@@ -127,8 +137,12 @@
     [section3 addItem:[self makeItemWithTitle:@"地理位置权限" content:locationAuthority last:NO]];
 
     // 网络权限
-    NSString *netAuthority = [UIDevice bm_netAuthority];
-    [section3 addItem:[self makeItemWithTitle:@"网络权限" content:netAuthority last:NO]];
+    if (@available(iOS 9.0, *))
+    {
+        [self getNetAuthority];
+        //NSString *netAuthority = [UIDevice bm_netAuthority];
+        [section3 addItem:[self makeItemWithTitle:@"网络权限" content:self.netAuthority last:NO]];
+    }
 
     // push权限
     NSString *pushAuthority = [UIDevice bm_pushAuthority];
@@ -174,12 +188,10 @@
     NSString *applicationSize = [UIDevice bm_applicationSize];
     [section4 addItem:[self makeItemWithTitle:@"当前 App 占用存储空间" content:applicationSize last:NO]];
 
-
     [self.tableManager addSection:section1];
     [self.tableManager addSection:section2];
     [self.tableManager addSection:section3];
     [self.tableManager addSection:section4];
-    
 }
 
 - (BMTableViewItem *)makeItemWithTitle:(NSString *)title content:(NSString *)content last:(BOOL)last
@@ -196,6 +208,43 @@
     }
     
     return item;
+}
+
+// 网络权限
+- (void)getNetAuthority
+{
+    // CTCellularData只能检测蜂窝权限，不能检测WiFi权限
+    if (@available(iOS 9.0, *))
+    {
+        self.cellularData.cellularDataRestrictionDidUpdateNotifier = nil;
+        self.cellularData = nil;
+        self.netAuthority = @"Unknown";
+
+        BMWeakSelf;
+        CTCellularData *cellularData = [[CTCellularData alloc] init];
+        cellularData.cellularDataRestrictionDidUpdateNotifier = ^(CTCellularDataRestrictedState state) {
+            switch (state)
+            {
+                case kCTCellularDataRestricted:
+                    weakSelf.netAuthority = @"Restricted";
+                    break;
+                    
+                case kCTCellularDataNotRestricted:
+                    weakSelf.netAuthority = @"NotRestricted";
+                    break;
+                    
+                default:
+                    weakSelf.netAuthority = @"Unknown";
+                    break;
+            }
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf freshViews];
+            });
+        };
+        
+        self.cellularData = cellularData;
+    }
 }
 
 @end

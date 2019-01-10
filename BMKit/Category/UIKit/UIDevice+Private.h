@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 地理位置权限
 + (NSString *)bm_locationAuthority;
 
-// 网络权限
+// 是否有联网功能
 + (NSString *)bm_netAuthority;
 
 // push权限
