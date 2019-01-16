@@ -95,6 +95,10 @@
     self.cursorLayer.backgroundColor = _cursorColor.CGColor;
     
     _autoResignFirstResponderWhenInputFinished = YES;
+    
+    _secureStyle = BMVerifyFieldSecureStyle_Dot;
+    //_secureImage = [UIImage imageNamed:@"navigationbar_help_icon"];
+    //_secureSymbol = @"?";
 
     [self.layer addSublayer:self.cursorLayer];
     [self setNeedsDisplay];
@@ -416,9 +420,11 @@
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     
+    // 已输入边框
+    [self drawTrackBorder:ctx withRect:rect itemSize:itemSize];
+    // 未输入边框
     [self drawBorder:ctx withRect:rect itemSize:itemSize];
     [self drawText:ctx withRect:rect itemSize:itemSize];
-    [self drawTrackBorder:ctx withRect:rect itemSize:itemSize];
 }
 
 // 绘制边框
@@ -504,18 +510,51 @@
             
             CGSize oneTextSize = [subString sizeWithAttributes:attr];
             CGRect drawRect = CGRectInset(itemRect,
-                                          (itemRect.size.width - oneTextSize.width) / 2,
-                                          (itemRect.size.height - oneTextSize.height) / 2);
+                                          (itemRect.size.width - oneTextSize.width) * 0.5f,
+                                          (itemRect.size.height - oneTextSize.height) * 0.5f);
             [subString drawInRect:drawRect withAttributes:attr];
         }
         else
         {
-            CGRect drawRect = CGRectInset(itemRect,
-                                          (itemRect.size.width - self.textFont.pointSize / 2) / 2,
-                                          (itemRect.size.height - self.textFont.pointSize / 2) / 2);
-            [self.textColor setFill];
-            CGContextAddEllipseInRect(ctx, drawRect);
-            CGContextFillPath(ctx);
+            BOOL showSecure = NO;
+            if (self.secureStyle == BMVerifyFieldSecureStyle_Image)
+            {
+                if ([self.secureImage bm_isNotEmpty])
+                {
+                    CGSize imageSize = CGSizeMake(self.textFont.pointSize*2, self.textFont.pointSize*2);
+                    UIImage *image = [self.secureImage bm_imageWithTintColor:self.textColor];
+                    image = [image imageScaledToFitSize:imageSize];
+
+                    CGSize secureImageSize = image.size;
+                    CGRect drawRect = CGRectInset(itemRect,
+                                                  (itemRect.size.width - secureImageSize.width) * 0.5f,
+                                                  (itemRect.size.height - secureImageSize.height) * 0.5f);
+                    [image drawInRect:drawRect];
+                    showSecure = YES;
+                }
+            }
+            else if (self.secureStyle == BMVerifyFieldSecureStyle_Symbol)
+            {
+                if ([self.secureSymbol bm_isNotEmpty])
+                {
+                    CGSize secureTextSize = [self.secureSymbol sizeWithAttributes:attr];
+                    CGRect drawRect = CGRectInset(itemRect,
+                                                  (itemRect.size.width - secureTextSize.width) * 0.5f,
+                                                  (itemRect.size.height - secureTextSize.height) * 0.5f);
+                    [self.secureSymbol drawInRect:drawRect withAttributes:attr];
+                    showSecure = YES;
+                }
+            }
+            
+            if (!showSecure)
+            {
+                CGRect drawRect = CGRectInset(itemRect,
+                                              (itemRect.size.width - self.textFont.pointSize * 0.5f) * 0.5f,
+                                              (itemRect.size.height - self.textFont.pointSize * 0.5f) * 0.5f);
+                [self.textColor setFill];
+                CGContextAddEllipseInRect(ctx, drawRect);
+                CGContextFillPath(ctx);
+            }
         }
     }
 }

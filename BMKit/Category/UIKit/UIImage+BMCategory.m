@@ -809,9 +809,9 @@ static CGImageRef CreateMask(CGSize size, NSUInteger thickness)
 @end
 
 
-@implementation UIImage (BMMGProportionalFill)
+@implementation UIImage (BMResize)
 
-- (UIImage *)imageToFitSize:(CGSize)fitSize method:(MGImageResizingMethod)resizeMethod
+- (UIImage *)imageToFitSize:(CGSize)fitSize method:(BMImageResizingMethod)resizeMethod
 {
 	float imageScaleFactor = 1.0;
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
@@ -824,7 +824,7 @@ static CGImageRef CreateMask(CGSize size, NSUInteger thickness)
 	float sourceHeight = [self size].height * imageScaleFactor;
 	float targetWidth = fitSize.width;
 	float targetHeight = fitSize.height;
-	BOOL cropping = !(resizeMethod == MGImageResizeScale);
+	BOOL cropping = !(resizeMethod == BMImageResizeScale);
 	
 	// Calculate aspect ratios
 	float sourceRatio = sourceWidth / sourceHeight;
@@ -853,11 +853,11 @@ static CGImageRef CreateMask(CGSize size, NSUInteger thickness)
 	if (cropping) {
 		destRect = CGRectMake(0, 0, targetWidth, targetHeight);
 		float destX =0.0f , destY = 0.0f;
-		if (resizeMethod == MGImageResizeCrop) {
+		if (resizeMethod == BMImageResizeCrop) {
 			// Crop center
 			destX = round((scaledWidth - targetWidth) / 2.0);
 			destY = round((scaledHeight - targetHeight) / 2.0);
-		} else if (resizeMethod == MGImageResizeCropStart) {
+		} else if (resizeMethod == BMImageResizeCropStart) {
 			// Crop top or left (prefer top)
 			if (scaleWidth) {
 				// Crop top
@@ -868,7 +868,7 @@ static CGImageRef CreateMask(CGSize size, NSUInteger thickness)
 				destX = 0.0;
 				destY = round((scaledHeight - targetHeight) / 2.0);
 			}
-		} else if (resizeMethod == MGImageResizeCropEnd) {
+		} else if (resizeMethod == BMImageResizeCropEnd) {
 			// Crop bottom or right
 			if (scaleWidth) {
 				// Crop bottom
@@ -930,13 +930,13 @@ static CGImageRef CreateMask(CGSize size, NSUInteger thickness)
 
 - (UIImage *)imageCroppedToFitSize:(CGSize)fitSize
 {
-	return [self imageToFitSize:fitSize method:MGImageResizeCrop];
+	return [self imageToFitSize:fitSize method:BMImageResizeCrop];
 }
 
 
 - (UIImage *)imageScaledToFitSize:(CGSize)fitSize
 {
-	return [self imageToFitSize:fitSize method:MGImageResizeScale];
+	return [self imageToFitSize:fitSize method:BMImageResizeScale];
 }
 
 

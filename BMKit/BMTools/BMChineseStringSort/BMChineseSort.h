@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^BMChineseSortFinishBlock)(bool isSuccess, NSMutableArray *unGroupArr, NSMutableArray *sectionTitleArr, NSMutableArray <NSMutableArray *> *sortedObjArr);
+typedef void (^BMChineseSortFinishBlock)(bool isSuccess, NSMutableArray *unGroupedArr, NSMutableArray *sectionTitleArr, NSMutableArray <NSMutableArray *> *sortedObjArr);
 
 typedef NS_ENUM(NSUInteger, BMChineseSortMode)
 {

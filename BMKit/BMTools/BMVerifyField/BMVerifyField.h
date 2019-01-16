@@ -12,8 +12,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, BMVerifyFieldStyle)
 {
+    // 矩形
     BMVerifyFieldStyle_Border,
+    // 下划线
     BMVerifyFieldStyle_Underline
+};
+
+typedef NS_ENUM(NSUInteger, BMVerifyFieldSecureStyle)
+{
+    // 圆点
+    BMVerifyFieldSecureStyle_Dot,
+    // 字符
+    BMVerifyFieldSecureStyle_Symbol,
+    // 图片
+    BMVerifyFieldSecureStyle_Image
 };
 
 @protocol BMVerifyFieldDelegate;
@@ -35,7 +47,7 @@ typedef NS_ENUM(NSUInteger, BMVerifyFieldStyle)
 
 #pragma mark - UI
 
-// 正方形边框
+// 保持正方形区域，默认: YES
 @property (nonatomic, assign) BOOL squareBorder;
 
 // 输入框间距
@@ -57,6 +69,11 @@ typedef NS_ENUM(NSUInteger, BMVerifyFieldStyle)
 
 // 光标颜色
 @property (nullable, nonatomic, strong) UIColor *cursorColor;
+
+
+@property (nonatomic, assign) BMVerifyFieldSecureStyle secureStyle;
+@property (nullable, nonatomic, strong) NSString *secureSymbol;
+@property (nullable, nonatomic, strong) UIImage *secureImage;
 
 - (instancetype)initWithInputCount:(NSUInteger)count;
 

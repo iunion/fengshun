@@ -88,18 +88,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface UIImage (BMMGProportionalFill)
+@interface UIImage (BMResize)
 
-typedef enum {
-    MGImageResizeCrop,	// analogous to UIViewContentModeScaleAspectFill, i.e. "best fit" with no space around.
-    MGImageResizeCropStart,
-    MGImageResizeCropEnd,
-    MGImageResizeScale	// analogous to UIViewContentModeScaleAspectFit, i.e. scale down to fit, leaving space around if necessary.
-} MGImageResizingMethod;
+typedef NS_ENUM(NSUInteger, BMImageResizingMethod)
+{
+    // analogous to UIViewContentModeScaleAspectFill, i.e. "best fit" with no space around.
+    BMImageResizeCrop,
+    BMImageResizeCropStart,
+    BMImageResizeCropEnd,
+    // analogous to UIViewContentModeScaleAspectFit, i.e. scale down to fit, leaving space around if necessary.
+    BMImageResizeScale
+};
 
-- (UIImage *)imageToFitSize:(CGSize)size method:(MGImageResizingMethod)resizeMethod;
-- (UIImage *)imageCroppedToFitSize:(CGSize)size; // uses MGImageResizeCrop
-- (UIImage *)imageScaledToFitSize:(CGSize)size; // uses MGImageResizeScale
+- (UIImage *)imageToFitSize:(CGSize)size method:(BMImageResizingMethod)resizeMethod;
+- (UIImage *)imageCroppedToFitSize:(CGSize)size; // uses BMImageResizeCrop
+- (UIImage *)imageScaledToFitSize:(CGSize)size; // uses BMImageResizeScale
 
 @end
 
