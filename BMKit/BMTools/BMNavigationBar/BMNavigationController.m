@@ -572,6 +572,7 @@
 
 #pragma mark -
 #pragma mark actions
+
 - (void)updateNavigationItemForController:(UIViewController *)vc
 {
     [self updateNavigationTitleAlphaForViewController:vc];

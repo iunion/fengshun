@@ -211,11 +211,15 @@
 
 - (void)bm_removeAllSubviews
 {
-    while (self.subviews.count > 0)
-    {
-        UIView* child = self.subviews.lastObject;
-        [child removeFromSuperview];
-    }
+//    while (self.subviews.count > 0)
+//    {
+//        UIView *child = self.subviews.lastObject;
+//        [child removeFromSuperview];
+//    }
+    
+    [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull childView, NSUInteger idx, BOOL * _Nonnull stop) {
+        [childView removeFromSuperview];
+    }];
 }
 
 - (void)bm_bringToFront

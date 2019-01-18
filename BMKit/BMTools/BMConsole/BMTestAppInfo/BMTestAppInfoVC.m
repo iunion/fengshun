@@ -134,47 +134,47 @@
 
     // 地理位置权限
     NSString *locationAuthority = [UIDevice bm_locationAuthority];
-    [section3 addItem:[self makeItemWithTitle:@"地理位置权限" content:locationAuthority last:NO]];
+    [section3 addItem:[self makePrefsItemWithTitle:@"地理位置权限" content:locationAuthority last:NO]];
 
     // 网络权限
     if (@available(iOS 9.0, *))
     {
         [self getNetAuthority];
         //NSString *netAuthority = [UIDevice bm_netAuthority];
-        [section3 addItem:[self makeItemWithTitle:@"网络权限" content:self.netAuthority last:NO]];
+        [section3 addItem:[self makePrefsItemWithTitle:@"网络权限" content:self.netAuthority last:NO]];
     }
 
     // push权限
     NSString *pushAuthority = [UIDevice bm_pushAuthority];
-    [section3 addItem:[self makeItemWithTitle:@"push权限" content:pushAuthority last:NO]];
+    [section3 addItem:[self makePrefsItemWithTitle:@"push权限" content:pushAuthority last:NO]];
 
     // 拍照权限
     NSString *cameraAuthority = [UIDevice bm_cameraAuthority];
-    [section3 addItem:[self makeItemWithTitle:@"拍照权限" content:cameraAuthority last:NO]];
+    [section3 addItem:[self makePrefsItemWithTitle:@"拍照权限" content:cameraAuthority last:NO]];
 
     // 相册权限
     NSString *photoAuthority = [UIDevice bm_photoAuthority];
-    [section3 addItem:[self makeItemWithTitle:@"相册权限" content:photoAuthority last:NO]];
+    [section3 addItem:[self makePrefsItemWithTitle:@"相册权限" content:photoAuthority last:NO]];
 
     // 麦克风权限
     NSString *audioAuthority = [UIDevice bm_audioAuthority];
-    [section3 addItem:[self makeItemWithTitle:@"麦克风权限" content:audioAuthority last:NO]];
+    [section3 addItem:[self makePrefsItemWithTitle:@"麦克风权限" content:audioAuthority last:NO]];
     
     // 通讯录权限
     NSString *addressAuthority = [UIDevice bm_addressAuthority];
-    [section3 addItem:[self makeItemWithTitle:@"通讯录权限" content:addressAuthority last:NO]];
+    [section3 addItem:[self makePrefsItemWithTitle:@"通讯录权限" content:addressAuthority last:NO]];
     
     // 日历权限
     NSString *calendarAuthority = [UIDevice bm_calendarAuthority];
-    [section3 addItem:[self makeItemWithTitle:@"通讯录权限" content:calendarAuthority last:NO]];
+    [section3 addItem:[self makePrefsItemWithTitle:@"通讯录权限" content:calendarAuthority last:NO]];
     
     // 提醒事项权限
     NSString *remindAuthority = [UIDevice bm_remindAuthority];
-    [section3 addItem:[self makeItemWithTitle:@"提醒事项权限" content:remindAuthority last:NO]];
+    [section3 addItem:[self makePrefsItemWithTitle:@"提醒事项权限" content:remindAuthority last:NO]];
     
     // 蓝牙权限
     NSString *bluetoothAuthority = [UIDevice bm_bluetoothAuthority];
-    [section3 addItem:[self makeItemWithTitle:@"蓝牙权限" content:bluetoothAuthority last:YES]];
+    [section3 addItem:[self makePrefsItemWithTitle:@"蓝牙权限" content:bluetoothAuthority last:YES]];
 
     BMTableViewSection *section4 = [BMTableViewSection section];
     section4.headerTitle = @"运行数据";
@@ -196,8 +196,34 @@
 
 - (BMTableViewItem *)makeItemWithTitle:(NSString *)title content:(NSString *)content last:(BOOL)last
 {
-    BMTableViewItem *item = [BMTableViewItem itemWithTitle:title subTitle:content imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorAllLeftInset accessoryView:nil selectionHandler:nil];
-    item.enabled = NO;
+    return [self makeItemWithTitle:title content:content selectionHandler:nil last:last];
+}
+
+- (BMTableViewItem *)makePrefsItemWithTitle:(NSString *)title content:(NSString *)content last:(BOOL)last
+{
+    NSString *prefString = UIApplicationOpenSettingsURLString;
+    void(^selectionHandler)(BMTableViewItem *item) = ^(BMTableViewItem *item) {
+        NSURL *url = [NSURL URLWithString:prefString];
+        if ([[UIApplication sharedApplication] canOpenURL:url])
+        {
+            if (@available(iOS 10.0, *))
+            {
+                [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+            }
+            else
+            {
+                [[UIApplication sharedApplication] openURL:url];
+            }
+        }
+    };
+    
+    return [self makeItemWithTitle:title content:content selectionHandler:selectionHandler last:last];
+}
+
+- (BMTableViewItem *)makeItemWithTitle:(NSString *)title content:(NSString *)content selectionHandler:(void(^)(BMTableViewItem *item))selectionHandler last:(BOOL)last
+{
+    BMTableViewItem *item = [BMTableViewItem itemWithTitle:title subTitle:content imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorAllLeftInset accessoryView:nil selectionHandler:selectionHandler];
+    item.enabled = selectionHandler ? YES : NO;
     item.cellStyle = UITableViewCellStyleValue1;
     item.cellHeight = 50.0f;
     item.detailTextAlignment = NSTextAlignmentRight;
