@@ -222,7 +222,7 @@
 
 - (BMTableViewItem *)makeItemWithTitle:(NSString *)title content:(NSString *)content selectionHandler:(void(^)(BMTableViewItem *item))selectionHandler last:(BOOL)last
 {
-    BMTableViewItem *item = [BMTableViewItem itemWithTitle:title subTitle:content imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorAllLeftInset accessoryView:nil selectionHandler:selectionHandler];
+    BMTableViewItem *item = [BMTableViewItem itemWithTitle:title subTitle:content imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorAllLeftInset accessoryView:selectionHandler ? [BMTableViewItem DefaultAccessoryView] : nil selectionHandler:selectionHandler];
     item.enabled = selectionHandler ? YES : NO;
     item.cellStyle = UITableViewCellStyleValue1;
     item.cellHeight = 50.0f;
