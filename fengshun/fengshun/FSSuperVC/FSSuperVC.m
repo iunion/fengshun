@@ -140,13 +140,16 @@
                 downUrl = APPSTORE_DOWNLOADAPP_ADDRESS;
             }
             
-            FSAlertView *alertView = [FSAlertView showAlertWithTitle:message message:nil cancelTitle:@"立即更新" otherTitle:nil completion:^(BOOL cancelled, NSInteger buttonIndex) {
-                //NSString *downString = APPSTORE_DOWNLOADAPP_ADDRESS;
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:downUrl]];
-            }];
-            alertView.showClose = NO;
-            alertView.notDismissOnCancel = YES;
-
+            static dispatch_once_t onceToken;
+            dispatch_once(&onceToken, ^{
+                FSAlertView *alertView = [FSAlertView showAlertWithTitle:message message:nil cancelTitle:@"立即更新" otherTitle:nil completion:^(BOOL cancelled, NSInteger buttonIndex) {
+                    //NSString *downString = APPSTORE_DOWNLOADAPP_ADDRESS;
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:downUrl]];
+                }];
+                alertView.showClose = NO;
+                alertView.notDismissOnCancel = YES;
+            });
+            
             return YES;
         }
 
