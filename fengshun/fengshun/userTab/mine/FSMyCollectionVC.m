@@ -113,8 +113,6 @@
         
         if ([dataArray bm_isNotEmpty])
         {
-            
-
             FSMyCollectionModel *firstModel = [self.m_DataArray firstObject];
             if (!firstModel)
             {

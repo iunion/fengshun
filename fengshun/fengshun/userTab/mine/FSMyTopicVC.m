@@ -47,6 +47,10 @@
 - (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)requestDic
 {
     NSArray *topicDicArray = [requestDic bm_arrayForKey:@"list"];
+    if (self.m_IsLoadNew)
+    {
+        [self.m_DataArray removeAllObjects];
+    }
     if ([topicDicArray bm_isNotEmpty])
     {
         NSMutableArray *topicArray = [[NSMutableArray alloc] initWithCapacity:0];
@@ -61,17 +65,10 @@
         }
         if ([topicArray bm_isNotEmpty])
         {
-            if (self.m_IsLoadNew)
-            {
-                [self.m_DataArray removeAllObjects];
-            }
-            
             [self.m_DataArray addObjectsFromArray:topicArray];
-
-            [self.m_TableView reloadData];
         }
     }
-    
+    [self.m_TableView reloadData];
     return YES;
 }
 

@@ -191,7 +191,7 @@
                 
             }
         }
-            
+            break;
         case FSMessageType_NOTICE:
         {
             FSNoticeMessageModel *model = self.m_DataArray[indexPath.row];
@@ -209,6 +209,7 @@
                 [FSPushVCManager viewController:self.m_PushVC pushToNotificationDetailWithId:model.m_NoticeId];
             }
         }
+            break;
     }
 }
 

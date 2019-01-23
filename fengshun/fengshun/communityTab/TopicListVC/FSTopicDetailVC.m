@@ -43,10 +43,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    [self setNavWithTitle:@"" leftArray:nil rightArray:@[ [self bm_makeBarButtonDictionaryWithTitle:nil image:@"navigationbar_more_icon" toucheEvent:@"moreAction" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0]]];
     
     [self bringSomeViewToFront];
+    
+    // 帖子删除的情况
+    BMWeakSelf
+    if ([FSUserInfoModel isLogin])//登录状态下请求是否被删除
+    {
+        [FSApiRequest getTopicDetail:self.m_TopicId success:^(id  _Nullable responseObject) {
+            [weakSelf setNavWithTitle:@"" leftArray:nil rightArray:@[ [self bm_makeBarButtonDictionaryWithTitle:nil image:@"navigationbar_more_icon" toucheEvent:@"moreAction" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0]]];
+        } failure:^(NSError * _Nullable error) {
+            if (error.code == 1005)// 帖子被删除
+            {
+                
+            }
+        }];
+    }
+    else
+    {
+        [self setNavWithTitle:@"" leftArray:nil rightArray:@[ [self bm_makeBarButtonDictionaryWithTitle:nil image:@"navigationbar_more_icon" toucheEvent:@"moreAction" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0]]];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -74,7 +90,25 @@
         BOOL isOwner = [weakSelf.m_TopicDetailModel.m_UserId isEqualToString:[FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId];
         [FSMoreViewVC showTopicMoreDelegate:weakSelf isOwner:isOwner isCollection:weakSelf.m_TopicDetailModel.m_IsCollection];
     } failure:^(NSError *error) {
-        
+        if (error.code == 1005)
+        {
+            [weakSelf setNavWithTitle:@"" leftArray:nil rightArray:nil];
+            [weakSelf refreshWebView];
+        }
+    }];
+}
+
+- (void)loginFinished
+{
+    BMWeakSelf
+    [FSApiRequest getTopicDetail:self.m_TopicId success:^(id  _Nullable responseObject) {
+        [weakSelf setNavWithTitle:@"" leftArray:nil rightArray:@[[weakSelf bm_makeBarButtonDictionaryWithTitle:nil image:@"navigationbar_more_icon" toucheEvent:@"moreAction" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0]]];
+    } failure:^(NSError * _Nullable error) {
+        if (error.code == 1005)// 帖子被删除
+        {
+            [weakSelf setNavWithTitle:@"" leftArray:nil rightArray:nil];
+            [weakSelf refreshWebView];
+        }
     }];
 }
 
@@ -95,12 +129,12 @@
             [FSApiRequest getShareContent:[NSString stringWithFormat:@"%@",@(self.m_TopicId)] type:@"POSTS" success:^(id  _Nullable responseObject) {
                 [weakSelf.m_ProgressHUD hideAnimated:YES];
                 /*
-                 {
-                     "content": "string",
-                     "imgUrl": "string",
-                     "title": "string",
-                     "url": "string"
-                 }
+                     {
+                         "content": "string",
+                         "imgUrl": "string",
+                         "title": "string",
+                         "url": "string"
+                     }
                  */
                 [FSShareManager shareWebUrlWithTitle:[responseObject bm_stringForKey:@"title"] descr:[responseObject bm_stringForKey:@"content"] thumImage:[responseObject bm_stringForKey:@"imgUrl"] webpageUrl:[responseObject bm_stringForKey:@"url"]?:weakSelf.m_UrlString platform:index currentVC:weakSelf delegate:weakSelf];
             } failure:^(NSError * _Nullable error) {
