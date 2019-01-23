@@ -184,12 +184,7 @@
         case FSMessageType_COMMENT:
         {
             FSCommentMessageModel *model = self.m_DataArray[indexPath.row];
-            
-            //if (model.m_JumpType == FSJumpType_H5)
-            {
-                [FSPushVCManager showWebView:self.m_PushVC url:model.m_JumpAddress title:nil];
-                
-            }
+            [FSPushVCManager showTopicDetail:self.m_PushVC topicId:model.m_TargetId];
         }
             break;
         case FSMessageType_NOTICE:

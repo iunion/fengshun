@@ -289,6 +289,10 @@
         }
         else
         {
+            if (error.code == 1005)//结果为空时不展示弹窗
+            {
+                return;
+            }
             [self.m_ProgressHUD showAnimated:YES withDetailText:[NSString stringWithFormat:@"%@", [error.userInfo bm_stringForKey:@"NSLocalizedDescription"]] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         }
     }
