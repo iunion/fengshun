@@ -142,6 +142,8 @@
             
             static dispatch_once_t onceToken;
             dispatch_once(&onceToken, ^{
+                [[BMAlertViewStack sharedInstance] closeAllAlertViews];
+                
                 FSAlertView *alertView = [FSAlertView showAlertWithTitle:message message:nil cancelTitle:@"立即更新" otherTitle:nil completion:^(BOOL cancelled, NSInteger buttonIndex) {
                     //NSString *downString = APPSTORE_DOWNLOADAPP_ADDRESS;
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:downUrl]];

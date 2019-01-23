@@ -1577,6 +1577,13 @@ static const CGFloat BMAlertViewVerticalEdgeMinMargin = 25.0f;
     {
         for (BMAlertView *av in self.alertViews)
         {
+            // 有置顶警告时，不再显示其他警告
+            if (av.notDismissOnCancel)
+            {
+                [av freshAlertView];
+                return;
+            }
+            
             if (av != alertView)
             {
                 [av hide];
