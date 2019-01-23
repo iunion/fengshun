@@ -92,6 +92,7 @@
     } failure:^(NSError *error) {
         if (error.code == 1005)
         {
+            [weakSelf.m_ProgressHUD hideAnimated:NO];
             [weakSelf setNavWithTitle:@"" leftArray:nil rightArray:nil];
             [weakSelf refreshWebView];
         }
