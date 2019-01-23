@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<string>zh_CN</string>
 	<key>CFBundleDisplayName</key>
 	<string>枫调理顺</string>
 	<key>CFBundleExecutable</key>
@@ -12,12 +12,17 @@
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>zh_CN</string>
+	</array>
 	<key>CFBundleName</key>
 	<string>枫调理顺</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.1</string>
+	<string>1.1.0</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -88,7 +93,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.0.1.0</string>
+	<string>1.1.0.0</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>sinaweibohd</string>

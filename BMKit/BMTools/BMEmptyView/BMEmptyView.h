@@ -48,6 +48,9 @@ typedef void (^BMEmptyViewActionBlock)(BMEmptyView *emptyView, BMEmptyViewType t
 
 - (void)updateViewFrame;
 
+- (void)setCenterTopOffset:(CGFloat)topOffset;
+- (void)setCenterLeftOffset:(CGFloat)leftOffset;
+
 - (void)setEmptyViewLoading:(BOOL)loading;
 
 - (void)setEmptyViewType:(BMEmptyViewType)type;
@@ -55,7 +58,7 @@ typedef void (^BMEmptyViewActionBlock)(BMEmptyView *emptyView, BMEmptyViewType t
 
 - (void)setFullViewTapEnable:(BOOL)enable;
 
-// 无数据页面的自定义视图，永远在无数据页面最底部，高度同自定义视图并居中
+// 无数据页面的自定义视图，永远在无数据页面最顶部，高度同自定义视图并居中
 - (void)setCustomView:(UIView *)customView;
 
 @end

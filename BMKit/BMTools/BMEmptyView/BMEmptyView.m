@@ -11,6 +11,9 @@
 
 @interface BMEmptyView ()
 
+@property (nonatomic, assign) CGFloat centerTopOffset;
+@property (nonatomic, assign) CGFloat centerLeftOffset;
+
 // 静态区域
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UILabel *messageLabel;
@@ -45,9 +48,11 @@
     return empty;
 }
 
-
 - (void)initWithRefreshBlock:(BMEmptyViewActionBlock)block
 {
+    _centerTopOffset = 0.0f;
+    _centerLeftOffset = 0.0f;
+    
     self.actionBlock = block;
     
     [self buildUI];
@@ -304,12 +309,12 @@
     self.freshButton.hidden = enable;
 }
 
-- (void)showImageView:(BOOL)showImage messageView:(BOOL)showMessage customView:(BOOL)showCustom
-{
-    self.imageView.hidden = !showImage;
-    self.messageLabel.hidden = !showMessage;
-    self.customBgView.hidden = !showCustom;
-}
+//- (void)showImageView:(BOOL)showImage messageView:(BOOL)showMessage customView:(BOOL)showCustom
+//{
+//    self.imageView.hidden = !showImage;
+//    self.messageLabel.hidden = !showMessage;
+//    self.customBgView.hidden = !showCustom;
+//}
 
 - (void)setCustomView:(UIView *)customView
 {
@@ -400,29 +405,62 @@
     [self updateViewFrame];
 }
 
+- (void)setCenterTopOffset:(CGFloat)topOffset
+{
+    _centerTopOffset = topOffset;
+    [self updateViewFrame];
+}
+
+- (void)setCenterLeftOffset:(CGFloat)leftOffset
+{
+    _centerLeftOffset = leftOffset;
+    [self updateViewFrame];
+}
+
 - (void)updateViewFrame
 {
-    self.imageView.bm_height = self.bm_height*0.25f;
-    self.imageView.bm_width = self.imageView.bm_height;
-    [self.imageView bm_centerHorizontallyInSuperViewWithTop:self.bm_height*0.15f];
-    
-    [self.messageLabel bm_centerInSuperView];
-    
-    [self.indecator bm_centerInSuperView];
-    
-    if (self.freshBtnUp)
+    if (![self.customBgView.subviews bm_isNotEmpty])
     {
-        CGSize size = [self.messageLabel sizeThatFits:CGSizeMake(self.messageLabel.bm_width, 1000.0f)];
-        [self.freshButton bm_centerHorizontallyInSuperViewWithTop:self.messageLabel.bm_top+size.height+4.0f];
+        self.imageView.hidden = NO;
+        self.messageLabel.hidden = NO;
+        self.freshButton.hidden = NO;
+        self.refreshLabel.hidden = NO;
+        
+        self.imageView.bm_height = self.bm_height*0.25f;
+        self.imageView.bm_width = self.imageView.bm_height;
+        [self.imageView bm_centerHorizontallyInSuperViewWithTop:self.bm_height*0.15f];
+        self.imageView.center = CGPointMake(self.imageView.bm_centerX+self.centerLeftOffset, self.imageView.bm_centerY+self.centerTopOffset);
+        
+        [self.messageLabel bm_centerInSuperView];
+        self.messageLabel.center = CGPointMake(self.messageLabel.bm_centerX+self.centerLeftOffset, self.messageLabel.bm_centerY+self.centerTopOffset);
+
+        if (self.freshBtnUp)
+        {
+            CGSize size = [self.messageLabel sizeThatFits:CGSizeMake(self.messageLabel.bm_width, 1000.0f)];
+            [self.freshButton bm_centerHorizontallyInSuperViewWithTop:self.messageLabel.bm_top+size.height+4.0f];
+        }
+        else
+        {
+            [self.freshButton bm_centerHorizontallyInSuperViewWithTop:self.messageLabel.bm_bottom+30.0f];
+        }
+        self.freshButton.center = CGPointMake(self.freshButton.bm_centerX+self.centerLeftOffset, self.freshButton.bm_centerY+self.centerTopOffset);
+
+        [self.refreshLabel bm_centerHorizontallyInSuperViewWithTop:self.bm_height*0.75f];
+        self.refreshLabel.center = CGPointMake(self.refreshLabel.bm_centerX+self.centerLeftOffset, self.refreshLabel.bm_centerY+self.centerTopOffset);
     }
     else
     {
-        [self.freshButton bm_centerHorizontallyInSuperViewWithTop:self.messageLabel.bm_bottom+30.0f];
+        self.imageView.hidden = YES;
+        self.messageLabel.hidden = YES;
+        self.freshButton.hidden = YES;
+        self.refreshLabel.hidden = YES;
+        
+        [self.customBgView bm_centerHorizontallyInSuperViewWithTop:(self.bm_height-self.customBgView.bm_height)];
+        self.customBgView.center = CGPointMake(self.customBgView.bm_centerX+self.centerLeftOffset, self.customBgView.bm_centerY+self.centerTopOffset);
     }
     
-    [self.refreshLabel bm_centerHorizontallyInSuperViewWithTop:self.bm_height*0.75f];
-    
-    [self.customBgView bm_centerHorizontallyInSuperViewWithTop:(self.bm_height-self.customBgView.bm_height)];
+    [self.indecator bm_centerInSuperView];
+    self.indecator.center = CGPointMake(self.indecator.bm_centerX+self.centerLeftOffset, self.indecator.bm_centerY+self.centerTopOffset);
 }
 
 
