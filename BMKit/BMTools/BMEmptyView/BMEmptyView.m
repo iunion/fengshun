@@ -11,6 +11,8 @@
 
 @interface BMEmptyView ()
 
+@property (nonatomic, assign) BMEmptyViewType emptytype;
+
 @property (nonatomic, assign) CGFloat centerTopOffset;
 @property (nonatomic, assign) CGFloat centerLeftOffset;
 
@@ -52,6 +54,8 @@
 {
     _centerTopOffset = 0.0f;
     _centerLeftOffset = 0.0f;
+    
+    _emptytype = BMEmptyViewType_NoData;
     
     self.actionBlock = block;
     
@@ -330,11 +334,14 @@
     self.customBgView.frame = CGRectMake(0, 0, self.bm_width, height);
     [self.customBgView addSubview:customView];
     
-    [self updateViewFrame];
+    //[self updateViewFrame];
+    [self setEmptyViewType:self.emptytype];
 }
 
 - (void)setEmptyViewType:(BMEmptyViewType)type
 {
+    self.emptytype = type;
+    
     if (self.indecator.isAnimating)
     {
         [self.indecator stopAnimating];
@@ -432,6 +439,9 @@
 {
     if (![self.customBgView.subviews bm_isNotEmpty])
     {
+        self.imageView.hidden = NO;
+        self.messageLabel.hidden = NO;
+        
         self.imageView.bm_height = self.bm_height*0.25f;
         self.imageView.bm_width = self.imageView.bm_height;
         [self.imageView bm_centerHorizontallyInSuperViewWithTop:self.bm_height*0.15f];
@@ -456,6 +466,11 @@
     }
     else
     {
+        self.imageView.hidden = YES;
+        self.messageLabel.hidden = YES;
+        self.refreshLabel.hidden = YES;
+        self.freshButton.hidden = YES;
+
         [self.customBgView bm_centerHorizontallyInSuperViewWithTop:(self.bm_height-self.customBgView.bm_height)];
         self.customBgView.center = CGPointMake(self.customBgView.bm_centerX+self.centerLeftOffset, self.customBgView.bm_centerY+self.centerTopOffset);
     }
