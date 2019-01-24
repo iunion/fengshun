@@ -340,6 +340,17 @@
         [self.indecator stopAnimating];
     }
     
+    if ([self.customBgView.subviews bm_isNotEmpty])
+    {
+        self.imageView.hidden = YES;
+        self.messageLabel.hidden = YES;
+    }
+    else
+    {
+        self.imageView.hidden = NO;
+        self.messageLabel.hidden = NO;
+    }
+        
     self.messageLabel.attributedText = [self messsageWithType:type];
     self.imageView.image = [UIImage imageNamed:[self imageNameWithType:type]];
     [self.freshButton setTitle:@"点击重试" forState:UIControlStateNormal];
@@ -421,11 +432,6 @@
 {
     if (![self.customBgView.subviews bm_isNotEmpty])
     {
-        self.imageView.hidden = NO;
-        self.messageLabel.hidden = NO;
-        self.freshButton.hidden = NO;
-        self.refreshLabel.hidden = NO;
-        
         self.imageView.bm_height = self.bm_height*0.25f;
         self.imageView.bm_width = self.imageView.bm_height;
         [self.imageView bm_centerHorizontallyInSuperViewWithTop:self.bm_height*0.15f];
@@ -450,11 +456,6 @@
     }
     else
     {
-        self.imageView.hidden = YES;
-        self.messageLabel.hidden = YES;
-        self.freshButton.hidden = YES;
-        self.refreshLabel.hidden = YES;
-        
         [self.customBgView bm_centerHorizontallyInSuperViewWithTop:(self.bm_height-self.customBgView.bm_height)];
         self.customBgView.center = CGPointMake(self.customBgView.bm_centerX+self.centerLeftOffset, self.customBgView.bm_centerY+self.centerTopOffset);
     }
