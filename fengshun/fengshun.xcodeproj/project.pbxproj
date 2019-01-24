@@ -1769,8 +1769,8 @@
 		87F63A0121533C830035E730 /* FBRetainCycleUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F639C521533C820035E730 /* FBRetainCycleUtils.m */; };
 		87F63A0221533C830035E730 /* NSObject+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F639C621533C820035E730 /* NSObject+MemoryLeak.m */; };
 		87F63A0321533C830035E730 /* NSObject+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F639C621533C820035E730 /* NSObject+MemoryLeak.m */; };
-		AD02B9A021F967A900087F5F /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AD02B99F21F967A900087F5F /* logo.png */; };
-		AD02B9A121F967A900087F5F /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AD02B99F21F967A900087F5F /* logo.png */; };
+		AD02B9A021F967A900087F5F /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD02B99F21F967A900087F5F /* logo@2x.png */; };
+		AD02B9A121F967A900087F5F /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD02B99F21F967A900087F5F /* logo@2x.png */; };
 		AD1A5D4F21534BEA00ACADDF /* FSReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD412AE9215221C800A9C12B /* FSReportView.m */; };
 		AD1BE2122141238B0018AF2C /* FSForumSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD1BE2112141238B0018AF2C /* FSForumSectionHeaderView.m */; };
 		AD1BE214214127180018AF2C /* FSForumSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD1BE213214127180018AF2C /* FSForumSectionHeaderView.xib */; };
@@ -3651,7 +3651,7 @@
 		87F639C521533C820035E730 /* FBRetainCycleUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBRetainCycleUtils.m; sourceTree = "<group>"; };
 		87F639C621533C820035E730 /* NSObject+MemoryLeak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MemoryLeak.m"; sourceTree = "<group>"; };
 		87F639C721533C820035E730 /* UIView+MemoryLeak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MemoryLeak.h"; sourceTree = "<group>"; };
-		AD02B99F21F967A900087F5F /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		AD02B99F21F967A900087F5F /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
 		AD1BE2102141238B0018AF2C /* FSForumSectionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSForumSectionHeaderView.h; sourceTree = "<group>"; };
 		AD1BE2112141238B0018AF2C /* FSForumSectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSForumSectionHeaderView.m; sourceTree = "<group>"; };
 		AD1BE213214127180018AF2C /* FSForumSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSForumSectionHeaderView.xib; sourceTree = "<group>"; };
@@ -7704,7 +7704,7 @@
 		ADDBB81421E44AAC00135C03 /* image */ = {
 			isa = PBXGroup;
 			children = (
-				AD02B99F21F967A900087F5F /* logo.png */,
+				AD02B99F21F967A900087F5F /* logo@2x.png */,
 			);
 			path = image;
 			sourceTree = "<group>";
@@ -8356,7 +8356,7 @@
 				DB2656DD21466D06002ED713 /* search_closeFilters@3x.png in Resources */,
 				8730B10C2148E5D1004331A9 /* fsfreshfreshing_icon4@2x.png in Resources */,
 				DBD4CE942141229400857DB3 /* home_message@2x.png in Resources */,
-				AD02B9A021F967A900087F5F /* logo.png in Resources */,
+				AD02B9A021F967A900087F5F /* logo@2x.png in Resources */,
 				87426896212E7E36003C52F6 /* decrease_eleme@3x.png in Resources */,
 				87BC9E3621548E0D000F2011 /* fsintroguide_1242x2688_3@2x.png in Resources */,
 				874268D7212E7E36003C52F6 /* BMDatePicker.xib in Resources */,
@@ -8877,7 +8877,7 @@
 				87E7C5E821509AB000F7AB14 /* FSMainHeaderView.xib in Resources */,
 				E49AE92221D2354700778084 /* fsintroguide_640x1136_1@2x.png in Resources */,
 				87E7C5E921509AB000F7AB14 /* decrease_meituan@3x.png in Resources */,
-				AD02B9A121F967A900087F5F /* logo.png in Resources */,
+				AD02B9A121F967A900087F5F /* logo@2x.png in Resources */,
 				87E7C5EA21509AB000F7AB14 /* videocall_close_audio@2x.png in Resources */,
 				87E7C5EB21509AB000F7AB14 /* navigationbar_back_icon@3x.png in Resources */,
 				87E7C5EC21509AB000F7AB14 /* FSFileScanImagePreviewVC.xib in Resources */,
