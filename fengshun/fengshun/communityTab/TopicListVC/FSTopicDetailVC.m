@@ -90,9 +90,9 @@
         BOOL isOwner = [weakSelf.m_TopicDetailModel.m_UserId isEqualToString:[FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId];
         [FSMoreViewVC showTopicMoreDelegate:weakSelf isOwner:isOwner isCollection:weakSelf.m_TopicDetailModel.m_IsCollection];
     } failure:^(NSError *error) {
+        [weakSelf.m_ProgressHUD hideAnimated:NO];
         if (error.code == 1005)
         {
-            [weakSelf.m_ProgressHUD hideAnimated:NO];
             [weakSelf setNavWithTitle:@"" leftArray:nil rightArray:nil];
             [weakSelf refreshWebView];
         }
