@@ -347,17 +347,6 @@
         [self.indecator stopAnimating];
     }
     
-    if ([self.customBgView.subviews bm_isNotEmpty])
-    {
-        self.imageView.hidden = YES;
-        self.messageLabel.hidden = YES;
-    }
-    else
-    {
-        self.imageView.hidden = NO;
-        self.messageLabel.hidden = NO;
-    }
-        
     self.messageLabel.attributedText = [self messsageWithType:type];
     self.imageView.image = [UIImage imageNamed:[self imageNameWithType:type]];
     [self.freshButton setTitle:@"点击重试" forState:UIControlStateNormal];
