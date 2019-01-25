@@ -24,7 +24,6 @@
 // 主VC,负责管理页面push
 @property (nonatomic, weak)     UIViewController *m_masterVC;
 @property (nonatomic, readonly) FSTableView *     m_tableView;
-@property (nonatomic, readonly) NSString *        m_searchKey;
 @property (nonatomic, readonly) NSArray *         m_searchKeys;
 @property (nonatomic, readonly) NSInteger         m_totalCount;
 
@@ -33,7 +32,7 @@
 // 这些方法供子类使用
 - (void)configTableView;
 
-- (void)searchWithKey:(NSString *)key;
+- (void)searchWithText:(NSString *)text;
 - (void)keysRemoveKey:(NSString *)key;
 - (void)cleanKeys;
 

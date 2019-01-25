@@ -50,7 +50,7 @@
 - (void)searchAction
 {
     [super searchAction];
-    _m_textResultVC.m_keyword = self.m_searchKey;
+    _m_textResultVC.m_keyword = [self.m_searchKeys firstObject];
     [_m_textResultVC loadApiData];
 }
 @end

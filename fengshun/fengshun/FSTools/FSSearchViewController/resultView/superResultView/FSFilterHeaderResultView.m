@@ -363,9 +363,9 @@ FSFilterHeaderResultView ()
     return _m_searchTagviews[index];
 }
 
-- (void)searchWithKey:(NSString *)key
+- (void)searchWithText:(NSString *)text
 {
-    [super searchWithKey:key];
+    [super searchWithText:text];
     [self freshTagView];
 }
 - (void)selectedRowAtIndex:(NSInteger)index isLeftfilter:(BOOL)isLeft

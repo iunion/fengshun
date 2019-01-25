@@ -12,7 +12,6 @@
 @interface
 FSSearchResultView ()
 
-@property (nonatomic, copy, readwrite) NSString *m_searchKey;
 @property (nonatomic, readwrite) FSSearchResultVC *m_resultVC;
 @property (nonatomic, readwrite) FSTableView *     m_tableView;
 @property (nonatomic, strong) NSMutableArray *     m_searchArray;
@@ -80,16 +79,18 @@ FSSearchResultView ()
     [_m_searchArray removeAllObjects];
     [self searchAction];
 }
-- (void)searchWithKey:(NSString *)key
+- (void)searchWithText:(NSString *)text
 {
-    self.m_searchKey = key;
     if (!_m_searchArray)
     {
         self.m_searchArray = [NSMutableArray array];
     }
-    if (![_m_searchArray containsObject:key])
-    {
-        [_m_searchArray insertObject:key atIndex:0];
+    NSArray *keys = [text componentsSeparatedByString:@" "];
+    for (NSString *key in keys) {
+        if (![_m_searchArray containsObject:key])
+        {
+            [_m_searchArray addObject:key];
+        }
     }
     [self searchAction];
 }

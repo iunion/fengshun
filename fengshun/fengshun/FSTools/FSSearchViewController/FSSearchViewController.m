@@ -48,6 +48,7 @@
 @property (nonatomic, assign) FSSearchResultType resultType;
 
 @property (nonatomic, strong) UIButton *m_OCRButton;
+@property (nonatomic, assign) dispatch_once_t showKeyboardOnceToken;
 
 @end
 
@@ -105,6 +106,17 @@
     
     [self freshItems];
     
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    // viewDidLoad中无法将搜索框变为firstResponder,但又只需要第一次进入时弹出键盘
+    dispatch_once(&_showKeyboardOnceToken, ^{
+        [self.searchTextField becomeFirstResponder];
+    });
 }
 
 - (void)setSearchBarPplaceholder:(NSString *)searchBarPplaceholder
@@ -507,11 +519,15 @@
 }
 - (void)searchWithKey:(NSString *)searchKey
 {
+    BMLog(@"[searchKey] before trim : %@",searchKey);
     NSString *search = [searchKey bm_trim];
-//    [_searchTextField resignFirstResponder];
     if ([search bm_isNotEmpty])
     {
-        _searchTextField.text = search;
+        _searchTextField.text = nil;
+        while ([search containsString:@"  "]) {
+            search = [search stringByReplacingOccurrencesOfString:@"  " withString:@" "];
+        }
+        BMLog(@"[searchKey] after trim and while: %@",search);
         [self addSearchHistory:search];
         
         if(!self.resultView.superview)
@@ -520,7 +536,7 @@
             self.isShowSearchResult = YES;
             [self.resultView showSecondView:NO];
         }
-        [self.resultView searchWithKey:search];
+        [self.resultView searchWithText:search];
         self.resultView.hidden = NO;
 
         if (self.searchHandler) self.searchHandler(search);
