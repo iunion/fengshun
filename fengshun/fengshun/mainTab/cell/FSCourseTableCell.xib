@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -63,8 +62,8 @@
                     <constraint firstItem="VRz-Dv-ZvQ" firstAttribute="leading" secondItem="oCC-Iz-X7k" secondAttribute="leading" id="Cjm-EU-6LH"/>
                     <constraint firstItem="Dxo-3n-XkC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="25" id="HUM-hZ-xOd"/>
                     <constraint firstItem="2b2-2F-SPC" firstAttribute="leading" secondItem="VRz-Dv-ZvQ" secondAttribute="trailing" constant="6" id="JCV-f5-DqM"/>
+                    <constraint firstItem="oCC-Iz-X7k" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="146" id="L9u-yt-Yme"/>
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="oCC-Iz-X7k" secondAttribute="trailing" constant="32" id="RI5-mC-T6M"/>
-                    <constraint firstItem="oCC-Iz-X7k" firstAttribute="leading" secondItem="Dxo-3n-XkC" secondAttribute="trailing" constant="16" id="RcW-4c-LsQ"/>
                     <constraint firstItem="VRz-Dv-ZvQ" firstAttribute="centerY" secondItem="2b2-2F-SPC" secondAttribute="centerY" id="aNc-P1-4Zr"/>
                     <constraint firstAttribute="bottomMargin" secondItem="Dxo-3n-XkC" secondAttribute="bottom" constant="14" id="aev-Ud-rEG"/>
                     <constraint firstItem="2b2-2F-SPC" firstAttribute="bottom" secondItem="Dxo-3n-XkC" secondAttribute="bottom" id="dun-0J-HJd"/>
@@ -76,6 +75,7 @@
                 <outlet property="m_imageView" destination="Dxo-3n-XkC" id="lsP-gb-4dP"/>
                 <outlet property="m_readCount" destination="2b2-2F-SPC" id="nA2-RJ-cN9"/>
                 <outlet property="m_subTitle" destination="cZa-WJ-eUd" id="kF0-L8-dI3"/>
+                <outlet property="m_textLeading" destination="L9u-yt-Yme" id="iGX-6F-g5g"/>
                 <outlet property="m_title" destination="oCC-Iz-X7k" id="pTR-HR-wjQ"/>
             </connections>
             <point key="canvasLocation" x="-19.5" y="89"/>
