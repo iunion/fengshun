@@ -21,4 +21,8 @@
 + (NSString *)getCurrentPhoneNum;
 + (void)setCurrentPhoneNum:(NSString *)phoneNum;
 
+// 升级版本
++ (NSString *)getUpdateVersion;
++ (void)setUpdateVersion:(NSString *)version;
+
 @end

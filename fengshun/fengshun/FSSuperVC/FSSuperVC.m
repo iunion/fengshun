@@ -11,6 +11,7 @@
 #import "FSLoginVC.h"
 #import "FSAuthenticationVC.h"
 
+#import "FSAppInfo.h"
 #import "FSAlertView.h"
 
 @interface FSSuperVC ()
@@ -140,18 +141,55 @@
                 downUrl = APPSTORE_DOWNLOADAPP_ADDRESS;
             }
             
+            NSString *title = [dataDic bm_stringTrimForKey:@"title"];
+            NSString *upgradeDesc = [dataDic bm_stringTrimForKey:@"upgradeDesc"];
+            if (![upgradeDesc bm_isNotEmpty])
+            {
+                upgradeDesc = message;
+            }
+            if (![title bm_isNotEmpty])
+            {
+                title = upgradeDesc;
+                upgradeDesc = nil;
+            }
+
+            NSString *status = [dataDic bm_stringTrimForKey:@"status"];
             static dispatch_once_t onceToken;
             dispatch_once(&onceToken, ^{
-                [[BMAlertViewStack sharedInstance] closeAllAlertViews];
-                
-                FSAlertView *alertView = [FSAlertView showAlertWithTitle:message message:nil cancelTitle:@"立即更新" otherTitle:nil completion:^(BOOL cancelled, NSInteger buttonIndex) {
-                    //NSString *downString = APPSTORE_DOWNLOADAPP_ADDRESS;
-                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:downUrl]];
-                }];
-                alertView.showClose = NO;
-                alertView.notDismissOnCancel = YES;
+                // FORCE 强制升级，每次app启动提示一次
+                if ([status isEqualToString:@"FORCE"])
+                {
+                    [[BMAlertViewStack sharedInstance] closeAllAlertViews];
+                    
+                    FSAlertView *alertView = [FSAlertView showAlertWithTitle:title message:upgradeDesc cancelTitle:@"立即更新" otherTitle:nil completion:^(BOOL cancelled, NSInteger buttonIndex) {
+                        //NSString *downString = APPSTORE_DOWNLOADAPP_ADDRESS;
+                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:downUrl]];
+                    }];
+                    alertView.showClose = NO;
+                    alertView.notDismissOnCancel = YES;
+                    alertView.cancleBtnTextColor = [UIColor bm_colorWithHex:UI_NAVIGATION_BGCOLOR_VALU];
+                }
+                // OPTIONAL 可选升级，每次服务器变更版本只提示一次
+                else if ([status isEqualToString:@"OPTIONAL"])
+                {
+                    NSString *version = [dataDic bm_stringTrimForKey:@"version"];
+                    NSString *updateVersion = [FSAppInfo getUpdateVersion];
+                    if (![version isEqualToString:updateVersion])
+                    {
+                        [FSAppInfo setUpdateVersion:version];
+                        
+                        FSAlertView *alertView = [FSAlertView showAlertWithTitle:title message:upgradeDesc cancelTitle:@"取消" otherTitle:@"立即更新" completion:^(BOOL cancelled, NSInteger buttonIndex) {
+                            if (!cancelled)
+                            {
+                                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:downUrl]];
+                            }
+                        }];
+                        alertView.showClose = YES;
+                        alertView.otherBtnTextColor = [UIColor bm_colorWithHex:UI_NAVIGATION_BGCOLOR_VALU];
+                    }
+                }
             });
-            
+
             return YES;
         }
 

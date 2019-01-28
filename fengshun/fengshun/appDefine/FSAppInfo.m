@@ -12,6 +12,7 @@
 
 #define OPENUDID_KEY                @"fsopenUDID_appUID"
 #define CURRENT_PHONENUM_KEY        @"fscurrent_phoneNum"
+#define UPDATE_VERSION_KEY          @"fsupdate_version"
 
 @implementation FSAppInfo
 
@@ -62,6 +63,24 @@
     else
     {
         [defaults removeObjectForKey:CURRENT_PHONENUM_KEY];
+    }
+    
+    [defaults synchronize];
+}
+
++ (NSString *)getUpdateVersion
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *version = [defaults objectForKey:UPDATE_VERSION_KEY];
+    return version;
+}
+
++ (void)setUpdateVersion:(NSString *)version
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([version bm_isNotEmpty])
+    {
+        [defaults setObject:version forKey:UPDATE_VERSION_KEY];
     }
     
     [defaults synchronize];
