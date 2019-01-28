@@ -27,6 +27,9 @@
     TTGTagCollectionViewDelegate,
     TTGTagCollectionViewDataSource
 >
+{
+    BOOL firstAppear;
+}
 
 @property (nonatomic, strong) NSString *searchKey;
 
@@ -48,7 +51,6 @@
 @property (nonatomic, assign) FSSearchResultType resultType;
 
 @property (nonatomic, strong) UIButton *m_OCRButton;
-@property (nonatomic, assign) dispatch_once_t showKeyboardOnceToken;
 
 @end
 
@@ -70,10 +72,13 @@
     }
     return self;
 }
+
 - (FSSearchResultView *)resultView
 {
-    if (!_resultView) {
-        switch (_resultType) {
+    if (!_resultView)
+    {
+        switch (_resultType)
+        {
             case FSSearchResultType_laws:
                 _resultView = [[FSLawSearchResultView alloc]initWithFrame:self.view.bounds];
                 break;
@@ -87,13 +92,19 @@
         _resultView.m_masterVC = self;
         _resultView.hidden     = YES;
     }
+    
     return _resultView;
 }
+
+
 #pragma mark - view&UI
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    firstAppear = YES;
     
     self.showSearchHistory = YES;
     self.addHotTagSearchHistory = YES;
@@ -105,18 +116,18 @@
     [self moreUISetup];
     
     [self freshItems];
-    
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-    // viewDidLoad中无法将搜索框变为firstResponder,但又只需要第一次进入时弹出键盘
-    dispatch_once(&_showKeyboardOnceToken, ^{
+    // iOS12 viewDidLoad中无法将搜索框变为firstResponder,但又只需要第一次进入时弹出键盘
+    if (firstAppear)
+    {
+        firstAppear = NO;
         [self.searchTextField becomeFirstResponder];
-    });
+    }
 }
 
 - (void)setSearchBarPplaceholder:(NSString *)searchBarPplaceholder
@@ -188,6 +199,7 @@
     
     self.searchHistories = [NSMutableArray arrayWithArray:[FSUserInfoDB getSearchHistoryWithUserId:[FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId key:self.searchKey]];
 }
+
 - (void)moreUISetup
 {
     if (_resultType)
@@ -199,9 +211,9 @@
         _m_OCRButton.bm_centerX      = self.view.bm_centerX;
     
         _m_OCRButton.layer.masksToBounds = NO;
-        _m_OCRButton.layer.shadowOffset = CGSizeMake(0, 5);//阴影的偏移量
+        _m_OCRButton.layer.shadowOffset = CGSizeMake(0, 5); //阴影的偏移量
         _m_OCRButton.layer.shadowRadius = 10;
-        _m_OCRButton.layer.shadowOpacity = 0.5;                        //阴影的不透明度
+        _m_OCRButton.layer.shadowOpacity = 0.5; //阴影的不透明度
         _m_OCRButton.layer.shadowColor = [_m_OCRButton backgroundColor].CGColor;
 //        UIBezierPath * path = [UIBezierPath bezierPathWithRoundedRect:_m_OCRButton.bounds cornerRadius:20];
         //阴影路径
@@ -227,18 +239,24 @@
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     }
+    
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fingerTapped:)];
     singleTap.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:singleTap];
 }
+
  -(void)fingerTapped:(UITapGestureRecognizer *)gestureRecognizer
 {
     [_searchTextField resignFirstResponder];
 }
+
+
 #pragma mark - OCR Search
+
 - (void)pushToOCRSearchVC
 {
-    if (_resultType == FSSearchResultType_case) {
+    if (_resultType == FSSearchResultType_case)
+    {
         [FSPushVCManager searchVCPushtToCaseOCrSearchVC:self];
     }
     else if (_resultType == FSSearchResultType_laws)
@@ -246,13 +264,18 @@
         [FSPushVCManager searchVCPushtToLawsOCrSearchVC:self];
     }
 }
+
+
 #pragma mark - keyboard notification
+
 - (void)keyBoardWillShow:(NSNotification *)sender
 {
-    if (_isShowSearchResult) {
+    if (_isShowSearchResult)
+    {
         [self.view bringSubviewToFront:_m_OCRButton];
         [self.resultView showSecondView:YES];
     }
+    
     NSValue *value      = sender.userInfo[UIKeyboardFrameEndUserInfoKey];
     CGRect keyBoarFrame = [value CGRectValue];
     CGFloat viewHeight  = UI_SCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT - UI_STATUS_BAR_HEIGHT;
@@ -261,14 +284,15 @@
     }];
     
 }
+
 -(void)keyBoardWillHide:(NSNotification *)sender
 {
-    
      CGFloat viewHeight  = UI_SCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT - UI_STATUS_BAR_HEIGHT;
     [UIView animateWithDuration:[sender.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
          self.m_OCRButton.bm_bottom = viewHeight - OCRSearchButtonBottonGap;
     } completion:^(BOOL finished) {
-        if (_isShowSearchResult) {
+        if (_isShowSearchResult)
+        {
             [self.view bringSubviewToFront:self.resultView];
             [self.resultView showSecondView:NO];
         }
@@ -281,7 +305,8 @@
 
 //    NSArray *tags = @[@"热门", @"热门搜索", @"热门搜", @"热门搜1", @"热门134索", @"热门", @"热门搜索", @"热门搜", @"热门搜1", @"热门134索"];
 //    self.hotTagArray = [NSMutableArray arrayWithArray:tags];
-    if (_resultType == FSSearchResultType_case) {
+    if (_resultType == FSSearchResultType_case)
+    {
         for (NSString *tag in self.hotTagArray)
         {
             CGFloat width = (UI_SCREEN_WIDTH-5*10)/4;
@@ -320,6 +345,7 @@
         }
     }
 }
+
 - (void)makeHeaderTagView
 {
     [self makeTagViewArray];
@@ -517,6 +543,7 @@
     if ([searchBar.text bm_isNotEmpty]) searchBar.text = [searchBar.text bm_trim];
     
 }
+
 - (void)searchWithKey:(NSString *)searchKey
 {
     BMLog(@"[searchKey] before trim : %@",searchKey);
@@ -524,7 +551,8 @@
     if ([search bm_isNotEmpty])
     {
         _searchTextField.text = nil;
-        while ([search containsString:@"  "]) {
+        while ([search containsString:@"  "])
+        {
             search = [search stringByReplacingOccurrencesOfString:@"  " withString:@" "];
         }
         BMLog(@"[searchKey] after trim and while: %@",search);
@@ -542,6 +570,5 @@
         if (self.searchHandler) self.searchHandler(search);
     }
 }
-
 
 @end
