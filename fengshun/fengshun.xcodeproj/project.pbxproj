@@ -540,6 +540,8 @@
 		8774201C214F523700F72427 /* FSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8774201B214F523700F72427 /* FSAlertView.m */; };
 		8799F10B21E2E983006F6C5B /* UIDevice+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 8799F10A21E2E983006F6C5B /* UIDevice+Private.m */; };
 		8799F10C21E2E983006F6C5B /* UIDevice+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 8799F10A21E2E983006F6C5B /* UIDevice+Private.m */; };
+		87A055E2220026650086434B /* UIImage+MemoryCacheCost.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A055E1220026640086434B /* UIImage+MemoryCacheCost.m */; };
+		87A055E3220026650086434B /* UIImage+MemoryCacheCost.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A055E1220026640086434B /* UIImage+MemoryCacheCost.m */; };
 		87A0C16121CC814800B2BF1A /* FSComTopicListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A0C16021CC814800B2BF1A /* FSComTopicListVC.m */; };
 		87A0C16821CC8D3700B2BF1A /* FSBaseComTopicListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A0C16721CC8D3700B2BF1A /* FSBaseComTopicListVC.m */; };
 		87A0C16921CC8D3700B2BF1A /* FSBaseComTopicListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A0C16721CC8D3700B2BF1A /* FSBaseComTopicListVC.m */; };
@@ -3190,6 +3192,8 @@
 		8774201B214F523700F72427 /* FSAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSAlertView.m; sourceTree = "<group>"; };
 		8799F10921E2E983006F6C5B /* UIDevice+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Private.h"; sourceTree = "<group>"; };
 		8799F10A21E2E983006F6C5B /* UIDevice+Private.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Private.m"; sourceTree = "<group>"; };
+		87A055E0220026640086434B /* UIImage+MemoryCacheCost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MemoryCacheCost.h"; sourceTree = "<group>"; };
+		87A055E1220026640086434B /* UIImage+MemoryCacheCost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MemoryCacheCost.m"; sourceTree = "<group>"; };
 		87A0C15F21CC814800B2BF1A /* FSComTopicListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSComTopicListVC.h; sourceTree = "<group>"; };
 		87A0C16021CC814800B2BF1A /* FSComTopicListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSComTopicListVC.m; sourceTree = "<group>"; };
 		87A0C16621CC8D3700B2BF1A /* FSBaseComTopicListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSBaseComTopicListVC.h; sourceTree = "<group>"; };
@@ -6709,6 +6713,8 @@
 				87D209852138F1E2001EDD60 /* UIImage+ForceDecode.m */,
 				87D209B42138F1E2001EDD60 /* UIImage+GIF.h */,
 				87D2098E2138F1E2001EDD60 /* UIImage+GIF.m */,
+				87A055E0220026640086434B /* UIImage+MemoryCacheCost.h */,
+				87A055E1220026640086434B /* UIImage+MemoryCacheCost.m */,
 				87D209B12138F1E2001EDD60 /* UIImage+MultiFormat.h */,
 				87D209902138F1E2001EDD60 /* UIImage+MultiFormat.m */,
 				87D2099A2138F1E2001EDD60 /* UIImage+WebP.h */,
@@ -9518,6 +9524,7 @@
 				87E7C6A52150A4E500F7AB14 /* UIImage+CropRotate.m in Sources */,
 				8730B0952140FFA3004331A9 /* NSURL+DTUnshorten.m in Sources */,
 				874268C5212E7E36003C52F6 /* BMImageDetailItem.m in Sources */,
+				87A055E2220026650086434B /* UIImage+MemoryCacheCost.m in Sources */,
 				DB2656CA214660ED002ED713 /* FSLawSearchResultView.m in Sources */,
 				8730B08E2140FFA3004331A9 /* DTSidePanelController.m in Sources */,
 				874268BF212E7E36003C52F6 /* BMMaskTextItem.m in Sources */,
@@ -9650,6 +9657,7 @@
 				87E7C2AF21509AB000F7AB14 /* DTAttributedTextView.m in Sources */,
 				87E7C2B021509AB000F7AB14 /* SDWebImageCoderHelper.m in Sources */,
 				87E7C2B121509AB000F7AB14 /* SDWebImageWebPCoder.m in Sources */,
+				87A055E3220026650086434B /* UIImage+MemoryCacheCost.m in Sources */,
 				87E7C2B221509AB000F7AB14 /* FLEXGlobalsTableViewControllerEntry.m in Sources */,
 				87E7C2B321509AB000F7AB14 /* DTStripedLayerTile.m in Sources */,
 				87E7C2B421509AB000F7AB14 /* BMPickerItem.m in Sources */,
