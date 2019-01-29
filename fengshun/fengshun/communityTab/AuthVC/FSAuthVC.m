@@ -27,6 +27,15 @@
 
 @property (nonatomic , strong) UIButton *m_SubmitBtn;// 提交按钮
 
+// 实名认证
+@property (nonatomic, strong) BMTableViewSection *m_Section1;
+// 昵称
+@property (nonatomic, strong) BMTableViewSection *m_Section2;
+
+@property (nonatomic, strong) BMTextItem *m_NikeNameItem;
+@property (nonatomic, strong) BMTextItem *m_RealNameItem;
+@property (nonatomic, strong) BMTextItem *m_IdCardItem;
+
 @end
 
 @implementation FSAuthVC
@@ -42,8 +51,229 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self createUI];
+    [self bm_setNavigationWithTitle:@"完善账户信息" barTintColor:nil leftDicArray:@[[self bm_makeBarButtonDictionaryWithTitle:@" " image:@"navigationbar_back_icon" toucheEvent:@"backAction:" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0]] rightDicArray:nil];
+    self.view.backgroundColor = FS_VIEW_BGCOLOR;
+    self.m_TableView.bounces = YES;
+    self.m_TableView.backgroundColor = [UIColor bm_colorWithHex:0xf6f6f6];
+    
+    [self interfaceSettings];
 }
+
+- (BOOL)needKeyboardEvent
+{
+    return YES;
+}
+
+- (void)interfaceSettings
+{
+    [super interfaceSettings];
+    BMWeakSelf
+    
+    self.m_Section1 = [BMTableViewSection  section];
+    CGFloat height = 45.f;
+    
+    {
+        self.m_Section1.headerHeight = height;
+        self.m_Section1.headerTitle = @"发布内容前请完成实名认证";
+        
+        self.m_RealNameItem = [BMTextItem itemWithTitle:@"姓名" value:@"" placeholder:@"请输入您的姓名"];
+        self.m_RealNameItem.textFont = FS_CELLTITLE_TEXTFONT;
+        self.m_RealNameItem.textFieldTextFont = FS_CELLTITLE_TEXTFONT;
+        self.m_RealNameItem.underLineColor = FS_LINECOLOR;
+        self.m_RealNameItem.cellHeight = height;
+        self.m_RealNameItem.underLineDrawType = BMTableViewCell_UnderLineDrawType_SeparatorLeftInset;
+        
+        self.m_IdCardItem = [BMTextItem itemWithTitle:@"身份证号" value:@"" placeholder:@"请输入您的身份证号码"];
+        self.m_IdCardItem.textFont = FS_CELLTITLE_TEXTFONT;
+        self.m_IdCardItem.textFieldTextFont = FS_CELLTITLE_TEXTFONT;
+        self.m_IdCardItem.keyboardType = UIKeyboardTypeEmailAddress;
+        self.m_IdCardItem.charactersLimit = 18;
+        self.m_IdCardItem.underLineColor = FS_LINECOLOR;
+        self.m_IdCardItem.cellHeight = height;
+        self.m_IdCardItem.underLineDrawType = BMTableViewCell_UnderLineDrawType_None;
+    }
+    {
+        self.m_Section2 = [BMTableViewSection section];
+        self.m_Section2.headerHeight = height;
+        self.m_Section2.headerTitle = @"发布内容前请设置昵称";
+        
+        self.m_NikeNameItem = [BMTextItem itemWithTitle:@"昵称" value:@"" placeholder:@"支持中英文数字及下划线，不超过16个字符"];
+        self.m_NikeNameItem.textFont = FS_CELLTITLE_TEXTFONT;
+        self.m_NikeNameItem.textFieldTextFont = FS_CELLTITLE_TEXTFONT;
+        self.m_NikeNameItem.underLineColor = FS_LINECOLOR;
+        self.m_NikeNameItem.charactersLimit = NickName_MaxTextCount;
+        self.m_NikeNameItem.cellHeight = height;
+        self.m_NikeNameItem.underLineDrawType = BMTableViewCell_UnderLineDrawType_None;
+        self.m_NikeNameItem.onChangeCharacterInRange = ^BOOL(BMInputItem * _Nonnull item, NSRange range, NSString * _Nonnull replacementString) {
+              return [weakSelf isMatchesString:replacementString];
+        };
+    }
+    
+    switch (self.m_AuthState)
+    {
+        case FSAuthStateNone:// 啥都没有
+        {
+            [self.m_Section1 addItem:self.m_RealNameItem];
+            [self.m_Section1 addItem:self.m_IdCardItem];
+            [self.m_TableManager addSection:self.m_Section1];
+            
+            [self.m_Section2 addItem:self.m_NikeNameItem];
+            [self.m_TableManager addSection:self.m_Section2];
+        }
+            break;
+        case FSAuthStateNoAuth:// 没认证
+        {
+            [self.m_Section1 addItem:self.m_RealNameItem];
+            [self.m_Section1 addItem:self.m_IdCardItem];
+            [self.m_TableManager addSection:self.m_Section1];
+        }
+            break;
+        case FSAuthStateNoNickName:// 没昵称
+        {
+            [self.m_Section2 addItem:self.m_NikeNameItem];
+            [self.m_TableManager addSection:self.m_Section2];
+        }
+            break;
+        case FSAuthStateAllDone:
+        default:
+            break;
+    }
+    
+    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.m_TableView.bm_width, 40)];
+    _m_SubmitBtn = [UIButton bm_buttonWithFrame:CGRectMake(20, 0, footerView.bm_width - 40, 40.f) title:@"" backgroundImage:[UIImage imageWithColor:RGBColor(87, 126, 237, 1)] highlightedBackgroundImage:nil];
+    [_m_SubmitBtn setTitle:@"提交" forState:UIControlStateNormal];
+    [_m_SubmitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_m_SubmitBtn addTarget:self action:@selector(submitBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    _m_SubmitBtn.layer.masksToBounds = YES;
+    _m_SubmitBtn.layer.cornerRadius = 4;
+    [footerView addSubview:_m_SubmitBtn];
+    
+    self.m_TableView.tableFooterView = footerView;
+    
+    [self bringSomeViewToFront];
+}
+
+
+- (void)submitBtnClick:(UIButton *)sender
+{
+    if (![self canSubmitMessage])
+    {
+        return;
+    }
+    BMWeakSelf
+    [FSApiRequest completeUserMessageWithRealName:_m_RealNameItem.value idCard:_m_IdCardItem.value nikeName:_m_NikeNameItem.value Success:^(id  _Nullable responseObject) {
+        [weakSelf updateUserMsg];
+        [weakSelf backAction:nil];
+    } failure:^(NSError * _Nullable error) {
+        
+    }];
+}
+
+/**
+ 刷新本地数据库
+ */
+- (void)updateUserMsg
+{
+    FSUserInfoModel *userInfo = [FSUserInfoModel userInfo];
+    switch (self.m_AuthState) {
+        case FSAuthStateNone:// 啥都没有
+        {
+            userInfo.m_UserBaseInfo.m_RealName = _m_RealName.m_Content;
+            userInfo.m_UserBaseInfo.m_IdCardNo = _m_IdCard.m_Content;
+            userInfo.m_UserBaseInfo.m_IsRealName = YES;
+            userInfo.m_UserBaseInfo.m_NickName = _m_NikeName.m_Content;
+        }
+            break;
+        case FSAuthStateNoAuth:// 没认证
+        {
+            userInfo.m_UserBaseInfo.m_RealName = _m_RealName.m_Content;
+            userInfo.m_UserBaseInfo.m_IdCardNo = _m_IdCard.m_Content;
+            userInfo.m_UserBaseInfo.m_IsRealName = YES;
+        }
+            break;
+        case FSAuthStateNoNickName:// 没昵称
+        {
+            userInfo.m_UserBaseInfo.m_NickName = _m_NikeName.m_Content;
+        }
+            break;
+        case FSAuthStateAllDone:
+        default:
+            
+            break;
+    }
+    [FSUserInfoDB insertAndUpdateUserInfo:userInfo];
+    GetAppDelegate.m_UserInfo = userInfo;
+}
+
+/**
+ 提交参数判断
+
+ @return 是否能提交
+ */
+- (BOOL)canSubmitMessage
+{
+    if (self.m_AuthState == FSAuthStateNoAuth)
+    {
+        if (![self.m_RealNameItem.value bm_isNotEmpty])
+        {
+            [self.m_ProgressHUD showAnimated:YES withText:@"请输入您的姓名" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            return NO;
+        }
+        if (![self.m_IdCardItem.value bm_isNotEmpty])
+        {
+            [self.m_ProgressHUD showAnimated:YES withText:@"请输入您的身份证账号" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            return NO;
+        }
+        if (self.m_IdCardItem.value.length != 18)
+        {
+            [self.m_ProgressHUD showAnimated:YES withText:@"请输入正确的身份证号" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            return NO;
+        }
+        return YES;
+    }
+    else if (self.m_AuthState == FSAuthStateNoNickName)
+    {
+        if (![self.m_NikeNameItem.value bm_isNotEmpty])
+        {
+            [self.m_ProgressHUD showAnimated:YES withText:@"请输入您的昵称" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            return NO;
+        }
+        return YES;
+    }
+    else if (self.m_AuthState == FSAuthStateNone)
+    {
+        if (![self.m_RealNameItem.value bm_isNotEmpty])
+        {
+            [self.m_ProgressHUD showAnimated:YES withText:@"请输入您的姓名" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            return NO;
+        }
+        if (![self.m_IdCardItem.value bm_isNotEmpty])
+        {
+            [self.m_ProgressHUD showAnimated:YES withText:@"请输入您的身份证账号" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            return NO;
+        }
+        if (self.m_IdCardItem.value.length != 18)
+        {
+            [self.m_ProgressHUD showAnimated:YES withText:@"请输入正确的身份证号" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            return NO;
+        }
+        if (![self.m_NikeNameItem.value bm_isNotEmpty])
+        {
+            [self.m_ProgressHUD showAnimated:YES withText:@"请输入您的昵称" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            return NO;
+        }
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)isMatchesString:(NSString *)string
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"[0-9a-zA-Z\\u4E00-\\u9FA5\\_]*"];
+    return [predicate evaluateWithObject:string];
+}
+
+#if 0
 
 - (void)createUI
 {
@@ -92,21 +322,6 @@
 {
     [super touchesBegan:touches withEvent:event];
     [self.view endEditing:YES];
-}
-
-- (void)submitBtnClick:(UIButton *)sender
-{
-    if (![self canSubmitMessage])
-    {
-        return;
-    }
-    BMWeakSelf
-    [FSApiRequest completeUserMessageWithRealName:_m_RealName.m_Content idCard:_m_IdCard.m_Content nikeName:_m_NikeName.m_Content Success:^(id  _Nullable responseObject) {
-        [weakSelf updateUserMsg];
-        [weakSelf backAction:nil];
-    } failure:^(NSError * _Nullable error) {
-        
-    }];
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -211,110 +426,8 @@
             break;
     }
 }
+#endif
 
-/**
- 刷新本地数据库
- */
-- (void)updateUserMsg
-{
-    FSUserInfoModel *userInfo = [FSUserInfoModel userInfo];
-    switch (self.m_AuthState) {
-        case FSAuthStateNone:// 啥都没有
-        {
-            userInfo.m_UserBaseInfo.m_RealName = _m_RealName.m_Content;
-            userInfo.m_UserBaseInfo.m_IdCardNo = _m_IdCard.m_Content;
-            userInfo.m_UserBaseInfo.m_IsRealName = YES;
-            userInfo.m_UserBaseInfo.m_NickName = _m_NikeName.m_Content;
-        }
-            break;
-        case FSAuthStateNoAuth:// 没认证
-        {
-            userInfo.m_UserBaseInfo.m_RealName = _m_RealName.m_Content;
-            userInfo.m_UserBaseInfo.m_IdCardNo = _m_IdCard.m_Content;
-            userInfo.m_UserBaseInfo.m_IsRealName = YES;
-        }
-            break;
-        case FSAuthStateNoNickName:// 没昵称
-        {
-            userInfo.m_UserBaseInfo.m_NickName = _m_NikeName.m_Content;
-        }
-            break;
-        case FSAuthStateAllDone:
-        default:
-            
-            break;
-    }
-    [FSUserInfoDB insertAndUpdateUserInfo:userInfo];
-    GetAppDelegate.m_UserInfo = userInfo;
-}
-
-/**
- 提交参数判断
-
- @return 是否能提交
- */
-- (BOOL)canSubmitMessage
-{
-    if (self.m_AuthState == FSAuthStateNoAuth)
-    {
-        if (![self.m_RealName.m_Content bm_isNotEmpty])
-        {
-            [self.m_ProgressHUD showAnimated:YES withText:@"请输入您的姓名" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-            return NO;
-        }
-        if (![self.m_IdCard.m_Content bm_isNotEmpty])
-        {
-            [self.m_ProgressHUD showAnimated:YES withText:@"请输入您的身份证账号" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-            return NO;
-        }
-        if (self.m_IdCard.m_Content.length != 18)
-        {
-            [self.m_ProgressHUD showAnimated:YES withText:@"请输入正确的身份证号" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-            return NO;
-        }
-        return YES;
-    }
-    else if (self.m_AuthState == FSAuthStateNoNickName)
-    {
-        if (![self.m_NikeName.m_Content bm_isNotEmpty])
-        {
-            [self.m_ProgressHUD showAnimated:YES withText:@"请输入您的昵称" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-            return NO;
-        }
-        return YES;
-    }
-    else if (self.m_AuthState == FSAuthStateNone)
-    {
-        if (![self.m_RealName.m_Content bm_isNotEmpty])
-        {
-            [self.m_ProgressHUD showAnimated:YES withText:@"请输入您的姓名" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-            return NO;
-        }
-        if (![self.m_IdCard.m_Content bm_isNotEmpty])
-        {
-            [self.m_ProgressHUD showAnimated:YES withText:@"请输入您的身份证账号" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-            return NO;
-        }
-        if (self.m_IdCard.m_Content.length != 18)
-        {
-            [self.m_ProgressHUD showAnimated:YES withText:@"请输入正确的身份证号" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-            return NO;
-        }
-        if (![self.m_NikeName.m_Content bm_isNotEmpty])
-        {
-            [self.m_ProgressHUD showAnimated:YES withText:@"请输入您的昵称" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-            return NO;
-        }
-        return YES;
-    }
-    return NO;
-}
-
-- (BOOL)isMatchesString:(NSString *)string
-{
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"[0-9a-zA-Z\\u4E00-\\u9FA5\\_]*"];
-    return [predicate evaluateWithObject:string];
-}
 
 
 /*
