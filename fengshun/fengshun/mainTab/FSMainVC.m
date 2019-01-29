@@ -314,7 +314,7 @@ FSMainVC ()
     UILabel *titleLabel  = [[UILabel alloc] initWithFrame:CGRectMake(45, 24, 120, 20)];
     titleLabel.font      = [UIFont boldSystemFontOfSize:20];
     titleLabel.textColor = UI_COLOR_B1;
-    titleLabel.text      = section ? @"精华帖子" : @"热门推荐";
+    titleLabel.text      = section ? @"精华帖子" : @"最新更新";
     [view addSubview:titleLabel];
 
 //    UIButton *moreButton       = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bm_width - 69, 0, 69, 70)];
@@ -414,7 +414,7 @@ FSMainVC ()
     NSArray *tools = [data bm_arrayForKey:@"tools"];
     ;
     self.m_tools       = [FSHomePageToolModel modelsWithDataArray:tools];
-    NSArray *courses = [data bm_arrayForKey:@"hotRecommends"];
+    NSArray *courses = [data bm_arrayForKey:@"recentChanges"];
     self.m_courses     = [FSCourseRecommendModel modelsWithDataArray:courses];
     NSArray *topics  = [data bm_arrayForKey:@"bestPosts"];
     
