@@ -70,7 +70,29 @@
 {
     self.m_Model = model;
     
-    [self.m_IconImageView sd_setImageWithURL:[model.m_CoverThumbUrl bm_toURL] placeholderImage:[UIImage imageNamed:@"fsdefault_image100x80"] options:SDWebImageRetryFailed | SDWebImageLowPriority];
+    if ([model.m_CoverThumbUrl bm_toURL])
+    {
+        self.m_IconImageView.hidden = NO;
+        [self.m_IconImageView sd_setImageWithURL:[model.m_CoverThumbUrl bm_toURL] placeholderImage:[UIImage imageNamed:@"fsdefault_image100x80"] options:SDWebImageRetryFailed | SDWebImageLowPriority];
+    }
+    else
+    {
+        self.m_IconImageView.hidden = YES;
+    }
+   
+    if (self.m_IconImageView.hidden)
+    {
+        self.m_TitleLabel.bm_left = 0;
+        self.m_TitleLabel.bm_width = self.contentView.bm_width - 30;
+    }
+    else
+    {
+        self.m_TitleLabel.bm_left = 130;
+        self.m_TitleLabel.bm_width = self.contentView.bm_width - 30 -130;
+    }
+    self.m_BottomBgView.bm_left = self.m_TitleLabel.bm_left;
+    self.m_BottomBgView.bm_width = self.m_TitleLabel.bm_width;
+    
     
     self.m_TitleLabel.text = model.m_Title;
     
