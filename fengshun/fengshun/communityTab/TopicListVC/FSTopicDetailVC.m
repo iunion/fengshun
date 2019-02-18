@@ -173,7 +173,36 @@
                 [self showLogin];
                 return;
             }
-            [FSReportView showReportView:self];
+//            [FSReportView showReportView:self];
+            UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 225, 70)];
+            
+            UILabel *cententLab = [[UILabel alloc]initWithFrame:CGRectMake(35*0.5f, 0, 190, 40)];
+            cententLab.numberOfLines = 2;
+            cententLab.font = [UIFont systemFontOfSize:15.f];
+            cententLab.textColor = [UIColor bm_colorWithHex:0x333333];
+            cententLab.text = self.m_TopicDetailModel.m_Title;
+            [contentView addSubview:cententLab];
+            
+            UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(35*0.5f, cententLab.bm_bottom + 5, 190, 25)];
+            textField.backgroundColor = [UIColor bm_colorWithHex:0xF6F6F6];
+            textField.placeholder = @"请输入举报理由";
+            textField.font = [UIFont systemFontOfSize:14.f];
+            [contentView addSubview:textField];
+            [textField becomeFirstResponder];
+            
+            BMWeakSelf
+            [FSAlertView showAlertWithTitle:@"举报理由说明" message:nil contentView:contentView cancelTitle:@"取消" otherTitle:@"确定" completion:^(BOOL cancelled, NSInteger buttonIndex) {
+                
+                BMLog(@"%@", textField.text);
+                if (buttonIndex == 1)
+                {
+                    if (![textField.text bm_isNotEmpty])
+                    {
+                        [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"请输入举报理由" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                    }
+                    [weakSelf addReportContent:textField.text];
+                }
+            }];
         }
             break;
         case 8:  //编辑
@@ -233,43 +262,15 @@
     }];
 }
 
-// 举报按钮点击
-- (void)alertViewClick:(FSReportView *)aView index:(NSInteger)index
-{
-    if (index == 0)// 举报
-    {
-        [aView removeFromSuperview];
-        UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 225, 70)];
-        
-        UILabel *cententLab = [[UILabel alloc]initWithFrame:CGRectMake(35*0.5f, 0, 190, 40)];
-        cententLab.numberOfLines = 2;
-        cententLab.font = [UIFont systemFontOfSize:15.f];
-        cententLab.textColor = [UIColor bm_colorWithHex:0x333333];
-        cententLab.text = self.m_TopicDetailModel.m_Title;
-        [contentView addSubview:cententLab];
-        
-        UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(35*0.5f, cententLab.bm_bottom + 5, 190, 25)];
-        textField.backgroundColor = [UIColor bm_colorWithHex:0xF6F6F6];
-        textField.placeholder = @"请输入举报理由";
-        textField.font = [UIFont systemFontOfSize:14.f];
-        [contentView addSubview:textField];
-        [textField becomeFirstResponder];
-        
-        BMWeakSelf
-        [FSAlertView showAlertWithTitle:@"举报理由说明" message:nil contentView:contentView cancelTitle:@"取消" otherTitle:@"确定" completion:^(BOOL cancelled, NSInteger buttonIndex) {
-            
-            BMLog(@"%@", textField.text);
-            if (buttonIndex == 1)
-            {
-                if (![textField.text bm_isNotEmpty])
-                {
-                    [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"请输入举报理由" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-                }
-                [weakSelf addReportContent:textField.text];
-            }
-        }];
-    }
-}
+//// 举报按钮点击
+//- (void)alertViewClick:(FSReportView *)aView index:(NSInteger)index
+//{
+//    if (index == 0)// 举报
+//    {
+//        [aView removeFromSuperview];
+//
+//    }
+//}
 
 
 #pragma mark - Request
