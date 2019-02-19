@@ -216,8 +216,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(makeWebView) name:userInfoChangedNotification object:nil];
     
-    // 案例、法规、文书详情右上角…分享菜单中“复制链接”功能 改为刷新 
-     self.m_IsRefresh = [self.m_UrlString containsString:@"Law"] || [self.m_UrlString containsString:@"caseGuide"] || [self.m_UrlString containsString:@"caseDetail"] || [self.m_UrlString containsString:@"law"];
+    // 案例、法规、文书详情右上角…分享菜单中“复制链接”功能 改为刷新 19.2.19课堂也改为刷新功能
+     self.m_IsRefresh = [self.m_UrlString containsString:@"Law"] || [self.m_UrlString containsString:@"caseGuide"] || [self.m_UrlString containsString:@"caseDetail"] || [self.m_UrlString containsString:@"law"] || [self.m_UrlString compare:@"ftlsh5"];
 }
 
 - (void)didReceiveMemoryWarning
