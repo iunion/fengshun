@@ -357,7 +357,6 @@
         // 1.1 需求 发帖完成回到最新帖子刷新数据
         if (weakSelf.m_dataArray.count > 1)
         {
-            [weakSelf.m_SegmentBar selectBtnAtIndex:1];
             [weakSelf.m_ScrollPageView scrollPageWithIndex:1];
             FSComTopicListVC *vc = weakSelf.m_VcArray[1];
             if ([vc bm_isNotEmpty])
