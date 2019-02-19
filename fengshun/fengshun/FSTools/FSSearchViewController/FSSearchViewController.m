@@ -12,6 +12,7 @@
 #import "FSCaseSearchResultView.h"
 #import "FSLawSearchResultView.h"
 #import "FSTextSearchResultView.h"
+#import "FSSearchHistoryTableView.h"
 
 #define SEARCH_HISTORY_MAXCACHECOUNT        10
 
@@ -41,7 +42,7 @@
 @property (nonatomic, strong) NSMutableArray *hotTagArray;
 @property (nonatomic, strong) NSMutableArray *tagViewArray;
 
-@property (nonatomic, strong) UITableView *searchHistoriesTableView;
+@property (nonatomic, strong) FSSearchHistoryTableView *searchHistoriesTableView;
 @property (nonatomic, strong) BMTableViewManager *manager;
 @property (nonatomic, strong) BMTableViewSection *section;
 
@@ -184,7 +185,8 @@
 
 - (void)makeSearchHistoriesView
 {
-    self.searchHistoriesTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT)];
+    self.searchHistoriesTableView = [[FSSearchHistoryTableView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_MAINSCREEN_HEIGHT-UI_NAVIGATION_BAR_HEIGHT)];
+    self.searchHistoriesTableView.m_searchTextField = _searchTextField;
     self.searchHistoriesTableView.backgroundColor = [UIColor whiteColor];
     self.searchHistoriesTableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     self.searchHistoriesTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -240,16 +242,7 @@
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     }
     
-    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fingerTapped:)];
-    singleTap.cancelsTouchesInView = NO;
-    [self.view addGestureRecognizer:singleTap];
 }
-
- -(void)fingerTapped:(UITapGestureRecognizer *)gestureRecognizer
-{
-    [_searchTextField resignFirstResponder];
-}
-
 
 #pragma mark - OCR Search
 

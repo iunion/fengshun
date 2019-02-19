@@ -1964,6 +1964,8 @@
 		DB5722362133A0FC0065DC30 /* FSScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5722332133A0FC0065DC30 /* FSScrollPageView.m */; };
 		DB57223B2133A1D90065DC30 /* FSCommunityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5722392133A1D90065DC30 /* FSCommunityVC.m */; };
 		DB57223C2133A1D90065DC30 /* FSCommunityVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB57223A2133A1D90065DC30 /* FSCommunityVC.xib */; };
+		DB58168C221BD9F70023BC3A /* FSSearchHistoryTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB58168B221BD9F70023BC3A /* FSSearchHistoryTableView.m */; };
+		DB58168D221BD9F70023BC3A /* FSSearchHistoryTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB58168B221BD9F70023BC3A /* FSSearchHistoryTableView.m */; };
 		DB7584A3214F4D200002A1FE /* FSOCRResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7584A1214F4D200002A1FE /* FSOCRResultVC.m */; };
 		DB7584A4214F4D200002A1FE /* FSOCRResultVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB7584A2214F4D200002A1FE /* FSOCRResultVC.xib */; };
 		DB7584A9214F5C630002A1FE /* FSOCRSearchResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7584A7214F5C630002A1FE /* FSOCRSearchResultVC.m */; };
@@ -3910,6 +3912,8 @@
 		DB5722382133A1D90065DC30 /* FSCommunityVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCommunityVC.h; sourceTree = "<group>"; };
 		DB5722392133A1D90065DC30 /* FSCommunityVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCommunityVC.m; sourceTree = "<group>"; };
 		DB57223A2133A1D90065DC30 /* FSCommunityVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSCommunityVC.xib; sourceTree = "<group>"; };
+		DB58168A221BD9F70023BC3A /* FSSearchHistoryTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSearchHistoryTableView.h; sourceTree = "<group>"; };
+		DB58168B221BD9F70023BC3A /* FSSearchHistoryTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSSearchHistoryTableView.m; sourceTree = "<group>"; };
 		DB7584A0214F4D200002A1FE /* FSOCRResultVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSOCRResultVC.h; sourceTree = "<group>"; };
 		DB7584A1214F4D200002A1FE /* FSOCRResultVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSOCRResultVC.m; sourceTree = "<group>"; };
 		DB7584A2214F4D200002A1FE /* FSOCRResultVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSOCRResultVC.xib; sourceTree = "<group>"; };
@@ -6022,6 +6026,8 @@
 				DBD4CDEA213E2F0B00857DB3 /* resultView */,
 				87426A9A21314996003C52F6 /* FSSearchViewController.h */,
 				87426A9B21314996003C52F6 /* FSSearchViewController.m */,
+				DB58168A221BD9F70023BC3A /* FSSearchHistoryTableView.h */,
+				DB58168B221BD9F70023BC3A /* FSSearchHistoryTableView.m */,
 			);
 			path = FSSearchViewController;
 			sourceTree = "<group>";
@@ -9436,6 +9442,7 @@
 				874268E9212E7E36003C52F6 /* UIView+BMAnimationExtensions.m in Sources */,
 				874C23A9215B2400001C8BE9 /* FSMyCollectionModel.m in Sources */,
 				AD510298213E560F008CD74D /* FSApiRequest+Community.m in Sources */,
+				DB58168C221BD9F70023BC3A /* FSSearchHistoryTableView.m in Sources */,
 				8730B0772140FFA3004331A9 /* NSFileWrapper+DTCopying.m in Sources */,
 				87E7C69F2150A4E500F7AB14 /* TOCropView.m in Sources */,
 				874C23B5215B4FF9001C8BE9 /* FSMyTopicCell.m in Sources */,
@@ -9693,6 +9700,7 @@
 				87E7C2CC21509AB000F7AB14 /* DTSidePanelPanGestureRecognizer.m in Sources */,
 				87E7C2CD21509AB000F7AB14 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				87E7C2CE21509AB000F7AB14 /* FLEXFileBrowserFileOperationController.m in Sources */,
+				DB58168D221BD9F70023BC3A /* FSSearchHistoryTableView.m in Sources */,
 				87E7C2CF21509AB000F7AB14 /* DTCoreTextLayoutFrameAccessibilityElementGenerator.m in Sources */,
 				87E7C2D021509AB000F7AB14 /* NSObject+MJProperty.m in Sources */,
 				DBBF3043215BAE0B003AB3F2 /* FSTextDetailVC.m in Sources */,
