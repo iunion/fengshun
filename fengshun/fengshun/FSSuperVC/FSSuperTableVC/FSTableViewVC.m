@@ -362,8 +362,11 @@
             else
             {
 #ifdef DEBUG
-                NSString *responseStr = [[NSString stringWithFormat:@"%@", responseObject] bm_convertUnicode];
-                BMLog(@"%@ %@", response, responseStr);
+                NSString *responseStr = [NSString stringWithFormat:@"%@", responseObject];
+                if (responseStr.length <= 2048) {
+                    responseStr = [responseStr bm_convertUnicode];
+                    BMLog(@"%@ %@", response, responseStr);
+                }
 #endif
                 [weakSelf loadDataResponseFinished:response responseDic:responseObject];
             }
