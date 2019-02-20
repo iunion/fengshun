@@ -82,7 +82,7 @@
         self.m_IdCardItem = [BMTextItem itemWithTitle:@"身份证号" value:@"" placeholder:@"请输入您的身份证号码"];
         self.m_IdCardItem.textFont = FS_CELLTITLE_TEXTFONT;
         self.m_IdCardItem.textFieldTextFont = FS_CELLTITLE_TEXTFONT;
-        self.m_IdCardItem.keyboardType = UIKeyboardTypeEmailAddress;
+        self.m_IdCardItem.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
         self.m_IdCardItem.charactersLimit = 18;
         self.m_IdCardItem.underLineColor = FS_LINECOLOR;
         self.m_IdCardItem.cellHeight = height;
