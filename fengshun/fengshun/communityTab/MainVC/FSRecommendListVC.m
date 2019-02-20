@@ -121,7 +121,8 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     FSTopicModel *model = self.m_DataArray[indexPath.row];
-    [FSPushVCManager showTopicDetail:[self.view.superview bm_viewController] topicId:model.m_Id];
+//    [FSPushVCManager showTopicDetail:[self.view.superview bm_viewController] topicId:model.m_Id];
+    [FSPushVCManager showAuth:[self.view.superview bm_viewController] type:0];
 }
 
 @end

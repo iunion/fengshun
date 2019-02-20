@@ -7,7 +7,6 @@
 //
 
 #import "FSAuthVC.h"
-#import "FSInputTextView.h"
 #import "AppDelegate.h"
 
 #define NickName_MaxTextCount 16
@@ -18,9 +17,6 @@
 >
 
 @property (nonatomic , assign) FSAuthState m_AuthState;//认证和昵称状态
-@property (nonatomic , strong) FSInputTextView *m_NikeName;///< 昵称
-@property (nonatomic , strong) FSInputTextView *m_RealName;///< 真实姓名
-@property (nonatomic , strong) FSInputTextView *m_IdCard;///< 身份证号码
 
 @property (nonatomic , strong) UILabel *m_NikeNameLab;
 @property (nonatomic , strong) UILabel *m_AuthLab;
@@ -178,22 +174,22 @@
     switch (self.m_AuthState) {
         case FSAuthStateNone:// 啥都没有
         {
-            userInfo.m_UserBaseInfo.m_RealName = _m_RealName.m_Content;
-            userInfo.m_UserBaseInfo.m_IdCardNo = _m_IdCard.m_Content;
+            userInfo.m_UserBaseInfo.m_RealName = _m_RealNameItem.value;
+            userInfo.m_UserBaseInfo.m_IdCardNo = _m_IdCardItem.value;
             userInfo.m_UserBaseInfo.m_IsRealName = YES;
-            userInfo.m_UserBaseInfo.m_NickName = _m_NikeName.m_Content;
+            userInfo.m_UserBaseInfo.m_NickName = _m_NikeNameItem.value;
         }
             break;
         case FSAuthStateNoAuth:// 没认证
         {
-            userInfo.m_UserBaseInfo.m_RealName = _m_RealName.m_Content;
-            userInfo.m_UserBaseInfo.m_IdCardNo = _m_IdCard.m_Content;
+            userInfo.m_UserBaseInfo.m_RealName = _m_RealNameItem.value;
+            userInfo.m_UserBaseInfo.m_IdCardNo = _m_IdCardItem.value;
             userInfo.m_UserBaseInfo.m_IsRealName = YES;
         }
             break;
         case FSAuthStateNoNickName:// 没昵称
         {
-            userInfo.m_UserBaseInfo.m_NickName = _m_NikeName.m_Content;
+            userInfo.m_UserBaseInfo.m_NickName = _m_NikeNameItem.value;
         }
             break;
         case FSAuthStateAllDone:
