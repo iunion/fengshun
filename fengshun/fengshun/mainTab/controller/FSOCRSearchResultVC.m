@@ -15,10 +15,16 @@
 #import "FSCaseCell.h"
 #import "TOCropViewController.h"
 #import "BMNavigationController.h"
+#import "FSSimpleCameraViewController.h"
 
 @interface
-FSOCRSearchResultVC () <TZImagePickerControllerDelegate,
-                        TOCropViewControllerDelegate>
+FSOCRSearchResultVC ()
+<
+    TZImagePickerControllerDelegate,
+    TOCropViewControllerDelegate,
+    UINavigationControllerDelegate,
+    FSSimpleCameraControllerDelegate
+>
 
 @property (weak, nonatomic) IBOutlet UIImageView *m_imageView;
 
@@ -41,7 +47,8 @@ FSOCRSearchResultVC () <TZImagePickerControllerDelegate,
 {
     [super viewDidLoad];
     [self setupUI];
-    [self presentToImagePickerWithAnimated:NO];
+
+    [self presentToCameraWithAnimated:NO];
 }
 
 
@@ -90,7 +97,7 @@ FSOCRSearchResultVC () <TZImagePickerControllerDelegate,
     }
     else
     {
-        [self presentToImagePickerWithAnimated:YES];
+        [self presentToCameraWithAnimated:YES];
     }
 }
 
@@ -117,7 +124,7 @@ FSOCRSearchResultVC () <TZImagePickerControllerDelegate,
 
 #pragma mark - TZImagePickerControllerDelegate
 
-- (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker
+- (void)fs_cameraCancelTakePicture:(FSSimpleCameraViewController *)cameraController
 {
     BMNavigationController *nav = (BMNavigationController *)self.navigationController;
     [nav resetPushAnimation];
@@ -128,15 +135,9 @@ FSOCRSearchResultVC () <TZImagePickerControllerDelegate,
     }
 }
 
-- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos
-{
-    BMNavigationController *nav = (BMNavigationController *)self.navigationController;
-    [nav resetPushAnimation];
-
-    if ([photos bm_isNotEmpty])
-    {
-        UIImage *image = [photos firstObject];
-        self.m_orignalImage = image;
+- (void)imagePickerController:(UIViewController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    if (image) {
         [self pickerVC:picker presentToCropVCWithImage:image];
     }
     else
@@ -146,8 +147,11 @@ FSOCRSearchResultVC () <TZImagePickerControllerDelegate,
             [self.navigationController popViewControllerAnimated:NO];
         }
     }
+    
+    
 }
-- (void)pickerVC:(TZImagePickerController *)picker presentToCropVCWithImage:(UIImage *)orignalImage
+
+- (void)pickerVC:(UIViewController *)picker presentToCropVCWithImage:(UIImage *)orignalImage
 {
     TOCropViewController *cropController = [[TOCropViewController alloc] initWithImage:orignalImage];
     BMWeakSelf
@@ -158,22 +162,21 @@ FSOCRSearchResultVC () <TZImagePickerControllerDelegate,
                                          }];
         }];
     [cropController setOnDidFinishCancelled:^(BOOL isFinished) {
+
         [picker dismissViewControllerAnimated:YES completion:nil];
     }];
     [picker presentViewController:cropController animated:YES completion:nil];
 }
 
-
-- (void)presentToImagePickerWithAnimated:(BOOL)animated
+- (void)presentToCameraWithAnimated:(BOOL)animated
 {
     if (animated)
     {
         self.m_notFirstSelected = YES;
     }
-    TZImagePickerController *imagePickerVc = [TZImagePickerController fs_defaultPickerWithImagesCount:1 delegate:self];
-    imagePickerVc.autoDismiss = NO;
-    imagePickerVc.specialSingleSelected = YES;
-    [self presentViewController:imagePickerVc animated:animated completion:nil];
+    FSSimpleCameraViewController *camera = [[FSSimpleCameraViewController alloc] init];
+    camera.delegate = self;
+    [self presentViewController:camera animated:animated completion:nil];
 }
 
 
@@ -345,7 +348,7 @@ FSOCRSearchResultVC () <TZImagePickerControllerDelegate,
     else
     {
         // 空白页触发的刷新事件,在这儿是重新选图片
-        [self presentToImagePickerWithAnimated:YES];
+        [self presentToCameraWithAnimated:YES];
     }
 }
 - (BOOL)canLoadApiData

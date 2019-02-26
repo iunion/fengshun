@@ -2005,6 +2005,12 @@
 		DBBF3047215BB24B003AB3F2 /* text_dowload@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBBF3044215BB24A003AB3F2 /* text_dowload@3x.png */; };
 		DBBF3048215BB24B003AB3F2 /* text_dowload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBBF3045215BB24A003AB3F2 /* text_dowload@2x.png */; };
 		DBBF3049215BB24B003AB3F2 /* text_dowload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBBF3045215BB24A003AB3F2 /* text_dowload@2x.png */; };
+		DBC6503C2224ED3A001B2186 /* takePic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBC6503A2224ED3A001B2186 /* takePic@3x.png */; };
+		DBC6503D2224ED3A001B2186 /* takePic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBC6503A2224ED3A001B2186 /* takePic@3x.png */; };
+		DBC6503E2224ED3A001B2186 /* takePic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBC6503B2224ED3A001B2186 /* takePic@2x.png */; };
+		DBC6503F2224ED3A001B2186 /* takePic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBC6503B2224ED3A001B2186 /* takePic@2x.png */; };
+		DBC650462224F85E001B2186 /* FSCameraGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBC650452224F85E001B2186 /* FSCameraGridView.m */; };
+		DBC650472224F85E001B2186 /* FSCameraGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBC650452224F85E001B2186 /* FSCameraGridView.m */; };
 		DBD4CDE9213E2C7F00857DB3 /* FSSearchResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD4CDE8213E2C7F00857DB3 /* FSSearchResultView.m */; };
 		DBD4CDEE213E37A000857DB3 /* FSFilterHeaderResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD4CDED213E37A000857DB3 /* FSFilterHeaderResultView.m */; };
 		DBD4CDF1213E383500857DB3 /* FSCaseSearchResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD4CDF0213E383500857DB3 /* FSCaseSearchResultView.m */; };
@@ -2030,6 +2036,8 @@
 		DBD8D4732160A7A900752B14 /* home_robot@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBD8D4702160A7A800752B14 /* home_robot@3x.png */; };
 		DBD8D4742160A7A900752B14 /* home_robot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBD8D4712160A7A800752B14 /* home_robot@2x.png */; };
 		DBD8D4752160A7A900752B14 /* home_robot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBD8D4712160A7A800752B14 /* home_robot@2x.png */; };
+		DBE58F452224D4E200F9A5E3 /* FSSimpleCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE58F442224D4E200F9A5E3 /* FSSimpleCameraViewController.m */; };
+		DBE58F462224D4E200F9A5E3 /* FSSimpleCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE58F442224D4E200F9A5E3 /* FSSimpleCameraViewController.m */; };
 		DBEE30A921D0DE41009EAE60 /* FSNoticeMessagesDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DBEE30A721D0DE41009EAE60 /* FSNoticeMessagesDetailVC.m */; };
 		DBEE30AA21D0DE41009EAE60 /* FSNoticeMessagesDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBEE30A821D0DE41009EAE60 /* FSNoticeMessagesDetailVC.xib */; };
 		DBEE30AB21D0E281009EAE60 /* FSNoticeMessagesDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DBEE30A721D0DE41009EAE60 /* FSNoticeMessagesDetailVC.m */; };
@@ -3946,6 +3954,10 @@
 		DBBF3041215BAA10003AB3F2 /* FSTextDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTextDetailVC.m; sourceTree = "<group>"; };
 		DBBF3044215BB24A003AB3F2 /* text_dowload@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text_dowload@3x.png"; sourceTree = "<group>"; };
 		DBBF3045215BB24A003AB3F2 /* text_dowload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text_dowload@2x.png"; sourceTree = "<group>"; };
+		DBC6503A2224ED3A001B2186 /* takePic@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "takePic@3x.png"; sourceTree = "<group>"; };
+		DBC6503B2224ED3A001B2186 /* takePic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "takePic@2x.png"; sourceTree = "<group>"; };
+		DBC650442224F85E001B2186 /* FSCameraGridView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCameraGridView.h; sourceTree = "<group>"; };
+		DBC650452224F85E001B2186 /* FSCameraGridView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCameraGridView.m; sourceTree = "<group>"; };
 		DBD4CDE7213E2C7F00857DB3 /* FSSearchResultView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSearchResultView.h; sourceTree = "<group>"; };
 		DBD4CDE8213E2C7F00857DB3 /* FSSearchResultView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSSearchResultView.m; sourceTree = "<group>"; };
 		DBD4CDEC213E37A000857DB3 /* FSFilterHeaderResultView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSFilterHeaderResultView.h; sourceTree = "<group>"; };
@@ -3979,6 +3991,8 @@
 		DBD4CE892141229400857DB3 /* home_message@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_message@3x.png"; sourceTree = "<group>"; };
 		DBD8D4702160A7A800752B14 /* home_robot@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_robot@3x.png"; sourceTree = "<group>"; };
 		DBD8D4712160A7A800752B14 /* home_robot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_robot@2x.png"; sourceTree = "<group>"; };
+		DBE58F432224D4E200F9A5E3 /* FSSimpleCameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSimpleCameraViewController.h; sourceTree = "<group>"; };
+		DBE58F442224D4E200F9A5E3 /* FSSimpleCameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSSimpleCameraViewController.m; sourceTree = "<group>"; };
 		DBEE30A621D0DE41009EAE60 /* FSNoticeMessagesDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSNoticeMessagesDetailVC.h; sourceTree = "<group>"; };
 		DBEE30A721D0DE41009EAE60 /* FSNoticeMessagesDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSNoticeMessagesDetailVC.m; sourceTree = "<group>"; };
 		DBEE30A821D0DE41009EAE60 /* FSNoticeMessagesDetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSNoticeMessagesDetailVC.xib; sourceTree = "<group>"; };
@@ -6003,6 +6017,7 @@
 		87426A9821314996003C52F6 /* FSTools */ = {
 			isa = PBXGroup;
 			children = (
+				DBE58F422224D49D00F9A5E3 /* FSSimpleCameraViewController */,
 				8704B396219D1CAB00DBBC53 /* FSCountDownManager */,
 				AF1B5EE3217462BE00125921 /* FSShareManager */,
 				87E7C6E62151F2C700F7AB14 /* FSTestHelp */,
@@ -8042,6 +8057,19 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		DBE58F422224D49D00F9A5E3 /* FSSimpleCameraViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DBE58F432224D4E200F9A5E3 /* FSSimpleCameraViewController.h */,
+				DBE58F442224D4E200F9A5E3 /* FSSimpleCameraViewController.m */,
+				DBC650442224F85E001B2186 /* FSCameraGridView.h */,
+				DBC650452224F85E001B2186 /* FSCameraGridView.m */,
+				DBC6503B2224ED3A001B2186 /* takePic@2x.png */,
+				DBC6503A2224ED3A001B2186 /* takePic@3x.png */,
+			);
+			path = FSSimpleCameraViewController;
+			sourceTree = "<group>";
+		};
 		DBF7E17621521715002CEDA4 /* controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -8389,6 +8417,7 @@
 				8730B0CD214772BC004331A9 /* user_mobileicon@2x.png in Resources */,
 				87741FDD214A0C8A00F72427 /* FSServiceVC.xib in Resources */,
 				87D186A7213679F800037DDF /* login_logo@2x.png in Resources */,
+				DBC6503C2224ED3A001B2186 /* takePic@3x.png in Resources */,
 				8730B10B2148E5D1004331A9 /* fsfreshfreshing_icon3@2x.png in Resources */,
 				DBD4CE8F2141229400857DB3 /* home_arrow@2x.png in Resources */,
 				87D209F2213912ED001EDD60 /* default_avataricon@2x.png in Resources */,
@@ -8405,6 +8434,7 @@
 				8730AD432140CC28004331A9 /* user_serviceicon@3x.png in Resources */,
 				87426A0C212F9657003C52F6 /* navigationbar_message_icon@3x.png in Resources */,
 				8730B1222148E5D1004331A9 /* fsfreshidle_icon20@2x.png in Resources */,
+				DBC6503E2224ED3A001B2186 /* takePic@2x.png in Resources */,
 				874268CF212E7E36003C52F6 /* bmtab_bg@3x.png in Resources */,
 				8730B1232148E5D1004331A9 /* fsfreshfreshing_icon5@2x.png in Resources */,
 				87BC9E3121548E0D000F2011 /* fsintroguide_640x960_2@2x.png in Resources */,
@@ -8633,6 +8663,7 @@
 				87E7C52921509AB000F7AB14 /* login_closeeye@2x.png in Resources */,
 				ADC591F9215395100054BE72 /* fstab_btn4_highIcon@3x.png in Resources */,
 				876BB7C821AE923A00FC205D /* testalignsight_icon@2x.png in Resources */,
+				DBC6503D2224ED3A001B2186 /* takePic@3x.png in Resources */,
 				87BC9E3C2154913B000F2011 /* fsintroguide_640x960_2@2x.png in Resources */,
 				87E7C52A21509AB000F7AB14 /* video_unselect@3x.png in Resources */,
 				87E7C52B21509AB000F7AB14 /* videocall_chat_voice@3x.png in Resources */,
@@ -8706,6 +8737,7 @@
 				87E7C55A21509AB000F7AB14 /* banner_close@2x.png in Resources */,
 				87E7C55B21509AB000F7AB14 /* user_mobileicon@3x.png in Resources */,
 				87E7C55C21509AB000F7AB14 /* videocall_voice_open@3x.png in Resources */,
+				DBC6503F2224ED3A001B2186 /* takePic@2x.png in Resources */,
 				87E7C55D21509AB000F7AB14 /* FSCaseCell.xib in Resources */,
 				DBF7E1A321524EDB002CEDA4 /* search_lawTopic_4@3x.png in Resources */,
 				87E7C55E21509AB000F7AB14 /* video_not_selected@3x.png in Resources */,
@@ -9118,6 +9150,7 @@
 				8730B0612140FFA3004331A9 /* DTZipArchiveGZip.m in Sources */,
 				8730B05F2140FFA3004331A9 /* DTVersion.m in Sources */,
 				AD9355AA2137D24100735C2E /* TZPhotoPreviewCell.m in Sources */,
+				DBE58F452224D4E200F9A5E3 /* FSSimpleCameraViewController.m in Sources */,
 				8730B0442140FFA2004331A9 /* NSCharacterSet+HTML.m in Sources */,
 				87F639D421533C820035E730 /* UIPageViewController+MemoryLeak.m in Sources */,
 				87F639D621533C830035E730 /* UITabBarController+MemoryLeak.m in Sources */,
@@ -9362,6 +9395,7 @@
 				874268C1212E7E36003C52F6 /* BMBoolItem.m in Sources */,
 				8730B07F2140FFA3004331A9 /* DTActionSheet.m in Sources */,
 				ADE8689C21393469005359B5 /* FSForumListCell.m in Sources */,
+				DBC650462224F85E001B2186 /* FSCameraGridView.m in Sources */,
 				8730B0AF21461456004331A9 /* FSRecommendListVC.m in Sources */,
 				87F639F621533C830035E730 /* FBObjectGraphConfiguration.m in Sources */,
 				87741FEE214A385700F72427 /* FSMyCommentVC.m in Sources */,
@@ -9920,6 +9954,7 @@
 				87F639D121533C820035E730 /* UISplitViewController+MemoryLeak.m in Sources */,
 				87E7C39221509AB000F7AB14 /* DTAnchorHTMLElement.m in Sources */,
 				87E7C39321509AB000F7AB14 /* TZProgressView.m in Sources */,
+				DBC650472224F85E001B2186 /* FSCameraGridView.m in Sources */,
 				87E7C39421509AB000F7AB14 /* NSData+ImageContentType.m in Sources */,
 				87E7C39521509AB000F7AB14 /* FSVideoHistoryListVC.m in Sources */,
 				87F639C921533C820035E730 /* UINavigationController+MemoryLeak.m in Sources */,
@@ -9972,6 +10007,7 @@
 				87E7C3BE21509AB000F7AB14 /* FLEXSQLiteDatabaseManager.m in Sources */,
 				87E7C3BF21509AB000F7AB14 /* FSMoreViewVC.m in Sources */,
 				87E7C3C021509AB000F7AB14 /* NSURL+DTAppLinks.m in Sources */,
+				DBE58F462224D4E200F9A5E3 /* FSSimpleCameraViewController.m in Sources */,
 				87E7C3C121509AB000F7AB14 /* BMFreshNormalHeader.m in Sources */,
 				87E7C3C221509AB000F7AB14 /* BMStepperInputView.m in Sources */,
 				87E7C3C321509AB000F7AB14 /* AppDelegate.m in Sources */,
