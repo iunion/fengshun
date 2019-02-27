@@ -124,9 +124,11 @@
     imagePickerVc.specialSingleSelected = YES;
     [self presentViewController:imagePickerVc animated:YES completion:nil];
 }
-- (void)dealloc
+
+// UIImagePickerViewController本来就一直有内存泄露问题,覆写willDealloc屏蔽MLLeaksFinder对其的内存检查
+- (BOOL)willDealloc
 {
-    BMLog(@"FSSimpleCameraViewController正常释放");
+    return NO;
 }
 
 @end

@@ -38,6 +38,7 @@ FSOCRSearchResultVC ()
 @property (nonatomic, assign) NSUInteger loadPage;
 @property (nonatomic, strong) UIImage *m_orignalImage;
 @property (nonatomic, assign) BOOL m_notEmptyViewAction;
+@property (nonatomic, strong) FSSimpleCameraViewController *camera;
 
 @end
 
@@ -120,7 +121,23 @@ FSOCRSearchResultVC ()
         [self getOCRTextWithImage:image];
     }
 }
-#pragma mark - TZImagePickerControllerDelegate
+#pragma mark - 打开相机
+
+- (void)presentToCameraWithAnimated:(BOOL)animated
+{
+    if (animated)
+    {
+        self.m_notFirstSelected = YES;
+    }
+
+    if (!_camera) {
+        self.camera = [[FSSimpleCameraViewController alloc] init];
+        _camera.delegate = self;
+    }
+    
+    [self presentViewController:_camera animated:animated completion:nil];
+}
+
 
 #pragma mark - TZImagePickerControllerDelegate
 
@@ -138,6 +155,7 @@ FSOCRSearchResultVC ()
 - (void)imagePickerController:(UIViewController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     if (image) {
+        self.m_orignalImage = image;
         [self pickerVC:picker presentToCropVCWithImage:image];
     }
     else
@@ -168,16 +186,6 @@ FSOCRSearchResultVC ()
     [picker presentViewController:cropController animated:YES completion:nil];
 }
 
-- (void)presentToCameraWithAnimated:(BOOL)animated
-{
-    if (animated)
-    {
-        self.m_notFirstSelected = YES;
-    }
-    FSSimpleCameraViewController *camera = [[FSSimpleCameraViewController alloc] init];
-    camera.delegate = self;
-    [self presentViewController:camera animated:animated completion:nil];
-}
 
 
 #pragma mark - TableView
