@@ -7,7 +7,6 @@
 //
 
 #import "FSOCRSearchResultVC.h"
-#import "TZImagePickerController.h"
 #import "FSOCRManager.h"
 #import "FSSearchResultModel.h"
 #import "FSSearchResultView.h"
@@ -20,7 +19,6 @@
 @interface
 FSOCRSearchResultVC ()
 <
-    TZImagePickerControllerDelegate,
     TOCropViewControllerDelegate,
     UINavigationControllerDelegate,
     FSSimpleCameraControllerDelegate
@@ -139,7 +137,7 @@ FSOCRSearchResultVC ()
 }
 
 
-#pragma mark - TZImagePickerControllerDelegate
+#pragma mark - FSSimpleCameraDelegate
 
 - (void)fs_cameraCancelTakePicture:(FSSimpleCameraViewController *)cameraController
 {

@@ -92,7 +92,15 @@
     if (image)
     {
         if ([self.delegate respondsToSelector:@selector(imagePickerController:didFinishPickingMediaWithInfo:)]) {
-            [self.delegate imagePickerController:picker didFinishPickingMediaWithInfo:@{UIImagePickerControllerOriginalImage:image}];
+            NSMutableDictionary *info = [NSMutableDictionary dictionaryWithDictionary:[infos firstObject]];
+            if (info) {
+                info[UIImagePickerControllerOriginalImage] = image;
+            }
+            else
+            {
+                info = [@{UIImagePickerControllerOriginalImage:image} mutableCopy];
+            }
+            [self.delegate imagePickerController:picker didFinishPickingMediaWithInfo:[info copy]];
         }
     }
     else

@@ -7,7 +7,6 @@
 //
 
 #import "FSFileScanVC.h"
-#import "TZImagePickerController.h"
 #import "FSImageFileCell.h"
 #import "FSFileScanImagePreviewVC.h"
 #import "MBProgressHUD.h"
@@ -15,13 +14,15 @@
 #import "TOCropViewController.h"
 #import <Photos/PHPhotoLibrary.h>
 #import <Photos/PHAssetChangeRequest.h>
+#import "FSSimpleCameraViewController.h"
 
 
 @interface FSFileScanVC ()
 <
-    TZImagePickerControllerDelegate,
     UICollectionViewDataSource,
-    UICollectionViewDelegateFlowLayout
+    UICollectionViewDelegateFlowLayout,
+    UINavigationControllerDelegate,
+    FSSimpleCameraControllerDelegate
 >
 @property (weak, nonatomic) IBOutlet UIButton *m_imagePickButton;
 @property (weak, nonatomic) IBOutlet UIView *m_toolView;
@@ -35,6 +36,8 @@
 @property (nonatomic, strong)NSMutableArray <FSImageFileModel *> *m_selectedImageFiles;
 
 @property (nonatomic, assign) BOOL m_editing;
+
+@property (nonatomic, strong) FSSimpleCameraViewController *camera;
 
 @end
 
@@ -171,10 +174,12 @@
 }
 - (IBAction)pickImageFile:(id)sender
 {
-    TZImagePickerController *imagePickerVc  = [TZImagePickerController fs_defaultPickerWithImagesCount:1 delegate:self];
-    imagePickerVc.autoDismiss = NO;
-    imagePickerVc.specialSingleSelected = YES;
-    [self presentViewController:imagePickerVc animated:YES completion:nil];
+    if (!_camera) {
+        self.camera = [[FSSimpleCameraViewController alloc] init];
+        _camera.delegate = self;
+    }
+    
+    [self presentViewController:_camera animated:YES completion:nil];
 }
 
 - (void)deleteSelectedImages
@@ -228,21 +233,21 @@
     }
     
 }
-#pragma mark - TZImagePickerControllerDelegate
-- (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker
+#pragma mark - FSSimpleCameraDelegate
+- (void)fs_cameraCancelTakePicture:(FSSimpleCameraViewController *)cameraController
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos
-{
-    if ([photos bm_isNotEmpty])
+- (void)imagePickerController:(UIViewController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    if (image)
     {
-        FSImageFileModel *model = [FSImageFileModel imageFileWithSelectInfo:[infos firstObject] andImage:photos[0]];
+        FSImageFileModel *model = [FSImageFileModel imageFileWithSelectInfo:info andImage:image];
         [self pickerVC:picker presentToCropVCWithImageFile:model];
     }
     
 }
-- (void)pickerVC:(TZImagePickerController *)picker presentToCropVCWithImageFile:(FSImageFileModel *)model
+- (void)pickerVC:(UIViewController *)picker presentToCropVCWithImageFile:(FSImageFileModel *)model
 {
     TOCropViewController *cropController = [[TOCropViewController alloc] initWithImage:model.m_OriginalImage];
     BMWeakSelf
