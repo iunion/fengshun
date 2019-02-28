@@ -8,10 +8,14 @@
 
 #import "FSTextDetailVC.h"
 #import "FSMoreViewVC.h"
+#import <MessageUI/MessageUI.h>
+#import "NSURL+BMParameters.h"
+#import "FSAlertView.h"
 
 @interface FSTextDetailVC ()
 <
-    FSShareManagerDelegate
+    FSShareManagerDelegate,
+    MFMailComposeViewControllerDelegate
 >
 
 @property(nonatomic, assign)BOOL s_isCollect;
@@ -34,6 +38,19 @@
     [dowloadButton.layer setMask:maskLayer];
     
     [self.view addSubview:dowloadButton];
+    
+    // 发送邮箱按钮 1.1.2需求
+    UIButton *emailButton = [[UIButton alloc]initWithFrame:CGRectMake(dowloadButton.bm_left, dowloadButton.bm_top - buttonSize.height - 20, buttonSize.width, buttonSize.height)];
+    emailButton.backgroundColor = UI_COLOR_BL1;
+    emailButton.titleLabel.font = [UIFont systemFontOfSize:16];
+    [emailButton setImage:[UIImage imageNamed:@"text_dowload"] forState:UIControlStateNormal];
+    [emailButton setTitle:@"发送至邮箱" forState:UIControlStateNormal];
+    [emailButton bm_layoutButtonWithEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:6];
+    [emailButton addTarget:self action:@selector(sendToEmail) forControlEvents:UIControlEventTouchUpInside];
+    CAShapeLayer *maskLayer1 = [CAShapeLayer layer];
+    maskLayer1.path = [UIBezierPath bezierPathWithRoundedRect:emailButton.bounds byRoundingCorners:UIRectCornerTopLeft|UIRectCornerBottomLeft cornerRadii:CGSizeMake(buttonSize.height/2, buttonSize.height/2)].CGPath;
+    [emailButton.layer setMask:maskLayer1];
+    [self.view addSubview:emailButton];
     [self addRightBtn];
     [self bringSomeViewToFront];
 }
@@ -122,6 +139,64 @@
     }
 }
 
+- (void)sendToEmail
+{
+    if (![MFMailComposeViewController canSendMail])
+    {
+        BMWeakSelf
+        [FSAlertView showAlertWithTitle:@"提示" message:@"您还未配置邮箱账户，是否现在跳转配置？" cancelTitle:@"取消" otherTitle:@"确定" completion:^(BOOL cancelled, NSInteger buttonIndex) {
+            if (buttonIndex == 1 )
+            {
+                [weakSelf jumpToEmailAPP];
+            }
+        }];
+        return;
+    }
+    MFMailComposeViewController *picker = [[MFMailComposeViewController alloc]init];
+    // 设置picker的委托方法，完成之后会自动调用成功或失败的方法
+    picker.mailComposeDelegate = self;
+    /* 发送doc文本附件src */
+    NSDictionary *params = [[NSURL URLWithString:self.m_UrlString]bm_queryDictionary];
+    NSData *myData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[params bm_stringForKey:@"src"]]];
+    [picker addAttachmentData:myData mimeType:@"application/msword" fileName:@"文书范本.docx"];
+    [self presentViewController:picker animated:YES completion:nil];
+}
 
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    NSString *alertString = @"";
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            alertString = @"邮件发送取消";
+            break;
+        case MFMailComposeResultSaved:
+            alertString = @"邮件保存成功";
+            break;
+        case MFMailComposeResultSent:
+            alertString = @"邮件发送成功";
+            break;
+        case MFMailComposeResultFailed:
+            alertString = @"邮件发送失败";
+            break;
+        default:
+            alertString = @"邮件未发送";
+            break;
+    }
+    [self.m_ProgressHUD showAnimated:YES withText:alertString delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+    [controller dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)jumpToEmailAPP
+{
+    NSURL *url = [NSURL URLWithString:@"mailto://"];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        [[UIApplication sharedApplication] openURL:url];
+    }
+    else
+    {
+        [self.m_ProgressHUD showAnimated:YES withText:@"未安装邮件应用" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+    }
+}
 
 @end
