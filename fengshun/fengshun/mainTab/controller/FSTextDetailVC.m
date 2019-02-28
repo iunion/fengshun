@@ -156,8 +156,7 @@
     // 设置picker的委托方法，完成之后会自动调用成功或失败的方法
     picker.mailComposeDelegate = self;
     /* 发送doc文本附件src */
-    NSDictionary *params = [[NSURL URLWithString:self.m_UrlString]bm_queryDictionary];
-    NSData *myData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[params bm_stringForKey:@"src"]]];
+    NSData *myData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.m_UrlString]];
     [picker addAttachmentData:myData mimeType:@"application/msword" fileName:@"文书范本.docx"];
     [self presentViewController:picker animated:YES completion:nil];
 }
