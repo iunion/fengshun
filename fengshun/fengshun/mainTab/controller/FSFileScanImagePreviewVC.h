@@ -15,7 +15,6 @@
 
 @property(nonatomic, copy) void(^m_SourceDataChanged)(void);
 
-@property (nonatomic, weak)NSMutableArray <FSImageFileModel *> *m_allImageFiles;
-@property (nonatomic, weak)FSImageFileModel *m_selectedImageFile;
+@property (nonatomic, assign)NSUInteger m_selectedIndex;
 
 @end

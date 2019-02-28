@@ -32,7 +32,7 @@
 
 // 数据
 
-@property (nonatomic, strong)NSMutableArray <FSImageFileModel *> *m_allImageFiles;
+@property (nonatomic, readonly)NSMutableArray <FSImageFileModel *> *m_allImageFiles;
 @property (nonatomic, strong)NSMutableArray <FSImageFileModel *> *m_selectedImageFiles;
 
 @property (nonatomic, assign) BOOL m_editing;
@@ -43,11 +43,14 @@
 
 @implementation FSFileScanVC
 
+- (NSMutableArray<FSImageFileModel *> *)m_allImageFiles
+{
+    return FSImageFileModel.m_allLocalImageFiles;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
     [self configCollectionView];
-    [self loadLocalData];
 }
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -93,20 +96,14 @@
     _m_collectionView.contentInset = UIEdgeInsetsMake(20, 15, 20, 15);
     [_m_collectionView registerNib:[UINib nibWithNibName:@"FSImageFileCell" bundle:nil] forCellWithReuseIdentifier:@"FSImageFileCell"];
 }
-- (void)loadLocalData
-{
-    NSArray *localFiles = [FSImageFileModel localImageFileList];
-    if ([localFiles bm_isNotEmpty]) {
-        self.m_allImageFiles = [localFiles mutableCopy];
-    }
-    else
-    {
-        self.m_allImageFiles = [NSMutableArray array];
-    }
-}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (void)dealloc
+{
+    FSImageFileModel.m_allLocalImageFiles = nil;
 }
 #pragma mark -  button action
 
@@ -122,7 +119,7 @@
 }
 -(void)rightAction:(UIBarButtonItem *)item
 {
-    if (![_m_allImageFiles bm_isNotEmpty]) return;
+    if (![self.m_allImageFiles bm_isNotEmpty]) return;
     if (!_m_editing) {
         // 进入编辑状态
         self.m_editing = YES;
@@ -130,7 +127,7 @@
     else
     {
         // 全选
-        self.m_selectedImageFiles = [_m_allImageFiles mutableCopy];
+        self.m_selectedImageFiles = [self.m_allImageFiles mutableCopy];
         [self refreshViewAndSetTitle:YES];
     }
 }
@@ -162,7 +159,7 @@
     }
     [_m_collectionView reloadData];
     UIButton *rightButton = [self bm_getNavigationRightItemAtIndex:0];
-    if ([_m_allImageFiles bm_isNotEmpty]) {
+    if ([self.m_allImageFiles bm_isNotEmpty]) {
         [_m_collectionView hideEmptyView];
         rightButton.hidden = NO;
     }
@@ -185,11 +182,12 @@
 - (void)deleteSelectedImages
 {
     for (FSImageFileModel *model in _m_selectedImageFiles) {
-        [_m_allImageFiles removeObject:model];
+        [self.m_allImageFiles removeObject:model];
     }
+    [FSImageFileModel asynRefreshLocalImageFilesInfoWithDeleteImageFiles:[_m_selectedImageFiles copy]];
     [_m_selectedImageFiles removeAllObjects];
     [self refreshViewAndSetTitle:YES];
-    [FSImageFileModel asynRefreshLocalImageFileWithList:[_m_allImageFiles copy]];
+    
 }
 - (void)saveImagesToLocal
 {
@@ -254,7 +252,7 @@
     [cropController setOnDidCropToRect:^(UIImage * _Nonnull image, CGRect cropRect, NSInteger angle) {
         model.m_image = image;
         [weakSelf.m_allImageFiles addObject:model];
-        [FSImageFileModel asynRefreshLocalImageFileWithList:[weakSelf.m_allImageFiles copy]];
+        [FSImageFileModel asynRefreshLocalImageFilesInfoWithDeleteImageFiles:nil];
         [weakSelf refreshViewAndSetTitle:NO];
         [weakSelf dismissViewControllerAnimated:NO completion:^{
             [weakSelf pushToPreviewVCWithSelectIndex:[weakSelf.m_allImageFiles indexOfObject:model]];
@@ -268,7 +266,7 @@
 #pragma mark - collectionView delegate & dataSource
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    FSImageFileModel *model = _m_allImageFiles[indexPath.row];
+    FSImageFileModel *model = self.m_allImageFiles[indexPath.row];
     if (_m_editing&&![_m_selectedImageFiles containsObject:model]) {
         [_m_selectedImageFiles addObject:model];
         [self refreshViewAndSetTitle:YES];
@@ -280,14 +278,14 @@
 }
 - (void)pushToPreviewVCWithSelectIndex:(NSUInteger)selectIndex
 {
-    FSFileScanImagePreviewVC *preVC = [FSPushVCManager fileScanVC:self pushToImagePreviewWithSourceArray:_m_allImageFiles selectIndex:selectIndex];
+    FSFileScanImagePreviewVC *preVC = [FSPushVCManager fileScanVC:self pushToImagePreviewWithSelectIndex:selectIndex];
     preVC.m_SourceDataChanged = ^{
         [self refreshViewAndSetTitle:NO];
     };
 }
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    FSImageFileModel *model = _m_allImageFiles[indexPath.row];
+    FSImageFileModel *model = self.m_allImageFiles[indexPath.row];
     if (_m_editing&&[_m_selectedImageFiles containsObject:model]) {
         [_m_selectedImageFiles removeObject:model];
         [self refreshViewAndSetTitle:YES];
@@ -295,13 +293,13 @@
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return _m_allImageFiles.count;
+    return self.m_allImageFiles.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     FSImageFileCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FSImageFileCell" forIndexPath:indexPath];
     cell.m_editing = _m_editing;
-    FSImageFileModel *model = _m_allImageFiles[indexPath.row];
+    FSImageFileModel *model = self.m_allImageFiles[indexPath.row];
     cell.m_imageFile = model;
     if (_m_editing && [_m_selectedImageFiles containsObject:model]) {
         

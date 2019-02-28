@@ -9,16 +9,55 @@
 #import "FSImageFileModel.h"
 #import "MBProgressHUD.h"
 
+
 @implementation FSImageFileModel
+
+@dynamic m_OriginalImage, m_image;
 
 + (NSString *)p_imageFileListPath
 {
     return [[NSString bm_documentsPath] stringByAppendingPathComponent:@"fileScan_image.plist"];
 }
-+ (SDImageCache *)p_imageCache
+
+static SDImageCache *m_imageStore = nil;
++ (SDImageCache *)m_imageSotre
 {
-    return [[SDImageCache alloc] initWithNamespace:@"scan_file_localimage"];
+    if (!m_imageStore) {
+        m_imageStore = [[SDImageCache alloc] initWithNamespace:@"scan_file_localimage"];
+        m_imageStore.config.maxCacheSize = 0; // 不限制大小
+        m_imageStore.config.maxCacheAge = 0; // 永不过期
+    }
+    return m_imageStore;
 }
+
+static NSMutableArray *allLocalImageFiles = nil;
++ (NSMutableArray<FSImageFileModel *> *)m_allLocalImageFiles
+{
+    if (!allLocalImageFiles) {
+        NSArray *localFiles = [self p_localImageFileList];
+        if ([localFiles bm_isNotEmpty]) {
+            allLocalImageFiles = [localFiles mutableCopy];
+        }
+        else
+        {
+            allLocalImageFiles = [NSMutableArray array];
+        }
+    }
+    return allLocalImageFiles;
+    
+}
+
++ (void)setM_allLocalImageFiles:(NSMutableArray<FSImageFileModel *> *)m_allLocalImageFiles
+{
+    allLocalImageFiles = m_allLocalImageFiles;
+}
+
++ (NSArray<FSImageFileModel *> *)p_localImageFileList
+{
+    NSArray *images = [NSArray arrayWithContentsOfFile:[self p_imageFileListPath]];
+    return [self modelsWithDataArray:images];
+}
+
 + (instancetype)imageFileWithSelectInfo:(NSDictionary *)info andImage:(UIImage *)image
 {
     NSDate *currentDate = [NSDate date];
@@ -41,42 +80,43 @@
     return model;
 }
 
-+ (NSArray<FSImageFileModel *> *)localImageFileList
-{
-    NSArray *images = [NSArray arrayWithContentsOfFile:[self p_imageFileListPath]];
-    return [self modelsWithDataArray:images];
-}
 + (instancetype)modelWithParams:(NSDictionary *)params
 {
     FSImageFileModel *model = [[self alloc] init];
     model.m_imageUrlKey     = [params bm_stringForKey:@"fileUrlKey"];
     model.m_fileName        = [params bm_stringForKey:@"fileName"];
     model.m_creatTime       = [params bm_stringForKey:@"creatTime"];
-    model.m_image        = [[self p_imageCache] imageFromCacheForKey:model.m_imageUrlKey];
-    model.m_OriginalImage = [[self p_imageCache] imageFromCacheForKey:model.m_OrigianlImageUrlKey];
+    model.m_OCRText         = [params bm_stringForKey:@"ocrText"];
     return model;
 }
-+ (void)asynRefreshLocalImageFileWithList:(NSArray<FSImageFileModel *> *)imageList
++ (void)asynRefreshLocalImageFilesInfoWithDeleteImageFiles:(NSArray<FSImageFileModel *> *)deleteFiles
 {
-    [[self p_imageCache] deleteOldFilesWithCompletionBlock:^{
-        [self p_saveImagesToLocal:imageList];
-    }];
+    
+    [self p_freshLocalImageFiles:self.m_allLocalImageFiles];
+    [FSImageFileModel.m_imageSotre clearMemory];
+
+    if ([deleteFiles bm_isNotEmpty]) {
+        for (FSImageFileModel *model in deleteFiles) {
+            [FSImageFileModel.m_imageSotre removeImageForKey:model.m_imageUrlKey withCompletion:nil];
+            [FSImageFileModel.m_imageSotre removeImageForKey:model.m_OrigianlImageUrlKey withCompletion:nil];
+        }
+    }
     
 }
-+ (void)p_saveImagesToLocal:(NSArray<FSImageFileModel *> *)imageList
++ (void)p_freshLocalImageFiles:(NSArray<FSImageFileModel *> *)imageList
 {
     NSMutableArray *images = [NSMutableArray array];
     for (FSImageFileModel *model in imageList)
     {
-        if ([model.m_imageUrlKey bm_isNotEmpty] && model.previewImage)
+        if ([model.m_imageUrlKey bm_isNotEmpty])
         {
             NSString *fileName  = [model.m_fileName bm_isNotEmpty] ? model.m_fileName : @"";
             NSString *creatTime = [model.m_creatTime bm_isNotEmpty] ? model.m_creatTime : @"";
-            [[self p_imageCache] storeImage:model.m_image forKey:model.m_imageUrlKey completion:nil];
-            [[self p_imageCache] storeImage:model.m_OriginalImage forKey:model.m_OrigianlImageUrlKey completion:nil];
+            NSString *ocrText   = [model.m_OCRText bm_isNotEmpty] ? model.m_OCRText : @"";
             [images addObject:@{ @"fileUrlKey" : model.m_imageUrlKey,
                                  @"creatTime" : creatTime,
                                  @"fileName" : fileName,
+                                 @"ocrText"  : ocrText,
                                  }];
         }
     }
@@ -87,14 +127,9 @@
 {
     NSString *timeStamp = [@((long)[NSDate date].timeIntervalSince1970) stringValue];
     NSString *fileName = [[NSString stringWithFormat:@"PDF分享-%@",timeStamp] stringByAppendingPathExtension:@"pdf"];
-    NSMutableArray *images = [NSMutableArray array];
-    for (FSImageFileModel *model in models) {
-        if ([model.previewImage bm_isNotEmpty]) {
-            [images addObject:model.previewImage];
-        }
-    }
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSString *pdfPath = [self convertPDFWithImages:[images copy] fileName:fileName];
+        NSString *pdfPath = [self convertPDFWithImages:models fileName:fileName];
         if (completion) {
             dispatch_sync(dispatch_get_main_queue(), ^{
                 completion(pdfPath);
@@ -126,9 +161,9 @@
     
 
 }
-+ (NSString *)convertPDFWithImages:(NSArray<UIImage *>*)images fileName:(NSString *)fileName{
++ (NSString *)convertPDFWithImages:(NSArray<FSImageFileModel *>*)imageFiles fileName:(NSString *)fileName{
     
-    if (!images || images.count == 0) return nil;
+    if (!imageFiles || imageFiles.count == 0) return nil;
 
     // pdf文件存储路径
      NSString *pdfPath      = [[NSString bm_temporaryPath] stringByAppendingPathComponent:fileName];
@@ -142,10 +177,13 @@
     CGFloat pdfWidth = pdfBounds.size.width;
     CGFloat pdfHeight = pdfBounds.size.height;
     
-    [images enumerateObjectsUsingBlock:^(UIImage * _Nonnull image, NSUInteger idx, BOOL * _Nonnull stop) {
-        // 绘制PDF
-        UIGraphicsBeginPDFPage();
+    
+    
+    [imageFiles enumerateObjectsUsingBlock:^(FSImageFileModel * _Nonnull imageFile, NSUInteger idx, BOOL * _Nonnull stop) {
         
+        // 绘制PDF
+        UIImage *image = imageFile.previewImage;
+        UIGraphicsBeginPDFPage();
         // 获取每张图片的实际长宽
         CGFloat imageW = image.size.width;
         CGFloat imageH = image.size.height;
@@ -181,12 +219,38 @@
     
     return result?pdfPath:nil;
 }
+
+
+- (void)setM_OriginalImage:(UIImage *)m_OriginalImage
+{
+    if ([_m_imageUrlKey bm_isNotEmpty]) {
+        [FSImageFileModel.m_imageSotre storeImage:m_OriginalImage forKey:self.m_OrigianlImageUrlKey completion:nil];
+    }
+}
+
+- (UIImage *)m_OriginalImage
+{
+    return [FSImageFileModel.m_imageSotre imageFromCacheForKey:self.m_OrigianlImageUrlKey];
+}
+
+- (void) setM_image:(UIImage *)m_image
+{
+    if ([_m_imageUrlKey bm_isNotEmpty]) {
+        [FSImageFileModel.m_imageSotre storeImage:m_image forKey:_m_imageUrlKey completion:nil];
+    }
+}
+
+- (UIImage *)m_image
+{
+    return [FSImageFileModel.m_imageSotre imageFromCacheForKey:_m_imageUrlKey];
+}
+
 - (NSString *)m_OrigianlImageUrlKey
 {
     return [NSString stringWithFormat:@"originalkey-%@",_m_imageUrlKey];
 }
 - (UIImage *)previewImage
 {
-    return [_m_image bm_isNotEmpty]?_m_image :_m_OriginalImage;
+    return [self.m_image bm_isNotEmpty]?self.m_image :self.m_OriginalImage;
 }
 @end

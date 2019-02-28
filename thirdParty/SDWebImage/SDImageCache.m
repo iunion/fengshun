@@ -688,7 +688,7 @@
 
             // Remove files that are older than the expiration date;
             NSDate *modifiedDate = resourceValues[cacheContentDateKey];
-            if ([[modifiedDate laterDate:expirationDate] isEqualToDate:expirationDate]) {
+            if (self.config.maxCacheAge > 0 && [[modifiedDate laterDate:expirationDate] isEqualToDate:expirationDate]) {
                 [urlsToDelete addObject:fileURL];
                 continue;
             }

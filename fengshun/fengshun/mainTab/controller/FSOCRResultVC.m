@@ -19,6 +19,8 @@ FSMoreViewVCDelegate
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *m_toolButtons;
 @property (weak, nonatomic) IBOutlet UITextView *m_textView;
 @property (weak, nonatomic) IBOutlet UIView *m_toolView;
+
+
 @end
 
 @implementation FSOCRResultVC
@@ -26,7 +28,14 @@ FSMoreViewVCDelegate
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
-    [self OCRAction];
+    if ([_m_model.m_OCRText bm_isNotEmpty]) {
+        _m_textView.text = _m_model.m_OCRText;
+    }
+    else
+    {
+        [self OCRAction];
+    }
+    
 }
 - (void)setupUI
 {
@@ -53,13 +62,15 @@ FSMoreViewVCDelegate
 }
 - (void)OCRAction
 {
-    if (![_m_orcImage bm_isNotEmpty]) {
+    if (![_m_model.previewImage bm_isNotEmpty]) {
         return;
     }
     [self.m_ProgressHUD showAnimated:YES showBackground:NO];
-    [[FSOCRManager manager]ocr_getTextWithImage:_m_orcImage succeed:^(NSString *text) {
+    [[FSOCRManager manager]ocr_getTextWithImage:_m_model.previewImage succeed:^(NSString *text) {
         [self.m_ProgressHUD hideAnimated:YES];
         self.m_textView.text = text;
+        _m_model.m_OCRText = text;
+        [FSImageFileModel asynRefreshLocalImageFilesInfoWithDeleteImageFiles:nil];
     } failed:^(NSError *error) {
         [self.m_ProgressHUD showAnimated:YES withText:@"文字识别出错" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     }];

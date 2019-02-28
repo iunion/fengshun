@@ -9,6 +9,7 @@
 #import "FSSimpleCameraViewController.h"
 #import "FSCameraGridView.h"
 #import "TZImagePickerController.h"
+#import <AVFoundation/AVCaptureDevice.h>
 
 
 #define kButtonViewHeight 165.0f
@@ -31,6 +32,33 @@
 
 @dynamic delegate;
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+    if (status == AVAuthorizationStatusRestricted || status == AVAuthorizationStatusDenied){
+        // 无权限
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"相机权限未开启" message:@"请您设置允许该应用访问您的相机\n设置>隐私>相机" preferredStyle:UIAlertControllerStyleAlert];
+        
+        BMWeakSelf;
+        UIAlertAction *noAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            if ([weakSelf.delegate respondsToSelector:@selector(fs_cameraCancelTakePicture:)]) {
+                [weakSelf.delegate fs_cameraCancelTakePicture:self];
+            }
+        }];
+        [alert addAction:noAction];
+        
+        UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"去设置" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+        }];
+        [alert addAction:yesAction];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    
+        return;
+    }
+    _m_gridView.hidden = NO;
+}
 - (instancetype)init {
     
     if (self = [super init]) {
@@ -38,6 +66,7 @@
         self.sourceType = UIImagePickerControllerSourceTypeCamera;
         self.showsCameraControls = NO;
         _m_gridView = [[FSCameraGridView alloc]initWithFrame:kContentFrame];
+        _m_gridView.hidden = YES;
         self.cameraOverlayView = _m_gridView;
         
         UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -133,7 +162,7 @@
     [self presentViewController:imagePickerVc animated:YES completion:nil];
 }
 
-// UIImagePickerViewController本来就一直有内存泄露问题,覆写willDealloc屏蔽MLLeaksFinder对其的内存检查
+// 屏蔽MLLeaksFinder对其的内存检查
 - (BOOL)willDealloc
 {
     return NO;

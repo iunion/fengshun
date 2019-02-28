@@ -30,14 +30,22 @@ FSFileScanImagePreviewVC ()
 
 @property (nonatomic, strong)UIButton *editFileNameButton;
 
+@property (nonatomic, readonly)NSMutableArray <FSImageFileModel *> *m_allImageFiles;
+@property (nonatomic, strong)FSImageFileModel *m_selectedImageFile;
+
 @end
 
 @implementation FSFileScanImagePreviewVC
 
+- (NSMutableArray<FSImageFileModel *> *)m_allImageFiles
+{
+    return FSImageFileModel.m_allLocalImageFiles;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    self.m_selectedImageFile = [self.m_allImageFiles objectAtIndex:_m_selectedIndex];
     [self setupUI];
 }
 - (void)setupUI
@@ -100,7 +108,7 @@ FSFileScanImagePreviewVC ()
     [av addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         UITextField *tf = [weakAv.textFields firstObject];
         self.m_selectedImageFile.m_fileName = tf.text;
-        [self synDataAndUI];
+        [self syncDataAndUIWithRemoveItem:nil];
         [self refreshUIIfNeedReload:NO];
     }]];
     [self presentViewController:av animated:YES completion:nil];
@@ -110,14 +118,14 @@ FSFileScanImagePreviewVC ()
     if (needReload)
     {
         [_m_scrollPageView reloadPage];
-        if ([_m_allImageFiles bm_isNotEmpty])
+        if ([self.m_allImageFiles bm_isNotEmpty])
         {
-            [_m_scrollPageView scrollPageWithIndex:[_m_allImageFiles indexOfObject:_m_selectedImageFile]];
+            [_m_scrollPageView scrollPageWithIndex:[self.m_allImageFiles indexOfObject:_m_selectedImageFile]];
         }
     }
-    NSUInteger index = [_m_allImageFiles bm_isNotEmpty] ? [_m_allImageFiles indexOfObject:_m_selectedImageFile] + 1 : 0;
+    NSUInteger index = [self.m_allImageFiles bm_isNotEmpty] ? [self.m_allImageFiles indexOfObject:_m_selectedImageFile] + 1 : 0;
 
-    NSUInteger total        = _m_allImageFiles.count;
+    NSUInteger total        = self.m_allImageFiles.count;
     _m_pageContolLabel.text = [NSString stringWithFormat:@"%lu/%lu", (unsigned long)index, (unsigned long)total];
     if (_m_selectedImageFile) {
         [self.editFileNameButton setTitle:_m_selectedImageFile.m_fileName forState:UIControlStateNormal];
@@ -135,18 +143,18 @@ FSFileScanImagePreviewVC ()
 #pragma mark - scrollPageView dataSource & delegate
 - (void)scrollPageViewChangeToIndex:(NSUInteger)index
 {
-    self.m_selectedImageFile = [_m_allImageFiles objectAtIndex:index];
+    self.m_selectedImageFile = [self.m_allImageFiles objectAtIndex:index];
     [self refreshUIIfNeedReload:NO];
 }
 - (NSUInteger)scrollPageViewNumberOfPages:(FSScrollPageView *)scrollPageView
 {
-    return _m_allImageFiles.count;
+    return self.m_allImageFiles.count;
 }
 
 
 - (id)scrollPageView:(FSScrollPageView *)scrollPageView pageAtIndex:(NSUInteger)index
 {
-    FSImageFileModel *model = [_m_allImageFiles objectAtIndex:index];
+    FSImageFileModel *model = [self.m_allImageFiles objectAtIndex:index];
     if ([model bm_isNotEmpty])
     {
         UIImageView *imageView  = [[UIImageView alloc] initWithImage:model.previewImage];
@@ -169,11 +177,11 @@ FSFileScanImagePreviewVC ()
     {
         return;
     }
-    NSInteger oriIndex = [_m_allImageFiles indexOfObject:_m_selectedImageFile];
-    [_m_allImageFiles removeObject:_m_selectedImageFile];
-    [self synDataAndUI];
+    NSInteger oriIndex = [self.m_allImageFiles indexOfObject:_m_selectedImageFile];
+    [self.m_allImageFiles removeObject:_m_selectedImageFile];
+    [self syncDataAndUIWithRemoveItem:_m_selectedImageFile];
     NSUInteger index         = (oriIndex - 1 < 0) ? 0 : oriIndex - 1;
-    self.m_selectedImageFile = (_m_allImageFiles.count > index) ? _m_allImageFiles[index] : nil;
+    self.m_selectedImageFile = (self.m_allImageFiles.count > index) ? self.m_allImageFiles[index] : nil;
     [self refreshUIIfNeedReload:YES];
 }
 - (void)presentToImageCrop
@@ -190,13 +198,14 @@ FSFileScanImagePreviewVC ()
 - (void)cropViewController:(nonnull TOCropViewController *)cropViewController didCropToImage:(nonnull UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle
 {
     _m_selectedImageFile.m_image = image;
-    [self synDataAndUI];
+    _m_selectedImageFile.m_OCRText = nil;
+    [self syncDataAndUIWithRemoveItem:nil];
     [self refreshUIIfNeedReload:YES];
     [cropViewController dismissViewControllerAnimated:YES completion:nil];
 }
-- (void)synDataAndUI
+- (void)syncDataAndUIWithRemoveItem:(FSImageFileModel *)removeItem
 {
-    [FSImageFileModel asynRefreshLocalImageFileWithList:[_m_allImageFiles copy]];
+    [FSImageFileModel asynRefreshLocalImageFilesInfoWithDeleteImageFiles:removeItem?@[removeItem]:nil];
     if (_m_SourceDataChanged)
     {
         _m_SourceDataChanged();
@@ -225,7 +234,7 @@ FSFileScanImagePreviewVC ()
 
 - (void)pushToOCRResult
 {
-    [FSPushVCManager viewController:self pushToOCRResultVCWithImage:_m_selectedImageFile.previewImage];
+    [FSPushVCManager viewController:self pushToOCRResultVCWithImageFile:_m_selectedImageFile];
 }
 - (IBAction)toolButtonAction:(UIButton *)sender
 {

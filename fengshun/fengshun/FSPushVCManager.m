@@ -177,20 +177,19 @@
     [mainVC.navigationController pushViewController:vc animated:YES];
 }
 
-+ (FSFileScanImagePreviewVC *)fileScanVC:(UIViewController *)fileCacnVC pushToImagePreviewWithSourceArray:(NSMutableArray *)sourceArray selectIndex:(NSInteger)selectIndex
++ (FSFileScanImagePreviewVC *)fileScanVC:(UIViewController *)fileCacnVC pushToImagePreviewWithSelectIndex:(NSInteger)selectIndex
 {
     FSFileScanImagePreviewVC *vc = [[FSFileScanImagePreviewVC alloc] initWithNibName:@"FSFileScanImagePreviewVC" bundle:nil];
-    vc.m_allImageFiles           = sourceArray;
-    vc.m_selectedImageFile       = [sourceArray objectAtIndex:selectIndex];
+    vc.m_selectedIndex           = selectIndex;
     vc.hidesBottomBarWhenPushed  = YES;
     [fileCacnVC.navigationController pushViewController:vc animated:YES];
     return vc;
 }
 
-+ (void)viewController:(UIViewController *)vc pushToOCRResultVCWithImage:(UIImage *)image
++ (void)viewController:(UIViewController *)vc pushToOCRResultVCWithImageFile:(FSImageFileModel *)imageFile
 {
     FSOCRResultVC *resultVC = [[FSOCRResultVC alloc]initWithNibName:@"FSOCRResultVC" bundle:nil];
-    resultVC.m_orcImage = image;
+    resultVC.m_model = imageFile;
     resultVC.hidesBottomBarWhenPushed = YES;
     [vc.navigationController pushViewController:resultVC animated:YES];
 }

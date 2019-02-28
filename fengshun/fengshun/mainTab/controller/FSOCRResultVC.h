@@ -7,9 +7,10 @@
 //
 
 #import "FSSuperVC.h"
+#import "FSImageFileModel.h"
 
 @interface FSOCRResultVC : FSSuperVC
 
-@property (nonatomic, strong)UIImage *m_orcImage;
+@property (nonatomic, strong)FSImageFileModel *m_model;
 
 @end

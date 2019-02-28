@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FSTopicDetailVC.h"
 
-@class FSWebViewController, FSFileScanImagePreviewVC,FSCommunitySecVC,FSSendTopicVC,FSAuthVC;
+@class FSWebViewController, FSFileScanImagePreviewVC, FSImageFileModel, FSCommunitySecVC, FSSendTopicVC, FSAuthVC;
 
 @class FSVideoMediateDetailVC;
 
@@ -67,9 +67,9 @@ typedef void (^PushVCCallBack)(void);
 // 文件扫描
 + (void)homePagePushToFileScanVC:(UIViewController *)mainVC;
 // 文件扫描图片预览
-+ (FSFileScanImagePreviewVC *)fileScanVC:(UIViewController *)fileCacnVC pushToImagePreviewWithSourceArray:(NSMutableArray *)sourceArray selectIndex:(NSInteger)selectIndex;
++ (FSFileScanImagePreviewVC *)fileScanVC:(UIViewController *)fileCacnVC pushToImagePreviewWithSelectIndex:(NSInteger)selectIndex;
 // 文字识别结果
-+(void)viewController:(UIViewController *)vc pushToOCRResultVCWithImage:(UIImage *)image;
++(void)viewController:(UIViewController *)vc pushToOCRResultVCWithImageFile:(FSImageFileModel *)imageFile;
 
 // 显示站内消息
 + (void)showMessageVC:(UIViewController *)pushVC andShowNotificationTab:(BOOL)showNotificationTab;

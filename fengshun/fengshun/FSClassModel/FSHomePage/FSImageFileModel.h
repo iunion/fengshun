@@ -12,6 +12,10 @@
 
 @interface FSImageFileModel : FSSuperModel
 
+@property (class, nonatomic, readonly)SDImageCache *m_imageSotre;
+
+@property (class, nonatomic, strong)NSMutableArray <FSImageFileModel *>*m_allLocalImageFiles;
+
 @property (nonatomic, copy)NSString *m_fileName;
 @property (nonatomic, copy)NSString *m_creatTime;
 @property (nonatomic, copy)NSString *m_imageUrlKey;
@@ -20,13 +24,13 @@
 @property (nonatomic, readonly)NSString *m_OrigianlImageUrlKey;
 @property (nonatomic, strong)UIImage *m_OriginalImage;
 
+// 1.1.3变更
+@property (nonatomic, copy)NSString *m_OCRText;
+
 
 + (instancetype)imageFileWithSelectInfo:(NSDictionary *)info andImage:(UIImage *)image;
 
-// 获取与更新本地保存的文件列表
-+ (NSArray <FSImageFileModel *> *)localImageFileList;
-
-+ (void)asynRefreshLocalImageFileWithList:(NSArray <FSImageFileModel *> *)imageList;
++ (void)asynRefreshLocalImageFilesInfoWithDeleteImageFiles:(NSArray<FSImageFileModel *> *)deleteFiles;
 
 + (void)shareImagefileModels:(NSArray <FSImageFileModel *> *)models atViewController:(UIViewController *)vc;
 
