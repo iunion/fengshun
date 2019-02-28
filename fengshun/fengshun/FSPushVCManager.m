@@ -250,8 +250,8 @@
 
 + (void)pushToTextDetail:(UIViewController *)pushVC url:(NSString *)url withFileId:(NSString *)fileId documentId:(NSString *)documentId title:(NSString *)title
 {
-    FSTextDetailVC *vc = [[FSTextDetailVC alloc] initWithTitle:title url:url showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR delegate:nil];
-    
+    NSDictionary *params = [[NSURL URLWithString:url]bm_queryDictionary];
+    FSTextDetailVC *vc = [[FSTextDetailVC alloc] initWithTitle:title url:[params bm_stringForKey:@"src"] showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR delegate:nil];
     vc.hidesBottomBarWhenPushed = YES;
     vc.m_fileId = fileId;
     vc.m_docummentId = documentId;
