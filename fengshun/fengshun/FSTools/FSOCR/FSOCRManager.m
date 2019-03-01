@@ -10,6 +10,7 @@
 #import <CommonCrypto/CommonHMAC.h>
 #import "AFNetworking.h"
 
+#define kOCRImageMaxLength 5*1024*1024
 
 static NSString *const kOCRAppId     = @"1255516392";
 static NSString *const kOCRScreatId  = @"AKIDZ9YjhTPNTJuGNEoKWUEk25uUq43mKSP8";
@@ -81,10 +82,9 @@ FSOCRManager ()
 {
     AFHTTPSessionManager *manager    = [self p_AFManagerWithContentType:NO];
     [manager POST:kOCRHttpsUrl parameters:@{@"appid" : kOCRAppId} headers:[self p_ocrHeaders] constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        NSData *imageData = UIImagePNGRepresentation(imageObj);
+        NSData *imageData = [UIImage bm_resetDataLengthOfImage:imageObj maxLength:kOCRImageMaxLength];
         NSString *ext = @"png";
-        if (!imageData) {
-            imageData = UIImageJPEGRepresentation(imageObj, 0.5);
+        if (!BMCGImageFormatPNG(imageObj.CGImage)) {
             ext = @"jpg";
         }
         [formData appendPartWithFileData:imageData name:@"image" fileName:[@"ocrImage" stringByAppendingPathExtension:ext] mimeType:@"image/png"];
@@ -94,6 +94,7 @@ FSOCRManager ()
         [self p_callBackWithResponse:nil error:error succeed:succeed failed:failed];
     }];
 }
+
 - (void)p_getTextWithImageUrl:(NSString *)imageUrl succeed:(void (^)(NSString *))succeed failed:(void (^)(NSError *))failed
 {
     AFHTTPSessionManager *manager    = [self p_AFManagerWithContentType:YES];
@@ -160,4 +161,6 @@ FSOCRManager ()
         }
     }
 }
+
+
 @end

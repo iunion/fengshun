@@ -117,5 +117,13 @@ typedef NS_ENUM(NSUInteger, BMImageResizingMethod)
 - (nullable NSData *)setImageMetadata:(NSMutableDictionary *)metaData withCompressionQuality:(CGFloat)compressionQuality;
 @end
 
+extern BOOL BMCGImageFormatPNG(_Nullable CGImageRef imageRef);
+
+@interface UIImage (Compress)
+
++ (nullable NSData *)bm_resetDataLengthOfImage:(UIImage *)sourceImage maxLength:(NSInteger)maxSize;
+
+@end
+
 NS_ASSUME_NONNULL_END
 
