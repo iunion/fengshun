@@ -1866,6 +1866,10 @@
 		AD9CAAE4212EA0F40071B941 /* UIScrollView+BMEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9CAAE3212EA0F40071B941 /* UIScrollView+BMEmpty.m */; };
 		ADA1228B214614BE00CF0D87 /* FSTopicListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA12289214614BE00CF0D87 /* FSTopicListVC.m */; };
 		ADA1228C214614BE00CF0D87 /* FSTopicListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADA1228A214614BE00CF0D87 /* FSTopicListVC.xib */; };
+		ADA32F5B2229101700836C33 /* send_email@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA32F592229101700836C33 /* send_email@3x.png */; };
+		ADA32F5C2229101700836C33 /* send_email@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA32F592229101700836C33 /* send_email@3x.png */; };
+		ADA32F5D2229101800836C33 /* send_email@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA32F5A2229101700836C33 /* send_email@2x.png */; };
+		ADA32F5E2229101800836C33 /* send_email@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADA32F5A2229101700836C33 /* send_email@2x.png */; };
 		ADA4DB5E21C9E6DD002AEEFE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD3B821B214A467800D72DE9 /* CoreGraphics.framework */; };
 		ADA4DB5F21C9E6DD002AEEFE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD3B821B214A467800D72DE9 /* CoreGraphics.framework */; };
 		ADC591F2215395100054BE72 /* fstab_btn3_highIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC591E1215395100054BE72 /* fstab_btn3_highIcon@3x.png */; };
@@ -3805,6 +3809,8 @@
 		ADA12288214614BE00CF0D87 /* FSTopicListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTopicListVC.h; sourceTree = "<group>"; };
 		ADA12289214614BE00CF0D87 /* FSTopicListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTopicListVC.m; sourceTree = "<group>"; };
 		ADA1228A214614BE00CF0D87 /* FSTopicListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSTopicListVC.xib; sourceTree = "<group>"; };
+		ADA32F592229101700836C33 /* send_email@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send_email@3x.png"; sourceTree = "<group>"; };
+		ADA32F5A2229101700836C33 /* send_email@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send_email@2x.png"; sourceTree = "<group>"; };
 		ADC591E1215395100054BE72 /* fstab_btn3_highIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn3_highIcon@3x.png"; sourceTree = "<group>"; };
 		ADC591E2215395100054BE72 /* fstab_btn4_highIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn4_highIcon@2x.png"; sourceTree = "<group>"; };
 		ADC591E3215395100054BE72 /* fstab_btn3_highIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fstab_btn3_highIcon@2x.png"; sourceTree = "<group>"; };
@@ -8029,6 +8035,8 @@
 		DBD4CE7B2141224500857DB3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				ADA32F5A2229101700836C33 /* send_email@2x.png */,
+				ADA32F592229101700836C33 /* send_email@3x.png */,
 				45F3FD1D214BBF46007712EE /* video_history_icon@2x.png */,
 				45F3FD20214BBF47007712EE /* video_history_icon@3x.png */,
 				45F3FD1F214BBF47007712EE /* video_message_icon@2x.png */,
@@ -8321,6 +8329,7 @@
 				458E181E2151E7690050590B /* video_back_btn@2x.png in Resources */,
 				ADC59206215395100054BE72 /* fstab_btn1_highIcon@3x.png in Resources */,
 				DB7B1952215A0F1300EB585D /* search_openFilters@3x.png in Resources */,
+				ADA32F5D2229101800836C33 /* send_email@2x.png in Resources */,
 				87D186AD213679F800037DDF /* login_closeeye@2x.png in Resources */,
 				87D186AE213679F800037DDF /* login_logo@3x.png in Resources */,
 				8730B1172148E5D1004331A9 /* fsfreshidle_icon13@2x.png in Resources */,
@@ -8413,6 +8422,7 @@
 				87E7C6C02150C10100F7AB14 /* empty_commonicon@2x.png in Resources */,
 				87742012214C9E1600F72427 /* FSNoticeMessageCell.xib in Resources */,
 				874269FD212F9657003C52F6 /* navigationbar_help_icon@2x.png in Resources */,
+				ADA32F5B2229101700836C33 /* send_email@3x.png in Resources */,
 				DBB73F75215CC01F00E65230 /* placeholder_banner@3x.png in Resources */,
 				8730B0CD214772BC004331A9 /* user_mobileicon@2x.png in Resources */,
 				87741FDD214A0C8A00F72427 /* FSServiceVC.xib in Resources */,
@@ -8730,6 +8740,7 @@
 				DBBF3047215BB24B003AB3F2 /* text_dowload@3x.png in Resources */,
 				87E7C55521509AB000F7AB14 /* login_openeye@2x.png in Resources */,
 				ADC5920D215395100054BE72 /* fstab_btn1_highIcon@2x.png in Resources */,
+				ADA32F5E2229101800836C33 /* send_email@2x.png in Resources */,
 				87E7C55621509AB000F7AB14 /* user_topicicon@2x.png in Resources */,
 				87E7C55721509AB000F7AB14 /* videocall_privte_chat@2x.png in Resources */,
 				87E7C55821509AB000F7AB14 /* BMCombine_down@2x.png in Resources */,
@@ -8807,6 +8818,7 @@
 				87E7C58E21509AB000F7AB14 /* steppersinput_plusicon@2x.png in Resources */,
 				87E7C58F21509AB000F7AB14 /* videocall_voice_open@2x.png in Resources */,
 				AD28473A21CCC355001009E9 /* FSAuthVC.xib in Resources */,
+				ADA32F5C2229101700836C33 /* send_email@3x.png in Resources */,
 				87E7C59021509AB000F7AB14 /* navigationbar_collect_icon@3x.png in Resources */,
 				87E7C59121509AB000F7AB14 /* user_serviceicon@3x.png in Resources */,
 				DBF7E19F21524EDB002CEDA4 /* search_lawTopic_2@3x.png in Resources */,

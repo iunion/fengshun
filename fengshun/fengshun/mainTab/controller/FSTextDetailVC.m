@@ -43,7 +43,7 @@
     UIButton *emailButton = [[UIButton alloc]initWithFrame:CGRectMake(dowloadButton.bm_left, dowloadButton.bm_top - buttonSize.height - 20, buttonSize.width, buttonSize.height)];
     emailButton.backgroundColor = UI_COLOR_BL1;
     emailButton.titleLabel.font = [UIFont systemFontOfSize:16];
-    [emailButton setImage:[UIImage imageNamed:@"text_dowload"] forState:UIControlStateNormal];
+    [emailButton setImage:[UIImage imageNamed:@"send_email"] forState:UIControlStateNormal];
     [emailButton setTitle:@"发送至邮箱" forState:UIControlStateNormal];
     [emailButton bm_layoutButtonWithEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:6];
     [emailButton addTarget:self action:@selector(sendToEmail) forControlEvents:UIControlEventTouchUpInside];
