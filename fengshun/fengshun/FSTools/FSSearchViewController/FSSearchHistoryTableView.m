@@ -20,5 +20,6 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self.m_searchTextField resignFirstResponder];
+    [super touchesBegan:touches withEvent:event];
 }
 @end

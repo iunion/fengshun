@@ -151,6 +151,9 @@ FSOCRSearchResultVC ()
 }
 
 - (void)imagePickerController:(UIViewController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    
+    BMNavigationController *nav = (BMNavigationController *)self.navigationController;
+    [nav resetPushAnimation];
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     if (image) {
         self.m_orignalImage = image;
@@ -313,7 +316,13 @@ FSOCRSearchResultVC ()
             success:^(id _Nullable responseObject) {
                 NSDictionary *data = responseObject;
                 NSArray *keywords = [data bm_arrayForKey:@"keywords"];
-                [self searchWithKeywords:keywords];
+                if (keywords.count) {
+                    [self searchWithKeywords:keywords];
+                }
+                else
+                {
+                    [self noTextForSearch];
+                }
             }
             failure:^(NSError *_Nullable error) {
                 //                [self.m_ProgressHUD showAnimated:YES withText:@"关键字解析出错" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
