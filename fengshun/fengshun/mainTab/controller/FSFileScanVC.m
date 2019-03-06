@@ -62,7 +62,7 @@
     self.bm_NavigationShadowHidden  = NO;
     self.bm_NavigationShadowColor   = UI_COLOR_B6;
     [self bm_setNavigationLeftItemTintColor:UI_COLOR_B1];
-    [self bm_setNavigationWithTitle:@"文件扫描" barTintColor:nil leftItemTitle:@"" leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(leftAction:) rightItemTitle:@"选择" rightItemImage:nil rightToucheEvent:@selector(rightAction:)];
+    [self bm_setNavigationWithTitle:@"文件扫描" barTintColor:nil leftItemTitle:@"" leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(leftAction:) rightItemTitle:@"取消全选" rightItemImage:nil rightToucheEvent:@selector(rightAction:)];
     [self bm_setNavigationRightItemTintColor:UI_COLOR_BL1];
     UIButton *rightButton = [self bm_getNavigationRightItemAtIndex:0];
     rightButton.hidden = YES;
@@ -126,16 +126,15 @@
     }
     else
     {
-        // 全选
-        self.m_selectedImageFiles = [self.m_allImageFiles mutableCopy];
+        // 全选 & 取消全选
+        BOOL selectedAll = item.tag;
+        self.m_selectedImageFiles = selectedAll?[NSMutableArray array]:[self.m_allImageFiles mutableCopy];
         [self refreshViewAndSetTitle:YES];
     }
 }
 - (void)setM_editing:(BOOL)m_editing
 {
     _m_editing   = m_editing;
-    UIButton *rightItem = [self bm_getNavigationRightItemAtIndex:0];
-    [rightItem setTitle:_m_editing?@"全选":@"选择" forState:UIControlStateNormal];
     if (_m_editing) {
         self.m_selectedImageFiles = [NSMutableArray array];
         [self refreshViewAndSetTitle:YES];
@@ -154,19 +153,34 @@
 }
 - (void)refreshViewAndSetTitle:(BOOL)setTitle
 {
+   
     if (setTitle) {
         [self bm_setNavigationBarTitle:[NSString stringWithFormat:@"已选（%lu）",(unsigned long)_m_selectedImageFiles.count]];
     }
     [_m_collectionView reloadData];
-    UIButton *rightButton = [self bm_getNavigationRightItemAtIndex:0];
+    
+    UIButton *rightItem = [self bm_getNavigationRightItemAtIndex:0];
+    
+    if (_m_editing) {
+        BOOL selectedAll = _m_selectedImageFiles.count == self.m_allImageFiles.count;
+        rightItem.tag = selectedAll;
+        [rightItem setTitle:selectedAll?@"取消全选":@"全选" forState:UIControlStateNormal];
+    }
+    else
+    {
+        [rightItem setTitle:@"选择" forState:UIControlStateNormal];
+    }
+    
+    
+    
     if ([self.m_allImageFiles bm_isNotEmpty]) {
         [_m_collectionView hideEmptyView];
-        rightButton.hidden = NO;
+        rightItem.hidden = NO;
     }
     else
     {
         [_m_collectionView showEmptyViewWithType:BMEmptyViewType_Ocr];
-        rightButton.hidden = YES &&!_m_editing;
+        rightItem.hidden = YES;
     }
 }
 - (IBAction)pickImageFile:(id)sender

@@ -266,13 +266,13 @@
     
     if (selector != nil)
     {
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
         btn.exclusiveTouch = YES;
         
         btn.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
         btn.tintColor = self.bm_NavigationItemTintColor;
-        
+        [btn setTitleColor:UI_COLOR_BL1 forState:UIControlStateNormal];
         if (title != nil)
         {
             btn.titleLabel.font = [UIFont boldSystemFontOfSize:14.0f];
