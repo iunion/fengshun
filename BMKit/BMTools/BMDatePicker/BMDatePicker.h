@@ -14,6 +14,7 @@ typedef NS_ENUM(NSUInteger, BMPickerStyle)
     PickerStyle_MonthDayHourMinute,             // 月日时分
     PickerStyle_Year,                           // 年
     PickerStyle_YearMonthDay,                   // 年月日
+    PickerStyle_MonthDayYear,                   // 月日年
     PickerStyle_MonthDay,                       // 月日
     PickerStyle_HourMinute                      // 时分(24)
 };
@@ -40,8 +41,14 @@ NS_ASSUME_NONNULL_BEGIN
 // 滚轮
 // 年-月-日-时-分 分栏文字颜色
 @property (nullable, nonatomic, strong) UIColor *pickerLabelColor;
+// 分栏文字
+@property (nullable, nonatomic, strong) NSArray *pickerLabelTitleArray;
 // 滚轮日期颜色
 @property (nullable, nonatomic, strong) UIColor *pickerItemColor;
+
+// 显示中文月份 一月，二月
+@property (nonatomic, assign) BOOL showChineseMonth;
+
 
 // 确定按钮
 @property (nonatomic, assign) BOOL showDoneBtn;
