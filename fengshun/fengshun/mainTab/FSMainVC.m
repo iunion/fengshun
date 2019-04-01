@@ -16,6 +16,8 @@
 #import "FSMainToolCell.h"
 #import "FSMainToolCell.h"
 #import "FSTopicListCell.h"
+#import "FSSpecialColumnCell.h"
+#import "FSCharacterCell.h"
 #import "FSApiRequest.h"
 #import "UIView+BMBadge.h"
 
@@ -65,6 +67,8 @@ FSMainVC ()
     [self setupUI];
     [self.m_TableView registerNib:[UINib nibWithNibName:@"FSCourseTableCell" bundle:nil] forCellReuseIdentifier:@"FSCourseTableCell"];
     [self.m_TableView registerNib:[UINib nibWithNibName:@"FSTopicListCell" bundle:nil] forCellReuseIdentifier:@"FSTopicListCell"];
+    [self.m_TableView registerNib:[UINib nibWithNibName:@"FSSpecialColumnCell" bundle:nil] forCellReuseIdentifier:@"FSSpecialColumnCell"];
+    [self.m_TableView registerNib:[UINib nibWithNibName:@"FSCharacterCell" bundle:nil] forCellReuseIdentifier:@"FSCharacterCell"];
     
     [self loadApiData];
     

@@ -1909,6 +1909,10 @@
 		ADF7AAD821490D1F00B550E6 /* FSTopicDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF7AAD721490D1E00B550E6 /* FSTopicDetailVC.m */; };
 		AF1B5EE6217462FA00125921 /* FSShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1B5EE5217462FA00125921 /* FSShareManager.m */; };
 		AF1B5EE7217462FA00125921 /* FSShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1B5EE5217462FA00125921 /* FSShareManager.m */; };
+		AF81BF742251A1DB00BFA610 /* FSCharacterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF81BF722251A1DB00BFA610 /* FSCharacterCell.m */; };
+		AF81BF752251A1DB00BFA610 /* FSCharacterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF81BF722251A1DB00BFA610 /* FSCharacterCell.m */; };
+		AF81BF762251A1DB00BFA610 /* FSCharacterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF81BF732251A1DB00BFA610 /* FSCharacterCell.xib */; };
+		AF81BF772251A1DB00BFA610 /* FSCharacterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF81BF732251A1DB00BFA610 /* FSCharacterCell.xib */; };
 		AFBF3182224E134F002BE1E3 /* FSSpecialColumnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AFBF3180224E134F002BE1E3 /* FSSpecialColumnCell.m */; };
 		AFBF3183224E134F002BE1E3 /* FSSpecialColumnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AFBF3180224E134F002BE1E3 /* FSSpecialColumnCell.m */; };
 		AFBF3184224E134F002BE1E3 /* FSSpecialColumnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFBF3181224E134F002BE1E3 /* FSSpecialColumnCell.xib */; };
@@ -3851,6 +3855,9 @@
 		ADF7AAD721490D1E00B550E6 /* FSTopicDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTopicDetailVC.m; sourceTree = "<group>"; };
 		AF1B5EE4217462FA00125921 /* FSShareManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSShareManager.h; sourceTree = "<group>"; };
 		AF1B5EE5217462FA00125921 /* FSShareManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSShareManager.m; sourceTree = "<group>"; };
+		AF81BF712251A1DB00BFA610 /* FSCharacterCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCharacterCell.h; sourceTree = "<group>"; };
+		AF81BF722251A1DB00BFA610 /* FSCharacterCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCharacterCell.m; sourceTree = "<group>"; };
+		AF81BF732251A1DB00BFA610 /* FSCharacterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSCharacterCell.xib; sourceTree = "<group>"; };
 		AFBF317F224E134F002BE1E3 /* FSSpecialColumnCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSpecialColumnCell.h; sourceTree = "<group>"; };
 		AFBF3180224E134F002BE1E3 /* FSSpecialColumnCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSSpecialColumnCell.m; sourceTree = "<group>"; };
 		AFBF3181224E134F002BE1E3 /* FSSpecialColumnCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSSpecialColumnCell.xib; sourceTree = "<group>"; };
@@ -7872,6 +7879,9 @@
 				AFBF317F224E134F002BE1E3 /* FSSpecialColumnCell.h */,
 				AFBF3180224E134F002BE1E3 /* FSSpecialColumnCell.m */,
 				AFBF3181224E134F002BE1E3 /* FSSpecialColumnCell.xib */,
+				AF81BF712251A1DB00BFA610 /* FSCharacterCell.h */,
+				AF81BF722251A1DB00BFA610 /* FSCharacterCell.m */,
+				AF81BF732251A1DB00BFA610 /* FSCharacterCell.xib */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -8492,6 +8502,7 @@
 				AD9355A62137D24100735C2E /* TZImagePickerController.bundle in Resources */,
 				AD2244DF213D1FE700F2DC47 /* FSCommunityHeaderView.xib in Resources */,
 				8730B1082148E5D1004331A9 /* fsfreshidle_icon12@2x.png in Resources */,
+				AF81BF762251A1DB00BFA610 /* FSCharacterCell.xib in Resources */,
 				DB7B1954215A0F1300EB585D /* search_openFilters@2x.png in Resources */,
 				87BC9E2721548E0D000F2011 /* fsintroguide_1242x2208_3@2x.png in Resources */,
 				87426A25213100BB003C52F6 /* bmsearch_searchicon@2x.png in Resources */,
@@ -9008,6 +9019,7 @@
 				45F68F422150E58F00628DC8 /* empty_collecticon@2x.png in Resources */,
 				87E7C61621509AB000F7AB14 /* videocall_close_video@2x.png in Resources */,
 				87E7C61721509AB000F7AB14 /* ZSSRichTextEditor.js in Resources */,
+				AF81BF772251A1DB00BFA610 /* FSCharacterCell.xib in Resources */,
 				DBF7E1AA21524EDB002CEDA4 /* search_lawTopic_8@2x.png in Resources */,
 				87E7C61921509AB000F7AB14 /* chat_message_text@3x.png in Resources */,
 				87E7C61A21509AB000F7AB14 /* BMTableView_UIButtonBarArrowRight.png in Resources */,
@@ -9211,6 +9223,7 @@
 				87426AEE2135348D003C52F6 /* FMDatabasePool.m in Sources */,
 				87426AEC2135348D003C52F6 /* FMDatabaseAdditions.m in Sources */,
 				874268B3212E7E36003C52F6 /* BMTableViewCellStyle.m in Sources */,
+				AF81BF742251A1DB00BFA610 /* FSCharacterCell.m in Sources */,
 				DB34723F21CC900F00950C33 /* UIViewController+FSPushVCAPI.m in Sources */,
 				8730B09A2140FFA3004331A9 /* NSMutableArray+DTMoving.m in Sources */,
 				DB4874292148DFE100AB0805 /* FSTextCell.m in Sources */,
@@ -10087,6 +10100,7 @@
 				87E7C3E921509AB000F7AB14 /* NSString+BMCategory.m in Sources */,
 				87E7C3EA21509AB000F7AB14 /* UIImage+BMCategory.m in Sources */,
 				87E7C3EB21509AB000F7AB14 /* BMPlaceholderTextView.m in Sources */,
+				AF81BF752251A1DB00BFA610 /* FSCharacterCell.m in Sources */,
 				87F639E921533C830035E730 /* Struct.mm in Sources */,
 				87E7C3EC21509AB000F7AB14 /* FSSetTableViewVC.m in Sources */,
 				87E7C3ED21509AB000F7AB14 /* NSAttributedString+HTML.m in Sources */,
