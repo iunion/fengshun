@@ -23,8 +23,7 @@
 #define CIRCLE_RADIUS 10.0f
 
 
-@interface
-FSScrollPageSegment ()
+@interface FSScrollPageSegment ()
 {
     NSUInteger s_CurrentIndex;
     
@@ -61,7 +60,7 @@ FSScrollPageSegment ()
 
 #pragma mark - init Method
 
-+(instancetype)attachedSegmentWithFrame:(CGRect)frame showUnderLine:(BOOL)showUnderLine showTopline:(BOOL)showTopline moveLineFrame:(CGRect)moveLineFrame isEqualDivide:(BOOL)isEqualDivide showGapline:(BOOL)showGapline
++ (instancetype)attachedSegmentWithFrame:(CGRect)frame showUnderLine:(BOOL)showUnderLine showTopline:(BOOL)showTopline moveLineFrame:(CGRect)moveLineFrame isEqualDivide:(BOOL)isEqualDivide showGapline:(BOOL)showGapline
 {
     return [[self alloc]initWithFrame:frame titles:nil titleColor:nil selectTitleColor:nil showUnderLine:showUnderLine moveLineFrame:moveLineFrame isEqualDivide:isEqualDivide fresh:NO showTopline:showTopline showGapline:showGapline];
 }
