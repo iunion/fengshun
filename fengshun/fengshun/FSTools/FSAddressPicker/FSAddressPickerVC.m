@@ -35,7 +35,7 @@
         [weakSelf onClickClose];
     };
     view.getList = ^(NSUInteger level, NSString * _Nonnull code) {
-        [self getAddressListWithLevel:level code:code];
+        [weakSelf getAddressListWithLevel:level code:code];
     };
     
     [self.view addSubview:view];
@@ -52,6 +52,7 @@
 - (void)getAddressListWithLevel:(NSUInteger)level code:(NSString *)code
 {
     [self.addressPickerView showHUDWithAnimated:YES];
+    [self.addressPickerView hideStatusView];
     
     currentLevel = level;
     
@@ -91,6 +92,23 @@
     
     if (![resDic bm_isNotEmptyDictionary])
     {
+        [self.addressPickerView showHUDWithAnimated:YES detailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
+        
+        if (currentLevel == 1)
+        {
+            [self.addressPickerView changeProvinceArray:nil];
+        }
+        else if (currentLevel == 2)
+        {
+            [self.addressPickerView changeCityArray:nil];
+        }
+        else if (currentLevel == 3)
+        {
+            [self.addressPickerView changeAreaArray:nil];
+        }
+        
+        [self.addressPickerView showUnknownError];
+        
         return;
     }
     
@@ -159,13 +177,43 @@
     
     NSString *message = [resDic bm_stringTrimForKey:@"message" withDefault:[FSApiRequest publicErrorMessageWithCode:FSAPI_DATA_ERRORCODE]];
     BMLog(@"%@", message);
-    
+
     [self.addressPickerView showHUDWithAnimated:YES detailText:message];
+    
+    if (currentLevel == 1)
+    {
+        [self.addressPickerView changeProvinceArray:nil];
+    }
+    else if (currentLevel == 2)
+    {
+        [self.addressPickerView changeCityArray:nil];
+    }
+    else if (currentLevel == 3)
+    {
+        [self.addressPickerView changeAreaArray:nil];
+    }
+    
+    [self.addressPickerView showServerError];
 }
 
 - (void)getListRequestFailed:(NSURLResponse *)response error:(NSError *)error
 {
+    [self.addressPickerView showHUDWithAnimated:YES detailText:[FSApiRequest publicErrorMessageWithCode:FSAPI_NET_ERRORCODE]];
     
+    if (currentLevel == 1)
+    {
+        [self.addressPickerView changeProvinceArray:nil];
+    }
+    else if (currentLevel == 2)
+    {
+        [self.addressPickerView changeCityArray:nil];
+    }
+    else if (currentLevel == 3)
+    {
+        [self.addressPickerView changeAreaArray:nil];
+    }
+    
+    [self.addressPickerView showNetworkError];
 }
 
 @end

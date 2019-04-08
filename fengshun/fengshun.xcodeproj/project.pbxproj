@@ -1703,6 +1703,8 @@
 		87EB101D22548BC100C9D125 /* address_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87EB101A22548BC000C9D125 /* address_selected@2x.png */; };
 		87EB101E22548BC100C9D125 /* address_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87EB101B22548BC000C9D125 /* address_selected@3x.png */; };
 		87EB101F22548BC100C9D125 /* address_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87EB101B22548BC000C9D125 /* address_selected@3x.png */; };
+		87EB10272255F0EC00C9D125 /* BMApiStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EB10262255F0EC00C9D125 /* BMApiStatusView.m */; };
+		87EB10282255F0EC00C9D125 /* BMApiStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EB10262255F0EC00C9D125 /* BMApiStatusView.m */; };
 		87EE6CC521C09E24002BD296 /* BMTestNSURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE6CC421C09E24002BD296 /* BMTestNSURLProtocol.m */; };
 		87EE6CC621C09E2D002BD296 /* BMTestNSURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE6CC421C09E24002BD296 /* BMTestNSURLProtocol.m */; };
 		87EE6CC921C09EA7002BD296 /* BMTestNetFlowManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE6CC821C09EA7002BD296 /* BMTestNetFlowManager.m */; };
@@ -3613,6 +3615,8 @@
 		87EB10142254631A00C9D125 /* BMAddressTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BMAddressTableCell.xib; sourceTree = "<group>"; };
 		87EB101A22548BC000C9D125 /* address_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "address_selected@2x.png"; sourceTree = "<group>"; };
 		87EB101B22548BC000C9D125 /* address_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "address_selected@3x.png"; sourceTree = "<group>"; };
+		87EB10252255F0EC00C9D125 /* BMApiStatusView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMApiStatusView.h; sourceTree = "<group>"; };
+		87EB10262255F0EC00C9D125 /* BMApiStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMApiStatusView.m; sourceTree = "<group>"; };
 		87EE6CC321C09E24002BD296 /* BMTestNSURLProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMTestNSURLProtocol.h; sourceTree = "<group>"; };
 		87EE6CC421C09E24002BD296 /* BMTestNSURLProtocol.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMTestNSURLProtocol.m; sourceTree = "<group>"; };
 		87EE6CC721C09EA7002BD296 /* BMTestNetFlowManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMTestNetFlowManager.h; sourceTree = "<group>"; };
@@ -5260,6 +5264,7 @@
 		87426792212E7E35003C52F6 /* BMTools */ = {
 			isa = PBXGroup;
 			children = (
+				87EB10202255F0B500C9D125 /* BMApiStatusView */,
 				87EB0FFC22544F3300C9D125 /* BMAddressPicker */,
 				87EE6CCF21C0AB23002BD296 /* BMApiUtil */,
 				8742680E212E7E35003C52F6 /* BMAlertView */,
@@ -7326,6 +7331,15 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		87EB10202255F0B500C9D125 /* BMApiStatusView */ = {
+			isa = PBXGroup;
+			children = (
+				87EB10252255F0EC00C9D125 /* BMApiStatusView.h */,
+				87EB10262255F0EC00C9D125 /* BMApiStatusView.m */,
+			);
+			path = BMApiStatusView;
+			sourceTree = "<group>";
+		};
 		87EE6CCF21C0AB23002BD296 /* BMApiUtil */ = {
 			isa = PBXGroup;
 			children = (
@@ -9252,6 +9266,7 @@
 				87D209CD2138F1E2001EDD60 /* SDImageCacheConfig.m in Sources */,
 				87F639F221533C830035E730 /* FBIvarReference.m in Sources */,
 				87F639EE21533C830035E730 /* FBClassStrongLayoutHelpers.m in Sources */,
+				87EB10272255F0EC00C9D125 /* BMApiStatusView.m in Sources */,
 				87D20AEA213920E2001EDD60 /* FLEXKeyboardHelpViewController.m in Sources */,
 				87742004214C999100F72427 /* FSMessageTabVC.m in Sources */,
 				87426900212E7E36003C52F6 /* NSDate+BMCategory.m in Sources */,
@@ -10222,6 +10237,7 @@
 				87E7C42021509AB000F7AB14 /* FSAlertView.m in Sources */,
 				87E7C42121509AB000F7AB14 /* DTAccessibilityElement.m in Sources */,
 				45F87DD421547E92001451D5 /* FSCourseHomePageVC.m in Sources */,
+				87EB10282255F0EC00C9D125 /* BMApiStatusView.m in Sources */,
 				874C23AF215B288F001C8BE9 /* FSMyCollectionCell.m in Sources */,
 				87E7C42221509AB000F7AB14 /* WebViewJavascriptBridgeBase.m in Sources */,
 				87E7C42321509AB000F7AB14 /* ZFOrientationObserver.m in Sources */,

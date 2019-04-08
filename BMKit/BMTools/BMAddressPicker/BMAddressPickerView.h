@@ -11,8 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^addressPickerBackCancel)(void);
-
 typedef void(^getAddressList)(NSUInteger level, NSString *code);
+
+@class BMChooseAddressModel;
 
 @interface BMAddressPickerView : UIView
 
@@ -21,21 +22,32 @@ typedef void(^getAddressList)(NSUInteger level, NSString *code);
 // 选中颜色
 @property (nonatomic,strong) UIColor *selectColor;
 
+// 省份
+@property (nonatomic, strong, readonly) NSMutableArray *provinceArray;
+// 已选地址
+@property (nonatomic, strong, readonly) BMChooseAddressModel *chooseAddress;
+@property (nonatomic, assign, readonly) NSUInteger currentLevel;
 
 // 退出回调
 @property (nonatomic, copy) addressPickerBackCancel backOnClickClose;
 
 @property (nonatomic, copy) getAddressList getList;
 
+- (void)freshView;
+
+- (void)changeProvinceArray:(nullable NSMutableArray *)provinceArray;
+- (void)changeCityArray:(nullable NSMutableArray *)cityArray;
+- (void)changeAreaArray:(nullable NSMutableArray *)areaArray;
+
 - (void)showHUDWithAnimated:(BOOL)animated;
 - (void)hideHUDWithAnimated:(BOOL)animated;
 - (void)showHUDWithAnimated:(BOOL)animated detailText:(NSString *)text;
 
-- (void)freshView;
-
-- (void)changeProvinceArray:(NSMutableArray *)provinceArray;
-- (void)changeCityArray:(NSMutableArray *)cityArray;
-- (void)changeAreaArray:(NSMutableArray *)areaArray;
+- (void)hideStatusView;
+- (void)showNetworkError;
+- (void)showServerError;
+- (void)showUnknownError;
+- (void)showNoData;
 
 @end
 

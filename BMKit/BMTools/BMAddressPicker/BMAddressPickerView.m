@@ -13,6 +13,8 @@
 #import "BMAddressTableCell.h"
 #import "MBProgressHUD.h"
 
+#import "BMApiStatusView.h"
+
 enum EWLocationPickViewTableViewType: NSUInteger {
     provinces, ///省份
     city,      ///城市
@@ -23,7 +25,8 @@ enum EWLocationPickViewTableViewType: NSUInteger {
 <
     UITableViewDataSource,
     UITableViewDelegate,
-    UIScrollViewDelegate
+    UIScrollViewDelegate,
+    BMApiStatusViewDelegate
 >
 {
     NSArray *hotCityArray;
@@ -63,6 +66,11 @@ enum EWLocationPickViewTableViewType: NSUInteger {
 // 城市地区列表
 @property (nonatomic, strong) UIScrollView *contentView;
 @property (nonatomic, strong) NSMutableArray *tableViews;
+
+// 错误遮盖页面
+//@property (nonatomic, strong) UIView *statusBgView;
+@property (nonatomic, strong) BMApiStatusView *apiStatusView;
+@property (nonatomic, assign) NSUInteger apiLevel;
 
 @end
 
@@ -122,7 +130,10 @@ enum EWLocationPickViewTableViewType: NSUInteger {
     
     BMWeakSelf
     self.addressChooseView.addressClicked = ^(BMChooseAddressModel * _Nonnull chooseAddress, NSUInteger level) {
-        weakSelf.contentView.contentOffset = CGPointMake(UI_SCREEN_WIDTH*level, 0);
+        [UIView animateWithDuration:0.3 animations:^{
+            weakSelf.currentLevel = level;
+            weakSelf.contentView.contentOffset = CGPointMake(UI_SCREEN_WIDTH*level, 0);
+        }];
     };
     
     // 待选地址列表
@@ -134,15 +145,13 @@ enum EWLocationPickViewTableViewType: NSUInteger {
     [self addSubview:contentView];
     self.contentView = contentView;
     
-    if (self.getList)
-    {
-        self.getList(1, @"0");
-    }
-    //[self addTableViewsWithLevel:2];
+    BMApiStatusView *apiStatusView = [[BMApiStatusView alloc] initWithView:self.contentView delegate:self];
+    self.apiStatusView = apiStatusView;
 }
 
 - (void)freshView
 {
+    self.apiLevel = 1;
     if (self.getList)
     {
         self.getList(1, @"0");
@@ -202,7 +211,7 @@ enum EWLocationPickViewTableViewType: NSUInteger {
 {
     _provinceArray = provinceArray;
     
-    [self.contentView bm_removeAllSubviews];
+    [self.contentView bm_removeAllSubviewsWithClass:[UITableView class]];
     [self.tableViews removeAllObjects];
     
     [self addTableView];
@@ -213,7 +222,9 @@ enum EWLocationPickViewTableViewType: NSUInteger {
     UITableView *taleView = self.tableViews[0];
     [taleView reloadData];
     
-    self.contentView.contentOffset = CGPointMake(0, 0);
+    [UIView animateWithDuration:0.3 animations:^{
+        self.contentView.contentOffset = CGPointMake(0, 0);
+    }];
 }
 
 - (void)changeCityArray:(NSMutableArray *)cityArray
@@ -232,7 +243,9 @@ enum EWLocationPickViewTableViewType: NSUInteger {
     UITableView *taleView = self.tableViews[1];
     [taleView reloadData];
     
-    self.contentView.contentOffset = CGPointMake(UI_SCREEN_WIDTH, 0);
+    [UIView animateWithDuration:0.3 animations:^{
+        self.contentView.contentOffset = CGPointMake(UI_SCREEN_WIDTH, 0);
+    }];
 }
 
 - (void)changeAreaArray:(NSMutableArray *)areaArray
@@ -251,7 +264,9 @@ enum EWLocationPickViewTableViewType: NSUInteger {
     UITableView *taleView = self.tableViews[2];
     [taleView reloadData];
     
-    self.contentView.contentOffset = CGPointMake(UI_SCREEN_WIDTH*2, 0);
+    [UIView animateWithDuration:0.3 animations:^{
+        self.contentView.contentOffset = CGPointMake(UI_SCREEN_WIDTH*2, 0);
+    }];
 }
 
 #pragma mark - UIScrollView
@@ -349,8 +364,10 @@ enum EWLocationPickViewTableViewType: NSUInteger {
             [self.tableViews removeObject:tableView];
         }
 
+        self.contentView.contentSize = (CGSize){self.tableViews.count * UI_SCREEN_WIDTH, 0};
         self.chooseAddress.province = provinceItem;
         
+        self.apiLevel = 2;
         if (self.getList)
         {
             self.getList(2, provinceItem.code);
@@ -371,6 +388,7 @@ enum EWLocationPickViewTableViewType: NSUInteger {
         
         if (self.getList)
         {
+            self.apiLevel = 3;
             self.getList(3, cityItem.code);
         }
     }
@@ -450,6 +468,63 @@ enum EWLocationPickViewTableViewType: NSUInteger {
 - (void)showHUDWithAnimated:(BOOL)animated detailText:(NSString *)text
 {
     [self.progressHUD showAnimated:animated withDetailText:text delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+}
+
+- (void)hideStatusView
+{
+    [self.apiStatusView hide];
+}
+
+- (void)showNetworkError
+{
+    [self.apiStatusView showWithStatus:BMApiStatus_NetworkError];
+    self.apiStatusView.bm_left = UI_SCREEN_WIDTH*self.currentLevel;
+}
+
+- (void)showServerError
+{
+    [self.apiStatusView showWithStatus:BMApiStatus_ServerError];
+    self.apiStatusView.bm_left = UI_SCREEN_WIDTH*self.currentLevel;
+}
+
+- (void)showUnknownError
+{
+    [self.apiStatusView showWithStatus:BMApiStatus_UnknownError];
+    self.apiStatusView.bm_left = UI_SCREEN_WIDTH*self.currentLevel;
+}
+
+- (void)showNoData
+{
+    [self.apiStatusView showWithStatus:BMApiStatus_NoData];
+    self.apiStatusView.bm_left = UI_SCREEN_WIDTH*self.currentLevel;
+}
+
+
+#pragma mark - BMApiStatusViewDelegate
+
+- (void)apiStatusViewDidTap:(BMApiStatusView *)statusView
+{
+    if (self.getList)
+    {
+        switch (self.apiLevel)
+        {
+            case 1:
+                self.getList(1, @"0");
+                break;
+
+            case 2:
+                self.getList(2, self.chooseAddress.province.code);
+                break;
+
+            case 3:
+                self.getList(3, self.chooseAddress.city.code);
+                break;
+
+            default:
+                self.getList(1, @"0");
+                break;
+        }
+    }
 }
 
 @end
