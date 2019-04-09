@@ -7,6 +7,7 @@
 //
 
 #import "BMApiStatusView.h"
+#import "UIView+BMAnimationExtensions.h"
 
 @interface BMApiStatusView ()
 
@@ -80,11 +81,13 @@
     }
     else
     {
-        if ([self.delegate respondsToSelector:@selector(apiStatusViewDidTap:)])
-        {
-            [self.delegate apiStatusViewDidTap:self];
-            [self showWithStatus:BMApiStatus_Hidden];
-        }
+        [self.imageView bm_heartbeatDuration:0.3f maxSize:1.4f durationPerBeat:0.5f completion:^(BOOL finished) {
+            if ([self.delegate respondsToSelector:@selector(apiStatusViewDidTap:)])
+            {
+                [self.delegate apiStatusViewDidTap:self];
+                [self showWithStatus:BMApiStatus_Hidden];
+            }
+        }];
     }
 }
 

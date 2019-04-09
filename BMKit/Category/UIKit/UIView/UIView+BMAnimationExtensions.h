@@ -10,6 +10,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CAAnimation+Blocks.h"
 
 /**
  @brief Direction of flip animation.
@@ -38,6 +39,7 @@ typedef NS_ENUM(NSUInteger, UIViewAnimationRotationDirection)
 // 心跳动画
 - (void)bm_heartbeatDuration:(NSTimeInterval)fDuration;
 - (void)bm_heartbeatDuration:(NSTimeInterval)fDuration maxSize:(CGFloat)fMaxSize durationPerBeat:(NSTimeInterval)fDurationPerBeat;
+- (void)bm_heartbeatDuration:(NSTimeInterval)fDuration maxSize:(CGFloat)fMaxSize durationPerBeat:(NSTimeInterval)fDurationPerBeat completion:(void (^)(BOOL finished))completion;
 
 // 抖动动画
 - (void)bm_shakeDuration:(NSTimeInterval)fDuration;

@@ -1705,6 +1705,8 @@
 		87EB101F22548BC100C9D125 /* address_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87EB101B22548BC000C9D125 /* address_selected@3x.png */; };
 		87EB10272255F0EC00C9D125 /* BMApiStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EB10262255F0EC00C9D125 /* BMApiStatusView.m */; };
 		87EB10282255F0EC00C9D125 /* BMApiStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EB10262255F0EC00C9D125 /* BMApiStatusView.m */; };
+		87EB102B225B468D00C9D125 /* CAAnimation+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EB1029225B468D00C9D125 /* CAAnimation+Blocks.m */; };
+		87EB102C225B468D00C9D125 /* CAAnimation+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EB1029225B468D00C9D125 /* CAAnimation+Blocks.m */; };
 		87EE6CC521C09E24002BD296 /* BMTestNSURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE6CC421C09E24002BD296 /* BMTestNSURLProtocol.m */; };
 		87EE6CC621C09E2D002BD296 /* BMTestNSURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE6CC421C09E24002BD296 /* BMTestNSURLProtocol.m */; };
 		87EE6CC921C09EA7002BD296 /* BMTestNetFlowManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE6CC821C09EA7002BD296 /* BMTestNetFlowManager.m */; };
@@ -3617,6 +3619,8 @@
 		87EB101B22548BC000C9D125 /* address_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "address_selected@3x.png"; sourceTree = "<group>"; };
 		87EB10252255F0EC00C9D125 /* BMApiStatusView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMApiStatusView.h; sourceTree = "<group>"; };
 		87EB10262255F0EC00C9D125 /* BMApiStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMApiStatusView.m; sourceTree = "<group>"; };
+		87EB1029225B468D00C9D125 /* CAAnimation+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAAnimation+Blocks.m"; sourceTree = "<group>"; };
+		87EB102A225B468D00C9D125 /* CAAnimation+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAAnimation+Blocks.h"; sourceTree = "<group>"; };
 		87EE6CC321C09E24002BD296 /* BMTestNSURLProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMTestNSURLProtocol.h; sourceTree = "<group>"; };
 		87EE6CC421C09E24002BD296 /* BMTestNSURLProtocol.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMTestNSURLProtocol.m; sourceTree = "<group>"; };
 		87EE6CC721C09EA7002BD296 /* BMTestNetFlowManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMTestNetFlowManager.h; sourceTree = "<group>"; };
@@ -5590,6 +5594,8 @@
 				87426835212E7E35003C52F6 /* UIView */,
 				8742685D212E7E35003C52F6 /* CAAnimation+Animation.h */,
 				87426849212E7E35003C52F6 /* CAAnimation+Animation.m */,
+				87EB102A225B468D00C9D125 /* CAAnimation+Blocks.h */,
+				87EB1029225B468D00C9D125 /* CAAnimation+Blocks.m */,
 				87426851212E7E35003C52F6 /* CALayer+BMSize.h */,
 				8742685E212E7E35003C52F6 /* CALayer+BMSize.m */,
 				8742684C212E7E35003C52F6 /* UIButton+BMCategory.h */,
@@ -9115,6 +9121,7 @@
 				87E7C6992150A4E400F7AB14 /* TOCroppedImageAttributes.m in Sources */,
 				874268B0212E7E36003C52F6 /* BMTableViewImageDetailCell.m in Sources */,
 				87A0C17121CCD39300B2BF1A /* TZImageRequestOperation.m in Sources */,
+				87EB102B225B468D00C9D125 /* CAAnimation+Blocks.m in Sources */,
 				87D209C12138F1E2001EDD60 /* SDWebImageCompat.m in Sources */,
 				8730B03B2140FFA2004331A9 /* DTAttributedTextContentView.m in Sources */,
 				874269D7212E9E21003C52F6 /* BMFreshBackNormalFooter.m in Sources */,
@@ -10117,6 +10124,7 @@
 				DB34724021CC900F00950C33 /* UIViewController+FSPushVCAPI.m in Sources */,
 				87E7C3BA21509AB000F7AB14 /* UIView+BMOutSide.m in Sources */,
 				87E7C3BB21509AB000F7AB14 /* BMEmptyView.m in Sources */,
+				87EB102C225B468D00C9D125 /* CAAnimation+Blocks.m in Sources */,
 				876BB7F421B6310D00FC205D /* BMTestAppInfoVC.m in Sources */,
 				87E7C3BC21509AB000F7AB14 /* FSWebView.m in Sources */,
 				87E7C3BD21509AB000F7AB14 /* FLEXNetworkSettingsTableViewController.m in Sources */,

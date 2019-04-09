@@ -24,6 +24,12 @@
 
 - (void)bm_heartbeatDuration:(NSTimeInterval)fDuration maxSize:(CGFloat)fMaxSize durationPerBeat:(NSTimeInterval)fDurationPerBeat
 {
+    [self bm_heartbeatDuration:fDuration maxSize:fMaxSize durationPerBeat:fDurationPerBeat completion:nil];
+}
+
+- (void)bm_heartbeatDuration:(NSTimeInterval)fDuration maxSize:(CGFloat)fMaxSize durationPerBeat:(NSTimeInterval)fDurationPerBeat completion:(void (^)(BOOL finished))completion;
+
+{
     if (fDurationPerBeat > 0.1f)
     {
         CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
@@ -53,6 +59,8 @@
         animation.fillMode = kCAFillModeForwards;
         animation.duration = fDurationPerBeat;
         animation.repeatCount = fDuration/fDurationPerBeat;
+        
+        [animation setCompletion:completion];
 
         [self.layer addAnimation:animation forKey:@"heartbeatView"];
     }
