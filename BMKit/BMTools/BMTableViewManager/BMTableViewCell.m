@@ -352,8 +352,18 @@
     {
         if (self.imageView.image)
         {
-            self.imageView.frame = CGRectMake(self.section.style.contentViewMargin, self.imageView.frame.origin.y, self.imageView.frame.size.width, self.imageView.frame.size.height);
-            self.textLabel.frame = CGRectMake(self.section.style.contentViewMargin + self.imageView.frame.size.width + IMAGE_LABLE_GAP, self.textLabel.frame.origin.y, self.textLabel.frame.size.width, self.textLabel.frame.size.height);
+            if (self.item.imageAtback)
+            {
+                self.textLabel.frame = CGRectMake(self.section.style.contentViewMargin, self.textLabel.frame.origin.y, self.textLabel.frame.size.width, self.textLabel.frame.size.height);
+                
+                CGFloat width = [self.textLabel bm_labelSizeToFitWidth:UI_SCREEN_WIDTH].width;
+               self.imageView.frame = CGRectMake(self.section.style.contentViewMargin + width + IMAGE_LABLE_GAP, self.imageView.frame.origin.y, self.imageView.frame.size.width, self.imageView.frame.size.height);
+             }
+            else
+            {
+                self.imageView.frame = CGRectMake(self.section.style.contentViewMargin, self.imageView.frame.origin.y, self.imageView.frame.size.width, self.imageView.frame.size.height);
+                self.textLabel.frame = CGRectMake(self.section.style.contentViewMargin + self.imageView.frame.size.width + IMAGE_LABLE_GAP, self.textLabel.frame.origin.y, self.textLabel.frame.size.width, self.textLabel.frame.size.height);
+            }
         }
         else
         {
@@ -364,17 +374,33 @@
     {
         if (self.imageView.image)
         {
-            if (self.item.imageW > 0 && self.item.imageH > 0)
+            if (self.item.imageAtback)
             {
-                self.imageView.bm_width = self.item.imageW;
-                self.imageView.bm_height = self.item.imageH;
-                self.imageView.bm_centerY = self.bm_height * 0.5;
+                self.textLabel.bm_left = self.imageView.bm_left;
+
+                if (self.item.imageW > 0 && self.item.imageH > 0)
+                {
+                    self.imageView.bm_width = self.item.imageW;
+                    self.imageView.bm_height = self.item.imageH;
+                    self.imageView.bm_centerY = self.bm_height * 0.5;
+                }
+                CGFloat width = [self.textLabel bm_labelSizeToFitWidth:UI_SCREEN_WIDTH].width;
+                self.imageView.bm_left = self.textLabel.bm_left + width + IMAGE_LABLE_GAP;
             }
-            
-            CGFloat width = self.imageView.bm_width;
-            
-            self.textLabel.bm_left = self.imageView.bm_left + width + IMAGE_LABLE_GAP;
-            
+            else
+            {
+                if (self.item.imageW > 0 && self.item.imageH > 0)
+                {
+                    self.imageView.bm_width = self.item.imageW;
+                    self.imageView.bm_height = self.item.imageH;
+                    self.imageView.bm_centerY = self.bm_height * 0.5;
+                }
+                
+                CGFloat width = self.imageView.bm_width;
+                
+                self.textLabel.bm_left = self.imageView.bm_left + width + IMAGE_LABLE_GAP;
+            }
+                
             if (self.item.cellStyle == UITableViewCellStyleSubtitle)
             {
                 self.detailTextLabel.bm_left = self.textLabel.bm_left;
