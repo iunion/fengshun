@@ -14,6 +14,13 @@ typedef NS_ENUM(NSUInteger, BMImageTextViewType)
     BMImageTextViewType_ImageRight
 };
 
+typedef NS_ENUM(NSUInteger, BMImageTextViewAccessoryArrowType)
+{
+    BMImageTextViewAccessoryArrowType_Hide,
+    BMImageTextViewAccessoryArrowType_HideInplace,
+    BMImageTextViewAccessoryArrowType_Show
+};
+
 #define BMImageTextView_DefaultTextColor    [UIColor blackColor]
 
 
@@ -47,6 +54,7 @@ typedef void (^BMImageTextViewClicked)(BMImageTextView *imageTextView);
 
 @property (copy, nonatomic, nullable) BMImageTextViewClicked imageTextViewClicked;
 
+@property (assign, nonatomic) BMImageTextViewAccessoryArrowType accessoryArrowType;
 @property (assign, nonatomic) BOOL showTableCellAccessoryArrow;
 
 @property (assign, nonatomic) BOOL adjustsFontSizeToFitWidth;
