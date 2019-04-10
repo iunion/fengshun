@@ -26,14 +26,19 @@
     NSMutableArray *_dayArray;
     NSMutableArray *_hourArray;
     NSMutableArray *_minuteArray;
-    
+
+    // 性别数据
+    NSMutableArray *_sexArray;
+
     // 记录位置
     NSInteger yearIndex;
     NSInteger monthIndex;
     NSInteger dayIndex;
     NSInteger hourIndex;
     NSInteger minuteIndex;
-    
+
+    NSInteger sexIndex;
+
     NSInteger preIndex;
 }
 
@@ -52,8 +57,10 @@
 @property (nonatomic, strong) NSDate *pickerDate;
 @property (nonatomic, strong) NSString *formatDate;
 
-- (IBAction)doneClick:(id)sender;
+@property (nonatomic, strong) NSString *pickerSex;
 
+
+- (IBAction)doneClick:(id)sender;
 
 @end
 
@@ -94,8 +101,10 @@
     _dayArray = [[NSMutableArray alloc] initWithCapacity:0];
     _hourArray = [[NSMutableArray alloc] initWithCapacity:0];
     _minuteArray = [[NSMutableArray alloc] initWithCapacity:0];
-
+    
     _chineseMonthArray = [[NSMutableArray alloc] initWithArray:@[@"一月", @"二月", @"三月", @"四月", @"五月", @"六月", @"七月", @"八月", @"九月", @"十月", @"十一月", @"十二月"]];
+    
+    _sexArray = [[NSMutableArray alloc] initWithArray:@[@"男", @"女"]];
 
     _showDoneBtn = YES;
     
@@ -143,7 +152,7 @@
     
     self.pickerLabelColor = RGBColor(247, 133, 51, 1);
     self.pickerItemColor = [UIColor blackColor];
-
+    self.pickerCurrentItemColor = [UIColor blueColor];
     
     self.doneBtn.layer.cornerRadius = 10;
     self.doneBtn.layer.masksToBounds = YES;
@@ -152,6 +161,9 @@
     self.doneBtnTextColor = [UIColor whiteColor];
 
     _showChineseMonth = NO;
+    
+    _showYearLabel = YES;
+    _showFormateLabel = YES;
     
     //[self.picker reloadAllComponents];
 }
@@ -198,6 +210,13 @@
                 break;
         }
     }
+}
+
+- (void)setShowFormateLabel:(BOOL)showFormateLabel
+{
+    _showFormateLabel = showFormateLabel;
+    
+    self.formateLabel.hidden = !showFormateLabel;
 }
 
 - (void)setFormateColor:(UIColor *)formateColor
@@ -247,6 +266,13 @@
     {
         self.formateLabel.text = [NSDate bm_stringFromDate:self.pickerDate formatter:formate];
     }
+}
+
+- (void)setShowYearLabel:(BOOL)showYearLabel
+{
+    _showYearLabel = showYearLabel;
+    
+    self.yearLabel.hidden = !showYearLabel;
 }
 
 - (void)setYearColor:(UIColor *)yearColor
@@ -358,6 +384,13 @@
     [self.picker reloadAllComponents];
 }
 
+- (void)setPickerCurrentItemColor:(UIColor *)pickerCurrentItemColor
+{
+    _pickerCurrentItemColor = pickerCurrentItemColor;
+    
+    [self.picker reloadAllComponents];
+}
+
 - (void)setShowDoneBtn:(BOOL)showDoneBtn
 {
     if (_showDoneBtn == showDoneBtn)
@@ -462,6 +495,8 @@
         case PickerStyle_HourMinute:
             //[self addPickLabelWithNames:@[@"时",@"分"]];
             return 2;
+        case PickerStyle_Sex:
+            return 1;
         default:
             return 0;
     }
@@ -522,6 +557,8 @@
             return @[@(monthNum*timeInterval), @(dayNum), @(hourNum)];
         case PickerStyle_HourMinute:
             return @[@(hourNum), @(minuteNUm)];
+        case PickerStyle_Sex:
+            return @[@(2)];
         default:
             return @[];
     }
@@ -545,6 +582,8 @@
         [customLabel setFont:[UIFont systemFontOfSize:16.0f]];
     }
     
+    BOOL selected = NO;
+    
     NSString *title = @"";
     switch (self.pickerStyle)
     {
@@ -553,6 +592,10 @@
             {
                 case 0:
                     title = _yearArray[row];
+                    if (row == yearIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                 case 1:
                     if (self.showChineseMonth)
@@ -563,15 +606,31 @@
                     {
                         title = _monthArray[row];
                     }
+                    if (row == monthIndex)
+                    {
+                        selected = YES;
+                    }
                 break;
                 case 2:
                     title = _dayArray[row];
+                    if (row == dayIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                 case 3:
                     title = _hourArray[row];
+                    if (row == hourIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                 case 4:
                     title = _minuteArray[row];
+                    if (row == minuteIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                 default:
                     break;
@@ -582,6 +641,10 @@
         {
             case 0:
                 title = _yearArray[row];
+                if (row == yearIndex)
+                {
+                    selected = YES;
+                }
                 break;
             default:
                 break;
@@ -592,6 +655,10 @@
             {
                 case 0:
                     title = _yearArray[row];
+                    if (row == yearIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                 case 1:
                     if (self.showChineseMonth)
@@ -602,9 +669,17 @@
                     {
                         title = _monthArray[row];
                     }
+                    if (row == monthIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                 case 2:
                     title = _dayArray[row];
+                    if (row == dayIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                 default:
                     break;
@@ -622,12 +697,24 @@
                 {
                     title = _monthArray[row];
                 }
+                if (row == monthIndex)
+                {
+                    selected = YES;
+                }
                 break;
             case 1:
                 title = _dayArray[row];
+                if (row == dayIndex)
+                {
+                    selected = YES;
+                }
                 break;
             case 2:
                 title = _yearArray[row];
+                if (row == yearIndex)
+                {
+                    selected = YES;
+                }
                 break;
             default:
                 break;
@@ -645,15 +732,31 @@
                     {
                         title = _monthArray[row%12];
                     }
+                    if (row%12 == monthIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                 case 1:
                     title = _dayArray[row];
+                    if (row == dayIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                 case 2:
                     title = _hourArray[row];
+                    if (row == hourIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                 case 3:
                     title = _minuteArray[row];
+                    if (row == minuteIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                 default:
                     break;
@@ -671,9 +774,17 @@
                     {
                         title = _monthArray[row%12];
                     }
+                    if (row%12 == monthIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                 case 1:
                     title = _dayArray[row];
+                    if (row == dayIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                  default:
                     break;
@@ -684,12 +795,27 @@
             {
                 case 0:
                     title = _hourArray[row];
+                    if (row == hourIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                 case 1:
                     title = _minuteArray[row];
+                    if (row == minuteIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                 default:
                     break;
+            }
+            break;
+        case PickerStyle_Sex:
+            title = _sexArray[row];
+            if (row == sexIndex)
+            {
+                selected = YES;
             }
             break;
         default:
@@ -698,7 +824,14 @@
     }
     
     customLabel.text = title;
-    customLabel.textColor = self.pickerItemColor;
+    if (selected)
+    {
+        customLabel.textColor = self.pickerCurrentItemColor;
+    }
+    else
+    {
+        customLabel.textColor = self.pickerItemColor;
+    }
     return customLabel;
     
 }
@@ -870,11 +1003,25 @@
                     break;
             }
             break;
+        case PickerStyle_Sex:
+            sexIndex = row;
+            break;
         default:
             break;
     }
     
     [pickerView reloadAllComponents];
+    
+    if (self.pickerStyle == PickerStyle_Sex)
+    {
+        self.pickerSex = _sexArray[sexIndex];
+        if (self.completeBlock)
+        {
+            self.completeBlock(self.pickerSex, NO);
+        }
+        
+        return;
+    }
     
     NSString *dateStr = [NSString stringWithFormat:@"%@-%@-%@ %@:%@", _yearArray[yearIndex], _monthArray[monthIndex], _dayArray[dayIndex], _hourArray[hourIndex], _minuteArray[minuteIndex]];
 
@@ -980,7 +1127,14 @@
 {
     if (self.completeBlock)
     {
-        self.completeBlock(self.pickerDate, YES);
+        if (self.pickerStyle == PickerStyle_Sex)
+        {
+            self.completeBlock(self.pickerSex, YES);
+        }
+        else
+        {
+            self.completeBlock(self.pickerDate, YES);
+        }
     }
 }
 

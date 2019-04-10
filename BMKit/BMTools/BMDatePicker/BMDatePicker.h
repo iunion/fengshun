@@ -16,10 +16,12 @@ typedef NS_ENUM(NSUInteger, BMPickerStyle)
     PickerStyle_YearMonthDay,                   // 年月日
     PickerStyle_MonthDayYear,                   // 月日年
     PickerStyle_MonthDay,                       // 月日
-    PickerStyle_HourMinute                      // 时分(24)
+    PickerStyle_HourMinute,                     // 时分(24)
+    PickerStyle_Sex                             // 性别
 };
 
-typedef void(^BMDatePickerDoneBlock)(NSDate * _Nonnull date, BOOL isDone);
+//typedef void(^BMDatePickerDoneBlock)(NSDate * _Nonnull date, BOOL isDone);
+typedef void(^BMDatePickerDoneBlock)(id _Nonnull date, BOOL isDone);
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -29,12 +31,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BMPickerStyle pickerStyle;
 
 // 格式化
+@property (nonatomic, assign) BOOL showFormateLabel;
 // 文本颜色
 @property (nullable, nonatomic, strong) UIColor *formateColor;
 // 显示时间格式
 @property (nullable, nonatomic, strong) NSString *formate;
 
 // 年份
+@property (nonatomic, assign) BOOL showYearLabel;
 // 文本颜色
 @property (nullable, nonatomic, strong) UIColor *yearColor;
 
@@ -45,6 +49,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, strong) NSArray *pickerLabelTitleArray;
 // 滚轮日期颜色
 @property (nullable, nonatomic, strong) UIColor *pickerItemColor;
+// 滚轮当前日期颜色
+@property (nullable, nonatomic, strong) UIColor *pickerCurrentItemColor;
 
 // 显示中文月份 一月，二月
 @property (nonatomic, assign) BOOL showChineseMonth;
@@ -64,6 +70,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, strong, readonly) NSDate *pickerDate;
 @property (nullable, nonatomic, strong, readonly) NSString *formatDate;
+
+@property (nullable, nonatomic, strong, readonly) NSString *pickerSex;
 
 @property (nullable, nonatomic, copy) BMDatePickerDoneBlock completeBlock;
 
