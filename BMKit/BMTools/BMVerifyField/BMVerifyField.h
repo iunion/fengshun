@@ -82,6 +82,8 @@ typedef NS_ENUM(NSUInteger, BMVerifyFieldSecureStyle)
 
 - (void)clear;
 
+- (void)changeText:(NSString *)text;
+
 @end
 
 @protocol BMVerifyFieldDelegate <NSObject>
