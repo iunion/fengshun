@@ -151,16 +151,22 @@
         self.m_Organization = [dic bm_stringTrimForKey:@"workOrganization"];
     }
     
-    // 工作单位区域信息: workearea
-    if ([dic bm_containsObjectForKey:@"workearea"])
+    // 工作单位地址区域: companyArea
+    if ([dic bm_containsObjectForKey:@"companyArea"])
     {
-        self.m_WorkArea = [dic bm_stringTrimForKey:@"workearea"];
+        self.m_CompanyArea = [dic bm_stringTrimForKey:@"companyArea"];
     }
     
     // 工作单位地址: companyaddress
     if ([dic bm_containsObjectForKey:@"companyaddress"])
     {
         self.m_CompanyAddress = [dic bm_stringTrimForKey:@"companyaddress"];
+    }
+    
+    // 工作单位区域信息: workearea
+    if ([dic bm_containsObjectForKey:@"workearea"])
+    {
+        self.m_WorkArea = [dic bm_stringTrimForKey:@"workearea"];
     }
     
     // 工作年限: workingLife

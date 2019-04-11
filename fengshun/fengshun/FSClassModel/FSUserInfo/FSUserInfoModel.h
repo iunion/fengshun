@@ -60,10 +60,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, strong) NSString *m_Signature;
 // 工作机构(单位名称): workOrganization
 @property (nullable, nonatomic, strong) NSString *m_Organization;
-// 工作单位区域信息: workearea
-@property (nullable, nonatomic, strong) NSString *m_WorkArea;
+// 工作单位地址区域: companyArea
+@property (nullable, nonatomic, strong) NSString *m_CompanyArea;
 // 工作单位地址: companyaddress
 @property (nullable, nonatomic, strong) NSString *m_CompanyAddress;
+// 工作单位服务区域信息: workearea
+@property (nullable, nonatomic, strong) NSString *m_WorkArea;
 // 工作年限: workingLife
 @property (nonatomic, assign) NSUInteger m_WorkingLife;
 // 专业职务: professionalQualification

@@ -19,6 +19,9 @@
 #import "TZImagePickerController.h"
 #import "FSAddressPickerVC.h"
 
+#import "FSSetCompanyVC.h"
+
+
 @interface FSCustomInfoVC ()
 <
     TZImagePickerControllerDelegate,
@@ -529,9 +532,12 @@
     imageTextView.maxWidth = self.m_TableView.bm_width - 120.0f;
     self.m_OrganizationItem.accessoryView = imageTextView;
     self.m_OrganizationItem.selectionHandler = ^(id item) {
-        FSEditorVC *editorVC = [[FSEditorVC alloc] initWithOperaType:FSUpdateUserInfo_Organization minWordCount:0 maxnWordCount:100 text:userInfo.m_UserBaseInfo.m_Organization placeholderText:nil];
-        editorVC.delegate = weakSelf;
-        [weakSelf.navigationController pushViewController:editorVC animated:YES];
+//        FSEditorVC *editorVC = [[FSEditorVC alloc] initWithOperaType:FSUpdateUserInfo_Organization minWordCount:0 maxnWordCount:100 text:userInfo.m_UserBaseInfo.m_Organization placeholderText:nil];
+//        editorVC.delegate = weakSelf;
+//        [weakSelf.navigationController pushViewController:editorVC animated:YES];
+        
+        FSSetCompanyVC *setCompanyVC = [[FSSetCompanyVC alloc] init];
+        [weakSelf.navigationController pushViewController:setCompanyVC animated:YES];
     };
 
     // 职位

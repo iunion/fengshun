@@ -756,6 +756,7 @@
 		87D9C60E21536A04009F8492 /* FSAboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D9C60B21536A04009F8492 /* FSAboutVC.m */; };
 		87D9C60F21536A04009F8492 /* FSAboutVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87D9C60C21536A04009F8492 /* FSAboutVC.xib */; };
 		87D9C61021536A04009F8492 /* FSAboutVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87D9C60C21536A04009F8492 /* FSAboutVC.xib */; };
+		87E70C19225F237D00B663C5 /* FSSetCompanyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E70C18225F237D00B663C5 /* FSSetCompanyVC.m */; };
 		87E7C27621509AB000F7AB14 /* SingleTextChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF84A214D1B970005AD43 /* SingleTextChatViewController.m */; };
 		87E7C27721509AB000F7AB14 /* default.css in Sources */ = {isa = PBXBuildFile; fileRef = 8730AF532140FFA2004331A9 /* default.css */; };
 		87E7C27921509AB000F7AB14 /* FLEXIvarEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D20A31213920E2001EDD60 /* FLEXIvarEditorViewController.m */; };
@@ -3560,6 +3561,8 @@
 		87D9C60A21536A04009F8492 /* FSAboutVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSAboutVC.h; sourceTree = "<group>"; };
 		87D9C60B21536A04009F8492 /* FSAboutVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSAboutVC.m; sourceTree = "<group>"; };
 		87D9C60C21536A04009F8492 /* FSAboutVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSAboutVC.xib; sourceTree = "<group>"; };
+		87E70C17225F237D00B663C5 /* FSSetCompanyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSetCompanyVC.h; sourceTree = "<group>"; };
+		87E70C18225F237D00B663C5 /* FSSetCompanyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSSetCompanyVC.m; sourceTree = "<group>"; };
 		87E7C61F21509AB000F7AB14 /* fengshun_video.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fengshun_video.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87E7C6652150A4E400F7AB14 /* TOCropViewConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCropViewConstants.h; sourceTree = "<group>"; };
 		87E7C66A2150A4E400F7AB14 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TOCropViewControllerLocalizable.strings"; sourceTree = "<group>"; };
@@ -5228,6 +5231,8 @@
 				8730B0AB21427CC7004331A9 /* FSAuthenticationVC.m */,
 				8730B0C4214758F0004331A9 /* FSSetPhoneVC.h */,
 				8730B0C5214758F0004331A9 /* FSSetPhoneVC.m */,
+				87E70C17225F237D00B663C5 /* FSSetCompanyVC.h */,
+				87E70C18225F237D00B663C5 /* FSSetCompanyVC.m */,
 				87D9C60A21536A04009F8492 /* FSAboutVC.h */,
 				87D9C60B21536A04009F8492 /* FSAboutVC.m */,
 				87D9C60C21536A04009F8492 /* FSAboutVC.xib */,
@@ -9400,6 +9405,7 @@
 				87D20AC1213920E2001EDD60 /* FLEXArgumentInputStructView.m in Sources */,
 				876BB7BF21AE864C00FC205D /* BMTestAlignView.m in Sources */,
 				874269D5212E9E21003C52F6 /* BMFreshBackContainerFooterView.m in Sources */,
+				87E70C19225F237D00B663C5 /* FSSetCompanyVC.m in Sources */,
 				87EE6CC921C09EA7002BD296 /* BMTestNetFlowManager.m in Sources */,
 				874268EA212E7E36003C52F6 /* UIView+BMNibLoading.m in Sources */,
 				DB2656C721461A9F002ED713 /* FSSearchResultVC.m in Sources */,
