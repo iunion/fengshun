@@ -17,6 +17,7 @@
 #import "FSEditorVC.h"
 
 #import "TZImagePickerController.h"
+#import "FSAddressPickerVC.h"
 
 @interface FSCustomInfoVC ()
 <
@@ -31,18 +32,24 @@
 @property (nonatomic, strong) BMTableViewSection *m_BaseSection;
 @property (nonatomic, strong) BMTableViewItem *m_AvatarItem;
 @property (nonatomic, strong) BMTableViewItem *m_NikeNameItem;
+@property (nonatomic, strong) BMTextItem *m_SexItem;
+@property (nonatomic, strong) BMTextItem *m_BirthdayItem;
+@property (nonatomic, strong) BMTableViewItem *m_SignatureItem;
+
+@property (nonatomic, strong) BMTableViewSection *m_CertificationSection;
 @property (nonatomic, strong) BMTableViewItem *m_RealNameItem;
+@property (nonatomic, strong) BMTableViewItem *m_RealIdentityItem;
 
 @property (nonatomic, strong) BMTableViewSection *m_WorkSection;
 @property (nonatomic, strong) BMTableViewItem *m_OrganizationItem;
 @property (nonatomic, strong) BMTableViewItem *m_JobItem;
 @property (nonatomic, strong) BMTextItem *m_WorkingLifeItem;
-
-@property (nonatomic, strong) BMTableViewSection *m_AbilitySection;
+@property (nonatomic, strong) BMTableViewItem *m_WorkAreaItem;
 @property (nonatomic, strong) BMTableViewItem *m_AbilityItem;
 
-@property (nonatomic, strong) BMTableViewSection *m_SignatureSection;
-@property (nonatomic, strong) BMTableViewItem *m_SignatureItem;
+@property (nonatomic, strong) BMTableViewSection *m_WorkExperienceSection;
+@property (nonatomic, strong) BMTableViewItem *m_ProfessionalQualificationItem;
+@property (nonatomic, strong) BMTableViewItem *m_WorkExperienceItem;
 
 @property (nonatomic, strong) NSURLSessionDataTask *m_UserInfoTask;
 
@@ -51,7 +58,9 @@
 
 @property (nonatomic, strong) BMSingleLineView *m_UnderLineView;
 
-@property (nonatomic, strong) BMDatePicker *m_PickerView;
+@property (nonatomic, strong) BMDatePicker *m_SexPickerView;
+@property (nonatomic, strong) BMDatePicker *m_BirthPickerView;
+@property (nonatomic, strong) BMDatePicker *m_WorkPickerView;
 
 @property (nonatomic, strong) NSURLSessionDataTask *m_UpdateTask;
 
@@ -115,16 +124,13 @@
     
     BMWeakSelf
 
-    BMDatePicker *datePicker = [[BMDatePicker alloc] initWithPickerStyle:PickerStyle_Year completeBlock:nil];
-    datePicker.maxLimitDate = [NSDate date];
-    datePicker.showDoneBtn = NO;
-    self.m_PickerView = datePicker;
-
     self.m_BaseSection = [BMTableViewSection section];
+    self.m_CertificationSection = [BMTableViewSection section];
     self.m_WorkSection = [BMTableViewSection section];
-    self.m_AbilitySection = [BMTableViewSection section];
-    self.m_SignatureSection = [BMTableViewSection section];
+    self.m_WorkExperienceSection = [BMTableViewSection section];
 
+    
+    // 头像
     self.m_AvatarItem = [BMTableViewItem itemWithTitle:@"头像" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
         [weakSelf openPhoto];
@@ -133,23 +139,98 @@
     self.m_AvatarItem.highlightBgColor = UI_COLOR_BL1;
     self.m_AvatarItem.cellHeight = 70.0f;
     
+    // 昵称
     self.m_NikeNameItem = [BMTableViewItem itemWithTitle:@"昵称" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:nil];
     self.m_NikeNameItem.textFont = FS_CELLTITLE_TEXTFONT;
     self.m_NikeNameItem.highlightBgColor = UI_COLOR_BL1;
     self.m_NikeNameItem.cellHeight = 50.0f;
 
-    self.m_RealNameItem = [BMTableViewItem itemWithTitle:@"实名认证" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_None accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
-    }];
-    self.m_RealNameItem.textFont = FS_CELLTITLE_TEXTFONT;
-    self.m_RealNameItem.highlightBgColor = UI_COLOR_BL1;
-    self.m_RealNameItem.cellHeight = 50.0f;
+    // 性别
+    BMDatePicker *datePicker = [[BMDatePicker alloc] initWithPickerStyle:PickerStyle_Sex completeBlock:nil];
+    datePicker.showFormateLabel = NO;
+    datePicker.showYearLabel = NO;
+    datePicker.showDoneBtn = NO;
+    self.m_SexPickerView = datePicker;
 
+    self.m_SexItem = [BMTextItem itemWithTitle:@"性别" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:nil];
+    self.m_SexItem.hideInputView = YES;
+    self.m_SexItem.editable = YES;
+    self.m_SexItem.textFont = FS_CELLTITLE_TEXTFONT;
+    self.m_SexItem.highlightBgColor = UI_COLOR_BL1;
+    self.m_SexItem.cellHeight = 50.0f;
+    self.m_SexItem.inputView = self.m_SexPickerView;
+    self.m_SexItem.onEndEditing = ^(BMInputItem *item) {
+        //NSLog(@"onEndEditing: %@", @(weakSelf.m_PickerView.pickerDate.bm_year));
+        NSString *sex = @"男";
+        //[weakSelf sendUpdateUserInfoWithOperaType:FSUpdateUserInfo_WorkTime changeValue:@(weakSelf.m_EmploymentTime)];
+    };
+
+    // 生日
+    datePicker = [[BMDatePicker alloc] initWithPickerStyle:PickerStyle_MonthDayYear completeBlock:nil];
+    //datePicker.showFormateLabel = NO;
+    //datePicker.showYearLabel = NO;
+    datePicker.pickerCurrentItemColor = [UIColor bm_colorWithHex:UI_NAVIGATION_BGCOLOR_VALU];
+    datePicker.pickerLabelTitleArray = nil;
+    datePicker.showChineseMonth = YES;
+    datePicker.showDoneBtn = NO;
+    self.m_BirthPickerView = datePicker;
+
+    self.m_BirthdayItem = [BMTextItem itemWithTitle:@"生日" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:nil];
+    self.m_BirthdayItem.hideInputView = YES;
+    self.m_BirthdayItem.editable = YES;
+    self.m_BirthdayItem.textFont = FS_CELLTITLE_TEXTFONT;
+    self.m_BirthdayItem.highlightBgColor = UI_COLOR_BL1;
+    self.m_BirthdayItem.cellHeight = 50.0f;
+    self.m_BirthdayItem.inputView = self.m_BirthPickerView;
+    self.m_BirthdayItem.onEndEditing = ^(BMInputItem *item) {
+        //NSLog(@"onEndEditing: %@", @(weakSelf.m_PickerView.pickerDate.bm_year));
+        //NSString *sex = @"男";
+        //[weakSelf sendUpdateUserInfoWithOperaType:FSUpdateUserInfo_WorkTime changeValue:@(weakSelf.m_EmploymentTime)];
+    };
+
+    // 个人签名
+    self.m_SignatureItem = [BMTableViewItem itemWithTitle:@"个人签名" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_None accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
+        
+    }];
+    self.m_SignatureItem.textFont = FS_CELLTITLE_TEXTFONT;
+    self.m_SignatureItem.highlightBgColor = UI_COLOR_BL1;
+    self.m_SignatureItem.cellHeight = 50.0f;
+    
     self.m_BaseSection.headerHeight = 10.0f;
     self.m_BaseSection.footerHeight = 0.0f;
     [self.m_BaseSection addItem:self.m_AvatarItem];
     [self.m_BaseSection addItem:self.m_NikeNameItem];
-    [self.m_BaseSection addItem:self.m_RealNameItem];
+    [self.m_BaseSection addItem:self.m_SexItem];
+    [self.m_BaseSection addItem:self.m_BirthdayItem];
+    [self.m_BaseSection addItem:self.m_SignatureItem];
 
+    
+    // 实名认证
+    self.m_RealNameItem = [BMTableViewItem itemWithTitle:@"实名认证" imageName:@"user_notpasscertification" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
+    }];
+    self.m_RealNameItem.imageH = 20.0f;
+    self.m_RealNameItem.imageW = 60.0f;
+    self.m_RealNameItem.imageAtback = YES;
+    self.m_RealNameItem.textFont = FS_CELLTITLE_TEXTFONT;
+    self.m_RealNameItem.highlightBgColor = UI_COLOR_BL1;
+    self.m_RealNameItem.cellHeight = 50.0f;
+    
+    // 身份认证
+    self.m_RealIdentityItem = [BMTableViewItem itemWithTitle:@"身份认证" imageName:@"user_notpasscertification" underLineDrawType:BMTableViewCell_UnderLineDrawType_None accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
+    }];
+    self.m_RealIdentityItem.imageH = 20.0f;
+    self.m_RealIdentityItem.imageW = 60.0f;
+    self.m_RealIdentityItem.imageAtback = YES;
+    self.m_RealIdentityItem.textFont = FS_CELLTITLE_TEXTFONT;
+    self.m_RealIdentityItem.highlightBgColor = UI_COLOR_BL1;
+    self.m_RealIdentityItem.cellHeight = 50.0f;
+    
+    self.m_CertificationSection.headerHeight = 10.0f;
+    [self.m_CertificationSection addItem:self.m_RealNameItem];
+    [self.m_CertificationSection addItem:self.m_RealIdentityItem];
+
+    
+    // 单位信息
     self.m_OrganizationItem = [BMTableViewItem itemWithTitle:@"所属单位" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
     }];
@@ -157,6 +238,7 @@
     self.m_OrganizationItem.highlightBgColor = UI_COLOR_BL1;
     self.m_OrganizationItem.cellHeight = 50.0f;
 
+    // 职位
     self.m_JobItem = [BMTableViewItem itemWithTitle:@"职位" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
     }];
@@ -164,6 +246,12 @@
     self.m_JobItem.highlightBgColor = UI_COLOR_BL1;
     self.m_JobItem.cellHeight = 50.0f;
 
+    // 工作年限
+    datePicker = [[BMDatePicker alloc] initWithPickerStyle:PickerStyle_Year completeBlock:nil];
+    datePicker.maxLimitDate = [NSDate date];
+    datePicker.showDoneBtn = NO;
+    self.m_WorkPickerView = datePicker;
+    
     self.m_WorkingLifeItem = [BMTextItem itemWithTitle:@"工作年限" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
     }];
@@ -172,10 +260,10 @@
     self.m_WorkingLifeItem.textFont = FS_CELLTITLE_TEXTFONT;
     self.m_WorkingLifeItem.highlightBgColor = UI_COLOR_BL1;
     self.m_WorkingLifeItem.cellHeight = 50.0f;
-    self.m_WorkingLifeItem.inputView = self.m_PickerView;
+    self.m_WorkingLifeItem.inputView = self.m_WorkPickerView;
     self.m_WorkingLifeItem.onEndEditing = ^(BMInputItem *item) {
         //NSLog(@"onEndEditing: %@", @(weakSelf.m_PickerView.pickerDate.bm_year));
-        weakSelf.m_EmploymentTime = weakSelf.m_PickerView.pickerDate.bm_year;
+        weakSelf.m_EmploymentTime = weakSelf.m_WorkPickerView.pickerDate.bm_year;
         
         FSUserInfoModel *userInfo = [FSUserInfoModel userInfo];
         if (weakSelf.m_EmploymentTime != userInfo.m_UserBaseInfo.m_EmploymentTime)
@@ -184,37 +272,64 @@
         }
     };
 
-    self.m_WorkSection.headerHeight = 10.0f;
-    self.m_WorkSection.footerHeight = 0.0f;
-    [self.m_WorkSection addItem:self.m_OrganizationItem];
-    [self.m_WorkSection addItem:self.m_JobItem];
-    [self.m_WorkSection addItem:self.m_WorkingLifeItem];
+    // 工作区域
+    self.m_WorkAreaItem = [BMTableViewItem itemWithTitle:@"工作区域" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
+        FSAddressPickerVC *vc = [[FSAddressPickerVC alloc] init];
+        
+        vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+        weakSelf.modalPresentationStyle = UIModalPresentationCurrentContext;
+        vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        
+        [weakSelf presentViewController:vc animated:YES completion:^{
+            
+        }];
+    }];
+    self.m_WorkAreaItem.textFont = FS_CELLTITLE_TEXTFONT;
+    self.m_WorkAreaItem.highlightBgColor = UI_COLOR_BL1;
+    self.m_WorkAreaItem.cellHeight = 50.0f;
 
+    // 擅长领域
     self.m_AbilityItem = [BMTableViewItem itemWithTitle:@"擅长领域" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_None accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
     }];
     self.m_AbilityItem.textFont = FS_CELLTITLE_TEXTFONT;
     self.m_AbilityItem.highlightBgColor = UI_COLOR_BL1;
     self.m_AbilityItem.cellHeight = 50.0f;
+    
+    self.m_WorkSection.headerHeight = 10.0f;
+    self.m_WorkSection.footerHeight = 0.0f;
+    [self.m_WorkSection addItem:self.m_OrganizationItem];
+    [self.m_WorkSection addItem:self.m_JobItem];
+    [self.m_WorkSection addItem:self.m_WorkingLifeItem];
+    [self.m_WorkSection addItem:self.m_WorkAreaItem];
+    [self.m_WorkSection addItem:self.m_AbilityItem];
 
-    self.m_AbilitySection.headerHeight = 0.0f;
-    self.m_AbilitySection.footerHeight = 0.0f;
-    [self.m_AbilitySection addItem:self.m_AbilityItem];
 
-    self.m_SignatureItem = [BMTableViewItem itemWithTitle:@"个人签名" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_None accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
+    // 专业职务
+    self.m_ProfessionalQualificationItem = [BMTableViewItem itemWithTitle:@"专业任职" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
     }];
-    self.m_SignatureItem.textFont = FS_CELLTITLE_TEXTFONT;
-    self.m_SignatureItem.highlightBgColor = UI_COLOR_BL1;
-    self.m_SignatureItem.cellHeight = 50.0f;
+    self.m_ProfessionalQualificationItem.textFont = FS_CELLTITLE_TEXTFONT;
+    self.m_ProfessionalQualificationItem.highlightBgColor = UI_COLOR_BL1;
+    self.m_ProfessionalQualificationItem.cellHeight = 50.0f;
 
-    self.m_SignatureSection.headerHeight = 0.0f;
-    [self.m_SignatureSection addItem:self.m_SignatureItem];
-    
+    // 工作经历
+    self.m_WorkExperienceItem = [BMTableViewItem itemWithTitle:@"工作经历" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_None accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
+        
+    }];
+    self.m_WorkExperienceItem.textFont = FS_CELLTITLE_TEXTFONT;
+    self.m_WorkExperienceItem.highlightBgColor = UI_COLOR_BL1;
+    self.m_WorkExperienceItem.cellHeight = 50.0f;
+
+    self.m_WorkExperienceSection.headerHeight = 0.0f;
+    self.m_WorkExperienceSection.footerHeight = 0.0f;
+    [self.m_WorkExperienceSection addItem:self.m_ProfessionalQualificationItem];
+    [self.m_WorkExperienceSection addItem:self.m_WorkExperienceItem];
+
     [self.m_TableManager addSection:self.m_BaseSection];
+    [self.m_TableManager addSection:self.m_CertificationSection];
     [self.m_TableManager addSection:self.m_WorkSection];
-    [self.m_TableManager addSection:self.m_AbilitySection];
-    [self.m_TableManager addSection:self.m_SignatureSection];
+    [self.m_TableManager addSection:self.m_WorkExperienceSection];
     
     [self freshViews];
     
@@ -227,6 +342,7 @@
     
     BMWeakSelf
     
+    // 头像
     BMImageTextView *imageTextView = [[BMImageTextView alloc] initWithAttributedText:nil image:nil];
     imageTextView.imageSize = CGSizeMake(60.0f, 60.0f);
     imageTextView.textColor = UI_COLOR_B4;
@@ -237,6 +353,7 @@
     imageTextView.placeholderImageName = @"default_avatariconlarge";
     self.m_AvatarItem.accessoryView = imageTextView;
     
+    // 昵称
     NSString *text = nil;
     if ([userInfo.m_UserBaseInfo.m_NickName bm_isNotEmpty])
     {
@@ -256,30 +373,147 @@
         editorVC.delegate = weakSelf;
         [weakSelf.navigationController pushViewController:editorVC animated:YES];
     };
-    
-    if ([userInfo.m_UserBaseInfo.m_RealName bm_isNotEmpty])
+
+    // 性别
+    if ([userInfo.m_UserBaseInfo.m_Sex bm_isNotEmpty])
     {
-        text = userInfo.m_UserBaseInfo.m_RealName;
-        self.m_RealNameItem.selectionHandler = nil;
-        imageTextView.showTableCellAccessoryArrow = NO;
-        self.m_RealNameItem.enabled = NO;
+        text = userInfo.m_UserBaseInfo.m_Sex;
     }
     else
     {
-        text = @"未认证";
-        self.m_RealNameItem.selectionHandler = ^(id item) {
-            FSAuthenticationVC *vc = [[FSAuthenticationVC alloc] init];
-            vc.delegate = weakSelf;
-            [weakSelf.navigationController pushViewController:vc animated:YES];
-        };
-        self.m_RealNameItem.enabled = YES;
+        text = @"请选择";
     }
     imageTextView = [[BMImageTextView alloc] initWithText:text];
     imageTextView.textColor = UI_COLOR_B4;
     imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
     imageTextView.showTableCellAccessoryArrow = YES;
-    self.m_RealNameItem.accessoryView = imageTextView;
+    self.m_SexItem.accessoryView = imageTextView;
+    self.m_SexItem.selectionHandler = ^(id item) {
+//        FSEditorVC *editorVC = [[FSEditorVC alloc] initWithOperaType:FSUpdateUserInfo_NickName minWordCount:0 maxnWordCount:8 text:userInfo.m_UserBaseInfo.m_NickName placeholderText:nil];
+//        editorVC.delegate = weakSelf;
+//        [weakSelf.navigationController pushViewController:editorVC animated:YES];
+    };
 
+    // 生日
+    if (userInfo.m_UserBaseInfo.m_Birthday != 0)
+    {
+        text = [NSDate bm_stringFromTs:userInfo.m_UserBaseInfo.m_Birthday formatter:@"yyyy-MM-dd"];
+    }
+    else
+    {
+        text = @"请选择";
+    }
+    imageTextView = [[BMImageTextView alloc] initWithText:text];
+    imageTextView.textColor = UI_COLOR_B4;
+    imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
+    imageTextView.showTableCellAccessoryArrow = YES;
+    self.m_BirthdayItem.accessoryView = imageTextView;
+    self.m_BirthdayItem.selectionHandler = ^(id item) {
+//        FSEditorVC *editorVC = [[FSEditorVC alloc] initWithOperaType:FSUpdateUserInfo_NickName minWordCount:0 maxnWordCount:8 text:userInfo.m_UserBaseInfo.m_NickName placeholderText:nil];
+//        editorVC.delegate = weakSelf;
+//        [weakSelf.navigationController pushViewController:editorVC animated:YES];
+    };
+
+    // 个人签名
+    if ([userInfo.m_UserBaseInfo.m_Signature bm_isNotEmpty])
+    {
+        text = @"修改";
+        
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 100)];
+        view.backgroundColor = [UIColor whiteColor];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, 0, UI_SCREEN_WIDTH-40.0f, 60.0f)];
+        label.backgroundColor = [UIColor clearColor];
+        label.textColor = UI_COLOR_B4;
+        label.numberOfLines = 0;
+        label.font = UI_FONT_14;
+        label.text = userInfo.m_UserBaseInfo.m_Signature;
+        //label.text = @"一句话表达下一句话表达下一句话表达下一句话表达下一句话表达下一句话表达下一句话表达下一句话表达下一句话表达下一句话表达下";
+        CGSize size = [label sizeThatFits:CGSizeMake(UI_SCREEN_WIDTH-40.0f, 1000)];
+        label.bm_height = size.height;
+        [view addSubview:label];
+        view.bm_height = label.bm_height + 20.0f;
+        
+        self.m_BaseSection.footerView = view;
+        self.m_BaseSection.footerHeight = view.bm_height;
+    }
+    else
+    {
+        text = @"一句话表达下";
+        self.m_BaseSection.footerView = nil;
+        self.m_BaseSection.footerHeight = 0.0f;
+    }
+    imageTextView = [[BMImageTextView alloc] initWithText:text];
+    imageTextView.textColor = UI_COLOR_B4;
+    imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
+    imageTextView.showTableCellAccessoryArrow = YES;
+    
+    self.m_SignatureItem.accessoryView = imageTextView;
+    self.m_SignatureItem.selectionHandler = ^(id item) {
+        FSEditorVC *editorVC = [[FSEditorVC alloc] initWithOperaType:FSUpdateUserInfo_Signature minWordCount:0 maxnWordCount:100 text:userInfo.m_UserBaseInfo.m_Signature placeholderText:nil];
+        editorVC.delegate = weakSelf;
+        [weakSelf.navigationController pushViewController:editorVC animated:YES];
+    };
+
+    
+    // 实名认证
+    BMImageTextViewAccessoryArrowType accessoryArrowType = BMImageTextViewAccessoryArrowType_Show;
+    if ([userInfo.m_UserBaseInfo.m_RealName bm_isNotEmpty])
+    {
+        text = userInfo.m_UserBaseInfo.m_RealName;
+        self.m_RealNameItem.selectionHandler = nil;
+        self.m_RealNameItem.enabled = NO;
+        accessoryArrowType = BMImageTextViewAccessoryArrowType_HideInplace;
+        self.m_RealNameItem.image = [UIImage imageNamed:@"user_passcertification"];
+    }
+    else
+    {
+        text = @"未认证";
+        self.m_RealNameItem.selectionHandler = ^(id item) {
+//            FSAuthenticationVC *vc = [[FSAuthenticationVC alloc] init];
+//            vc.delegate = weakSelf;
+//            [weakSelf.navigationController pushViewController:vc animated:YES];
+        };
+        self.m_RealNameItem.enabled = YES;
+        self.m_RealNameItem.image = [UIImage imageNamed:@"user_notpasscertification"];
+    }
+    imageTextView = [[BMImageTextView alloc] initWithText:text ];
+    imageTextView.textColor = UI_COLOR_B4;
+    imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
+    imageTextView.accessoryArrowType = accessoryArrowType;
+    imageTextView.showTableCellAccessoryArrow = YES;
+    self.m_RealNameItem.accessoryView = imageTextView;
+    
+    // 身份认证
+    accessoryArrowType = BMImageTextViewAccessoryArrowType_Show;
+    if ([userInfo.m_UserBaseInfo.m_Job bm_isNotEmpty])
+    {
+        text = userInfo.m_UserBaseInfo.m_Job;
+        self.m_RealIdentityItem.selectionHandler = nil;
+        self.m_RealIdentityItem.enabled = NO;
+        accessoryArrowType = BMImageTextViewAccessoryArrowType_HideInplace;
+        self.m_RealIdentityItem.image = [UIImage imageNamed:@"user_passcertification"];
+    }
+    else
+    {
+        text = @"未认证";
+        self.m_RealIdentityItem.selectionHandler = ^(id item) {
+//            FSAuthenticationVC *vc = [[FSAuthenticationVC alloc] init];
+//            vc.delegate = weakSelf;
+//            [weakSelf.navigationController pushViewController:vc animated:YES];
+        };
+        self.m_RealIdentityItem.enabled = YES;
+        self.m_RealIdentityItem.image = [UIImage imageNamed:@"user_notpasscertification"];
+    }
+    imageTextView = [[BMImageTextView alloc] initWithText:text];
+    imageTextView.textColor = UI_COLOR_B4;
+    imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
+    imageTextView.accessoryArrowType = accessoryArrowType;
+    imageTextView.showTableCellAccessoryArrow = YES;
+    self.m_RealIdentityItem.accessoryView = imageTextView;
+
+    
+    // 所属单位
     if ([userInfo.m_UserBaseInfo.m_Organization bm_isNotEmpty])
     {
         text = userInfo.m_UserBaseInfo.m_Organization;
@@ -300,6 +534,7 @@
         [weakSelf.navigationController pushViewController:editorVC animated:YES];
     };
 
+    // 职位
     if ([userInfo.m_UserBaseInfo.m_Job bm_isNotEmpty])
     {
         text = userInfo.m_UserBaseInfo.m_Job;
@@ -319,13 +554,14 @@
         editorVC.delegate = weakSelf;
         [weakSelf.navigationController pushViewController:editorVC animated:YES];
     };
-
+    
+    // 工作年限
     if (userInfo.m_UserBaseInfo.m_EmploymentTime > 1950)
     {
         if (userInfo.m_UserBaseInfo.m_WorkingLife > 0)
         {
             text = [NSString stringWithFormat:@"%@年", @(userInfo.m_UserBaseInfo.m_WorkingLife)];
-            [self.m_PickerView scrollToDate:[NSDate bm_dateWithYear:userInfo.m_UserBaseInfo.m_EmploymentTime month:1 day:1] animated:YES];
+            [self.m_WorkPickerView scrollToDate:[NSDate bm_dateWithYear:userInfo.m_UserBaseInfo.m_EmploymentTime month:1 day:1] animated:YES];
         }
         else
         {
@@ -342,6 +578,23 @@
     imageTextView.showTableCellAccessoryArrow = YES;
     self.m_WorkingLifeItem.accessoryView = imageTextView;
 
+    // 工作区域
+    if ([userInfo.m_UserBaseInfo.m_WorkArea bm_isNotEmpty])
+    {
+        text = userInfo.m_UserBaseInfo.m_WorkArea;
+    }
+    else
+    {
+        text = @"请选择";
+    }
+    imageTextView = [[BMImageTextView alloc] initWithText:text];
+    imageTextView.textColor = UI_COLOR_B4;
+    imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
+    imageTextView.showTableCellAccessoryArrow = YES;
+    imageTextView.maxWidth = self.m_TableView.bm_width - 120.0f;
+    self.m_WorkAreaItem.accessoryView = imageTextView;
+    
+    // 擅长领域
     if ([userInfo.m_UserBaseInfo.m_Ability bm_isNotEmpty])
     {
         text = @"修改";
@@ -371,15 +624,15 @@
         [view addSubview:self.m_UnderLineView];
 
         self.m_AbilityItem.underLineDrawType = BMTableViewCell_UnderLineDrawType_None;
-        self.m_AbilitySection.footerView = view;
-        self.m_AbilitySection.footerHeight = view.bm_height;
+        self.m_WorkSection.footerView = view;
+        self.m_WorkSection.footerHeight = view.bm_height;
     }
     else
     {
         text = @"请选择";
         self.m_AbilityItem.underLineDrawType = BMTableViewCell_UnderLineDrawType_SeparatorLeftInset;
-        self.m_AbilitySection.footerView = nil;
-        self.m_AbilitySection.footerHeight = 0.0f;
+        self.m_WorkSection.footerView = nil;
+        self.m_WorkSection.footerHeight = 0.0f;
     }
     imageTextView = [[BMImageTextView alloc] initWithText:text];
     imageTextView.textColor = UI_COLOR_B4;
@@ -396,46 +649,45 @@
             [GetAppDelegate getUserAbilityInfoWithVc:weakSelf];
         }
     };
-
-    if ([userInfo.m_UserBaseInfo.m_Signature bm_isNotEmpty])
+    
+    
+    // 专业职务
+    if ([userInfo.m_UserBaseInfo.m_ProfessionalQualification bm_isNotEmpty])
     {
-        text = @"修改";
-        
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 100)];
-        view.backgroundColor = [UIColor whiteColor];
-        
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20.0f, 0, UI_SCREEN_WIDTH-40.0f, 60.0f)];
-        label.backgroundColor = [UIColor clearColor];
-        label.textColor = UI_COLOR_B4;
-        label.numberOfLines = 0;
-        label.font = UI_FONT_14;
-        label.text = userInfo.m_UserBaseInfo.m_Signature;
-        //label.text = @"一句话表达下一句话表达下一句话表达下一句话表达下一句话表达下一句话表达下一句话表达下一句话表达下一句话表达下一句话表达下";
-        CGSize size = [label sizeThatFits:CGSizeMake(UI_SCREEN_WIDTH-40.0f, 1000)];
-        label.bm_height = size.height;
-        [view addSubview:label];
-        view.bm_height = label.bm_height + 20.0f;
-
-        self.m_SignatureSection.footerView = view;
-        self.m_SignatureSection.footerHeight = view.bm_height;
+        text = userInfo.m_UserBaseInfo.m_ProfessionalQualification;
     }
     else
     {
-        text = @"一句话表达下";
-        self.m_SignatureSection.footerView = nil;
-        self.m_SignatureSection.footerHeight = 0.0f;
+        text = @"请填写";
     }
     imageTextView = [[BMImageTextView alloc] initWithText:text];
     imageTextView.textColor = UI_COLOR_B4;
     imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
     imageTextView.showTableCellAccessoryArrow = YES;
-    self.m_SignatureItem.accessoryView = imageTextView;
-    self.m_SignatureItem.selectionHandler = ^(id item) {
-        FSEditorVC *editorVC = [[FSEditorVC alloc] initWithOperaType:FSUpdateUserInfo_Signature minWordCount:0 maxnWordCount:100 text:userInfo.m_UserBaseInfo.m_Signature placeholderText:nil];
-        editorVC.delegate = weakSelf;
-        [weakSelf.navigationController pushViewController:editorVC animated:YES];
+    self.m_ProfessionalQualificationItem.accessoryView = imageTextView;
+    self.m_ProfessionalQualificationItem.selectionHandler = ^(id item) {
+//        FSEditorVC *editorVC = [[FSEditorVC alloc] initWithOperaType:FSUpdateUserInfo_NickName minWordCount:0 maxnWordCount:8 text:userInfo.m_UserBaseInfo.m_NickName placeholderText:nil];
+//        editorVC.delegate = weakSelf;
+//        [weakSelf.navigationController pushViewController:editorVC animated:YES];
     };
-
+    
+    // 工作经历
+    if ([userInfo.m_UserBaseInfo.m_WorkExperience bm_isNotEmpty])
+    {
+        text = userInfo.m_UserBaseInfo.m_WorkExperience;
+    }
+    else
+    {
+        text = @"请填写";
+    }
+    imageTextView = [[BMImageTextView alloc] initWithText:text];
+    imageTextView.textColor = UI_COLOR_B4;
+    imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
+    imageTextView.showTableCellAccessoryArrow = YES;
+    self.m_WorkExperienceItem.accessoryView = imageTextView;
+    self.m_WorkExperienceItem.selectionHandler = ^(id item) {
+    };
+    
     [self.m_TableView reloadData];
 }
 

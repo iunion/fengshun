@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		45344498214D0DFA00EA7BFA /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 45344497214D0DFA00EA7BFA /* libstdc++.tbd */; };
 		4534449E214D0DFA00EA7BFA /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4534449D214D0DFA00EA7BFA /* libresolv.tbd */; };
-		453444A0214D0DFA00EA7BFA /* libprotobuf.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4534449F214D0DFA00EA7BFA /* libprotobuf.tbd */; };
 		453444A2214D0DFA00EA7BFA /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444A1214D0DFA00EA7BFA /* libicucore.tbd */; };
 		453444A4214D0DFA00EA7BFA /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444A3214D0DFA00EA7BFA /* libiconv.tbd */; };
 		453444A8214D0DFA00EA7BFA /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444A7214D0DFA00EA7BFA /* libbz2.tbd */; };
@@ -1707,6 +1706,10 @@
 		87EB10282255F0EC00C9D125 /* BMApiStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EB10262255F0EC00C9D125 /* BMApiStatusView.m */; };
 		87EB102B225B468D00C9D125 /* CAAnimation+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EB1029225B468D00C9D125 /* CAAnimation+Blocks.m */; };
 		87EB102C225B468D00C9D125 /* CAAnimation+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EB1029225B468D00C9D125 /* CAAnimation+Blocks.m */; };
+		87EB102F225D8F4700C9D125 /* user_passcertification@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87EB102D225D8F4600C9D125 /* user_passcertification@2x.png */; };
+		87EB1030225D8F4700C9D125 /* user_passcertification@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87EB102D225D8F4600C9D125 /* user_passcertification@2x.png */; };
+		87EB1031225D8F4700C9D125 /* user_notpasscertification@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87EB102E225D8F4700C9D125 /* user_notpasscertification@2x.png */; };
+		87EB1032225D8F4700C9D125 /* user_notpasscertification@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87EB102E225D8F4700C9D125 /* user_notpasscertification@2x.png */; };
 		87EE6CC521C09E24002BD296 /* BMTestNSURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE6CC421C09E24002BD296 /* BMTestNSURLProtocol.m */; };
 		87EE6CC621C09E2D002BD296 /* BMTestNSURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE6CC421C09E24002BD296 /* BMTestNSURLProtocol.m */; };
 		87EE6CC921C09EA7002BD296 /* BMTestNetFlowManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE6CC821C09EA7002BD296 /* BMTestNetFlowManager.m */; };
@@ -3621,6 +3624,8 @@
 		87EB10262255F0EC00C9D125 /* BMApiStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMApiStatusView.m; sourceTree = "<group>"; };
 		87EB1029225B468D00C9D125 /* CAAnimation+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAAnimation+Blocks.m"; sourceTree = "<group>"; };
 		87EB102A225B468D00C9D125 /* CAAnimation+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAAnimation+Blocks.h"; sourceTree = "<group>"; };
+		87EB102D225D8F4600C9D125 /* user_passcertification@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_passcertification@2x.png"; sourceTree = "<group>"; };
+		87EB102E225D8F4700C9D125 /* user_notpasscertification@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_notpasscertification@2x.png"; sourceTree = "<group>"; };
 		87EE6CC321C09E24002BD296 /* BMTestNSURLProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMTestNSURLProtocol.h; sourceTree = "<group>"; };
 		87EE6CC421C09E24002BD296 /* BMTestNSURLProtocol.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMTestNSURLProtocol.m; sourceTree = "<group>"; };
 		87EE6CC721C09EA7002BD296 /* BMTestNetFlowManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMTestNetFlowManager.h; sourceTree = "<group>"; };
@@ -4103,7 +4108,6 @@
 				AD3B821E214A468100D72DE9 /* CoreText.framework in Frameworks */,
 				45344498214D0DFA00EA7BFA /* libstdc++.tbd in Frameworks */,
 				4534449E214D0DFA00EA7BFA /* libresolv.tbd in Frameworks */,
-				453444A0214D0DFA00EA7BFA /* libprotobuf.tbd in Frameworks */,
 				453444A2214D0DFA00EA7BFA /* libicucore.tbd in Frameworks */,
 				453444A4214D0DFA00EA7BFA /* libiconv.tbd in Frameworks */,
 				453444A8214D0DFA00EA7BFA /* libbz2.tbd in Frameworks */,
@@ -7135,6 +7139,8 @@
 				8730AD3F2140CC27004331A9 /* user_helpicon@3x.png */,
 				8730B0CB214772BB004331A9 /* user_mobileicon@2x.png */,
 				8730B0CC214772BC004331A9 /* user_mobileicon@3x.png */,
+				87EB102E225D8F4700C9D125 /* user_notpasscertification@2x.png */,
+				87EB102D225D8F4600C9D125 /* user_passcertification@2x.png */,
 				8730AD3A2140CC27004331A9 /* user_serviceicon@2x.png */,
 				8730AD372140CC27004331A9 /* user_serviceicon@3x.png */,
 				8730AD382140CC27004331A9 /* user_shareicon@2x.png */,
@@ -8425,6 +8431,7 @@
 				87D186AD213679F800037DDF /* login_closeeye@2x.png in Resources */,
 				87D186AE213679F800037DDF /* login_logo@3x.png in Resources */,
 				8730B1172148E5D1004331A9 /* fsfreshidle_icon13@2x.png in Resources */,
+				87EB102F225D8F4700C9D125 /* user_passcertification@2x.png in Resources */,
 				87D20AD6213920E2001EDD60 /* LICENSE in Resources */,
 				87741FE5214A132200F72427 /* user_wechaticon@2x.png in Resources */,
 				AD5102A4213E77FC008CD74D /* FSCommunitySecVC.xib in Resources */,
@@ -8509,6 +8516,7 @@
 				DBB73F7D215CC01F00E65230 /* placeholder_topic@2x.png in Resources */,
 				DB487446214B642600AB0805 /* FSImageFileCell.xib in Resources */,
 				ADC591F6215395100054BE72 /* fstab_btn3_highIcon@2x.png in Resources */,
+				87EB1031225D8F4700C9D125 /* user_notpasscertification@2x.png in Resources */,
 				8730B1102148E5D1004331A9 /* fsfreshidle_icon8@2x.png in Resources */,
 				874268A0212E7E36003C52F6 /* decrease_taobao@3x.png in Resources */,
 				87E7C6C02150C10100F7AB14 /* empty_commonicon@2x.png in Resources */,
@@ -8871,6 +8879,7 @@
 				87E7C57021509AB000F7AB14 /* login_mobile@3x.png in Resources */,
 				87E7C57121509AB000F7AB14 /* BMTableView_UIButtonBarArrowRight@2x.png in Resources */,
 				874C23B1215B288F001C8BE9 /* FSMyCollectionCell.xib in Resources */,
+				87EB1030225D8F4700C9D125 /* user_passcertification@2x.png in Resources */,
 				DB7B1955215A0F1300EB585D /* search_openFilters@2x.png in Resources */,
 				87E7C57221509AB000F7AB14 /* search_closeFilters@3x.png in Resources */,
 				87E7C57321509AB000F7AB14 /* fsfreshfreshing_icon4@2x.png in Resources */,
@@ -8913,6 +8922,7 @@
 				87E7C58B21509AB000F7AB14 /* video_message_icon@2x.png in Resources */,
 				87E7C58C21509AB000F7AB14 /* bmsearch_history@2x.png in Resources */,
 				87E7C58E21509AB000F7AB14 /* steppersinput_plusicon@2x.png in Resources */,
+				87EB1032225D8F4700C9D125 /* user_notpasscertification@2x.png in Resources */,
 				87E7C58F21509AB000F7AB14 /* videocall_voice_open@2x.png in Resources */,
 				AD28473A21CCC355001009E9 /* FSAuthVC.xib in Resources */,
 				ADA32F5C2229101700836C33 /* send_email@3x.png in Resources */,

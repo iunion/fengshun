@@ -168,6 +168,19 @@
     {
         self.m_WorkingLife = [dic bm_uintForKey:@"workingLife"];
     }
+    
+    // 专业职务: professionalQualification
+    if ([dic bm_containsObjectForKey:@"professionalQualification"])
+    {
+        self.m_ProfessionalQualification = [dic bm_stringTrimForKey:@"professionalQualification"];
+    }
+    
+    // 工作经历: workExperience
+    if ([dic bm_containsObjectForKey:@"workExperience"])
+    {
+        self.m_WorkExperience = [dic bm_stringTrimForKey:@"workExperience"];
+    }
+
 }
 
 - (void)setM_Ability:(NSString *)ability

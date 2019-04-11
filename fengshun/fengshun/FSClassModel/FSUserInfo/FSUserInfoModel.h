@@ -66,7 +66,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, strong) NSString *m_CompanyAddress;
 // 工作年限: workingLife
 @property (nonatomic, assign) NSUInteger m_WorkingLife;
-
+// 专业职务: professionalQualification
+@property (nullable, nonatomic, strong) NSString *m_ProfessionalQualification;
+// 工作经历: workExperience
+@property (nullable, nonatomic, strong) NSString *m_WorkExperience;
 
 + (nullable instancetype)userBaseInfoWithServerDic:(NSDictionary *)dic;
 - (void)updateWithServerDic:(NSDictionary *)dic;
