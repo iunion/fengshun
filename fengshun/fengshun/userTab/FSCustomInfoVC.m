@@ -20,6 +20,7 @@
 #import "FSAddressPickerVC.h"
 
 #import "FSSetCompanyVC.h"
+#import "FSSetProfessionalVC.h"
 
 
 @interface FSCustomInfoVC ()
@@ -675,6 +676,9 @@
 //        FSEditorVC *editorVC = [[FSEditorVC alloc] initWithOperaType:FSUpdateUserInfo_NickName minWordCount:0 maxnWordCount:8 text:userInfo.m_UserBaseInfo.m_NickName placeholderText:nil];
 //        editorVC.delegate = weakSelf;
 //        [weakSelf.navigationController pushViewController:editorVC animated:YES];
+        
+        FSSetProfessionalVC *setProfessionalVC = [[FSSetProfessionalVC alloc] init];
+        [weakSelf.navigationController pushViewController:setProfessionalVC animated:YES];
     };
     
     // 工作经历

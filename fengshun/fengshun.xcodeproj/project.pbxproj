@@ -757,6 +757,8 @@
 		87D9C60F21536A04009F8492 /* FSAboutVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87D9C60C21536A04009F8492 /* FSAboutVC.xib */; };
 		87D9C61021536A04009F8492 /* FSAboutVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87D9C60C21536A04009F8492 /* FSAboutVC.xib */; };
 		87E70C19225F237D00B663C5 /* FSSetCompanyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E70C18225F237D00B663C5 /* FSSetCompanyVC.m */; };
+		87E70C1D22657DD300B663C5 /* FSSetProfessionalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E70C1C22657DD300B663C5 /* FSSetProfessionalVC.m */; };
+		87E70C1E22657DD300B663C5 /* FSSetProfessionalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E70C1C22657DD300B663C5 /* FSSetProfessionalVC.m */; };
 		87E7C27621509AB000F7AB14 /* SingleTextChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF84A214D1B970005AD43 /* SingleTextChatViewController.m */; };
 		87E7C27721509AB000F7AB14 /* default.css in Sources */ = {isa = PBXBuildFile; fileRef = 8730AF532140FFA2004331A9 /* default.css */; };
 		87E7C27921509AB000F7AB14 /* FLEXIvarEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D20A31213920E2001EDD60 /* FLEXIvarEditorViewController.m */; };
@@ -3563,6 +3565,8 @@
 		87D9C60C21536A04009F8492 /* FSAboutVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSAboutVC.xib; sourceTree = "<group>"; };
 		87E70C17225F237D00B663C5 /* FSSetCompanyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSetCompanyVC.h; sourceTree = "<group>"; };
 		87E70C18225F237D00B663C5 /* FSSetCompanyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSSetCompanyVC.m; sourceTree = "<group>"; };
+		87E70C1B22657DD300B663C5 /* FSSetProfessionalVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSetProfessionalVC.h; sourceTree = "<group>"; };
+		87E70C1C22657DD300B663C5 /* FSSetProfessionalVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSSetProfessionalVC.m; sourceTree = "<group>"; };
 		87E7C61F21509AB000F7AB14 /* fengshun_video.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fengshun_video.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87E7C6652150A4E400F7AB14 /* TOCropViewConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCropViewConstants.h; sourceTree = "<group>"; };
 		87E7C66A2150A4E400F7AB14 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TOCropViewControllerLocalizable.strings"; sourceTree = "<group>"; };
@@ -5233,6 +5237,8 @@
 				8730B0C5214758F0004331A9 /* FSSetPhoneVC.m */,
 				87E70C17225F237D00B663C5 /* FSSetCompanyVC.h */,
 				87E70C18225F237D00B663C5 /* FSSetCompanyVC.m */,
+				87E70C1B22657DD300B663C5 /* FSSetProfessionalVC.h */,
+				87E70C1C22657DD300B663C5 /* FSSetProfessionalVC.m */,
 				87D9C60A21536A04009F8492 /* FSAboutVC.h */,
 				87D9C60B21536A04009F8492 /* FSAboutVC.m */,
 				87D9C60C21536A04009F8492 /* FSAboutVC.xib */,
@@ -9467,6 +9473,7 @@
 				87D20ADD213920E2001EDD60 /* FLEXSQLiteDatabaseManager.m in Sources */,
 				ADEF1F76214F9F7B00FFE0C3 /* FSMoreViewVC.m in Sources */,
 				8730B07C2140FFA3004331A9 /* NSURL+DTAppLinks.m in Sources */,
+				87E70C1D22657DD300B663C5 /* FSSetProfessionalVC.m in Sources */,
 				874269BB212E9B78003C52F6 /* BMFreshNormalHeader.m in Sources */,
 				DB34723B21CC878600950C33 /* FSPushVCModel.m in Sources */,
 				874268A6212E7E36003C52F6 /* BMStepperInputView.m in Sources */,
@@ -9801,6 +9808,7 @@
 				87D34E5121C9E5D000EC5873 /* FLEXColorExplorerViewController.m in Sources */,
 				87E7C29421509AB000F7AB14 /* BMStepperInputItem.m in Sources */,
 				87E7C29521509AB000F7AB14 /* FSAppInfo.m in Sources */,
+				87E70C1E22657DD300B663C5 /* FSSetProfessionalVC.m in Sources */,
 				87E7C29621509AB000F7AB14 /* FLEXSystemLogTableViewCell.m in Sources */,
 				87E7C29721509AB000F7AB14 /* UIImage+WebP.m in Sources */,
 				87E7C29821509AB000F7AB14 /* FLEXRealmDatabaseManager.m in Sources */,

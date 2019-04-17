@@ -70,6 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSUInteger m_WorkingLife;
 // 专业职务: professionalQualification
 @property (nullable, nonatomic, strong) NSString *m_ProfessionalQualification;
+@property (nullable, nonatomic, strong) NSMutableArray <NSString *> *m_ProfessionalArray;
 // 工作经历: workExperience
 @property (nullable, nonatomic, strong) NSString *m_WorkExperience;
 

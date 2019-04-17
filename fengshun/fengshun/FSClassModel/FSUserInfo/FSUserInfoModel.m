@@ -181,6 +181,11 @@
         self.m_ProfessionalQualification = [dic bm_stringTrimForKey:@"professionalQualification"];
     }
     
+#warning Test
+    self.m_ProfessionalArray = [NSMutableArray arrayWithCapacity:0];
+    [self.m_ProfessionalArray addObject:@"氧气吐司"];
+    [self.m_ProfessionalArray addObject:@"小酥饼"];
+
     // 工作经历: workExperience
     if ([dic bm_containsObjectForKey:@"workExperience"])
     {
