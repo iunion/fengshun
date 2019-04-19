@@ -13,6 +13,7 @@
 #import "BMDatePicker.h"
 
 #import "FSAuthenticationVC.h"
+#import "FSSetPositionVC.h"
 #import "FSEditorAbilityVC.h"
 #import "FSEditorVC.h"
 
@@ -474,9 +475,9 @@
     {
         text = @"未认证";
         self.m_RealNameItem.selectionHandler = ^(id item) {
-//            FSAuthenticationVC *vc = [[FSAuthenticationVC alloc] init];
-//            vc.delegate = weakSelf;
-//            [weakSelf.navigationController pushViewController:vc animated:YES];
+            FSAuthenticationVC *vc = [[FSAuthenticationVC alloc] init];
+            vc.delegate = weakSelf;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
         };
         self.m_RealNameItem.enabled = YES;
         self.m_RealNameItem.image = [UIImage imageNamed:@"user_notpasscertification"];
@@ -502,9 +503,9 @@
     {
         text = @"未认证";
         self.m_RealIdentityItem.selectionHandler = ^(id item) {
-//            FSAuthenticationVC *vc = [[FSAuthenticationVC alloc] init];
-//            vc.delegate = weakSelf;
-//            [weakSelf.navigationController pushViewController:vc animated:YES];
+            FSSetPositionVC *vc = [[FSSetPositionVC alloc] init];
+            //vc.delegate = weakSelf;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
         };
         self.m_RealIdentityItem.enabled = YES;
         self.m_RealIdentityItem.image = [UIImage imageNamed:@"user_notpasscertification"];
@@ -780,6 +781,7 @@
 
 
 #pragma mark - 图片选择
+
 - (void)openPhoto
 {
     self.m_AvatarUrl = nil;
@@ -839,12 +841,12 @@
         
         weakSelf.m_AvatarUrl = url;
         
-        [self.m_ProgressHUD hideAnimated:NO];
+        [weakSelf.m_ProgressHUD hideAnimated:NO];
         [weakSelf sendUpdateUserInfoWithOperaType:FSUpdateUserInfo_AvatarImageUrl changeValue:url];
 
     } failure:^(NSError * _Nullable error) {
         
-        [self.m_ProgressHUD showAnimated:YES withDetailText:@"头像上传失败" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"头像上传失败" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     }];
 }
 
