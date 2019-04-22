@@ -11,6 +11,7 @@
 #import "UIView+BMBadge.h"
 #import "UIImageView+WebCache.h"
 
+#import "FSNoIdentityAuthVC.h"
 #import "FSMyTopicVC.h"
 #import "FSMyCommentVC.h"
 #import "FSMyCollectionTabVC.h"
@@ -45,6 +46,7 @@
 @property (nonatomic, strong) BMTableViewSection *m_UserSection;
 @property (nonatomic, strong) BMTableViewSection *m_AppSection;
 
+@property (nonatomic, strong) BMTableViewItem *m_Articles;
 @property (nonatomic, strong) BMTableViewItem *m_TopicItem;
 @property (nonatomic, strong) BMTableViewItem *m_CommentItem;
 @property (nonatomic, strong) BMTableViewItem *m_CollectItem;
@@ -149,6 +151,25 @@
     self.m_UserSection = [BMTableViewSection section];
     
     BMWeakSelf
+    self.m_Articles = [BMTableViewItem itemWithTitle:@"我的专栏" imageName:@"user_topicicon" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
+        
+        if ([FSUserInfoModel isLogin])
+        {
+            FSNoIdentityAuthVC *noIdentityAuthVC = [[FSNoIdentityAuthVC alloc] init];
+            noIdentityAuthVC.hidesBottomBarWhenPushed = YES;
+            [weakSelf.navigationController pushViewController:noIdentityAuthVC animated:YES];
+        }
+        else
+        {
+            [weakSelf showLogin];
+        }
+    }];
+    self.m_Articles.imageH = 16.0f;
+    self.m_Articles.imageW = 16.0f;
+    self.m_Articles.textFont = FS_CELLTITLE_TEXTFONT;
+    self.m_Articles.highlightBgColor = UI_COLOR_BL1;
+    self.m_Articles.cellHeight = 50.0f;
+    
     self.m_TopicItem = [BMTableViewItem itemWithTitle:@"我的帖子" imageName:@"user_topicicon" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         
         if ([FSUserInfoModel isLogin])
@@ -206,6 +227,7 @@
     self.m_CollectItem.highlightBgColor = UI_COLOR_BL1;
     self.m_CollectItem.cellHeight = 50.0f;
 
+    [self.m_UserSection addItem:self.m_Articles];
     [self.m_UserSection addItem:self.m_TopicItem];
     [self.m_UserSection addItem:self.m_CommentItem];
     [self.m_UserSection addItem:self.m_CollectItem];

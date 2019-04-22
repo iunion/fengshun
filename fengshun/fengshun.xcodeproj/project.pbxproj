@@ -1913,6 +1913,14 @@
 		AF81BF752251A1DB00BFA610 /* FSCharacterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF81BF722251A1DB00BFA610 /* FSCharacterCell.m */; };
 		AF81BF762251A1DB00BFA610 /* FSCharacterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF81BF732251A1DB00BFA610 /* FSCharacterCell.xib */; };
 		AF81BF772251A1DB00BFA610 /* FSCharacterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF81BF732251A1DB00BFA610 /* FSCharacterCell.xib */; };
+		AFB38CD1226DAA2700AB26CE /* FSNoIdentityAuthVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB38CD0226DAA2700AB26CE /* FSNoIdentityAuthVC.m */; };
+		AFB38CD2226DAA2700AB26CE /* FSNoIdentityAuthVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB38CD0226DAA2700AB26CE /* FSNoIdentityAuthVC.m */; };
+		AFB38CD6226DAA6400AB26CE /* FSNoIdentityAuthCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB38CD4226DAA6400AB26CE /* FSNoIdentityAuthCell.m */; };
+		AFB38CD7226DAA6400AB26CE /* FSNoIdentityAuthCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB38CD4226DAA6400AB26CE /* FSNoIdentityAuthCell.m */; };
+		AFB38CD8226DAA6400AB26CE /* FSNoIdentityAuthCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFB38CD5226DAA6400AB26CE /* FSNoIdentityAuthCell.xib */; };
+		AFB38CD9226DAA6400AB26CE /* FSNoIdentityAuthCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFB38CD5226DAA6400AB26CE /* FSNoIdentityAuthCell.xib */; };
+		AFB38CDD226DBFAC00AB26CE /* FSNoIdentityAuthModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB38CDC226DBFAC00AB26CE /* FSNoIdentityAuthModel.m */; };
+		AFB38CDE226DBFAC00AB26CE /* FSNoIdentityAuthModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB38CDC226DBFAC00AB26CE /* FSNoIdentityAuthModel.m */; };
 		AFBF3182224E134F002BE1E3 /* FSSpecialColumnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AFBF3180224E134F002BE1E3 /* FSSpecialColumnCell.m */; };
 		AFBF3183224E134F002BE1E3 /* FSSpecialColumnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AFBF3180224E134F002BE1E3 /* FSSpecialColumnCell.m */; };
 		AFBF3184224E134F002BE1E3 /* FSSpecialColumnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFBF3181224E134F002BE1E3 /* FSSpecialColumnCell.xib */; };
@@ -3858,6 +3866,13 @@
 		AF81BF712251A1DB00BFA610 /* FSCharacterCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCharacterCell.h; sourceTree = "<group>"; };
 		AF81BF722251A1DB00BFA610 /* FSCharacterCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCharacterCell.m; sourceTree = "<group>"; };
 		AF81BF732251A1DB00BFA610 /* FSCharacterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSCharacterCell.xib; sourceTree = "<group>"; };
+		AFB38CCF226DAA2700AB26CE /* FSNoIdentityAuthVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSNoIdentityAuthVC.h; sourceTree = "<group>"; };
+		AFB38CD0226DAA2700AB26CE /* FSNoIdentityAuthVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSNoIdentityAuthVC.m; sourceTree = "<group>"; };
+		AFB38CD3226DAA6400AB26CE /* FSNoIdentityAuthCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSNoIdentityAuthCell.h; sourceTree = "<group>"; };
+		AFB38CD4226DAA6400AB26CE /* FSNoIdentityAuthCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSNoIdentityAuthCell.m; sourceTree = "<group>"; };
+		AFB38CD5226DAA6400AB26CE /* FSNoIdentityAuthCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSNoIdentityAuthCell.xib; sourceTree = "<group>"; };
+		AFB38CDB226DBFAC00AB26CE /* FSNoIdentityAuthModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSNoIdentityAuthModel.h; sourceTree = "<group>"; };
+		AFB38CDC226DBFAC00AB26CE /* FSNoIdentityAuthModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSNoIdentityAuthModel.m; sourceTree = "<group>"; };
 		AFBF317F224E134F002BE1E3 /* FSSpecialColumnCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSpecialColumnCell.h; sourceTree = "<group>"; };
 		AFBF3180224E134F002BE1E3 /* FSSpecialColumnCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSSpecialColumnCell.m; sourceTree = "<group>"; };
 		AFBF3181224E134F002BE1E3 /* FSSpecialColumnCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSSpecialColumnCell.xib; sourceTree = "<group>"; };
@@ -6357,6 +6372,8 @@
 				87741FED214A385700F72427 /* FSMyCommentVC.m */,
 				87741FEF214A387100F72427 /* FSMyTopicVC.h */,
 				87741FF0214A387100F72427 /* FSMyTopicVC.m */,
+				AFB38CCF226DAA2700AB26CE /* FSNoIdentityAuthVC.h */,
+				AFB38CD0226DAA2700AB26CE /* FSNoIdentityAuthVC.m */,
 			);
 			path = mine;
 			sourceTree = "<group>";
@@ -7593,6 +7610,9 @@
 				876A1954216DF0B4008A04F4 /* FSMyCourseCollectionCell.h */,
 				876A1955216DF0B4008A04F4 /* FSMyCourseCollectionCell.m */,
 				876A1956216DF0B4008A04F4 /* FSMyCourseCollectionCell.xib */,
+				AFB38CD3226DAA6400AB26CE /* FSNoIdentityAuthCell.h */,
+				AFB38CD4226DAA6400AB26CE /* FSNoIdentityAuthCell.m */,
+				AFB38CD5226DAA6400AB26CE /* FSNoIdentityAuthCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -8048,6 +8068,8 @@
 				DB4874232148BD3F00AB0805 /* FSTextModel.m */,
 				DB48743F214A6E5B00AB0805 /* FSImageFileModel.h */,
 				DB487440214A6E5B00AB0805 /* FSImageFileModel.m */,
+				AFB38CDB226DBFAC00AB26CE /* FSNoIdentityAuthModel.h */,
+				AFB38CDC226DBFAC00AB26CE /* FSNoIdentityAuthModel.m */,
 			);
 			path = FSHomePage;
 			sourceTree = "<group>";
@@ -8440,6 +8462,7 @@
 				DBB73F7D215CC01F00E65230 /* placeholder_topic@2x.png in Resources */,
 				DB487446214B642600AB0805 /* FSImageFileCell.xib in Resources */,
 				ADC591F6215395100054BE72 /* fstab_btn3_highIcon@2x.png in Resources */,
+				AFB38CD8226DAA6400AB26CE /* FSNoIdentityAuthCell.xib in Resources */,
 				8730B1102148E5D1004331A9 /* fsfreshidle_icon8@2x.png in Resources */,
 				874268A0212E7E36003C52F6 /* decrease_taobao@3x.png in Resources */,
 				87E7C6C02150C10100F7AB14 /* empty_commonicon@2x.png in Resources */,
@@ -8646,6 +8669,7 @@
 				87E7C50221509AB000F7AB14 /* video_bottom_message@3x.png in Resources */,
 				87E7C50321509AB000F7AB14 /* navigationbar_collect_icon@2x.png in Resources */,
 				87E7C50421509AB000F7AB14 /* decrease_taobao@2x.png in Resources */,
+				AFB38CD9226DAA6400AB26CE /* FSNoIdentityAuthCell.xib in Resources */,
 				DBF7E1A021524EDB002CEDA4 /* search_lawTopic_3@2x.png in Resources */,
 				87E7C50521509AB000F7AB14 /* fsfreshidle_icon25@2x.png in Resources */,
 				87E7C50621509AB000F7AB14 /* FSMainVC.xib in Resources */,
@@ -9065,6 +9089,7 @@
 				8730B0632140FFA3004331A9 /* DTZipArchiveNode.m in Sources */,
 				874268C0212E7E36003C52F6 /* BMSegmentItem.m in Sources */,
 				8704B394219C137800DBBC53 /* BMCountDownManager.m in Sources */,
+				AFB38CD1226DAA2700AB26CE /* FSNoIdentityAuthVC.m in Sources */,
 				874268C8212E7E36003C52F6 /* BMStepperInputItem.m in Sources */,
 				87426AB42133A32E003C52F6 /* FSAppInfo.m in Sources */,
 				87D20AD4213920E2001EDD60 /* FLEXSystemLogTableViewCell.m in Sources */,
@@ -9117,6 +9142,7 @@
 				874268C4212E7E36003C52F6 /* BMLongTextItem.m in Sources */,
 				AD412AEA215221C800A9C12B /* FSReportView.m in Sources */,
 				8730B0862140FFA3004331A9 /* DTCustomColoredAccessory.m in Sources */,
+				AFB38CDD226DBFAC00AB26CE /* FSNoIdentityAuthModel.m in Sources */,
 				DBD4CDFD213FB2D800857DB3 /* FSMainToolCell.m in Sources */,
 				87426A5F21313940003C52F6 /* FSMainVC.m in Sources */,
 				AD9325FE214B4FDA007F3A93 /* ZSSFontsViewController.m in Sources */,
@@ -9251,6 +9277,7 @@
 				87D20B042139492F001EDD60 /* WKWebViewJavascriptBridge.m in Sources */,
 				DB4874242148BD3F00AB0805 /* FSTextModel.m in Sources */,
 				874268F1212E7E36003C52F6 /* UIButton+BMContentRect.m in Sources */,
+				AFB38CD6226DAA6400AB26CE /* FSNoIdentityAuthCell.m in Sources */,
 				87D20ABE213920E2001EDD60 /* FLEXArgumentInputView.m in Sources */,
 				87D20AC0213920E2001EDD60 /* FLEXArgumentInputSwitchView.m in Sources */,
 				DBD4CDF8213FAA8800857DB3 /* FSApiRequest+HomePage.m in Sources */,
@@ -9792,6 +9819,7 @@
 				87E7C2DA21509AB000F7AB14 /* FLEXArgumentInputNumberView.m in Sources */,
 				87E7C2DB21509AB000F7AB14 /* mztools.c in Sources */,
 				87E7C2DC21509AB000F7AB14 /* UIWindow+BMCategory.m in Sources */,
+				AFB38CD2226DAA2700AB26CE /* FSNoIdentityAuthVC.m in Sources */,
 				87E7C2DD21509AB000F7AB14 /* FSVideoMessageListVC.m in Sources */,
 				87E7C2DE21509AB000F7AB14 /* FLEXTableLeftCell.m in Sources */,
 				87E7C2DF21509AB000F7AB14 /* FSMyCollectionVC.m in Sources */,
@@ -10048,6 +10076,7 @@
 				87E7C3BE21509AB000F7AB14 /* FLEXSQLiteDatabaseManager.m in Sources */,
 				87E7C3BF21509AB000F7AB14 /* FSMoreViewVC.m in Sources */,
 				87E7C3C021509AB000F7AB14 /* NSURL+DTAppLinks.m in Sources */,
+				AFB38CDE226DBFAC00AB26CE /* FSNoIdentityAuthModel.m in Sources */,
 				DBE58F462224D4E200F9A5E3 /* FSSimpleCameraViewController.m in Sources */,
 				87E7C3C121509AB000F7AB14 /* BMFreshNormalHeader.m in Sources */,
 				87E7C3C221509AB000F7AB14 /* BMStepperInputView.m in Sources */,
@@ -10213,6 +10242,7 @@
 				87E7C44B21509AB000F7AB14 /* FLEXWebViewController.m in Sources */,
 				87E7C44C21509AB000F7AB14 /* FLEXManager.m in Sources */,
 				87E7C44D21509AB000F7AB14 /* DTSmartPagingScrollView.m in Sources */,
+				AFB38CD7226DAA6400AB26CE /* FSNoIdentityAuthCell.m in Sources */,
 				87E7C44E21509AB000F7AB14 /* BMFreshDotCircleHeader.m in Sources */,
 				87E7C44F21509AB000F7AB14 /* FLEXLiveObjectsTableViewController.m in Sources */,
 				87E7C45021509AB000F7AB14 /* FLEXNetworkCurlLogger.m in Sources */,
