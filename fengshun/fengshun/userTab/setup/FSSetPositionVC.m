@@ -9,6 +9,8 @@
 #import "FSSetPositionVC.h"
 #import "AppDelegate.h"
 
+#import "BMAlignedImageView.h"
+
 #import "TTGTagCollectionView.h"
 #import "BMDatePicker.h"
 
@@ -43,9 +45,10 @@
 @property (nonatomic, weak) TTGTagCollectionView *m_AbilityCollectionView;
 @property (nonatomic, strong) NSMutableArray *m_AbilityViewArray;
 
-@property (nonatomic, strong) UIImageView *m_MaterialImageView;
+@property (nonatomic, strong) BMAlignedImageView *m_MaterialImageView;
 @property (nonatomic, strong) UIButton *m_MaterialImageDeleteBtn;
 
+@property (nonatomic, strong) UIButton *m_CheckBtn;
 @end
 
 @implementation FSSetPositionVC
@@ -106,8 +109,11 @@
     [label3 sizeToFit];
     [label3 bm_centerInSuperViewWithTopOffset:30.0f];
 
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(15.0f, 15.0f, UI_SCREEN_WIDTH-30.0f, (UI_SCREEN_WIDTH-30.0f)*ImageScale)];
+    BMAlignedImageView *imageView = [[BMAlignedImageView alloc] initWithFrame:CGRectMake(15.0f, 15.0f, UI_SCREEN_WIDTH-30.0f, (UI_SCREEN_WIDTH-30.0f)*ImageScale)];
     self.m_MaterialImageView = imageView;
+    self.m_MaterialImageView.contentMode = UIViewContentModeScaleAspectFit;
+    self.m_MaterialImageView.horizontallyAlignment = BMImageViewHorizontallyAlignmentCenter;
+    self.m_MaterialImageView.verticallyAlignment = BMImageViewVerticallyAlignmentCenter;
     [imageView bm_roundedRect:4.0f borderWidth:1.0f borderColor:UI_DEFAULT_LINECOLOR];
     [imageBgView addSubview:imageView];
     
@@ -116,6 +122,8 @@
     [closeBtn setImage:[UIImage imageNamed:@"user_photoclose"] forState:UIControlStateNormal];
     closeBtn.imageEdgeInsets = UIEdgeInsetsMake(-15.0f, 15.0f, 0, 0);
     [imageBgView addSubview:closeBtn];
+    self.m_MaterialImageDeleteBtn = closeBtn;
+    closeBtn.hidden = YES;
     [closeBtn addTarget:self action:@selector(removeMaterialImageClick:) forControlEvents:UIControlEventTouchUpInside];
 
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(getPhoto:)];
@@ -124,13 +132,16 @@
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, self.m_TableView.bm_width-90.0f, 44);
     btn.backgroundColor = UI_COLOR_BL1;
+    btn.backgroundColor = UI_COLOR_B3;
     btn.titleLabel.font = FS_BUTTON_LARGETEXTFONT;
     btn.exclusiveTouch = YES;
-    [btn addTarget:self action:@selector(addClick:) forControlEvents:UIControlEventTouchUpInside];
+    [btn addTarget:self action:@selector(checkClick:) forControlEvents:UIControlEventTouchUpInside];
     [btn setTitle:@"提交申请" forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+    //[btn setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
     [footerView addSubview:btn];
+    self.m_CheckBtn = btn;
+    self.m_CheckBtn.enabled = NO;
     [btn bm_centerHorizontallyInSuperViewWithTop:imageBgView.bm_bottom+24.0f];
     [btn bm_roundedRect:4.0f];
 
@@ -332,6 +343,8 @@
         }
     };
 
+    [self checkDataWithUserInfo:userInfo];
+    
     [self.m_TableView reloadData];
 }
 
@@ -360,6 +373,70 @@
         [label bm_roundedRect:4.0f];
         [self.m_AbilityViewArray addObject:label];
     }
+}
+
+- (void)checkDataWithUserInfo:(FSUserInfoModel *)userInfo
+{
+    BOOL check = YES;
+    
+    // 所属单位
+    if (![userInfo.m_UserBaseInfo.m_Organization bm_isNotEmpty])
+    {
+        check = NO;
+    }
+    // 职位
+    else if (![userInfo.m_UserBaseInfo.m_Job bm_isNotEmpty])
+    {
+        check = NO;
+    }
+    // 材料图片
+    else if (self.m_MaterialImageView.image == nil)
+    {
+        check = NO;
+    }
+    
+    self.m_CheckBtn.enabled = check;
+    if (check)
+    {
+        self.m_CheckBtn.backgroundColor = UI_COLOR_BL1;
+    }
+    else
+    {
+        self.m_CheckBtn.backgroundColor = UI_COLOR_B3;
+    }
+}
+
+
+#pragma mark - 点击事件
+
+- (void)removeMaterialImageClick:(UIButton *)btn
+{
+    self.m_MaterialImageView.image = nil;
+    
+    self.m_MaterialImageDeleteBtn.hidden = YES;
+    self.m_CheckBtn.enabled = NO;
+    self.m_CheckBtn.backgroundColor = UI_COLOR_B3;
+}
+
+- (void)checkClick:(UIButton *)btn
+{
+    FSUserInfoModel *userInfo = [FSUserInfoModel userInfo];
+    // 所属单位
+    if (![userInfo.m_UserBaseInfo.m_Organization bm_isNotEmpty])
+    {
+        return;
+    }
+    // 职位
+    else if (![userInfo.m_UserBaseInfo.m_Job bm_isNotEmpty])
+    {
+        return;
+    }
+    // 材料图片
+    else if (self.m_MaterialImageView.image == nil)
+    {
+        return;
+    }
+
 }
 
 #pragma mark - 图片选择
@@ -403,6 +480,11 @@
     UIImage *image = photos[0];
     
     self.m_MaterialImageView.image = image;
+    
+    self.m_MaterialImageDeleteBtn.hidden = NO;
+    FSUserInfoModel *userInfo = [FSUserInfoModel userInfo];
+    [self checkDataWithUserInfo:userInfo];
+
     return;
     
     [self.m_ProgressHUD showAnimated:YES showBackground:NO];
