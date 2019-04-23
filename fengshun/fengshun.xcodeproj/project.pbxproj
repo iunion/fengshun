@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		45344498214D0DFA00EA7BFA /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 45344497214D0DFA00EA7BFA /* libstdc++.tbd */; };
 		4534449E214D0DFA00EA7BFA /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4534449D214D0DFA00EA7BFA /* libresolv.tbd */; };
-		453444A0214D0DFA00EA7BFA /* libprotobuf.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4534449F214D0DFA00EA7BFA /* libprotobuf.tbd */; };
 		453444A2214D0DFA00EA7BFA /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444A1214D0DFA00EA7BFA /* libicucore.tbd */; };
 		453444A4214D0DFA00EA7BFA /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444A3214D0DFA00EA7BFA /* libiconv.tbd */; };
 		453444A8214D0DFA00EA7BFA /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444A7214D0DFA00EA7BFA /* libbz2.tbd */; };
@@ -538,6 +537,10 @@
 		87742012214C9E1600F72427 /* FSNoticeMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87742010214C9E1600F72427 /* FSNoticeMessageCell.xib */; };
 		87742016214C9EB200F72427 /* FSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 87742015214C9EB200F72427 /* FSMessage.m */; };
 		8774201C214F523700F72427 /* FSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8774201B214F523700F72427 /* FSAlertView.m */; };
+		8776E7062269751800493422 /* user_photoclose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8776E7042269751800493422 /* user_photoclose@2x.png */; };
+		8776E7072269751800493422 /* user_photoclose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8776E7042269751800493422 /* user_photoclose@2x.png */; };
+		8776E7082269751800493422 /* user_photoclose@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8776E7052269751800493422 /* user_photoclose@3x.png */; };
+		8776E7092269751800493422 /* user_photoclose@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8776E7052269751800493422 /* user_photoclose@3x.png */; };
 		8799F10B21E2E983006F6C5B /* UIDevice+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 8799F10A21E2E983006F6C5B /* UIDevice+Private.m */; };
 		8799F10C21E2E983006F6C5B /* UIDevice+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 8799F10A21E2E983006F6C5B /* UIDevice+Private.m */; };
 		87A055E2220026650086434B /* UIImage+MemoryCacheCost.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A055E1220026640086434B /* UIImage+MemoryCacheCost.m */; };
@@ -757,6 +760,11 @@
 		87D9C60E21536A04009F8492 /* FSAboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D9C60B21536A04009F8492 /* FSAboutVC.m */; };
 		87D9C60F21536A04009F8492 /* FSAboutVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87D9C60C21536A04009F8492 /* FSAboutVC.xib */; };
 		87D9C61021536A04009F8492 /* FSAboutVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87D9C60C21536A04009F8492 /* FSAboutVC.xib */; };
+		87E70C19225F237D00B663C5 /* FSSetCompanyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E70C18225F237D00B663C5 /* FSSetCompanyVC.m */; };
+		87E70C1D22657DD300B663C5 /* FSSetProfessionalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E70C1C22657DD300B663C5 /* FSSetProfessionalVC.m */; };
+		87E70C1E22657DD300B663C5 /* FSSetProfessionalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E70C1C22657DD300B663C5 /* FSSetProfessionalVC.m */; };
+		87E70C212267101900B663C5 /* FSSetPositionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E70C202267101900B663C5 /* FSSetPositionVC.m */; };
+		87E70C222267101900B663C5 /* FSSetPositionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E70C202267101900B663C5 /* FSSetPositionVC.m */; };
 		87E7C27621509AB000F7AB14 /* SingleTextChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FEF84A214D1B970005AD43 /* SingleTextChatViewController.m */; };
 		87E7C27721509AB000F7AB14 /* default.css in Sources */ = {isa = PBXBuildFile; fileRef = 8730AF532140FFA2004331A9 /* default.css */; };
 		87E7C27921509AB000F7AB14 /* FLEXIvarEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87D20A31213920E2001EDD60 /* FLEXIvarEditorViewController.m */; };
@@ -1685,6 +1693,32 @@
 		87E7C6F52151F2C700F7AB14 /* FSTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C6EA2151F2C700F7AB14 /* FSTestHelper.m */; };
 		87E7C70221532DA000F7AB14 /* FSApiErrorLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C70021532D9F00F7AB14 /* FSApiErrorLog.m */; };
 		87E7C70321532DA000F7AB14 /* FSApiErrorLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E7C70021532D9F00F7AB14 /* FSApiErrorLog.m */; };
+		87EB100522544F3300C9D125 /* BMAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EB100022544F3300C9D125 /* BMAddressModel.m */; };
+		87EB100622544F3300C9D125 /* BMAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EB100022544F3300C9D125 /* BMAddressModel.m */; };
+		87EB100722544F3300C9D125 /* BMAddressPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EB100122544F3300C9D125 /* BMAddressPickerView.m */; };
+		87EB100822544F3300C9D125 /* BMAddressPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EB100122544F3300C9D125 /* BMAddressPickerView.m */; };
+		87EB100922544F3300C9D125 /* BMAddressChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EB100222544F3300C9D125 /* BMAddressChooseView.m */; };
+		87EB100A22544F3300C9D125 /* BMAddressChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EB100222544F3300C9D125 /* BMAddressChooseView.m */; };
+		87EB100B22544F3300C9D125 /* BMAddressPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EB100322544F3300C9D125 /* BMAddressPickerVC.m */; };
+		87EB100C22544F3300C9D125 /* BMAddressPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EB100322544F3300C9D125 /* BMAddressPickerVC.m */; };
+		87EB10102254577400C9D125 /* FSAddressPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EB100F2254577400C9D125 /* FSAddressPickerVC.m */; };
+		87EB10112254577400C9D125 /* FSAddressPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EB100F2254577400C9D125 /* FSAddressPickerVC.m */; };
+		87EB10152254631A00C9D125 /* BMAddressTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EB10132254631A00C9D125 /* BMAddressTableCell.m */; };
+		87EB10162254631A00C9D125 /* BMAddressTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EB10132254631A00C9D125 /* BMAddressTableCell.m */; };
+		87EB10172254631A00C9D125 /* BMAddressTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87EB10142254631A00C9D125 /* BMAddressTableCell.xib */; };
+		87EB10182254631A00C9D125 /* BMAddressTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87EB10142254631A00C9D125 /* BMAddressTableCell.xib */; };
+		87EB101C22548BC100C9D125 /* address_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87EB101A22548BC000C9D125 /* address_selected@2x.png */; };
+		87EB101D22548BC100C9D125 /* address_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87EB101A22548BC000C9D125 /* address_selected@2x.png */; };
+		87EB101E22548BC100C9D125 /* address_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87EB101B22548BC000C9D125 /* address_selected@3x.png */; };
+		87EB101F22548BC100C9D125 /* address_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87EB101B22548BC000C9D125 /* address_selected@3x.png */; };
+		87EB10272255F0EC00C9D125 /* BMApiStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EB10262255F0EC00C9D125 /* BMApiStatusView.m */; };
+		87EB10282255F0EC00C9D125 /* BMApiStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EB10262255F0EC00C9D125 /* BMApiStatusView.m */; };
+		87EB102B225B468D00C9D125 /* CAAnimation+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EB1029225B468D00C9D125 /* CAAnimation+Blocks.m */; };
+		87EB102C225B468D00C9D125 /* CAAnimation+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EB1029225B468D00C9D125 /* CAAnimation+Blocks.m */; };
+		87EB102F225D8F4700C9D125 /* user_passcertification@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87EB102D225D8F4600C9D125 /* user_passcertification@2x.png */; };
+		87EB1030225D8F4700C9D125 /* user_passcertification@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87EB102D225D8F4600C9D125 /* user_passcertification@2x.png */; };
+		87EB1031225D8F4700C9D125 /* user_notpasscertification@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87EB102E225D8F4700C9D125 /* user_notpasscertification@2x.png */; };
+		87EB1032225D8F4700C9D125 /* user_notpasscertification@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87EB102E225D8F4700C9D125 /* user_notpasscertification@2x.png */; };
 		87EE6CC521C09E24002BD296 /* BMTestNSURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE6CC421C09E24002BD296 /* BMTestNSURLProtocol.m */; };
 		87EE6CC621C09E2D002BD296 /* BMTestNSURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE6CC421C09E24002BD296 /* BMTestNSURLProtocol.m */; };
 		87EE6CC921C09EA7002BD296 /* BMTestNetFlowManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE6CC821C09EA7002BD296 /* BMTestNetFlowManager.m */; };
@@ -3222,6 +3256,8 @@
 		87742015214C9EB200F72427 /* FSMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMessage.m; sourceTree = "<group>"; };
 		8774201A214F523700F72427 /* FSAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSAlertView.h; sourceTree = "<group>"; };
 		8774201B214F523700F72427 /* FSAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSAlertView.m; sourceTree = "<group>"; };
+		8776E7042269751800493422 /* user_photoclose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_photoclose@2x.png"; sourceTree = "<group>"; };
+		8776E7052269751800493422 /* user_photoclose@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_photoclose@3x.png"; sourceTree = "<group>"; };
 		8799F10921E2E983006F6C5B /* UIDevice+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Private.h"; sourceTree = "<group>"; };
 		8799F10A21E2E983006F6C5B /* UIDevice+Private.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Private.m"; sourceTree = "<group>"; };
 		87A055E0220026640086434B /* UIImage+MemoryCacheCost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MemoryCacheCost.h"; sourceTree = "<group>"; };
@@ -3553,6 +3589,12 @@
 		87D9C60A21536A04009F8492 /* FSAboutVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSAboutVC.h; sourceTree = "<group>"; };
 		87D9C60B21536A04009F8492 /* FSAboutVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSAboutVC.m; sourceTree = "<group>"; };
 		87D9C60C21536A04009F8492 /* FSAboutVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSAboutVC.xib; sourceTree = "<group>"; };
+		87E70C17225F237D00B663C5 /* FSSetCompanyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSetCompanyVC.h; sourceTree = "<group>"; };
+		87E70C18225F237D00B663C5 /* FSSetCompanyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSSetCompanyVC.m; sourceTree = "<group>"; };
+		87E70C1B22657DD300B663C5 /* FSSetProfessionalVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSetProfessionalVC.h; sourceTree = "<group>"; };
+		87E70C1C22657DD300B663C5 /* FSSetProfessionalVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSSetProfessionalVC.m; sourceTree = "<group>"; };
+		87E70C1F2267101900B663C5 /* FSSetPositionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSetPositionVC.h; sourceTree = "<group>"; };
+		87E70C202267101900B663C5 /* FSSetPositionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSSetPositionVC.m; sourceTree = "<group>"; };
 		87E7C61F21509AB000F7AB14 /* fengshun_video.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fengshun_video.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87E7C6652150A4E400F7AB14 /* TOCropViewConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCropViewConstants.h; sourceTree = "<group>"; };
 		87E7C66A2150A4E400F7AB14 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TOCropViewControllerLocalizable.strings"; sourceTree = "<group>"; };
@@ -3598,6 +3640,27 @@
 		87E7C6F12151F2C700F7AB14 /* FSTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSTestHelper.h; sourceTree = "<group>"; };
 		87E7C70021532D9F00F7AB14 /* FSApiErrorLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSApiErrorLog.m; sourceTree = "<group>"; };
 		87E7C70121532DA000F7AB14 /* FSApiErrorLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSApiErrorLog.h; sourceTree = "<group>"; };
+		87EB0FFD22544F3300C9D125 /* BMAddressPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMAddressPickerView.h; sourceTree = "<group>"; };
+		87EB0FFE22544F3300C9D125 /* BMAddressChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMAddressChooseView.h; sourceTree = "<group>"; };
+		87EB0FFF22544F3300C9D125 /* BMAddressPickerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMAddressPickerVC.h; sourceTree = "<group>"; };
+		87EB100022544F3300C9D125 /* BMAddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMAddressModel.m; sourceTree = "<group>"; };
+		87EB100122544F3300C9D125 /* BMAddressPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMAddressPickerView.m; sourceTree = "<group>"; };
+		87EB100222544F3300C9D125 /* BMAddressChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMAddressChooseView.m; sourceTree = "<group>"; };
+		87EB100322544F3300C9D125 /* BMAddressPickerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMAddressPickerVC.m; sourceTree = "<group>"; };
+		87EB100422544F3300C9D125 /* BMAddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMAddressModel.h; sourceTree = "<group>"; };
+		87EB100E2254577400C9D125 /* FSAddressPickerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSAddressPickerVC.h; sourceTree = "<group>"; };
+		87EB100F2254577400C9D125 /* FSAddressPickerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSAddressPickerVC.m; sourceTree = "<group>"; };
+		87EB10122254631A00C9D125 /* BMAddressTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMAddressTableCell.h; sourceTree = "<group>"; };
+		87EB10132254631A00C9D125 /* BMAddressTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMAddressTableCell.m; sourceTree = "<group>"; };
+		87EB10142254631A00C9D125 /* BMAddressTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BMAddressTableCell.xib; sourceTree = "<group>"; };
+		87EB101A22548BC000C9D125 /* address_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "address_selected@2x.png"; sourceTree = "<group>"; };
+		87EB101B22548BC000C9D125 /* address_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "address_selected@3x.png"; sourceTree = "<group>"; };
+		87EB10252255F0EC00C9D125 /* BMApiStatusView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMApiStatusView.h; sourceTree = "<group>"; };
+		87EB10262255F0EC00C9D125 /* BMApiStatusView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMApiStatusView.m; sourceTree = "<group>"; };
+		87EB1029225B468D00C9D125 /* CAAnimation+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAAnimation+Blocks.m"; sourceTree = "<group>"; };
+		87EB102A225B468D00C9D125 /* CAAnimation+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAAnimation+Blocks.h"; sourceTree = "<group>"; };
+		87EB102D225D8F4600C9D125 /* user_passcertification@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_passcertification@2x.png"; sourceTree = "<group>"; };
+		87EB102E225D8F4700C9D125 /* user_notpasscertification@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_notpasscertification@2x.png"; sourceTree = "<group>"; };
 		87EE6CC321C09E24002BD296 /* BMTestNSURLProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMTestNSURLProtocol.h; sourceTree = "<group>"; };
 		87EE6CC421C09E24002BD296 /* BMTestNSURLProtocol.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMTestNSURLProtocol.m; sourceTree = "<group>"; };
 		87EE6CC721C09EA7002BD296 /* BMTestNetFlowManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMTestNetFlowManager.h; sourceTree = "<group>"; };
@@ -4095,7 +4158,6 @@
 				AD3B821E214A468100D72DE9 /* CoreText.framework in Frameworks */,
 				45344498214D0DFA00EA7BFA /* libstdc++.tbd in Frameworks */,
 				4534449E214D0DFA00EA7BFA /* libresolv.tbd in Frameworks */,
-				453444A0214D0DFA00EA7BFA /* libprotobuf.tbd in Frameworks */,
 				453444A2214D0DFA00EA7BFA /* libicucore.tbd in Frameworks */,
 				453444A4214D0DFA00EA7BFA /* libiconv.tbd in Frameworks */,
 				453444A8214D0DFA00EA7BFA /* libbz2.tbd in Frameworks */,
@@ -5216,6 +5278,12 @@
 				8730B0AB21427CC7004331A9 /* FSAuthenticationVC.m */,
 				8730B0C4214758F0004331A9 /* FSSetPhoneVC.h */,
 				8730B0C5214758F0004331A9 /* FSSetPhoneVC.m */,
+				87E70C17225F237D00B663C5 /* FSSetCompanyVC.h */,
+				87E70C18225F237D00B663C5 /* FSSetCompanyVC.m */,
+				87E70C1B22657DD300B663C5 /* FSSetProfessionalVC.h */,
+				87E70C1C22657DD300B663C5 /* FSSetProfessionalVC.m */,
+				87E70C1F2267101900B663C5 /* FSSetPositionVC.h */,
+				87E70C202267101900B663C5 /* FSSetPositionVC.m */,
 				87D9C60A21536A04009F8492 /* FSAboutVC.h */,
 				87D9C60B21536A04009F8492 /* FSAboutVC.m */,
 				87D9C60C21536A04009F8492 /* FSAboutVC.xib */,
@@ -5260,6 +5328,8 @@
 		87426792212E7E35003C52F6 /* BMTools */ = {
 			isa = PBXGroup;
 			children = (
+				87EB10202255F0B500C9D125 /* BMApiStatusView */,
+				87EB0FFC22544F3300C9D125 /* BMAddressPicker */,
 				87EE6CCF21C0AB23002BD296 /* BMApiUtil */,
 				8742680E212E7E35003C52F6 /* BMAlertView */,
 				87426820212E7E35003C52F6 /* BMAlignedImageView */,
@@ -5584,6 +5654,8 @@
 				87426835212E7E35003C52F6 /* UIView */,
 				8742685D212E7E35003C52F6 /* CAAnimation+Animation.h */,
 				87426849212E7E35003C52F6 /* CAAnimation+Animation.m */,
+				87EB102A225B468D00C9D125 /* CAAnimation+Blocks.h */,
+				87EB1029225B468D00C9D125 /* CAAnimation+Blocks.m */,
 				87426851212E7E35003C52F6 /* CALayer+BMSize.h */,
 				8742685E212E7E35003C52F6 /* CALayer+BMSize.m */,
 				8742684C212E7E35003C52F6 /* UIButton+BMCategory.h */,
@@ -6056,6 +6128,7 @@
 		87426A9821314996003C52F6 /* FSTools */ = {
 			isa = PBXGroup;
 			children = (
+				87EB100D2254575F00C9D125 /* FSAddressPicker */,
 				DBE58F422224D49D00F9A5E3 /* FSSimpleCameraViewController */,
 				8704B396219D1CAB00DBBC53 /* FSCountDownManager */,
 				AF1B5EE3217462BE00125921 /* FSShareManager */,
@@ -7126,6 +7199,10 @@
 				8730AD3F2140CC27004331A9 /* user_helpicon@3x.png */,
 				8730B0CB214772BB004331A9 /* user_mobileicon@2x.png */,
 				8730B0CC214772BC004331A9 /* user_mobileicon@3x.png */,
+				87EB102E225D8F4700C9D125 /* user_notpasscertification@2x.png */,
+				87EB102D225D8F4600C9D125 /* user_passcertification@2x.png */,
+				8776E7042269751800493422 /* user_photoclose@2x.png */,
+				8776E7052269751800493422 /* user_photoclose@3x.png */,
 				8730AD3A2140CC27004331A9 /* user_serviceicon@2x.png */,
 				8730AD372140CC27004331A9 /* user_serviceicon@3x.png */,
 				8730AD382140CC27004331A9 /* user_shareicon@2x.png */,
@@ -7289,6 +7366,52 @@
 				87E7C6EA2151F2C700F7AB14 /* FSTestHelper.m */,
 			);
 			path = FSTestHelp;
+			sourceTree = "<group>";
+		};
+		87EB0FFC22544F3300C9D125 /* BMAddressPicker */ = {
+			isa = PBXGroup;
+			children = (
+				87EB101922548BC000C9D125 /* images */,
+				87EB100422544F3300C9D125 /* BMAddressModel.h */,
+				87EB100022544F3300C9D125 /* BMAddressModel.m */,
+				87EB0FFF22544F3300C9D125 /* BMAddressPickerVC.h */,
+				87EB100322544F3300C9D125 /* BMAddressPickerVC.m */,
+				87EB0FFD22544F3300C9D125 /* BMAddressPickerView.h */,
+				87EB100122544F3300C9D125 /* BMAddressPickerView.m */,
+				87EB0FFE22544F3300C9D125 /* BMAddressChooseView.h */,
+				87EB100222544F3300C9D125 /* BMAddressChooseView.m */,
+				87EB10122254631A00C9D125 /* BMAddressTableCell.h */,
+				87EB10132254631A00C9D125 /* BMAddressTableCell.m */,
+				87EB10142254631A00C9D125 /* BMAddressTableCell.xib */,
+			);
+			path = BMAddressPicker;
+			sourceTree = "<group>";
+		};
+		87EB100D2254575F00C9D125 /* FSAddressPicker */ = {
+			isa = PBXGroup;
+			children = (
+				87EB100E2254577400C9D125 /* FSAddressPickerVC.h */,
+				87EB100F2254577400C9D125 /* FSAddressPickerVC.m */,
+			);
+			path = FSAddressPicker;
+			sourceTree = "<group>";
+		};
+		87EB101922548BC000C9D125 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				87EB101A22548BC000C9D125 /* address_selected@2x.png */,
+				87EB101B22548BC000C9D125 /* address_selected@3x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		87EB10202255F0B500C9D125 /* BMApiStatusView */ = {
+			isa = PBXGroup;
+			children = (
+				87EB10252255F0EC00C9D125 /* BMApiStatusView.h */,
+				87EB10262255F0EC00C9D125 /* BMApiStatusView.m */,
+			);
+			path = BMApiStatusView;
 			sourceTree = "<group>";
 		};
 		87EE6CCF21C0AB23002BD296 /* BMApiUtil */ = {
@@ -8340,6 +8463,7 @@
 				87426A6021313940003C52F6 /* FSMainVC.xib in Resources */,
 				DBF7E18B21523CB6002CEDA4 /* search_lawTopic_3@3x.png in Resources */,
 				87D186A3213679F800037DDF /* login_checked@2x.png in Resources */,
+				8776E7082269751800493422 /* user_photoclose@3x.png in Resources */,
 				AD6712332159DBD50081E08D /* fstab_btn4_icon@2x.png in Resources */,
 				87470BCA21D5DCF700BBE340 /* navigationbar_more_icon@3x.png in Resources */,
 				DB48742A2148DFE100AB0805 /* FSTextCell.xib in Resources */,
@@ -8384,6 +8508,7 @@
 				87D186AD213679F800037DDF /* login_closeeye@2x.png in Resources */,
 				87D186AE213679F800037DDF /* login_logo@3x.png in Resources */,
 				8730B1172148E5D1004331A9 /* fsfreshidle_icon13@2x.png in Resources */,
+				87EB102F225D8F4700C9D125 /* user_passcertification@2x.png in Resources */,
 				87D20AD6213920E2001EDD60 /* LICENSE in Resources */,
 				87741FE5214A132200F72427 /* user_wechaticon@2x.png in Resources */,
 				AD5102A4213E77FC008CD74D /* FSCommunitySecVC.xib in Resources */,
@@ -8469,9 +8594,11 @@
 				DB487446214B642600AB0805 /* FSImageFileCell.xib in Resources */,
 				ADC591F6215395100054BE72 /* fstab_btn3_highIcon@2x.png in Resources */,
 				AFB38CD8226DAA6400AB26CE /* FSNoIdentityAuthCell.xib in Resources */,
+				87EB1031225D8F4700C9D125 /* user_notpasscertification@2x.png in Resources */,
 				8730B1102148E5D1004331A9 /* fsfreshidle_icon8@2x.png in Resources */,
 				874268A0212E7E36003C52F6 /* decrease_taobao@3x.png in Resources */,
 				87E7C6C02150C10100F7AB14 /* empty_commonicon@2x.png in Resources */,
+				87EB101E22548BC100C9D125 /* address_selected@3x.png in Resources */,
 				87742012214C9E1600F72427 /* FSNoticeMessageCell.xib in Resources */,
 				874269FD212F9657003C52F6 /* navigationbar_help_icon@2x.png in Resources */,
 				ADA32F5B2229101700836C33 /* send_email@3x.png in Resources */,
@@ -8520,6 +8647,7 @@
 				87D20B2C213FB7F8001EDD60 /* default_avatariconlarge@2x.png in Resources */,
 				DBD4CE902141229400857DB3 /* home_browseCount@2x.png in Resources */,
 				DB48742F2148DFFE00AB0805 /* FSTextTypeCell.xib in Resources */,
+				87EB101C22548BC100C9D125 /* address_selected@2x.png in Resources */,
 				8730B1112148E5D1004331A9 /* fsfreshidle_icon5@2x.png in Resources */,
 				874C23B7215B4FF9001C8BE9 /* FSMyTopicCell.xib in Resources */,
 				DBB73F81215CC01F00E65230 /* placeholder_banner@2x.png in Resources */,
@@ -8552,6 +8680,7 @@
 				DBD4CDFE213FB2D800857DB3 /* FSMainToolCell.xib in Resources */,
 				874C23BF215B5DF2001C8BE9 /* user_praiseicon@3x.png in Resources */,
 				8730B1132148E5D1004331A9 /* fsfreshidle_icon26@2x.png in Resources */,
+				87EB10172254631A00C9D125 /* BMAddressTableCell.xib in Resources */,
 				87426892212E7E36003C52F6 /* steppersinput_plusicon@3x.png in Resources */,
 				8730B1072148E5D1004331A9 /* fsfreshidle_icon10@2x.png in Resources */,
 				8730B11C2148E5D1004331A9 /* fsfreshidle_icon17@2x.png in Resources */,
@@ -8599,6 +8728,7 @@
 				DBB73F7F215CC01F00E65230 /* placeholder_courseDetail@2x.png in Resources */,
 				DBEE30AA21D0DE41009EAE60 /* FSNoticeMessagesDetailVC.xib in Resources */,
 				DBB73F79215CC01F00E65230 /* placeholder_topic@3x.png in Resources */,
+				8776E7062269751800493422 /* user_photoclose@2x.png in Resources */,
 				ADA1228C214614BE00CF0D87 /* FSTopicListVC.xib in Resources */,
 				8742689D212E7E36003C52F6 /* increase_eleme@2x.png in Resources */,
 				87D1869F213679F800037DDF /* login_openeye@3x.png in Resources */,
@@ -8713,6 +8843,7 @@
 				87E7C51C21509AB000F7AB14 /* video_delete_btn@3x.png in Resources */,
 				87E7C51D21509AB000F7AB14 /* chat_left_bg@2x.png in Resources */,
 				87E7C51E21509AB000F7AB14 /* video_more_btn@3x.png in Resources */,
+				87EB10182254631A00C9D125 /* BMAddressTableCell.xib in Resources */,
 				DBF7E1A821524EDB002CEDA4 /* search_lawTopic_7@2x.png in Resources */,
 				87E7C51F21509AB000F7AB14 /* bmsearch_close@3x.png in Resources */,
 				87E7C52021509AB000F7AB14 /* navigationbar_message_icon@2x.png in Resources */,
@@ -8762,6 +8893,7 @@
 				87E7C53A21509AB000F7AB14 /* fsfreshidle_icon6@2x.png in Resources */,
 				87E7C53B21509AB000F7AB14 /* scanfile_select@2x.png in Resources */,
 				45F68F472150E58F00628DC8 /* empty_commonicon@3x.png in Resources */,
+				87EB101F22548BC100C9D125 /* address_selected@3x.png in Resources */,
 				87E7C53C21509AB000F7AB14 /* navigationbar_close_icon@2x.png in Resources */,
 				87E7C53D21509AB000F7AB14 /* fsfreshfreshing_icon2@2x.png in Resources */,
 				87BC9E5221549153000F2011 /* fsintroguide_1242x2688_4@2x.png in Resources */,
@@ -8829,6 +8961,7 @@
 				87E7C57021509AB000F7AB14 /* login_mobile@3x.png in Resources */,
 				87E7C57121509AB000F7AB14 /* BMTableView_UIButtonBarArrowRight@2x.png in Resources */,
 				874C23B1215B288F001C8BE9 /* FSMyCollectionCell.xib in Resources */,
+				87EB1030225D8F4700C9D125 /* user_passcertification@2x.png in Resources */,
 				DB7B1955215A0F1300EB585D /* search_openFilters@2x.png in Resources */,
 				87E7C57221509AB000F7AB14 /* search_closeFilters@3x.png in Resources */,
 				87E7C57321509AB000F7AB14 /* fsfreshfreshing_icon4@2x.png in Resources */,
@@ -8871,6 +9004,7 @@
 				87E7C58B21509AB000F7AB14 /* video_message_icon@2x.png in Resources */,
 				87E7C58C21509AB000F7AB14 /* bmsearch_history@2x.png in Resources */,
 				87E7C58E21509AB000F7AB14 /* steppersinput_plusicon@2x.png in Resources */,
+				87EB1032225D8F4700C9D125 /* user_notpasscertification@2x.png in Resources */,
 				87E7C58F21509AB000F7AB14 /* videocall_voice_open@2x.png in Resources */,
 				AD28473A21CCC355001009E9 /* FSAuthVC.xib in Resources */,
 				ADA32F5C2229101700836C33 /* send_email@3x.png in Resources */,
@@ -8883,9 +9017,11 @@
 				87E7C59521509AB000F7AB14 /* bmtab_bg@3x.png in Resources */,
 				87D9C61021536A04009F8492 /* FSAboutVC.xib in Resources */,
 				87E7C59621509AB000F7AB14 /* fsfreshfreshing_icon5@2x.png in Resources */,
+				87EB101D22548BC100C9D125 /* address_selected@2x.png in Resources */,
 				87E7C59721509AB000F7AB14 /* scanfile_camera@3x.png in Resources */,
 				87E7C59921509AB000F7AB14 /* user_commenticon@3x.png in Resources */,
 				DBF7E1AB21524EDB002CEDA4 /* search_lawTopic_8@3x.png in Resources */,
+				8776E7092269751800493422 /* user_photoclose@3x.png in Resources */,
 				AD67122E2159DBD40081E08D /* fstab_btn2_icon@3x.png in Resources */,
 				45F68F402150E58F00628DC8 /* empty_404icon@2x.png in Resources */,
 				87E7C59A21509AB000F7AB14 /* login_closeeye@3x.png in Resources */,
@@ -9018,6 +9154,7 @@
 				87E7C5FE21509AB000F7AB14 /* FSForumSectionHeaderView.xib in Resources */,
 				87E7C5FF21509AB000F7AB14 /* fsfreshfreshing_icon8@2x.png in Resources */,
 				87E7C60021509AB000F7AB14 /* increase_baiduwaimai@2x.png in Resources */,
+				8776E7072269751800493422 /* user_photoclose@2x.png in Resources */,
 				87E7C60121509AB000F7AB14 /* BMTableView_arrows_rightBlack@3x.png in Resources */,
 				87E7C60221509AB000F7AB14 /* login_password@3x.png in Resources */,
 				87E7C60321509AB000F7AB14 /* search_lawCount@2x.png in Resources */,
@@ -9079,6 +9216,7 @@
 				87E7C6992150A4E400F7AB14 /* TOCroppedImageAttributes.m in Sources */,
 				874268B0212E7E36003C52F6 /* BMTableViewImageDetailCell.m in Sources */,
 				87A0C17121CCD39300B2BF1A /* TZImageRequestOperation.m in Sources */,
+				87EB102B225B468D00C9D125 /* CAAnimation+Blocks.m in Sources */,
 				87D209C12138F1E2001EDD60 /* SDWebImageCompat.m in Sources */,
 				8730B03B2140FFA2004331A9 /* DTAttributedTextContentView.m in Sources */,
 				874269D7212E9E21003C52F6 /* BMFreshBackNormalFooter.m in Sources */,
@@ -9098,6 +9236,7 @@
 				AFB38CD1226DAA2700AB26CE /* FSNoIdentityAuthVC.m in Sources */,
 				874268C8212E7E36003C52F6 /* BMStepperInputItem.m in Sources */,
 				87426AB42133A32E003C52F6 /* FSAppInfo.m in Sources */,
+				87EB100B22544F3300C9D125 /* BMAddressPickerVC.m in Sources */,
 				87D20AD4213920E2001EDD60 /* FLEXSystemLogTableViewCell.m in Sources */,
 				87D209B52138F1E2001EDD60 /* UIImage+WebP.m in Sources */,
 				87D20ADC213920E2001EDD60 /* FLEXRealmDatabaseManager.m in Sources */,
@@ -9208,6 +9347,7 @@
 				8730B0472140FFA2004331A9 /* NSScanner+HTML.m in Sources */,
 				8730B0582140FFA3004331A9 /* NSAttributedString+DTCoreText.m in Sources */,
 				8730B0382140FFA2004331A9 /* DTCoreTextLayoutFrame.m in Sources */,
+				87EB100522544F3300C9D125 /* BMAddressModel.m in Sources */,
 				87D20AA3213920E2001EDD60 /* FLEXClassExplorerViewController.m in Sources */,
 				87426A6821313C1D003C52F6 /* FSSuperVC.m in Sources */,
 				87F639CE21533C820035E730 /* UITouch+MemoryLeak.m in Sources */,
@@ -9230,6 +9370,7 @@
 				87D209CD2138F1E2001EDD60 /* SDImageCacheConfig.m in Sources */,
 				87F639F221533C830035E730 /* FBIvarReference.m in Sources */,
 				87F639EE21533C830035E730 /* FBClassStrongLayoutHelpers.m in Sources */,
+				87EB10272255F0EC00C9D125 /* BMApiStatusView.m in Sources */,
 				87D20AEA213920E2001EDD60 /* FLEXKeyboardHelpViewController.m in Sources */,
 				87742004214C999100F72427 /* FSMessageTabVC.m in Sources */,
 				87426900212E7E36003C52F6 /* NSDate+BMCategory.m in Sources */,
@@ -9331,6 +9472,7 @@
 				8730B0202140FFA2004331A9 /* DTTextBlock.m in Sources */,
 				874268AF212E7E36003C52F6 /* BMTableViewLongTextCell.m in Sources */,
 				8730B0922140FFA3004331A9 /* DTScriptExpression.m in Sources */,
+				87EB10152254631A00C9D125 /* BMAddressTableCell.m in Sources */,
 				874268DD212E7E36003C52F6 /* BMNavigationTitleLabel.m in Sources */,
 				87D20AA0213920E2001EDD60 /* FLEXObjectExplorerFactory.m in Sources */,
 				AD22449D213CD6C300F2DC47 /* MASConstraintMaker.m in Sources */,
@@ -9347,8 +9489,10 @@
 				87D20AC1213920E2001EDD60 /* FLEXArgumentInputStructView.m in Sources */,
 				876BB7BF21AE864C00FC205D /* BMTestAlignView.m in Sources */,
 				874269D5212E9E21003C52F6 /* BMFreshBackContainerFooterView.m in Sources */,
+				87E70C19225F237D00B663C5 /* FSSetCompanyVC.m in Sources */,
 				87EE6CC921C09EA7002BD296 /* BMTestNetFlowManager.m in Sources */,
 				874268EA212E7E36003C52F6 /* UIView+BMNibLoading.m in Sources */,
+				87E70C212267101900B663C5 /* FSSetPositionVC.m in Sources */,
 				DB2656C721461A9F002ED713 /* FSSearchResultVC.m in Sources */,
 				DB2656CD214664FF002ED713 /* FSLawSearchResultVC.m in Sources */,
 				876BB7D021AFDD2100FC205D /* BMTestColorPickerView.m in Sources */,
@@ -9378,6 +9522,7 @@
 				874268F6212E7E36003C52F6 /* UIFont+BMCategory.m in Sources */,
 				8730B0872140FFA3004331A9 /* DTTiledLayerWithoutFade.m in Sources */,
 				87D20AC5213920E2001EDD60 /* FLEXArgumentInputFontsPickerView.m in Sources */,
+				87EB100922544F3300C9D125 /* BMAddressChooseView.m in Sources */,
 				8730B0272140FFA2004331A9 /* DTTextAttachmentHTMLElement.m in Sources */,
 				87D20AD0213920E2001EDD60 /* FLEXFileBrowserTableViewController.m in Sources */,
 				AD9325FC214B4FDA007F3A93 /* ZSSBarButtonItem.m in Sources */,
@@ -9390,6 +9535,7 @@
 				874268B2212E7E36003C52F6 /* BMTableViewNumberTextCell.m in Sources */,
 				8730B0672140FFA3004331A9 /* DTSQLiteDatabase.m in Sources */,
 				8730B0522140FFA2004331A9 /* NSString+HTML.m in Sources */,
+				87EB10102254577400C9D125 /* FSAddressPickerVC.m in Sources */,
 				8730B0832140FFA3004331A9 /* DTProgressHUD.m in Sources */,
 				87426A3921313159003C52F6 /* FSTabBarController.m in Sources */,
 				874269C0212E9B78003C52F6 /* BMFreshCircleHeader.m in Sources */,
@@ -9407,6 +9553,7 @@
 				87D20ADD213920E2001EDD60 /* FLEXSQLiteDatabaseManager.m in Sources */,
 				ADEF1F76214F9F7B00FFE0C3 /* FSMoreViewVC.m in Sources */,
 				8730B07C2140FFA3004331A9 /* NSURL+DTAppLinks.m in Sources */,
+				87E70C1D22657DD300B663C5 /* FSSetProfessionalVC.m in Sources */,
 				874269BB212E9B78003C52F6 /* BMFreshNormalHeader.m in Sources */,
 				DB34723B21CC878600950C33 /* FSPushVCModel.m in Sources */,
 				874268A6212E7E36003C52F6 /* BMStepperInputView.m in Sources */,
@@ -9429,6 +9576,7 @@
 				DBD4CE02213FBF5500857DB3 /* FSBannerModel.m in Sources */,
 				DB2656C4214619A0002ED713 /* FSCaseSearchResultVC.m in Sources */,
 				DB804FE921425CE9007F7B19 /* FSCaseCell.m in Sources */,
+				87EB100722544F3300C9D125 /* BMAddressPickerView.m in Sources */,
 				AD9355A02137D24100735C2E /* TZAssetCell.m in Sources */,
 				AD20272B21D0B7740055576D /* FSIdCardTextFeild.m in Sources */,
 				874269C7212E9B78003C52F6 /* BMFreshAutoNormalFooter.m in Sources */,
@@ -9741,10 +9889,12 @@
 				87D34E5121C9E5D000EC5873 /* FLEXColorExplorerViewController.m in Sources */,
 				87E7C29421509AB000F7AB14 /* BMStepperInputItem.m in Sources */,
 				87E7C29521509AB000F7AB14 /* FSAppInfo.m in Sources */,
+				87E70C1E22657DD300B663C5 /* FSSetProfessionalVC.m in Sources */,
 				87E7C29621509AB000F7AB14 /* FLEXSystemLogTableViewCell.m in Sources */,
 				87E7C29721509AB000F7AB14 /* UIImage+WebP.m in Sources */,
 				87E7C29821509AB000F7AB14 /* FLEXRealmDatabaseManager.m in Sources */,
 				87E7C29921509AB000F7AB14 /* XMRequest.m in Sources */,
+				87EB100A22544F3300C9D125 /* BMAddressChooseView.m in Sources */,
 				87E7C29A21509AB000F7AB14 /* VideoCallView.m in Sources */,
 				87E7C29B21509AB000F7AB14 /* FSTextTypeCell.m in Sources */,
 				87E7C29C21509AB000F7AB14 /* UIColor+BMCategory.m in Sources */,
@@ -9804,6 +9954,7 @@
 				87E7C2C821509AB000F7AB14 /* ZFPlayerGestureControl.m in Sources */,
 				87E7C2C921509AB000F7AB14 /* FSTopicListVC.m in Sources */,
 				87E7C2CA21509AB000F7AB14 /* FLEXImageExplorerViewController.m in Sources */,
+				87E70C222267101900B663C5 /* FSSetPositionVC.m in Sources */,
 				87E7C2CB21509AB000F7AB14 /* UIView+DTDebug.m in Sources */,
 				87E7C2CC21509AB000F7AB14 /* DTSidePanelPanGestureRecognizer.m in Sources */,
 				87E7C2CD21509AB000F7AB14 /* AFNetworkActivityIndicatorManager.m in Sources */,
@@ -9923,6 +10074,7 @@
 				87E7C33021509AB000F7AB14 /* FLEXTableContentViewController.m in Sources */,
 				87E7C33121509AB000F7AB14 /* DTASN1Serialization.m in Sources */,
 				87E7C33221509AB000F7AB14 /* FSVideoMediateModel.m in Sources */,
+				87EB100622544F3300C9D125 /* BMAddressModel.m in Sources */,
 				87E7C33321509AB000F7AB14 /* BMFreshBackFooterView.m in Sources */,
 				87E7C33421509AB000F7AB14 /* FSPreviewFileTool.m in Sources */,
 				87E7C33521509AB000F7AB14 /* SRWebSocket.m in Sources */,
@@ -9944,6 +10096,7 @@
 				87E7C34421509AB000F7AB14 /* FSApiRequest+HomePage.m in Sources */,
 				87E7C34521509AB000F7AB14 /* FSMyCollectionTabVC.m in Sources */,
 				87E7C34621509AB000F7AB14 /* DTScriptVariable.m in Sources */,
+				87EB10112254577400C9D125 /* FSAddressPickerVC.m in Sources */,
 				87E7C34721509AB000F7AB14 /* ChatTextModel.m in Sources */,
 				87E7C34821509AB000F7AB14 /* ZFLoadingView.m in Sources */,
 				87E7C34921509AB000F7AB14 /* ChatTextView.m in Sources */,
@@ -10012,6 +10165,7 @@
 				87E7C38221509AB000F7AB14 /* FLEXArgumentInputStructView.m in Sources */,
 				87E7C38321509AB000F7AB14 /* BMFreshBackContainerFooterView.m in Sources */,
 				87F639DD21533C830035E730 /* UIApplication+MemoryLeak.m in Sources */,
+				87EB100822544F3300C9D125 /* BMAddressPickerView.m in Sources */,
 				87E7C38421509AB000F7AB14 /* UIView+BMNibLoading.m in Sources */,
 				87E7C38521509AB000F7AB14 /* FSSearchResultVC.m in Sources */,
 				87E7C38621509AB000F7AB14 /* FSLawSearchResultVC.m in Sources */,
@@ -10068,6 +10222,7 @@
 				87E7C3B321509AB000F7AB14 /* ZFLandScapeControlView.m in Sources */,
 				87E7C3B421509AB000F7AB14 /* UILocalNotification+BMCategory.m in Sources */,
 				87E7C3B521509AB000F7AB14 /* NSDictionary+DTCoreText.m in Sources */,
+				87EB100C22544F3300C9D125 /* BMAddressPickerVC.m in Sources */,
 				87F639FF21533C830035E730 /* FBRetainCycleDetector.mm in Sources */,
 				87E7C3B621509AB000F7AB14 /* FLEXLayerExplorerViewController.m in Sources */,
 				87E7C3B721509AB000F7AB14 /* UIAlertController+Blocks.m in Sources */,
@@ -10078,6 +10233,7 @@
 				DB34724021CC900F00950C33 /* UIViewController+FSPushVCAPI.m in Sources */,
 				87E7C3BA21509AB000F7AB14 /* UIView+BMOutSide.m in Sources */,
 				87E7C3BB21509AB000F7AB14 /* BMEmptyView.m in Sources */,
+				87EB102C225B468D00C9D125 /* CAAnimation+Blocks.m in Sources */,
 				876BB7F421B6310D00FC205D /* BMTestAppInfoVC.m in Sources */,
 				87E7C3BC21509AB000F7AB14 /* FSWebView.m in Sources */,
 				87E7C3BD21509AB000F7AB14 /* FLEXNetworkSettingsTableViewController.m in Sources */,
@@ -10200,6 +10356,7 @@
 				87E7C42021509AB000F7AB14 /* FSAlertView.m in Sources */,
 				87E7C42121509AB000F7AB14 /* DTAccessibilityElement.m in Sources */,
 				45F87DD421547E92001451D5 /* FSCourseHomePageVC.m in Sources */,
+				87EB10282255F0EC00C9D125 /* BMApiStatusView.m in Sources */,
 				874C23AF215B288F001C8BE9 /* FSMyCollectionCell.m in Sources */,
 				87E7C42221509AB000F7AB14 /* WebViewJavascriptBridgeBase.m in Sources */,
 				87E7C42321509AB000F7AB14 /* ZFOrientationObserver.m in Sources */,
@@ -10233,6 +10390,7 @@
 				87E7C43C21509AB000F7AB14 /* DTHorizontalRuleHTMLElement.m in Sources */,
 				87E7C43D21509AB000F7AB14 /* DTVideoTextAttachment.m in Sources */,
 				87E7C43E21509AB000F7AB14 /* ZFPlayerController.m in Sources */,
+				87EB10162254631A00C9D125 /* BMAddressTableCell.m in Sources */,
 				87E7C43F21509AB000F7AB14 /* FSUserMainVC.m in Sources */,
 				87E7C44021509AB000F7AB14 /* FSCoreStatus.m in Sources */,
 				87E7C44121509AB000F7AB14 /* DTSQLiteFunctions.m in Sources */,

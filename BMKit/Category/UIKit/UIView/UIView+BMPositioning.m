@@ -222,6 +222,16 @@
     }];
 }
 
+- (void)bm_removeAllSubviewsWithClass:(Class)viewClass
+{
+    [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull childView, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([childView isKindOfClass:viewClass])
+        {
+            [childView removeFromSuperview];
+        }
+    }];
+}
+
 - (void)bm_bringToFront
 {
     [self.superview bringSubviewToFront:self];

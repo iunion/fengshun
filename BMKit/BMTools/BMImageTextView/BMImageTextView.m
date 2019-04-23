@@ -94,6 +94,7 @@
     
     _imageTextGap = gap;
     _accessoryArrowGap = ACCESSORYARROW_GAP;
+    _accessoryArrowType = BMImageTextViewAccessoryArrowType_Show;
     
     if (height <= 0)
     {
@@ -326,7 +327,21 @@
 
     self.arrowImageView.bm_centerY = self.bm_height*0.5;
     self.arrowImageView.bm_left = self.bm_width - ARROWIMAGE_WIDTH;
-    self.arrowImageView.hidden = !self.showTableCellAccessoryArrow;
+    if (self.showTableCellAccessoryArrow)
+    {
+        if (self.accessoryArrowType == BMImageTextViewAccessoryArrowType_Show)
+        {
+            self.arrowImageView.hidden = NO;
+        }
+        else
+        {
+            self.arrowImageView.hidden = YES;
+        }
+    }
+    else
+    {
+        self.arrowImageView.hidden = YES;
+    }
 
     if (self.type == BMImageTextViewType_ImageLeft)
     {

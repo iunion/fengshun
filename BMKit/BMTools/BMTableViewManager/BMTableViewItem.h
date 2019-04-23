@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, strong) UIColor *cellBgColor;
 
 // 图标
+// 图标是否在文字后面
+@property (nonatomic, assign) BOOL imageAtback;
 @property (nullable, nonatomic, strong) UIImage *image;
 @property (nullable, nonatomic, strong) NSString *imageUrl;
 // 高亮图标

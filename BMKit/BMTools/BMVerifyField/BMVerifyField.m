@@ -23,6 +23,7 @@
 @end
 
 @implementation BMVerifyField
+//@synthesize textContentType = _textContentType;
 @synthesize secureTextEntry = _secureTextEntry;
 @synthesize enablesReturnKeyAutomatically = _enablesReturnKeyAutomatically;
 @synthesize keyboardType = _keyboardType;
@@ -69,6 +70,11 @@
 {
     [self setBackgroundColor:[UIColor clearColor]];
     self.opaque = NO;
+    
+//    if (@available(iOS 12.0, *))
+//    {
+//        _textContentType = UITextContentTypeOneTimeCode;
+//    }
     
     _secureTextEntry = NO;
     _keyboardType = UIKeyboardTypeNumberPad;
@@ -157,6 +163,13 @@
         return nil;
     }
 }
+
+//- (void)setTextContentType:(UITextContentType)textContentType
+//{
+//    _textContentType = textContentType;
+//    
+//    [self setNeedsDisplay];
+//}
 
 - (void)setSecureTextEntry:(BOOL)secureTextEntry
 {
@@ -309,7 +322,11 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [super touchesBegan:touches withEvent:event];
-    [self becomeFirstResponder];
+    
+    if (![self isFirstResponder])
+    {
+        [self becomeFirstResponder];
+    }
 }
 
 
@@ -711,6 +728,13 @@
 
     [self setNeedsDisplay];
     [self resetCursorLayerIfNeeded];
+}
+
+- (void)changeText:(NSString *)text
+{
+    [self clear];
+    
+    [self insertText:text];
 }
 
 @end
