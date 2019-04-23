@@ -1925,6 +1925,8 @@
 		AFBF3183224E134F002BE1E3 /* FSSpecialColumnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AFBF3180224E134F002BE1E3 /* FSSpecialColumnCell.m */; };
 		AFBF3184224E134F002BE1E3 /* FSSpecialColumnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFBF3181224E134F002BE1E3 /* FSSpecialColumnCell.xib */; };
 		AFBF3185224E134F002BE1E3 /* FSSpecialColumnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFBF3181224E134F002BE1E3 /* FSSpecialColumnCell.xib */; };
+		AFDC7524226EA7F600F7EA65 /* FSMyColumnVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AFDC7523226EA7F600F7EA65 /* FSMyColumnVC.m */; };
+		AFDC7525226EA7F600F7EA65 /* FSMyColumnVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AFDC7523226EA7F600F7EA65 /* FSMyColumnVC.m */; };
 		DB14A7AA2139247900E88798 /* FSCourseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB14A7A82139247900E88798 /* FSCourseTableCell.m */; };
 		DB14A7AB2139247900E88798 /* FSCourseTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB14A7A92139247900E88798 /* FSCourseTableCell.xib */; };
 		DB16488A21C8CEE800F9FB9D /* jpush-extension-ios-1.1.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB16488521C8CEE700F9FB9D /* jpush-extension-ios-1.1.1.a */; };
@@ -3876,6 +3878,8 @@
 		AFBF317F224E134F002BE1E3 /* FSSpecialColumnCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSpecialColumnCell.h; sourceTree = "<group>"; };
 		AFBF3180224E134F002BE1E3 /* FSSpecialColumnCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSSpecialColumnCell.m; sourceTree = "<group>"; };
 		AFBF3181224E134F002BE1E3 /* FSSpecialColumnCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSSpecialColumnCell.xib; sourceTree = "<group>"; };
+		AFDC7522226EA7F600F7EA65 /* FSMyColumnVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMyColumnVC.h; sourceTree = "<group>"; };
+		AFDC7523226EA7F600F7EA65 /* FSMyColumnVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMyColumnVC.m; sourceTree = "<group>"; };
 		DB14A7A72139247900E88798 /* FSCourseTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCourseTableCell.h; sourceTree = "<group>"; };
 		DB14A7A82139247900E88798 /* FSCourseTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCourseTableCell.m; sourceTree = "<group>"; };
 		DB14A7A92139247900E88798 /* FSCourseTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSCourseTableCell.xib; sourceTree = "<group>"; };
@@ -6372,6 +6376,8 @@
 				87741FED214A385700F72427 /* FSMyCommentVC.m */,
 				87741FEF214A387100F72427 /* FSMyTopicVC.h */,
 				87741FF0214A387100F72427 /* FSMyTopicVC.m */,
+				AFDC7522226EA7F600F7EA65 /* FSMyColumnVC.h */,
+				AFDC7523226EA7F600F7EA65 /* FSMyColumnVC.m */,
 				AFB38CCF226DAA2700AB26CE /* FSNoIdentityAuthVC.h */,
 				AFB38CD0226DAA2700AB26CE /* FSNoIdentityAuthVC.m */,
 			);
@@ -9360,6 +9366,7 @@
 				874268C7212E7E36003C52F6 /* BMNumberTextItem.m in Sources */,
 				87D209BD2138F1E2001EDD60 /* SDWebImageDownloader.m in Sources */,
 				AD9325FB214B4FDA007F3A93 /* ZSSRichTextEditor.m in Sources */,
+				AFDC7524226EA7F600F7EA65 /* FSMyColumnVC.m in Sources */,
 				87D209BE2138F1E2001EDD60 /* UIImage+GIF.m in Sources */,
 				874C23AE215B288F001C8BE9 /* FSMyCollectionCell.m in Sources */,
 				AD22449B213CD6C300F2DC47 /* ViewController+MASAdditions.m in Sources */,
@@ -10048,6 +10055,7 @@
 				87E7C3A721509AB000F7AB14 /* ASRManager.m in Sources */,
 				87E7C3A821509AB000F7AB14 /* TTGTagCollectionView.m in Sources */,
 				87E7C3A921509AB000F7AB14 /* FSOCRResultVC.m in Sources */,
+				AFDC7525226EA7F600F7EA65 /* FSMyColumnVC.m in Sources */,
 				87E7C3AA21509AB000F7AB14 /* DTBreakHTMLElement.m in Sources */,
 				87E7C3AB21509AB000F7AB14 /* SDWebImageTransition.m in Sources */,
 				87E7C3AC21509AB000F7AB14 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
