@@ -14,6 +14,12 @@
 #import "AppDelegate.h"
 #import "FSUserInfoDB.h"
 
+@interface FSUserBaseInfoModel ()
+
+@property (nullable, nonatomic, strong) NSMutableArray *m_AbilityArray;
+
+@end
+
 @implementation FSUserBaseInfoModel
 
 + (instancetype)userBaseInfoWithServerDic:(NSDictionary *)dic
@@ -85,6 +91,8 @@
     self.m_NickName = [dic bm_stringTrimForKey:@"nickName"];
     // 性别: sex
     self.m_Sex = [dic bm_stringTrimForKey:@"sex"];
+    // 生日: birthday
+    self.m_Birthday = [dic bm_doubleForKey:@"birthday"];
     // 头像地址: headPortraitUrl
     self.m_AvatarUrl = [dic bm_stringTrimForKey:@"headPortraitUrl"];
     
@@ -101,8 +109,18 @@
         self.m_RealName = nil;
     }
 
+    // 身份认证: isRealIdentity
+    self.m_IsRealIdentity = [dic bm_boolForKey:@"isRealIdentity"];
     // 职位: job
     self.m_Job = [dic bm_stringTrimForKey:@"job"];
+    if (![self.m_Job bm_isNotEmpty])
+    {
+        self.m_IsRealIdentity = NO;
+    }
+    if (!self.m_IsRealIdentity)
+    {
+        self.m_Job = nil;
+    }
 
 
 #pragma mark searchUserBaseInfo
@@ -127,9 +145,28 @@
     }
 
     // 工作机构: workOrganization
+    // 工作机构(单位名称): workOrganization
     if ([dic bm_containsObjectForKey:@"workOrganization"])
     {
         self.m_Organization = [dic bm_stringTrimForKey:@"workOrganization"];
+    }
+    
+    // 工作单位地址区域: companyArea
+    if ([dic bm_containsObjectForKey:@"companyArea"])
+    {
+        self.m_CompanyArea = [dic bm_stringTrimForKey:@"companyArea"];
+    }
+    
+    // 工作单位地址: companyaddress
+    if ([dic bm_containsObjectForKey:@"companyaddress"])
+    {
+        self.m_CompanyAddress = [dic bm_stringTrimForKey:@"companyaddress"];
+    }
+    
+    // 工作单位区域信息: workearea
+    if ([dic bm_containsObjectForKey:@"workearea"])
+    {
+        self.m_WorkArea = [dic bm_stringTrimForKey:@"workearea"];
     }
     
     // 工作年限: workingLife
@@ -137,6 +174,24 @@
     {
         self.m_WorkingLife = [dic bm_uintForKey:@"workingLife"];
     }
+    
+    // 专业职务: professionalQualification
+    if ([dic bm_containsObjectForKey:@"professionalQualification"])
+    {
+        self.m_ProfessionalQualification = [dic bm_stringTrimForKey:@"professionalQualification"];
+    }
+    
+#warning Test
+    self.m_ProfessionalArray = [NSMutableArray arrayWithCapacity:0];
+    [self.m_ProfessionalArray addObject:@"氧气吐司"];
+    [self.m_ProfessionalArray addObject:@"小酥饼"];
+
+    // 工作经历: workExperience
+    if ([dic bm_containsObjectForKey:@"workExperience"])
+    {
+        self.m_WorkExperience = [dic bm_stringTrimForKey:@"workExperience"];
+    }
+
 }
 
 - (void)setM_Ability:(NSString *)ability

@@ -14,4 +14,6 @@
 #import "UIViewController+BMNavigationItem.h"
 #import "BMSingleLineView.h"
 
+#import "BMAddressPickerVC.h"
+
 #endif /* BMTools_h */

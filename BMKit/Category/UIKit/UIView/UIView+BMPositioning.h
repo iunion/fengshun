@@ -49,6 +49,7 @@
 - (UIView *)bm_descendantOrSelfWithClass:(Class)aClass strict:(BOOL)strict;
 
 - (void)bm_removeAllSubviews;
+- (void)bm_removeAllSubviewsWithClass:(Class)viewClass;
 
 - (void)bm_bringToFront;
 - (void)bm_sendToBack;

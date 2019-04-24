@@ -22,17 +22,23 @@
     // 日期数据存储
     NSMutableArray *_yearArray;
     NSMutableArray *_monthArray;
+    NSMutableArray *_chineseMonthArray;
     NSMutableArray *_dayArray;
     NSMutableArray *_hourArray;
     NSMutableArray *_minuteArray;
-    
+
+    // 性别数据
+    NSMutableArray *_sexArray;
+
     // 记录位置
     NSInteger yearIndex;
     NSInteger monthIndex;
     NSInteger dayIndex;
     NSInteger hourIndex;
     NSInteger minuteIndex;
-    
+
+    NSInteger sexIndex;
+
     NSInteger preIndex;
 }
 
@@ -51,8 +57,10 @@
 @property (nonatomic, strong) NSDate *pickerDate;
 @property (nonatomic, strong) NSString *formatDate;
 
-- (IBAction)doneClick:(id)sender;
+@property (nonatomic, strong) NSString *pickerSex;
 
+
+- (IBAction)doneClick:(id)sender;
 
 @end
 
@@ -94,6 +102,10 @@
     _hourArray = [[NSMutableArray alloc] initWithCapacity:0];
     _minuteArray = [[NSMutableArray alloc] initWithCapacity:0];
     
+    _chineseMonthArray = [[NSMutableArray alloc] initWithArray:@[@"一月", @"二月", @"三月", @"四月", @"五月", @"六月", @"七月", @"八月", @"九月", @"十月", @"十一月", @"十二月"]];
+    
+    _sexArray = [[NSMutableArray alloc] initWithArray:@[@"男", @"女"]];
+
     _showDoneBtn = YES;
     
     for (NSInteger i=0; i<60; i++)
@@ -140,7 +152,7 @@
     
     self.pickerLabelColor = RGBColor(247, 133, 51, 1);
     self.pickerItemColor = [UIColor blackColor];
-
+    self.pickerCurrentItemColor = [UIColor blueColor];
     
     self.doneBtn.layer.cornerRadius = 10;
     self.doneBtn.layer.masksToBounds = YES;
@@ -148,6 +160,11 @@
     self.doneBtnBgColor = RGBColor(247, 133, 51, 1);
     self.doneBtnTextColor = [UIColor whiteColor];
 
+    _showChineseMonth = NO;
+    
+    _showYearLabel = YES;
+    _showFormateLabel = YES;
+    
     //[self.picker reloadAllComponents];
 }
 
@@ -158,6 +175,9 @@
 - (void)setPickerStyle:(BMPickerStyle)pickerStyle
 {
     _pickerStyle = pickerStyle;
+    
+    // 不设置nil
+    self.pickerLabelTitleArray = @[];
     
     if (!self.formate)
     {
@@ -175,6 +195,9 @@
             case PickerStyle_YearMonthDay:
                 self.formate = @"yyyy-MM-dd";
                 break;
+            case PickerStyle_MonthDayYear:
+                self.formate = @"MM-dd-yyyy";
+                break;
             case PickerStyle_MonthDay:
                 self.formate = @"MM-dd";
                 break;
@@ -187,6 +210,13 @@
                 break;
         }
     }
+}
+
+- (void)setShowFormateLabel:(BOOL)showFormateLabel
+{
+    _showFormateLabel = showFormateLabel;
+    
+    self.formateLabel.hidden = !showFormateLabel;
 }
 
 - (void)setFormateColor:(UIColor *)formateColor
@@ -214,6 +244,9 @@
             case PickerStyle_YearMonthDay:
                 formate = @"yyyy-MM-dd";
                 break;
+            case PickerStyle_MonthDayYear:
+                self.formate = @"MM-dd-yyyy";
+                break;
             case PickerStyle_MonthDay:
                 formate = @"MM-dd";
                 break;
@@ -235,6 +268,13 @@
     }
 }
 
+- (void)setShowYearLabel:(BOOL)showYearLabel
+{
+    _showYearLabel = showYearLabel;
+    
+    self.yearLabel.hidden = !showYearLabel;
+}
+
 - (void)setYearColor:(UIColor *)yearColor
 {
     _yearColor = yearColor;
@@ -251,9 +291,102 @@
     }
 }
 
+- (void)setPickerLabelTitleArray:(NSArray *)titleArray
+{
+    _pickerLabelTitleArray = titleArray;
+    
+    if (titleArray == nil)
+    {
+        return;
+    }
+    
+    switch (self.pickerStyle)
+    {
+        case PickerStyle_YearMonthDayHourMinute:
+            if (titleArray.count == 5)
+            {
+                return;
+            }
+            else
+            {
+                _pickerLabelTitleArray = @[@"年",@"月",@"日",@"时",@"分"];
+            }
+            break;
+        case PickerStyle_MonthDayHourMinute:
+            if (titleArray.count == 4)
+            {
+                return;
+            }
+            else
+            {
+                _pickerLabelTitleArray = @[@"月",@"日",@"时",@"分"];
+            }
+            break;
+        case PickerStyle_Year:
+            if (titleArray.count == 1)
+            {
+                return;
+            }
+            else
+            {
+                _pickerLabelTitleArray = @[@"年"];
+            }
+            break;
+        case PickerStyle_YearMonthDay:
+            if (titleArray.count == 3)
+            {
+                return;
+            }
+            else
+            {
+                _pickerLabelTitleArray = @[@"年",@"月",@"日"];
+            }
+            break;
+        case PickerStyle_MonthDayYear:
+            if (titleArray.count == 3)
+            {
+                return;
+            }
+            else
+            {
+                _pickerLabelTitleArray = @[@"月",@"日",@"年"];
+            }
+            break;
+        case PickerStyle_MonthDay:
+            if (titleArray.count == 2)
+            {
+                return;
+            }
+            else
+            {
+                _pickerLabelTitleArray = @[@"月",@"日"];
+            }
+            break;
+        case PickerStyle_HourMinute:
+            if (titleArray.count == 2)
+            {
+                return;
+            }
+            else
+            {
+                _pickerLabelTitleArray = @[@"时",@"分"];
+            }
+            break;
+        default:
+            return;
+    }
+}
+
 - (void)setPickerItemColor:(UIColor *)pickerItemColor
 {
     _pickerItemColor = pickerItemColor;
+    
+    [self.picker reloadAllComponents];
+}
+
+- (void)setPickerCurrentItemColor:(UIColor *)pickerCurrentItemColor
+{
+    _pickerCurrentItemColor = pickerCurrentItemColor;
     
     [self.picker reloadAllComponents];
 }
@@ -289,6 +422,13 @@
 {
     _doneBtnTextColor = doneBtnTextColor;
     [self.doneBtn setTitleColor:doneBtnTextColor forState:UIControlStateNormal];
+}
+
+- (void)setShowChineseMonth:(BOOL)showChineseMonth
+{
+    _showChineseMonth = showChineseMonth;
+    
+    [self.picker reloadAllComponents];
 }
 
 - (void)setMaxLimitDate:(NSDate *)maxLimitDate
@@ -331,26 +471,32 @@
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
+    [self addPickLabelWithNames:self.pickerLabelTitleArray];
+
     switch (self.pickerStyle)
     {
         case PickerStyle_YearMonthDayHourMinute:
-            [self addPickLabelWithNames:@[@"年",@"月",@"日",@"时",@"分"]];
+            //[self addPickLabelWithNames:@[@"年",@"月",@"日",@"时",@"分"]];
             return 5;
         case PickerStyle_MonthDayHourMinute:
-            [self addPickLabelWithNames:@[@"月",@"日",@"时",@"分"]];
+            //[self addPickLabelWithNames:@[@"月",@"日",@"时",@"分"]];
             return 4;
         case PickerStyle_Year:
-            [self addPickLabelWithNames:@[@"年"]];
+            //[self addPickLabelWithNames:@[@"年"]];
             return 1;
         case PickerStyle_YearMonthDay:
-            [self addPickLabelWithNames:@[@"年",@"月",@"日"]];
+            //[self addPickLabelWithNames:@[@"年",@"月",@"日"]];
+            return 3;
+        case PickerStyle_MonthDayYear:
             return 3;
         case PickerStyle_MonthDay:
-            [self addPickLabelWithNames:@[@"月",@"日"]];
+            //[self addPickLabelWithNames:@[@"月",@"日"]];
             return 2;
         case PickerStyle_HourMinute:
-            [self addPickLabelWithNames:@[@"时",@"分"]];
+            //[self addPickLabelWithNames:@[@"时",@"分"]];
             return 2;
+        case PickerStyle_Sex:
+            return 1;
         default:
             return 0;
     }
@@ -399,27 +545,23 @@
     {
         case PickerStyle_YearMonthDayHourMinute:
             return @[@(yearNum), @(monthNum), @(dayNum), @(hourNum), @(minuteNUm)];
-            break;
         case PickerStyle_MonthDayHourMinute:
             return @[@(monthNum*timeInterval), @(dayNum), @(hourNum), @(minuteNUm)];
-            break;
         case PickerStyle_Year:
             return @[@(yearNum)];
-            break;
         case PickerStyle_YearMonthDay:
             return @[@(yearNum), @(monthNum), @(dayNum)];
-            break;
+        case PickerStyle_MonthDayYear:
+            return @[@(monthNum), @(dayNum), @(yearNum)];
         case PickerStyle_MonthDay:
             return @[@(monthNum*timeInterval), @(dayNum), @(hourNum)];
-            break;
         case PickerStyle_HourMinute:
             return @[@(hourNum), @(minuteNUm)];
-            break;
+        case PickerStyle_Sex:
+            return @[@(2)];
         default:
             return @[];
-            break;
     }
-    
 }
 
 
@@ -440,6 +582,8 @@
         [customLabel setFont:[UIFont systemFontOfSize:16.0f]];
     }
     
+    BOOL selected = NO;
+    
     NSString *title = @"";
     switch (self.pickerStyle)
     {
@@ -448,18 +592,45 @@
             {
                 case 0:
                     title = _yearArray[row];
+                    if (row == yearIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                 case 1:
-                    title = _monthArray[row];
+                    if (self.showChineseMonth)
+                    {
+                        title = _chineseMonthArray[row];
+                    }
+                    else
+                    {
+                        title = _monthArray[row];
+                    }
+                    if (row == monthIndex)
+                    {
+                        selected = YES;
+                    }
                 break;
                 case 2:
                     title = _dayArray[row];
+                    if (row == dayIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                 case 3:
                     title = _hourArray[row];
+                    if (row == hourIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                 case 4:
                     title = _minuteArray[row];
+                    if (row == minuteIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                 default:
                     break;
@@ -470,6 +641,10 @@
         {
             case 0:
                 title = _yearArray[row];
+                if (row == yearIndex)
+                {
+                    selected = YES;
+                }
                 break;
             default:
                 break;
@@ -480,31 +655,108 @@
             {
                 case 0:
                     title = _yearArray[row];
+                    if (row == yearIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                 case 1:
-                    title = _monthArray[row];
+                    if (self.showChineseMonth)
+                    {
+                        title = _chineseMonthArray[row];
+                    }
+                    else
+                    {
+                        title = _monthArray[row];
+                    }
+                    if (row == monthIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                 case 2:
                     title = _dayArray[row];
+                    if (row == dayIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                 default:
                     break;
             }
             break;
+        case PickerStyle_MonthDayYear:
+            switch (component)
+        {
+            case 0:
+                if (self.showChineseMonth)
+                {
+                    title = _chineseMonthArray[row];
+                }
+                else
+                {
+                    title = _monthArray[row];
+                }
+                if (row == monthIndex)
+                {
+                    selected = YES;
+                }
+                break;
+            case 1:
+                title = _dayArray[row];
+                if (row == dayIndex)
+                {
+                    selected = YES;
+                }
+                break;
+            case 2:
+                title = _yearArray[row];
+                if (row == yearIndex)
+                {
+                    selected = YES;
+                }
+                break;
+            default:
+                break;
+        }
+            break;
         case PickerStyle_MonthDayHourMinute:
             switch (component)
             {
                 case 0:
-                    title = _monthArray[row%12];
+                    if (self.showChineseMonth)
+                    {
+                        title = _chineseMonthArray[row%12];
+                    }
+                    else
+                    {
+                        title = _monthArray[row%12];
+                    }
+                    if (row%12 == monthIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                 case 1:
                     title = _dayArray[row];
+                    if (row == dayIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                 case 2:
                     title = _hourArray[row];
+                    if (row == hourIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                 case 3:
                     title = _minuteArray[row];
+                    if (row == minuteIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                 default:
                     break;
@@ -514,10 +766,25 @@
             switch (component)
             {
                 case 0:
-                    title = _monthArray[row%12];
+                    if (self.showChineseMonth)
+                    {
+                        title = _chineseMonthArray[row%12];
+                    }
+                    else
+                    {
+                        title = _monthArray[row%12];
+                    }
+                    if (row%12 == monthIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                 case 1:
                     title = _dayArray[row];
+                    if (row == dayIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                  default:
                     break;
@@ -528,12 +795,27 @@
             {
                 case 0:
                     title = _hourArray[row];
+                    if (row == hourIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                 case 1:
                     title = _minuteArray[row];
+                    if (row == minuteIndex)
+                    {
+                        selected = YES;
+                    }
                     break;
                 default:
                     break;
+            }
+            break;
+        case PickerStyle_Sex:
+            title = _sexArray[row];
+            if (row == sexIndex)
+            {
+                selected = YES;
             }
             break;
         default:
@@ -542,7 +824,14 @@
     }
     
     customLabel.text = title;
-    customLabel.textColor = self.pickerItemColor;
+    if (selected)
+    {
+        customLabel.textColor = self.pickerCurrentItemColor;
+    }
+    else
+    {
+        customLabel.textColor = self.pickerItemColor;
+    }
     return customLabel;
     
 }
@@ -626,6 +915,35 @@
                     break;
             }
             break;
+        case PickerStyle_MonthDayYear:
+            switch (component)
+        {
+            case 0:
+                monthIndex = row;
+                
+                [self DaysfromYear:[_yearArray[yearIndex] integerValue] andMonth:[_monthArray[monthIndex] integerValue]];
+                if (dayIndex >= _dayArray.count)
+                {
+                    dayIndex = _dayArray.count-1;
+                }
+                break;
+            case 1:
+                dayIndex = row;
+                break;
+            case 2:
+                yearIndex = row;
+                self.yearLabel.text =_yearArray[yearIndex];
+                
+                [self DaysfromYear:[_yearArray[yearIndex] integerValue] andMonth:[_monthArray[monthIndex] integerValue]];
+                if (dayIndex >= _dayArray.count)
+                {
+                    dayIndex = _dayArray.count-1;
+                }
+                break;
+            default:
+                break;
+        }
+            break;
         case PickerStyle_MonthDayHourMinute:
             switch (component)
             {
@@ -685,11 +1003,25 @@
                     break;
             }
             break;
+        case PickerStyle_Sex:
+            sexIndex = row;
+            break;
         default:
             break;
     }
     
     [pickerView reloadAllComponents];
+    
+    if (self.pickerStyle == PickerStyle_Sex)
+    {
+        self.pickerSex = _sexArray[sexIndex];
+        if (self.completeBlock)
+        {
+            self.completeBlock(self.pickerSex, NO);
+        }
+        
+        return;
+    }
     
     NSString *dateStr = [NSString stringWithFormat:@"%@-%@-%@ %@:%@", _yearArray[yearIndex], _monthArray[monthIndex], _dayArray[dayIndex], _hourArray[hourIndex], _minuteArray[minuteIndex]];
 
@@ -795,7 +1127,14 @@
 {
     if (self.completeBlock)
     {
-        self.completeBlock(self.pickerDate, YES);
+        if (self.pickerStyle == PickerStyle_Sex)
+        {
+            self.completeBlock(self.pickerSex, YES);
+        }
+        else
+        {
+            self.completeBlock(self.pickerDate, YES);
+        }
     }
 }
 
@@ -834,6 +1173,9 @@
             break;
         case PickerStyle_YearMonthDay:
             indexArray = @[@(yearIndex),@(monthIndex),@(dayIndex)];
+            break;
+        case PickerStyle_MonthDayYear:
+            indexArray = @[@(monthIndex),@(dayIndex),@(yearIndex)];
             break;
         case PickerStyle_MonthDay:
             indexArray = @[@(monthIndex),@(dayIndex)];

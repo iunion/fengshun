@@ -62,7 +62,7 @@
 
 - (void)commonInitWithImage:(UIImage *)image highlightedImage:(UIImage *)highlightedImage
 {
-    self.backgroundColor = [UIColor redColor];
+    self.backgroundColor = [UIColor clearColor];
     
     _enableScaleDown = YES;
     _enableScaleUp = YES;
