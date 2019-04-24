@@ -39,7 +39,6 @@
 #import <UMAnalytics/MobClick.h>
 #import <UMShare/UMShare.h>
 #import "FSShareManager.h"
-#import "FSJumpVCManager.h"
 
 #import "Growing.h"
 
