@@ -540,6 +540,7 @@
         {
             FSForumModel *model = [FSForumModel forumModelWithServerDic:responseObject];
             weakSelf.m_ForumModel = model;
+            [weakSelf bm_setNavigationBarTitle:model.m_ForumNameSecond];
             [_m_HeaderView updateHeaderViewWith:model];
         }
     } failure:^(NSError * _Nullable error) {

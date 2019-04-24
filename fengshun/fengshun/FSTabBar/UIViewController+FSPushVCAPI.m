@@ -31,6 +31,9 @@
         case FSPushToVCType_CourseVC:
             [FSPushVCManager viewController:self pushToCourseDetailWithId:pushModel.m_requestId andIsSerial:NO];
             break;
+        case FSPushToVCType_H5:
+            
+            break;
     }
 }
 

@@ -1927,6 +1927,8 @@
 		AFBF3185224E134F002BE1E3 /* FSSpecialColumnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFBF3181224E134F002BE1E3 /* FSSpecialColumnCell.xib */; };
 		AFDC7524226EA7F600F7EA65 /* FSMyColumnVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AFDC7523226EA7F600F7EA65 /* FSMyColumnVC.m */; };
 		AFDC7525226EA7F600F7EA65 /* FSMyColumnVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AFDC7523226EA7F600F7EA65 /* FSMyColumnVC.m */; };
+		AFDC7528226F102000F7EA65 /* FSJumpVCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AFDC7527226F102000F7EA65 /* FSJumpVCManager.m */; };
+		AFDC7529226F102000F7EA65 /* FSJumpVCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AFDC7527226F102000F7EA65 /* FSJumpVCManager.m */; };
 		DB14A7AA2139247900E88798 /* FSCourseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB14A7A82139247900E88798 /* FSCourseTableCell.m */; };
 		DB14A7AB2139247900E88798 /* FSCourseTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB14A7A92139247900E88798 /* FSCourseTableCell.xib */; };
 		DB16488A21C8CEE800F9FB9D /* jpush-extension-ios-1.1.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB16488521C8CEE700F9FB9D /* jpush-extension-ios-1.1.1.a */; };
@@ -3880,6 +3882,8 @@
 		AFBF3181224E134F002BE1E3 /* FSSpecialColumnCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSSpecialColumnCell.xib; sourceTree = "<group>"; };
 		AFDC7522226EA7F600F7EA65 /* FSMyColumnVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMyColumnVC.h; sourceTree = "<group>"; };
 		AFDC7523226EA7F600F7EA65 /* FSMyColumnVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMyColumnVC.m; sourceTree = "<group>"; };
+		AFDC7526226F102000F7EA65 /* FSJumpVCManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSJumpVCManager.h; sourceTree = "<group>"; };
+		AFDC7527226F102000F7EA65 /* FSJumpVCManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSJumpVCManager.m; sourceTree = "<group>"; };
 		DB14A7A72139247900E88798 /* FSCourseTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCourseTableCell.h; sourceTree = "<group>"; };
 		DB14A7A82139247900E88798 /* FSCourseTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCourseTableCell.m; sourceTree = "<group>"; };
 		DB14A7A92139247900E88798 /* FSCourseTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSCourseTableCell.xib; sourceTree = "<group>"; };
@@ -6561,6 +6565,8 @@
 				87C0134A212E7A5200D0AAC3 /* AppDelegate.m */,
 				AD51029D213E7771008CD74D /* FSPushVCManager.h */,
 				AD51029E213E7771008CD74D /* FSPushVCManager.m */,
+				AFDC7526226F102000F7EA65 /* FSJumpVCManager.h */,
+				AFDC7527226F102000F7EA65 /* FSJumpVCManager.m */,
 				87BC9E53215491DD000F2011 /* FSStartOpen */,
 				87426A6521313C1C003C52F6 /* FSSuperVC */,
 				87426A362131313E003C52F6 /* FSTabBar */,
@@ -9211,6 +9217,7 @@
 				87D20AA3213920E2001EDD60 /* FLEXClassExplorerViewController.m in Sources */,
 				87426A6821313C1D003C52F6 /* FSSuperVC.m in Sources */,
 				87F639CE21533C820035E730 /* UITouch+MemoryLeak.m in Sources */,
+				AFDC7528226F102000F7EA65 /* FSJumpVCManager.m in Sources */,
 				87E7C6952150A4E400F7AB14 /* TOActivityCroppedImageProvider.m in Sources */,
 				8730B0942140FFA3004331A9 /* DTReachability.m in Sources */,
 				8730B05D2140FFA3004331A9 /* DTCoreTextLayouter.m in Sources */,
@@ -10189,6 +10196,7 @@
 				87E7C41721509AB000F7AB14 /* UIScrollView+BMFresh.m in Sources */,
 				87E7C41821509AB000F7AB14 /* FSVideoMediateListCell.m in Sources */,
 				87E7C41921509AB000F7AB14 /* DTListItemHTMLElement.m in Sources */,
+				AFDC7529226F102000F7EA65 /* FSJumpVCManager.m in Sources */,
 				87E7C41A21509AB000F7AB14 /* BMFreshAutoFooterView.m in Sources */,
 				87F63A0321533C830035E730 /* NSObject+MemoryLeak.m in Sources */,
 				87E7C41B21509AB000F7AB14 /* FSFileScanImagePreviewVC.m in Sources */,
