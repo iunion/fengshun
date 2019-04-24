@@ -7,8 +7,13 @@
 //
 
 #import "UIViewController+FSPushVCAPI.h"
+#import "FSLoginVC.h"
+#import "FSCustomInfoVC.h"
+
 
 @implementation UIViewController (FSPushVCAPI)
+
+
 
 - (void)fspush_withModel:(FSPushVCModel *)pushModel
 {
@@ -35,6 +40,100 @@
             
             break;
     }
+}
+
+- (BOOL)canOpenUrl:(NSURL *)url
+{
+    return  [url.scheme isEqualToString:FS_URL_Schemes];
+}
+
+- (void)fspush_withUrl:(NSURL *)url
+{
+    if (![self canOpenUrl:url])
+    {
+        return;
+    }
+    FSJumpVC_TYPE jumpType = [FSGlobalEnum getJumpType:url.host];
+    if (jumpType == FSJumpVC_TYPE_NONE)
+    {
+        return;
+    }
+    switch (jumpType) {
+        case FSJumpVC_TYPE_STATUTE://
+            [FSPushVCManager pushToLawSearch:self];
+            break;
+        case FSJumpVC_TYPE_CASE://
+        {
+            [FSApiRequest getCaseSearchHotkeysSuccess:^(id  _Nullable responseObject) {
+                NSDictionary *data = responseObject;
+                [FSPushVCManager homePage:self pushToCaseSearchWithHotKeys:[data bm_arrayForKey:@"hotKeywords"]];
+            } failure:^(NSError * _Nullable error) {
+                
+            }];
+        }
+            break;
+        case FSJumpVC_TYPE_DOCUMENT://
+            [FSPushVCManager homePagePushToTextSplitVC:self];
+            break;
+        case FSJumpVC_TYPE_VIDEO://
+        {
+#ifdef FSVIDEO_ON
+            if ([FSUserInfoModel isLogin])
+            {
+                [FSPushVCManager pushVideoMediateList:self.navigationController];
+            }
+            else
+            {
+                [self showLoginWithVC:self];
+            }
+#endif
+        }
+            break;
+        case FSJumpVC_TYPE_FILESCANNING://
+            if ([FSUserInfoModel isLogin])
+            {
+                [FSPushVCManager homePagePushToFileScanVC:self];
+            }
+            else
+            {
+                [self showLoginWithVC:self];
+            }
+            break;
+        case FSJumpVC_TYPE_CONSULTATION://
+            [FSPushVCManager pushToAIConsultVC:self];
+            break;
+        case FSJumpVC_TYPE_PERSONAL://
+        {
+            FSCustomInfoVC *vc = [[FSCustomInfoVC alloc] init];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case FSJumpVC_TYPE_FORUM://
+        {
+            // 获取帖子的id
+            NSDictionary *params = [url bm_queryDictionary];
+            [FSPushVCManager showCommunitySecVCPushVC:self fourmId:[params bm_intForKey:@"id"] fourmName:@""];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+// 弹出登录
+- (BOOL)showLoginWithVC:(UIViewController *)pushVC
+{
+    if ([FSUserInfoModel isLogin])
+    {
+        return NO;
+    }
+    FSLoginVC *loginVC = [[FSLoginVC alloc] init];
+    BMNavigationController *nav = [[BMNavigationController alloc] initWithRootViewController:loginVC];
+    [pushVC presentViewController:nav animated:YES completion:^{
+    }];
+    return YES;
 }
 
 @end

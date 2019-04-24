@@ -36,4 +36,18 @@ typedef NS_ENUM(NSUInteger, FSReceivePushInfoState)
     FSReceivePushInfoState_PushInfoLaunching, // APP未启动,通过部跳转启动
 };
 
+typedef NS_ENUM(NSUInteger, FSJumpVC_TYPE) {
+    FSJumpVC_TYPE_NONE,
+    FSJumpVC_TYPE_STATUTE, // 法规检索首页
+    FSJumpVC_TYPE_CASE, //  案例检索首页
+    FSJumpVC_TYPE_DOCUMENT,// 文书范本首页
+    FSJumpVC_TYPE_VIDEO,// 视频调解首页
+    FSJumpVC_TYPE_FILESCANNING,//  文件扫描首页
+    FSJumpVC_TYPE_CONSULTATION, // 智能咨询首页
+    FSJumpVC_TYPE_PERSONAL,// 个人信息
+    FSJumpVC_TYPE_FORUM,// 板块
+};
+
++ (FSJumpVC_TYPE)getJumpType:(NSString *)type;
+
 @end

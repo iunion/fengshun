@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "FSPushVCModel.h"
+#define FS_URL_Schemes @"ftls"
 
 @interface UIViewController (FSPushVCAPI)
 
 - (void)fspush_withModel:(FSPushVCModel *)pushModel;
+
+- (void)fspush_withUrl:(NSURL *)url;
 
 @end
