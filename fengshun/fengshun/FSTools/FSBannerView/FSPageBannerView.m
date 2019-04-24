@@ -465,7 +465,6 @@
         //NSLog(@"scrollViewDidScroll cancelPreviousPerformRequestsWithTarget");
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(rollingScrollAction) object:nil];
     }
-    
     // 水平滚动
     if (self.scrollDirection == FSBannerViewScrollDirectionLandscape)
     {

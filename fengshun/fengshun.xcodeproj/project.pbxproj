@@ -1941,6 +1941,8 @@
 		ADEF1F76214F9F7B00FFE0C3 /* FSMoreViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEF1F74214F9F7B00FFE0C3 /* FSMoreViewVC.m */; };
 		ADEF1F77214F9F7B00FFE0C3 /* FSMoreViewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADEF1F75214F9F7B00FFE0C3 /* FSMoreViewVC.xib */; };
 		ADF7AAD821490D1F00B550E6 /* FSTopicDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF7AAD721490D1E00B550E6 /* FSTopicDetailVC.m */; };
+		AF0190FF22705F1D00C19D82 /* FSColumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF0190FE22705F1D00C19D82 /* FSColumModel.m */; };
+		AF01910022705F1D00C19D82 /* FSColumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF0190FE22705F1D00C19D82 /* FSColumModel.m */; };
 		AF1B5EE6217462FA00125921 /* FSShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1B5EE5217462FA00125921 /* FSShareManager.m */; };
 		AF1B5EE7217462FA00125921 /* FSShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1B5EE5217462FA00125921 /* FSShareManager.m */; };
 		AF81BF742251A1DB00BFA610 /* FSCharacterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF81BF722251A1DB00BFA610 /* FSCharacterCell.m */; };
@@ -3926,6 +3928,8 @@
 		ADEF1F75214F9F7B00FFE0C3 /* FSMoreViewVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSMoreViewVC.xib; sourceTree = "<group>"; };
 		ADF7AAD621490D1E00B550E6 /* FSTopicDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSTopicDetailVC.h; sourceTree = "<group>"; };
 		ADF7AAD721490D1E00B550E6 /* FSTopicDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSTopicDetailVC.m; sourceTree = "<group>"; };
+		AF0190FD22705F1D00C19D82 /* FSColumModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSColumModel.h; sourceTree = "<group>"; };
+		AF0190FE22705F1D00C19D82 /* FSColumModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSColumModel.m; sourceTree = "<group>"; };
 		AF1B5EE4217462FA00125921 /* FSShareManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSShareManager.h; sourceTree = "<group>"; };
 		AF1B5EE5217462FA00125921 /* FSShareManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSShareManager.m; sourceTree = "<group>"; };
 		AF81BF712251A1DB00BFA610 /* FSCharacterCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCharacterCell.h; sourceTree = "<group>"; };
@@ -8189,6 +8193,8 @@
 				DBD4CE0B213FC32D00857DB3 /* FSImageJump.m */,
 				DBD4CE00213FBF5500857DB3 /* FSBannerModel.h */,
 				DBD4CE01213FBF5500857DB3 /* FSBannerModel.m */,
+				AF0190FD22705F1D00C19D82 /* FSColumModel.h */,
+				AF0190FE22705F1D00C19D82 /* FSColumModel.m */,
 				DBD4CE03213FBF6C00857DB3 /* FSHomePageToolModel.h */,
 				DBD4CE04213FBF6C00857DB3 /* FSHomePageToolModel.m */,
 				DBD4CE06213FBFA000857DB3 /* FSCourseModel.h */,
@@ -9365,6 +9371,7 @@
 				87F639D421533C820035E730 /* UIPageViewController+MemoryLeak.m in Sources */,
 				87F639D621533C830035E730 /* UITabBarController+MemoryLeak.m in Sources */,
 				8730B0332140FFA2004331A9 /* DTHTMLParserTextNode.m in Sources */,
+				AF0190FF22705F1D00C19D82 /* FSColumModel.m in Sources */,
 				87D209B62138F1E2001EDD60 /* MKAnnotationView+WebCache.m in Sources */,
 				8742690E212E7E36003C52F6 /* NSMutableArray+BMCategory.m in Sources */,
 				87D209CD2138F1E2001EDD60 /* SDImageCacheConfig.m in Sources */,
@@ -10043,6 +10050,7 @@
 				87E7C31721509AB000F7AB14 /* NSNumber+BMCategory.m in Sources */,
 				87E7C6A42150A4E500F7AB14 /* TOCropToolbar.m in Sources */,
 				87E7C31821509AB000F7AB14 /* MJPropertyKey.m in Sources */,
+				AF01910022705F1D00C19D82 /* FSColumModel.m in Sources */,
 				87F639D521533C820035E730 /* UIPageViewController+MemoryLeak.m in Sources */,
 				87EE6CC621C09E2D002BD296 /* BMTestNSURLProtocol.m in Sources */,
 				87E7C31921509AB000F7AB14 /* FSSendTopicVC.m in Sources */,

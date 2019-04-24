@@ -36,6 +36,9 @@ typedef NS_ENUM(NSUInteger, FSReceivePushInfoState)
     FSReceivePushInfoState_PushInfoLaunching, // APP未启动,通过部跳转启动
 };
 
+/**
+ 外部跳转 && banner跳转原生
+ */
 typedef NS_ENUM(NSUInteger, FSJumpVC_TYPE) {
     FSJumpVC_TYPE_NONE,
     FSJumpVC_TYPE_STATUTE, // 法规检索首页
