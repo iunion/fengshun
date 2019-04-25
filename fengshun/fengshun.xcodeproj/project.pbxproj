@@ -1363,7 +1363,7 @@
 		87E7C4DA21509AB000F7AB14 /* ILiveLogReport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF763214D11060005AD43 /* ILiveLogReport.framework */; };
 		87E7C4DB21509AB000F7AB14 /* ImSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF749214D11060005AD43 /* ImSDK.framework */; };
 		87E7C4DC21509AB000F7AB14 /* TLSSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF74A214D11060005AD43 /* TLSSDK.framework */; };
-		87E7C4DD21509AB000F7AB14 /* QALSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF74C214D11060005AD43 /* QALSDK.framework */; };
+		87E7C4DD21509AB000F7AB14 /* QALSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF74C214D11060005AD43 /* QALSDK.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		87E7C4DE21509AB000F7AB14 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 45344497214D0DFA00EA7BFA /* libstdc++.tbd */; };
 		87E7C4E021509AB000F7AB14 /* IMCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF74B214D11060005AD43 /* IMCore.framework */; };
 		87E7C4E221509AB000F7AB14 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4534449D214D0DFA00EA7BFA /* libresolv.tbd */; };
@@ -1961,6 +1961,16 @@
 		AFBF3183224E134F002BE1E3 /* FSSpecialColumnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AFBF3180224E134F002BE1E3 /* FSSpecialColumnCell.m */; };
 		AFBF3184224E134F002BE1E3 /* FSSpecialColumnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFBF3181224E134F002BE1E3 /* FSSpecialColumnCell.xib */; };
 		AFBF3185224E134F002BE1E3 /* FSSpecialColumnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFBF3181224E134F002BE1E3 /* FSSpecialColumnCell.xib */; };
+		AFC74A59227156D80013C318 /* FSSetCompanyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E70C18225F237D00B663C5 /* FSSetCompanyVC.m */; };
+		AFC74A5B22715BB80013C318 /* fengshun_video.app in Resources */ = {isa = PBXBuildFile; fileRef = 87E7C61F21509AB000F7AB14 /* fengshun_video.app */; };
+		AFC74A5E22715C9D0013C318 /* QAVSDKInternal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF74F214D11060005AD43 /* QAVSDKInternal.framework */; };
+		AFC74A5F22715C9D0013C318 /* QAVSDKInternal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF74F214D11060005AD43 /* QAVSDKInternal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AFC74A6122715D480013C318 /* QAVSDKInternal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF74F214D11060005AD43 /* QAVSDKInternal.framework */; };
+		AFC74A6222715D480013C318 /* QAVSDKInternal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF74F214D11060005AD43 /* QAVSDKInternal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AFC74A6722718DFE0013C318 /* FSColumnCountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC74A6522718DFE0013C318 /* FSColumnCountCell.m */; };
+		AFC74A6822718DFE0013C318 /* FSColumnCountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC74A6522718DFE0013C318 /* FSColumnCountCell.m */; };
+		AFC74A6922718DFE0013C318 /* FSColumnCountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFC74A6622718DFE0013C318 /* FSColumnCountCell.xib */; };
+		AFC74A6A22718DFE0013C318 /* FSColumnCountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFC74A6622718DFE0013C318 /* FSColumnCountCell.xib */; };
 		AFDC7524226EA7F600F7EA65 /* FSMyColumnVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AFDC7523226EA7F600F7EA65 /* FSMyColumnVC.m */; };
 		AFDC7525226EA7F600F7EA65 /* FSMyColumnVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AFDC7523226EA7F600F7EA65 /* FSMyColumnVC.m */; };
 		DB14A7AA2139247900E88798 /* FSCourseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB14A7A82139247900E88798 /* FSCourseTableCell.m */; };
@@ -2210,7 +2220,39 @@
 			remoteGlobalIDString = 87D1866221353A8700037DDF;
 			remoteInfo = FSEncodeAPI;
 		};
+		AFC74A5C22715BB80013C318 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87C0133E212E7A5200D0AAC3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 87E7C27221509AB000F7AB14;
+			remoteInfo = fengshun_video;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AFC74A6022715C9E0013C318 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				AFC74A5F22715C9D0013C318 /* QAVSDKInternal.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFC74A6322715D490013C318 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				AFC74A6222715D480013C318 /* QAVSDKInternal.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4518E60A214DEA0600A3AF2A /* video_history_play@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_history_play@3x.png"; sourceTree = "<group>"; };
@@ -3945,6 +3987,9 @@
 		AFBF317F224E134F002BE1E3 /* FSSpecialColumnCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSSpecialColumnCell.h; sourceTree = "<group>"; };
 		AFBF3180224E134F002BE1E3 /* FSSpecialColumnCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSSpecialColumnCell.m; sourceTree = "<group>"; };
 		AFBF3181224E134F002BE1E3 /* FSSpecialColumnCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSSpecialColumnCell.xib; sourceTree = "<group>"; };
+		AFC74A6422718DFE0013C318 /* FSColumnCountCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSColumnCountCell.h; sourceTree = "<group>"; };
+		AFC74A6522718DFE0013C318 /* FSColumnCountCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSColumnCountCell.m; sourceTree = "<group>"; };
+		AFC74A6622718DFE0013C318 /* FSColumnCountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSColumnCountCell.xib; sourceTree = "<group>"; };
 		AFDC7522226EA7F600F7EA65 /* FSMyColumnVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMyColumnVC.h; sourceTree = "<group>"; };
 		AFDC7523226EA7F600F7EA65 /* FSMyColumnVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMyColumnVC.m; sourceTree = "<group>"; };
 		DB14A7A72139247900E88798 /* FSCourseTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCourseTableCell.h; sourceTree = "<group>"; };
@@ -4143,6 +4188,7 @@
 				874C23C7215E216A001C8BE9 /* UMAnalytics.framework in Frameworks */,
 				DB16489821C8F44200F9FB9D /* jcore-ios-1.2.6.a in Frameworks */,
 				ADEF1F6F214F9B7500FFE0C3 /* ImageIO.framework in Frameworks */,
+				AFC74A5E22715C9D0013C318 /* QAVSDKInternal.framework in Frameworks */,
 				ADEF1F6D214F9B6300FFE0C3 /* CoreTelephony.framework in Frameworks */,
 				ADEF1F32214F546800FFE0C3 /* libsqlite3.tbd in Frameworks */,
 				871D64D821C8D38300698AC1 /* GrowingAutoTrackKit.framework in Frameworks */,
@@ -4221,6 +4267,7 @@
 				871D64D921C8D38300698AC1 /* GrowingAutoTrackKit.framework in Frameworks */,
 				87E7C4D821509AB000F7AB14 /* TILLiveSDK.framework in Frameworks */,
 				87E7C4DA21509AB000F7AB14 /* ILiveLogReport.framework in Frameworks */,
+				AFC74A6122715D480013C318 /* QAVSDKInternal.framework in Frameworks */,
 				87E7C4DB21509AB000F7AB14 /* ImSDK.framework in Frameworks */,
 				87E7C4DC21509AB000F7AB14 /* TLSSDK.framework in Frameworks */,
 				87E7C4DD21509AB000F7AB14 /* QALSDK.framework in Frameworks */,
@@ -8035,6 +8082,9 @@
 				AF81BF712251A1DB00BFA610 /* FSCharacterCell.h */,
 				AF81BF722251A1DB00BFA610 /* FSCharacterCell.m */,
 				AF81BF732251A1DB00BFA610 /* FSCharacterCell.xib */,
+				AFC74A6422718DFE0013C318 /* FSColumnCountCell.h */,
+				AFC74A6522718DFE0013C318 /* FSColumnCountCell.m */,
+				AFC74A6622718DFE0013C318 /* FSColumnCountCell.xib */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -8303,12 +8353,14 @@
 				87C01342212E7A5200D0AAC3 /* Sources */,
 				87C01343212E7A5200D0AAC3 /* Frameworks */,
 				87C01344212E7A5200D0AAC3 /* Resources */,
+				AFC74A6022715C9E0013C318 /* Embed Frameworks */,
 			);
 			buildRules = (
 				8730B0A02140FFD2004331A9 /* PBXBuildRule */,
 			);
 			dependencies = (
 				87D1867621353C3D00037DDF /* PBXTargetDependency */,
+				AFC74A5D22715BB80013C318 /* PBXTargetDependency */,
 			);
 			name = fengshun;
 			productName = fengshun;
@@ -8358,6 +8410,7 @@
 				87E7C27521509AB000F7AB14 /* Sources */,
 				87E7C4C821509AB000F7AB14 /* Frameworks */,
 				87E7C4FB21509AB000F7AB14 /* Resources */,
+				AFC74A6322715D490013C318 /* Embed Frameworks */,
 			);
 			buildRules = (
 				87E7C61B21509AB000F7AB14 /* PBXBuildRule */,
@@ -8511,6 +8564,7 @@
 				ADC59206215395100054BE72 /* fstab_btn1_highIcon@3x.png in Resources */,
 				DB7B1952215A0F1300EB585D /* search_openFilters@3x.png in Resources */,
 				ADA32F5D2229101800836C33 /* send_email@2x.png in Resources */,
+				AFC74A6922718DFE0013C318 /* FSColumnCountCell.xib in Resources */,
 				87D186AD213679F800037DDF /* login_closeeye@2x.png in Resources */,
 				87D186AE213679F800037DDF /* login_logo@3x.png in Resources */,
 				8730B1172148E5D1004331A9 /* fsfreshidle_icon13@2x.png in Resources */,
@@ -8744,6 +8798,7 @@
 				AD1BE214214127180018AF2C /* FSForumSectionHeaderView.xib in Resources */,
 				87BC9E3921548E0D000F2011 /* fsintroguide_1242x2688_4@2x.png in Resources */,
 				8730B1122148E5D1004331A9 /* fsfreshfreshing_icon8@2x.png in Resources */,
+				AFC74A5B22715BB80013C318 /* fengshun_video.app in Resources */,
 				AD6712352159DBD50081E08D /* fstab_btn4_icon@3x.png in Resources */,
 				DBF7E17921523B73002CEDA4 /* FSLawTopicInfos.plist in Resources */,
 				DBF7E18F21523CB6002CEDA4 /* search_lawTopic_7@3x.png in Resources */,
@@ -8853,6 +8908,7 @@
 				DBF7E1A821524EDB002CEDA4 /* search_lawTopic_7@2x.png in Resources */,
 				87E7C51F21509AB000F7AB14 /* bmsearch_close@3x.png in Resources */,
 				87E7C52021509AB000F7AB14 /* navigationbar_message_icon@2x.png in Resources */,
+				AFC74A6A22718DFE0013C318 /* FSColumnCountCell.xib in Resources */,
 				AFBF3185224E134F002BE1E3 /* FSSpecialColumnCell.xib in Resources */,
 				87E7C52121509AB000F7AB14 /* FSLawCell.xib in Resources */,
 				AD6712322159DBD50081E08D /* fstab_btn3_icon@2x.png in Resources */,
@@ -9783,6 +9839,7 @@
 				874268F7212E7E36003C52F6 /* UIButton+BMCategory.m in Sources */,
 				87426903212E7E36003C52F6 /* NSString+BMEncrypt.m in Sources */,
 				8730B06F2140FFA3004331A9 /* DTBase64Coding.m in Sources */,
+				AFC74A6722718DFE0013C318 /* FSColumnCountCell.m in Sources */,
 				DBF7E1BD21537599002CEDA4 /* FSCaseModel.m in Sources */,
 				87D20AB0213920E2001EDD60 /* FLEXNetworkTransactionDetailTableViewController.m in Sources */,
 				87426AA9213156D5003C52F6 /* FSManualBannerView.m in Sources */,
@@ -9929,6 +9986,7 @@
 				87E7C2AF21509AB000F7AB14 /* DTAttributedTextView.m in Sources */,
 				87E7C2B021509AB000F7AB14 /* SDWebImageCoderHelper.m in Sources */,
 				87E7C2B121509AB000F7AB14 /* SDWebImageWebPCoder.m in Sources */,
+				AFC74A6822718DFE0013C318 /* FSColumnCountCell.m in Sources */,
 				87A055E3220026650086434B /* UIImage+MemoryCacheCost.m in Sources */,
 				87E7C2B221509AB000F7AB14 /* FLEXGlobalsTableViewControllerEntry.m in Sources */,
 				87E7C2B321509AB000F7AB14 /* DTStripedLayerTile.m in Sources */,
@@ -10050,6 +10108,7 @@
 				87E7C31721509AB000F7AB14 /* NSNumber+BMCategory.m in Sources */,
 				87E7C6A42150A4E500F7AB14 /* TOCropToolbar.m in Sources */,
 				87E7C31821509AB000F7AB14 /* MJPropertyKey.m in Sources */,
+				AFC74A59227156D80013C318 /* FSSetCompanyVC.m in Sources */,
 				AF01910022705F1D00C19D82 /* FSColumModel.m in Sources */,
 				87F639D521533C820035E730 /* UIPageViewController+MemoryLeak.m in Sources */,
 				87EE6CC621C09E2D002BD296 /* BMTestNSURLProtocol.m in Sources */,
@@ -10579,6 +10638,11 @@
 			name = FSEncodeAPI;
 			targetProxy = 87E7C27421509AB000F7AB14 /* PBXContainerItemProxy */;
 		};
+		AFC74A5D22715BB80013C318 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 87E7C27221509AB000F7AB14 /* fengshun_video */;
+			targetProxy = AFC74A5C22715BB80013C318 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -10728,6 +10792,7 @@
 					"$(SRCROOT)/../thirdParty/UMShare/**",
 					"$(SRCROOT)/../thirdParty/JPush",
 					"$(SRCROOT)/../thirdParty/GrowingIO",
+					"$(PROJECT_DIR)/ILiveSDKT/AVSDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fengshun/fengshun-Prefix.pch";
@@ -10794,6 +10859,7 @@
 					"$(SRCROOT)/../thirdParty/UMShare/**",
 					"$(SRCROOT)/../thirdParty/JPush",
 					"$(SRCROOT)/../thirdParty/GrowingIO",
+					"$(PROJECT_DIR)/ILiveSDKT/AVSDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fengshun/fengshun-Prefix.pch";

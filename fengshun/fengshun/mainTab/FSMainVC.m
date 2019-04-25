@@ -18,6 +18,7 @@
 #import "FSTopicListCell.h"
 #import "FSSpecialColumnCell.h"
 #import "FSCharacterCell.h"
+#import "FSColumnCountCell.h"
 #import "FSApiRequest.h"
 #import "UIView+BMBadge.h"
 
@@ -41,6 +42,7 @@ FSMainVC ()
 @property (nonatomic, strong) NSArray<FSHomePageToolModel *> *      m_tools;
 @property (nonatomic, strong) NSArray<FSCourseRecommendModel *> *   m_courses;
 @property (nonatomic, strong) NSArray<FSTopicModel *> *             m_topics;
+@property (nonatomic, strong) NSMutableArray *                      m_colums;
 @property (nonatomic, strong) NSArray *                             m_caseHotkeys;
 //@property (nonatomic, strong) NSArray *                             m_lawTopics;
 
@@ -69,6 +71,7 @@ FSMainVC ()
     [self.m_TableView registerNib:[UINib nibWithNibName:@"FSTopicListCell" bundle:nil] forCellReuseIdentifier:@"FSTopicListCell"];
     [self.m_TableView registerNib:[UINib nibWithNibName:@"FSSpecialColumnCell" bundle:nil] forCellReuseIdentifier:@"FSSpecialColumnCell"];
     [self.m_TableView registerNib:[UINib nibWithNibName:@"FSCharacterCell" bundle:nil] forCellReuseIdentifier:@"FSCharacterCell"];
+    [self.m_TableView registerNib:[UINib nibWithNibName:@"FSColumnCountCell" bundle:nil] forCellReuseIdentifier:@"FSColumnCountCell"];
     
     [self loadApiData];
     
@@ -77,6 +80,15 @@ FSMainVC ()
     if (pushModel) {
         [self fspush_withModel:pushModel];
     }
+}
+
+- (NSMutableArray *)m_colums
+{
+    if (!_m_colums)
+    {
+        _m_colums = [NSMutableArray array];
+    }
+    return _m_colums;
 }
 
 - (void)setupUI
@@ -99,7 +111,7 @@ FSMainVC ()
     self.m_TableView.bm_showEmptyView             = NO;
     self.m_TableView.frame                        = CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT - UI_TAB_BAR_HEIGHT);
     //self.m_TableView.frame = CGRectMake(0, -(UI_NAVIGATION_BAR_HEIGHT+UI_STATUS_BAR_HEIGHT), UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT-UI_TAB_BAR_HEIGHT);
-    self.m_TableView.separatorStyle               = UITableViewCellSeparatorStyleSingleLine;
+    self.m_TableView.separatorStyle               = UITableViewCellSeparatorStyleNone;
 
     self.m_headerView = [[FSMainHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.bm_width, [FSMainHeaderView headerConstheight] + 190) andDelegate:self];
 
@@ -162,9 +174,17 @@ FSMainVC ()
 - (void)bannerView:(nonnull UIView *)bannerView didSelectIndex:(NSUInteger)index
 {
     FSBannerModel *model = _m_banners[index];
-    if (model.m_jumpType && [model.m_jumpAddress bm_isNotEmpty]) {
+    if (model.m_jumpType && [model.m_jumpAddress bm_isNotEmpty])
+    {
         // H5跳转
-        [FSPushVCManager showWebView:self url:model.m_jumpAddress title:nil showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR animated:YES];
+        if ([self canOpenUrl:[NSURL URLWithString:model.m_jumpAddress]])
+        {
+            [self fspush_withUrl:[NSURL URLWithString:model.m_jumpAddress]];
+        }
+        else
+        {
+            [FSPushVCManager showWebView:self url:model.m_jumpAddress title:nil showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR animated:YES];
+        }
     }
 }
 - (void)AIButtonCliked
@@ -264,28 +284,73 @@ FSMainVC ()
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section ? _m_topics.count : _m_courses.count;
+    if (section == 0)
+    {
+        return _m_courses.count;
+    }
+    else if (section == 1)
+    {
+        return _m_topics.count;
+    }
+    else if (section == 2)
+    {
+        return self.m_colums.count;
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section)
+    if (indexPath.section == 0)
+    {
+        FSCourseTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCourseTableCell"];
+        cell.m_course = _m_courses[indexPath.row];
+        return cell;
+    }
+    else if (indexPath.section == 1)
     {
         FSTopicListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSTopicListCell"];
         [cell drawCellWithModel:_m_topics[indexPath.row]];
         return cell;
     }
+    else
+    {
+        id model = self.m_colums[indexPath.row];
+        if ([model isMemberOfClass:[FSColumModel class]])
+        {
+            FSColumModel *columnModel = model;
+            FSCharacterCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCharacterCell"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            [cell showWithModel:columnModel];
+            return cell;
+        }
+        else if ([model isMemberOfClass:[FSColumCellModel class]])
+        {
+            FSColumCellModel *columnCellModel = model;
+            FSSpecialColumnCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSSpecialColumnCell"];
+            [cell drawCellWithIsHasImg:[columnCellModel.m_ThumbUrl bm_isNotEmpty] model:columnCellModel];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+        }
+        else
+        {
+            NSString * count = model;
+            FSColumnCountCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSColumnCountCell"];
+            cell.m_ColumnColuntLab.text = count;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+        }
+    }
     
-    FSCourseTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FSCourseTableCell"];
-
-    cell.m_course = _m_courses[indexPath.row];
-    return cell;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -303,22 +368,43 @@ FSMainVC ()
     {
         return SECTION_HEDER_HEIGHT;
     }
+    else if (section == 2 &&[self.m_colums bm_isNotEmpty])
+    {
+        return SECTION_HEDER_HEIGHT;
+    }
     return 0;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    NSString *imageName;
+    NSString *title;
+    if (section == 0)
+    {
+        imageName = @"home_courses";
+        title = @"最新更新";
+    }
+    else if (section == 1)
+    {
+        imageName = @"home_topics";
+        title = @"精华帖子";
+    }
+    else
+    {
+        imageName = @"home_courses";
+        title = @"专栏";
+    }
     UIView *view         = [UIView new];
     view.backgroundColor = [UIColor whiteColor];
     UIImageView *icon    = [[UIImageView alloc] initWithFrame:CGRectMake(16, 24, 24, 22)];
     icon.contentMode     = UIViewContentModeLeft;
-    icon.image = [UIImage imageNamed:section?@"home_topics":@"home_courses"];
+    icon.image = [UIImage imageNamed:imageName];
     [view addSubview:icon];
 
     UILabel *titleLabel  = [[UILabel alloc] initWithFrame:CGRectMake(45, 24, 120, 20)];
     titleLabel.font      = [UIFont boldSystemFontOfSize:20];
     titleLabel.textColor = UI_COLOR_B1;
-    titleLabel.text      = section ? @"精华帖子" : @"最新更新";
+    titleLabel.text      = title;
     [view addSubview:titleLabel];
 
 //    UIButton *moreButton       = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bm_width - 69, 0, 69, 70)];
@@ -332,21 +418,53 @@ FSMainVC ()
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 2)
+    {
+        id model = self.m_colums[indexPath.row];
+        if ([model isMemberOfClass:[FSColumModel class]])
+        {
+            return [FSCharacterCell cellHeight];
+        }
+        else if ([model isMemberOfClass:[FSColumCellModel class]])
+        {
+            return [FSSpecialColumnCell cellHeight];
+        }
+        else
+        {
+            return 50.f;
+        }
+    }
     return UITableViewAutomaticDimension;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section)
+    if (indexPath.section == 1)
     {
         FSTopicModel *model = _m_topics[indexPath.row];
         [FSPushVCManager showTopicDetail:self topicId:model.m_Id];
     }
-    else
+    else if (indexPath.section == 0)
     {
         FSCourseRecommendModel *model = _m_courses[indexPath.row];
         [FSPushVCManager viewController:self pushToCourseDetailWithId:model.m_id andIsSerial:model.m_isSerial];
+    }
+    else if (indexPath.section == 2)
+    {
+//        id model = self.m_colums[indexPath.row];
+//        if ([model isMemberOfClass:[FSColumModel class]])
+//        {
+//            FSColumModel *columnModel = model;
+//        }
+//        else if ([model isMemberOfClass:[FSColumCellModel class]])
+//        {
+//            FSColumCellModel *columnCellModel = model;
+//        }
+//        else if([model isMemberOfClass:[NSString class]])
+//        {
+//            NSString * count = model;
+//        }
     }
 }
 
@@ -404,9 +522,22 @@ FSMainVC ()
     
 }
 
+- (void)getMainColumnData
+{
+    BMWeakSelf
+    // 获取专栏数据
+    [FSApiRequest getMainColumnPageIndex:1 Success:^(id  _Nullable responseObject) {
+        [weakSelf.m_colums addObjectsFromArray:[FSColumModel getHomeListArr:[responseObject bm_arrayForKey:@"list"]]];
+        [weakSelf.m_TableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
+    } failure:^(NSError * _Nullable error) {
+        
+    }];
+}
+
 - (NSMutableURLRequest *)setLoadDataRequest
 {
     [self moreNetWorking];
+    [self getMainColumnData];
     return [FSApiRequest loadHomePageData];
 }
 

@@ -7,9 +7,11 @@
 //
 
 #import "FSSuperModel.h"
+#import "BMTableViewManagerDefine.h"
 
 @interface FSCourseModel : FSSuperModel
 
+@property (nonatomic, assign) BMTableViewCell_PositionType m_PositionType;
 @property (nonatomic, copy) NSString *  m_id;
 @property (nonatomic, copy) NSString *  m_tilte;
 @property (nonatomic, copy) NSString *  m_sourceInfo;

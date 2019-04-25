@@ -53,6 +53,13 @@
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hfF-Kq-qyy">
+                        <rect key="frame" x="15" y="141" width="345" height="0.5"/>
+                        <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="2eZ-Be-vW4"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="2b2-2F-SPC" firstAttribute="top" secondItem="cZa-WJ-eUd" secondAttribute="bottom" constant="12" id="4x2-DH-Jdv"/>
@@ -61,24 +68,28 @@
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="2b2-2F-SPC" secondAttribute="trailing" constant="32" id="8bz-uS-JSL"/>
                     <constraint firstItem="VRz-Dv-ZvQ" firstAttribute="leading" secondItem="oCC-Iz-X7k" secondAttribute="leading" id="Cjm-EU-6LH"/>
                     <constraint firstItem="Dxo-3n-XkC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="25" id="HUM-hZ-xOd"/>
+                    <constraint firstItem="hfF-Kq-qyy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="HcU-KT-4dQ"/>
                     <constraint firstItem="2b2-2F-SPC" firstAttribute="leading" secondItem="VRz-Dv-ZvQ" secondAttribute="trailing" constant="6" id="JCV-f5-DqM"/>
                     <constraint firstItem="oCC-Iz-X7k" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="146" id="L9u-yt-Yme"/>
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="oCC-Iz-X7k" secondAttribute="trailing" constant="32" id="RI5-mC-T6M"/>
+                    <constraint firstAttribute="trailing" secondItem="hfF-Kq-qyy" secondAttribute="trailing" constant="15" id="Xkw-oj-ZHU"/>
                     <constraint firstItem="VRz-Dv-ZvQ" firstAttribute="centerY" secondItem="2b2-2F-SPC" secondAttribute="centerY" id="aNc-P1-4Zr"/>
                     <constraint firstAttribute="bottomMargin" secondItem="Dxo-3n-XkC" secondAttribute="bottom" constant="14" id="aev-Ud-rEG"/>
                     <constraint firstItem="2b2-2F-SPC" firstAttribute="bottom" secondItem="Dxo-3n-XkC" secondAttribute="bottom" id="dun-0J-HJd"/>
+                    <constraint firstAttribute="bottom" secondItem="hfF-Kq-qyy" secondAttribute="bottom" id="kAf-XO-l6V"/>
                     <constraint firstItem="cZa-WJ-eUd" firstAttribute="leading" secondItem="oCC-Iz-X7k" secondAttribute="leading" id="n0F-Qm-JQw"/>
                     <constraint firstItem="oCC-Iz-X7k" firstAttribute="top" secondItem="Dxo-3n-XkC" secondAttribute="top" constant="3" id="v7S-C3-Ndp"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="m_LineView" destination="hfF-Kq-qyy" id="n4n-2X-cx9"/>
                 <outlet property="m_imageView" destination="Dxo-3n-XkC" id="lsP-gb-4dP"/>
                 <outlet property="m_readCount" destination="2b2-2F-SPC" id="nA2-RJ-cN9"/>
                 <outlet property="m_subTitle" destination="cZa-WJ-eUd" id="kF0-L8-dI3"/>
                 <outlet property="m_textLeading" destination="L9u-yt-Yme" id="iGX-6F-g5g"/>
                 <outlet property="m_title" destination="oCC-Iz-X7k" id="pTR-HR-wjQ"/>
             </connections>
-            <point key="canvasLocation" x="-19.5" y="89"/>
+            <point key="canvasLocation" x="-169" y="76"/>
         </tableViewCell>
     </objects>
     <resources>

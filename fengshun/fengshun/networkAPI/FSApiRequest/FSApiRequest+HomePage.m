@@ -17,6 +17,14 @@
     return [FSApiRequest makeRequestWithURL:urlStr parameters:@{}];
 }
 
++ (XMRequest *)getMainColumnPageIndex:(NSInteger)pageIndex Success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
+{
+    NSDictionary *params = @{@"pageIndex":@(pageIndex),
+                             @"pageSize":@(10)};
+    return [XMRequestManager rm_requestWithApi:@"/storm/home/homeSpecialList" parameters:params success:successBlock failure:failureBlock];
+}
+
+
 + (XMRequest *)getMessageUnReadFlagSuccess:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
 {
     return [XMRequestManager rm_requestWithApi:@"/storm/home/getMessageUnReadFlag" parameters:nil success:successBlock failure:failureBlock];

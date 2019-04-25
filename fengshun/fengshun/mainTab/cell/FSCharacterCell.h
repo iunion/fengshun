@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FSColumModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,7 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface FSCharacterCell : UITableViewCell
 
++ (CGFloat )cellHeight;
 
+- (void)showWithModel:(FSColumModel *)model;
 
 @end
 

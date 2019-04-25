@@ -18,13 +18,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="114.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fub-FT-hBb">
-                        <rect key="frame" x="20" y="113.5" width="300" height="1"/>
-                        <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="1" id="8Io-B2-8df"/>
-                        </constraints>
-                    </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="w8z-fv-LC1">
                         <rect key="frame" x="20" y="24" width="80" height="67"/>
                         <constraints>
@@ -66,11 +59,9 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Fub-FT-hBb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="3eb-1w-pkS"/>
                     <constraint firstItem="C8t-KE-bDl" firstAttribute="leading" secondItem="w8z-fv-LC1" secondAttribute="trailing" constant="12" id="AHc-nn-Bqw"/>
                     <constraint firstItem="xHL-R3-ae5" firstAttribute="leading" secondItem="C7I-wI-L1w" secondAttribute="trailing" constant="20" id="Cfa-Ub-lRU"/>
                     <constraint firstItem="ioq-E2-Q41" firstAttribute="bottom" secondItem="w8z-fv-LC1" secondAttribute="bottom" id="EZE-Nl-wqT"/>
-                    <constraint firstAttribute="bottom" secondItem="Fub-FT-hBb" secondAttribute="bottom" id="ErP-US-Gef"/>
                     <constraint firstItem="w8z-fv-LC1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="GlN-li-Xyg"/>
                     <constraint firstItem="wdl-iQ-Ph2" firstAttribute="leading" secondItem="xHL-R3-ae5" secondAttribute="trailing" constant="5" id="RXa-Lg-3wZ"/>
                     <constraint firstItem="C7I-wI-L1w" firstAttribute="top" relation="greaterThanOrEqual" secondItem="C8t-KE-bDl" secondAttribute="bottom" constant="14" id="SCK-3W-40a"/>
@@ -83,9 +74,9 @@
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wdl-iQ-Ph2" secondAttribute="trailing" id="feo-Os-fEE"/>
                     <constraint firstItem="ioq-E2-Q41" firstAttribute="leading" secondItem="C8t-KE-bDl" secondAttribute="leading" id="j8t-0Q-gMv"/>
                     <constraint firstItem="C7I-wI-L1w" firstAttribute="leading" secondItem="ioq-E2-Q41" secondAttribute="trailing" constant="5" id="jJ2-fW-sq8"/>
-                    <constraint firstAttribute="trailing" secondItem="Fub-FT-hBb" secondAttribute="trailing" id="l8C-Vt-Wyh"/>
                 </constraints>
             </tableViewCellContentView>
+            <inset key="separatorInset" minX="25" minY="0.0" maxX="16" maxY="0.0"/>
             <connections>
                 <outlet property="m_CommentCountLab" destination="wdl-iQ-Ph2" id="JWl-t3-xT7"/>
                 <outlet property="m_ReadCountLab" destination="C7I-wI-L1w" id="1ch-FI-dyQ"/>
@@ -94,7 +85,7 @@
                 <outlet property="m_imgView" destination="w8z-fv-LC1" id="IW7-UC-oxc"/>
                 <outlet property="m_imgViewConstraintWidth" destination="cDd-HD-048" id="pqi-DQ-XBe"/>
             </connections>
-            <point key="canvasLocation" x="153.59999999999999" y="81.859070464767626"/>
+            <point key="canvasLocation" x="153.59999999999999" y="80.50974512743629"/>
         </tableViewCell>
     </objects>
 </document>

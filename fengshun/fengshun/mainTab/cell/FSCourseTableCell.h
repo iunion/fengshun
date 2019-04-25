@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *m_subTitle;
 @property (weak, nonatomic) IBOutlet UILabel *m_readCount;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *m_textLeading;
+@property (weak, nonatomic) IBOutlet UIView *m_LineView;
 
 @property (nonatomic, strong) FSCourseModel *m_course;
 

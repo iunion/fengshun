@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FSColumModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 /**
@@ -22,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param isHasImg 是否包含封面图片
  */
-- (void)drawCellWithIsHasImg:(BOOL)isHasImg;
+- (void)drawCellWithIsHasImg:(BOOL)isHasImg model:(FSColumCellModel *)model;
 
 @end
 

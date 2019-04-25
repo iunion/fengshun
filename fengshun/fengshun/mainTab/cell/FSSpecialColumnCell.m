@@ -53,19 +53,24 @@
     return 115.f;
 }
 
-- (void)drawCellWithIsHasImg:(BOOL)isHasImg
+- (void)drawCellWithIsHasImg:(BOOL)isHasImg model:(nonnull FSColumCellModel *)model
 {
     if (isHasImg)
     {
         self.m_imgViewConstraintWidth.constant = 67.f;
         self.m_TitleLabConstraintLeft.constant = 12.f;
+        [self.m_imgView sd_setImageWithURL:[NSURL URLWithString:model.m_ThumbUrl]];
     }
     else
     {
         self.m_imgViewConstraintWidth.constant = 0;
         self.m_TitleLabConstraintLeft.constant = 0;
     }
-    [self layoutIfNeeded];
+//    [self layoutIfNeeded];
+    self.m_TitleLab.text = model.m_Title;
+    self.m_ReadCountLab.text = [NSString stringWithFormat:@"%@人阅读",@(model.m_ReadCount)];
+    self.m_CommentCountLab.text = [NSString stringWithFormat:@"%@",@(model.m_CommentCount)];
+    
 }
 
 @end

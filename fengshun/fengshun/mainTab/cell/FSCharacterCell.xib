@@ -67,12 +67,13 @@
                     <constraint firstItem="9HS-Gp-NUP" firstAttribute="leading" secondItem="V6P-ru-Qld" secondAttribute="trailing" constant="11" id="wXj-1G-C10"/>
                 </constraints>
             </tableViewCellContentView>
+            <inset key="separatorInset" minX="1000" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
                 <outlet property="m_IdentyLab" destination="m8Q-vC-kbh" id="bf6-P7-skz"/>
                 <outlet property="m_ImgView" destination="V6P-ru-Qld" id="g4T-Td-gBS"/>
                 <outlet property="m_NickNameLab" destination="9HS-Gp-NUP" id="p8h-eB-NpA"/>
             </connections>
-            <point key="canvasLocation" x="64" y="48.575712143928037"/>
+            <point key="canvasLocation" x="232" y="35"/>
         </tableViewCell>
     </objects>
 </document>

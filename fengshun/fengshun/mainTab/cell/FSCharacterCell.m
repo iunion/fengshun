@@ -19,6 +19,11 @@
 
 @implementation FSCharacterCell
 
++ (CGFloat)cellHeight
+{
+    return 86.f;
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
@@ -28,6 +33,13 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)showWithModel:(FSColumModel *)model
+{
+    [self.m_ImgView sd_setImageWithURL:[NSURL URLWithString:model.m_HeaderUrl]];
+    self.m_NickNameLab.text = model.m_NikeName;
+    self.m_IdentyLab.text = [NSString stringWithFormat:@"%@  %@",model.m_Organization,model.m_Position];
 }
 
 @end

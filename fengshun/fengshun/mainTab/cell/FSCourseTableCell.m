@@ -38,5 +38,6 @@
     _m_title.text     = _m_course.m_tilte;
     _m_subTitle.text  = _m_course.m_sourceInfo;
     _m_readCount.text = [NSString stringWithFormat:@"%ld人阅读", (long)_m_course.m_readCount];
+    _m_LineView.hidden = _m_course.m_PositionType & BMTableViewCell_PositionType_Last;
 }
 @end

@@ -22,7 +22,7 @@
     self.m_UserId = [params bm_intForKey:@"userId"];
     self.m_ArticleCount = [params bm_intForKey:@"articleCount"];
     self.m_HeaderUrl = [params bm_stringForKey:@"headUrl"];
-    self.m_ItemList = [FSColumCellModel modelWithArr:[params bm_arrayForKey:@"specialList"]];
+    self.m_ItemList = [FSColumCellModel modelWithArr:[params bm_arrayForKey:@"itemList"]];
     self.m_NikeName = [params bm_stringForKey:@"nickName"];
     self.m_Organization = [params bm_stringForKey:@"organization"];
     self.m_Position = [params bm_stringForKey:@"position"];
@@ -41,9 +41,11 @@
 + (NSArray *)getHomeListArr:(NSArray *)dataList
 {
     NSMutableArray *data = [NSMutableArray array];
-    for (FSColumModel *columModel in dataList) {
+    
+    for (FSColumModel *columModel in [self modelWithArr:dataList]) {
         [data addObject:columModel];
         [data addObjectsFromArray:columModel.m_ItemList];
+        [data addObject:[NSString stringWithFormat:@"文章%@篇",@(columModel.m_ArticleCount)]];
     }
     return data;
 }

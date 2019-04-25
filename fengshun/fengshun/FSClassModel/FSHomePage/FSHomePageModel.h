@@ -13,5 +13,6 @@
 #import "FSHomePageToolModel.h"
 #import "FSCourseModel.h"
 #import "FSCommunityModel.h"
+#import "FSColumModel.h"
 
 #endif /* FSHomePageModel_h */
