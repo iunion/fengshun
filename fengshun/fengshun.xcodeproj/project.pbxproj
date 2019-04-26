@@ -1963,8 +1963,6 @@
 		AFBF3185224E134F002BE1E3 /* FSSpecialColumnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFBF3181224E134F002BE1E3 /* FSSpecialColumnCell.xib */; };
 		AFC74A59227156D80013C318 /* FSSetCompanyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E70C18225F237D00B663C5 /* FSSetCompanyVC.m */; };
 		AFC74A5B22715BB80013C318 /* fengshun_video.app in Resources */ = {isa = PBXBuildFile; fileRef = 87E7C61F21509AB000F7AB14 /* fengshun_video.app */; };
-		AFC74A5E22715C9D0013C318 /* QAVSDKInternal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF74F214D11060005AD43 /* QAVSDKInternal.framework */; };
-		AFC74A5F22715C9D0013C318 /* QAVSDKInternal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF74F214D11060005AD43 /* QAVSDKInternal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AFC74A6122715D480013C318 /* QAVSDKInternal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF74F214D11060005AD43 /* QAVSDKInternal.framework */; };
 		AFC74A6222715D480013C318 /* QAVSDKInternal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF74F214D11060005AD43 /* QAVSDKInternal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AFC74A6722718DFE0013C318 /* FSColumnCountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC74A6522718DFE0013C318 /* FSColumnCountCell.m */; };
@@ -2220,13 +2218,6 @@
 			remoteGlobalIDString = 87D1866221353A8700037DDF;
 			remoteInfo = FSEncodeAPI;
 		};
-		AFC74A5C22715BB80013C318 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 87C0133E212E7A5200D0AAC3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 87E7C27221509AB000F7AB14;
-			remoteInfo = fengshun_video;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -2236,7 +2227,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AFC74A5F22715C9D0013C318 /* QAVSDKInternal.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4188,7 +4178,6 @@
 				874C23C7215E216A001C8BE9 /* UMAnalytics.framework in Frameworks */,
 				DB16489821C8F44200F9FB9D /* jcore-ios-1.2.6.a in Frameworks */,
 				ADEF1F6F214F9B7500FFE0C3 /* ImageIO.framework in Frameworks */,
-				AFC74A5E22715C9D0013C318 /* QAVSDKInternal.framework in Frameworks */,
 				ADEF1F6D214F9B6300FFE0C3 /* CoreTelephony.framework in Frameworks */,
 				ADEF1F32214F546800FFE0C3 /* libsqlite3.tbd in Frameworks */,
 				871D64D821C8D38300698AC1 /* GrowingAutoTrackKit.framework in Frameworks */,
@@ -8360,7 +8349,6 @@
 			);
 			dependencies = (
 				87D1867621353C3D00037DDF /* PBXTargetDependency */,
-				AFC74A5D22715BB80013C318 /* PBXTargetDependency */,
 			);
 			name = fengshun;
 			productName = fengshun;
@@ -10638,11 +10626,6 @@
 			name = FSEncodeAPI;
 			targetProxy = 87E7C27421509AB000F7AB14 /* PBXContainerItemProxy */;
 		};
-		AFC74A5D22715BB80013C318 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 87E7C27221509AB000F7AB14 /* fengshun_video */;
-			targetProxy = AFC74A5C22715BB80013C318 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -10792,7 +10775,6 @@
 					"$(SRCROOT)/../thirdParty/UMShare/**",
 					"$(SRCROOT)/../thirdParty/JPush",
 					"$(SRCROOT)/../thirdParty/GrowingIO",
-					"$(PROJECT_DIR)/ILiveSDKT/AVSDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fengshun/fengshun-Prefix.pch";
@@ -10859,7 +10841,6 @@
 					"$(SRCROOT)/../thirdParty/UMShare/**",
 					"$(SRCROOT)/../thirdParty/JPush",
 					"$(SRCROOT)/../thirdParty/GrowingIO",
-					"$(PROJECT_DIR)/ILiveSDKT/AVSDK",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fengshun/fengshun-Prefix.pch";
