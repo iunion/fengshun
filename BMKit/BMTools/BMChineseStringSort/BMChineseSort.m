@@ -3,7 +3,7 @@
 //
 //  Created by Baymax on 16/2/11.
 //  Copyright (c) 2016年 Baymax. All rights reserved.
-//  version: 0.2.2
+//  version: 0.2.4
 //  https://github.com/Baymax0/BMChineseSort
 
 #import "BMChineseSort.h"
@@ -29,6 +29,7 @@
 {
     _sortMode = BMChineseSortMode_FirstLetter;
     _logEable = YES;
+    _needStable = NO;
     _specialCharSectionTitle = @"#";
     _specialCharPositionIsFront = YES;
     _ignoreModelWithPrefix = @"";
@@ -78,23 +79,32 @@
 {
     NSString *s = [BMChineseSortSetting share].specialCharSectionTitle;
     BOOL b = [BMChineseSortSetting share].specialCharPositionIsFront;
+
+    NSComparisonResult res = NSOrderedDescending;
     if ([self isEqualToString:s])
     {
         // 相同
         if ([str isEqualToString:s])
         {
-            return NSOrderedSame;
+            res = NSOrderedSame;
         }
-        return b ? NSOrderedAscending : NSOrderedDescending;
+        res = b ? NSOrderedAscending : NSOrderedDescending;
     }
     else if ([str isEqualToString:s])
     {
-        return b ? NSOrderedDescending : NSOrderedAscending;
+        res = b ? NSOrderedDescending : NSOrderedAscending;
     }
     else
     {
-        return [self localizedStandardCompare:str];
+        res = [self localizedStandardCompare:str];
     }
+    
+    // 如过相等就返回
+    if (res == NSOrderedSame)
+    {
+        res = NSOrderedAscending;
+    }
+    return res;
 }
 
 @end
@@ -152,18 +162,29 @@ dispatch_semaphore_t semaphore;
     }
     else
     {
-        NSObject *obj = objectArray.firstObject;
-        unsigned int outCount, i;
-        Ivar *ivars = class_copyIvarList(obj.class, &outCount);
-        for (i = 0; i < outCount; i++)
+        Class cla = ((NSObject*)objectArray.firstObject).class;
+        while (cla != Nil)
         {
-            Ivar property = ivars[i];
-            NSString *keyName = [NSString stringWithCString:ivar_getName(property) encoding:NSUTF8StringEncoding];
-            keyName = [keyName stringByReplacingOccurrencesOfString:@"_" withString:@""];
-            if ([keyName isEqualToString:key])
+            unsigned int outCount, i;
+            Ivar *ivars = class_copyIvarList(cla, &outCount);
+            for (i = 0; i < outCount; i++)
             {
-                containKey = YES;
+                Ivar property = ivars[i];
+                NSString *keyName = [NSString stringWithCString:ivar_getName(property) encoding:NSUTF8StringEncoding];
+                NSString *tempKey = [NSString stringWithFormat:@"_%@",key];
+                if ([keyName isEqualToString:tempKey])
+                {
+                    containKey = YES;
+                    break;
+                }
             }
+            if (containKey == YES)
+            {
+                free(ivars);
+                break;
+            }
+            free(ivars);
+            cla = class_getSuperclass(cla.class);
         }
     }
     if (!containKey)
@@ -183,32 +204,42 @@ dispatch_semaphore_t semaphore;
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         //将数据 转换为 BMChineseSortModel
         NSMutableArray *sortModelArray = [NSMutableArray arrayWithCapacity:0];
-        [objectArray enumerateObjectsWithOptions:NSEnumerationConcurrent
-                                      usingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
-                                          BMChineseSortModel *model = [self getModelWithObj:obj key:key];
-                                          if (model)
-                                          {
-                                              //对 数组的插入操作 上锁
-                                              dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-                                              [sortModelArray addObject:model];
-                                              dispatch_semaphore_signal(semaphore);
-                                          }
-                                      }];
-
+        
+        if (BMChineseSortSetting.share.needStable)
+        {
+            [objectArray enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                BMChineseSortModel *model = [self getModelWithObj:obj key:key];
+                [sortModelArray addObject:model];
+            }];
+        }
+        else
+        {
+            // 由于enumerateObjectsWithOptions是多线程导致 转拼音后顺序打乱 造成排序的不稳定
+            [objectArray enumerateObjectsWithOptions:NSEnumerationConcurrent
+                                          usingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop)
+             {
+                 BMChineseSortModel *model = [self getModelWithObj:obj key:key];
+                 if (model)
+                 {
+                     //对 数组的插入操作 上锁
+                     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+                     [sortModelArray addObject:model];
+                     dispatch_semaphore_signal(semaphore);
+                 }
+             }];
+        }
 
         CFAbsoluteTime state1 = CFAbsoluteTimeGetCurrent();
         [BMChineseSort logMsg:@""];
         [BMChineseSort logMsg:[NSString stringWithFormat:@"转拼音用时：\t %f s", (state1 - start)]];
 
         // 根据BMChineseSortModel的pinYin字段 升序 排列
-//        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"pinYin" ascending:YES];
         NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"pinYin" ascending:YES selector:@selector(mySort:)];
         [sortModelArray sortUsingDescriptors:@[sortDescriptor]];
 
         // 打印 排序用时
         CFAbsoluteTime state2 = CFAbsoluteTimeGetCurrent();
         [BMChineseSort logMsg:[NSString stringWithFormat:@"排序用时：\t %f s", (state2 - state1)]];
-
 
         // 不分组
         NSMutableArray *unSortedArr = [NSMutableArray array];
@@ -299,7 +330,9 @@ dispatch_semaphore_t semaphore;
 {
     if (BMChineseSortSetting.share.logEable == YES)
     {
+        NSLog(@"------------------");
         NSLog(@"%@", msg);
+        NSLog(@"------------------");
     }
 }
 
@@ -318,7 +351,7 @@ dispatch_semaphore_t semaphore;
 
     NSMutableString *result = [NSMutableString string];
 
-    if (BMChineseSortSetting.share.sortMode == 1)
+    if (BMChineseSortSetting.share.sortMode == BMChineseSortMode_System)
     {
         // 此处 对整个字符串转中文 而不单个字一次转 因为CFStringTransform太耗时 而这个时间又与字个数关系不大，所以尽量减少调用次数 以减少时间
         NSArray *wordArr = [[BMChineseSort transformChinese:newChinese] componentsSeparatedByString:@" "];
