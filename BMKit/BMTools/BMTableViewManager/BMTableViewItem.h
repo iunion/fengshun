@@ -125,6 +125,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) tableViewActionBarNavButtonTapHandler actionBarNavButtonTapHandler;
 // handler for done button on ActionBar
 @property (nullable, nonatomic, copy) tableViewActionBarDoneButtonTapHandler actionBarDoneButtonTapHandler;
+// Action bar title
+@property (nullable, nonatomic, copy) NSString *actionBarTitle;
 
 + (instancetype)item;
 + (instancetype)itemWithTitle:(nullable NSString *)title;

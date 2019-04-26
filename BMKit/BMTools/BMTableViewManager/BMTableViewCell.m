@@ -627,7 +627,14 @@
 {
     [self.actionBar.navigationControl setEnabled:[self indexPathForPreviousResponder] != nil forSegmentAtIndex:0];
     [self.actionBar.navigationControl setEnabled:[self indexPathForNextResponder] != nil forSegmentAtIndex:1];
-    [self.actionBar setActionBarTitle:self.item.title];
+    if (self.item.actionBarTitle)
+    {
+        [self.actionBar setActionBarTitle:self.item.actionBarTitle];
+    }
+    else
+    {
+        [self.actionBar setActionBarTitle:self.item.title];
+    }
 }
 
 - (NSIndexPath *)indexPathForPreviousResponderInSectionIndex:(NSUInteger)sectionIndex
