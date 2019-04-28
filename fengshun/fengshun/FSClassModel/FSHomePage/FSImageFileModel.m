@@ -24,8 +24,10 @@ static SDImageCache *m_imageStore = nil;
 {
     if (!m_imageStore) {
         m_imageStore = [[SDImageCache alloc] initWithNamespace:@"scan_file_localimage"];
-        m_imageStore.config.maxCacheSize = 0; // 不限制大小
-        m_imageStore.config.maxCacheAge = 0; // 永不过期
+        //m_imageStore.config.maxCacheSize = 0; // 不限制大小
+        //m_imageStore.config.maxCacheAge = 0; // 永不过期
+        m_imageStore.config.maxDiskSize = 0; // 不限制大小
+        m_imageStore.config.maxDiskAge = 0; // 永不过期
     }
     return m_imageStore;
 }
