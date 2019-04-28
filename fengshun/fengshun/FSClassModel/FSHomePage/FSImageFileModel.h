@@ -7,6 +7,7 @@
 //
 
 #import "FSSuperModel.h"
+#import "SDImageCache.h"
 
 #define TOOLVIEW_HEIGHT 59.0f
 
