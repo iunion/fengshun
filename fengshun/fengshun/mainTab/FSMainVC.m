@@ -452,19 +452,17 @@ FSMainVC ()
     }
     else if (indexPath.section == 2)
     {
-//        id model = self.m_colums[indexPath.row];
-//        if ([model isMemberOfClass:[FSColumModel class]])
-//        {
-//            FSColumModel *columnModel = model;
-//        }
-//        else if ([model isMemberOfClass:[FSColumCellModel class]])
-//        {
-//            FSColumCellModel *columnCellModel = model;
-//        }
-//        else if([model isMemberOfClass:[NSString class]])
-//        {
-//            NSString * count = model;
-//        }
+        id model = self.m_colums[indexPath.row];
+        if ([model isMemberOfClass:[FSColumModel class]])
+        {
+            FSColumModel *columnModel = model;
+            [FSPushVCManager showWebView:self url:columnModel.m_JumpAddress title:nil];
+        }
+        else if ([model isMemberOfClass:[FSColumCellModel class]])
+        {
+            FSColumCellModel *columnCellModel = model;
+            [FSPushVCManager showWebView:self url:columnCellModel.m_JumpAddress title:nil];
+        }
     }
 }
 

@@ -26,6 +26,7 @@
     self.m_NikeName = [params bm_stringForKey:@"nickName"];
     self.m_Organization = [params bm_stringForKey:@"organization"];
     self.m_Position = [params bm_stringForKey:@"position"];
+    self.m_JumpAddress = [params bm_stringForKey:@"jumpAddress"];
 }
 
 + (NSArray *)modelWithArr:(NSArray *)array
@@ -41,8 +42,8 @@
 + (NSArray *)getHomeListArr:(NSArray *)dataList
 {
     NSMutableArray *data = [NSMutableArray array];
-    
-    for (FSColumModel *columModel in [self modelWithArr:dataList]) {
+    NSArray *arr = [self modelWithArr:dataList];
+    for (FSColumModel *columModel in arr) {
         [data addObject:columModel];
         [data addObjectsFromArray:columModel.m_ItemList];
         [data addObject:[NSString stringWithFormat:@"文章%@篇",@(columModel.m_ArticleCount)]];
@@ -68,6 +69,7 @@
     self.m_ReadCount = [params bm_intForKey:@"readCount"];
     self.m_ThumbUrl = [params bm_stringForKey:@"thumbUrl"];
     self.m_Title = [params bm_stringForKey:@"title"];
+    self.m_JumpAddress = [params bm_stringForKey:@"jumpAddress"];
 }
 
 + (NSArray *)modelWithArr:(NSArray *)array
@@ -75,8 +77,11 @@
     NSMutableArray *arr = [NSMutableArray array];
     for (NSDictionary *params in array) {
         FSColumCellModel *model = [FSColumCellModel fsColumCellModelWithDic:params];
+        model.m_IsLast = NO;
         [arr addObject:model];
     }
+    FSColumCellModel *model = [arr lastObject];
+    model.m_IsLast = YES;
     return arr;
 }
 

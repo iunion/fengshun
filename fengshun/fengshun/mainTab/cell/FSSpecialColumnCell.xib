@@ -57,14 +57,23 @@
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o6K-IY-1dW">
+                        <rect key="frame" x="25" y="114" width="279" height="0.5"/>
+                        <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="n1K-X3-cJX"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="C8t-KE-bDl" firstAttribute="leading" secondItem="w8z-fv-LC1" secondAttribute="trailing" constant="12" id="AHc-nn-Bqw"/>
                     <constraint firstItem="xHL-R3-ae5" firstAttribute="leading" secondItem="C7I-wI-L1w" secondAttribute="trailing" constant="20" id="Cfa-Ub-lRU"/>
                     <constraint firstItem="ioq-E2-Q41" firstAttribute="bottom" secondItem="w8z-fv-LC1" secondAttribute="bottom" id="EZE-Nl-wqT"/>
                     <constraint firstItem="w8z-fv-LC1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="GlN-li-Xyg"/>
+                    <constraint firstAttribute="bottom" secondItem="o6K-IY-1dW" secondAttribute="bottom" id="MkD-ns-dcH"/>
                     <constraint firstItem="wdl-iQ-Ph2" firstAttribute="leading" secondItem="xHL-R3-ae5" secondAttribute="trailing" constant="5" id="RXa-Lg-3wZ"/>
                     <constraint firstItem="C7I-wI-L1w" firstAttribute="top" relation="greaterThanOrEqual" secondItem="C8t-KE-bDl" secondAttribute="bottom" constant="14" id="SCK-3W-40a"/>
+                    <constraint firstItem="o6K-IY-1dW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="Spx-93-JIH"/>
                     <constraint firstItem="C7I-wI-L1w" firstAttribute="centerY" secondItem="ioq-E2-Q41" secondAttribute="centerY" id="Zcr-Lw-MDO"/>
                     <constraint firstItem="wdl-iQ-Ph2" firstAttribute="centerY" secondItem="xHL-R3-ae5" secondAttribute="centerY" id="cR7-c6-gQ3"/>
                     <constraint firstItem="xHL-R3-ae5" firstAttribute="centerY" secondItem="C7I-wI-L1w" secondAttribute="centerY" id="cmw-2V-cm8"/>
@@ -74,10 +83,12 @@
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wdl-iQ-Ph2" secondAttribute="trailing" id="feo-Os-fEE"/>
                     <constraint firstItem="ioq-E2-Q41" firstAttribute="leading" secondItem="C8t-KE-bDl" secondAttribute="leading" id="j8t-0Q-gMv"/>
                     <constraint firstItem="C7I-wI-L1w" firstAttribute="leading" secondItem="ioq-E2-Q41" secondAttribute="trailing" constant="5" id="jJ2-fW-sq8"/>
+                    <constraint firstAttribute="trailing" secondItem="o6K-IY-1dW" secondAttribute="trailing" constant="16" id="zWH-Yl-wYY"/>
                 </constraints>
             </tableViewCellContentView>
             <inset key="separatorInset" minX="25" minY="0.0" maxX="16" maxY="0.0"/>
             <connections>
+                <outlet property="bottomLine" destination="o6K-IY-1dW" id="oIS-NQ-i5y"/>
                 <outlet property="m_CommentCountLab" destination="wdl-iQ-Ph2" id="JWl-t3-xT7"/>
                 <outlet property="m_ReadCountLab" destination="C7I-wI-L1w" id="1ch-FI-dyQ"/>
                 <outlet property="m_TitleLab" destination="C8t-KE-bDl" id="d2t-DY-Ii5"/>

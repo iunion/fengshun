@@ -51,6 +51,13 @@
                             <constraint firstAttribute="height" constant="14" id="PEn-tH-jW0"/>
                         </constraints>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8MH-Bb-bOo">
+                        <rect key="frame" x="20" y="85" width="300" height="0.5"/>
+                        <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="1C4-IW-ERZ"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="m8Q-vC-kbh" secondAttribute="trailing" constant="21" id="4m8-FM-Lk1"/>
@@ -61,10 +68,13 @@
                     <constraint firstItem="V6P-ru-Qld" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="21" id="Chw-mC-vxV"/>
                     <constraint firstItem="qjO-ef-w1G" firstAttribute="leading" secondItem="9HS-Gp-NUP" secondAttribute="leading" id="Dkc-UN-xHm"/>
                     <constraint firstItem="qjO-ef-w1G" firstAttribute="bottom" secondItem="V6P-ru-Qld" secondAttribute="bottom" id="FFb-Sr-h9g"/>
+                    <constraint firstItem="8MH-Bb-bOo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="LSl-Bu-ch4"/>
                     <constraint firstAttribute="trailing" secondItem="9HS-Gp-NUP" secondAttribute="trailing" constant="21" id="VFA-ix-ApX"/>
                     <constraint firstItem="9HS-Gp-NUP" firstAttribute="top" secondItem="V6P-ru-Qld" secondAttribute="top" id="Xh9-aP-rbx"/>
+                    <constraint firstAttribute="trailing" secondItem="8MH-Bb-bOo" secondAttribute="trailing" id="XwN-44-bbM"/>
                     <constraint firstItem="m8Q-vC-kbh" firstAttribute="leading" secondItem="qjO-ef-w1G" secondAttribute="trailing" constant="9" id="kh7-R9-3XQ"/>
                     <constraint firstItem="9HS-Gp-NUP" firstAttribute="leading" secondItem="V6P-ru-Qld" secondAttribute="trailing" constant="11" id="wXj-1G-C10"/>
+                    <constraint firstAttribute="bottom" secondItem="8MH-Bb-bOo" secondAttribute="bottom" id="zpZ-02-3ZD"/>
                 </constraints>
             </tableViewCellContentView>
             <inset key="separatorInset" minX="1000" minY="0.0" maxX="0.0" maxY="0.0"/>

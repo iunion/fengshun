@@ -29,6 +29,7 @@
  评论数
  */
 @property (weak, nonatomic) IBOutlet UILabel *m_CommentCountLab;
+@property (weak, nonatomic) IBOutlet UIView *bottomLine;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *m_imgViewConstraintWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *m_TitleLabConstraintLeft;
@@ -70,7 +71,7 @@
     self.m_TitleLab.text = model.m_Title;
     self.m_ReadCountLab.text = [NSString stringWithFormat:@"%@人阅读",@(model.m_ReadCount)];
     self.m_CommentCountLab.text = [NSString stringWithFormat:@"%@",@(model.m_CommentCount)];
-    
+    self.bottomLine.hidden = model.m_IsLast;
 }
 
 @end

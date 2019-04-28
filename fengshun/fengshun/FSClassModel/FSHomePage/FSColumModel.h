@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong) NSString *m_Position;
 // 用户id
 @property (nonatomic , assign) NSInteger m_UserId;
+// 跳转链接
+@property (nonatomic , strong) NSString *m_JumpAddress;
 
 + (instancetype)fsColumModelWithDic:(NSDictionary *)params;
 
@@ -37,6 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface FSColumCellModel : NSObject
+
+@property (nonatomic , assign) BOOL m_IsLast;
 // r内容图片
 @property (nonatomic , strong) NSString *m_ThumbUrl;
 // 标题
@@ -47,6 +51,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , assign) NSInteger m_Id;
 // 阅读数
 @property (nonatomic , assign) NSInteger m_ReadCount;
+// 跳转链接
+@property (nonatomic , strong) NSString *m_JumpAddress;
 
 + (instancetype)fsColumCellModelWithDic:(NSDictionary *)params;
 
