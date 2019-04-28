@@ -26,7 +26,6 @@ typedef NS_ENUM(NSUInteger, FSPushToVCType)
     FSPushToVCType_VideoMeeting,    // 视频会议
     FSPushToVCType_TopicVC,     // 帖子
     FSPushToVCType_CourseVC,    // 图文课程
-    FSPushToVCType_H5,// H5类型
 };
 
 typedef NS_ENUM(NSUInteger, FSReceivePushInfoState)

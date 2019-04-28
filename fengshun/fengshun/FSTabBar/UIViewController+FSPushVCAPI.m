@@ -23,7 +23,17 @@
             break;
             
         case FSPushToVCType_NotificationCenter:
-            [FSPushVCManager showMessageVC:self andShowNotificationTab:YES];
+        {
+            if ([pushModel.m_url bm_isNotEmpty])
+            {
+                [FSPushVCManager fsPresentWebVC:self url:pushModel.m_url title:nil];
+            }
+            else
+            {
+                [FSPushVCManager showMessageVC:self andShowNotificationTab:YES];
+            }
+        }
+            
             break;
         case FSPushToVCType_VideoMeeting:
 #ifdef FSVIDEO_ON
@@ -35,9 +45,6 @@
             break;
         case FSPushToVCType_CourseVC:
             [FSPushVCManager viewController:self pushToCourseDetailWithId:pushModel.m_requestId andIsSerial:NO];
-            break;
-        case FSPushToVCType_H5:
-            
             break;
     }
 }
