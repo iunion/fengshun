@@ -94,6 +94,20 @@
     return vc;
 }
 
++ (FSWebViewController *)fsPresentWebVC:(UIViewController *)pushVC url:(NSString *)url title:(NSString *)title
+{
+    if (![url bm_isNotEmpty])
+    {
+        return nil;
+    }
+    FSWebViewController *vc = [[FSWebViewController alloc] initWithTitle:title url:url];
+    vc.m_IsPresent = YES;
+    BMNavigationController *nav = [[BMNavigationController alloc]initWithRootViewController:vc];
+    [pushVC presentViewController:nav animated:YES completion:nil];
+    return vc;
+}
+
+
 + (FSAuthVC *)showAuth:(UIViewController *)pushVC type:(FSAuthState)type
 {
     FSAuthVC *vc = [FSAuthVC vcWithAuthType:type];

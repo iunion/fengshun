@@ -435,6 +435,11 @@
 
 - (void)backAction:(id)sender
 {
+    if (self.m_IsPresent && [self respondsToSelector:@selector(dismissViewControllerAnimated:completion:)])
+    {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        return;
+    }
     if (self.m_WebView.canGoBack && !self.m_IsNotShowCloseBtn)
     {
         [self.m_WebView goBack];
@@ -515,16 +520,16 @@
         {
             if (self.m_WebView.canGoBack)
             {
-                NSDictionary *btnItem1 = [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"navigationbar_back_icon" toucheEvent:@"backAction:" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0];
+                NSDictionary *btnItem1 = [self bm_makeBarButtonDictionaryWithTitle:self.m_IsPresent?@"关闭": @" " image:self.m_IsPresent?nil:@"navigationbar_back_icon" toucheEvent:@"backAction:" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0];
                 NSDictionary *btnItem2 = [self bm_makeBarButtonDictionaryWithTitle:@" " image:@"navigationbar_close_icon" toucheEvent:@"closeAction:" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0];
-                self.m_NavLeftBtnArray = @[btnItem1, btnItem2];
+                self.m_NavLeftBtnArray = self.m_IsPresent?@[btnItem1]:@[btnItem1, btnItem2];
                 [self updateNavWithLeftArray:self.m_NavLeftBtnArray rightArray:self.m_NavRightBtnArray];
                 
                 addClose = YES;
             }
             else
             {
-                NSDictionary *btnItem1 = [self bm_makeBarButtonDictionaryWithTitle:nil image:@"navigationbar_back_icon" toucheEvent:@"backAction:" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0];
+                NSDictionary *btnItem1 = [self bm_makeBarButtonDictionaryWithTitle:self.m_IsPresent?@"关闭":nil image:self.m_IsPresent?nil:@"navigationbar_back_icon" toucheEvent:@"backAction:" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0];
                 self.m_NavLeftBtnArray = @[btnItem1];
                 [self updateNavWithLeftArray:self.m_NavLeftBtnArray rightArray:self.m_NavRightBtnArray];
                 
@@ -565,7 +570,7 @@
     {
         if (![larray bm_isNotEmpty])
         {
-            NSDictionary *btnItem = [self bm_makeBarButtonDictionaryWithTitle:nil image:@"navigationbar_back_icon" toucheEvent:@"backAction:" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0];
+            NSDictionary *btnItem = [self bm_makeBarButtonDictionaryWithTitle:self.m_IsPresent?@"关闭":nil image:self.m_IsPresent?nil:@"navigationbar_back_icon" toucheEvent:@"backAction:" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0];
             larray = @[btnItem];
         }
     }

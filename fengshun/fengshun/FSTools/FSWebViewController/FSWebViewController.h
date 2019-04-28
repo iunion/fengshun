@@ -39,6 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 是否不显示左上角x按钮，默认: NO，显示x
 @property (nonatomic, assign) BOOL m_IsNotShowCloseBtn;
+// 是不是present的
+@property (nonatomic, assign) BOOL m_IsPresent;
 
 - (instancetype)initWithTitle:(nullable NSString *)title url:(nullable NSString *)url;
 - (instancetype)initWithTitle:(nullable NSString *)title url:(nullable NSString *)url showLoadingBar:(BOOL)showLoadingBar loadingBarColor:(nullable UIColor *)color;

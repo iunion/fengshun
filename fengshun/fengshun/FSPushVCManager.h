@@ -41,6 +41,8 @@ typedef void (^PushVCCallBack)(void);
 + (FSWebViewController *)showWebView:(UIViewController *)pushVC url:(NSString *)url title:(NSString *)title showLoadingBar:(BOOL)showLoadingBar loadingBarColor:(UIColor *)color animated:(BOOL)animated;
 + (FSWebViewController *)showWebView:(UIViewController *)pushVC url:(NSString *)url title:(NSString *)title showLoadingBar:(BOOL)showLoadingBar loadingBarColor:(UIColor *)color delegate:(id<FSWebViewControllerDelegate>)delegate animated:(BOOL)animated;
 
++ (FSWebViewController *)fsPresentWebVC:(UIViewController *)pushVC url:(NSString *)url title:(NSString *)title;
+
 
 
 #pragma mark - homePage push
