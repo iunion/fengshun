@@ -106,9 +106,16 @@
             break;
         case FSJumpVC_TYPE_PERSONAL://
         {
-            FSCustomInfoVC *vc = [[FSCustomInfoVC alloc] init];
-            vc.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:vc animated:YES];
+            if ([FSUserInfoModel isLogin])
+            {
+                FSCustomInfoVC *vc = [[FSCustomInfoVC alloc] init];
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            else
+            {
+                [self showLoginWithVC:self];
+            }
         }
             break;
         case FSJumpVC_TYPE_FORUM://
@@ -118,7 +125,10 @@
             [FSPushVCManager showCommunitySecVCPushVC:self fourmId:[params bm_intForKey:@"id"] fourmName:@""];
         }
             break;
-            
+            case FSJumpVC_TYPE_CALCULATOR:
+        {
+            [FSPushVCManager showWebView:self url:[NSString stringWithFormat:@"%@/tooIndex",FS_H5_SERVER] title:@""];
+        }
         default:
             break;
     }

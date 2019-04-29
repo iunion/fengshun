@@ -48,6 +48,7 @@ typedef NS_ENUM(NSUInteger, FSJumpVC_TYPE) {
     FSJumpVC_TYPE_CONSULTATION, // 智能咨询首页
     FSJumpVC_TYPE_PERSONAL,// 个人信息
     FSJumpVC_TYPE_FORUM,// 板块
+    FSJumpVC_TYPE_CALCULATOR,// 计算器
 };
 
 + (FSJumpVC_TYPE)getJumpType:(NSString *)type;

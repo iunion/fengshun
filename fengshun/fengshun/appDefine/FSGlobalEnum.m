@@ -66,6 +66,10 @@
     {
         return FSJumpVC_TYPE_FORUM;
     }
+    else if ([type isEqualToString:@"calculator"])
+    {
+        return FSJumpVC_TYPE_CALCULATOR;
+    }
     else
     {
         return FSJumpVC_TYPE_NONE;
