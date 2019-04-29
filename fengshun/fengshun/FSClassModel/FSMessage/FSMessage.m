@@ -183,7 +183,11 @@
     self.m_Content = [dic bm_stringTrimForKey:@"content"];
 
     // 创建时间: createTime
-    self.m_CreateTime = [dic bm_doubleForKey:@"createTime"] / 1000;
+    self.m_CreateTime = [dic bm_doubleForKey:@"startTime"] / 1000;
+    if (self.m_CreateTime <= 0)
+    {
+        self.m_CreateTime = [dic bm_doubleForKey:@"createTime"] / 1000;
+    }
 
     // 跳转地址(H5为跳转URL、图文系列为系列ID): jumpAddress
     self.m_JumpAddress = [dic bm_stringTrimForKey:@"jumpAddress"];
