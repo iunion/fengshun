@@ -17,6 +17,19 @@
     return [FSApiRequest makeRequestWithURL:urlStr parameters:@{}];
 }
 
++ (XMRequest *)loadHomePageDataSuccess:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
+{
+    return [XMRequestManager rm_requestWithApi:@"/storm/home/getAppHomeData" parameters:nil success:successBlock failure:failureBlock];
+}
+
++ (NSMutableURLRequest *)getMainColumnPageIndex:(NSInteger)pageIndex pageSize:(NSInteger )pageSize
+{
+    NSDictionary *params = @{@"pageIndex":@(pageIndex),
+                             @"pageSize":@(pageSize)};
+    NSString *urlStr = [NSString stringWithFormat:@"%@/storm/home/homeSpecialList", FS_URL_SERVER];
+    return [FSApiRequest makeRequestWithURL:urlStr parameters:params];
+}
+
 + (XMRequest *)getMainColumnPageIndex:(NSInteger)pageIndex Success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
 {
     NSDictionary *params = @{@"pageIndex":@(pageIndex),

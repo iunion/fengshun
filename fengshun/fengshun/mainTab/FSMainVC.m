@@ -42,7 +42,6 @@ FSMainVC ()
 @property (nonatomic, strong) NSArray<FSHomePageToolModel *> *      m_tools;
 @property (nonatomic, strong) NSArray<FSCourseRecommendModel *> *   m_courses;
 @property (nonatomic, strong) NSArray<FSTopicModel *> *             m_topics;
-@property (nonatomic, strong) NSMutableArray *                      m_colums;
 @property (nonatomic, strong) NSArray *                             m_caseHotkeys;
 //@property (nonatomic, strong) NSArray *                             m_lawTopics;
 
@@ -82,17 +81,9 @@ FSMainVC ()
     }
 }
 
-- (NSMutableArray *)m_colums
-{
-    if (!_m_colums)
-    {
-        _m_colums = [NSMutableArray array];
-    }
-    return _m_colums;
-}
-
 - (void)setupUI
 {
+    self.m_LoadDataType = FSAPILoadDataType_Page;
     self.m_TableView.bm_freshHeaderView.backgroundColor = [UIColor whiteColor];
     
 //    self.bm_NavigationBarAlpha = 0;
@@ -299,7 +290,7 @@ FSMainVC ()
     }
     else if (section == 2)
     {
-        return self.m_colums.count;
+        return self.m_DataArray.count;
     }
     else
     {
@@ -324,7 +315,7 @@ FSMainVC ()
     }
     else
     {
-        id model = self.m_colums[indexPath.row];
+        id model = self.m_DataArray[indexPath.row];
         if ([model isMemberOfClass:[FSColumModel class]])
         {
             FSColumModel *columnModel = model;
@@ -368,7 +359,7 @@ FSMainVC ()
     {
         return SECTION_HEDER_HEIGHT;
     }
-    else if (section == 2 &&[self.m_colums bm_isNotEmpty])
+    else if (section == 2 &&[self.m_DataArray bm_isNotEmpty])
     {
         return SECTION_HEDER_HEIGHT;
     }
@@ -420,7 +411,7 @@ FSMainVC ()
 {
     if (indexPath.section == 2)
     {
-        id model = self.m_colums[indexPath.row];
+        id model = self.m_DataArray[indexPath.row];
         if ([model isMemberOfClass:[FSColumModel class]])
         {
             return [FSCharacterCell cellHeight];
@@ -452,7 +443,7 @@ FSMainVC ()
     }
     else if (indexPath.section == 2)
     {
-        id model = self.m_colums[indexPath.row];
+        id model = self.m_DataArray[indexPath.row];
         if ([model isMemberOfClass:[FSColumModel class]])
         {
             FSColumModel *columnModel = model;
@@ -520,42 +511,49 @@ FSMainVC ()
     
 }
 
-- (void)getMainColumnData
+- (void)getMainData
 {
-    BMWeakSelf
-    // 获取专栏数据
-    [FSApiRequest getMainColumnPageIndex:1 Success:^(id  _Nullable responseObject) {
-        [weakSelf.m_colums addObjectsFromArray:[FSColumModel getHomeListArr:[responseObject bm_arrayForKey:@"list"]]];
-        [weakSelf.m_TableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
+    BMWeakSelf;
+    [FSApiRequest loadHomePageDataSuccess:^(id  _Nullable responseObject) {
+        NSArray *banners = [responseObject bm_arrayForKey:@"broadcastPictures"];
+        ;
+        weakSelf.m_banners   = [FSBannerModel modelsWithDataArray:banners];
+        NSArray *tools = [responseObject bm_arrayForKey:@"tools"];
+        ;
+        weakSelf.m_tools       = [FSHomePageToolModel modelsWithDataArray:tools];
+        NSArray *courses = [responseObject bm_arrayForKey:@"recentChanges"];
+        weakSelf.m_courses     = [FSCourseRecommendModel modelsWithDataArray:courses];
+        NSArray *topics  = [responseObject bm_arrayForKey:@"bestPosts"];
+        
+        weakSelf.m_topics    = [FSTopicModel communityRecommendListModelArr:topics];
+        
+        [weakSelf freshUI];
     } failure:^(NSError * _Nullable error) {
         
     }];
 }
 
-- (NSMutableURLRequest *)setLoadDataRequest
+- (NSMutableURLRequest *)setLoadDataRequestWithFresh:(BOOL)isLoadNew
 {
-    [self moreNetWorking];
-    [self getMainColumnData];
-    return [FSApiRequest loadHomePageData];
+    if (isLoadNew)
+    {
+        [self moreNetWorking];
+        [self getMainData];
+    }
+    return [FSApiRequest getMainColumnPageIndex:s_BakLoadedPage pageSize:self.m_CountPerPage];
 }
 
 - (BOOL)succeedLoadedRequestWithDic:(NSDictionary *)data
 {
-    NSArray *banners = [data bm_arrayForKey:@"broadcastPictures"];
-    ;
-    self.m_banners   = [FSBannerModel modelsWithDataArray:banners];
-    NSArray *tools = [data bm_arrayForKey:@"tools"];
-    ;
-    self.m_tools       = [FSHomePageToolModel modelsWithDataArray:tools];
-    NSArray *courses = [data bm_arrayForKey:@"recentChanges"];
-    self.m_courses     = [FSCourseRecommendModel modelsWithDataArray:courses];
-    NSArray *topics  = [data bm_arrayForKey:@"bestPosts"];
-    
-    self.m_topics    = [FSTopicModel communityRecommendListModelArr:topics];
-    
-    [self freshUI];
-    return [super succeedLoadedRequestWithDic:data];
+    if (self.m_IsLoadNew)
+    {
+        [self.m_DataArray removeAllObjects];
+    }
+    [self.m_DataArray addObjectsFromArray:[FSColumModel getHomeListArr:[data bm_arrayForKey:@"list"]]];
+    [self.m_TableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
+    return YES;
 }
+
 
 - (void)freshUI
 {
