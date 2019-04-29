@@ -91,6 +91,16 @@
 				<string>growing.62eb199ef2170760</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>FTLS</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>App</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1.1.3.1</string>

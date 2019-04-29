@@ -54,16 +54,16 @@
     return  [url.scheme isEqualToString:FS_URL_Schemes];
 }
 
-- (void)fspush_withUrl:(NSURL *)url
+- (BOOL)fspush_withUrl:(NSURL *)url
 {
     if (![self canOpenUrl:url])
     {
-        return;
+        return NO;
     }
     FSJumpVC_TYPE jumpType = [FSGlobalEnum getJumpType:url.host];
     if (jumpType == FSJumpVC_TYPE_NONE)
     {
-        return;
+        return NO;
     }
     switch (jumpType) {
         case FSJumpVC_TYPE_STATUTE://
@@ -71,12 +71,7 @@
             break;
         case FSJumpVC_TYPE_CASE://
         {
-            [FSApiRequest getCaseSearchHotkeysSuccess:^(id  _Nullable responseObject) {
-                NSDictionary *data = responseObject;
-                [FSPushVCManager homePage:self pushToCaseSearchWithHotKeys:[data bm_arrayForKey:@"hotKeywords"]];
-            } failure:^(NSError * _Nullable error) {
-                
-            }];
+            [FSPushVCManager homePage:self pushToCaseSearchWithHotKeys:nil];
         }
             break;
         case FSJumpVC_TYPE_DOCUMENT://
@@ -127,6 +122,7 @@
         default:
             break;
     }
+    return YES;
 }
 
 // 弹出登录

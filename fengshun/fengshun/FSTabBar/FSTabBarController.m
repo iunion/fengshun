@@ -131,4 +131,9 @@
     [vc fspush_withModel:pushModel];
 }
 
+- (BOOL)topVCJumpWithUrl:(NSURL *)url
+{
+    UIViewController *vc = [self getCurrentViewController];
+    return [vc fspush_withUrl:url];
+}
 @end

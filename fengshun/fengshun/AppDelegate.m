@@ -310,6 +310,10 @@
         {
             return YES;
         }
+        if ([self.m_TabBarController topVCJumpWithUrl:url])
+        {
+            return YES;
+        }
     }
     return NO;
 }
@@ -321,6 +325,10 @@
     if (!result) {
         // 其他如支付等SDK的回调
         if ([Growing handleUrl:url]) // 请务必确保该函数被调用
+        {
+            return YES;
+        }
+        if ([self.m_TabBarController topVCJumpWithUrl:url])
         {
             return YES;
         }

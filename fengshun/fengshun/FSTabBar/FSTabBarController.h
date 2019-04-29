@@ -17,4 +17,5 @@
 
 - (void)topVCPushWithModel:(FSPushVCModel *)pushModel;
 
+- (BOOL )topVCJumpWithUrl:(NSURL *)url;
 @end

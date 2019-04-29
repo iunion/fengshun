@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "FSPushVCModel.h"
-#define FS_URL_Schemes @"App"
+#define FS_URL_Schemes @"app"
 
 @interface UIViewController (FSPushVCAPI)
 
 - (void)fspush_withModel:(FSPushVCModel *)pushModel;
 
-- (void)fspush_withUrl:(NSURL *)url;
+- (BOOL)fspush_withUrl:(NSURL *)url;
 
 - (BOOL)canOpenUrl:(NSURL *)url;
 
