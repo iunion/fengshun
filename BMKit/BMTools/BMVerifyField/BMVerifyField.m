@@ -7,6 +7,7 @@
 //
 
 #import "BMVerifyField.h"
+#import "BMVerifyFieldTextRange.h"
 
 #define DEFAULT_CONTENT_SIZE_WITH_UNIT_COUNT(c) CGSizeMake(40 * c, 40)
 
@@ -20,9 +21,16 @@
 @property (nullable, nonatomic, strong) __kindof UIView *inputView;
 @property (nullable, nonatomic, strong) __kindof UIView *inputAccessoryView;
 
+@property (nonatomic, strong) NSString *markedText;
+
+
 @end
 
 @implementation BMVerifyField
+{
+    NSString *_markedText;
+}
+
 //@synthesize textContentType = _textContentType;
 @synthesize secureTextEntry = _secureTextEntry;
 @synthesize enablesReturnKeyAutomatically = _enablesReturnKeyAutomatically;
@@ -31,6 +39,10 @@
 
 @synthesize autocapitalizationType = _autocapitalizationType;
 @synthesize autocorrectionType = _autocorrectionType;
+
+@synthesize inputDelegate = _inputDelegate;
+@synthesize selectedTextRange = _selectedTextRange;
+@synthesize markedTextStyle = _markedTextStyle;
 
 - (void)dealloc
 {
@@ -71,11 +83,6 @@
     [self setBackgroundColor:[UIColor clearColor]];
     self.opaque = NO;
     
-//    if (@available(iOS 12.0, *))
-//    {
-//        _textContentType = UITextContentTypeOneTimeCode;
-//    }
-    
     _secureTextEntry = NO;
     _keyboardType = UIKeyboardTypeNumberPad;
     _returnKeyType = UIReturnKeyDone;
@@ -85,6 +92,7 @@
 
     _characterArray = [NSMutableArray array];
     
+    _itemAlignment = BMVerifyFieldAlignmentCenter;
     _squareBorder = YES;
     
     _itemSpace = 12.0f;
@@ -105,6 +113,15 @@
     _secureStyle = BMVerifyFieldSecureStyle_Dot;
     //_secureImage = [UIImage imageNamed:@"navigationbar_help_icon"];
     //_secureSymbol = @"?";
+
+    if (@available(iOS 12.0, *))
+    {
+        _textContentType = UITextContentTypeOneTimeCode;
+    }
+    else if (@available(iOS 10.0, *))
+    {
+        _textContentType = @"one-time-code";
+    }
 
     [self.layer addSublayer:self.cursorLayer];
     [self setNeedsDisplay];
@@ -164,12 +181,41 @@
     }
 }
 
-//- (void)setTextContentType:(UITextContentType)textContentType
-//{
-//    _textContentType = textContentType;
-//    
-//    [self setNeedsDisplay];
-//}
+- (void)setText:(NSString *)text
+{
+    [self.characterArray removeAllObjects];
+    
+    [text enumerateSubstringsInRange:NSMakeRange(0, text.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
+        if (self.characterArray.count < self.inputMaxCount)
+        {
+            [self.characterArray addObject:substring];
+        }
+        else
+        {
+            *stop = YES;
+        }
+    }];
+    
+    [self setNeedsDisplay];
+    [self resetCursorLayerIfNeeded];
+
+    if (self.characterArray.count >= self.inputMaxCount)
+    {
+        if (self.autoResignFirstResponderWhenInputFinished == YES)
+        {
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self resignFirstResponder];
+                
+                if ([self.delegate respondsToSelector:@selector(verifyFieldInputFinished:)])
+                {
+                    [self.delegate verifyFieldInputFinished:self];
+                }
+            }];
+        }
+        
+        return;
+    }
+}
 
 - (void)setSecureTextEntry:(BOOL)secureTextEntry
 {
@@ -179,25 +225,30 @@
     [self resetCursorLayerIfNeeded];
 }
 
-/// 在 iOS 11 及 iOS 12 beta 测试版系统中，对于实现了 UIKeyInput 协议的自定义控件，系统键盘的输入预测 pannel
-/// 极大概率会错位，键盘高度异常。猜测也许是系统 bug，如果你知道解决版办法，我很期待你的解答:)。
-/// 禁用大小写。感谢 jixiang0903 [https://github.com/jixiang0903] 提供的建议
-- (void)setAutocapitalizationType:(UITextAutocapitalizationType)autocapitalizationType
+- (void)setSecureStyle:(BMVerifyFieldSecureStyle)secureStyle
 {
-    _autocapitalizationType = UITextAutocapitalizationTypeNone;
-}
-
-/// 在 iOS 11 及 iOS 12 beta 测试版系统中，对于实现了 UIKeyInput 协议的自定义控件，系统键盘的输入预测 pannel
-/// 极大概率会错位，键盘高度异常。猜测也许是系统 bug，如果你知道解决版办法，我很期待你的解答:)。
-/// 禁用输入预测修正。感谢 jixiang0903 [https://github.com/jixiang0903] 提供的建议
-- (void)setAutocorrectionType:(UITextAutocorrectionType)autocorrectionType
-{
-    _autocorrectionType = UITextAutocorrectionTypeNo;
+    _secureStyle = secureStyle;
+    
+    if (!self.secureTextEntry)
+    {
+        return;
+    }
+    
+    [self setNeedsDisplay];
+    [self resetCursorLayerIfNeeded];
 }
 
 - (void)setStyle:(BMVerifyFieldStyle)style
 {
     _style = style;
+    
+    [self setNeedsDisplay];
+    [self resetCursorLayerIfNeeded];
+}
+
+- (void)setItemAlignment:(BMVerifyFieldAlignment)itemAlignment
+{
+    _itemAlignment = itemAlignment;
     
     [self setNeedsDisplay];
     [self resetCursorLayerIfNeeded];
@@ -233,6 +284,7 @@
     
     _itemSpace = itemSpace;
     
+    [self _resize];
     [self setNeedsDisplay];
     [self resetCursorLayerIfNeeded];
 }
@@ -386,6 +438,11 @@
 
 #pragma mark - drawUI
 
+- (void)_resize
+{
+    [self invalidateIntrinsicContentSize];
+}
+
 - (CGSize)getItemSize
 {
     CGFloat width;
@@ -403,6 +460,27 @@
     return CGSizeMake(width, height);
 }
 
+- (CGFloat)getStartXWithItemSize:(CGSize)itemSize
+{
+    CGFloat startX = 0;
+    switch (self.itemAlignment)
+    {
+        case BMVerifyFieldAlignmentLeft:
+            startX = self.itemSpace * 0.5;
+            break;
+            
+        case BMVerifyFieldAlignmentCenter:
+            startX = (self.bounds.size.width - self.inputMaxCount * (itemSize.width + self.itemSpace) + self.itemSpace) * 0.5;
+            break;
+            
+        case BMVerifyFieldAlignmentRight:
+            startX = self.bounds.size.width - self.inputMaxCount * (itemSize.width + self.itemSpace) + self.itemSpace * 0.5;
+            break;
+    }
+    
+    return startX;
+}
+
 - (void)resetCursorLayerIfNeeded
 {
     self.cursorLayer.hidden = !self.isFirstResponder || self.cursorColor == nil || self.inputMaxCount == self.characterArray.count;
@@ -413,7 +491,8 @@
     }
     
     CGSize itemSize = [self getItemSize];
-    CGFloat startX = self.itemSpace * 0.5;//(self.bounds.size.width - self.inputMaxCount * (itemSize.width + self.itemSpace)) * 0.5;
+    CGFloat startX = [self getStartXWithItemSize:itemSize];
+    //CGFloat startX = self.itemSpace * 0.5;//(self.bounds.size.width - self.inputMaxCount * (itemSize.width + self.itemSpace)) * 0.5;
     
     CGRect itemRect = CGRectMake(startX + self.characterArray.count * (itemSize.width + self.itemSpace),
                                  0,
@@ -453,8 +532,8 @@
     CGContextSetLineCap(ctx, kCGLineCapRound);
     CGRect bounds = CGRectInset(rect, self.borderWidth * 0.5, self.borderWidth * 0.5);
     
-    //CGFloat startX = (self.bounds.size.width - self.inputMaxCount * (itemSize.width + self.itemSpace)) * 0.5;
-    CGFloat startX = self.itemSpace * 0.5;//(self.bounds.size.width - self.inputMaxCount * (itemSize.width + self.itemSpace)) * 0.5;
+    CGFloat startX = [self getStartXWithItemSize:itemSize];
+    //CGFloat startX = self.itemSpace * 0.5;//(self.bounds.size.width - self.inputMaxCount * (itemSize.width + self.itemSpace)) * 0.5;
 
     if (self.style == BMVerifyFieldStyle_Border)
     {
@@ -497,7 +576,7 @@
             CGContextAddPath(ctx, bezierPath.CGPath);
         }
         
-        CGContextDrawPath(ctx, kCGPathFill);
+        CGContextDrawPath(ctx, kCGPathStroke);
     }
 }
 
@@ -513,8 +592,7 @@
                            NSFontAttributeName: self.textFont};
     for (NSUInteger i = 0; i < self.characterArray.count; i++)
     {
-        //CGFloat startX = (self.bounds.size.width - self.inputMaxCount * (itemSize.width + self.itemSpace)) * 0.5;
-        CGFloat startX = self.itemSpace * 0.5;
+        CGFloat startX = [self getStartXWithItemSize:itemSize];
 
         CGRect itemRect = CGRectMake(startX + i * (itemSize.width + self.itemSpace),
                                      0,
@@ -588,8 +666,7 @@
     CGContextSetLineWidth(ctx, self.borderWidth);
     CGContextSetLineCap(ctx, kCGLineCapRound);
     
-    //CGFloat startX = (self.bounds.size.width - self.inputMaxCount * (itemSize.width + self.itemSpace)) * 0.5;
-    CGFloat startX = self.itemSpace * 0.5;
+    CGFloat startX = [self getStartXWithItemSize:itemSize];
     
     if (self.style == BMVerifyFieldStyle_Border)
     {
@@ -603,8 +680,6 @@
             UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:itemRect cornerRadius:self.borderRadius];
             CGContextAddPath(ctx, bezierPath.CGPath);
         }
-        
-        CGContextDrawPath(ctx, kCGPathStroke);
     }
     else
     {
@@ -617,9 +692,9 @@
             UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:unitLineRect cornerRadius:0];
             CGContextAddPath(ctx, bezierPath.CGPath);
         }
-        
-        CGContextDrawPath(ctx, kCGPathFill);
     }
+    
+    CGContextDrawPath(ctx, kCGPathStroke);
 }
 
 
@@ -641,6 +716,11 @@
         return;
     }
     
+    if ([text isEqualToString:@" "])
+    {
+        return;
+    }
+    
     if (self.characterArray.count >= self.inputMaxCount)
     {
         if (self.autoResignFirstResponderWhenInputFinished == YES)
@@ -655,11 +735,6 @@
             }];
         }
         
-        return;
-    }
-    
-    if ([text isEqualToString:@" "])
-    {
         return;
     }
     
@@ -730,11 +805,115 @@
     [self resetCursorLayerIfNeeded];
 }
 
-- (void)changeText:(NSString *)text
+
+// UITextInput implement.
+#pragma mark - UITextInput
+
+/* Methods for manipulating text. */
+- (nullable NSString *)textInRange:(BMVerifyFieldTextRange *)range
 {
-    [self clear];
-    
-    [self insertText:text];
+    return nil;
 }
+
+- (void)replaceRange:(BMVerifyFieldTextRange *)range withText:(NSString *)text {}
+
+
+// selectedRange is a range within the markedText
+- (void)setMarkedText:(nullable NSString *)markedText selectedRange:(NSRange)selectedRange
+{
+    _markedText = [markedText copy];
+}
+
+- (void)unmarkText
+{
+    if (self.text.length >= self.inputMaxCount)
+    {
+        return;
+    }
+    
+    if (_markedText == nil)
+    {
+        return;
+    }
+    
+    [self insertText:_markedText];
+}
+
+
+/* The end and beginning of the the text document. */
+- (UITextPosition *)beginningOfDocument
+{
+    return [BMVerifyFieldTextPosition positionWithOffset:0];
+}
+
+- (UITextPosition *)endOfDocument
+{
+    return [BMVerifyFieldTextPosition positionWithOffset:self.text.length - 1];
+}
+
+
+/* A tokenizer must be provided to inform the text input system about text units of varying granularity. */
+- (id<UITextInputTokenizer>)tokenizer
+{
+    return [[UITextInputStringTokenizer alloc] initWithTextInput:self];
+}
+
+
+// Nil if no marked text.
+- (UITextRange *)markedTextRange { return nil; }
+
+
+/* Methods for creating ranges and positions. */
+- (nullable UITextRange *)textRangeFromPosition:(BMVerifyFieldTextPosition *)fromPosition toPosition:(BMVerifyFieldTextPosition *)toPosition
+{
+    return [BMVerifyFieldTextRange rangeWithStart:fromPosition end:toPosition];
+}
+
+- (nullable UITextPosition *)positionFromPosition:(BMVerifyFieldTextPosition *)position offset:(NSInteger)offset
+{
+    return [BMVerifyFieldTextPosition positionWithOffset:position.offset + offset];
+}
+
+- (nullable UITextPosition *)positionFromPosition:(BMVerifyFieldTextPosition *)position inDirection:(UITextLayoutDirection)direction offset:(NSInteger)offset
+{
+    return [BMVerifyFieldTextPosition positionWithOffset:position.offset + offset];
+}
+
+
+/* Simple evaluation of positions */
+- (NSComparisonResult)comparePosition:(BMVerifyFieldTextPosition *)position toPosition:(BMVerifyFieldTextPosition *)other
+{
+    if (position.offset < other.offset) return NSOrderedAscending;
+    if (position.offset > other.offset) return NSOrderedDescending;
+    return NSOrderedSame;
+}
+
+- (NSInteger)offsetFromPosition:(BMVerifyFieldTextPosition *)from toPosition:(BMVerifyFieldTextPosition *)toPosition
+{
+    return toPosition.offset - from.offset;
+}
+
+
+/* Layout questions. */
+- (nullable UITextPosition *)positionWithinRange:(UITextRange *)range farthestInDirection:(UITextLayoutDirection)direction { return nil; }
+- (nullable UITextRange *)characterRangeByExtendingPosition:(BMVerifyFieldTextPosition *)position inDirection:(UITextLayoutDirection)direction { return nil; }
+
+
+/* Writing direction */
+- (UITextWritingDirection)baseWritingDirectionForPosition:(BMVerifyFieldTextPosition *)position inDirection:(UITextStorageDirection)direction { return UITextWritingDirectionNatural; }
+- (void)setBaseWritingDirection:(UITextWritingDirection)writingDirection forRange:(UITextRange *)range {}
+
+
+/* Geometry used to provide, for example, a correction rect. */
+- (NSArray<UITextSelectionRect *> *)selectionRectsForRange:(BMVerifyFieldTextRange *)range { return nil; }
+- (CGRect)firstRectForRange:(BMVerifyFieldTextRange *)range { return CGRectNull; }
+- (CGRect)caretRectForPosition:(BMVerifyFieldTextPosition *)position { return CGRectNull; }
+
+
+/* Hit testing. */
+- (nullable UITextRange *)characterRangeAtPoint:(CGPoint)point { return nil; }
+- (nullable UITextPosition *)closestPositionToPoint:(CGPoint)point withinRange:(BMVerifyFieldTextRange *)range { return nil; }
+- (nullable UITextPosition *)closestPositionToPoint:(CGPoint)point { return nil; }
+
 
 @end

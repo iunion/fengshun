@@ -18,6 +18,16 @@ typedef NS_ENUM(NSUInteger, BMVerifyFieldStyle)
     BMVerifyFieldStyle_Underline
 };
 
+typedef NS_ENUM(NSUInteger, BMVerifyFieldAlignment)
+{
+    // 左
+    BMVerifyFieldAlignmentLeft = 0,
+    // Default 中
+    BMVerifyFieldAlignmentCenter,
+    // 右
+    BMVerifyFieldAlignmentRight,
+};
+
 typedef NS_ENUM(NSUInteger, BMVerifyFieldSecureStyle)
 {
     // 圆点
@@ -30,14 +40,20 @@ typedef NS_ENUM(NSUInteger, BMVerifyFieldSecureStyle)
 
 @protocol BMVerifyFieldDelegate;
 
-@interface BMVerifyField : UIControl <UIKeyInput>
+@interface BMVerifyField : UIControl <UITextInput>
 
 @property (nullable, nonatomic, weak) id <BMVerifyFieldDelegate> delegate;
 
 @property (nonatomic, assign) BMVerifyFieldStyle style;
 
+@property (nonatomic, assign) BMVerifyFieldAlignment itemAlignment;
+
 // 输入的字符串
-@property (nullable, nonatomic, strong, readonly) NSString *text;
+@property (nullable, nonatomic, strong) NSString *text;
+
+// Supporting iOS12 SMS verification code, keyboardType must be UIKeyboardTypeNumberPad to localizable.
+// Must set textContentType to UITextContentTypeOneTimeCode
+@property(null_unspecified, nonatomic, copy) IBInspectable UITextContentType textContentType NS_AVAILABLE_IOS(10_0); // default is nil
 
 // 输入最大个数限制
 @property (nonatomic, assign, readonly) NSUInteger inputMaxCount;
@@ -81,8 +97,6 @@ typedef NS_ENUM(NSUInteger, BMVerifyFieldSecureStyle)
 - (void)setFieldInputAccessoryView:(__kindof UIView *)inputAccessoryView;
 
 - (void)clear;
-
-- (void)changeText:(NSString *)text;
 
 @end
 

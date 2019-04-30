@@ -30,8 +30,6 @@
 
 @property (nonatomic, strong) BMVerifyField *m_VerifyField;
 
-@property (nonatomic, strong) UITextField *m_VerifyTextField;
-
 @property (nonatomic, strong) UILabel *m_PhoneNumLabel;
 @property (nonatomic, strong) UILabel *m_ErrorLabel;
 
@@ -218,30 +216,9 @@
     verifyField.itemSpace = (self.m_TableView.bm_width-30-60.0f*4)/4;
     verifyField.trackBorderColor = UI_COLOR_BL1;
     verifyField.autoResignFirstResponderWhenInputFinished = YES;
-    //verifyField.textContentType = UITextContentTypeOneTimeCode;
     verifyField.userInteractionEnabled = NO;
     self.m_VerifyField = verifyField;
     
-    UITextField *field = [[UITextField alloc] initWithFrame:CGRectMake(15.0f, label2.bm_bottom+80.0f, self.m_TableView.bm_width-30, 60.0f)];
-    if (@available(iOS 12.0, *))
-    {
-        field.textContentType = UITextContentTypeOneTimeCode;
-    }
-    else if (@available(iOS 10.0, *))
-    {
-        field.textContentType = @"one-time-code";
-    }
-
-    field.secureTextEntry = NO;
-    field.keyboardType = UIKeyboardTypeNumberPad;
-    field.returnKeyType = UIReturnKeyDone;
-    field.enablesReturnKeyAutomatically = YES;
-    field.autocorrectionType = UITextAutocorrectionTypeNo;
-    field.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    self.m_VerifyTextField = field;
-    [self.m_TableView addSubview:field];
-    [self.m_VerifyTextField addTarget:self action:@selector(textFieldDidChanged:) forControlEvents:UIControlEventEditingChanged];
-
     self.actionBar = [[BMTableViewActionBar alloc] initWithDelegate:self];
     [self.actionBar.navigationControl setEnabled:NO forSegmentAtIndex:0];
     [self.actionBar.navigationControl setEnabled:NO forSegmentAtIndex:1];
@@ -359,11 +336,8 @@
     NSString *text = [NSString stringWithFormat:@"验证码已发送到手机%@", [self.m_PhoneNum bm_maskAtRang:NSMakeRange(3, 4) withMask:'*']];
     self.m_PhoneNumLabel.text = text;
     
-    //self.m_VerifyField.userInteractionEnabled = YES;
-    //[self.m_VerifyField becomeFirstResponder];
-    
-    self.m_VerifyTextField.hidden = YES;
-    [self.m_VerifyTextField becomeFirstResponder];
+    self.m_VerifyField.userInteractionEnabled = YES;
+    [self.m_VerifyField becomeFirstResponder];
 }
 
 - (void)freshClockBtn:(NSInteger)ticket isForcedStop:(BOOL)forcedStop
@@ -420,49 +394,6 @@
     
     self.m_ErrorLabel.attributedText = attrString;
 }
-
-
-#pragma mark -
-#pragma mark textFieldDidChanged
-
-- (void)textFieldDidChanged:(UITextField *)textField
-{
-    NSString *textFieldText = textField.text;
-        
-    // ios7之前使用 [UITextInputMode currentInputMode].primaryLanguage
-    NSString *lang = [[UIApplication sharedApplication]textInputMode].primaryLanguage;
-        
-    if ([lang isEqualToString:@"zh-Hans"])
-    {
-        // 中文输入
-        UITextRange *selectedRange = textField.markedTextRange;
-        UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0];
-        // 没有高亮选择的字，则对已输入的文字进行字数统计和限制
-        if (!position)
-        {
-            // 判断是否超过最大字数限制，如果超过就截断
-            if (textFieldText.length > self.m_VerifyField.inputMaxCount)
-            {
-                textField.text = [textFieldText substringToIndex:self.m_VerifyField.inputMaxCount];
-            }
-        }
-    }
-    else
-    {
-        // 中文输入法以外的直接对其统计限制即可，不考虑其他语种情况
-        if (textFieldText.length > self.m_VerifyField.inputMaxCount)
-        {
-            textField.text = [textFieldText substringToIndex:self.m_VerifyField.inputMaxCount];
-        }
-    }
-    
-    [self.m_VerifyField changeText:textField.text];
-}
-
-//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-//{
-//
-//}
 
 
 #pragma mark -
