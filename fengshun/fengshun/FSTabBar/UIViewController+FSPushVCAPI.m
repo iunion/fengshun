@@ -51,7 +51,7 @@
 
 - (BOOL)canOpenUrl:(NSURL *)url
 {
-    return  [url.scheme isEqualToString:FS_URL_Schemes_X]||[url.scheme isEqualToString:FS_URL_SCHEMES];
+    return  [url.scheme isEqualToString:FS_URL_SCHEMES];
 }
 
 - (BOOL)fspush_withUrl:(NSURL *)url

@@ -98,7 +98,7 @@
 			<string>FTLS</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>App</string>
+				<string>ftls</string>
 			</array>
 		</dict>
 	</array>

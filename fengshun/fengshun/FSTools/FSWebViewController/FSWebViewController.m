@@ -770,7 +770,8 @@
     }
     else if ([[shareData bm_stringForKey:@"type"]isEqualToString:@"ARTICLE"])// 专栏
     {
-        
+        BOOL isOwn = [[[shareData bm_dictionaryForKey:@"postData"] bm_stringForKey:@"userId"]isEqualToString: [FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId];
+        [FSMoreViewVC showTopicMoreDelegate:weakSelf isOwner:isOwn isCollection:[[shareData bm_dictionaryForKey:@"postData"]bm_boolForKey:@"collection"]];
     }
     else //其他
     {

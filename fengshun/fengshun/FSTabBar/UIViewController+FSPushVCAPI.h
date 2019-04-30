@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FSPushVCModel.h"
-#define FS_URL_SCHEMES @"App"
-#define FS_URL_Schemes_X @"app"
+#define FS_URL_SCHEMES @"ftls"
 
 @interface UIViewController (FSPushVCAPI)
 
