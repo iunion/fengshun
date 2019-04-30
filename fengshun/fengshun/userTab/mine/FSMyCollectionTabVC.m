@@ -104,23 +104,23 @@
 {
     switch (index)
     {
-        case 0:
+        case 4:
             return @"帖子";
             break;
             
-        case 1:
+        case 0:
             return @"法规";
             break;
             
-        case 2:
+        case 1:
             return @"案例";
             break;
             
         case 3:
-            return @"文书范本";
+            return @"文书";
             break;
             
-        case 4:
+        case 2:
             return @"课程";
             break;
         case 5:
@@ -136,17 +136,17 @@
 {
     switch (index)
     {
-        case 0:
+        case 4:
             self.m_TopicCollectVC = [[FSMyCollectionVC alloc] initWithCollectionType:FSCollectionType_POSTS];
             self.m_TopicCollectVC.m_PushVC = self;
             return self.m_TopicCollectVC.view;
             
-        case 1:
+        case 0:
             self.m_StatuteCollectVC = [[FSMyCollectionVC alloc] initWithCollectionType:FSCollectionType_STATUTE];
             self.m_StatuteCollectVC.m_PushVC = self;
             return self.m_StatuteCollectVC.view;
 
-        case 2:
+        case 1:
             self.m_CaseCollectVC = [[FSMyCollectionVC alloc] initWithCollectionType:FSCollectionType_CASE];
             self.m_CaseCollectVC.m_PushVC = self;
             return self.m_CaseCollectVC.view;
@@ -156,7 +156,7 @@
             self.m_DocumentCollectVC.m_PushVC = self;
             return self.m_DocumentCollectVC.view;
             
-        case 4:
+        case 2:
             self.m_CourseCollectVC = [[FSMyCollectionVC alloc] initWithCollectionType:FSCollectionType_COURSE];
             self.m_CourseCollectVC.m_PushVC = self;
             return self.m_CourseCollectVC.view;
