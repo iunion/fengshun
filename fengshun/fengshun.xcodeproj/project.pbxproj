@@ -822,6 +822,10 @@
 		8776E97F2272E0AF00493422 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 8776E90E2272E0AE00493422 /* UIButton+WebCache.m */; };
 		8776E9802272E0AF00493422 /* SDWebImageDownloaderRequestModifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 8776E90F2272E0AE00493422 /* SDWebImageDownloaderRequestModifier.m */; };
 		8776E9812272E0AF00493422 /* SDWebImageDownloaderRequestModifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 8776E90F2272E0AE00493422 /* SDWebImageDownloaderRequestModifier.m */; };
+		8776E9922277F4FC00493422 /* BMVerifyFieldTextRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 8776E98E2277F4FB00493422 /* BMVerifyFieldTextRange.m */; };
+		8776E9932277F4FC00493422 /* BMVerifyFieldTextRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 8776E98E2277F4FB00493422 /* BMVerifyFieldTextRange.m */; };
+		8776E9942277F4FC00493422 /* BMVerifyFieldTextPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 8776E98F2277F4FC00493422 /* BMVerifyFieldTextPosition.m */; };
+		8776E9952277F4FC00493422 /* BMVerifyFieldTextPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 8776E98F2277F4FC00493422 /* BMVerifyFieldTextPosition.m */; };
 		8799F10B21E2E983006F6C5B /* UIDevice+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 8799F10A21E2E983006F6C5B /* UIDevice+Private.m */; };
 		8799F10C21E2E983006F6C5B /* UIDevice+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 8799F10A21E2E983006F6C5B /* UIDevice+Private.m */; };
 		87A0C16121CC814800B2BF1A /* FSComTopicListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A0C16021CC814800B2BF1A /* FSComTopicListVC.m */; };
@@ -2023,7 +2027,6 @@
 		AFBF3184224E134F002BE1E3 /* FSSpecialColumnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFBF3181224E134F002BE1E3 /* FSSpecialColumnCell.xib */; };
 		AFBF3185224E134F002BE1E3 /* FSSpecialColumnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFBF3181224E134F002BE1E3 /* FSSpecialColumnCell.xib */; };
 		AFC74A59227156D80013C318 /* FSSetCompanyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E70C18225F237D00B663C5 /* FSSetCompanyVC.m */; };
-		AFC74A5B22715BB80013C318 /* fengshun_video.app in Resources */ = {isa = PBXBuildFile; fileRef = 87E7C61F21509AB000F7AB14 /* fengshun_video.app */; };
 		AFC74A6122715D480013C318 /* QAVSDKInternal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF74F214D11060005AD43 /* QAVSDKInternal.framework */; };
 		AFC74A6222715D480013C318 /* QAVSDKInternal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF74F214D11060005AD43 /* QAVSDKInternal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AFC74A6722718DFE0013C318 /* FSColumnCountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC74A6522718DFE0013C318 /* FSColumnCountCell.m */; };
@@ -3667,6 +3670,10 @@
 		8776E90F2272E0AE00493422 /* SDWebImageDownloaderRequestModifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDownloaderRequestModifier.m; sourceTree = "<group>"; };
 		8776E9102272E0AE00493422 /* SDImageCodersManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCodersManager.h; sourceTree = "<group>"; };
 		8776E9112272E0AE00493422 /* UIImage+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+GIF.h"; sourceTree = "<group>"; };
+		8776E98E2277F4FB00493422 /* BMVerifyFieldTextRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMVerifyFieldTextRange.m; sourceTree = "<group>"; };
+		8776E98F2277F4FC00493422 /* BMVerifyFieldTextPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMVerifyFieldTextPosition.m; sourceTree = "<group>"; };
+		8776E9902277F4FC00493422 /* BMVerifyFieldTextPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMVerifyFieldTextPosition.h; sourceTree = "<group>"; };
+		8776E9912277F4FC00493422 /* BMVerifyFieldTextRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMVerifyFieldTextRange.h; sourceTree = "<group>"; };
 		8799F10921E2E983006F6C5B /* UIDevice+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Private.h"; sourceTree = "<group>"; };
 		8799F10A21E2E983006F6C5B /* UIDevice+Private.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Private.m"; sourceTree = "<group>"; };
 		87A0C15F21CC814800B2BF1A /* FSComTopicListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSComTopicListVC.h; sourceTree = "<group>"; };
@@ -7375,6 +7382,10 @@
 			children = (
 				87D1867C213549B600037DDF /* BMVerifyField.h */,
 				87D1867D213549B600037DDF /* BMVerifyField.m */,
+				8776E9902277F4FC00493422 /* BMVerifyFieldTextPosition.h */,
+				8776E98F2277F4FC00493422 /* BMVerifyFieldTextPosition.m */,
+				8776E9912277F4FC00493422 /* BMVerifyFieldTextRange.h */,
+				8776E98E2277F4FB00493422 /* BMVerifyFieldTextRange.m */,
 			);
 			path = BMVerifyField;
 			sourceTree = "<group>";
@@ -9056,7 +9067,6 @@
 				AD1BE214214127180018AF2C /* FSForumSectionHeaderView.xib in Resources */,
 				87BC9E3921548E0D000F2011 /* fsintroguide_1242x2688_4@2x.png in Resources */,
 				8730B1122148E5D1004331A9 /* fsfreshfreshing_icon8@2x.png in Resources */,
-				AFC74A5B22715BB80013C318 /* fengshun_video.app in Resources */,
 				AD6712352159DBD50081E08D /* fstab_btn4_icon@3x.png in Resources */,
 				DBF7E17921523B73002CEDA4 /* FSLawTopicInfos.plist in Resources */,
 				DBF7E18F21523CB6002CEDA4 /* search_lawTopic_7@3x.png in Resources */,
@@ -9635,6 +9645,7 @@
 				8776E81F2272B20800493422 /* FLEXToolbarItem.m in Sources */,
 				876BB7C321AE86E200FC205D /* BMTestAlignManager.m in Sources */,
 				87D20B052139492F001EDD60 /* WebViewJavascriptBridge.m in Sources */,
+				8776E9922277F4FC00493422 /* BMVerifyFieldTextRange.m in Sources */,
 				87E7C69D2150A4E500F7AB14 /* TOCropScrollView.m in Sources */,
 				8776E8172272B20800493422 /* FLEXNetworkTransactionDetailTableViewController.m in Sources */,
 				8730B08A2140FFA3004331A9 /* UIColor+DTDebug.m in Sources */,
@@ -9882,6 +9893,7 @@
 				DB34723B21CC878600950C33 /* FSPushVCModel.m in Sources */,
 				874268A6212E7E36003C52F6 /* BMStepperInputView.m in Sources */,
 				8776E8412272B20800493422 /* FLEXArgumentInputTextView.m in Sources */,
+				8776E9942277F4FC00493422 /* BMVerifyFieldTextPosition.m in Sources */,
 				87C0134B212E7A5200D0AAC3 /* AppDelegate.m in Sources */,
 				AD5102A3213E77FC008CD74D /* FSCommunitySecVC.m in Sources */,
 				DBD4CE05213FBF6C00857DB3 /* FSHomePageToolModel.m in Sources */,
@@ -10447,6 +10459,7 @@
 				8776E8462272B20800493422 /* FLEXArgumentInputNumberView.m in Sources */,
 				87E7C34921509AB000F7AB14 /* ChatTextView.m in Sources */,
 				87E7C34A21509AB000F7AB14 /* NSData+BMEncrypt.m in Sources */,
+				8776E9932277F4FC00493422 /* BMVerifyFieldTextRange.m in Sources */,
 				87E7C34B21509AB000F7AB14 /* UIScrollView+ZFPlayer.m in Sources */,
 				8776E8582272B20800493422 /* FLEXInstancesTableViewController.m in Sources */,
 				87E7C34C21509AB000F7AB14 /* NSString+BMRegEx.m in Sources */,
@@ -10613,6 +10626,7 @@
 				87E7C3D321509AB000F7AB14 /* FSCaseCell.m in Sources */,
 				DBF7E1C02153759E002CEDA4 /* FSLawModel.m in Sources */,
 				87E7C3D421509AB000F7AB14 /* TZAssetCell.m in Sources */,
+				8776E9952277F4FC00493422 /* BMVerifyFieldTextPosition.m in Sources */,
 				87E7C3D521509AB000F7AB14 /* BMFreshAutoNormalFooter.m in Sources */,
 				8776E8342272B20800493422 /* FLEXArgumentInputColorView.m in Sources */,
 				87E7C3D621509AB000F7AB14 /* CYRTextView.m in Sources */,
