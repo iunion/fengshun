@@ -68,7 +68,7 @@
 - (void)setupUI
 {
     // 切换视图
-    self.m_SegmentBar = [[FSScrollPageSegment alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 44) titles:nil titleColor:nil selectTitleColor:nil showUnderLine:NO moveLineFrame:CGRectZero isEqualDivide:YES fresh:YES];
+    self.m_SegmentBar = [FSScrollPageSegment attachedSegmentWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 44) showUnderLine:NO showTopline:NO moveLineFrame:CGRectZero isEqualDivide:YES showGapline:NO];
     [self.view addSubview:_m_SegmentBar];
     self.m_SegmentBar.backgroundColor = [UIColor whiteColor];
 
