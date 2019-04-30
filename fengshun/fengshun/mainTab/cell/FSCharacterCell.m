@@ -27,6 +27,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [self.m_ImgView bm_roundedRect:42/2];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -37,7 +38,7 @@
 
 - (void)showWithModel:(FSColumModel *)model
 {
-    [self.m_ImgView sd_setImageWithURL:[NSURL URLWithString:model.m_HeaderUrl]];
+    [self.m_ImgView sd_setImageWithURL:[NSURL URLWithString:model.m_HeaderUrl] placeholderImage:[UIImage imageNamed:@"default_avatariconlarge"] options:SDWebImageRetryFailed|SDWebImageLowPriority];
     self.m_NickNameLab.text = model.m_NikeName;
     self.m_IdentyLab.text = [NSString stringWithFormat:@"%@  %@",model.m_Organization,model.m_Position];
 }

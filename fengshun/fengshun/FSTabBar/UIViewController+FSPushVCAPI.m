@@ -51,7 +51,7 @@
 
 - (BOOL)canOpenUrl:(NSURL *)url
 {
-    return  [url.scheme isEqualToString:FS_URL_Schemes];
+    return  [url.scheme isEqualToString:FS_URL_Schemes_X]||[url.scheme isEqualToString:FS_URL_SCHEMES];
 }
 
 - (BOOL)fspush_withUrl:(NSURL *)url
@@ -129,6 +129,15 @@
         {
             [FSPushVCManager showWebView:self url:[NSString stringWithFormat:@"%@/tooIndex",FS_H5_SERVER] title:@""];
         }
+            case FSJumpVC_TYPE_COLUMN:
+        {
+            NSDictionary *params = [url bm_queryDictionary];
+            if ([[params bm_stringForKey:@"url"] bm_isNotEmpty])
+            {
+                [FSPushVCManager showWebView:self url:[params bm_stringForKey:@"url"] title:nil];
+            }
+        }
+            break;
         default:
             break;
     }

@@ -31,6 +31,8 @@
 @property (nonatomic, strong) FSMyCollectionVC *m_DocumentCollectVC;
 // 课程
 @property (nonatomic, strong) FSMyCollectionVC *m_CourseCollectVC;
+// 专栏
+@property (nonatomic, strong) FSMyCollectionVC *m_ColumnCollectVC;
 
 
 @end
@@ -95,7 +97,7 @@
 
 - (NSUInteger)scrollPageViewNumberOfPages:(FSScrollPageView *)scrollPageView
 {
-    return 5;
+    return 6;
 }
 
 - (NSString *)scrollPageView:(FSScrollPageView *)scrollPageView titleAtIndex:(NSUInteger)index
@@ -121,7 +123,9 @@
         case 4:
             return @"课程";
             break;
-            
+        case 5:
+            return @"专栏";
+            break;
         default:
             return @"默认标题";
             break;
@@ -156,7 +160,10 @@
             self.m_CourseCollectVC = [[FSMyCollectionVC alloc] initWithCollectionType:FSCollectionType_COURSE];
             self.m_CourseCollectVC.m_PushVC = self;
             return self.m_CourseCollectVC.view;
-            
+        case 5:
+            self.m_ColumnCollectVC = [[FSMyCollectionVC alloc]initWithCollectionType:FSCollectionType_COLUMN];
+            self.m_ColumnCollectVC.m_PushVC = self;
+            return self.m_ColumnCollectVC.view;
         default:
             return nil;
     }

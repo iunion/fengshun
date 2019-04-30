@@ -277,6 +277,9 @@
         case FSCollectionType_COURSE:
             [parameters bm_setApiString:@"COURSE" forKey:@"collectionType"];
             break;
+        case FSCollectionType_COLUMN:
+            [parameters bm_setApiString:@"ARTICLE" forKey:@"collectionType"];
+            break;
     }
 
     [parameters bm_setInteger:pageIndex forKey:@"pageIndex"];

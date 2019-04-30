@@ -9,7 +9,7 @@
 #import "FSMyCollectionVC.h"
 #import "FSMyCollectionCell.h"
 #import "FSMyCourseCollectionCell.h"
-
+#import "FSSpecialColumnCell.h"
 
 @interface FSMyCollectionVC ()
 
@@ -45,6 +45,7 @@
     //self.m_TableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     //self.m_TableView.tableFooterView = [UIView new];
     self.m_TableView.estimatedRowHeight = 180;
+    [self.m_TableView registerNib:[UINib nibWithNibName:@"FSSpecialColumnCell" bundle:nil] forCellReuseIdentifier:@"FSSpecialColumnCell"];
 //    switch (self.m_CollectionType)
 //    {
 //        case FSCollectionType_POSTS:
@@ -148,6 +149,10 @@
     {
         return [FSMyCourseCollectionCell cellHeight];
     }
+    else if (self.m_CollectionType == FSCollectionType_COLUMN)
+    {
+        return [FSSpecialColumnCell cellHeight];
+    }
     else
     {
         FSMyCollectionModel *model = self.m_DataArray[indexPath.row];
@@ -172,6 +177,13 @@
         }
         
         [cell drawCellWithModel:self.m_DataArray[indexPath.row]];
+        return cell;
+    }
+    else if (self.m_CollectionType == FSCollectionType_COLUMN)
+    {
+        taskCellIdentifier = @"FSSpecialColumnCell";
+        FSSpecialColumnCell *cell = [tableView dequeueReusableCellWithIdentifier:taskCellIdentifier];
+        [cell showCollectionCellModel:self.m_DataArray[indexPath.row]];
         return cell;
     }
     else
@@ -227,7 +239,11 @@
             [FSPushVCManager viewController:self.m_PushVC pushToCourseDetailWithId:model.m_DetailId andIsSerial:model.m_isSerial];
         }
             break;
-            
+            case  FSCollectionType_COLUMN:
+        {
+            [FSPushVCManager showWebView:self.m_PushVC url:model.m_JumpAddress title:nil];
+        }
+            break;
         default:
             return;
     }
@@ -247,6 +263,8 @@
             return BMEmptyViewType_CollectDOCUMENT;
         case FSCollectionType_COURSE:
             return BMEmptyViewType_CollectCOURSE;
+        case FSCollectionType_COLUMN:
+            return BMEmptyViewType_NoData;
         default:
             return BMEmptyViewType_NoData;
     }

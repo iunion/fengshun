@@ -60,7 +60,7 @@
     {
         self.m_imgViewConstraintWidth.constant = 67.f;
         self.m_TitleLabConstraintLeft.constant = 12.f;
-        [self.m_imgView sd_setImageWithURL:[NSURL URLWithString:model.m_ThumbUrl]];
+        [self.m_imgView sd_setImageWithURL:[NSURL URLWithString:model.m_ThumbUrl]placeholderImage:[UIImage imageNamed:@"default_avatariconlarge"] options:SDWebImageRetryFailed|SDWebImageLowPriority];
     }
     else
     {
@@ -72,6 +72,24 @@
     self.m_ReadCountLab.text = [NSString stringWithFormat:@"%@人阅读",@(model.m_ReadCount)];
     self.m_CommentCountLab.text = [NSString stringWithFormat:@"%@",@(model.m_CommentCount)];
     self.bottomLine.hidden = model.m_IsLast;
+}
+
+- (void)showCollectionCellModel:(FSMyCollectionModel *)model
+{
+    if ([model.m_CoverThumbUrl bm_isNotEmpty])
+    {
+        self.m_imgViewConstraintWidth.constant = 67.f;
+        self.m_TitleLabConstraintLeft.constant = 12.f;
+        [self.m_imgView sd_setImageWithURL:[NSURL URLWithString:model.m_CoverThumbUrl]placeholderImage:[UIImage imageNamed:@"default_avatariconlarge"] options:SDWebImageRetryFailed|SDWebImageLowPriority];
+    }
+    else
+    {
+        self.m_imgViewConstraintWidth.constant = 0;
+        self.m_TitleLabConstraintLeft.constant = 0;
+    }
+    self.m_TitleLab.text = model.m_Title;
+    self.m_ReadCountLab.text = [NSString stringWithFormat:@"%@人阅读",model.m_ReadCount];
+    self.m_CommentCountLab.text = [NSString stringWithFormat:@"%@",model.m_CommentCount];
 }
 
 @end

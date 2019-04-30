@@ -768,6 +768,10 @@
     {
         [FSMoreViewVC showClassroomCaseDetailShareAlertViewDelegate:self];
     }
+    else if ([[shareData bm_stringForKey:@"type"]isEqualToString:@"ARTICLE"])// 专栏
+    {
+        
+    }
     else //其他
     {
         // 获取收藏状态

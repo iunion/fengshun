@@ -37,6 +37,12 @@
     return [XMRequestManager rm_requestWithApi:@"/storm/home/homeSpecialList" parameters:params success:successBlock failure:failureBlock];
 }
 
++ (XMRequest *)deleteColumWithId:(NSInteger)Id Success:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
+{
+    NSDictionary *params = @{@"id":@(Id)};
+    return [XMRequestManager rm_requestWithApi:@"/storm/specialArticle/deleteSpecial" parameters:params success:successBlock failure:failureBlock];
+}
+
 
 + (XMRequest *)getMessageUnReadFlagSuccess:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock
 {

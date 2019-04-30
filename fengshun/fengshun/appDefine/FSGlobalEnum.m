@@ -70,6 +70,10 @@
     {
         return FSJumpVC_TYPE_CALCULATOR;
     }
+    else if ([type isEqualToString:@"column"])
+    {
+        return FSJumpVC_TYPE_COLUMN;
+    }
     else
     {
         return FSJumpVC_TYPE_NONE;

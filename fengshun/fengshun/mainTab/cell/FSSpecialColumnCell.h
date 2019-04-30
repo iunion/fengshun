@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FSColumModel.h"
+#import "FSMyCollectionModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 /**
@@ -24,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
  @param isHasImg 是否包含封面图片
  */
 - (void)drawCellWithIsHasImg:(BOOL)isHasImg model:(FSColumCellModel *)model;
+// 显示收藏的model
+- (void)showCollectionCellModel:(FSMyCollectionModel *)model;
 
 @end
 

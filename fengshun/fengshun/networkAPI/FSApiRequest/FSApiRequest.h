@@ -39,7 +39,8 @@ typedef NS_ENUM(NSUInteger, FSCollectionType)
     FSCollectionType_STATUTE,
     FSCollectionType_CASE,
     FSCollectionType_DOCUMENT,
-    FSCollectionType_COURSE
+    FSCollectionType_COURSE,
+    FSCollectionType_COLUMN //专题
 };
 
 typedef NS_ENUM(NSUInteger, FSCommentType)
@@ -229,12 +230,16 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSMutableURLRequest *)loadHomePageData;
 
 + (XMRequest *)loadHomePageDataSuccess:(XMSuccessBlock)successBlock failure:(XMFailureBlock)failureBlock;
-
+// 获取专栏列表
 + (NSMutableURLRequest *)getMainColumnPageIndex:(NSInteger)pageIndex pageSize:(NSInteger )pageSize;
-
+// 获取专栏列表
 + (nullable XMRequest *)getMainColumnPageIndex:(NSInteger)pageIndex
                                        Success:(nullable XMSuccessBlock)successBlock
                                        failure:(nullable XMFailureBlock)failureBlock;
+// 删除专栏
++ (nullable XMRequest *)deleteColumWithId:(NSInteger )Id
+                                  Success:(nullable XMSuccessBlock)successBlock
+                                  failure:(nullable XMFailureBlock)failureBlock;
 
 // 获取是否有未读信息
 // http://123.206.193.140:8121/swagger-ui.html#/%E9%A6%96%E9%A1%B5%E7%9B%B8%E5%85%B3/getMessageUnReadFlagUsingPOST
