@@ -217,7 +217,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(makeWebView) name:userInfoChangedNotification object:nil];
     
     // 案例、法规、文书详情右上角…分享菜单中“复制链接”功能 改为刷新 19.2.19课堂也改为刷新功能
-     self.m_IsRefresh = [self.m_UrlString containsString:@"Law"] || [self.m_UrlString containsString:@"caseGuide"] || [self.m_UrlString containsString:@"caseDetail"] || [self.m_UrlString containsString:@"law"] || [self.m_UrlString compare:@"ftlsh5"];
+     self.m_IsRefresh = [self.m_UrlString containsString:@"Law"] || [self.m_UrlString containsString:@"caseGuide"] || [self.m_UrlString containsString:@"caseDetail"] || [self.m_UrlString containsString:@"law"] ;
+    // [self.m_UrlString compare:@"ftlsh5"]
 }
 
 - (void)didReceiveMemoryWarning
@@ -766,12 +767,12 @@
     BMWeakSelf
     if ([[shareData bm_stringForKey:@"type"] isEqualToString:@"MEDIATE"])//课堂案例精选
     {
-        [FSMoreViewVC showClassroomCaseDetailShareAlertViewDelegate:self];
+        [FSMoreViewVC showClassroomCaseDetailShareAlertViewDelegate:self presentVC:self];
     }
-    else if ([[shareData bm_stringForKey:@"type"]isEqualToString:@"ARTICLE"])// 专栏
+    else if ([[shareData bm_stringForKey:@"type"]isEqualToString:@"ARTICLELIST"]||[[shareData bm_stringForKey:@"type"]isEqualToString:@"ARTICLE"])// 专栏列表、专栏
     {
         BOOL isOwn = [[[shareData bm_dictionaryForKey:@"postData"] bm_stringForKey:@"userId"]isEqualToString: [FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId];
-        [FSMoreViewVC showTopicMoreDelegate:weakSelf isOwner:isOwn isCollection:[[shareData bm_dictionaryForKey:@"postData"]bm_boolForKey:@"collection"]];
+        [FSMoreViewVC showTopicMoreDelegate:weakSelf isOwner:isOwn isCollection:[[shareData bm_dictionaryForKey:@"postData"]bm_boolForKey:@"collection"]presentVC:self];
     }
     else //其他
     {
@@ -781,7 +782,7 @@
             [weakSelf.m_ProgressHUD hideAnimated:NO];
             NSInteger count = [responseObject integerValue];
             weakSelf.s_isCollect = count>0;
-            [FSMoreViewVC showWebMoreDelegate:weakSelf isCollection:weakSelf.s_isCollect hasRefresh:weakSelf.m_IsRefresh];
+            [FSMoreViewVC showWebMoreDelegate:weakSelf isCollection:weakSelf.s_isCollect hasRefresh:weakSelf.m_IsRefresh presentVC:self];
         } failure:^(NSError *error) {
             
         }];
@@ -849,6 +850,18 @@
                 [self.m_ProgressHUD showAnimated:YES withDetailText:@"复制失败" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             }
         }
+    }
+    else if (index == 7)
+    {
+        
+    }
+    else if (index == 8)
+    {
+        
+    }
+    else if (index == 9)
+    {
+        
     }
 }
 

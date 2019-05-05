@@ -27,6 +27,7 @@
     self.m_Organization = [params bm_stringForKey:@"organization"];
     self.m_Position = [params bm_stringForKey:@"position"];
     self.m_JumpAddress = [params bm_stringForKey:@"jumpAddress"];
+    self.m_IsIdAyth = [params bm_boolForKey:@"isIdAuth"];
 }
 
 + (NSArray *)modelWithArr:(NSArray *)array

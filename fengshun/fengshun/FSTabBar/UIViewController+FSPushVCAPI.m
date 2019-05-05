@@ -33,7 +33,6 @@
                 [FSPushVCManager showMessageVC:self andShowNotificationTab:YES];
             }
         }
-            
             break;
         case FSPushToVCType_VideoMeeting:
 #ifdef FSVIDEO_ON
@@ -120,7 +119,7 @@
             break;
         case FSJumpVC_TYPE_FORUM://
         {
-            // 获取帖子的id
+            // 获取板块的id
             NSDictionary *params = [url bm_queryDictionary];
             [FSPushVCManager showCommunitySecVCPushVC:self fourmId:[params bm_intForKey:@"id"] fourmName:@""];
         }
@@ -129,12 +128,12 @@
         {
             [FSPushVCManager showWebView:self url:[NSString stringWithFormat:@"%@/tooIndex",FS_H5_SERVER] title:@""];
         }
-            case FSJumpVC_TYPE_COLUMN:
+            case FSJumpVC_TYPE_H5:// 外部url打开APP弹出页面
         {
             NSDictionary *params = [url bm_queryDictionary];
             if ([[params bm_stringForKey:@"url"] bm_isNotEmpty])
             {
-                [FSPushVCManager showWebView:self url:[params bm_stringForKey:@"url"] title:nil];
+                [FSPushVCManager fsPresentWebVC:self url:[params bm_stringForKey:@"url"] title:nil];
             }
         }
             break;

@@ -75,7 +75,7 @@
         [weakSelf.m_ProgressHUD hideAnimated:NO];
         NSInteger count = [responseObject integerValue];
         weakSelf.s_isCollect = count>0;
-        [FSMoreViewVC showWebMoreDelegate:weakSelf isCollection:weakSelf.s_isCollect hasRefresh:YES];
+        [FSMoreViewVC showWebMoreDelegate:weakSelf isCollection:weakSelf.s_isCollect hasRefresh:YES presentVC:weakSelf];
         
     } failure:^(NSError * _Nullable error) {
         

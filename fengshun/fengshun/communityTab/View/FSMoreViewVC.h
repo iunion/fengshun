@@ -25,8 +25,7 @@
  @param isOwner 是否本人帖子
  @param isCollection 是否收藏过
  */
-+ (FSMoreViewVC *)showTopicMoreDelegate:(id)delegate isOwner:(BOOL)isOwner isCollection:(BOOL)isCollection;
-
++ (FSMoreViewVC *)showTopicMoreDelegate:(id)delegate isOwner:(BOOL)isOwner isCollection:(BOOL)isCollection presentVC:(UIViewController *)presentVC;
 /**
  web详情页使用
 
@@ -34,13 +33,13 @@
  @param isCollection 是否收藏过
  @param hasRefresh yes为刷新功能、no为复制功能
  */
-+ (FSMoreViewVC *)showWebMoreDelegate:(id)delegate isCollection:(BOOL)isCollection hasRefresh:(BOOL)hasRefresh;
++ (FSMoreViewVC *)showWebMoreDelegate:(id)delegate isCollection:(BOOL)isCollection hasRefresh:(BOOL)hasRefresh  presentVC:(UIViewController *)presentVC;
 
 // 只有分享功能
-+ (FSMoreViewVC *)showSingleShareAlertViewDelegate:(id)delegate;
++ (FSMoreViewVC *)showSingleShareAlertViewDelegate:(id)delegate presentVC:(UIViewController *)presentVC;;
 
 // 课堂案例详情（只有分享刷新功能）
-+ (FSMoreViewVC *)showClassroomCaseDetailShareAlertViewDelegate:(id)delegate;
++ (FSMoreViewVC *)showClassroomCaseDetailShareAlertViewDelegate:(id)delegate  presentVC:(UIViewController *)presentVC;
 
 @property (nonatomic, assign)id <FSMoreViewVCDelegate> delegate;
 

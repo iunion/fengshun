@@ -28,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , assign) NSInteger m_UserId;
 // 跳转链接
 @property (nonatomic , strong) NSString *m_JumpAddress;
+// 身份认证
+@property (nonatomic , assign) BOOL m_IsIdAyth;
 
 + (instancetype)fsColumModelWithDic:(NSDictionary *)params;
 

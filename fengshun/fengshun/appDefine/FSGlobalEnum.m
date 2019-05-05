@@ -70,9 +70,9 @@
     {
         return FSJumpVC_TYPE_CALCULATOR;
     }
-    else if ([type isEqualToString:@"column"])
+    else if ([type isEqualToString:@"h5"])
     {
-        return FSJumpVC_TYPE_COLUMN;
+        return FSJumpVC_TYPE_H5;
     }
     else
     {

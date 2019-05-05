@@ -403,7 +403,7 @@
 
 - (void)toShare
 {
-    [FSMoreViewVC showSingleShareAlertViewDelegate:self];
+    [FSMoreViewVC showSingleShareAlertViewDelegate:self presentVC:self];
 }
 
 - (void)moreViewClickWithType:(NSInteger)index

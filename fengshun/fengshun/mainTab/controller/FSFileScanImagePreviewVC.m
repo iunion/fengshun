@@ -251,7 +251,7 @@ FSFileScanImagePreviewVC ()
             break;
         // 分享图片
         case 1:
-            [FSMoreViewVC showSingleShareAlertViewDelegate:self];
+            [FSMoreViewVC showSingleShareAlertViewDelegate:self presentVC:self];
             break;
         // 保存到相册
         case 2:

@@ -35,6 +35,25 @@
 
 @implementation FSMoreViewVC
 
++ (FSMoreViewVC *)showTopicMoreDelegate:(id)delegate isOwner:(BOOL)isOwner isCollection:(BOOL)isCollection presentVC:(UIViewController *)presentVC
+{
+    FSMoreViewVC *moreVC = [[FSMoreViewVC alloc]init];
+    moreVC.delegate = delegate;
+    moreVC.m_isOwner = isOwner;
+    moreVC.m_Collection = isCollection;
+    moreVC.m_IsWebMore = NO;
+    moreVC.m_IsShareSheet = NO;
+    moreVC.m_isRefresh = NO;
+    moreVC.m_isSingleRefresh = NO;
+    moreVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    moreVC.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    [presentVC presentViewController:moreVC animated:NO completion:^{
+        [UIView animateWithDuration:DEFAULT_DELAY_TIME animations:^{
+            moreVC.m_BgView.bm_top = UI_SCREEN_HEIGHT - moreVC.m_BgView.bm_height;
+        }];
+    }];
+    return moreVC;
+}
 
 + (FSMoreViewVC *)showTopicMoreDelegate:(id)delegate isOwner:(BOOL)isOwner isCollection:(BOOL)isCollection
 {
@@ -56,7 +75,7 @@
     return moreVC;
 }
 
-+ (FSMoreViewVC *)showWebMoreDelegate:(id)delegate isCollection:(BOOL)isCollection hasRefresh:(BOOL)hasRefresh
++ (FSMoreViewVC *)showWebMoreDelegate:(id)delegate isCollection:(BOOL)isCollection hasRefresh:(BOOL)hasRefresh presentVC:(UIViewController *)presentVC
 {
     FSMoreViewVC *moreVC = [[FSMoreViewVC alloc]init];
     moreVC.delegate = delegate;
@@ -68,7 +87,7 @@
     moreVC.m_isSingleRefresh = NO;
     moreVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     moreVC.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:moreVC animated:NO completion:^{
+    [presentVC presentViewController:moreVC animated:NO completion:^{
         [UIView animateWithDuration:DEFAULT_DELAY_TIME animations:^{
             moreVC.m_BgView.bm_top = UI_SCREEN_HEIGHT - moreVC.m_BgView.bm_height;
         }];
@@ -76,7 +95,7 @@
     return moreVC;
 }
 
-+ (FSMoreViewVC *)showSingleShareAlertViewDelegate:(id)delegate
++ (FSMoreViewVC *)showSingleShareAlertViewDelegate:(id)delegate presentVC:(UIViewController *)presentVC
 {
     FSMoreViewVC *moreVC = [[FSMoreViewVC alloc]init];
     moreVC.delegate = delegate;
@@ -88,7 +107,7 @@
     moreVC.m_isSingleRefresh = NO;
     moreVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     moreVC.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:moreVC animated:NO completion:^{
+    [presentVC presentViewController:moreVC animated:NO completion:^{
         [UIView animateWithDuration:DEFAULT_DELAY_TIME animations:^{
               moreVC.m_BgView.bm_top = UI_SCREEN_HEIGHT - moreVC.m_BgView.bm_height;
         }];
@@ -96,7 +115,7 @@
     return moreVC;
 }
 
-+ (FSMoreViewVC *)showClassroomCaseDetailShareAlertViewDelegate:(id)delegate
++ (FSMoreViewVC *)showClassroomCaseDetailShareAlertViewDelegate:(id)delegate presentVC:(UIViewController *)presentVC
 {
     FSMoreViewVC *moreVC = [[FSMoreViewVC alloc]init];
     moreVC.delegate = delegate;
@@ -108,7 +127,7 @@
     moreVC.m_isSingleRefresh = YES;
     moreVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     moreVC.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:moreVC animated:NO completion:^{
+    [presentVC presentViewController:moreVC animated:NO completion:^{
         [UIView animateWithDuration:DEFAULT_DELAY_TIME animations:^{
             moreVC.m_BgView.bm_top = UI_SCREEN_HEIGHT - moreVC.m_BgView.bm_height;
         }];
