@@ -16,9 +16,9 @@
 static NSString *UserInfoDBName = @"userinfo.dat";
 static NSString *UserInfoDBTableName = @"userinfo";
 
-static NSString *UserInfoDBTableContent = @"userid text NOT NULL PRIMARY KEY, mobilephone text NOT NULL, token text NOT NULL, rftoken text, username text, usertype text, idcard text, nickname text, email text, sex text, headurl text, isfacialverify bool, isrealname bool, job text, ability text, organization text, employmenttime integer, workinglife integer, signature text, lastupdatets double";
+static NSString *UserInfoDBTableContent = @"userid text NOT NULL PRIMARY KEY, mobilephone text NOT NULL, token text NOT NULL, rftoken text, username text, usertype text, idcard text, nickname text, email text, sex text, headurl text, birthtime text, isfacialverify bool, isrealname bool, isidauth bool, job text, jobinfo text, ability text, organization text, workaddress text, worklocation text, workspace text, workproofurl text, employmenttime integer, workinglife integer, signature text, workexperience text, lastupdatets double";
 
-static NSString *UserInfoDBTableInsert = @"(userid, mobilephone, token, rftoken, username, usertype, idcard, nickname, email, sex, headurl, isfacialverify, isrealname, job, ability, organization, employmenttime, workinglife, signature, lastupdatets) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+static NSString *UserInfoDBTableInsert = @"(userid, mobilephone, token, rftoken, username, usertype, idcard, nickname, email, sex, headurl, birthtime, isfacialverify, isrealname, isidauth, job, jobinfo, ability, organization, workaddress, worklocation, workspace, workproofurl, employmenttime, workinglife, signature, workexperience, lastupdatets) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 
 @implementation FSUserInfoDB
@@ -91,8 +91,8 @@ static NSString *UserInfoDBTableInsert = @"(userid, mobilephone, token, rftoken,
             NSString *dbIdCardNo = [rs stringForColumn:@"idcard"];
             userInfo.m_UserBaseInfo.m_IdCardNo = [FSEncodeAPI decodeDES:dbIdCardNo];
             // 🔐邮箱: email
-            //NSString *dbEmail = [rs stringForColumn:@"email"];
-            //userInfo.m_UserBaseInfo.m_Email = [FSEncodeAPI decodeDES:dbEmail];
+            NSString *dbEmail = [rs stringForColumn:@"email"];
+            userInfo.m_UserBaseInfo.m_Email = [FSEncodeAPI decodeDES:dbEmail];
             // 昵称: nickname
             userInfo.m_UserBaseInfo.m_NickName = [rs stringForColumn:@"nickname"];
             // 性别: sex
@@ -105,11 +105,17 @@ static NSString *UserInfoDBTableInsert = @"(userid, mobilephone, token, rftoken,
             // 实名认证: isrealname
             userInfo.m_UserBaseInfo.m_IsRealName = [rs boolForColumn:@"isrealname"];
 
+            // 身份认证: isIdAuth
+            userInfo.m_UserBaseInfo.m_IsIdAuth = [rs boolForColumn:@"isidauth"];
             // 职位: job
             userInfo.m_UserBaseInfo.m_Job = [rs stringForColumn:@"job"];
             
             
 #pragma mark - searchUserBaseInfo
+
+            // 生日: birthTime
+            userInfo.m_UserBaseInfo.m_Birthday =[rs doubleForColumn:@"birthtime"];
+
             // 擅长领域: ability ','分割成数组
             userInfo.m_UserBaseInfo.m_Ability = [rs stringForColumn:@"ability"];
 
@@ -120,9 +126,21 @@ static NSString *UserInfoDBTableInsert = @"(userid, mobilephone, token, rftoken,
             // 从业时间: employmentTime
             userInfo.m_UserBaseInfo.m_EmploymentTime = (NSUInteger)[rs unsignedLongLongIntForColumn:@"employmenttime"];
 
+            // 工作单位地址区域: workLocation
+            userInfo.m_UserBaseInfo.m_CompanyArea = [rs stringForColumn:@"worklocation"];
+            // 工作单位地址: workAddress
+            userInfo.m_UserBaseInfo.m_CompanyAddress = [rs stringForColumn:@"workaddress"];
+            // 工作单位服务区域信息: workspace
+            userInfo.m_UserBaseInfo.m_WorkArea = [rs stringForColumn:@"workspace"];
+            // 工作证明url: workProofUrl
+            userInfo.m_UserBaseInfo.m_WorkProofUrl = [rs stringForColumn:@"workproofurl"];
+            // 专业职务: jobInfo
+            userInfo.m_UserBaseInfo.m_ProfessionalQualification = [rs stringForColumn:@"jobinfo"];
+            // 工作经历: workExperience
+            userInfo.m_UserBaseInfo.m_WorkExperience = [rs stringForColumn:@"workexperience"];
+
             // 个人签名: personalitySignature
             userInfo.m_UserBaseInfo.m_Signature = [rs stringForColumn:@"signature"];
-
         }
         result = ![DB hadError];
     }];
@@ -166,7 +184,7 @@ static NSString *UserInfoDBTableInsert = @"(userid, mobilephone, token, rftoken,
         NSString *realName = [FSEncodeAPI encodeDES:userInfo.m_UserBaseInfo.m_RealName];
         NSString *idCardNo = [FSEncodeAPI encodeDES:userInfo.m_UserBaseInfo.m_IdCardNo];
         
-        result = [UserInfoDB executeUpdate:sql, userId, phoneNum, token, rftoken, realName, userInfo.m_UserBaseInfo.m_UserType, idCardNo, userInfo.m_UserBaseInfo.m_NickName, emial, userInfo.m_UserBaseInfo.m_Sex, userInfo.m_UserBaseInfo.m_AvatarUrl, @(userInfo.m_UserBaseInfo.m_IsFacialVerify), @(userInfo.m_UserBaseInfo.m_IsRealName), userInfo.m_UserBaseInfo.m_Job, userInfo.m_UserBaseInfo.m_Ability, userInfo.m_UserBaseInfo.m_Organization, @(userInfo.m_UserBaseInfo.m_EmploymentTime), @(userInfo.m_UserBaseInfo.m_WorkingLife), userInfo.m_UserBaseInfo.m_Signature, @(lastUpdateTs)];
+        result = [UserInfoDB executeUpdate:sql, userId, phoneNum, token, rftoken, realName, userInfo.m_UserBaseInfo.m_UserType, idCardNo, userInfo.m_UserBaseInfo.m_NickName, emial, userInfo.m_UserBaseInfo.m_Sex, userInfo.m_UserBaseInfo.m_AvatarUrl, @(userInfo.m_UserBaseInfo.m_Birthday), @(userInfo.m_UserBaseInfo.m_IsFacialVerify), @(userInfo.m_UserBaseInfo.m_IsRealName), @(userInfo.m_UserBaseInfo.m_IsIdAuth), userInfo.m_UserBaseInfo.m_Job, userInfo.m_UserBaseInfo.m_Job, userInfo.m_UserBaseInfo.m_Ability, userInfo.m_UserBaseInfo.m_Organization, userInfo.m_UserBaseInfo.m_CompanyAddress, userInfo.m_UserBaseInfo.m_CompanyArea, userInfo.m_UserBaseInfo.m_WorkArea, userInfo.m_UserBaseInfo.m_WorkProofUrl, @(userInfo.m_UserBaseInfo.m_EmploymentTime), @(userInfo.m_UserBaseInfo.m_WorkingLife), userInfo.m_UserBaseInfo.m_Signature, userInfo.m_UserBaseInfo.m_ProfessionalQualification, @(lastUpdateTs)];
     }];
     
     return result;

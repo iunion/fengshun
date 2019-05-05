@@ -224,9 +224,9 @@
     
     
     // 处理通过通知启动APP的情况
-    NSDictionary *userInfo = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
-    if (userInfo) {
-        [self handleAPNsContent:userInfo withRecieveState:FSReceivePushInfoState_PushInfoLaunching];
+    NSDictionary *notificationUserInfo = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (notificationUserInfo) {
+        [self handleAPNsContent:notificationUserInfo withRecieveState:FSReceivePushInfoState_PushInfoLaunching];
     }
     [self cleanBadge];
 

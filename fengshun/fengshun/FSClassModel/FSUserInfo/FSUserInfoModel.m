@@ -86,13 +86,14 @@
     // 🔐身份证号: idCard
     self.m_IdCardNo = [dic bm_stringTrimForKey:@"idCard"];
     // 🔐邮箱: email
-    self.m_Email = [dic bm_stringTrimForKey:@"email"];
+    if ([dic bm_containsObjectForKey:@"email"])
+    {
+        self.m_Email = [dic bm_stringTrimForKey:@"email"];
+    }
     // 昵称: nickName
     self.m_NickName = [dic bm_stringTrimForKey:@"nickName"];
     // 性别: sex
     self.m_Sex = [dic bm_stringTrimForKey:@"sex"];
-    // 生日: birthday
-    self.m_Birthday = [dic bm_doubleForKey:@"birthday"];
     // 头像地址: headPortraitUrl
     self.m_AvatarUrl = [dic bm_stringTrimForKey:@"headPortraitUrl"];
     
@@ -109,21 +110,27 @@
         self.m_RealName = nil;
     }
 
-    // 身份认证: isRealIdentity
-    self.m_IsRealIdentity = [dic bm_boolForKey:@"isRealIdentity"];
+    // 身份认证: isIdAuth
+    self.m_IsIdAuth = [dic bm_boolForKey:@"isIdAuth"];
     // 职位: job
     self.m_Job = [dic bm_stringTrimForKey:@"job"];
     if (![self.m_Job bm_isNotEmpty])
     {
-        self.m_IsRealIdentity = NO;
+        self.m_IsIdAuth = NO;
     }
-    if (!self.m_IsRealIdentity)
+    if (!self.m_IsIdAuth)
     {
         self.m_Job = nil;
     }
 
 
 #pragma mark searchUserBaseInfo
+
+    // 生日: birthTime
+    if ([dic bm_containsObjectForKey:@"birthTime"])
+    {
+        self.m_Birthday = [dic bm_doubleForKey:@"birthTime"];
+    }
 
     // 擅长领域: ability ','分割成数组
     if ([dic bm_containsObjectForKey:@"ability"])
@@ -151,22 +158,22 @@
         self.m_Organization = [dic bm_stringTrimForKey:@"workOrganization"];
     }
     
-    // 工作单位地址区域: companyArea
-    if ([dic bm_containsObjectForKey:@"companyArea"])
+    // 工作单位地址区域: workLocation
+    if ([dic bm_containsObjectForKey:@"workLocation"])
     {
-        self.m_CompanyArea = [dic bm_stringTrimForKey:@"companyArea"];
+        self.m_CompanyArea = [dic bm_stringTrimForKey:@"workLocation"];
     }
     
-    // 工作单位地址: companyaddress
-    if ([dic bm_containsObjectForKey:@"companyaddress"])
+    // 工作单位地址: workAddress
+    if ([dic bm_containsObjectForKey:@"workAddress"])
     {
-        self.m_CompanyAddress = [dic bm_stringTrimForKey:@"companyaddress"];
+        self.m_CompanyAddress = [dic bm_stringTrimForKey:@"workAddress"];
     }
     
-    // 工作单位区域信息: workearea
-    if ([dic bm_containsObjectForKey:@"workearea"])
+    // 工作单位区域信息: workspace
+    if ([dic bm_containsObjectForKey:@"workspace"])
     {
-        self.m_WorkArea = [dic bm_stringTrimForKey:@"workearea"];
+        self.m_WorkArea = [dic bm_stringTrimForKey:@"workspace"];
     }
     
     // 工作年限: workingLife
@@ -175,23 +182,23 @@
         self.m_WorkingLife = [dic bm_uintForKey:@"workingLife"];
     }
     
-    // 专业职务: professionalQualification
-    if ([dic bm_containsObjectForKey:@"professionalQualification"])
+    // 工作证明url: workProofUrl
+    if ([dic bm_containsObjectForKey:@"workProofUrl"])
     {
-        self.m_ProfessionalQualification = [dic bm_stringTrimForKey:@"professionalQualification"];
+        self.m_WorkProofUrl = [dic bm_stringTrimForKey:@"workProofUrl"];
     }
-    
-#warning Test
-    self.m_ProfessionalArray = [NSMutableArray arrayWithCapacity:0];
-    [self.m_ProfessionalArray addObject:@"氧气吐司"];
-    [self.m_ProfessionalArray addObject:@"小酥饼"];
 
+    // 专业职务: jobInfo
+    if ([dic bm_containsObjectForKey:@"jobInfo"])
+    {
+        self.m_ProfessionalQualification = [dic bm_stringTrimForKey:@"jobInfo"];
+    }
+ 
     // 工作经历: workExperience
     if ([dic bm_containsObjectForKey:@"workExperience"])
     {
         self.m_WorkExperience = [dic bm_stringTrimForKey:@"workExperience"];
     }
-
 }
 
 - (void)setM_Ability:(NSString *)ability
@@ -208,6 +215,26 @@
     NSArray *array = [ability componentsSeparatedByString:@","];
     self.m_AbilityArray = [NSMutableArray arrayWithArray:array];
 }
+
+- (void)setM_ProfessionalQualification:(NSString *)professionalQualification
+{
+    if ([professionalQualification bm_isNotEmpty])
+    {
+        if ([[professionalQualification substringFromIndex:professionalQualification.length-1] isEqualToString:@","])
+        {
+            professionalQualification = [professionalQualification substringToIndex:professionalQualification.length-1];
+        }
+    }
+    _m_ProfessionalQualification = professionalQualification;
+    
+    NSArray *array = [professionalQualification componentsSeparatedByString:@","];
+    self.m_ProfessionalArray = [NSMutableArray arrayWithArray:array];
+#warning Test
+//    self.m_ProfessionalArray = [NSMutableArray arrayWithCapacity:0];
+//    [self.m_ProfessionalArray addObject:@"氧气吐司"];
+//    [self.m_ProfessionalArray addObject:@"小酥饼"];
+}
+
 
 @end
 
@@ -353,7 +380,7 @@
 + (BOOL)isLogin
 {
     FSUserInfoModel *currentUser = GetAppDelegate.m_UserInfo;
-    if ([currentUser.m_Token bm_isNotEmpty] && [currentUser.m_UserBaseInfo.m_UserId bm_isNotEmpty])
+    if ([currentUser.m_Token bm_isNotEmpty] && [currentUser.m_UserBaseInfo.m_UserId bm_isNotEmpty] && [currentUser.m_UserBaseInfo.m_PhoneNum bm_isNotEmpty])
     {
         return YES;
     }

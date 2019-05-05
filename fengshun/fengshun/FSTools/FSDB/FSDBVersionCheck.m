@@ -11,7 +11,8 @@
 #import "AppDelegate.h"
 #import "FSUserInfo.h"
 
-#define DBVER_USERINFO                @"1.0"
+//#define DBVER_USERINFO                @"1.0"
+#define DBVER_USERINFO                @"1.4"
 #define DBVER_USERINFO_KEY            @"dbver_userinfo_key"
 
 
