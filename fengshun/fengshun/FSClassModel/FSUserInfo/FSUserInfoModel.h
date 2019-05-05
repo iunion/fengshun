@@ -33,8 +33,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, strong) NSString *m_NickName;
 // 性别: sex
 @property (nullable, nonatomic, strong) NSString *m_Sex;
-// 生日: birthday
-@property (nonatomic, assign) NSTimeInterval m_Birthday;
 // 头像地址: headPortraitUrl
 @property (nullable, nonatomic, strong) NSString *m_AvatarUrl;
 
@@ -43,13 +41,16 @@ NS_ASSUME_NONNULL_BEGIN
 // 实名认证: isRealName
 @property (nonatomic, assign) BOOL m_IsRealName;
 
-// 身份认证: isRealIdentity
-@property (nonatomic, assign) BOOL m_IsRealIdentity;
+// 身份认证: isIdAuth
+@property (nonatomic, assign) BOOL m_IsIdAuth;
 // 职位: job
 @property (nullable, nonatomic, strong) NSString *m_Job;
 
 
 #pragma mark - searchUserBaseInfo
+
+// 生日: birthTime
+@property (nonatomic, assign) NSTimeInterval m_Birthday;
 
 // 擅长领域: ability ','分割成数组
 @property (nullable, nonatomic, strong) NSString *m_Ability;
@@ -60,15 +61,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, strong) NSString *m_Signature;
 // 工作机构(单位名称): workOrganization
 @property (nullable, nonatomic, strong) NSString *m_Organization;
-// 工作单位地址区域: companyArea
+// 工作单位地址区域: workLocation
 @property (nullable, nonatomic, strong) NSString *m_CompanyArea;
-// 工作单位地址: companyaddress
+// 工作单位地址: workAddress
 @property (nullable, nonatomic, strong) NSString *m_CompanyAddress;
-// 工作单位服务区域信息: workearea
+// 工作单位服务区域信息: workspace
 @property (nullable, nonatomic, strong) NSString *m_WorkArea;
 // 工作年限: workingLife
 @property (nonatomic, assign) NSUInteger m_WorkingLife;
-// 专业职务: professionalQualification
+// 工作证明url: workProofUrl
+@property (nullable, nonatomic, strong) NSString *m_WorkProofUrl;
+// 专业职务: jobInfo
 @property (nullable, nonatomic, strong) NSString *m_ProfessionalQualification;
 @property (nullable, nonatomic, strong) NSMutableArray <NSString *> *m_ProfessionalArray;
 // 工作经历: workExperience
