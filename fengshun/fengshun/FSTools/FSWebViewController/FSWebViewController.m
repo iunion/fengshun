@@ -217,8 +217,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(makeWebView) name:userInfoChangedNotification object:nil];
     
     // 案例、法规、文书详情右上角…分享菜单中“复制链接”功能 改为刷新 19.2.19课堂也改为刷新功能
-     self.m_IsRefresh = [self.m_UrlString containsString:@"Law"] || [self.m_UrlString containsString:@"caseGuide"] || [self.m_UrlString containsString:@"caseDetail"] || [self.m_UrlString containsString:@"law"] ;
-    // [self.m_UrlString compare:@"ftlsh5"]
+    self.m_IsRefresh = [self.m_UrlString containsString:@"Law"] || [self.m_UrlString containsString:@"caseGuide"] || [self.m_UrlString containsString:@"caseDetail"] || [self.m_UrlString containsString:@"law"] || [self.m_UrlString containsString:@"comment"]|| [self.m_UrlString containsString:@"hotRecommend"]|| [self.m_UrlString containsString:@"alllist"]|| [self.m_UrlString containsString:@"imgWordsSeries"];
+    // comment课堂详情 hotRecommend热门推荐 alllist课堂全部帖子 imgWordsSeries专题列表
 }
 
 - (void)didReceiveMemoryWarning
@@ -765,14 +765,9 @@
         return;
     }
     BMWeakSelf
-    if ([[shareData bm_stringForKey:@"type"] isEqualToString:@"MEDIATE"])//课堂案例精选
+    if ([[shareData bm_stringForKey:@"type"] isEqualToString:@"MEDIATE"] || [[shareData bm_stringForKey:@"type"]isEqualToString:@"ARTICLELIST"])//课堂案例精选、专题列表
     {
         [FSMoreViewVC showClassroomCaseDetailShareAlertViewDelegate:self presentVC:self];
-    }
-    else if ([[shareData bm_stringForKey:@"type"]isEqualToString:@"ARTICLELIST"]||[[shareData bm_stringForKey:@"type"]isEqualToString:@"ARTICLE"])// 专栏列表、专栏
-    {
-        BOOL isOwn = [[[shareData bm_dictionaryForKey:@"postData"] bm_stringForKey:@"userId"]isEqualToString: [FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId];
-        [FSMoreViewVC showTopicMoreDelegate:weakSelf isOwner:isOwn isCollection:[[shareData bm_dictionaryForKey:@"postData"]bm_boolForKey:@"collection"]presentVC:self];
     }
     else //其他
     {
@@ -782,7 +777,16 @@
             [weakSelf.m_ProgressHUD hideAnimated:NO];
             NSInteger count = [responseObject integerValue];
             weakSelf.s_isCollect = count>0;
-            [FSMoreViewVC showWebMoreDelegate:weakSelf isCollection:weakSelf.s_isCollect hasRefresh:weakSelf.m_IsRefresh presentVC:self];
+            if ([[shareData bm_stringForKey:@"type"]isEqualToString:@"ARTICLE"])
+            {
+//                BOOL isOwner = [[[shareData bm_dictionaryForKey:@"postData"]bm_stringForKey:@"userId"] isEqualToString:[FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId];
+                // 目前专栏没有编辑
+                [FSMoreViewVC showTopicMoreDelegate:weakSelf isOwner:NO isCollection:weakSelf.s_isCollect presentVC:weakSelf];
+            }
+            else
+            {
+                [FSMoreViewVC showWebMoreDelegate:weakSelf isCollection:weakSelf.s_isCollect hasRefresh:weakSelf.m_IsRefresh presentVC:weakSelf];
+            }
         } failure:^(NSError *error) {
             
         }];
@@ -813,7 +817,7 @@
     }
     else if (index == 5) // 收藏
     {
-        if ([[shareData bm_stringForKey:@"type"]isEqualToString:@"MEDIATE"])//课堂案例精选 收藏改为刷新功能
+        if ([[shareData bm_stringForKey:@"type"]isEqualToString:@"MEDIATE"] || [[shareData bm_stringForKey:@"type"]isEqualToString:@"ARTICLELIST"])//课堂案例精选 收藏改为刷新功能
         {
             [self.m_WebView reload];
             return;
@@ -853,7 +857,42 @@
     }
     else if (index == 7)
     {
+        if (![FSUserInfoModel isLogin])
+        {
+            [self showLogin];
+            return;
+        }
+        UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 225, 70)];
         
+        UILabel *cententLab = [[UILabel alloc]initWithFrame:CGRectMake(35*0.5f, 0, 190, 40)];
+        cententLab.numberOfLines = 2;
+        cententLab.font = [UIFont systemFontOfSize:15.f];
+        cententLab.textColor = [UIColor bm_colorWithHex:0x333333];
+        cententLab.text = [shareData bm_stringForKey:@"title"];
+        [contentView addSubview:cententLab];
+        
+        UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(35*0.5f, cententLab.bm_bottom + 5, 190, 25)];
+        textField.backgroundColor = [UIColor bm_colorWithHex:0xF6F6F6];
+        textField.placeholder = @"请输入举报理由";
+        textField.font = [UIFont systemFontOfSize:14.f];
+        [contentView addSubview:textField];
+        [textField becomeFirstResponder];
+        
+        BMWeakSelf
+        [FSAlertView showAlertWithTitle:@"举报理由说明" message:nil contentView:contentView cancelTitle:@"取消" otherTitle:@"确定" completion:^(BOOL cancelled, NSInteger buttonIndex) {
+            if (buttonIndex == 1)
+            {
+                if (![textField.text bm_isNotEmpty])
+                {
+                    [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"请输入举报理由" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                }
+                [FSApiRequest addReportTopic:[shareData bm_stringForKey:@"id"]  content:textField.text type:[shareData bm_stringForKey:@"type"]  success:^(id responseObject) {
+                    [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"已举报该专题" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                } failure:^(NSError *error) {
+
+                }];
+            }
+        }];
     }
     else if (index == 8)
     {

@@ -31,6 +31,10 @@
     {
         return model;
     }
+    else if ([model.m_JumpAddress bm_isNotEmpty])
+    {
+        return model;
+    }
     else
     {
         return nil;
@@ -53,7 +57,7 @@
 
     // 帖子/法规/案例/文书/课程id
     NSString *detailId = [dic bm_stringTrimForKey:@"detailId"];
-    if (![detailId bm_isNotEmpty])
+    if (![detailId bm_isNotEmpty] && ![[dic bm_stringForKey:@"jumpAddress"] bm_isNotEmpty])
     {
         return;
     }
