@@ -15,13 +15,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BMAddressModel : NSObject
 
-// 地址编码
+// 地址编码 code
 @property (nonatomic, strong) NSString *code;
-// 地址名
+// 地址名 name
 @property (nonatomic, strong) NSString *name;
+// 详细地址 fullName
+//@property (nonatomic, strong) NSString *fullName;
+// parentCode
+//@property (nonatomic, strong) NSString *parentCode;
 
 // BMProvinceAddressModel, BMCityAddressModel
-@property (nullable, nonatomic, weak) id precincts;
+@property (nullable, nonatomic, weak) id precinct;
 
 // UI
 // 是否选中

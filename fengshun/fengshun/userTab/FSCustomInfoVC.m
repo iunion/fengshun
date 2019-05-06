@@ -31,7 +31,9 @@
     TTGTagCollectionViewDataSource,
     FSEditorDelegate,
     FSAuthenticationDelegate,
-    FSEditorAbilityDelegate
+    FSEditorAbilityDelegate,
+    FSAddressPickerVCDelegate,
+    FSSetTableViewVCDelegate
 >
 
 @property (nonatomic, strong) BMTableViewSection *m_BaseSection;
@@ -69,9 +71,12 @@
 
 @property (nonatomic, strong) NSURLSessionDataTask *m_UpdateTask;
 
+// 存储传递数据
 @property (nonatomic, strong) NSString *m_Sex;
 @property (nonatomic, assign) NSTimeInterval m_Birthday;
 @property (nonatomic, assign) NSUInteger m_EmploymentTime;
+@property (nonatomic, strong) NSString *m_WorkArea;
+@property (nonatomic, strong) NSString *m_ProfessionalQualification;
 
 @property (nonatomic, assign) FSUpdateUserInfoOperaType m_OperaType;
 @property (nonatomic, strong) NSString *m_AvatarUrl;
@@ -154,6 +159,7 @@
 
     // 性别
     BMDatePicker *datePicker = [[BMDatePicker alloc] initWithPickerStyle:PickerStyle_Sex completeBlock:nil];
+    datePicker.pickerCurrentItemColor = [UIColor bm_colorWithHex:UI_NAVIGATION_BGCOLOR_VALU];
     datePicker.showFormateLabel = NO;
     datePicker.showYearLabel = NO;
     datePicker.showDoneBtn = NO;
@@ -184,6 +190,7 @@
     datePicker.pickerLabelTitleArray = nil;
     datePicker.showChineseMonth = YES;
     datePicker.showDoneBtn = NO;
+    //datePicker.showFormateLabel = NO;
     self.m_BirthPickerView = datePicker;
 
     self.m_BirthdayItem = [BMTextItem itemWithTitle:@"生日" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:nil];
@@ -265,8 +272,10 @@
 
     // 工作年限
     datePicker = [[BMDatePicker alloc] initWithPickerStyle:PickerStyle_Year completeBlock:nil];
+    datePicker.pickerCurrentItemColor = [UIColor bm_colorWithHex:UI_NAVIGATION_BGCOLOR_VALU];
     datePicker.maxLimitDate = [NSDate date];
     datePicker.showDoneBtn = NO;
+    datePicker.showFormateLabel = NO;
     self.m_WorkPickerView = datePicker;
     
     self.m_WorkingLifeItem = [BMTextItem itemWithTitle:@"工作年限" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:nil];
@@ -290,6 +299,7 @@
     // 工作区域
     self.m_WorkAreaItem = [BMTableViewItem itemWithTitle:@"工作区域" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
         FSAddressPickerVC *vc = [[FSAddressPickerVC alloc] init];
+        vc.delegate = weakSelf;
         
         vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
         weakSelf.modalPresentationStyle = UIModalPresentationCurrentContext;
@@ -679,6 +689,7 @@
     self.m_ProfessionalQualificationItem.accessoryView = imageTextView;
     self.m_ProfessionalQualificationItem.selectionHandler = ^(id item) {
         FSSetProfessionalVC *setProfessionalVC = [[FSSetProfessionalVC alloc] init];
+        setProfessionalVC.delegate = weakSelf;
         [weakSelf.navigationController pushViewController:setProfessionalVC animated:YES];
     };
     
@@ -952,6 +963,20 @@
                 saveUserInfo = YES;
             }
                 
+            case FSUpdateUserInfo_WorkArea:
+            {
+                userInfo.m_UserBaseInfo.m_WorkArea = self.m_WorkArea;
+                
+                saveUserInfo = YES;
+            }
+
+            case FSUpdateUserInfo_ProfessionalQualification:
+            {
+                userInfo.m_UserBaseInfo.m_ProfessionalQualification = self.m_ProfessionalQualification;
+                
+                saveUserInfo = YES;
+            }
+
             default:
                 break;
         }
@@ -963,7 +988,7 @@
             
             [self freshViews];
             
-            [[NSNotificationCenter defaultCenter] postNotificationName:userInfoChangedNotification object:nil userInfo:nil];
+            //[[NSNotificationCenter defaultCenter] postNotificationName:userInfoChangedNotification object:nil userInfo:nil];
             
             return;
         }
@@ -1006,6 +1031,10 @@
             userInfo.m_UserBaseInfo.m_Signature = value;
             break;
             
+        case FSUpdateUserInfo_WorkExperience:
+            userInfo.m_UserBaseInfo.m_WorkExperience = value;
+            break;
+            
         default:
             break;
     }
@@ -1025,6 +1054,36 @@
 - (void)editorAbilityFinished:(FSEditorAbilityVC *)vc ability:(NSString *)ability;
 {
     [self freshViews];
+}
+
+
+#pragma mark -
+#pragma mark FSAddressPickerVCDelegate
+
+- (void)addressPickerPickAddressFinished:(NSString *)address
+{
+    FSUserInfoModel *userInfo = [FSUserInfoModel userInfo];
+    if (![address isEqualToString:userInfo.m_UserBaseInfo.m_WorkArea])
+    {
+        self.m_WorkArea = address;
+        
+        [self sendUpdateUserInfoWithOperaType:FSUpdateUserInfo_WorkArea changeValue:self.m_WorkArea];
+    }
+}
+
+
+#pragma mark -
+#pragma mark FSSetTableViewVCDelegate
+
+- (void)setProfessionalFinished:(NSString *)professionalQualifications
+{
+    FSUserInfoModel *userInfo = [FSUserInfoModel userInfo];
+    if (![professionalQualifications isEqualToString:userInfo.m_UserBaseInfo.m_ProfessionalQualification])
+    {
+        self.m_ProfessionalQualification = professionalQualifications;
+        
+        [self sendUpdateUserInfoWithOperaType:FSUpdateUserInfo_ProfessionalQualification changeValue:self.m_ProfessionalQualification];
+    }
 }
 
 @end

@@ -162,6 +162,23 @@
 {
     [self.view endEditing:YES];
     
+    NSMutableArray *professionalArray = [[NSMutableArray alloc] initWithCapacity:0];
+    for (BMTextItem *item in self.m_ProfessionalSection.items)
+    {
+        if ([item.value bm_isNotEmpty])
+        {
+            [professionalArray addObject:item.value];
+        }
+    }
+    
+    NSLog(@"%@", professionalArray);
+    
+    if ([self.delegate respondsToSelector:@selector(setProfessionalFinished:)])
+    {
+        NSString *professional = [professionalArray componentsJoinedByString:@","];
+        [self.delegate setProfessionalFinished:professional];
+    }
+    
     [self backAction:nil];
 }
 

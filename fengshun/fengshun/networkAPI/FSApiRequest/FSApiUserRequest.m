@@ -216,7 +216,7 @@
         // 工作单位服务区域
         case FSUpdateUserInfo_WorkArea:
             [parameters bm_setApiString:@"UPDATE_WORKSPACE" forKey:@"operaEnum"];
-            [parameters bm_setApiString:value forKey:@"workLocation"];
+            [parameters bm_setApiString:value forKey:@"workspace"];
             break;
             
         // 专业任职信息

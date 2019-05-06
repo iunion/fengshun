@@ -1237,8 +1237,9 @@
     }
     
     self.pickerSex = sex;
-    
-    [self.picker selectRow:[_sexArray indexOfObject:sex] inComponent:0 animated:animated];
+
+    sexIndex = [_sexArray indexOfObject:sex];
+    [self.picker selectRow:sexIndex inComponent:0 animated:animated];
 }
 
 @end

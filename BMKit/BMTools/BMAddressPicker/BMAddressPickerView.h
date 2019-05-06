@@ -10,8 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class BMChooseAddressModel;
+
 typedef void(^addressPickerBackCancel)(void);
 typedef void(^getAddressList)(NSUInteger level, NSString *code);
+
+typedef void(^addressPickerFinished)(BMChooseAddressModel *address, NSString *addressString);
 
 @class BMChooseAddressModel;
 
@@ -32,6 +36,8 @@ typedef void(^getAddressList)(NSUInteger level, NSString *code);
 @property (nonatomic, copy) addressPickerBackCancel backOnClickClose;
 
 @property (nonatomic, copy) getAddressList getList;
+
+@property (nonatomic, copy) addressPickerFinished pickFinished;
 
 - (void)freshView;
 

@@ -10,7 +10,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol FSSetTableViewVCDelegate;
+
 @interface FSSetProfessionalVC : FSSetTableViewVC
+
+@property (nullable, nonatomic, weak) id <FSSetTableViewVCDelegate> delegate;
+
+@end
+
+@protocol FSSetTableViewVCDelegate <NSObject>
+
+@optional
+- (void)setProfessionalFinished:(NSString *)professionalQualifications;
 
 @end
 
