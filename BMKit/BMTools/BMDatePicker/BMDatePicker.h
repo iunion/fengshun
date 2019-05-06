@@ -81,7 +81,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 滚动到指定的日期
 - (instancetype)initWithPickerStyle:(BMPickerStyle)pickerStyle scrollToDate:(nullable NSDate *)scrollToDate completeBlock:(nullable BMDatePickerDoneBlock)completeBlock;
 // 滚动到指定的性别
-- (instancetype)initWithPickerSex:(NSString *)sex completeBlock:(BMDatePickerDoneBlock)completeBlock;
+- (instancetype)initWithPickerSex:(nullable NSString *)sex completeBlock:(BMDatePickerDoneBlock)completeBlock;
 
 // 滚动到指定的时间位置
 - (void)scrollToDate:(nullable NSDate *)date animated:(BOOL)animated;

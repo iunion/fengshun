@@ -10,7 +10,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol FSAddressPickerVCDelegate;
+
 @interface FSAddressPickerVC : UIViewController
+
+@property (nullable, nonatomic, weak) id <FSAddressPickerVCDelegate> delegate;
+
+@end
+
+@protocol FSAddressPickerVCDelegate <NSObject>
+
+@optional
+- (void)addressPickerPickAddressFinished:(NSString *)address;
 
 @end
 

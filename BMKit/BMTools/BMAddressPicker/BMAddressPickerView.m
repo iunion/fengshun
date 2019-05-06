@@ -400,6 +400,20 @@ enum EWLocationPickViewTableViewType: NSUInteger {
         
         self.currentLevel = 2;
         [self.addressChooseView setChooseAddress:self.chooseAddress level:self.currentLevel];
+        
+        if (self.pickFinished)
+        {
+            NSString *addressString;
+            if ([self.chooseAddress.city.name isEqualToString:@"市辖区"])
+            {
+                addressString = [NSString stringWithFormat:@"%@%@", self.chooseAddress.province.name, self.chooseAddress.area.name];
+            }
+            else
+            {
+                addressString = [NSString stringWithFormat:@"%@%@%@", self.chooseAddress.province.name, self.chooseAddress.city.name, self.chooseAddress.area.name];
+            }
+            self.pickFinished(self.chooseAddress, addressString);
+        }
     }
     
     return indexPath;

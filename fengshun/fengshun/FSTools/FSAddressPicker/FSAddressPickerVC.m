@@ -10,6 +10,8 @@
 #import "BMAddressPickerView.h"
 #import "BMAddressModel.h"
 
+#define KDomainApi      @"https://yundr.gov.cn/"
+
 @interface FSAddressPickerVC ()
 {
     NSUInteger currentLevel;
@@ -38,6 +40,14 @@
     view.getList = ^(NSUInteger level, NSString * _Nonnull code) {
         [weakSelf getAddressListWithLevel:level code:code];
     };
+    view.pickFinished = ^(BMChooseAddressModel * _Nonnull address, NSString * _Nonnull addressString) {
+        NSLog(@"%@", addressString);
+        if ([weakSelf.delegate respondsToSelector:@selector(addressPickerPickAddressFinished:)])
+        {
+            [weakSelf.delegate addressPickerPickAddressFinished:addressString];
+        }
+        [weakSelf onClickClose];
+    };
     
     [self.view addSubview:view];
     self.addressPickerView = view;
@@ -59,7 +69,9 @@
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-    NSString *urlStr = @"https://yundr.gov.cn/mobileInit/getArea";
+    //NSString *urlStr = @"https://yundr.gov.cn/mobileInit/getArea";
+    NSString *urlStr = [NSString stringWithFormat:@"%@mobileInit/getArea", KDomainApi];
+    //NSString *urlStr = [NSString stringWithFormat:@"%@/storm/area/searchAreasInfo", FS_URL_SERVER];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters bm_setUInteger:level forKey:@"level"];
     [parameters bm_setApiString:code forKey:@"code"];

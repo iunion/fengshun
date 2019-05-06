@@ -43,6 +43,7 @@
         return;
     }
     
+    // 地址编码 code
     // code不存在不修改
     NSString *code = [dic bm_stringTrimForKey:@"code"];
     if (![code bm_isNotEmpty])
@@ -51,17 +52,24 @@
     }
     self.code = code;
 
+    // 地址名 name
     self.name = [dic bm_stringTrimForKey:@"name"];
+    
+    // 详细地址 fullName
+    //self.fullName = [dic bm_stringTrimForKey:@"fullName"];
+    
+    // parentCode
+    //self.parentCode = [dic bm_stringTrimForKey:@"parentCode"];
 }
 
 - (BMCityAddressModel *)cityAddress
 {
-    return self.precincts;
+    return self.precinct;
 }
 
 - (void)setCityAddress:(BMCityAddressModel *)cityAddress
 {
-    self.precincts = cityAddress;
+    self.precinct = cityAddress;
 }
 
 @end
@@ -204,12 +212,12 @@
 
 - (BMProvinceAddressModel *)provinceAddress
 {
-    return self.precincts;
+    return self.precinct;
 }
 
 - (void)setProvinceAddress:(BMProvinceAddressModel *)provinceAddress
 {
-    self.precincts = provinceAddress;
+    self.precinct = provinceAddress;
 }
 
 @end
