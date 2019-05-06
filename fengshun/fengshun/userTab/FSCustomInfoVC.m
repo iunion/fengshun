@@ -69,6 +69,8 @@
 
 @property (nonatomic, strong) NSURLSessionDataTask *m_UpdateTask;
 
+@property (nonatomic, strong) NSString *m_Sex;
+@property (nonatomic, assign) NSTimeInterval m_Birthday;
 @property (nonatomic, assign) NSUInteger m_EmploymentTime;
 
 @property (nonatomic, assign) FSUpdateUserInfoOperaType m_OperaType;
@@ -165,15 +167,19 @@
     self.m_SexItem.cellHeight = 50.0f;
     self.m_SexItem.inputView = self.m_SexPickerView;
     self.m_SexItem.onEndEditing = ^(BMInputItem *item) {
-        //NSLog(@"onEndEditing: %@", @(weakSelf.m_PickerView.pickerDate.bm_year));
-        NSString *sex = @"男";
-        //[weakSelf sendUpdateUserInfoWithOperaType:FSUpdateUserInfo_WorkTime changeValue:@(weakSelf.m_EmploymentTime)];
+        NSLog(@"onEndEditing: %@", weakSelf.m_SexPickerView.pickerSex);
+        
+        weakSelf.m_Sex = weakSelf.m_SexPickerView.pickerSex;
+        
+        FSUserInfoModel *userInfo = [FSUserInfoModel userInfo];
+        if (![weakSelf.m_Sex isEqualToString:userInfo.m_UserBaseInfo.m_Sex])
+        {
+            [weakSelf sendUpdateUserInfoWithOperaType:FSUpdateUserInfo_Sex changeValue:weakSelf.m_Sex];
+        }
     };
 
     // 生日
     datePicker = [[BMDatePicker alloc] initWithPickerStyle:PickerStyle_MonthDayYear completeBlock:nil];
-    //datePicker.showFormateLabel = NO;
-    //datePicker.showYearLabel = NO;
     datePicker.pickerCurrentItemColor = [UIColor bm_colorWithHex:UI_NAVIGATION_BGCOLOR_VALU];
     datePicker.pickerLabelTitleArray = nil;
     datePicker.showChineseMonth = YES;
@@ -188,9 +194,15 @@
     self.m_BirthdayItem.cellHeight = 50.0f;
     self.m_BirthdayItem.inputView = self.m_BirthPickerView;
     self.m_BirthdayItem.onEndEditing = ^(BMInputItem *item) {
-        //NSLog(@"onEndEditing: %@", @(weakSelf.m_PickerView.pickerDate.bm_year));
-        //NSString *sex = @"男";
-        //[weakSelf sendUpdateUserInfoWithOperaType:FSUpdateUserInfo_WorkTime changeValue:@(weakSelf.m_EmploymentTime)];
+        NSLog(@"onEndEditing: %@", [weakSelf.m_BirthPickerView.pickerDate bm_stringWithDefaultFormat]);
+        
+        weakSelf.m_Birthday = [weakSelf.m_BirthPickerView.pickerDate timeIntervalSince1970];
+        
+        FSUserInfoModel *userInfo = [FSUserInfoModel userInfo];
+        if (weakSelf.m_Birthday != userInfo.m_UserBaseInfo.m_Birthday)
+        {
+            [weakSelf sendUpdateUserInfoWithOperaType:FSUpdateUserInfo_Birthday changeValue:[NSDate bm_stringFromTs:weakSelf.m_Birthday formatter:@"yyyy-MM-dd"]];
+        }
     };
 
     // 个人签名
@@ -214,7 +226,7 @@
     self.m_RealNameItem = [BMTableViewItem itemWithTitle:@"实名认证" imageName:@"user_notpasscertification" underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
     }];
     self.m_RealNameItem.imageH = 20.0f;
-    self.m_RealNameItem.imageW = 60.0f;
+    self.m_RealNameItem.imageW = 49.0f;
     self.m_RealNameItem.imageAtback = YES;
     self.m_RealNameItem.textFont = FS_CELLTITLE_TEXTFONT;
     self.m_RealNameItem.highlightBgColor = UI_COLOR_BL1;
@@ -224,7 +236,7 @@
     self.m_RealIdentityItem = [BMTableViewItem itemWithTitle:@"身份认证" imageName:@"user_notpasscertification" underLineDrawType:BMTableViewCell_UnderLineDrawType_None accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
     }];
     self.m_RealIdentityItem.imageH = 20.0f;
-    self.m_RealIdentityItem.imageW = 60.0f;
+    self.m_RealIdentityItem.imageW = 49.0f;
     self.m_RealIdentityItem.imageAtback = YES;
     self.m_RealIdentityItem.textFont = FS_CELLTITLE_TEXTFONT;
     self.m_RealIdentityItem.highlightBgColor = UI_COLOR_BL1;
@@ -257,9 +269,7 @@
     datePicker.showDoneBtn = NO;
     self.m_WorkPickerView = datePicker;
     
-    self.m_WorkingLifeItem = [BMTextItem itemWithTitle:@"工作年限" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:^(BMTableViewItem *item) {
-        
-    }];
+    self.m_WorkingLifeItem = [BMTextItem itemWithTitle:@"工作年限" imageName:nil underLineDrawType:BMTableViewCell_UnderLineDrawType_SeparatorLeftInset accessoryView:[BMTableViewItem DefaultAccessoryView] selectionHandler:nil];
     self.m_WorkingLifeItem.hideInputView = YES;
     self.m_WorkingLifeItem.editable = YES;
     self.m_WorkingLifeItem.textFont = FS_CELLTITLE_TEXTFONT;
@@ -383,6 +393,7 @@
     if ([userInfo.m_UserBaseInfo.m_Sex bm_isNotEmpty])
     {
         text = userInfo.m_UserBaseInfo.m_Sex;
+        [self.m_SexPickerView scrollToSex:userInfo.m_UserBaseInfo.m_Sex animated:YES];
     }
     else
     {
@@ -393,16 +404,12 @@
     imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
     imageTextView.showTableCellAccessoryArrow = YES;
     self.m_SexItem.accessoryView = imageTextView;
-    self.m_SexItem.selectionHandler = ^(id item) {
-//        FSEditorVC *editorVC = [[FSEditorVC alloc] initWithOperaType:FSUpdateUserInfo_NickName minWordCount:0 maxnWordCount:8 text:userInfo.m_UserBaseInfo.m_NickName placeholderText:nil];
-//        editorVC.delegate = weakSelf;
-//        [weakSelf.navigationController pushViewController:editorVC animated:YES];
-    };
 
     // 生日
     if (userInfo.m_UserBaseInfo.m_Birthday != 0)
     {
         text = [NSDate bm_stringFromTs:userInfo.m_UserBaseInfo.m_Birthday formatter:@"yyyy-MM-dd"];
+        [self.m_BirthPickerView scrollToDate:[NSDate dateWithTimeIntervalSince1970:userInfo.m_UserBaseInfo.m_Birthday] animated:YES];
     }
     else
     {
@@ -413,11 +420,6 @@
     imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
     imageTextView.showTableCellAccessoryArrow = YES;
     self.m_BirthdayItem.accessoryView = imageTextView;
-    self.m_BirthdayItem.selectionHandler = ^(id item) {
-//        FSEditorVC *editorVC = [[FSEditorVC alloc] initWithOperaType:FSUpdateUserInfo_NickName minWordCount:0 maxnWordCount:8 text:userInfo.m_UserBaseInfo.m_NickName placeholderText:nil];
-//        editorVC.delegate = weakSelf;
-//        [weakSelf.navigationController pushViewController:editorVC animated:YES];
-    };
 
     // 个人签名
     if ([userInfo.m_UserBaseInfo.m_Signature bm_isNotEmpty])
@@ -490,24 +492,26 @@
     self.m_RealNameItem.accessoryView = imageTextView;
     
     // 身份认证
-    accessoryArrowType = BMImageTextViewAccessoryArrowType_Show;
+    accessoryArrowType = BMImageTextViewAccessoryArrowType_HideInplace;//BMImageTextViewAccessoryArrowType_Show;
     if ([userInfo.m_UserBaseInfo.m_Job bm_isNotEmpty])
     {
         text = userInfo.m_UserBaseInfo.m_Job;
         self.m_RealIdentityItem.selectionHandler = nil;
         self.m_RealIdentityItem.enabled = NO;
-        accessoryArrowType = BMImageTextViewAccessoryArrowType_HideInplace;
+        //accessoryArrowType = BMImageTextViewAccessoryArrowType_HideInplace;
         self.m_RealIdentityItem.image = [UIImage imageNamed:@"user_passcertification"];
     }
     else
     {
         text = @"未认证";
-        self.m_RealIdentityItem.selectionHandler = ^(id item) {
-            FSSetPositionVC *vc = [[FSSetPositionVC alloc] init];
-            //vc.delegate = weakSelf;
-            [weakSelf.navigationController pushViewController:vc animated:YES];
-        };
-        self.m_RealIdentityItem.enabled = YES;
+        self.m_RealIdentityItem.selectionHandler = nil;
+//        self.m_RealIdentityItem.selectionHandler = ^(id item) {
+//            FSSetPositionVC *vc = [[FSSetPositionVC alloc] init];
+//            //vc.delegate = weakSelf;
+//            [weakSelf.navigationController pushViewController:vc animated:YES];
+//        };
+//        self.m_RealIdentityItem.enabled = YES;
+        self.m_RealIdentityItem.enabled = NO;
         self.m_RealIdentityItem.image = [UIImage imageNamed:@"user_notpasscertification"];
     }
     imageTextView = [[BMImageTextView alloc] initWithText:text];
@@ -534,12 +538,12 @@
     imageTextView.maxWidth = self.m_TableView.bm_width - 120.0f;
     self.m_OrganizationItem.accessoryView = imageTextView;
     self.m_OrganizationItem.selectionHandler = ^(id item) {
-//        FSEditorVC *editorVC = [[FSEditorVC alloc] initWithOperaType:FSUpdateUserInfo_Organization minWordCount:0 maxnWordCount:100 text:userInfo.m_UserBaseInfo.m_Organization placeholderText:nil];
-//        editorVC.delegate = weakSelf;
-//        [weakSelf.navigationController pushViewController:editorVC animated:YES];
+        FSEditorVC *editorVC = [[FSEditorVC alloc] initWithOperaType:FSUpdateUserInfo_Organization minWordCount:0 maxnWordCount:100 text:userInfo.m_UserBaseInfo.m_Organization placeholderText:nil];
+        editorVC.delegate = weakSelf;
+        [weakSelf.navigationController pushViewController:editorVC animated:YES];
         
-        FSSetCompanyVC *setCompanyVC = [[FSSetCompanyVC alloc] init];
-        [weakSelf.navigationController pushViewController:setCompanyVC animated:YES];
+        //FSSetCompanyVC *setCompanyVC = [[FSSetCompanyVC alloc] init];
+        //[weakSelf.navigationController pushViewController:setCompanyVC animated:YES];
     };
 
     // 职位
@@ -674,10 +678,6 @@
     imageTextView.showTableCellAccessoryArrow = YES;
     self.m_ProfessionalQualificationItem.accessoryView = imageTextView;
     self.m_ProfessionalQualificationItem.selectionHandler = ^(id item) {
-//        FSEditorVC *editorVC = [[FSEditorVC alloc] initWithOperaType:FSUpdateUserInfo_NickName minWordCount:0 maxnWordCount:8 text:userInfo.m_UserBaseInfo.m_NickName placeholderText:nil];
-//        editorVC.delegate = weakSelf;
-//        [weakSelf.navigationController pushViewController:editorVC animated:YES];
-        
         FSSetProfessionalVC *setProfessionalVC = [[FSSetProfessionalVC alloc] init];
         [weakSelf.navigationController pushViewController:setProfessionalVC animated:YES];
     };
@@ -697,6 +697,9 @@
     imageTextView.showTableCellAccessoryArrow = YES;
     self.m_WorkExperienceItem.accessoryView = imageTextView;
     self.m_WorkExperienceItem.selectionHandler = ^(id item) {
+        FSEditorVC *editorVC = [[FSEditorVC alloc] initWithOperaType:FSUpdateUserInfo_WorkExperience minWordCount:0 maxnWordCount:200 text:userInfo.m_UserBaseInfo.m_WorkExperience placeholderText:nil];
+        editorVC.delegate = weakSelf;
+        [weakSelf.navigationController pushViewController:editorVC animated:YES];
     };
     
     [self.m_TableView reloadData];
@@ -910,30 +913,51 @@
         
         FSUserInfoModel *userInfo = [FSUserInfoModel userInfo];
 
-        if (self.m_OperaType == FSUpdateUserInfo_WorkTime)
+        BOOL saveUserInfo = NO;
+        switch (self.m_OperaType)
         {
-            NSDictionary *dataDic = [resDic bm_dictionaryForKey:@"data"];
-            if ([dataDic bm_isNotEmptyDictionary])
+            case FSUpdateUserInfo_WorkTime:
             {
-                NSUInteger workingLife = [dataDic bm_uintForKey:@"workingLife"];
-            
-                userInfo.m_UserBaseInfo.m_EmploymentTime = self.m_EmploymentTime;
-                userInfo.m_UserBaseInfo.m_WorkingLife = workingLife;
-
-                [FSUserInfoDB insertAndUpdateUserInfo:userInfo];
-                GetAppDelegate.m_UserInfo = userInfo;
-
-                [self freshViews];
-                
-                [[NSNotificationCenter defaultCenter] postNotificationName:userInfoChangedNotification object:nil userInfo:nil];
-
-                return;
+                NSDictionary *dataDic = [resDic bm_dictionaryForKey:@"data"];
+                if ([dataDic bm_isNotEmptyDictionary])
+                {
+                    NSUInteger workingLife = [dataDic bm_uintForKey:@"workingLife"];
+                    
+                    userInfo.m_UserBaseInfo.m_EmploymentTime = self.m_EmploymentTime;
+                    userInfo.m_UserBaseInfo.m_WorkingLife = workingLife;
+                    
+                    saveUserInfo = YES;
+                }
             }
-        }
-        else if (self.m_OperaType == FSUpdateUserInfo_AvatarImageUrl)
-        {
-            userInfo.m_UserBaseInfo.m_AvatarUrl = self.m_AvatarUrl;
+                break;
+                
+            case FSUpdateUserInfo_AvatarImageUrl:
+            {
+                userInfo.m_UserBaseInfo.m_AvatarUrl = self.m_AvatarUrl;
+                
+                saveUserInfo = YES;
+            }
 
+            case FSUpdateUserInfo_Sex:
+            {
+                userInfo.m_UserBaseInfo.m_Sex = self.m_Sex;
+                
+                saveUserInfo = YES;
+            }
+                
+            case FSUpdateUserInfo_Birthday:
+            {
+                userInfo.m_UserBaseInfo.m_Birthday = self.m_Birthday;
+                
+                saveUserInfo = YES;
+            }
+                
+            default:
+                break;
+        }
+        
+        if (saveUserInfo)
+        {
             [FSUserInfoDB insertAndUpdateUserInfo:userInfo];
             GetAppDelegate.m_UserInfo = userInfo;
             

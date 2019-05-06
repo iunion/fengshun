@@ -153,46 +153,90 @@
     
     switch (operaType)
     {
+        // 更新头像
         case FSUpdateUserInfo_AvatarImageUrl:
             [parameters bm_setApiString:@"UPDATE_HEAD_PORTRAIT_URL" forKey:@"operaEnum"];
             [parameters bm_setApiString:value forKey:@"headPortraitUrl"];
             break;
             
+        // 更新昵称
         case FSUpdateUserInfo_NickName:
             [parameters bm_setApiString:@"UPDATE_NICK_NAME" forKey:@"operaEnum"];
             [parameters bm_setApiString:value forKey:@"nickName"];
             break;
             
+        // 实名认证
         case FSUpdateUserInfo_RealName:
             [parameters bm_setApiString:@"UPDATE_REAL_NAME" forKey:@"operaEnum"];
             [parameters bm_setApiString:value forKey:@"userName"];
             break;
             
+        // 所属单位
         case FSUpdateUserInfo_Organization:
             [parameters bm_setApiString:@"UPDATE_WORK_ORGANIZATION" forKey:@"operaEnum"];
             [parameters bm_setApiString:value forKey:@"workOrganization"];
             break;
             
+        // 职位
         case FSUpdateUserInfo_Job:
             [parameters bm_setApiString:@"UPDATE_JOB" forKey:@"operaEnum"];
             [parameters bm_setApiString:value forKey:@"job"];
             break;
             
+        // 从业时间
         case FSUpdateUserInfo_WorkTime:
             [parameters bm_setApiString:@"UPDATE_EMPLOYMENT_TIME" forKey:@"operaEnum"];
             [parameters bm_setApiString:value forKey:@"employmentTime"];
             break;
             
+        // 擅长领域
         case FSUpdateUserInfo_Ability:
             [parameters bm_setApiString:@"UPDATE_ABILITY" forKey:@"operaEnum"];
             [parameters bm_setApiString:value forKey:@"ability"];
             break;
             
+        // 个人签名
         case FSUpdateUserInfo_Signature:
             [parameters bm_setApiString:@"UPDATE_PERSONALITY_SIGNATURE" forKey:@"operaEnum"];
             [parameters bm_setApiString:value forKey:@"personalitySignature"];
             break;
             
+        // 性别
+        case FSUpdateUserInfo_Sex:
+            [parameters bm_setApiString:@"UPDATE_SEX" forKey:@"operaEnum"];
+            [parameters bm_setApiString:value forKey:@"sex"];
+            break;
+
+        // 生日
+        case FSUpdateUserInfo_Birthday:
+            [parameters bm_setApiString:@"UPDATE_BIRTH_TIME" forKey:@"operaEnum"];
+            [parameters bm_setApiString:value forKey:@"birthTime"];
+            break;
+            
+        // 工作单位服务区域
+        case FSUpdateUserInfo_WorkArea:
+            [parameters bm_setApiString:@"UPDATE_WORKSPACE" forKey:@"operaEnum"];
+            [parameters bm_setApiString:value forKey:@"workLocation"];
+            break;
+            
+        // 专业任职信息
+        case FSUpdateUserInfo_ProfessionalQualification:
+            [parameters bm_setApiString:@"UPDATE_JOB_INFO" forKey:@"operaEnum"];
+            [parameters bm_setApiString:value forKey:@"jobInfo"];
+            break;
+
+        // 工作经历
+        case FSUpdateUserInfo_WorkExperience:
+            [parameters bm_setApiString:@"UPDATE_WORK_EXPERIENCE" forKey:@"operaEnum"];
+            [parameters bm_setApiString:value forKey:@"workExperience"];
+            break;
+
+        // 单位详细地址
+        case FSUpdateUserInfo_WorkAddress:
+            [parameters bm_setApiString:@"UPDATE_WORK_ORGANIZATION" forKey:@"operaEnum"];
+            [parameters bm_setApiString:value forKey:@"workAddress"];
+            break;
+
         default:
             break;
     }

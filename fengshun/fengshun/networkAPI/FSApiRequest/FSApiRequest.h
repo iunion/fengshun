@@ -23,14 +23,34 @@ typedef NS_ENUM(NSUInteger, FSVerificationCodeType)
 
 typedef NS_ENUM(NSUInteger, FSUpdateUserInfoOperaType)
 {
+    // 更新头像
     FSUpdateUserInfo_AvatarImageUrl = 0,
+    // 更新昵称
     FSUpdateUserInfo_NickName,
+    // 实名认证
     FSUpdateUserInfo_RealName,
+    // 所属单位
     FSUpdateUserInfo_Organization,
+    // 单位详细地址
+    FSUpdateUserInfo_WorkAddress,
+    // 职位
     FSUpdateUserInfo_Job,
+    // 从业时间
     FSUpdateUserInfo_WorkTime,
+    // 擅长领域
     FSUpdateUserInfo_Ability,
-    FSUpdateUserInfo_Signature
+    // 个人签名
+    FSUpdateUserInfo_Signature,
+    // 性别
+    FSUpdateUserInfo_Sex,
+    // 生日
+    FSUpdateUserInfo_Birthday,
+    // 工作单位服务区域
+    FSUpdateUserInfo_WorkArea,
+    // 专业任职信息
+    FSUpdateUserInfo_ProfessionalQualification,
+    // 工作经历
+    FSUpdateUserInfo_WorkExperience
 };
 
 typedef NS_ENUM(NSUInteger, FSCollectionType)
