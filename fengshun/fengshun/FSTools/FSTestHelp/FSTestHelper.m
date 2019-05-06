@@ -178,8 +178,9 @@
 #ifdef FSVIDEO_ON
             [self initILiveSDK];
 #endif
-            
+            [self initjPushKey];
             [BMConsole log:@"当前api已经变更为'线上'"];
+            
         }
         else
         {
@@ -207,7 +208,7 @@
 #ifdef FSVIDEO_ON
             [self initILiveSDK];
 #endif
-        
+            [self initjPushKey];
             [BMConsole log:@"当前api已经变更为'开发'"];
         }
         else
@@ -236,7 +237,7 @@
 #ifdef FSVIDEO_ON
             [self initILiveSDK];
 #endif
-
+            [self initjPushKey];
             [BMConsole log:@"当前api已经变更为'测试'"];
         }
         else
@@ -285,6 +286,18 @@
     return ret;
 }
 
+- (void)initjPushKey
+{
+    [BMConsole log:@"切换环境，推送功能需要重启app"];
+    
+    [BMAlertView showAlertWithTitle:@"切换环境，推送功能需要重启app" message:nil cancelTitle:@"取消" otherTitle:@"重启" completion:^(BOOL cancelled, NSInteger buttonIndex) {
+        if (!cancelled)
+        {
+            [self exitApplication ];
+        }
+    }];
+}
+
 #ifdef FSVIDEO_ON
 - (void)initILiveSDK
 {
@@ -307,6 +320,7 @@
         }
     }];
 }
+#endif
 
 - (void)exitApplication
 {
@@ -319,7 +333,6 @@
         exit(0);
     }];
 }
-#endif
 
 @end
 
