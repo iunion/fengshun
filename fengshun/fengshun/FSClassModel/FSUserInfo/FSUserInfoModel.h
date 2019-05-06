@@ -49,7 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - searchUserBaseInfo
 
-// 生日: birthTime
+// 生日: birthTime “2018-10-1”
 @property (nonatomic, assign) NSTimeInterval m_Birthday;
 
 // 擅长领域: ability ','分割成数组

@@ -129,7 +129,10 @@
     // 生日: birthTime
     if ([dic bm_containsObjectForKey:@"birthTime"])
     {
-        self.m_Birthday = [dic bm_doubleForKey:@"birthTime"];
+        NSString *birthDayStr = [dic bm_stringTrimForKey:@"birthTime"];
+        NSDate *birthday = [NSDate bm_dateFromString:birthDayStr withFormat:@"yyyy-MM-dd"];
+        
+        self.m_Birthday = [birthday timeIntervalSince1970];
     }
 
     // 擅长领域: ability ','分割成数组

@@ -75,7 +75,11 @@
                 case FSUpdateUserInfo_Signature:
                     self.m_Placeholder = @"一句话介绍自己";
                     break;
-                    
+
+                case FSUpdateUserInfo_WorkExperience:
+                    self.m_Placeholder = @"请填写工作经历";
+                    break;
+
                 default:
                     break;
             }
@@ -92,7 +96,34 @@
 
     self.view.backgroundColor = FS_VIEW_BGCOLOR;
 
-    [self bm_setNavigationWithTitle:@"" barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:@"完成" rightItemImage:nil rightToucheEvent:@selector(updateAction:)];
+    NSString *title = @"";
+    switch (self.m_OperaType)
+    {
+        case FSUpdateUserInfo_NickName:
+            title = @"昵称";
+            break;
+            
+        case FSUpdateUserInfo_Organization:
+            title = @"工作单位";
+            break;
+            
+        case FSUpdateUserInfo_Job:
+            title = @"职位";
+            break;
+            
+        case FSUpdateUserInfo_Signature:
+            title = @"个人签名";
+            break;
+            
+        case FSUpdateUserInfo_WorkExperience:
+            title = @"工作经历";
+            break;
+            
+        default:
+            break;
+    }
+    
+    [self bm_setNavigationWithTitle:title barTintColor:nil leftItemTitle:nil leftItemImage:@"navigationbar_back_icon" leftToucheEvent:@selector(backAction:) rightItemTitle:@"完成" rightItemImage:nil rightToucheEvent:@selector(updateAction:)];
     
     [self interfaceSettings];
 }

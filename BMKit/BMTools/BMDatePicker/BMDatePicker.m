@@ -69,7 +69,30 @@
 
 - (instancetype)initWithPickerStyle:(BMPickerStyle)pickerStyle completeBlock:(BMDatePickerDoneBlock)completeBlock
 {
-    return [self initWithPickerStyle:pickerStyle scrollToDate:[NSDate date] completeBlock:completeBlock];
+    if (pickerStyle == PickerStyle_Sex)
+    {
+        return [self initWithPickerSex:nil completeBlock:completeBlock];
+    }
+    else
+    {
+        return [self initWithPickerStyle:pickerStyle scrollToDate:[NSDate date] completeBlock:completeBlock];
+    }
+}
+
+- (instancetype)initWithPickerSex:(NSString *)sex completeBlock:(BMDatePickerDoneBlock)completeBlock
+{
+    self = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil] firstObject];
+    
+    self.pickerStyle = PickerStyle_Sex;
+    self.completeBlock = completeBlock;
+    
+    [self defaultConfig];
+    
+    [self setupUI];
+    
+    [self scrollToSex:sex animated:YES];
+    
+    return self;
 }
 
 - (instancetype)initWithPickerStyle:(BMPickerStyle)pickerStyle scrollToDate:(NSDate *)scrollToDate completeBlock:(BMDatePickerDoneBlock)completeBlock
@@ -1204,6 +1227,18 @@
             [self.picker selectRow:[indexArray[i] integerValue] inComponent:i animated:animated];
         }
     }
+}
+
+- (void)scrollToSex:(NSString *)sex animated:(BOOL)animated
+{
+    if (!sex)
+    {
+        sex = @"男";
+    }
+    
+    self.pickerSex = sex;
+    
+    [self.picker selectRow:[_sexArray indexOfObject:sex] inComponent:0 animated:animated];
 }
 
 @end
