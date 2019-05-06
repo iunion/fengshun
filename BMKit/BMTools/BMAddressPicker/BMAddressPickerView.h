@@ -22,9 +22,10 @@ typedef void(^addressPickerFinished)(BMChooseAddressModel *address, NSString *ad
 @interface BMAddressPickerView : UIView
 
 // title颜色
-@property (nonatomic,strong) UIColor *titleColor;
+@property (nonatomic, strong) UIColor *titleColor;
 // 选中颜色
-@property (nonatomic,strong) UIColor *selectColor;
+@property (nonatomic, strong) UIColor *normalColor;
+@property (nonatomic, strong) UIColor *selectColor;
 
 // 省份
 @property (nonatomic, strong, readonly) NSMutableArray *provinceArray;

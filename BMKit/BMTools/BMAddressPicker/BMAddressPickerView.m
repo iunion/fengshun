@@ -149,6 +149,23 @@ enum EWLocationPickViewTableViewType: NSUInteger {
     self.apiStatusView = apiStatusView;
 }
 
+- (void)setTitleColor:(UIColor *)titleColor
+{
+    self.titleLabel.textColor = titleColor;
+}
+
+- (void)setNormalColor:(UIColor *)normalColor
+{
+    _normalColor = normalColor;
+    self.addressChooseView.normalColor = normalColor;
+}
+
+- (void)setSelectColor:(UIColor *)selectColor
+{
+    _selectColor = selectColor;
+    self.addressChooseView.selectColor = selectColor;
+}
+
 - (void)freshView
 {
     self.apiLevel = 1;
@@ -326,6 +343,8 @@ enum EWLocationPickViewTableViewType: NSUInteger {
         item = self.chooseAddress.city.areaArray[indexPath.row];
     }
     
+    cell.normalColor = self.normalColor;
+    cell.selectColor = self.selectColor;
     [cell drawCellWithModel:item];
     
     return cell;

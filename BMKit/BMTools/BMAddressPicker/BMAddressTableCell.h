@@ -16,6 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly) BMAddressModel *addressModel;
 
+@property (nonatomic, strong) UIColor *normalColor;
+@property (nonatomic, strong) UIColor *selectColor;
+
 - (void)drawCellWithModel:(BMAddressModel *)model;
 
 @end

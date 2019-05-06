@@ -21,6 +21,9 @@ typedef void(^chooseAddressClicked)(BMChooseAddressModel *chooseAddress, NSUInte
 @property (nonatomic, assign, readonly) NSUInteger level;
 @property (nonatomic, assign, readonly) NSUInteger maxLevel;
 
+@property (nonatomic, strong) UIColor *normalColor;
+@property (nonatomic, strong) UIColor *selectColor;
+
 @property (nonatomic, copy) chooseAddressClicked addressClicked;
 
 - (void)setChooseAddress:(BMChooseAddressModel *)chooseAddress level:(NSUInteger)level;

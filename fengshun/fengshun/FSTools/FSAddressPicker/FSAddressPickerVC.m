@@ -34,6 +34,7 @@
     
     BMAddressPickerView *view = [[BMAddressPickerView alloc] initWithFrame:CGRectMake(0, UI_SCREEN_HEIGHT*2/5, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT*3/5)];
     BMWeakSelf
+    view.selectColor = [UIColor bm_colorWithHex:UI_NAVIGATION_BGCOLOR_VALU];
     view.backOnClickClose = ^{
         [weakSelf onClickClose];
     };

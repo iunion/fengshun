@@ -24,15 +24,23 @@
 
 #if USE_TEST_HELP
 
-#define JPush_AppKey_INIT           JPush_AppKey_DEV
+// 开发环境
 #define JPush_AppKey_DEV            @"d9e97a31799893c6f167eb6b"
+
+// 测试环境
 #define JPush_AppKey_TEST           @"a126b645aea498f8555c9747"
+
+// 线上环境
 #define JPush_AppKey_ONLINE         @"25c33b46402da58fca2c055c"
-#define FS_JPush_AppKey_KEY        (@"FS_JPush_AppKey_KEY")
-#define JPush_AppKey               [[NSUserDefaults standardUserDefaults] objectForKey:FS_JPush_AppKey_KEY]
+
+#define JPush_AppKey_INIT           JPush_AppKey_DEV
+#define FS_JPush_AppKey_KEY         (@"FS_JPush_AppKey_KEY")
+#define JPush_AppKey                [[NSUserDefaults standardUserDefaults] objectForKey:FS_JPush_AppKey_KEY]
 
 #else
+
 #define JPush_AppKey                @"25c33b46402da58fca2c055c"
+
 #endif
 
 // 友盟

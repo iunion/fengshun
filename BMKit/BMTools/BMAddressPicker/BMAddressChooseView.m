@@ -25,6 +25,8 @@ static CGFloat const addressItemMargin = 20.0f;
 @end
 
 @implementation BMAddressChooseView
+@synthesize normalColor = _normalColor;
+@synthesize selectColor = _selectColor;
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -75,6 +77,46 @@ static CGFloat const addressItemMargin = 20.0f;
     separateLine.needGap = YES;
     [self addSubview:separateLine];
     self.separateLine = separateLine;
+}
+
+- (UIColor *)normalColor
+{
+    if (!_normalColor)
+    {
+        _normalColor = [UIColor blackColor];
+    }
+    
+    return _normalColor;
+}
+
+- (void)setNormalColor:(UIColor *)normalColor
+{
+    _normalColor = normalColor;
+    
+    for (UIButton *btn in self.btnArray)
+    {
+        [btn setTitleColor:self.normalColor forState:UIControlStateNormal];
+    }
+}
+
+- (UIColor *)selectColor
+{
+    if (!_selectColor)
+    {
+        _selectColor = [UIColor redColor];
+    }
+    
+    return _selectColor;
+}
+
+- (void)setSelectColor:(UIColor *)selectColor
+{
+    _selectColor = selectColor;
+    
+    for (UIButton *btn in self.btnArray)
+    {
+        [btn setTitleColor:self.selectColor forState:UIControlStateSelected];
+    }
 }
 
 - (void)drawRect:(CGRect)rect

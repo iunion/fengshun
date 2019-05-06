@@ -36,6 +36,26 @@
     self.nameLabel.font = [UIFont systemFontOfSize:15.0f];
 }
 
+- (UIColor *)normalColor
+{
+    if (!_normalColor)
+    {
+        _normalColor = [UIColor blackColor];
+    }
+    
+    return _normalColor;
+}
+
+- (UIColor *)selectColor
+{
+    if (!_selectColor)
+    {
+        _selectColor = [UIColor redColor];
+    }
+    
+    return _selectColor;
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
@@ -50,11 +70,13 @@
     self.nameLabel.text = model.name;
     [self.nameLabel sizeToFit];
     
-    self.nameLabel.textColor = model.isSelected ? [UIColor redColor] : [UIColor blackColor];
+    self.nameLabel.textColor = model.isSelected ? self.selectColor : self.normalColor;
 
     self.nameLabel.bm_left = 15.0f;
     self.nameLabel.bm_centerY = self.contentView.bm_centerY;
     
+    self.selectedIcon.image = [[UIImage imageNamed:@"address_selected"] bm_imageWithTintColor:self.selectColor];
+    //self.selectedIcon.tintColor = self.selectColor;
     self.selectedIcon.bm_left = self.nameLabel.bm_right + 4.0f;
     self.selectedIcon.hidden = !model.isSelected;
 }
