@@ -22,8 +22,14 @@
 
 //#define APPSTORE_CHECK_VERSON_ADDRESS @"http://itunes.apple.com/lookup?id=628470263"
 
+// 测试key  @"a126b645aea498f8555c9747" 开发 @"d9e97a31799893c6f167eb6b" 生产 @"25c33b46402da58fca2c055c"
 // 极光推送
-#define JPush_AppKey        @"25c33b46402da58fca2c055c"
+#define JPush_AppKey_INIT     JPush_AppKey_DEV
+#define FS_JPush_AppKey_KEY        (@"FS_JPush_AppKey_KEY")
+#define JPush_AppKey        [[NSUserDefaults standardUserDefaults] objectForKey:FS_JPush_AppKey_KEY]
+#define JPush_AppKey_ONLINE        @"25c33b46402da58fca2c055c"
+#define JPush_AppKey_DEV        @"d9e97a31799893c6f167eb6b"
+#define JPush_AppKey_TEST        @"a126b645aea498f8555c9747"
 
 // 友盟
 #define UMeng_AppKey            @"5b9b22b1f43e484912000027"

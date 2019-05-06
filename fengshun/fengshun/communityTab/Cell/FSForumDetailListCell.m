@@ -44,6 +44,10 @@
 
 
 - (void)showWithTopicModel:(FSTopicModel *)model{
+    if (![model.m_Title bm_isNotEmpty])
+    {
+        return;
+    }
     NSMutableAttributedString *titleStr = [[NSMutableAttributedString alloc]initWithString:model.m_Title];
     [titleStr bm_setAttributeAlignmentStyle:NSTextAlignmentLeft lineSpaceStyle:5 paragraphSpaceStyle:5 lineBreakStyle:0];
     self.m_TitleLab.attributedText    = titleStr;

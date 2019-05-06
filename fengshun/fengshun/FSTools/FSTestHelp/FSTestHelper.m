@@ -97,6 +97,12 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
+    NSString *pushKey = [[NSUserDefaults standardUserDefaults] objectForKey:FS_JPush_AppKey_KEY];
+    if (!pushKey)
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:JPush_AppKey_INIT forKey:FS_JPush_AppKey_KEY];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
 
 #ifdef FSVIDEO_ON
     NSInteger ILiveSDKAPPID = [[[NSUserDefaults standardUserDefaults] objectForKey:FS_ILiveSDKAPPID_KEY] integerValue];
@@ -146,6 +152,7 @@
         [BMConsole log:@"当前文件链接地址是'%@'", FS_FILE_ADDRESS];
         [BMConsole log:@"当前法规案例检索地址是'%@'", FS_CASE_STATUTE_URL];
         [BMConsole log:@"当前智能咨询链接地址是'%@'", FS_AI_SERVER];
+        [BMConsole log:@"当前推送key'%@'", JPush_AppKey];
 #ifdef FSVIDEO_ON
         [BMConsole log:@"当前腾讯RTC环境是'%@ %@'", @(FS_ILiveSDKAPPID), @(FS_ILiveAccountType)];
 #endif
@@ -161,6 +168,7 @@
             [[NSUserDefaults standardUserDefaults] setObject:FS_FILE_ADDRESS_ONLINE forKey:FS_FILE_ADDRESS_KEY];
             [[NSUserDefaults standardUserDefaults] setObject:FS_CASE_STATUTE_ONLINE forKey:FS_CASE_STATUTE_URL_KEY];
             [[NSUserDefaults standardUserDefaults] setObject:FS_AI_SERVER_ONLINE forKey:FS_AI_SERVER_KEY];
+            [[NSUserDefaults standardUserDefaults] setObject:JPush_AppKey_ONLINE forKey:FS_JPush_AppKey_KEY];
 #ifdef FSVIDEO_ON
             [[NSUserDefaults standardUserDefaults] setObject:@(FS_ILiveSDKAPPID_ONLINE) forKey:FS_ILiveSDKAPPID_KEY];
             [[NSUserDefaults standardUserDefaults] setObject:@(FS_ILiveAccountType_ONLINE) forKey:FS_ILiveAccountType_KEY];
@@ -189,6 +197,7 @@
             [[NSUserDefaults standardUserDefaults] setObject:FS_FILE_ADDRESS_DEV forKey:FS_FILE_ADDRESS_KEY];
             [[NSUserDefaults standardUserDefaults] setObject:FS_CASE_STATUTE_DEV forKey:FS_CASE_STATUTE_URL_KEY];
             [[NSUserDefaults standardUserDefaults] setObject:FS_AI_SERVER_DEV forKey:FS_AI_SERVER_KEY];
+            [[NSUserDefaults standardUserDefaults] setObject:JPush_AppKey_DEV forKey:FS_JPush_AppKey_KEY];
 #ifdef FSVIDEO_ON
             [[NSUserDefaults standardUserDefaults] setObject:@(FS_ILiveSDKAPPID_DEV) forKey:FS_ILiveSDKAPPID_KEY];
             [[NSUserDefaults standardUserDefaults] setObject:@(FS_ILiveAccountType_DEV) forKey:FS_ILiveAccountType_KEY];
@@ -217,6 +226,7 @@
             [[NSUserDefaults standardUserDefaults] setObject:FS_FILE_ADDRESS_TEST forKey:FS_FILE_ADDRESS_KEY];
             [[NSUserDefaults standardUserDefaults] setObject:FS_CASE_STATUTE_TEST forKey:FS_CASE_STATUTE_URL_KEY];
             [[NSUserDefaults standardUserDefaults] setObject:FS_AI_SERVER_TEST forKey:FS_AI_SERVER_KEY];
+            [[NSUserDefaults standardUserDefaults] setObject:JPush_AppKey_TEST forKey:FS_JPush_AppKey_KEY];
 #ifdef FSVIDEO_ON
             [[NSUserDefaults standardUserDefaults] setObject:@(FS_ILiveSDKAPPID_TEST) forKey:FS_ILiveSDKAPPID_KEY];
             [[NSUserDefaults standardUserDefaults] setObject:@(FS_ILiveAccountType_TEST) forKey:FS_ILiveAccountType_KEY];
