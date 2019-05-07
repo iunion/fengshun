@@ -19,7 +19,7 @@ typedef void (^searchViewSearchHandler)(NSString * _Nonnull search);
 
 @property (nullable, nonatomic, copy) searchViewSearchHandler searchHandler;
 
-- (instancetype)initWithSearchKey:(nonnull NSString *)searchKey hotSearchTags:(nullable NSArray *)hotSearchTags searchHandler:(nullable searchViewSearchHandler)searchHandler;
+- (nullable instancetype)initWithSearchKey:(nonnull NSString *)searchKey hotSearchTags:(nullable NSArray *)hotSearchTags searchHandler:(nullable searchViewSearchHandler)searchHandler;
 
 - (void)setSearchBarPplaceholder:(nullable NSString *)searchBarPplaceholder;
 - (void)setSearchBarBackgroundColor:(nonnull UIColor *)searchBarBackgroundColor;

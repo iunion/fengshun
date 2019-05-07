@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class FSSimpleCameraViewController;
 
 @protocol FSSimpleCameraControllerDelegate <UIImagePickerControllerDelegate>
@@ -18,8 +20,6 @@
 - (void)imagePickerController:(UIViewController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info;
 
 @end
-
-NS_ASSUME_NONNULL_BEGIN
 
 @interface FSSimpleCameraViewController : UIImagePickerController
 

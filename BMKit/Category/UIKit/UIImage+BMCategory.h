@@ -128,19 +128,23 @@ extern BOOL BMCGImageFormatPNG(_Nullable CGImageRef imageRef);
 // https://www.jb51.net/article/142139.htm
 @interface UIImage (BMClip)
 
-+ (UIImage *)image:(UIImage *)sourceImage scalingToSize:(CGSize)targetSize;
-- (UIImage *)imageScalingToSize:(CGSize)targetSize;
+// 按尺寸缩放
++ (UIImage *)bm_image:(UIImage *)sourceImage scalingToSize:(CGSize)targetSize;
+- (UIImage *)bm_imageScalingToSize:(CGSize)targetSize;
+// 等比缩放
++ (UIImage *)bm_image:(UIImage *)sourceImage uniformScaleToSize:(CGSize)targetSize;
+- (UIImage *)bm_imageUniformScalingToSize:(CGSize)targetSize;
 
 
 // CGContext裁剪
-+ (UIImage *)contextClip:(UIImage *)image cornerRadius:(CGFloat)radius;
-- (UIImage *)contextClipWithCornerRadius:(CGFloat)radius;
++ (UIImage *)bm_contextClip:(UIImage *)image cornerRadius:(CGFloat)radius;
+- (UIImage *)bm_contextClipWithCornerRadius:(CGFloat)radius;
 
 // UIBezierPath 裁剪
-+ (UIImage *)bezierPathClip:(UIImage *)image cornerRadius:(CGFloat)radius;
-- (UIImage *)bezierPathClipWithCornerRadius:(CGFloat)radius;
-+ (UIImage *)bezierPathClip:(UIImage *)image cornerRadius:(CGFloat)radius pathWidth:(CGFloat)pathWidth pathColor:(nullable UIColor *)pathColor;
-- (UIImage *)bezierPathClipWithCornerRadius:(CGFloat)radius pathWidth:(CGFloat)pathWidth pathColor:(nullable UIColor *)pathColor;
++ (UIImage *)bm_bezierPathClip:(UIImage *)image cornerRadius:(CGFloat)radius;
+- (UIImage *)bm_bezierPathClipWithCornerRadius:(CGFloat)radius;
++ (UIImage *)bm_bezierPathClip:(UIImage *)image cornerRadius:(CGFloat)radius pathWidth:(CGFloat)pathWidth pathColor:(nullable UIColor *)pathColor;
+- (UIImage *)bm_bezierPathClipWithCornerRadius:(CGFloat)radius pathWidth:(CGFloat)pathWidth pathColor:(nullable UIColor *)pathColor;
 
 // 空域处理的办法 裁剪圆角算法
 //+ (UIImage *)dealImage:(UIImage *)image cornerRadius:(CGFloat)r;

@@ -1330,12 +1330,12 @@ BOOL BMCGImageFormatPNG(CGImageRef imageRef) {
 
 @implementation UIImage (BMClip)
 
-+ (UIImage *)image:(UIImage *)sourceImage scalingToSize:(CGSize)targetSize
++ (UIImage *)bm_image:(UIImage *)sourceImage scalingToSize:(CGSize)targetSize
 {
     UIImage *newImage = nil;
     
     //UIGraphicsBeginImageContext(targetSize);
-    CGFloat scale = [[UIScreen mainScreen]scale];
+    CGFloat scale = [[UIScreen mainScreen] scale];
     UIGraphicsBeginImageContextWithOptions(targetSize, NO, scale);
 
     CGRect thumbnailRect = CGRectZero;
@@ -1351,18 +1351,43 @@ BOOL BMCGImageFormatPNG(CGImageRef imageRef) {
     return newImage ;
 }
 
-- (UIImage *)imageScalingToSize:(CGSize)targetSize
+- (UIImage *)bm_imageScalingToSize:(CGSize)targetSize
 {
-    return [UIImage image:self scalingToSize:targetSize];
+    return [UIImage bm_image:self scalingToSize:targetSize];
+}
+
+#pragma mark 调整图片分辨率/尺寸（等比例缩放）
++ (UIImage *)bm_image:(UIImage *)sourceImage uniformScaleToSize:(CGSize)targetSize
+{
+    CGSize newSize = CGSizeMake(sourceImage.size.width, sourceImage.size.height);
+    
+    CGFloat tempHeight = newSize.height / targetSize.height;
+    CGFloat tempWidth = newSize.width / targetSize.width;
+    
+    if (tempWidth > 1.0 && tempWidth > tempHeight)
+    {
+        newSize = CGSizeMake(sourceImage.size.width / tempWidth, sourceImage.size.height / tempWidth);
+    }
+    else if (tempHeight > 1.0 && tempWidth < tempHeight)
+    {
+        newSize = CGSizeMake(sourceImage.size.width / tempHeight, sourceImage.size.height / tempHeight);
+    }
+    
+    return [UIImage bm_image:sourceImage scalingToSize:newSize];
+}
+
+- (UIImage *)bm_imageUniformScalingToSize:(CGSize)targetSize
+{
+    return [UIImage bm_image:self uniformScaleToSize:targetSize];
 }
 
 // CGContext裁剪
-+ (UIImage *)contextClip:(UIImage *)image cornerRadius:(CGFloat)radius
++ (UIImage *)bm_contextClip:(UIImage *)image cornerRadius:(CGFloat)radius
 {
     CGFloat w = image.size.width * image.scale;
     CGFloat h = image.size.height * image.scale;
     
-    CGFloat scale = [[UIScreen mainScreen]scale];
+    CGFloat scale = [[UIScreen mainScreen] scale];
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(w, h), NO, scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextMoveToPoint(context, 0, radius);
@@ -1388,28 +1413,28 @@ BOOL BMCGImageFormatPNG(CGImageRef imageRef) {
     return clipImage;
 }
 
-- (UIImage *)contextClipWithCornerRadius:(CGFloat)radius
+- (UIImage *)bm_contextClipWithCornerRadius:(CGFloat)radius
 {
-    return [UIImage contextClip:self cornerRadius:radius];
+    return [UIImage bm_contextClip:self cornerRadius:radius];
 }
 
 // UIBezierPath 裁剪
-+ (UIImage *)bezierPathClip:(UIImage *)image cornerRadius:(CGFloat)radius
++ (UIImage *)bm_bezierPathClip:(UIImage *)image cornerRadius:(CGFloat)radius
 {
-    return [UIImage bezierPathClip:image cornerRadius:radius pathWidth:0 pathColor:nil];
+    return [UIImage bm_bezierPathClip:image cornerRadius:radius pathWidth:0 pathColor:nil];
 }
 
-- (UIImage *)bezierPathClipWithCornerRadius:(CGFloat)radius
+- (UIImage *)bm_bezierPathClipWithCornerRadius:(CGFloat)radius
 {
-    return [UIImage bezierPathClip:self cornerRadius:radius pathWidth:0 pathColor:nil];
+    return [UIImage bm_bezierPathClip:self cornerRadius:radius pathWidth:0 pathColor:nil];
 }
 
-+ (UIImage *)bezierPathClip:(UIImage *)image cornerRadius:(CGFloat)radius pathWidth:(CGFloat)pathWidth pathColor:(UIColor *)pathColor
++ (UIImage *)bm_bezierPathClip:(UIImage *)image cornerRadius:(CGFloat)radius pathWidth:(CGFloat)pathWidth pathColor:(UIColor *)pathColor
 {
     CGFloat w = image.size.width * image.scale;
     CGFloat h = image.size.height * image.scale;
     
-    CGFloat scale = [[UIScreen mainScreen]scale];
+    CGFloat scale = [[UIScreen mainScreen] scale];
     CGRect rect = CGRectMake(0, 0, w + 2 * pathWidth, h + 2 * pathWidth);
     UIGraphicsBeginImageContextWithOptions(rect.size, NO, scale);
     if (pathWidth > 0 && pathColor)
@@ -1435,9 +1460,9 @@ BOOL BMCGImageFormatPNG(CGImageRef imageRef) {
     return clipImage;
 }
 
-- (UIImage *)bezierPathClipWithCornerRadius:(CGFloat)radius pathWidth:(CGFloat)pathWidth pathColor:(UIColor *)pathColor
+- (UIImage *)bm_bezierPathClipWithCornerRadius:(CGFloat)radius pathWidth:(CGFloat)pathWidth pathColor:(UIColor *)pathColor
 {
-    return [UIImage bezierPathClip:self cornerRadius:radius pathWidth:pathWidth pathColor:pathColor];
+    return [UIImage bm_bezierPathClip:self cornerRadius:radius pathWidth:pathWidth pathColor:pathColor];
 }
 
 @end
