@@ -31,7 +31,7 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qjO-ef-w1G">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_column_identy.png" translatesAutoresizingMaskIntoConstraints="NO" id="qjO-ef-w1G">
                         <rect key="frame" x="73" y="54.5" width="14" height="13"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="14" id="iiv-dW-QFg"/>
@@ -44,7 +44,7 @@
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fLe-3N-nHr">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_column_arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="fLe-3N-nHr">
                         <rect key="frame" x="302" y="40" width="8" height="14"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="8" id="6U7-2q-tMw"/>
@@ -58,6 +58,13 @@
                             <constraint firstAttribute="height" constant="0.5" id="1C4-IW-ERZ"/>
                         </constraints>
                     </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_passcertification_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="mJF-tB-k3t">
+                        <rect key="frame" x="47" y="52.5" width="15" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="15" id="bAX-Wr-eSh"/>
+                            <constraint firstAttribute="height" constant="15" id="hnn-gp-9Ra"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="m8Q-vC-kbh" secondAttribute="trailing" constant="21" id="4m8-FM-Lk1"/>
@@ -68,11 +75,13 @@
                     <constraint firstItem="V6P-ru-Qld" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="21" id="Chw-mC-vxV"/>
                     <constraint firstItem="qjO-ef-w1G" firstAttribute="leading" secondItem="9HS-Gp-NUP" secondAttribute="leading" id="Dkc-UN-xHm"/>
                     <constraint firstItem="qjO-ef-w1G" firstAttribute="bottom" secondItem="V6P-ru-Qld" secondAttribute="bottom" id="FFb-Sr-h9g"/>
+                    <constraint firstItem="mJF-tB-k3t" firstAttribute="bottom" secondItem="V6P-ru-Qld" secondAttribute="bottom" id="Kdt-JI-1MN"/>
                     <constraint firstItem="8MH-Bb-bOo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="LSl-Bu-ch4"/>
                     <constraint firstAttribute="trailing" secondItem="9HS-Gp-NUP" secondAttribute="trailing" constant="21" id="VFA-ix-ApX"/>
                     <constraint firstItem="9HS-Gp-NUP" firstAttribute="top" secondItem="V6P-ru-Qld" secondAttribute="top" id="Xh9-aP-rbx"/>
                     <constraint firstAttribute="trailing" secondItem="8MH-Bb-bOo" secondAttribute="trailing" id="XwN-44-bbM"/>
                     <constraint firstItem="m8Q-vC-kbh" firstAttribute="leading" secondItem="qjO-ef-w1G" secondAttribute="trailing" constant="9" id="kh7-R9-3XQ"/>
+                    <constraint firstItem="mJF-tB-k3t" firstAttribute="trailing" secondItem="V6P-ru-Qld" secondAttribute="trailing" id="upN-AC-vQN"/>
                     <constraint firstItem="9HS-Gp-NUP" firstAttribute="leading" secondItem="V6P-ru-Qld" secondAttribute="trailing" constant="11" id="wXj-1G-C10"/>
                     <constraint firstAttribute="bottom" secondItem="8MH-Bb-bOo" secondAttribute="bottom" id="zpZ-02-3ZD"/>
                 </constraints>
@@ -82,8 +91,14 @@
                 <outlet property="m_IdentyLab" destination="m8Q-vC-kbh" id="bf6-P7-skz"/>
                 <outlet property="m_ImgView" destination="V6P-ru-Qld" id="g4T-Td-gBS"/>
                 <outlet property="m_NickNameLab" destination="9HS-Gp-NUP" id="p8h-eB-NpA"/>
+                <outlet property="m_certificationImg" destination="mJF-tB-k3t" id="cOJ-s0-3TJ"/>
             </connections>
-            <point key="canvasLocation" x="232" y="35"/>
+            <point key="canvasLocation" x="232" y="34.182908545727138"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="main_column_arrow.png" width="8" height="14"/>
+        <image name="main_column_identy.png" width="14" height="13"/>
+        <image name="user_passcertification_icon.png" width="18" height="18"/>
+    </resources>
 </document>

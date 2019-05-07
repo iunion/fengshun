@@ -31,14 +31,14 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ioq-E2-Q41">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_column_read.png" translatesAutoresizingMaskIntoConstraints="NO" id="ioq-E2-Q41">
                         <rect key="frame" x="112" y="83" width="14" height="8"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="8" id="NHS-A4-1gZ"/>
                             <constraint firstAttribute="width" constant="14" id="bWK-it-JZH"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xHL-R3-ae5">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_column_msg.png" translatesAutoresizingMaskIntoConstraints="NO" id="xHL-R3-ae5">
                         <rect key="frame" x="177.5" y="82" width="11" height="10"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="10" id="DuV-sa-vyx"/>
@@ -99,4 +99,8 @@
             <point key="canvasLocation" x="153.59999999999999" y="80.50974512743629"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="main_column_msg.png" width="10.5" height="10"/>
+        <image name="main_column_read.png" width="14" height="8"/>
+    </resources>
 </document>

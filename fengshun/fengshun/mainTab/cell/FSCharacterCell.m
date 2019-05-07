@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *m_ImgView;
 @property (weak, nonatomic) IBOutlet UILabel *m_NickNameLab;
 @property (weak, nonatomic) IBOutlet UILabel *m_IdentyLab;
+@property (weak, nonatomic) IBOutlet UIImageView *m_certificationImg;
 
 
 @end
@@ -41,6 +42,7 @@
     [self.m_ImgView sd_setImageWithURL:[NSURL URLWithString:model.m_HeaderUrl] placeholderImage:[UIImage imageNamed:@"default_avatariconlarge"] options:SDWebImageRetryFailed|SDWebImageLowPriority];
     self.m_NickNameLab.text = model.m_NikeName;
     self.m_IdentyLab.text = [NSString stringWithFormat:@"%@  %@",model.m_Organization,model.m_Position];
+    self.m_certificationImg.hidden = !model.m_IsIdAyth;
 }
 
 @end

@@ -41,6 +41,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [_m_imgView bm_roundedRect:5];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
