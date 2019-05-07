@@ -382,7 +382,7 @@ FSMainVC ()
     }
     else
     {
-        imageName = @"home_courses";
+        imageName = @"home_topics";
         title = @"专栏";
     }
     UIView *view         = [UIView new];
