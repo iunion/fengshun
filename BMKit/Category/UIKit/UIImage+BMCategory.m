@@ -1334,8 +1334,10 @@ BOOL BMCGImageFormatPNG(CGImageRef imageRef) {
 {
     UIImage *newImage = nil;
     
-    UIGraphicsBeginImageContext(targetSize);
-    
+    //UIGraphicsBeginImageContext(targetSize);
+    CGFloat scale = [[UIScreen mainScreen]scale];
+    UIGraphicsBeginImageContextWithOptions(targetSize, NO, scale);
+
     CGRect thumbnailRect = CGRectZero;
     thumbnailRect.origin = CGPointZero;
     thumbnailRect.size.width  = targetSize.width;
@@ -1360,7 +1362,8 @@ BOOL BMCGImageFormatPNG(CGImageRef imageRef) {
     CGFloat w = image.size.width * image.scale;
     CGFloat h = image.size.height * image.scale;
     
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(w, h), NO, 1.0);
+    CGFloat scale = [[UIScreen mainScreen]scale];
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(w, h), NO, scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextMoveToPoint(context, 0, radius);
     CGContextAddArcToPoint(context, 0, 0, radius, 0, radius);
@@ -1406,8 +1409,9 @@ BOOL BMCGImageFormatPNG(CGImageRef imageRef) {
     CGFloat w = image.size.width * image.scale;
     CGFloat h = image.size.height * image.scale;
     
+    CGFloat scale = [[UIScreen mainScreen]scale];
     CGRect rect = CGRectMake(0, 0, w + 2 * pathWidth, h + 2 * pathWidth);
-    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 1.0);
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, scale);
     if (pathWidth > 0 && pathColor)
     {
         // 绘制大圆
