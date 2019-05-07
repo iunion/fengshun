@@ -516,16 +516,20 @@ FSMainVC ()
     BMWeakSelf;
     [FSApiRequest loadHomePageDataSuccess:^(id  _Nullable responseObject) {
         NSArray *banners = [responseObject bm_arrayForKey:@"broadcastPictures"];
-        ;
         weakSelf.m_banners   = [FSBannerModel modelsWithDataArray:banners];
+        
         NSArray *tools = [responseObject bm_arrayForKey:@"tools"];
-        ;
         weakSelf.m_tools       = [FSHomePageToolModel modelsWithDataArray:tools];
+        
         NSArray *courses = [responseObject bm_arrayForKey:@"recentChanges"];
         weakSelf.m_courses     = [FSCourseRecommendModel modelsWithDataArray:courses];
-        NSArray *topics  = [responseObject bm_arrayForKey:@"bestPosts"];
+        FSCourseRecommendModel *lastCourseModel = weakSelf.m_courses.lastObject;
+        lastCourseModel.m_PositionType = BMTableViewCell_PositionType_Last;
         
+        NSArray *topics  = [responseObject bm_arrayForKey:@"bestPosts"];
         weakSelf.m_topics    = [FSTopicModel communityRecommendListModelArr:topics];
+        FSTopicModel *lastTopicModel = weakSelf.m_topics.lastObject;
+        lastTopicModel.m_PositionType = BMTableViewCell_PositionType_Last;
         
         [weakSelf freshUI];
     } failure:^(NSError * _Nullable error) {

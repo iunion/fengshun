@@ -8,6 +8,7 @@
 
 #import "FSMoreViewVC.h"
 #import "UIButton+BMContentRect.h"
+#import "FSUserMainVC.h"
 
 #define MORE_VIEW_HEIGHT 238
 
@@ -109,7 +110,15 @@
     moreVC.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     [presentVC presentViewController:moreVC animated:NO completion:^{
         [UIView animateWithDuration:DEFAULT_DELAY_TIME animations:^{
-              moreVC.m_BgView.bm_top = UI_SCREEN_HEIGHT - moreVC.m_BgView.bm_height;
+            if ([presentVC isMemberOfClass:[FSUserMainVC class]])
+            {
+                moreVC.m_BgView.bm_height -= UI_HOME_INDICATOR_HEIGHT;
+                moreVC.m_BgView.bm_top = UI_SCREEN_HEIGHT - moreVC.m_BgView.bm_height - UI_TAB_BAR_HEIGHT;
+            }
+            else
+            {
+                moreVC.m_BgView.bm_top = UI_SCREEN_HEIGHT - moreVC.m_BgView.bm_height;
+            }
         }];
     }];
     return moreVC;
