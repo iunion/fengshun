@@ -24,6 +24,7 @@ typedef NS_ENUM(NSUInteger, BMEmptyViewType) {
     BMEmptyViewType_CollectCASE,      // 收藏案例
     BMEmptyViewType_CollectSTATUTE,   // 收藏法规
     BMEmptyViewType_CollectPOSTS,     // 收藏帖子
+    BMEmptyViewType_CollectCOLUMN,    // 收藏专题
     BMEmptyViewType_CollectDOCUMENT,  // 收藏文书范本
     BMEmptyViewType_CollectCOURSE,    // 收藏课程
     BMEmptyViewType_Ocr,              // 扫描

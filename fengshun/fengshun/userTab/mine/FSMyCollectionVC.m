@@ -251,7 +251,7 @@
         case FSCollectionType_COURSE:
             return BMEmptyViewType_CollectCOURSE;
         case FSCollectionType_COLUMN:
-            return BMEmptyViewType_NoData;
+            return BMEmptyViewType_CollectCOLUMN;
         default:
             return BMEmptyViewType_NoData;
     }

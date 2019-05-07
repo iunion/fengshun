@@ -204,6 +204,12 @@
             atrText = [[NSMutableAttributedString alloc] initWithString:text];
         }
             break;
+        case BMEmptyViewType_CollectCOLUMN:
+        {
+            NSString *text = @"您还没有收藏过专栏...";
+            atrText = [[NSMutableAttributedString alloc] initWithString:text];
+        }
+            break;
         case BMEmptyViewType_CollectDOCUMENT:
         {
             NSString *text = @"您还没有收藏过文书范本...";
@@ -289,6 +295,7 @@
         case BMEmptyViewType_CollectPOSTS:
         case BMEmptyViewType_CollectDOCUMENT:
         case BMEmptyViewType_CollectCOURSE:
+        case BMEmptyViewType_CollectCOLUMN:
             imageName = @"empty_collecticon";
             break;
         case BMEmptyViewType_Ocr:
@@ -384,6 +391,7 @@
         case BMEmptyViewType_CollectPOSTS:
         case BMEmptyViewType_CollectDOCUMENT:
         case BMEmptyViewType_CollectCOURSE:
+        case BMEmptyViewType_CollectCOLUMN:
             break;
         case BMEmptyViewType_Ocr:
             break;
