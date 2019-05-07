@@ -84,7 +84,7 @@
     
     self.m_BottomBgView.bm_top = model.m_TitleHeight + 36.0f;
     
-    if (model.m_CollectionType == FSCollectionType_POSTS)
+    if (model.m_CollectionType == FSCollectionType_POSTS || model.m_CollectionType ==FSCollectionType_COLUMN)
     {
         self.m_TimeLabel.hidden = NO;
         self.m_TimeLabel.text = [NSDate fsStringDateFromTs:model.m_CreateTime];
@@ -102,7 +102,7 @@
         self.m_SourceLabel.hidden = NO;
         self.m_SourceLabel.text = model.m_Source;
         CGSize size = [self.m_SourceLabel sizeThatFits:CGSizeMake(1000, self.m_SourceLabel.bm_height)];
-        if (model.m_CollectionType == FSCollectionType_POSTS)
+        if (model.m_CollectionType == FSCollectionType_POSTS || model.m_CollectionType ==FSCollectionType_COLUMN)
         {
             self.m_SourceLabel.textAlignment = NSTextAlignmentCenter;
             self.m_SourceLabel.textColor = UI_COLOR_BL1;
