@@ -177,8 +177,9 @@
             
 #ifdef FSVIDEO_ON
             [self initILiveSDK];
-#endif
+#else
             [self initjPushKey];
+#endif
             [BMConsole log:@"当前api已经变更为'线上'"];
             
         }
@@ -207,8 +208,9 @@
 
 #ifdef FSVIDEO_ON
             [self initILiveSDK];
-#endif
+#else
             [self initjPushKey];
+#endif
             [BMConsole log:@"当前api已经变更为'开发'"];
         }
         else
@@ -236,8 +238,9 @@
 
 #ifdef FSVIDEO_ON
             [self initILiveSDK];
-#endif
+#else
             [self initjPushKey];
+#endif
             [BMConsole log:@"当前api已经变更为'测试'"];
         }
         else
@@ -311,7 +314,7 @@
     //NSLog(@"AVSDK version:%@", [QAVContext getVersion]);
     //NSLog(@"IMSDK version:%@", [[TIMManager sharedInstance] GetVersion]);
     
-    [BMConsole log:@"切换环境，视频功能需要重启app"];
+    [BMConsole log:@"切换环境，推送功能、视频功能需要重启app"];
     
     [BMAlertView showAlertWithTitle:@"切换环境，视频功能需要重启app" message:nil cancelTitle:@"取消" otherTitle:@"重启" completion:^(BOOL cancelled, NSInteger buttonIndex) {
         if (!cancelled)
