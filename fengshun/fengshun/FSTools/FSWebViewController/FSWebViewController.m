@@ -396,30 +396,25 @@
     NSMutableDictionary *agentDic = [[NSMutableDictionary alloc] init];
     FSUserInfoModel *userInfo = GetAppDelegate.m_UserInfo;
     NSString *newAgent;
+    [agentDic bm_setString:[FSAppInfo getOpenUDID] forKey:@"deviceId"];
+    // 设备号
+    [agentDic bm_setString:[UIDevice bm_devicePlatformString] forKey:@"deviceModel"];
+    // 设备系统类型
+    [agentDic bm_setString:@"iOS" forKey:@"cType"];
+    // 系统版本号
+    [agentDic bm_setString:CURRENT_SYSTEMVERSION forKey:@"osVersion"];
+    // app名称
+    [agentDic bm_setString:FSAPP_APPNAME forKey:@"appName"];
+    // app版本
+    [agentDic bm_setString:APP_VERSIONNO forKey:@"appVersion"];
+    // 渠道 "App Store"
+    [agentDic bm_setString:[FSAppInfo catchChannelName] forKey:@"channelCode"];
+    [agentDic bm_setString:[FSCoreStatus currentFSNetWorkStatusString] forKey:@"netWorkStandard"];
     if ([userInfo.m_Token bm_isNotEmpty])
     {
-        [agentDic bm_setString:[FSAppInfo getOpenUDID] forKey:@"deviceId"];
-        // 设备号
-        [agentDic bm_setString:[UIDevice bm_devicePlatformString] forKey:@"deviceModel"];
-        // 设备系统类型
-        [agentDic bm_setString:@"iOS" forKey:@"cType"];
-        // 系统版本号
-        [agentDic bm_setString:CURRENT_SYSTEMVERSION forKey:@"osVersion"];
-        // app名称
-        [agentDic bm_setString:FSAPP_APPNAME forKey:@"appName"];
-        // app版本
-        [agentDic bm_setString:APP_VERSIONNO forKey:@"appVersion"];
-        // 渠道 "App Store"
-        [agentDic bm_setString:[FSAppInfo catchChannelName] forKey:@"channelCode"];
-        [agentDic bm_setString:[FSCoreStatus currentFSNetWorkStatusString] forKey:@"netWorkStandard"];
-        
         [agentDic bm_setString:userInfo.m_Token forKey:@"JWTToken"];
-         newAgent = [agent stringByAppendingString:[agentDic bm_toJSON]];
     }
-    else
-    {
-        newAgent = oldAgent;
-    }
+    newAgent = [agent stringByAppendingString:[agentDic bm_toJSON]];
     
     // add my info to the new agent
    
