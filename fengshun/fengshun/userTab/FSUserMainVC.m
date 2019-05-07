@@ -278,7 +278,7 @@
     // headerView
     self.m_HeaderBgImageView.backgroundColor = UI_COLOR_BL1;
     
-    //[self.m_AvatarImageView bm_circleView];
+//    [self.m_AvatarImageView bm_circleView];
     self.m_NameLabel.textColor = [UIColor whiteColor];
     self.m_NameLabel.font = FS_TITLE_TEXTFONT;
     self.m_StatusLabel.textColor = [UIColor whiteColor];
@@ -352,7 +352,10 @@
     }
     else
     {
-        self.m_AvatarImageView.image = [UIImage imageNamed:@"default_avatariconlarge"];
+        UIImage *oldImg = [UIImage imageNamed:@"default_avatariconlarge"];
+        UIImage *newImage = [oldImg bezierPathClipWithCornerRadius:oldImg.size.width];
+        newImage = [newImage imageScalingToSize:self.m_AvatarImageView.bm_size];
+        self.m_AvatarImageView.image = newImage;
         
         self.m_NameLabel.text = @"未登录";
         self.m_StatusLabel.text = @"点击登录/注册";
