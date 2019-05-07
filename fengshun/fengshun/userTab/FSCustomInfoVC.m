@@ -187,6 +187,7 @@
     // 生日
     datePicker = [[BMDatePicker alloc] initWithPickerStyle:PickerStyle_MonthDayYear completeBlock:nil];
     datePicker.pickerCurrentItemColor = [UIColor bm_colorWithHex:UI_NAVIGATION_BGCOLOR_VALU];
+    datePicker.pickerLabelColor = [UIColor bm_colorWithHex:UI_NAVIGATION_BGCOLOR_VALU];
     datePicker.pickerLabelTitleArray = nil;
     datePicker.showChineseMonth = YES;
     datePicker.showDoneBtn = NO;
@@ -273,6 +274,7 @@
     // 工作年限
     datePicker = [[BMDatePicker alloc] initWithPickerStyle:PickerStyle_Year completeBlock:nil];
     datePicker.pickerCurrentItemColor = [UIColor bm_colorWithHex:UI_NAVIGATION_BGCOLOR_VALU];
+    datePicker.pickerLabelColor = [UIColor bm_colorWithHex:UI_NAVIGATION_BGCOLOR_VALU];
     datePicker.maxLimitDate = [NSDate date];
     datePicker.showDoneBtn = NO;
     datePicker.showFormateLabel = NO;
@@ -372,10 +374,24 @@
     imageTextView.imageSize = CGSizeMake(60.0f, 60.0f);
     imageTextView.textColor = UI_COLOR_B4;
     imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
-    imageTextView.circleImage = YES;
+    //imageTextView.circleImage = YES;
     imageTextView.showTableCellAccessoryArrow = YES;
     imageTextView.imageUrl = userInfo.m_UserBaseInfo.m_AvatarUrl;
     imageTextView.placeholderImageName = @"default_avatariconlarge";
+    imageTextView.afterSetimage = ^UIImage * _Nullable(BMImageTextView * _Nonnull imageTextView, UIImage * _Nullable image, CGSize imageSize) {
+        UIImage *newImage = [image bezierPathClipWithCornerRadius:image.size.width];
+        newImage = [newImage imageScalingToSize:imageSize];
+        
+        if (userInfo.m_UserBaseInfo.m_IsIdAuth)
+        {
+            UIImage *maskImage = [UIImage imageNamed:@"user_passcertification_icon"];
+            CGRect rect = CGRectMake(newImage.size.width-18.0f, newImage.size.height-18.0f, 18.0f, 18.0f);
+            newImage = [newImage imageWithWaterMask:maskImage inRect:rect];
+        }
+        
+        return newImage;
+    };
+    
     self.m_AvatarItem.accessoryView = imageTextView;
     
     // 昵称

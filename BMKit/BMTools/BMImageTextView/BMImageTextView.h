@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 @class BMImageTextView;
 
 typedef void (^BMImageTextViewClicked)(BMImageTextView *imageTextView);
+typedef UIImage * _Nullable (^BMImageTextViewAfterSetimage)(BMImageTextView *imageTextView, UIImage * _Nullable image, CGSize imageSize);
+
 
 @interface BMImageTextView : UIView
 
@@ -58,6 +60,8 @@ typedef void (^BMImageTextViewClicked)(BMImageTextView *imageTextView);
 @property (assign, nonatomic) BOOL showTableCellAccessoryArrow;
 
 @property (assign, nonatomic) BOOL adjustsFontSizeToFitWidth;
+
+@property (copy, nonatomic, nullable) BMImageTextViewAfterSetimage afterSetimage;
 
 
 - (instancetype)initWithText:(NSString *)text;

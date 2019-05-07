@@ -278,7 +278,7 @@
     // headerView
     self.m_HeaderBgImageView.backgroundColor = UI_COLOR_BL1;
     
-    [self.m_AvatarImageView bm_circleView];
+    //[self.m_AvatarImageView bm_circleView];
     self.m_NameLabel.textColor = [UIColor whiteColor];
     self.m_NameLabel.font = FS_TITLE_TEXTFONT;
     self.m_StatusLabel.textColor = [UIColor whiteColor];
@@ -308,7 +308,36 @@
     {
         FSUserInfoModel *userInfo = [FSUserInfoModel userInfo];
         
-        [self.m_AvatarImageView sd_setImageWithURL:[NSURL URLWithString:userInfo.m_UserBaseInfo.m_AvatarUrl] placeholderImage:[UIImage imageNamed:@"default_avatariconlarge"] options:SDWebImageRetryFailed|SDWebImageLowPriority];
+        BMWeakSelf
+        [self.m_AvatarImageView sd_setImageWithURL:[NSURL URLWithString:userInfo.m_UserBaseInfo.m_AvatarUrl] placeholderImage:[UIImage imageNamed:@"default_avatariconlarge"] options:SDWebImageRetryFailed|SDWebImageLowPriority completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            if (!error)
+            {
+                UIImage *newImage = [image bezierPathClipWithCornerRadius:image.size.width];
+                newImage = [newImage imageScalingToSize:weakSelf.m_AvatarImageView.bm_size];
+
+                if (userInfo.m_UserBaseInfo.m_IsIdAuth)
+                {
+                    UIImage *maskImage = [UIImage imageNamed:@"user_passcertification_icon"];
+                    CGRect rect = CGRectMake(newImage.size.width-18.0f, newImage.size.height-18.0f, 18.0f, 18.0f);
+                    newImage = [newImage imageWithWaterMask:maskImage inRect:rect];
+                }
+                weakSelf.m_AvatarImageView.image = newImage;
+            }
+            else
+            {
+                UIImage *defaultImage = [UIImage imageNamed:@"default_avatariconlarge"];
+                UIImage *newImage = [defaultImage bezierPathClipWithCornerRadius:defaultImage.size.width];
+                newImage = [newImage imageScalingToSize:weakSelf.m_AvatarImageView.bm_size];
+
+                if (userInfo.m_UserBaseInfo.m_IsIdAuth)
+                {
+                    CGRect rect = CGRectMake(newImage.size.width-18.0f, newImage.size.height-18.0f, 18.0f, 18.0f);
+                    newImage = [newImage imageWithWaterMask:[UIImage imageNamed:@"user_passcertification_icon"] inRect:rect];
+                }
+                weakSelf.m_AvatarImageView.image = newImage;
+            }
+
+        }];
         //self.m_AvatarImageView.image = [UIImage imageNamed:@"default_avatariconlarge"];
         
         if ([userInfo.m_UserBaseInfo.m_NickName bm_isNotEmpty])

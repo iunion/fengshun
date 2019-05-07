@@ -1324,5 +1324,116 @@ BOOL BMCGImageFormatPNG(CGImageRef imageRef) {
     }
     return tempData;
 }
+
 @end
 
+
+@implementation UIImage (BMClip)
+
++ (UIImage *)image:(UIImage *)sourceImage scalingToSize:(CGSize)targetSize
+{
+    UIImage *newImage = nil;
+    
+    UIGraphicsBeginImageContext(targetSize);
+    
+    CGRect thumbnailRect = CGRectZero;
+    thumbnailRect.origin = CGPointZero;
+    thumbnailRect.size.width  = targetSize.width;
+    thumbnailRect.size.height = targetSize.height;
+    
+    [sourceImage drawInRect:thumbnailRect];
+    
+    newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage ;
+}
+
+- (UIImage *)imageScalingToSize:(CGSize)targetSize
+{
+    return [UIImage image:self scalingToSize:targetSize];
+}
+
+// CGContext裁剪
++ (UIImage *)contextClip:(UIImage *)image cornerRadius:(CGFloat)radius
+{
+    CGFloat w = image.size.width * image.scale;
+    CGFloat h = image.size.height * image.scale;
+    
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(w, h), NO, 1.0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextMoveToPoint(context, 0, radius);
+    CGContextAddArcToPoint(context, 0, 0, radius, 0, radius);
+    CGContextAddLineToPoint(context, w-radius, 0);
+    CGContextAddArcToPoint(context, w, 0, w, radius, radius);
+    CGContextAddLineToPoint(context, w, h-radius);
+    CGContextAddArcToPoint(context, w, h, w-radius, h, radius);
+    CGContextAddLineToPoint(context, radius, h);
+    CGContextAddArcToPoint(context, 0, h, 0, h-radius, radius);
+    CGContextAddLineToPoint(context, 0, radius);
+    CGContextClosePath(context);
+    
+    // 先裁剪 context，再画图，就会在裁剪后的 path 中画
+    CGContextClip(context);
+    // 画图
+    [image drawInRect:CGRectMake(0, 0, w, h)];
+    CGContextDrawPath(context, kCGPathFill);
+    
+    UIImage *clipImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return clipImage;
+}
+
+- (UIImage *)contextClipWithCornerRadius:(CGFloat)radius
+{
+    return [UIImage contextClip:self cornerRadius:radius];
+}
+
+// UIBezierPath 裁剪
++ (UIImage *)bezierPathClip:(UIImage *)image cornerRadius:(CGFloat)radius
+{
+    return [UIImage bezierPathClip:image cornerRadius:radius pathWidth:0 pathColor:nil];
+}
+
+- (UIImage *)bezierPathClipWithCornerRadius:(CGFloat)radius
+{
+    return [UIImage bezierPathClip:self cornerRadius:radius pathWidth:0 pathColor:nil];
+}
+
++ (UIImage *)bezierPathClip:(UIImage *)image cornerRadius:(CGFloat)radius pathWidth:(CGFloat)pathWidth pathColor:(UIColor *)pathColor
+{
+    CGFloat w = image.size.width * image.scale;
+    CGFloat h = image.size.height * image.scale;
+    
+    CGRect rect = CGRectMake(0, 0, w + 2 * pathWidth, h + 2 * pathWidth);
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 1.0);
+    if (pathWidth > 0 && pathColor)
+    {
+        // 绘制大圆
+        UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:rect];
+        [pathColor set];
+        [path fill];
+    }
+    
+    // 绘制一个小圆, 把小圆设置成裁剪区域
+    rect = CGRectMake(pathWidth, pathWidth, w, h);
+    UIBezierPath *clipPath = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:radius];
+    [clipPath addClip];
+    
+    // 把图片绘制到上下文当中
+    [image drawInRect:rect];
+    
+    // 从上下文当中取出图片
+    UIImage *clipImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return clipImage;
+}
+
+- (UIImage *)bezierPathClipWithCornerRadius:(CGFloat)radius pathWidth:(CGFloat)pathWidth pathColor:(UIColor *)pathColor
+{
+    return [UIImage bezierPathClip:self cornerRadius:radius pathWidth:pathWidth pathColor:pathColor];
+}
+
+@end

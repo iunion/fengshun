@@ -237,10 +237,10 @@
         
         if (self.imageName)
         {
-            UIImage *image = [UIImage imageNamed:self.imageName];
-            self.imageView.image = image;
+            UIImage *placeholderImage = [UIImage imageNamed:self.imageName];
+            self.imageView.image = placeholderImage;
             
-            CGSize imageSize = image.size;
+            CGSize imageSize = placeholderImage.size;
             imageHeight = imageSize.height;
             if (imageHeight > self.bm_height - IMAGE_GAP)
             {
@@ -261,17 +261,55 @@
                 imageWidth = self.imageSize.width;
             }
             
+            if (self.afterSetimage)
+            {
+                self.imageView.image = self.afterSetimage(self, placeholderImage, CGSizeMake(imageWidth, imageHeight));
+            }
+            
             if ([self.imageUrl bm_isNotEmpty])
             {
-                [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.imageUrl] placeholderImage:image options:SDWebImageRetryFailed|SDWebImageLowPriority completed:nil];
+                BMWeakSelf
+                [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.imageUrl] placeholderImage:placeholderImage options:SDWebImageRetryFailed|SDWebImageLowPriority completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                    if (!error)
+                    {
+                        if (weakSelf.afterSetimage)
+                        {
+                            weakSelf.imageView.image = weakSelf.afterSetimage(weakSelf, image, CGSizeMake(imageWidth, imageHeight));
+                        }
+                    }
+                    else
+                    {
+                        if (weakSelf.afterSetimage)
+                        {
+                            weakSelf.imageView.image = weakSelf.afterSetimage(weakSelf, placeholderImage, CGSizeMake(imageWidth, imageHeight));
+                        }
+                    }
+                }];
             }
         }
         else
         {
-            [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.imageUrl] placeholderImage:[UIImage imageNamed:self.placeholderImageName] options:SDWebImageRetryFailed|SDWebImageLowPriority completed:nil];
-            
+            UIImage *placeholderImage = [UIImage imageNamed:self.placeholderImageName];
             imageHeight = self.bm_height - IMAGE_GAP;
             imageWidth = imageHeight;
+            
+            BMWeakSelf
+            [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.imageUrl] placeholderImage:placeholderImage options:SDWebImageRetryFailed|SDWebImageLowPriority completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                if (!error)
+                {
+                    if (weakSelf.afterSetimage)
+                    {
+                        weakSelf.imageView.image = weakSelf.afterSetimage(weakSelf, image, CGSizeMake(imageWidth, imageHeight));
+                    }
+                }
+                else
+                {
+                    if (weakSelf.afterSetimage)
+                    {
+                        weakSelf.imageView.image = weakSelf.afterSetimage(weakSelf, placeholderImage, CGSizeMake(imageWidth, imageHeight));
+                    }
+                }
+            }];
         }
         
         self.imageView.bm_width = imageWidth;
@@ -282,14 +320,19 @@
     }
     else
     {
-        UIImage *image = [UIImage imageNamed:self.placeholderImageName];
-        if (image)
+        UIImage *placeholderImage = [UIImage imageNamed:self.placeholderImageName];
+        if (placeholderImage)
         {
             self.imageView.hidden = NO;
-            self.imageView.image = image;
+            self.imageView.image = placeholderImage;
             
             imageHeight = self.bm_height - IMAGE_GAP;
             imageWidth = imageHeight;
+            
+            if (self.afterSetimage)
+            {
+                self.imageView.image = self.afterSetimage(self, placeholderImage, CGSizeMake(imageWidth, imageHeight));
+            }
         }
         else
         {
