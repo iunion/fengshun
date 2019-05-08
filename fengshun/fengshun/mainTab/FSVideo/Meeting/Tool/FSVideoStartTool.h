@@ -10,6 +10,8 @@
 #import "FSApiRequest.h"
 #import "MBProgressHUD.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface FSVideoStartTool : NSObject
 
 + (UIWindow *)mainWindow;
@@ -23,3 +25,6 @@
 + (BOOL)getJoinMeetingToken:(NSString *)inviteCod name:(NSString *)namee progressHUD:(MBProgressHUD *)hud completionHandler:(nullable void (^)(NSURLResponse *response, id _Nullable responseObject,  NSError * _Nullable error))completionHandler;
 
 @end
+
+NS_ASSUME_NONNULL_END
+

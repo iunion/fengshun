@@ -486,7 +486,7 @@
     [self checkDataWithUserInfo:userInfo];
 
     return;
-    
+#if 0
     [self.m_ProgressHUD showAnimated:YES showBackground:NO];
     
     BMWeakSelf
@@ -500,6 +500,7 @@
 
         [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"资料上传失败" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     }];
+#endif
 }
 
 

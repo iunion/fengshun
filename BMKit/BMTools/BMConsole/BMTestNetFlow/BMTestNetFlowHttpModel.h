@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-//NS_ASSUME_NONNULL_BEGIN
+NS_ASSUME_NONNULL_BEGIN
 
 @interface BMTestNetFlowHttpModel : NSObject
 
@@ -42,4 +42,4 @@
 
 @end
 
-//NS_ASSUME_NONNULL_END
+NS_ASSUME_NONNULL_END

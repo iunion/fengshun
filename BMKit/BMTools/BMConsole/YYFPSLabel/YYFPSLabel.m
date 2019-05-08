@@ -244,7 +244,7 @@
 //设备总的内存
 + (NSUInteger)totalMemoryForDevice
 {
-    return [NSProcessInfo processInfo].physicalMemory/1024/1024;
+    return (NSUInteger)([NSProcessInfo processInfo].physicalMemory/1024/1024);
 }
 
 @end

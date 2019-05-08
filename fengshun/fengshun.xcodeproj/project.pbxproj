@@ -1448,7 +1448,6 @@
 		87E7C4E621509AB000F7AB14 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444A3214D0DFA00EA7BFA /* libiconv.tbd */; };
 		87E7C4E821509AB000F7AB14 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444A7214D0DFA00EA7BFA /* libbz2.tbd */; };
 		87E7C4E921509AB000F7AB14 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444A9214D0DFA00EA7BFA /* VideoToolbox.framework */; };
-		87E7C4EB21509AB000F7AB14 /* QAVSDKInternal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF74F214D11060005AD43 /* QAVSDKInternal.framework */; };
 		87E7C4EC21509AB000F7AB14 /* ILiveSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF762214D11060005AD43 /* ILiveSDK.framework */; };
 		87E7C4ED21509AB000F7AB14 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444AD214D0DFA00EA7BFA /* QuartzCore.framework */; };
 		87E7C4EE21509AB000F7AB14 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453444AF214D0DFA00EA7BFA /* OpenGLES.framework */; };
@@ -2051,7 +2050,6 @@
 		AFBF3185224E134F002BE1E3 /* FSSpecialColumnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFBF3181224E134F002BE1E3 /* FSSpecialColumnCell.xib */; };
 		AFC74A59227156D80013C318 /* FSSetCompanyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E70C18225F237D00B663C5 /* FSSetCompanyVC.m */; };
 		AFC74A6122715D480013C318 /* QAVSDKInternal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF74F214D11060005AD43 /* QAVSDKInternal.framework */; };
-		AFC74A6222715D480013C318 /* QAVSDKInternal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 45FEF74F214D11060005AD43 /* QAVSDKInternal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AFC74A6722718DFE0013C318 /* FSColumnCountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC74A6522718DFE0013C318 /* FSColumnCountCell.m */; };
 		AFC74A6822718DFE0013C318 /* FSColumnCountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC74A6522718DFE0013C318 /* FSColumnCountCell.m */; };
 		AFC74A6922718DFE0013C318 /* FSColumnCountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFC74A6622718DFE0013C318 /* FSColumnCountCell.xib */; };
@@ -2324,7 +2322,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AFC74A6222715D480013C318 /* QAVSDKInternal.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4460,7 +4457,6 @@
 				87E7C4E621509AB000F7AB14 /* libiconv.tbd in Frameworks */,
 				87E7C4E821509AB000F7AB14 /* libbz2.tbd in Frameworks */,
 				87E7C4E921509AB000F7AB14 /* VideoToolbox.framework in Frameworks */,
-				87E7C4EB21509AB000F7AB14 /* QAVSDKInternal.framework in Frameworks */,
 				87E7C4EC21509AB000F7AB14 /* ILiveSDK.framework in Frameworks */,
 				87E7C4ED21509AB000F7AB14 /* QuartzCore.framework in Frameworks */,
 				87E7C4EE21509AB000F7AB14 /* OpenGLES.framework in Frameworks */,
