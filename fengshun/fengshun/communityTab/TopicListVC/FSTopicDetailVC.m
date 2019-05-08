@@ -26,6 +26,8 @@
 // 帖子详情model
 @property (nonatomic, strong) FSTopicDetailModel *m_TopicDetailModel;
 
+@property (nonatomic, strong) NSDictionary *m_ShareData;
+
 @end
 
 @implementation FSTopicDetailVC
@@ -63,6 +65,11 @@
     {
         [self setNavWithTitle:@"" leftArray:nil rightArray:@[ [self bm_makeBarButtonDictionaryWithTitle:nil image:@"navigationbar_more_icon" toucheEvent:@"moreAction" buttonEdgeInsetsStyle:BMButtonEdgeInsetsStyleImageLeft imageTitleGap:0]]];
     }
+    
+    [self registerHander:@"toShare" handler:^(id data, WVJBResponseCallback responseCallback) {
+        NSDictionary *dataDic = [NSDictionary bm_dictionaryWithJsonString:[NSString stringWithFormat:@"%@",data]];
+        weakSelf.m_ShareData = dataDic;
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -125,22 +132,10 @@
         case 3:  //QQ空间
         case 4:  //微博
         {
-            BMWeakSelf
-            [self.m_ProgressHUD showAnimated:YES];
-            [FSApiRequest getShareContent:[NSString stringWithFormat:@"%@",@(self.m_TopicId)] type:@"POSTS" success:^(id  _Nullable responseObject) {
-                [weakSelf.m_ProgressHUD hideAnimated:YES];
-                /*
-                     {
-                         "content": "string",
-                         "imgUrl": "string",
-                         "title": "string",
-                         "url": "string"
-                     }
-                 */
-                [FSShareManager shareWebUrlWithTitle:[responseObject bm_stringForKey:@"title"] descr:[responseObject bm_stringForKey:@"content"] thumImage:[responseObject bm_stringForKey:@"imgUrl"] webpageUrl:[responseObject bm_stringForKey:@"url"]?:weakSelf.m_UrlString platform:index currentVC:weakSelf delegate:weakSelf];
-            } failure:^(NSError * _Nullable error) {
-                
-            }];
+            if ([self.m_ShareData bm_isNotEmpty])
+            {
+                [FSShareManager shareWebUrlWithTitle:[self.m_ShareData bm_stringForKey:@"title"] descr:[self.m_ShareData bm_stringForKey:@"content"] thumImage:[self.m_ShareData bm_stringForKey:@"imgUrl"] webpageUrl:[self.m_ShareData bm_stringForKey:@"url"]?:self.m_UrlString platform:index currentVC:self delegate:self];
+            }
         }
             break;
         case 5:  //收藏
