@@ -312,8 +312,8 @@
         [self.m_AvatarImageView sd_setImageWithURL:[NSURL URLWithString:userInfo.m_UserBaseInfo.m_AvatarUrl] placeholderImage:[UIImage imageNamed:@"default_avatariconlarge"] options:SDWebImageRetryFailed|SDWebImageLowPriority completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
             if (!error)
             {
-                UIImage *newImage = [image bezierPathClipWithCornerRadius:image.size.width];
-                newImage = [newImage imageScalingToSize:weakSelf.m_AvatarImageView.bm_size];
+                UIImage *newImage = [image bm_bezierPathClipWithCornerRadius:image.size.width];
+                newImage = [newImage bm_imageScalingToSize:weakSelf.m_AvatarImageView.bm_size];
 
                 if (userInfo.m_UserBaseInfo.m_IsIdAuth)
                 {
@@ -326,8 +326,8 @@
             else
             {
                 UIImage *defaultImage = [UIImage imageNamed:@"default_avatariconlarge"];
-                UIImage *newImage = [defaultImage bezierPathClipWithCornerRadius:defaultImage.size.width];
-                newImage = [newImage imageScalingToSize:weakSelf.m_AvatarImageView.bm_size];
+                UIImage *newImage = [defaultImage bm_bezierPathClipWithCornerRadius:defaultImage.size.width];
+                newImage = [newImage bm_imageScalingToSize:weakSelf.m_AvatarImageView.bm_size];
 
                 if (userInfo.m_UserBaseInfo.m_IsIdAuth)
                 {
@@ -353,8 +353,8 @@
     else
     {
         UIImage *oldImg = [UIImage imageNamed:@"default_avatariconlarge"];
-        UIImage *newImage = [oldImg bezierPathClipWithCornerRadius:oldImg.size.width];
-        newImage = [newImage imageScalingToSize:self.m_AvatarImageView.bm_size];
+        UIImage *newImage = [oldImg bm_bezierPathClipWithCornerRadius:oldImg.size.width];
+        newImage = [newImage bm_imageScalingToSize:self.m_AvatarImageView.bm_size];
         self.m_AvatarImageView.image = newImage;
         
         self.m_NameLabel.text = @"未登录";

@@ -379,8 +379,8 @@
     imageTextView.imageUrl = userInfo.m_UserBaseInfo.m_AvatarUrl;
     imageTextView.placeholderImageName = @"default_avatariconlarge";
     imageTextView.afterSetimage = ^UIImage * _Nullable(BMImageTextView * _Nonnull imageTextView, UIImage * _Nullable image, CGSize imageSize) {
-        UIImage *newImage = [image bezierPathClipWithCornerRadius:image.size.width];
-        newImage = [newImage imageScalingToSize:imageSize];
+        UIImage *newImage = [image bm_bezierPathClipWithCornerRadius:image.size.width];
+        newImage = [newImage bm_imageScalingToSize:imageSize];
         
         if (userInfo.m_UserBaseInfo.m_IsIdAuth)
         {

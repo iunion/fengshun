@@ -13,11 +13,11 @@
 @protocol BMFreshViewDelegate;
 
 // 刷新状态回调
-typedef void (^BMFreshViewFreshStateBlock)(BMFreshBaseView *freshView, BMFreshState state);
+typedef void (^BMFreshViewFreshStateBlock)(BMFreshBaseView * _Nonnull freshView, BMFreshState state);
 // 开始刷新后的回调(进入刷新状态后的回调)
-typedef void (^BMFreshViewBeginFreshingBlock)(BMFreshBaseView *freshView);
+typedef void (^BMFreshViewBeginFreshingBlock)(BMFreshBaseView * _Nonnull freshView);
 // 结束刷新后的回调
-typedef void (^BMFreshViewEndFreshingBlock)(BMFreshBaseView *freshView);
+typedef void (^BMFreshViewEndFreshingBlock)(BMFreshBaseView * _Nonnull freshView);
 
 @interface BMFreshBaseView : UIView
 {
@@ -42,12 +42,12 @@ typedef void (^BMFreshViewEndFreshingBlock)(BMFreshBaseView *freshView);
 @property (nonatomic, assign, readonly, getter=isReFreshing) BOOL reFreshing;
 
 // 刷新状态回调
-@property (nonatomic, copy) BMFreshViewFreshStateBlock freshStateBlock;
+@property (nullable, nonatomic, copy) BMFreshViewFreshStateBlock freshStateBlock;
 // 以下和 freshStateBlock 会有重合，会先调用 freshStateBlock
 // 开始刷新后的回调(进入刷新状态后的回调)
-@property (nonatomic, copy) BMFreshViewBeginFreshingBlock beginFreshingBlock;
+@property (nullable, nonatomic, copy) BMFreshViewBeginFreshingBlock beginFreshingBlock;
 // 结束刷新后的回调
-@property (nonatomic, copy) BMFreshViewEndFreshingBlock endFreshingBlock;
+@property (nullable, nonatomic, copy) BMFreshViewEndFreshingBlock endFreshingBlock;
 
 // 拉拽的百分比
 @property (assign, nonatomic) CGFloat pullingPercent;
@@ -68,7 +68,7 @@ typedef void (^BMFreshViewEndFreshingBlock)(BMFreshBaseView *freshView);
 - (void)freshSubviews;
 
 // 当scrollView的contentOffset发生改变的时候调用
-- (void)scrollViewContentOffsetDidChange:(NSDictionary *)change;
+- (void)scrollViewContentOffsetDidChange:(nullable NSDictionary *)change;
 
 // 当scrollView的contentSize发生改变的时候调用
 - (void)scrollViewContentSizeDidChange:(nullable NSDictionary *)change;
@@ -77,7 +77,7 @@ typedef void (^BMFreshViewEndFreshingBlock)(BMFreshBaseView *freshView);
 //- (void)scrollViewContentInsetDidChange:(NSDictionary *)change;
 
 // 当scrollView的拖拽状态发生改变的时候调用
-- (void)scrollViewPanStateDidChange:(NSDictionary *)change;
+- (void)scrollViewPanStateDidChange:(nullable NSDictionary *)change;
 
 
 #pragma mark - 刷新状态控制
@@ -104,6 +104,6 @@ typedef void (^BMFreshViewEndFreshingBlock)(BMFreshBaseView *freshView);
 @protocol BMFreshViewDelegate <NSObject>
 
 @optional
-- (void)freshView:(BMFreshBaseView *)freshView changeState:(BMFreshState)state;
+- (void)freshView:(nonnull BMFreshBaseView *)freshView changeState:(BMFreshState)state;
 
 @end
