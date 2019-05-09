@@ -56,9 +56,9 @@
     return vc;
 }
 
-+ (FSTopicDetailVC *)showTopicDetail:(UIViewController *)pushVC topicId:(NSString *)topicId
++ (FSWebViewController *)showTopicDetail:(UIViewController *)pushVC topicId:(NSString *)topicId
 {
-    FSTopicDetailVC *vc = [[FSTopicDetailVC alloc] initWithTitle:@"" url:[NSString stringWithFormat:@"%@/note/%@",FS_H5_SERVER,topicId] showLoadingBar:NO  loadingBarColor:nil delegate:nil topicId:[topicId integerValue]];
+    FSWebViewController *vc = [[FSWebViewController alloc] initWithTitle:nil url:[NSString stringWithFormat:@"%@/note/%@",FS_H5_SERVER,topicId]];
     vc.hidesBottomBarWhenPushed = YES;
     [pushVC.navigationController pushViewController:vc animated:YES];
     return vc;

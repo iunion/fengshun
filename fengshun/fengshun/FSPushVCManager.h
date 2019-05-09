@@ -31,7 +31,7 @@ typedef void (^PushVCCallBack)(void);
 + (FSSendTopicVC *)showSendPostWithPushVC:(UIViewController *)pushVC isEdited:(BOOL )isEdited relatedId:(NSInteger )relatedId callBack:(PushVCCallBack)callBack;
 
 // 帖子详情
-+ (FSTopicDetailVC *)showTopicDetail:(UIViewController *)pushVC  topicId:(NSString *)topicId;
++ (FSWebViewController *)showTopicDetail:(UIViewController *)pushVC  topicId:(NSString *)topicId;
 
 // 完善账户信息
 + (FSAuthVC *)showAuth:(UIViewController *)pushVC type:(FSAuthState)type;

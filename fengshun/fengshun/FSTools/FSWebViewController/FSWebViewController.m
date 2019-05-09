@@ -216,8 +216,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(makeWebView) name:userInfoChangedNotification object:nil];
     
-    // 案例、法规、文书详情右上角…分享菜单中“复制链接”功能 改为刷新 19.2.19课堂也改为刷新功能
-    self.m_IsRefresh = [self.m_UrlString containsString:@"Law"] || [self.m_UrlString containsString:@"caseGuide"] || [self.m_UrlString containsString:@"caseDetail"] || [self.m_UrlString containsString:@"law"] || [self.m_UrlString containsString:@"comment"]|| [self.m_UrlString containsString:@"hotRecommend"]|| [self.m_UrlString containsString:@"alllist"]|| [self.m_UrlString containsString:@"imgWordsSeries"];
+//    // 案例、法规、文书详情右上角…分享菜单中“复制链接”功能 改为刷新 19.2.19课堂也改为刷新功能
+//    self.m_IsRefresh = [self.m_UrlString containsString:@"Law"] || [self.m_UrlString containsString:@"caseGuide"] || [self.m_UrlString containsString:@"caseDetail"] || [self.m_UrlString containsString:@"law"] || [self.m_UrlString containsString:@"comment"]|| [self.m_UrlString containsString:@"hotRecommend"]|| [self.m_UrlString containsString:@"alllist"]|| [self.m_UrlString containsString:@"imgWordsSeries"];
     // comment课堂详情 hotRecommend热门推荐 alllist课堂全部帖子 imgWordsSeries专题列表
 }
 
@@ -760,27 +760,47 @@
         return;
     }
     BMWeakSelf
-    if ([[shareData bm_stringForKey:@"type"] isEqualToString:@"MEDIATE"] || [[shareData bm_stringForKey:@"type"]isEqualToString:@"ARTICLELIST"])//课堂案例精选、专题列表
+    //课堂案例精选、专题列表 只有刷新功能 没有收藏
+    if ([[shareData bm_stringForKey:@"type"] isEqualToString:@"MEDIATE"] || [[shareData bm_stringForKey:@"type"]isEqualToString:@"ARTICLELIST"])
     {
         [FSMoreViewVC showClassroomCaseDetailShareAlertViewDelegate:self presentVC:self];
     }
-    else //其他
+    else //其他有收藏的获取收藏状态
     {
-        // 获取收藏状态
+        // 获取帖子、专栏、法规、案例、课程收藏状态
         [self.m_ProgressHUD showAnimated:YES];
         [FSApiRequest getCollectStateID:[data bm_stringForKey:@"id"] type:[data bm_stringForKey:@"type"] Success:^(id responseObject) {
-            [weakSelf.m_ProgressHUD hideAnimated:NO];
             NSInteger count = [responseObject integerValue];
             weakSelf.s_isCollect = count>0;
+            // 专栏详情 为专题详情时，特别判断  收藏/复制/(举报||删除)
             if ([[shareData bm_stringForKey:@"type"]isEqualToString:@"ARTICLE"])
             {
-                BOOL isOwner = [[[shareData bm_dictionaryForKey:@"postData"]bm_stringForKey:@"userId"] isEqualToString:[FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId];
+                [weakSelf.m_ProgressHUD hideAnimated:NO];
                 // 目前专栏没有编辑
+                BOOL isOwner = [[[shareData bm_dictionaryForKey:@"postData"]bm_stringForKey:@"userId"] isEqualToString:[FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId];
+                // 本人的为删除，他人的为举报
                 [FSMoreViewVC showTopicMoreDelegate:weakSelf isOwner:isOwner isCollection:weakSelf.s_isCollect isColumn:YES presentVC:weakSelf];
             }
+            // 帖子详情 要获取帖子是否为本人的  收藏/复制/举报 || 收藏/复制/举报/编辑/删除
+            else if ([[shareData bm_stringForKey:@"type"]isEqualToString:@"POSTS"])
+            {
+                [FSApiRequest getTopicDetail:[data bm_intForKey:@"id"] success:^(id responseObject) {
+                    [weakSelf.m_ProgressHUD hideAnimated:NO];
+                    //userId
+                    // 根据帖子详情接口 userId判断是否是本人帖子
+                    BOOL isOwner = [[responseObject bm_stringForKey:@"userId"] isEqualToString:[FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId];
+                    // 本人的显示编辑删除功能
+                    [FSMoreViewVC showTopicMoreDelegate:weakSelf isOwner:isOwner isCollection:weakSelf.s_isCollect isColumn:NO presentVC:weakSelf];
+                } failure:^(NSError *error) {
+                }];
+                
+            }
+            // 法规、案例、文书、课程 都只有 收藏/刷新 功能
             else
             {
-                [FSMoreViewVC showWebMoreDelegate:weakSelf isCollection:weakSelf.s_isCollect hasRefresh:weakSelf.m_IsRefresh presentVC:weakSelf];
+                [weakSelf.m_ProgressHUD hideAnimated:NO];
+                self.m_IsRefresh = YES;
+                [FSMoreViewVC showWebMoreDelegate:weakSelf isCollection:weakSelf.s_isCollect hasRefresh:YES presentVC:weakSelf];
             }
         } failure:^(NSError *error) {
             
@@ -792,7 +812,9 @@
 
 - (void)moreViewClickWithType:(NSInteger)index
 {
+    BMWeakSelf
     NSDictionary *shareData = [NSDictionary bm_dictionaryWithJsonString:self.s_ShareJsonSting];
+    NSDictionary *data = [NSDictionary bm_dictionaryWithJsonString:self.s_CollectJsonSting];
     if (index < 5)
     {
         if (![shareData bm_isNotEmptyDictionary])
@@ -822,8 +844,6 @@
             [self showLogin];
             return;
         }
-        BMWeakSelf
-        NSDictionary *data = [NSDictionary bm_dictionaryWithJsonString:self.s_CollectJsonSting];
         [FSApiRequest updateCollectStateID:[data bm_stringForKey:@"id"] isCollect:!self.s_isCollect guidingCase:[data bm_stringForKey:@"guidingCase"] source:[data bm_stringForKey:@"source"] title:[data bm_stringForKey:@"title"] type:[data bm_stringForKey:@"type"] Success:^(id responseObject) {
             [weakSelf.m_ProgressHUD showAnimated:YES withText:weakSelf.s_isCollect ? @"取消收藏" : @"收藏成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             [[NSNotificationCenter defaultCenter]postNotificationName:refreshCollectionNotification object:nil];
@@ -867,51 +887,50 @@
                                  completion:^(BOOL cancelled, NSInteger buttonIndex) {
                                      if (buttonIndex == 1)
                                      {
-                                         [weakSelf deleteColumnWithId:[shareData bm_intForKey:@"id"]];
+                                         [weakSelf deleteColumnWithId:[data bm_intForKey:@"id"]];
                                      }
                                  }];
         }
         else // 举报
         {
-            UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 225, 70)];
-            
-            UILabel *cententLab = [[UILabel alloc]initWithFrame:CGRectMake(35*0.5f, 0, 190, 40)];
-            cententLab.numberOfLines = 2;
-            cententLab.font = [UIFont systemFontOfSize:15.f];
-            cententLab.textColor = [UIColor bm_colorWithHex:0x333333];
-            cententLab.text = [shareData bm_stringForKey:@"title"];
-            [contentView addSubview:cententLab];
-            
-            UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(35*0.5f, cententLab.bm_bottom + 5, 190, 25)];
-            textField.backgroundColor = [UIColor bm_colorWithHex:0xF6F6F6];
-            textField.placeholder = @"请输入举报理由";
-            textField.font = [UIFont systemFontOfSize:14.f];
-            [contentView addSubview:textField];
-            [textField becomeFirstResponder];
-            BMWeakSelf
-            [FSAlertView showAlertWithTitle:@"举报理由说明" message:nil contentView:contentView cancelTitle:@"取消" otherTitle:@"确定" completion:^(BOOL cancelled, NSInteger buttonIndex) {
-                if (buttonIndex == 1)
-                {
-                    if (![textField.text bm_isNotEmpty])
-                    {
-                        [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"请输入举报理由" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-                    }
-                    [FSApiRequest addReportTopic:[shareData bm_stringForKey:@"id"]  content:textField.text type:[shareData bm_stringForKey:@"type"]  success:^(id responseObject) {
-                        [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"已举报该专题" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-                    } failure:^(NSError *error) {
-                        
-                    }];
-                }
-            }];
+            [self showTopicAndColumnReport:shareData Id:[data bm_stringForKey:@"id"]];
         }
     }
-    else if (index == 8)
+    else if (index == 8) // 帖子编辑
     {
-        
+        [FSAlertView showAlertWithTitle:@"编辑帖子"
+                                message:@"您确定要编辑您的帖子？"
+                            cancelTitle:@"取消"
+                             otherTitle:@"确定"
+                             completion:^(BOOL cancelled, NSInteger buttonIndex) {
+                                 
+                                 if (buttonIndex == 1)
+                                 {
+                                     [FSPushVCManager showSendPostWithPushVC:weakSelf
+                                                                    isEdited:YES
+                                                                   relatedId:[data bm_intForKey:@"id"]
+                                                                    callBack:^{
+                                                                        [weakSelf refreshWebView];
+                                                                        
+                                                                        [[NSNotificationCenter defaultCenter] postNotificationName:freshTopicNotification object:nil userInfo:@{@"topicId" : @([shareData bm_intForKey:@"id"])}];
+                                                                    }];
+                                 }
+                             }];
     }
-    else if (index == 9)
+    else if (index == 9) // 帖子删除
     {
-        
+        [FSAlertView showAlertWithTitle:@"删除帖子"
+                                message:@"您确定要删除您的帖子？"
+                            cancelTitle:@"取消"
+                             otherTitle:@"确定"
+                             completion:^(BOOL cancelled, NSInteger buttonIndex) {
+                                 
+                                 if (buttonIndex == 1)
+                                 {
+                                     [weakSelf deleteTopicWithId:[data bm_intForKey:@"id"]];
+                                     [[NSNotificationCenter defaultCenter] postNotificationName:deleteTopicNotification object:nil userInfo:@{@"topicId" : @([shareData bm_intForKey:@"id"])}];
+                                 }
+                             }];
     }
 }
 
@@ -928,7 +947,42 @@
 }
 
 #pragma mark - reportAlert
-// 举报弹窗
+// 帖子、专题详情举报
+- (void)showTopicAndColumnReport:(NSDictionary *)shareData Id:(NSString *)Id
+{
+    UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 225, 70)];
+    
+    UILabel *cententLab = [[UILabel alloc]initWithFrame:CGRectMake(35*0.5f, 0, 190, 40)];
+    cententLab.numberOfLines = 2;
+    cententLab.font = [UIFont systemFontOfSize:15.f];
+    cententLab.textColor = [UIColor bm_colorWithHex:0x333333];
+    cententLab.text = [shareData bm_stringForKey:@"title"];
+    [contentView addSubview:cententLab];
+    
+    UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(35*0.5f, cententLab.bm_bottom + 5, 190, 25)];
+    textField.backgroundColor = [UIColor bm_colorWithHex:0xF6F6F6];
+    textField.placeholder = @"请输入举报理由";
+    textField.font = [UIFont systemFontOfSize:14.f];
+    [contentView addSubview:textField];
+    [textField becomeFirstResponder];
+    BMWeakSelf
+    [FSAlertView showAlertWithTitle:@"举报理由说明" message:nil contentView:contentView cancelTitle:@"取消" otherTitle:@"确定" completion:^(BOOL cancelled, NSInteger buttonIndex) {
+        if (buttonIndex == 1)
+        {
+            if (![textField.text bm_isNotEmpty])
+            {
+                [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"请输入举报理由" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            }
+            [FSApiRequest addReportTopic:Id  content:textField.text type:[shareData bm_stringForKey:@"type"]  success:^(id responseObject) {
+                [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"已举报" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            } failure:^(NSError *error) {
+                
+            }];
+        }
+    }];
+}
+
+// 帖子、专题中“评论”举报弹窗
 - (void)showReportAlertWithData:(NSString *)jsonString
 {
     //{"id":"3","type":"COMMENT","commentPerson":"用户林1","commentContent":"这是0评论内容"}
@@ -963,21 +1017,16 @@
                 [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"请输入举报理由" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
                 return ;
             }
-            [weakSelf addReportContent:textField.text commentId:[data bm_stringForKey:@"id"]];
+            [FSApiRequest addReportTopic:[data bm_stringForKey:@"id"] content:textField.text type:[data bm_stringForKey:@"type"]  success:^(id  responseObject) {
+                [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"已举报该评论" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            } failure:^(NSError *error) {
+                [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:[NSString stringWithFormat:@"%@",[error.userInfo bm_stringForKey:@"NSLocalizedDescription"]] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+            }];
         }
     }];
 }
 
-- (void)addReportContent:(NSString *)content commentId:(NSString *)commentId
-{
-    BMWeakSelf
-    [FSApiRequest addReportTopic:[NSString stringWithFormat:@"%@",commentId] content:content type:@"COMMENT"  success:^(id  responseObject) {
-        [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"已举报该评论" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-    } failure:^(NSError *error) {
-        [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:[NSString stringWithFormat:@"%@",[error.userInfo bm_stringForKey:@"NSLocalizedDescription"]] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-    }];
-}
-
+// 删除专题
 - (void)deleteColumnWithId:(NSInteger )Id
 {
     BMWeakSelf
@@ -985,6 +1034,17 @@
         [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"删除成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
         [weakSelf refreshWebView];
     } failure:^(NSError * _Nullable error) {
+        
+    }];
+}
+// 删除帖子
+- (void)deleteTopicWithId:(NSInteger )Id
+{
+    BMWeakSelf
+    [FSApiRequest deleteTopicWithId:Id success:^(id responseObject) {
+        [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"删除成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        [weakSelf refreshWebView];
+    } failure:^(NSError *error) {
         
     }];
 }
