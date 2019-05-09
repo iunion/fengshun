@@ -912,7 +912,7 @@
                                                                     callBack:^{
                                                                         [weakSelf refreshWebView];
                                                                         
-                                                                        [[NSNotificationCenter defaultCenter] postNotificationName:freshTopicNotification object:nil userInfo:@{@"topicId" : @([shareData bm_intForKey:@"id"])}];
+                                                                        [[NSNotificationCenter defaultCenter] postNotificationName:freshTopicNotification object:nil userInfo:@{@"topicId" : @([data bm_intForKey:@"id"])}];
                                                                     }];
                                  }
                              }];
@@ -928,7 +928,7 @@
                                  if (buttonIndex == 1)
                                  {
                                      [weakSelf deleteTopicWithId:[data bm_intForKey:@"id"]];
-                                     [[NSNotificationCenter defaultCenter] postNotificationName:deleteTopicNotification object:nil userInfo:@{@"topicId" : @([shareData bm_intForKey:@"id"])}];
+                                     [[NSNotificationCenter defaultCenter] postNotificationName:deleteTopicNotification object:nil userInfo:@{@"topicId" : @([data bm_intForKey:@"id"])}];
                                  }
                              }];
     }
