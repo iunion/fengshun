@@ -31,12 +31,14 @@
 @property (nonatomic, assign) BOOL m_isRefresh;
 // 是否只有刷新功能（课堂案例详情页面使用1.1版本）
 @property (nonatomic, assign) BOOL m_isSingleRefresh;
+// 是否是专题详情
+@property (nonatomic, assign) BOOL m_IsColumnDetail;
 
 @end
 
 @implementation FSMoreViewVC
 
-+ (FSMoreViewVC *)showTopicMoreDelegate:(id)delegate isOwner:(BOOL)isOwner isCollection:(BOOL)isCollection presentVC:(UIViewController *)presentVC
++ (FSMoreViewVC *)showTopicMoreDelegate:(id)delegate isOwner:(BOOL)isOwner isCollection:(BOOL)isCollection isColumn:(BOOL)isColumn presentVC:(UIViewController *)presentVC
 {
     FSMoreViewVC *moreVC = [[FSMoreViewVC alloc]init];
     moreVC.delegate = delegate;
@@ -46,6 +48,7 @@
     moreVC.m_IsShareSheet = NO;
     moreVC.m_isRefresh = NO;
     moreVC.m_isSingleRefresh = NO;
+    moreVC.m_IsColumnDetail = isColumn;
     moreVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     moreVC.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     [presentVC presentViewController:moreVC animated:NO completion:^{
@@ -180,8 +183,8 @@
             btn.backgroundColor = [UIColor whiteColor];
             btn.titleLabel.font = [UIFont systemFontOfSize:11.f];
             btn.titleLabel.textAlignment = NSTextAlignmentCenter;
-            [btn setTitle:@[@[@"微信",@"朋友圈",@"QQ",@"QQ空间",@"微博"],@[self.m_isSingleRefresh?@"刷新":@"收藏",self.m_isRefresh ? @"刷新":@"复制链接",@"举报",@"编辑",@"删除"]][i][j] forState:UIControlStateNormal];
-            [btn setImage:[UIImage imageNamed:@[@[@"community_wechat",@"community_friends_cycle",@"community_QQ",@"community_zone",@"community_weibo"],@[self.m_isSingleRefresh?@"more_refresh":@"community_collect",self.m_isRefresh?@"more_refresh":@"community_copy",@"community_report",@"community_edit",@"community_delete"]][i][j]] forState:UIControlStateNormal];
+            [btn setTitle:@[@[@"微信",@"朋友圈",@"QQ",@"QQ空间",@"微博"],@[self.m_isSingleRefresh?@"刷新":@"收藏",self.m_isRefresh ? @"刷新":@"复制链接",(self.m_IsColumnDetail&&self.m_isOwner)?@"删除":@"举报",@"编辑",@"删除"]][i][j] forState:UIControlStateNormal];
+            [btn setImage:[UIImage imageNamed:@[@[@"community_wechat",@"community_friends_cycle",@"community_QQ",@"community_zone",@"community_weibo"],@[self.m_isSingleRefresh?@"more_refresh":@"community_collect",self.m_isRefresh?@"more_refresh":@"community_copy",(self.m_IsColumnDetail&&self.m_isOwner)?@"community_delete": @"community_report",@"community_edit",@"community_delete"]][i][j]] forState:UIControlStateNormal];
             [btn setTitleColor:[UIColor bm_colorWithHex:0x333333] forState:UIControlStateNormal];
             [btn addTarget:self action:@selector(moreViewAction:) forControlEvents:UIControlEventTouchUpInside];
             btn.tag = (i*5 + j) + 100;
@@ -203,16 +206,30 @@
             {
                 btn.hidden = self.m_isSingleRefresh;
             }
-            // 举报
+            // 举报 || 删除
             if (btn.tag == 107)
             {
                 btn.hidden = self.m_IsWebMore;
-                btn.enabled = !self.m_isOwner;
+                if (!self.m_IsColumnDetail && self.m_isOwner)
+                {
+                    btn.enabled = !self.m_isOwner;
+                }
+                else
+                {
+                    btn.enabled = YES;
+                }
             }
             // 编辑和删除按钮是否隐藏
             if (btn.tag == 108 || btn.tag == 109)
             {
-                btn.hidden = !self.m_isOwner;
+                if (self.m_IsColumnDetail)
+                {
+                    btn.hidden = YES;
+                }
+                else
+                {
+                    btn.hidden = !self.m_isOwner;
+                }
             }
             
             CGFloat imageWidth = 30.0f;

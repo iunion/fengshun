@@ -95,7 +95,7 @@
         }
         // 根据帖子详情接口 userId判断是否是本人帖子
         BOOL isOwner = [weakSelf.m_TopicDetailModel.m_UserId isEqualToString:[FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId];
-        [FSMoreViewVC showTopicMoreDelegate:weakSelf isOwner:isOwner isCollection:weakSelf.m_TopicDetailModel.m_IsCollection presentVC:self];
+        [FSMoreViewVC showTopicMoreDelegate:weakSelf isOwner:isOwner isCollection:weakSelf.m_TopicDetailModel.m_IsCollection isColumn:NO presentVC:weakSelf];
     } failure:^(NSError *error) {
         [weakSelf.m_ProgressHUD hideAnimated:NO];
         if (error.code == 1005)

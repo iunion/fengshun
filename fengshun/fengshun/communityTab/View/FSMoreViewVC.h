@@ -18,14 +18,15 @@
 @end
 
 @interface FSMoreViewVC : FSSuperVC
+
 /**
- 帖子详情页用
+ 帖子、专栏详情页用
 
  @param delegate 代理
  @param isOwner 是否本人帖子
  @param isCollection 是否收藏过
  */
-+ (FSMoreViewVC *)showTopicMoreDelegate:(id)delegate isOwner:(BOOL)isOwner isCollection:(BOOL)isCollection presentVC:(UIViewController *)presentVC;
++ (FSMoreViewVC *)showTopicMoreDelegate:(id)delegate isOwner:(BOOL)isOwner isCollection:(BOOL)isCollection isColumn:(BOOL)isColumn presentVC:(UIViewController *)presentVC;
 /**
  web详情页使用
 

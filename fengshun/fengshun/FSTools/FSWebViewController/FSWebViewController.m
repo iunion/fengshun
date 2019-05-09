@@ -774,9 +774,9 @@
             weakSelf.s_isCollect = count>0;
             if ([[shareData bm_stringForKey:@"type"]isEqualToString:@"ARTICLE"])
             {
-//                BOOL isOwner = [[[shareData bm_dictionaryForKey:@"postData"]bm_stringForKey:@"userId"] isEqualToString:[FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId];
+                BOOL isOwner = [[[shareData bm_dictionaryForKey:@"postData"]bm_stringForKey:@"userId"] isEqualToString:[FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId];
                 // 目前专栏没有编辑
-                [FSMoreViewVC showTopicMoreDelegate:weakSelf isOwner:NO isCollection:weakSelf.s_isCollect presentVC:weakSelf];
+                [FSMoreViewVC showTopicMoreDelegate:weakSelf isOwner:isOwner isCollection:weakSelf.s_isCollect isColumn:YES presentVC:weakSelf];
             }
             else
             {
@@ -850,44 +850,60 @@
             }
         }
     }
-    else if (index == 7)
+    else if (index == 7)// 举报 || 专栏删除
     {
         if (![FSUserInfoModel isLogin])
         {
             [self showLogin];
             return;
         }
-        UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 225, 70)];
-        
-        UILabel *cententLab = [[UILabel alloc]initWithFrame:CGRectMake(35*0.5f, 0, 190, 40)];
-        cententLab.numberOfLines = 2;
-        cententLab.font = [UIFont systemFontOfSize:15.f];
-        cententLab.textColor = [UIColor bm_colorWithHex:0x333333];
-        cententLab.text = [shareData bm_stringForKey:@"title"];
-        [contentView addSubview:cententLab];
-        
-        UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(35*0.5f, cententLab.bm_bottom + 5, 190, 25)];
-        textField.backgroundColor = [UIColor bm_colorWithHex:0xF6F6F6];
-        textField.placeholder = @"请输入举报理由";
-        textField.font = [UIFont systemFontOfSize:14.f];
-        [contentView addSubview:textField];
-        [textField becomeFirstResponder];
-        
-        BMWeakSelf
-        [FSAlertView showAlertWithTitle:@"举报理由说明" message:nil contentView:contentView cancelTitle:@"取消" otherTitle:@"确定" completion:^(BOOL cancelled, NSInteger buttonIndex) {
-            if (buttonIndex == 1)
-            {
-                if (![textField.text bm_isNotEmpty])
+        if ([[shareData bm_stringForKey:@"type"]isEqualToString:@"ARTICLE"]&&[[[shareData bm_dictionaryForKey:@"postData"]bm_stringForKey:@"userId"] isEqualToString:[FSUserInfoModel userInfo].m_UserBaseInfo.m_UserId])// 为本人专栏删除
+        {
+            BMWeakSelf
+            [FSAlertView showAlertWithTitle:@"删除帖子"
+                                    message:@"您确定要删除您的专题？"
+                                cancelTitle:@"取消"
+                                 otherTitle:@"确定"
+                                 completion:^(BOOL cancelled, NSInteger buttonIndex) {
+                                     if (buttonIndex == 1)
+                                     {
+                                         [weakSelf deleteColumnWithId:[shareData bm_intForKey:@"id"]];
+                                     }
+                                 }];
+        }
+        else // 举报
+        {
+            UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 225, 70)];
+            
+            UILabel *cententLab = [[UILabel alloc]initWithFrame:CGRectMake(35*0.5f, 0, 190, 40)];
+            cententLab.numberOfLines = 2;
+            cententLab.font = [UIFont systemFontOfSize:15.f];
+            cententLab.textColor = [UIColor bm_colorWithHex:0x333333];
+            cententLab.text = [shareData bm_stringForKey:@"title"];
+            [contentView addSubview:cententLab];
+            
+            UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(35*0.5f, cententLab.bm_bottom + 5, 190, 25)];
+            textField.backgroundColor = [UIColor bm_colorWithHex:0xF6F6F6];
+            textField.placeholder = @"请输入举报理由";
+            textField.font = [UIFont systemFontOfSize:14.f];
+            [contentView addSubview:textField];
+            [textField becomeFirstResponder];
+            BMWeakSelf
+            [FSAlertView showAlertWithTitle:@"举报理由说明" message:nil contentView:contentView cancelTitle:@"取消" otherTitle:@"确定" completion:^(BOOL cancelled, NSInteger buttonIndex) {
+                if (buttonIndex == 1)
                 {
-                    [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"请输入举报理由" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                    if (![textField.text bm_isNotEmpty])
+                    {
+                        [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"请输入举报理由" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                    }
+                    [FSApiRequest addReportTopic:[shareData bm_stringForKey:@"id"]  content:textField.text type:[shareData bm_stringForKey:@"type"]  success:^(id responseObject) {
+                        [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"已举报该专题" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+                    } failure:^(NSError *error) {
+                        
+                    }];
                 }
-                [FSApiRequest addReportTopic:[shareData bm_stringForKey:@"id"]  content:textField.text type:[shareData bm_stringForKey:@"type"]  success:^(id responseObject) {
-                    [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"已举报该专题" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
-                } failure:^(NSError *error) {
-
-                }];
-            }
-        }];
+            }];
+        }
     }
     else if (index == 8)
     {
@@ -959,6 +975,17 @@
         [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"已举报该评论" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
     } failure:^(NSError *error) {
         [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:[NSString stringWithFormat:@"%@",[error.userInfo bm_stringForKey:@"NSLocalizedDescription"]] delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+    }];
+}
+
+- (void)deleteColumnWithId:(NSInteger )Id
+{
+    BMWeakSelf
+    [FSApiRequest deleteColumWithId:Id Success:^(id  _Nullable responseObject) {
+        [weakSelf.m_ProgressHUD showAnimated:YES withDetailText:@"删除成功" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
+        [weakSelf refreshWebView];
+    } failure:^(NSError * _Nullable error) {
+        
     }];
 }
 
