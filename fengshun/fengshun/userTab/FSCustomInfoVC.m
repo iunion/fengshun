@@ -703,6 +703,7 @@
     imageTextView.textColor = UI_COLOR_B4;
     imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
     imageTextView.showTableCellAccessoryArrow = YES;
+    imageTextView.maxWidth = self.m_TableView.bm_width - 120.0f;
     self.m_ProfessionalQualificationItem.accessoryView = imageTextView;
     self.m_ProfessionalQualificationItem.selectionHandler = ^(id item) {
         FSSetProfessionalVC *setProfessionalVC = [[FSSetProfessionalVC alloc] init];
@@ -723,6 +724,7 @@
     imageTextView.textColor = UI_COLOR_B4;
     imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
     imageTextView.showTableCellAccessoryArrow = YES;
+    imageTextView.maxWidth = self.m_TableView.bm_width - 120.0f;
     self.m_WorkExperienceItem.accessoryView = imageTextView;
     self.m_WorkExperienceItem.selectionHandler = ^(id item) {
         FSEditorVC *editorVC = [[FSEditorVC alloc] initWithOperaType:FSUpdateUserInfo_WorkExperience minWordCount:0 maxnWordCount:500 text:userInfo.m_UserBaseInfo.m_WorkExperience placeholderText:nil];
