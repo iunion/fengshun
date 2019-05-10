@@ -59,7 +59,7 @@
 {
     if (isHasImg)
     {
-        self.m_imgViewConstraintWidth.constant = 67.f;
+        self.m_imgViewConstraintWidth.constant = 80.f;
         self.m_TitleLabConstraintLeft.constant = 12.f;
         [self.m_imgView sd_setImageWithURL:[NSURL URLWithString:model.m_ThumbUrl]placeholderImage:[UIImage imageNamed:@"default_avatariconlarge"] options:SDWebImageRetryFailed|SDWebImageLowPriority];
     }
