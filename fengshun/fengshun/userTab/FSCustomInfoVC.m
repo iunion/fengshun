@@ -725,7 +725,7 @@
     imageTextView.showTableCellAccessoryArrow = YES;
     self.m_WorkExperienceItem.accessoryView = imageTextView;
     self.m_WorkExperienceItem.selectionHandler = ^(id item) {
-        FSEditorVC *editorVC = [[FSEditorVC alloc] initWithOperaType:FSUpdateUserInfo_WorkExperience minWordCount:0 maxnWordCount:200 text:userInfo.m_UserBaseInfo.m_WorkExperience placeholderText:nil];
+        FSEditorVC *editorVC = [[FSEditorVC alloc] initWithOperaType:FSUpdateUserInfo_WorkExperience minWordCount:0 maxnWordCount:500 text:userInfo.m_UserBaseInfo.m_WorkExperience placeholderText:nil];
         editorVC.delegate = weakSelf;
         [weakSelf.navigationController pushViewController:editorVC animated:YES];
     };
