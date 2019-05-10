@@ -558,9 +558,21 @@
     {
         text = @"请填写";
     }
+    accessoryArrowType = BMImageTextViewAccessoryArrowType_Show;
+    if (userInfo.m_UserBaseInfo.m_IsIdAuth && [userInfo.m_UserBaseInfo.m_Job bm_isNotEmpty])
+    {
+        self.m_OrganizationItem.enabled = NO;
+        accessoryArrowType = BMImageTextViewAccessoryArrowType_HideInplace;
+    }
+    else
+    {
+        self.m_OrganizationItem.enabled = YES;
+    }
+
     imageTextView = [[BMImageTextView alloc] initWithText:text];
     imageTextView.textColor = UI_COLOR_B4;
     imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
+    imageTextView.accessoryArrowType = accessoryArrowType;
     imageTextView.showTableCellAccessoryArrow = YES;
     imageTextView.maxWidth = self.m_TableView.bm_width - 120.0f;
     self.m_OrganizationItem.accessoryView = imageTextView;
@@ -582,9 +594,19 @@
     {
         text = @"请填写";
     }
+    if (userInfo.m_UserBaseInfo.m_IsIdAuth && [userInfo.m_UserBaseInfo.m_Job bm_isNotEmpty])
+    {
+        self.m_JobItem.enabled = NO;
+        accessoryArrowType = BMImageTextViewAccessoryArrowType_HideInplace;
+    }
+    else
+    {
+        self.m_JobItem.enabled = YES;
+    }
     imageTextView = [[BMImageTextView alloc] initWithText:text];
     imageTextView.textColor = UI_COLOR_B4;
     imageTextView.textFont = FS_CELLTITLE_TEXTFONT;
+    imageTextView.accessoryArrowType = accessoryArrowType;
     imageTextView.showTableCellAccessoryArrow = YES;
     imageTextView.maxWidth = self.m_TableView.bm_width - 120.0f;
     self.m_JobItem.accessoryView = imageTextView;
