@@ -165,7 +165,8 @@
     NSMutableArray *professionalArray = [[NSMutableArray alloc] initWithCapacity:0];
     for (BMTextItem *item in self.m_ProfessionalSection.items)
     {
-        if ([item.value bm_isNotEmpty])
+        NSString *professional = [item.value bm_trim];
+        if ([professional bm_isNotEmpty])
         {
             [professionalArray addObject:item.value];
         }
