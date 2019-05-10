@@ -118,10 +118,6 @@
     {
         self.m_IsIdAuth = NO;
     }
-    if (!self.m_IsIdAuth)
-    {
-        self.m_Job = nil;
-    }
 
 
 #pragma mark searchUserBaseInfo

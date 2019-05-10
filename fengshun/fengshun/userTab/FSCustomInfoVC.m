@@ -520,7 +520,7 @@
     
     // 身份认证
     accessoryArrowType = BMImageTextViewAccessoryArrowType_HideInplace;//BMImageTextViewAccessoryArrowType_Show;
-    if ([userInfo.m_UserBaseInfo.m_Job bm_isNotEmpty])
+    if (userInfo.m_UserBaseInfo.m_IsIdAuth && [userInfo.m_UserBaseInfo.m_Job bm_isNotEmpty])
     {
         text = userInfo.m_UserBaseInfo.m_Job;
         self.m_RealIdentityItem.selectionHandler = nil;
