@@ -186,6 +186,7 @@
 
     // 生日
     datePicker = [[BMDatePicker alloc] initWithPickerStyle:PickerStyle_MonthDayYear completeBlock:nil];
+    datePicker.maxLimitDate = [NSDate date];
     datePicker.pickerCurrentItemColor = [UIColor bm_colorWithHex:UI_NAVIGATION_BGCOLOR_VALU];
     datePicker.pickerLabelColor = [UIColor bm_colorWithHex:UI_NAVIGATION_BGCOLOR_VALU];
     datePicker.pickerLabelTitleArray = nil;
