@@ -21,6 +21,7 @@
 #import "NSString+BMURLEncode.h"
 #import "NSAttributedString+BMCategory.h"
 #import "FSAuthVC.h"
+#import <WebKit/WebKit.h>
 
 #define SHOW_CLOSEBTN_CANGOEBACK    1
 
@@ -296,6 +297,11 @@
     [self loadpage];
     
     [self bringSomeViewToFront];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyBoardWillHide)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
 }
 
 - (void)setWebFrame:(CGRect)frame
@@ -349,6 +355,18 @@
     }];
 }
 
+- (void)keyBoardWillHide
+{
+    if (@available(iOS 12.0, *)) {
+        WKWebView *webview = self.m_WebView.realWebView;
+        for(UIView* v in webview.subviews){
+            if([v isKindOfClass:NSClassFromString(@"WKScrollView")]){
+                UIScrollView *scrollView = (UIScrollView*)v;
+                [scrollView setContentOffset:CGPointMake(0, 0)];
+            }
+        }
+    }
+}
 
 #pragma mark -
 #pragma mark UserAgent
