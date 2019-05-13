@@ -8,18 +8,18 @@
 
 #import "FSMessageTabVC.h"
 
-#import "FSScrollPageView.h"
+#import "BMScrollPageView.h"
 #import "FSMessageListVC.h"
 
 
 @interface FSMessageTabVC ()
 <
-    FSScrollPageViewDelegate,
-    FSScrollPageViewDataSource
+    BMScrollPageViewDelegate,
+    BMScrollPageViewDataSource
 >
 
-@property (nonatomic, strong) FSScrollPageSegment *m_SegmentBar;
-@property (nonatomic, strong) FSScrollPageView *m_ScrollPageView;
+@property (nonatomic, strong) BMScrollPageSegment *m_SegmentBar;
+@property (nonatomic, strong) BMScrollPageView *m_ScrollPageView;
 
 @property (nonatomic, strong) FSMessageListVC *m_CommentMessageVC;
 @property (nonatomic, strong) FSMessageListVC *m_NoticeMessageVC;
@@ -53,22 +53,28 @@
 - (void)setupUI
 {
     // 切换视图
-    self.m_SegmentBar = [[FSScrollPageSegment alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 44) titles:nil titleColor:nil selectTitleColor:nil showUnderLine:NO moveLineFrame:CGRectZero isEqualDivide:YES fresh:NO];
+    self.self.m_SegmentBar = [[BMScrollPageSegment alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, 44)];
     [self.view addSubview:_m_SegmentBar];
     self.m_SegmentBar.backgroundColor = [UIColor whiteColor];
-    
+    self.m_SegmentBar.showMore = NO;
+    self.m_SegmentBar.equalDivide = YES;
+    self.m_SegmentBar.moveLineColor = UI_COLOR_BL1;
+    self.m_SegmentBar.showBottomLine = NO;
+    self.m_SegmentBar.titleColor = UI_COLOR_B1;
+    self.m_SegmentBar.titleSelectedColor = UI_COLOR_BL1;
+
     // 内容视图
-    self.m_ScrollPageView = [[FSScrollPageView alloc] initWithFrame:CGRectMake(0, 44, UI_SCREEN_WIDTH, UI_MAINSCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT - 44) titleColor:UI_COLOR_B1 selectTitleColor:UI_COLOR_BL1 scrollPageSegment:_m_SegmentBar isSubViewPageSegment:NO];
+    self.m_ScrollPageView = [[BMScrollPageView alloc] initWithFrame:CGRectMake(0, 44, UI_SCREEN_WIDTH, UI_MAINSCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT - 44)  withScrollPageSegment:self.m_SegmentBar];
     [self.view addSubview:self.m_ScrollPageView];
     self.m_ScrollPageView.datasource = self;
     self.m_ScrollPageView.delegate = self;
-    [self.m_ScrollPageView setM_MoveLineColor:UI_COLOR_BL1];
-    [self.m_ScrollPageView reloadPage];
-    [self.m_ScrollPageView scrollPageWithIndex:_m_showNotificationTab?1:0];
+    
+    [self.m_ScrollPageView reloadPages];
+    [self.m_ScrollPageView scrollPageWithIndex:_m_showNotificationTab ? 1 : 0];
     
     if (self.navigationController.interactivePopGestureRecognizer)
     {
-        [self.m_ScrollPageView.m_ScrollView.panGestureRecognizer requireGestureRecognizerToFail:self.navigationController.interactivePopGestureRecognizer];
+        [self.m_ScrollPageView.scrollView.panGestureRecognizer requireGestureRecognizerToFail:self.navigationController.interactivePopGestureRecognizer];
     }
 }
 
@@ -79,14 +85,14 @@
 }
 
 
-#pragma mark - FSScrollPageView Delegate & DataSource
+#pragma mark - BMScrollPageView Delegate & DataSource
 
-- (NSUInteger)scrollPageViewNumberOfPages:(FSScrollPageView *)scrollPageView
+- (NSUInteger)scrollPageViewNumberOfPages:(BMScrollPageView *)scrollPageView
 {
     return 2;
 }
 
-- (NSString *)scrollPageView:(FSScrollPageView *)scrollPageView titleAtIndex:(NSUInteger)index
+- (NSString *)scrollPageView:(BMScrollPageView *)scrollPageView titleAtIndex:(NSUInteger)index
 {
     switch (index)
     {
@@ -104,7 +110,7 @@
     }
 }
 
-- (id)scrollPageView:(FSScrollPageView *)scrollPageView pageAtIndex:(NSUInteger)index
+- (id)scrollPageView:(BMScrollPageView *)scrollPageView pageAtIndex:(NSUInteger)index
 {
     if (index == 0)
     {

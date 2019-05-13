@@ -8,7 +8,7 @@
 
 #import "FSFileScanImagePreviewVC.h"
 #import "FSImageFileModel.h"
-#import "FSScrollPageView.h"
+#import "BMScrollPageView.h"
 #import "MBProgressHUD.h"
 #import "TOCropViewController.h"
 #import <Photos/PHPhotoLibrary.h>
@@ -18,15 +18,15 @@
 @interface
 FSFileScanImagePreviewVC ()
 <
-    FSScrollPageViewDelegate,
-    FSScrollPageViewDataSource,
+    BMScrollPageViewDelegate,
+    BMScrollPageViewDataSource,
     TOCropViewControllerDelegate,
     FSMoreViewVCDelegate
 >
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *m_toolButtons;
 @property (weak, nonatomic) IBOutlet UILabel *  m_pageContolLabel;
 @property (weak, nonatomic) IBOutlet UIView *m_toolView;
-@property (nonatomic, strong) FSScrollPageView *m_scrollPageView;
+@property (nonatomic, strong) BMScrollPageView *m_scrollPageView;
 
 @property (nonatomic, strong)UIButton *editFileNameButton;
 
@@ -81,7 +81,7 @@ FSFileScanImagePreviewVC ()
     }
     
     // 内容视图
-    self.m_scrollPageView = [[FSScrollPageView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT - UI_STATUS_BAR_HEIGHT - TOOLVIEW_HEIGHT) titleColor:nil selectTitleColor:nil scrollPageSegment:nil isSubViewPageSegment:NO];
+    self.m_scrollPageView = [[BMScrollPageView alloc] initWithFrame:CGRectMake(0, 0, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT - UI_NAVIGATION_BAR_HEIGHT - UI_STATUS_BAR_HEIGHT - TOOLVIEW_HEIGHT) withScrollPageSegment:nil];
     [self.view insertSubview:_m_scrollPageView belowSubview:_m_pageContolLabel];
     _m_scrollPageView.backgroundColor = [UIColor blackColor];
     _m_scrollPageView.datasource = self;
@@ -89,7 +89,7 @@ FSFileScanImagePreviewVC ()
 
     if (self.navigationController.interactivePopGestureRecognizer)
     {
-        [self.m_scrollPageView.m_ScrollView.panGestureRecognizer requireGestureRecognizerToFail:self.navigationController.interactivePopGestureRecognizer];
+        [self.m_scrollPageView.scrollView.panGestureRecognizer requireGestureRecognizerToFail:self.navigationController.interactivePopGestureRecognizer];
     }
 
     [self refreshUIIfNeedReload:YES];
@@ -113,11 +113,12 @@ FSFileScanImagePreviewVC ()
     }]];
     [self presentViewController:av animated:YES completion:nil];
 }
+
 - (void)refreshUIIfNeedReload:(BOOL)needReload
 {
     if (needReload)
     {
-        [_m_scrollPageView reloadPage];
+        [self.m_scrollPageView reloadPages];
         if ([self.m_allImageFiles bm_isNotEmpty])
         {
             [_m_scrollPageView scrollPageWithIndex:[self.m_allImageFiles indexOfObject:_m_selectedImageFile]];
@@ -146,13 +147,13 @@ FSFileScanImagePreviewVC ()
     self.m_selectedImageFile = [self.m_allImageFiles objectAtIndex:index];
     [self refreshUIIfNeedReload:NO];
 }
-- (NSUInteger)scrollPageViewNumberOfPages:(FSScrollPageView *)scrollPageView
+- (NSUInteger)scrollPageViewNumberOfPages:(BMScrollPageView *)scrollPageView
 {
     return self.m_allImageFiles.count;
 }
 
 
-- (id)scrollPageView:(FSScrollPageView *)scrollPageView pageAtIndex:(NSUInteger)index
+- (id)scrollPageView:(BMScrollPageView *)scrollPageView pageAtIndex:(NSUInteger)index
 {
     FSImageFileModel *model = [self.m_allImageFiles objectAtIndex:index];
     if ([model bm_isNotEmpty])
@@ -165,7 +166,7 @@ FSFileScanImagePreviewVC ()
     return nil;
 }
 
-- (NSString *)scrollPageView:(FSScrollPageView *)scrollPageView titleAtIndex:(NSUInteger)index
+- (NSString *)scrollPageView:(BMScrollPageView *)scrollPageView titleAtIndex:(NSUInteger)index
 {
     return @"";
 }

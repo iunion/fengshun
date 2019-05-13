@@ -10,7 +10,7 @@
 
 @interface FSMyCollectionVC : FSTableViewVC
 
-// 使用FSScrollPageSegment加载时，用于push下级页面
+// 使用BMScrollPageSegment加载时，用于push下级页面
 @property (nonatomic, weak) FSSuperVC *m_PushVC;
 
 - (instancetype)initWithCollectionType:(FSCollectionType)collectionType;

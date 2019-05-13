@@ -12,7 +12,7 @@
 
 #import "FSComTopicListVC.h"
 
-#import "FSScrollPageView.h"
+#import "BMScrollPageView.h"
 
 #import "FSApiRequest.h"
 //#import "FSTopicListVC.h"
@@ -28,8 +28,8 @@
 
 @interface FSCommunitySecVC ()
 <
-    FSScrollPageViewDataSource,
-    FSScrollPageViewDelegate,
+    BMScrollPageViewDataSource,
+    BMScrollPageViewDelegate,
     FSCommunityHeaderViewDelegate,
     FSBaseComTopicScrollTopDelegate
 >
@@ -54,8 +54,8 @@
 
 // headerView
 @property (nonatomic, strong) FSCommunityHeaderView *m_HeaderView;
-@property (nonatomic, strong) FSScrollPageSegment *m_SegmentBar;
-@property (nonatomic, strong) FSScrollPageView *m_ScrollPageView;
+@property (nonatomic, strong) BMScrollPageSegment *m_SegmentBar;
+@property (nonatomic, strong) BMScrollPageView *m_ScrollPageView;
 @property (nonatomic, strong) UIButton *m_PulishBtn;
 @property (nonatomic, strong) NSMutableArray *m_dataArray;
 @property (nonatomic, strong) NSMutableArray *m_VcArray;
@@ -178,23 +178,28 @@
     self.m_HeaderView.frame = CGRectMake(0, 0, UI_SCREEN_WIDTH, ComTopicHeaderImageHeight);
 
     // 切换视图
-    self.m_SegmentBar = [[FSScrollPageSegment alloc] initWithFrame:CGRectMake(0, self.m_HeaderView.bm_bottom + ComTopicHeaderImageGap, UI_SCREEN_WIDTH, ComTopicSegmentBarHeight) titles:nil titleColor:nil selectTitleColor:nil showUnderLine:YES moveLineFrame:CGRectZero isEqualDivide:YES fresh:YES];
+    self.m_SegmentBar = [[BMScrollPageSegment alloc] initWithFrame:CGRectMake(0, self.m_HeaderView.bm_bottom + ComTopicHeaderImageGap, UI_SCREEN_WIDTH, ComTopicSegmentBarHeight)];
     [self.m_TableHeaderView addSubview:_m_SegmentBar];
     self.m_SegmentBar.backgroundColor = [UIColor whiteColor];
     self.m_SegmentBar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    self.m_SegmentBar.showMore = NO;
+    self.m_SegmentBar.equalDivide = YES;
+    self.m_SegmentBar.moveLineColor = UI_COLOR_BL1;
+    self.m_SegmentBar.showBottomLine = YES;
+    self.m_SegmentBar.titleColor = UI_COLOR_B1;
+    self.m_SegmentBar.titleSelectedColor = UI_COLOR_BL1;
 
     // 内容视图
-    self.m_ScrollPageView = [[FSScrollPageView alloc] initWithFrame:CGRectMake(0, _m_SegmentBar.bm_bottom, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT - UI_STATUS_BAR_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - UI_HOME_INDICATOR_HEIGHT - ComTopicSegmentBarHeight) titleColor:UI_COLOR_B1 selectTitleColor:UI_COLOR_BL1 scrollPageSegment:_m_SegmentBar isSubViewPageSegment:NO];
-    //[self.view addSubview:self.m_ScrollPageView];
+    self.m_ScrollPageView = [[BMScrollPageView alloc] initWithFrame:CGRectMake(0, _m_SegmentBar.bm_bottom, UI_SCREEN_WIDTH, UI_SCREEN_HEIGHT - UI_STATUS_BAR_HEIGHT-UI_NAVIGATION_BAR_HEIGHT - UI_HOME_INDICATOR_HEIGHT - ComTopicSegmentBarHeight) withScrollPageSegment:self.m_SegmentBar];
     self.m_ScrollPageView.datasource = self;
     self.m_ScrollPageView.delegate   = self;
-    [self.m_ScrollPageView setM_MoveLineColor:UI_COLOR_BL1];
-    [self.m_ScrollPageView reloadPage];
+    
+    [self.m_ScrollPageView reloadPages];
     [self.m_ScrollPageView scrollPageWithIndex:0];
 
     if (self.navigationController.interactivePopGestureRecognizer)
     {
-        [self.m_ScrollPageView.m_ScrollView.panGestureRecognizer requireGestureRecognizerToFail:self.navigationController.interactivePopGestureRecognizer];
+        [self.m_ScrollPageView.scrollView.panGestureRecognizer requireGestureRecognizerToFail:self.navigationController.interactivePopGestureRecognizer];
     }
 
     self.m_PulishBtn = [UIButton bm_buttonWithFrame:CGRectMake(UI_SCREEN_WIDTH - 52 - 20, UI_SCREEN_HEIGHT-UI_STATUS_BAR_HEIGHT-UI_NAVIGATION_BAR_HEIGHT- UI_HOME_INDICATOR_HEIGHT- 20.f - 52.f, 52.f, 52.f) image:[UIImage imageNamed:@"community_comment"]];
@@ -407,20 +412,20 @@
 }
 
 
-#pragma mark - FSScrollPageView Delegate & DataSource
+#pragma mark - BMScrollPageView Delegate & DataSource
 
-- (NSUInteger)scrollPageViewNumberOfPages:(FSScrollPageView *)scrollPageView
+- (NSUInteger)scrollPageViewNumberOfPages:(BMScrollPageView *)scrollPageView
 {
     return self.m_dataArray.count;
 }
 
-- (NSString *)scrollPageView:(FSScrollPageView *)scrollPageView titleAtIndex:(NSUInteger)index
+- (NSString *)scrollPageView:(BMScrollPageView *)scrollPageView titleAtIndex:(NSUInteger)index
 {
     FSTopicTypeModel *model = self.m_dataArray[index];
     return model.m_PostListName;
 }
 
-- (id)scrollPageView:(FSScrollPageView *)scrollPageView pageAtIndex:(NSUInteger)index
+- (id)scrollPageView:(BMScrollPageView *)scrollPageView pageAtIndex:(NSUInteger)index
 {
     FSTopicTypeModel *model = self.m_dataArray[index];
     FSComTopicListVC *vc = [[FSComTopicListVC alloc] initWithTopicSortType:model.m_PostListType formId:self.m_FourmId];
@@ -525,7 +530,7 @@
             [self.m_VcArray addObject:[NSNull null]];
         }
 
-        [self.m_ScrollPageView reloadPage];
+        [self.m_ScrollPageView reloadPages];
         [self.m_ScrollPageView scrollPageWithIndex:0];
         return YES;
     }

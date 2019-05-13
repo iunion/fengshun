@@ -261,6 +261,12 @@
 		8730E342228037C900A76592 /* user_passcertification_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730E33F228037C800A76592 /* user_passcertification_icon@2x.png */; };
 		8730E343228037C900A76592 /* user_passcertification_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730E340228037C900A76592 /* user_passcertification_icon@3x.png */; };
 		8730E344228037C900A76592 /* user_passcertification_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730E340228037C900A76592 /* user_passcertification_icon@3x.png */; };
+		8730E35F2289468900A76592 /* BMScrollPageSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730E3592289468900A76592 /* BMScrollPageSegment.m */; };
+		8730E3602289468900A76592 /* BMScrollPageSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730E3592289468900A76592 /* BMScrollPageSegment.m */; };
+		8730E3612289468900A76592 /* BMScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730E35A2289468900A76592 /* BMScrollPageView.m */; };
+		8730E3622289468900A76592 /* BMScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730E35A2289468900A76592 /* BMScrollPageView.m */; };
+		8730E3632289468900A76592 /* segmentmore@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730E35C2289468900A76592 /* segmentmore@2x.png */; };
+		8730E3642289468900A76592 /* segmentmore@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730E35C2289468900A76592 /* segmentmore@2x.png */; };
 		87426892212E7E36003C52F6 /* steppersinput_plusicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87426795212E7E35003C52F6 /* steppersinput_plusicon@3x.png */; };
 		87426893212E7E36003C52F6 /* steppersinput_plusicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87426796212E7E35003C52F6 /* steppersinput_plusicon@2x.png */; };
 		87426894212E7E36003C52F6 /* increase_eleme@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87426797212E7E35003C52F6 /* increase_eleme@3x.png */; };
@@ -1267,7 +1273,6 @@
 		87E7C40F21509AB000F7AB14 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426A7B2131461F003C52F6 /* AFSecurityPolicy.m */; };
 		87E7C41021509AB000F7AB14 /* UIViewController+BMNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426819212E7E35003C52F6 /* UIViewController+BMNavigationBar.m */; };
 		87E7C41121509AB000F7AB14 /* DTZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730AF8D2140FFA2004331A9 /* DTZipArchive.m */; };
-		87E7C41221509AB000F7AB14 /* FSScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5722332133A0FC0065DC30 /* FSScrollPageView.m */; };
 		87E7C41321509AB000F7AB14 /* FSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 87742015214C9EB200F72427 /* FSMessage.m */; };
 		87E7C41421509AB000F7AB14 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426A7A2131461F003C52F6 /* AFNetworkReachabilityManager.m */; };
 		87E7C41621509AB000F7AB14 /* FSEditVideoMediateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DC029A214A1EB700FCE042 /* FSEditVideoMediateView.m */; };
@@ -1374,7 +1379,6 @@
 		87E7C48B21509AB000F7AB14 /* BMSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 874269E1212EB8A4003C52F6 /* BMSearchViewController.m */; };
 		87E7C48C21509AB000F7AB14 /* BMTableViewCheckBoxGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 874267C2212E7E35003C52F6 /* BMTableViewCheckBoxGroupCell.m */; };
 		87E7C48D21509AB000F7AB14 /* DTASN1Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730B00B2140FFA2004331A9 /* DTASN1Parser.m */; };
-		87E7C48E21509AB000F7AB14 /* FSScrollPageSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5722312133A0FC0065DC30 /* FSScrollPageSegment.m */; };
 		87E7C49121509AB000F7AB14 /* FSSearchResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD4CDE8213E2C7F00857DB3 /* FSSearchResultView.m */; };
 		87E7C49221509AB000F7AB14 /* UIButton+BMCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8742685B212E7E35003C52F6 /* UIButton+BMCategory.m */; };
 		87E7C49321509AB000F7AB14 /* NSString+BMEncrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 87426876212E7E36003C52F6 /* NSString+BMEncrypt.m */; };
@@ -2111,8 +2115,6 @@
 		DB4DB37A21FFF5F1006B14C3 /* home_courses@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB4DB37721FFF5F1006B14C3 /* home_courses@3x.png */; };
 		DB4DB37B21FFF5F1006B14C3 /* home_courses@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB4DB37721FFF5F1006B14C3 /* home_courses@3x.png */; };
 		DB57222F21338B6E0065DC30 /* XMRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB57222D21338B6E0065DC30 /* XMRequestManager.m */; };
-		DB5722352133A0FC0065DC30 /* FSScrollPageSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5722312133A0FC0065DC30 /* FSScrollPageSegment.m */; };
-		DB5722362133A0FC0065DC30 /* FSScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5722332133A0FC0065DC30 /* FSScrollPageView.m */; };
 		DB57223B2133A1D90065DC30 /* FSCommunityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5722392133A1D90065DC30 /* FSCommunityVC.m */; };
 		DB57223C2133A1D90065DC30 /* FSCommunityVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB57223A2133A1D90065DC30 /* FSCommunityVC.xib */; };
 		DB58168C221BD9F70023BC3A /* FSSearchHistoryTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB58168B221BD9F70023BC3A /* FSSearchHistoryTableView.m */; };
@@ -2924,6 +2926,11 @@
 		8730B12A2148F093004331A9 /* FSGlobleDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSGlobleDataModel.m; sourceTree = "<group>"; };
 		8730E33F228037C800A76592 /* user_passcertification_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_passcertification_icon@2x.png"; sourceTree = "<group>"; };
 		8730E340228037C900A76592 /* user_passcertification_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_passcertification_icon@3x.png"; sourceTree = "<group>"; };
+		8730E3592289468900A76592 /* BMScrollPageSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMScrollPageSegment.m; sourceTree = "<group>"; };
+		8730E35A2289468900A76592 /* BMScrollPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMScrollPageView.m; sourceTree = "<group>"; };
+		8730E35C2289468900A76592 /* segmentmore@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segmentmore@2x.png"; sourceTree = "<group>"; };
+		8730E35D2289468900A76592 /* BMScrollPageSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMScrollPageSegment.h; sourceTree = "<group>"; };
+		8730E35E2289468900A76592 /* BMScrollPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMScrollPageView.h; sourceTree = "<group>"; };
 		87426790212E7B2C003C52F6 /* fengshun-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "fengshun-Prefix.pch"; sourceTree = "<group>"; };
 		87426795212E7E35003C52F6 /* steppersinput_plusicon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "steppersinput_plusicon@3x.png"; sourceTree = "<group>"; };
 		87426796212E7E35003C52F6 /* steppersinput_plusicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "steppersinput_plusicon@2x.png"; sourceTree = "<group>"; };
@@ -4243,10 +4250,6 @@
 		DB4DB37721FFF5F1006B14C3 /* home_courses@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_courses@3x.png"; sourceTree = "<group>"; };
 		DB57222D21338B6E0065DC30 /* XMRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMRequestManager.m; sourceTree = "<group>"; };
 		DB57222E21338B6E0065DC30 /* XMRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMRequestManager.h; sourceTree = "<group>"; };
-		DB5722312133A0FC0065DC30 /* FSScrollPageSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSScrollPageSegment.m; sourceTree = "<group>"; };
-		DB5722322133A0FC0065DC30 /* FSScrollPageSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSScrollPageSegment.h; sourceTree = "<group>"; };
-		DB5722332133A0FC0065DC30 /* FSScrollPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSScrollPageView.m; sourceTree = "<group>"; };
-		DB5722342133A0FC0065DC30 /* FSScrollPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSScrollPageView.h; sourceTree = "<group>"; };
 		DB5722382133A1D90065DC30 /* FSCommunityVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCommunityVC.h; sourceTree = "<group>"; };
 		DB5722392133A1D90065DC30 /* FSCommunityVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCommunityVC.m; sourceTree = "<group>"; };
 		DB57223A2133A1D90065DC30 /* FSCommunityVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSCommunityVC.xib; sourceTree = "<group>"; };
@@ -5538,6 +5541,26 @@
 			path = FSGlobleData;
 			sourceTree = "<group>";
 		};
+		8730E3582289468900A76592 /* BMScrollPageView */ = {
+			isa = PBXGroup;
+			children = (
+				8730E35B2289468900A76592 /* images */,
+				8730E35D2289468900A76592 /* BMScrollPageSegment.h */,
+				8730E3592289468900A76592 /* BMScrollPageSegment.m */,
+				8730E35E2289468900A76592 /* BMScrollPageView.h */,
+				8730E35A2289468900A76592 /* BMScrollPageView.m */,
+			);
+			path = BMScrollPageView;
+			sourceTree = "<group>";
+		};
+		8730E35B2289468900A76592 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				8730E35C2289468900A76592 /* segmentmore@2x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		87426791212E7E35003C52F6 /* BMKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -5571,6 +5594,7 @@
 				87426811212E7E35003C52F6 /* BMNavigationBar */,
 				87426824212E7E35003C52F6 /* BMPlaceholderTextView */,
 				8742698C212E9B77003C52F6 /* BMRefreshView */,
+				8730E3582289468900A76592 /* BMScrollPageView */,
 				874269DF212EB84D003C52F6 /* BMSearchViewController */,
 				8742681D212E7E35003C52F6 /* BMSingleLineView */,
 				87426793212E7E35003C52F6 /* BMStepperInputView */,
@@ -6365,7 +6389,6 @@
 				87426A9D213156D5003C52F6 /* FSBannerView */,
 				87426AF021353510003C52F6 /* FSDB */,
 				AD8B63FA21338DC3006DDC22 /* FSPreviewFileTool */,
-				DB5722302133A0BF0065DC30 /* FSScrollPageView */,
 				87426A9921314996003C52F6 /* FSSearchViewController */,
 				87D20B0721394A59001EDD60 /* FSWebViewController */,
 			);
@@ -8382,17 +8405,6 @@
 			path = FSOCR;
 			sourceTree = "<group>";
 		};
-		DB5722302133A0BF0065DC30 /* FSScrollPageView */ = {
-			isa = PBXGroup;
-			children = (
-				DB5722322133A0FC0065DC30 /* FSScrollPageSegment.h */,
-				DB5722312133A0FC0065DC30 /* FSScrollPageSegment.m */,
-				DB5722342133A0FC0065DC30 /* FSScrollPageView.h */,
-				DB5722332133A0FC0065DC30 /* FSScrollPageView.m */,
-			);
-			path = FSScrollPageView;
-			sourceTree = "<group>";
-		};
 		DB5722372133A1830065DC30 /* communityTab */ = {
 			isa = PBXGroup;
 			children = (
@@ -9087,6 +9099,7 @@
 				DBD4CE912141229400857DB3 /* home_browseCount@3x.png in Resources */,
 				8774200D214C9DE000F72427 /* FSCommentMessageCell.xib in Resources */,
 				874C23BD215B5DF2001C8BE9 /* user_praiseicon@2x.png in Resources */,
+				8730E3632289468900A76592 /* segmentmore@2x.png in Resources */,
 				8742689F212E7E36003C52F6 /* decrease_baiduwaimai@3x.png in Resources */,
 				87EE6CE021C3A8B9002BD296 /* navigationbar_fresh_icon@2x.png in Resources */,
 				8730B11E2148E5D1004331A9 /* fsfreshidle_icon3@2x.png in Resources */,
@@ -9374,6 +9387,7 @@
 				45F68F442150E58F00628DC8 /* empty_commenticon@2x.png in Resources */,
 				87BC9E3B2154913B000F2011 /* fsintroguide_640x960_1@2x.png in Resources */,
 				87E7C58021509AB000F7AB14 /* navigationbar_help_icon@2x.png in Resources */,
+				8730E3642289468900A76592 /* segmentmore@2x.png in Resources */,
 				AD6712362159DBD50081E08D /* fstab_btn4_icon@3x.png in Resources */,
 				87E7C58121509AB000F7AB14 /* user_mobileicon@2x.png in Resources */,
 				DBF7E1A221524EDB002CEDA4 /* search_lawTopic_4@2x.png in Resources */,
@@ -9604,6 +9618,7 @@
 				874268DF212E7E36003C52F6 /* BMAlignedImageView.m in Sources */,
 				8776E9562272E0AF00493422 /* SDWebImageDownloaderConfig.m in Sources */,
 				87F639E821533C830035E730 /* Struct.mm in Sources */,
+				8730E35F2289468900A76592 /* BMScrollPageSegment.m in Sources */,
 				8730B02B2140FFA2004331A9 /* DTDictationPlaceholderView.m in Sources */,
 				87E7C6992150A4E400F7AB14 /* TOCroppedImageAttributes.m in Sources */,
 				8776E7FF2272B20800493422 /* FLEXLayerExplorerViewController.m in Sources */,
@@ -9670,6 +9685,7 @@
 				87F639C821533C820035E730 /* UINavigationController+MemoryLeak.m in Sources */,
 				8730B02A2140FFA2004331A9 /* DTAccessibilityViewProxy.m in Sources */,
 				AD9355AC2137D24100735C2E /* TZLocationManager.m in Sources */,
+				8730E3612289468900A76592 /* BMScrollPageView.m in Sources */,
 				8730B03F2140FFA2004331A9 /* DTDictationPlaceholderTextAttachment.m in Sources */,
 				4561391E2148FA2B007DF6A1 /* FSApiRequest+VideoMediate.m in Sources */,
 				8776E8852272B20800493422 /* FLEXHierarchyTableViewCell.m in Sources */,
@@ -10049,7 +10065,6 @@
 				87426A832131461F003C52F6 /* AFSecurityPolicy.m in Sources */,
 				874268DB212E7E36003C52F6 /* UIViewController+BMNavigationBar.m in Sources */,
 				8730B0642140FFA3004331A9 /* DTZipArchive.m in Sources */,
-				DB5722362133A0FC0065DC30 /* FSScrollPageView.m in Sources */,
 				87742016214C9EB200F72427 /* FSMessage.m in Sources */,
 				DBEE30A921D0DE41009EAE60 /* FSNoticeMessagesDetailVC.m in Sources */,
 				87426A822131461F003C52F6 /* AFNetworkReachabilityManager.m in Sources */,
@@ -10187,7 +10202,6 @@
 				874268B1212E7E36003C52F6 /* BMTableViewCheckBoxGroupCell.m in Sources */,
 				87E7C69B2150A4E400F7AB14 /* TOCropViewController.m in Sources */,
 				8730B0972140FFA3004331A9 /* DTASN1Parser.m in Sources */,
-				DB5722352133A0FC0065DC30 /* FSScrollPageSegment.m in Sources */,
 				8776E8752272B20800493422 /* FLEXTableContentCell.m in Sources */,
 				DBD4CDE9213E2C7F00857DB3 /* FSSearchResultView.m in Sources */,
 				874268F7212E7E36003C52F6 /* UIButton+BMCategory.m in Sources */,
@@ -10777,7 +10791,6 @@
 				87E7C41121509AB000F7AB14 /* DTZipArchive.m in Sources */,
 				8776E8262272B20800493422 /* FLEXMutableFieldEditorViewController.m in Sources */,
 				8776E8882272B20800493422 /* FLEXImagePreviewViewController.m in Sources */,
-				87E7C41221509AB000F7AB14 /* FSScrollPageView.m in Sources */,
 				87E7C41321509AB000F7AB14 /* FSMessage.m in Sources */,
 				8776E97D2272E0AF00493422 /* UIImage+Metadata.m in Sources */,
 				87E7C41421509AB000F7AB14 /* AFNetworkReachabilityManager.m in Sources */,
@@ -10813,6 +10826,7 @@
 				87E7C42521509AB000F7AB14 /* UIImage+BMTint.m in Sources */,
 				87E7C42621509AB000F7AB14 /* UIView+BMInnerShadow.m in Sources */,
 				87E7C42821509AB000F7AB14 /* ZFSmallFloatControlView.m in Sources */,
+				8730E3622289468900A76592 /* BMScrollPageView.m in Sources */,
 				87E7C42921509AB000F7AB14 /* DTHTMLAttributedStringBuilder.m in Sources */,
 				87E7C42A21509AB000F7AB14 /* BMTableViewMaskTextCell.m in Sources */,
 				87E7C42B21509AB000F7AB14 /* UIView+Layout.m in Sources */,
@@ -10944,7 +10958,6 @@
 				87E7C48C21509AB000F7AB14 /* BMTableViewCheckBoxGroupCell.m in Sources */,
 				8776E82A2272B20800493422 /* FLEXDefaultEditorViewController.m in Sources */,
 				87E7C48D21509AB000F7AB14 /* DTASN1Parser.m in Sources */,
-				87E7C48E21509AB000F7AB14 /* FSScrollPageSegment.m in Sources */,
 				87F639DB21533C830035E730 /* UIViewController+MemoryLeak.m in Sources */,
 				87E7C6F52151F2C700F7AB14 /* FSTestHelper.m in Sources */,
 				876BB7E921B11F7C00FC205D /* BMTestGPSMockVC.m in Sources */,
@@ -11004,6 +11017,7 @@
 				87E7C4BE21509AB000F7AB14 /* FSCommentMessageCell.m in Sources */,
 				8776E8302272B20800493422 /* FLEXFieldEditorViewController.m in Sources */,
 				87E7C4BF21509AB000F7AB14 /* Reachability.m in Sources */,
+				8730E3602289468900A76592 /* BMScrollPageSegment.m in Sources */,
 				87E7C4C021509AB000F7AB14 /* ZSSTextView.m in Sources */,
 				87E7C4C121509AB000F7AB14 /* DTStylesheetHTMLElement.m in Sources */,
 				87E7C4C221509AB000F7AB14 /* BMFreshArcHeader.m in Sources */,
