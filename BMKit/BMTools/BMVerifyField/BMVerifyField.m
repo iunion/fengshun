@@ -905,7 +905,7 @@
 
 
 /* Geometry used to provide, for example, a correction rect. */
-- (NSArray<UITextSelectionRect *> *)selectionRectsForRange:(BMVerifyFieldTextRange *)range { return nil; }
+- (NSArray<UITextSelectionRect *> *)selectionRectsForRange:(BMVerifyFieldTextRange *)range { return [NSArray array]; }
 - (CGRect)firstRectForRange:(BMVerifyFieldTextRange *)range { return CGRectNull; }
 - (CGRect)caretRectForPosition:(BMVerifyFieldTextPosition *)position { return CGRectNull; }
 

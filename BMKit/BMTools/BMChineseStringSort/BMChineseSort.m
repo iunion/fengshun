@@ -88,7 +88,10 @@
         {
             res = NSOrderedSame;
         }
-        res = b ? NSOrderedAscending : NSOrderedDescending;
+        else
+        {
+            res = b ? NSOrderedAscending : NSOrderedDescending;
+        }
     }
     else if ([str isEqualToString:s])
     {

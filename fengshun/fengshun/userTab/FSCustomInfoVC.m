@@ -989,6 +989,7 @@
                 
                 saveUserInfo = YES;
             }
+                break;
 
             case FSUpdateUserInfo_Sex:
             {
@@ -996,20 +997,23 @@
                 
                 saveUserInfo = YES;
             }
-                
+                break;
+
             case FSUpdateUserInfo_Birthday:
             {
                 userInfo.m_UserBaseInfo.m_Birthday = self.m_Birthday;
                 
                 saveUserInfo = YES;
             }
-                
+                break;
+
             case FSUpdateUserInfo_WorkArea:
             {
                 userInfo.m_UserBaseInfo.m_WorkArea = self.m_WorkArea;
                 
                 saveUserInfo = YES;
             }
+                break;
 
             case FSUpdateUserInfo_ProfessionalQualification:
             {
@@ -1017,6 +1021,7 @@
                 
                 saveUserInfo = YES;
             }
+                break;
 
             default:
                 break;
