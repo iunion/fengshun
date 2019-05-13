@@ -211,7 +211,7 @@
         if ((![model.userName bm_isNotEmpty]) && (![model.mobilePhone bm_isNotEmpty])) {
             continue;
         }
-        if (![model.userName bm_isNotEmpty] && ![[model.userName bm_trim] bm_isNotEmpty]) {
+        if ((![model.userName bm_isNotEmpty]) || (![[model.userName bm_trim] bm_isNotEmpty])) {
             [self.m_ProgressHUD showAnimated:YES withDetailText:@"请输入姓名" delay:PROGRESSBOX_DEFAULT_HIDE_DELAY];
             return;
         }
