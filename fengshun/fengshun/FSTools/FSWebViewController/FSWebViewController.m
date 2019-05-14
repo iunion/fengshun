@@ -298,10 +298,14 @@
     
     [self bringSomeViewToFront];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyBoardWillHide)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
+    // 智能咨询页面键盘特殊处理
+    if ([self.m_UrlString isEqualToString:[NSString stringWithFormat:@"%@/ftlsh5.html", FS_AI_SERVER]])
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(keyBoardWillHide:)
+                                                     name:UIKeyboardWillHideNotification
+                                                   object:nil];
+    }
 }
 
 - (void)setWebFrame:(CGRect)frame
@@ -346,6 +350,14 @@
 // 键盘隐藏后将视图恢复到原始状态
 - (void)keyBoardWillHide:(NSNotification *)note
 {
+    // 智能咨询页面键盘特殊处理
+    if ([self.m_UrlString isEqualToString:[NSString stringWithFormat:@"%@/ftlsh5.html", FS_AI_SERVER]])
+    {
+        if (@available(iOS 12.0, *)) {
+            [self.m_WebView.scrollView setContentOffset:CGPointMake(0, 0)];
+        }
+        return;
+    }
     UIView *webView = self.m_WebView.realWebView;
     CGFloat fullWidth = self.m_WebView.frame.size.width;
     CGFloat fullHeight = self.m_WebView.frame.size.height;

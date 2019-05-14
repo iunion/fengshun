@@ -16,7 +16,8 @@
 #define FS_H5_SERVER_DEV        (@"https://devftlsh5.odrcloud.net")
 #define FS_FILE_ADDRESS_DEV     (@"/storm/file/download/")
 #define FS_CASE_STATUTE_DEV     (@"https://lawsearch-pre.odrcloud.cn")
-#define FS_AI_SERVER_DEV        (@"https://odrcloud.net:19095")
+//#define FS_AI_SERVER_DEV        (@"https://odrcloud.net:19095")
+#define FS_AI_SERVER_DEV        (@"https://robot.odrcloud.cn")
 
 // 测试环境
 #define FS_URL_SERVER_TEST      (@"https://testftls.odrcloud.cn")
@@ -24,7 +25,8 @@
 //#define FS_H5_SERVER_TEST        (@"https://devftlsh5.odrcloud.net")
 #define FS_FILE_ADDRESS_TEST    (@"/storm/file/download/")
 #define FS_CASE_STATUTE_TEST    (@"https://lawsearch-pre.odrcloud.cn")
-#define FS_AI_SERVER_TEST       (@"https://odrcloud.net:19095")
+//#define FS_AI_SERVER_TEST       (@"https://odrcloud.net:19095")
+#define FS_AI_SERVER_TEST        (@"https://robot.odrcloud.cn")
 
 // 线上环境
 #define FS_URL_SERVER_ONLINE    (@"https://ftlsh5.odrcloud.cn")
