@@ -181,9 +181,8 @@ NSString *const DJFreshKeyPathPanState = @"state";
     _freshState = freshState;
     
     // 加入主队列的目的是等setState:方法调用完毕、设置完文字后再去布局子控件
-    __weak __typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [weakSelf setNeedsLayout];
+        [self setNeedsLayout];
     });
 }
 
@@ -293,14 +292,13 @@ NSString *const DJFreshKeyPathPanState = @"state";
 // 结束刷新状态
 - (void)endReFreshing
 {
-    __weak __typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        BMFreshState oldState = weakSelf.freshState;
-        weakSelf.freshState = BMFreshStateIdle;
+        BMFreshState oldState = self.freshState;
+        self.freshState = BMFreshStateIdle;
         
-        if (oldState == BMFreshStateRefreshing && weakSelf.endFreshingBlock)
+        if (oldState == BMFreshStateRefreshing && self.endFreshingBlock)
         {
-            weakSelf.endFreshingBlock(weakSelf);
+            self.endFreshingBlock(self);
         }
     });
 }

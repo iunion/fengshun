@@ -35,14 +35,13 @@ const CGFloat DJFreshFooterHeight = 40.0f;
 
 - (void)endReFreshingWithNoMoreData
 {
-    __weak __typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        BMFreshState oldState = weakSelf.freshState;
-        weakSelf.freshState = BMFreshStateNoMoreData;
+        BMFreshState oldState = self.freshState;
+        self.freshState = BMFreshStateNoMoreData;
         
-        if (oldState == BMFreshStateRefreshing && weakSelf.endFreshingBlock)
+        if (oldState == BMFreshStateRefreshing && self.endFreshingBlock)
         {
-            weakSelf.endFreshingBlock(weakSelf);
+            self.endFreshingBlock(self);
         }
     });
 }

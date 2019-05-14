@@ -483,31 +483,33 @@
 
 - (void)resetCursorLayerIfNeeded
 {
-    self.cursorLayer.hidden = !self.isFirstResponder || self.cursorColor == nil || self.inputMaxCount == self.characterArray.count;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.cursorLayer.hidden = !self.isFirstResponder || self.cursorColor == nil || self.inputMaxCount == self.characterArray.count;
     
-    if (self.cursorLayer.hidden)
-    {
-        return;
-    }
-    
-    CGSize itemSize = [self getItemSize];
-    CGFloat startX = [self getStartXWithItemSize:itemSize];
-    //CGFloat startX = self.itemSpace * 0.5;//(self.bounds.size.width - self.inputMaxCount * (itemSize.width + self.itemSpace)) * 0.5;
-    
-    CGRect itemRect = CGRectMake(startX + self.characterArray.count * (itemSize.width + self.itemSpace),
-                                 0,
-                                 itemSize.width,
-                                 itemSize.height);
-    itemRect = CGRectInset(itemRect,
-                           itemRect.size.width * 0.5 - 1,
-                           (itemRect.size.height - self.textFont.pointSize) * 0.5);
+        if (self.cursorLayer.hidden)
+        {
+            return;
+        }
+        
+        CGSize itemSize = [self getItemSize];
+        CGFloat startX = [self getStartXWithItemSize:itemSize];
+        //CGFloat startX = self.itemSpace * 0.5;//(self.bounds.size.width - self.inputMaxCount * (itemSize.width + self.itemSpace)) * 0.5;
+        
+        CGRect itemRect = CGRectMake(startX + self.characterArray.count * (itemSize.width + self.itemSpace),
+                                     0,
+                                     itemSize.width,
+                                     itemSize.height);
+        itemRect = CGRectInset(itemRect,
+                               itemRect.size.width * 0.5 - 1,
+                               (itemRect.size.height - self.textFont.pointSize) * 0.5);
 
-    [CATransaction begin];
-    [CATransaction setDisableActions:NO];
-    [CATransaction setAnimationDuration:0];
-    [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-    self.cursorLayer.frame = itemRect;
-    [CATransaction commit];
+        [CATransaction begin];
+        [CATransaction setDisableActions:NO];
+        [CATransaction setAnimationDuration:0];
+        [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+        self.cursorLayer.frame = itemRect;
+        [CATransaction commit];
+    });
 }
 
 - (void)drawRect:(CGRect)rect

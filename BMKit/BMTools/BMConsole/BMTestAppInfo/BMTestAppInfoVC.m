@@ -263,9 +263,10 @@
                     weakSelf.netAuthority = @"Unknown";
                     break;
             }
-
+            
+            BMStrongSelf
             dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf freshViews];
+                [strongSelf freshViews];
             });
         };
         

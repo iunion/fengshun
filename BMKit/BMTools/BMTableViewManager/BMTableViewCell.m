@@ -269,12 +269,14 @@
         self.imageView.highlightedImage = item.highlightedImage;
         if (item.highlightedImageUrl)
         {
+            BMWeakSelf
             [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:item.highlightedImageUrl] options:SDWebImageRetryFailed|SDWebImageLowPriority progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL *targetURL) {
             } completed:^(UIImage *image, NSData *data, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (image)
                     {
-                        self.imageView.highlightedImage = image;
+                        BMStrongSelf
+                        strongSelf.imageView.highlightedImage = image;
                     }
                 });
             }];
