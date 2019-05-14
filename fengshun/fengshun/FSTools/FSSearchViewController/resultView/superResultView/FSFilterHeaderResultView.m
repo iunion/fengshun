@@ -141,6 +141,8 @@ FSFilterHeaderResultView ()
     _m_BGtagView = [[UIView alloc] initWithFrame:self.bounds];
     _m_BGtagView.backgroundColor = [UIColor whiteColor];
     _m_BGtagView.hidden = YES;
+    _m_BGtagView.userInteractionEnabled = YES;
+    [_m_BGtagView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideFilterView)]];
     [self addSubview:_m_BGtagView];
 
     _m_BGtagCollectionView = [[TTGTagCollectionView alloc] initWithFrame:CGRectMake(0, 0, self.bm_width, 60)];
@@ -333,6 +335,12 @@ FSFilterHeaderResultView ()
     [self cleanKeys];
     [self freshTagView];
 }
+
+- (void)hideFilterView
+{
+    [[UIApplication sharedApplication].keyWindow endEditing:YES];
+}
+
 - (void)freshTagView
 {
     self.m_searchTagviews = [NSMutableArray array];
