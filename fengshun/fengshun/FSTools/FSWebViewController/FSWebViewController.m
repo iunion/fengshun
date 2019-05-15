@@ -80,7 +80,8 @@
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:userInfoChangedNotification object:nil];
+    //[[NSNotificationCenter defaultCenter] removeObserver:self name:userInfoChangedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (instancetype)initWithTitle:(NSString *)title url:(NSString *)url
@@ -298,13 +299,16 @@
     
     [self bringSomeViewToFront];
     
-    // 智能咨询页面键盘特殊处理
-    if ([self.m_UrlString isEqualToString:[NSString stringWithFormat:@"%@/ftlsh5.html", FS_AI_SERVER]])
+    if (@available(iOS 12.0, *))
     {
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(keyBoardWillHide:)
-                                                     name:UIKeyboardWillHideNotification
-                                                   object:nil];
+        // 智能咨询页面键盘特殊处理
+        if ([self.m_UrlString isEqualToString:[NSString stringWithFormat:@"%@/ftlsh5.html", FS_AI_SERVER]])
+        {
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(keyBoardWillHide:)
+                                                         name:UIKeyboardWillHideNotification
+                                                       object:nil];
+        }
     }
 }
 
@@ -350,32 +354,25 @@
 // 键盘隐藏后将视图恢复到原始状态
 - (void)keyBoardWillHide:(NSNotification *)note
 {
-    // 智能咨询页面键盘特殊处理
-    if ([self.m_UrlString isEqualToString:[NSString stringWithFormat:@"%@/ftlsh5.html", FS_AI_SERVER]])
-    {
-        if (@available(iOS 12.0, *)) {
-            [self.m_WebView.scrollView setContentOffset:CGPointMake(0, 0)];
-        }
-        return;
-    }
     UIView *webView = self.m_WebView.realWebView;
     CGFloat fullWidth = self.m_WebView.frame.size.width;
     CGFloat fullHeight = self.m_WebView.frame.size.height;
     
     [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue] animations:^{
+        // 智能咨询页面键盘特殊处理
+        if (@available(iOS 12.0, *))
+        {
+            if ([self.m_UrlString isEqualToString:[NSString stringWithFormat:@"%@/ftlsh5.html", FS_AI_SERVER]])
+            {
+                [self.m_WebView.scrollView setContentOffset:CGPointMake(0, 0)];
+                
+                //return;
+            }
+        }
         webView.frame = CGRectMake(0, 0, fullWidth, fullHeight);
     }];
 }
 
-- (void)keyBoardWillHide
-{
-    if (@available(iOS 12.0, *)) {
-        if (!self.m_UsingUIWebView)
-        {
-            [self.m_WebView.scrollView setContentOffset:CGPointMake(0, 0)];
-        }
-    }
-}
 
 #pragma mark -
 #pragma mark UserAgent
