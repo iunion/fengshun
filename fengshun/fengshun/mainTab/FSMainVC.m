@@ -531,6 +531,18 @@ FSMainVC ()
         FSTopicModel *lastTopicModel = weakSelf.m_topics.lastObject;
         lastTopicModel.m_PositionType = BMTableViewCell_PositionType_Last;
         
+        NSString *commonUrl = [responseObject bm_stringTrimForKey:@"commonUrl"];
+        if ([commonUrl bm_isNotEmpty])
+        {
+            NSString *last = [commonUrl substringFromIndex:commonUrl.length-1];
+            if ([last isEqualToString:@"/"])
+            {
+                commonUrl = [commonUrl substringToIndex:commonUrl.length-1];
+            }
+            [[NSUserDefaults standardUserDefaults] setObject:commonUrl forKey:FS_CASE_STATUTE_URL_KEY];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+        
         [weakSelf freshUI];
     } failure:^(NSError * _Nullable error) {
         

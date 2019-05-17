@@ -25,7 +25,7 @@
 #define FS_FILE_ADDRESS_TEST    (@"/storm/file/download/")
 //#define FS_CASE_STATUTE_TEST    (@"https://lawsearch-pre.odrcloud.cn")
 #define FS_CASE_STATUTE_TEST    (@"https://lawsearch-ftls-pre.odrcloud.cn")
-#define FS_AI_SERVER_TEST        (@"https://robot.odrcloud.cn")
+#define FS_AI_SERVER_TEST       (@"https://robot.odrcloud.cn")
 
 // 线上环境
 #define FS_URL_SERVER_ONLINE    (@"https://ftlsh5.odrcloud.cn")
@@ -51,8 +51,8 @@
 #define FS_FILE_ADDRESS         [[NSUserDefaults standardUserDefaults] objectForKey:FS_FILE_ADDRESS_KEY]
 
 // v1.1法规及案例检索变更为专门的服务器提供的服务,相关接口请求域名变更
-#define FS_CASE_STATUTE_URL_KEY  (@"debug_case_statute_h5")
-#define FS_CASE_STATUTE_URL      [[NSUserDefaults standardUserDefaults] objectForKey:FS_CASE_STATUTE_URL_KEY]
+#define FS_CASE_STATUTE_URL_KEY (@"debug_case_statute_h5")
+#define FS_CASE_STATUTE_URL     [[NSUserDefaults standardUserDefaults] objectForKey:FS_CASE_STATUTE_URL_KEY]
 
 #define FS_AI_SERVER_KEY        (@"debug_ai_server")
 #define FS_AI_SERVER            [[NSUserDefaults standardUserDefaults] objectForKey:FS_AI_SERVER_KEY]
@@ -65,8 +65,13 @@
 
 #define FS_FILE_ADDRESS         (@"/storm/file/download/")
 //#define FS_CASE_STATUTE_URL     (@"https://lawsearch.odrcloud.cn")
-#define FS_CASE_STATUTE_URL     (@"https://lawsearch-ftls.odrcloud.cn")
+//#define FS_CASE_STATUTE_URL     (@"https://lawsearch-ftls.odrcloud.cn")
 #define FS_AI_SERVER            (@"https://robot.odrcloud.cn")
+
+#define FS_CASE_STATUTE_URL_KEY (@"online_case_statute_h5")
+#define FS_CASE_STATUTE_INIT    (@"https://lawsearch-ftls.odrcloud.cn")
+//#define FS_CASE_STATUTE_URL             [[[NSUserDefaults standardUserDefaults] objectForKey:FS_CASE_STATUTE_URL_KEY] bm_isNotEmpty] ? [[NSUserDefaults standardUserDefaults] objectForKey:FS_CASE_STATUTE_URL_KEY] : FS_CASE_STATUTE_INIT
+#define FS_CASE_STATUTE_URL     [[NSUserDefaults standardUserDefaults] objectForKey:FS_CASE_STATUTE_URL_KEY]
 
 #endif
 

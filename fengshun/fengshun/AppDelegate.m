@@ -193,6 +193,16 @@
     
     // 创建搜索历史存储目录
     [FSUserInfoDB makeSearchHistoryPath];
+    
+#if USE_TEST_HELP
+#else
+    NSString *caseStatuteH5Url = [[NSUserDefaults standardUserDefaults]objectForKey:FS_CASE_STATUTE_URL_KEY];
+    if (!caseStatuteH5Url)
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:FS_CASE_STATUTE_INIT forKey:FS_CASE_STATUTE_URL_KEY];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+#endif
 }
 
 
