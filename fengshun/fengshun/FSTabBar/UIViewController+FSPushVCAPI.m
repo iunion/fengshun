@@ -133,7 +133,8 @@
             // 特殊处理一下url
             NSString *prefix = @"ftls://h5?url=";
             NSString *urlString = url.absoluteString;
-            if ([url.absoluteString hasPrefix:prefix]) {
+            if ([url.absoluteString hasPrefix:prefix])
+            {
                 NSString *url = [urlString substringFromIndex:prefix.length];
                 [FSPushVCManager fsPresentWebVC:self url:url title:nil];
             }
