@@ -130,10 +130,12 @@
         }
             case FSJumpVC_TYPE_H5:// 外部url打开APP弹出页面
         {
-            NSDictionary *params = [url bm_queryDictionary];
-            if ([[params bm_stringForKey:@"url"] bm_isNotEmpty])
-            {
-                [FSPushVCManager fsPresentWebVC:self url:[params bm_stringForKey:@"url"] title:nil];
+            // 特殊处理一下url
+            NSString *prefix = @"ftls://h5?url=";
+            NSString *urlString = url.absoluteString;
+            if ([url.absoluteString hasPrefix:prefix]) {
+                NSString *url = [urlString substringFromIndex:prefix.length];
+                [FSPushVCManager fsPresentWebVC:self url:url title:nil];
             }
         }
             break;
