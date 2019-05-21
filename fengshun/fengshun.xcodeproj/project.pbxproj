@@ -4187,7 +4187,6 @@
 		DB16488621C8CEE700F9FB9D /* jpush-ios-3.1.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-3.1.2.a"; sourceTree = "<group>"; };
 		DB16488721C8CEE800F9FB9D /* JPushNotificationExtensionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPushNotificationExtensionService.h; sourceTree = "<group>"; };
 		DB16488E21C8D06C00F9FB9D /* fengshun.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = fengshun.entitlements; sourceTree = "<group>"; };
-		DB16488F21C8D0AF00F9FB9D /* fengshun_video.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = fengshun_video.entitlements; sourceTree = "<group>"; };
 		DB16489021C8D1B600F9FB9D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		DB16489321C8D34500F9FB9D /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		DB16489521C8D37B00F9FB9D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -7300,7 +7299,6 @@
 		87C0133D212E7A5200D0AAC3 = {
 			isa = PBXGroup;
 			children = (
-				DB16488F21C8D0AF00F9FB9D /* fengshun_video.entitlements */,
 				45FEF746214D11060005AD43 /* ILiveSDKT */,
 				87426791212E7E35003C52F6 /* BMKit */,
 				87426910212E8254003C52F6 /* thirdParty */,
@@ -11400,7 +11398,7 @@
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
-				CODE_SIGN_ENTITLEMENTS = fengshun_video.entitlements;
+				CODE_SIGN_ENTITLEMENTS = fengshun/fengshun.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -11462,7 +11460,7 @@
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
-				CODE_SIGN_ENTITLEMENTS = fengshun_video.entitlements;
+				CODE_SIGN_ENTITLEMENTS = fengshun/fengshun.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
