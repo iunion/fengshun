@@ -198,12 +198,6 @@
     return @"Filter";
 }
 
-+ (BOOL)isImagePathExtension:(NSString *)extension
-{
-    // https://developer.apple.com/library/ios/documentation/uikit/reference/UIImage_Class/Reference/Reference.html#//apple_ref/doc/uid/TP40006890-CH3-SW3
-    return [@[@"jpg", @"jpeg", @"png", @"gif", @"tiff", @"tif"] containsObject:extension];
-}
-
 + (UIImage *)thumbnailedImageWithMaxPixelDimension:(NSInteger)dimension fromImageData:(NSData *)data
 {
     UIImage *thumbnail = nil;
@@ -319,7 +313,7 @@
 }
 
 // Thanks to the following links for help with this method
-// http://www.cocoanetics.com/2012/02/decompressing-files-into-memory/
+// https://www.cocoanetics.com/2012/02/decompressing-files-into-memory/
 // https://github.com/nicklockwood/GZIP
 + (NSData *)inflatedDataFromCompressedData:(NSData *)compressedData
 {
@@ -361,6 +355,7 @@
     BOOL includeInternalWindows = YES;
     BOOL onlyVisibleWindows = NO;
 
+    // Obfuscating selector allWindowsIncludingInternalWindows:onlyVisibleWindows:
     NSArray<NSString *> *allWindowsComponents = @[@"al", @"lWindo", @"wsIncl", @"udingInt", @"ernalWin", @"dows:o", @"nlyVisi", @"bleWin", @"dows:"];
     SEL allWindowsSelector = NSSelectorFromString([allWindowsComponents componentsJoinedByString:@""]);
 
