@@ -11,6 +11,7 @@
 @interface UITextField (BMCategory)
 
 - (void)bm_setPlaceholderColor:(nullable UIColor *)color;
+- (void)bm_setPlaceholderFont:(nonnull UIFont *)font;
 
 - (void)bm_selectAllText;
 

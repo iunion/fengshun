@@ -21,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)bm_setImageWithStretchableImage:(NSString *)imageName;
 - (void)bm_setImageWithStretchableImage:(NSString *)imageName atPoint:(CGPoint)point;
 
+- (void)bm_animationWithImageArray:(NSArray *)imageArray duration:(NSTimeInterval)duration repeatCount:(NSUInteger)repeatCount;
+- (void)bm_animationWithImageArray:(NSArray *)imageArray duration:(NSTimeInterval)duration repeatCount:(NSUInteger)repeatCount imageWithIndex:(NSUInteger)index;
+
 // 画水印
 // 图片水印
 - (void)bm_setImage:(UIImage *)image withWaterMark:(UIImage *)mark inRect:(CGRect)rect;

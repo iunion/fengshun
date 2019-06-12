@@ -9,8 +9,9 @@
 #import "UITextField+BMCategory.h"
 
 /** 通过这个属性名，就可以修改textField内部的占位文字颜色 */
-//static NSString * const TextFieldPlaceholderColorKeyPath = @"_placeholderLabel.textColor";
-static NSString * const TextFieldPlaceholderColorKeyPath = @"placeholderLabel.textColor";
+//static NSString * const kTextFieldPlaceholderColorKeyPath = @"placeholderLabel.textColor";
+static NSString * const kTextFieldPlaceholderColorKeyPath = @"_placeholderLabel.textColor";
+static NSString * const kTextFieldPlaceholderKeypathFontName = @"_placeholderLabel.font";
 
 @implementation UITextField (BMCategory)
 
@@ -22,7 +23,12 @@ static NSString * const TextFieldPlaceholderColorKeyPath = @"placeholderLabel.te
         color  = [color colorWithAlphaComponent:0.7f];
     }
     
-    [self setValue:color forKeyPath:TextFieldPlaceholderColorKeyPath];
+    [self setValue:color forKeyPath:kTextFieldPlaceholderColorKeyPath];
+}
+
+- (void)bm_setPlaceholderFont:(nonnull UIFont *)font
+{
+    [self setValue:font forKeyPath:kTextFieldPlaceholderKeypathFontName];
 }
 
 - (void)bm_selectAllText

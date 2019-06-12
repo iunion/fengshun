@@ -47,6 +47,15 @@
     return [UIColor bm_colorWithHexString:stringToConvert alpha:1.0f default:color];
 }
 
++ (CGFloat)colorComponentFrom:(NSString *)string start:(NSUInteger)start length:(NSUInteger)length
+{
+    NSString *substring = [string substringWithRange:NSMakeRange(start, length)];
+    NSString *fullHex = length == 2 ? substring : [NSString stringWithFormat:@"%@%@", substring, substring];
+    unsigned int hexComponent;
+    [[NSScanner scannerWithString:fullHex] scanHexInt:&hexComponent];
+    return hexComponent / 255.0f;
+}
+
 + (UIColor *)bm_colorWithHexString:(NSString *)stringToConvert alpha:(CGFloat)alpha default:(UIColor *)color
 {
 //    NSString *cString = [[stringToConvert stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
@@ -72,69 +81,74 @@
 //    
 //    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
     
-    
-    NSString *cString = [[stringToConvert stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
-        
-    // String should be 6 or 8 characters
-    if ([cString length] < 3)
-        return color;
+    NSString *colorString = [[stringToConvert stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
     
     // strip 0X if it appears
-    if ([cString hasPrefix:@"0X"] || [cString hasPrefix:@"0x"])
+    //if ([cString hasPrefix:@"0X"] || [cString hasPrefix:@"0x"])
+    if ([colorString hasPrefix:@"0X"])
     {
-        cString = [cString substringFromIndex:2];
+        colorString = [colorString substringFromIndex:2];
     }
-    else if ([cString hasPrefix:@"＃"] || [cString hasPrefix:@"#"])
+    else if ([colorString hasPrefix:@"＃"] || [colorString hasPrefix:@"#"])
     {
-        cString = [cString substringFromIndex:1];
+        colorString = [colorString substringFromIndex:1];
     }
-    
-    NSInteger length = cString.length;
-    if (length != 2 && length != 4 && length != 6)
-        return color;
-    
-    // Separate into r, g, b substrings
-    NSRange range;
-    range.location = 0;
-    range.length = 2;
-    NSString *rString = [cString substringWithRange:range];
-    
-    range.location = 2;
-    NSString *gString = nil;
-    if (length > 2)
-    {
-      gString = [cString substringWithRange:range];
-    }
-    
-    range.location = 4;
-    NSString *bString = nil;
-    if (length > 4)
-    {
-        bString = [cString substringWithRange:range];
-    }
-    
-    // Scan values
-    if (rString && gString && bString)
-    {
-        unsigned int r = 0, g = 0, b = 0;
-        [[NSScanner scannerWithString:rString] scanHexInt:&r];
-        [[NSScanner scannerWithString:gString] scanHexInt:&g];
-        [[NSScanner scannerWithString:bString] scanHexInt:&b];
-        
-        return [UIColor colorWithRed:((float) r / 255.0f)
-                               green:((float) g / 255.0f)
-                                blue:((float) b / 255.0f)
-                               alpha:1.0f];
-    }
-    else
+
+    if (![colorString bm_isNotEmpty])
     {
         return color;
     }
+    
+    CGFloat red, blue, green;
+    NSUInteger length = colorString.length;
+    switch (length)
+    {
+        case 1: // 0
+            if ([colorString isEqualToString:@"0"])
+            {
+                return [UIColor clearColor];
+            }
+            else
+            {
+                return color;
+            }
+
+        case 3: // #RGB ==> #RRGGBB
+            red = [UIColor colorComponentFrom:colorString start:0 length:1];
+            green = [UIColor colorComponentFrom:colorString start:1 length:1];
+            blue = [UIColor colorComponentFrom:colorString start:2 length:1];
+            break;
+            
+        case 4: // #ARGB ==> #AARRGGBB
+            alpha = [UIColor colorComponentFrom:colorString start:0 length:1];
+            red = [UIColor colorComponentFrom:colorString start:1 length:1];
+            green = [UIColor colorComponentFrom:colorString start:2 length:1];
+            blue = [UIColor colorComponentFrom:colorString start:3 length:1];
+            break;
+
+        case 6: // #RRGGBB
+            red = [UIColor colorComponentFrom:colorString start:0 length:2];
+            green = [UIColor colorComponentFrom:colorString start:2 length:2];
+            blue = [UIColor colorComponentFrom:colorString start:4 length:2];
+            break;
+            
+        case 8: // #AARRGGBB
+            alpha = [UIColor colorComponentFrom:colorString start:0 length:2];
+            red = [UIColor colorComponentFrom:colorString start:2 length:2];
+            green = [UIColor colorComponentFrom:colorString start:4 length:2];
+            blue = [UIColor colorComponentFrom:colorString start:6 length:2];
+            break;
+            
+        default:
+            return color;
+    }
+
+    return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
 }
 
 // _hexUIColorRegex = [NSRegularExpression regularExpressionWithPattern:@"\\[\\s*UIColor\\s+(colorWithHex:\\s*(0[xX][0-9a-fA-F]{1,6})(\\s+alpha:\\s*([0-9]*.?[0-9]{1,})f?)?)\\s*\\]" options:0 error:NULL];
 // NSString *hex = [text substringWithRange:[result rangeAtIndex:2]];
-// index既是()小括号位置
+// index即是()小括号位置
 // alpha = [[text substringWithRange:[result rangeAtIndex:4]] doubleValue];
 
 + (UIColor *)bm_colorWithHex:(UInt32)hex
@@ -148,6 +162,43 @@
                            green:((float)((hex & 0xFF00) >> 8)) / 255.0
                             blue:((float)(hex & 0xFF)) / 255.0
                            alpha:alpha];
+}
+
++ (NSString *)bm_hexStringFromColor:(UIColor *)color
+{
+    return [UIColor bm_hexStringFromColor:color withStartChar:@"" haveAlpha:NO];
+}
+
++ (NSString *)bm_hexStringFromColor:(UIColor *)color withStartChar:(NSString *)startChar haveAlpha:(BOOL)haveAlpha
+{
+    if (![startChar bm_isNotEmpty])
+    {
+        startChar = @"";
+    }
+    
+    if (haveAlpha)
+    {
+        return [NSString stringWithFormat:@"%@%0.8X", startChar, color.bm_argbHex];
+    }
+    else
+    {
+        return [NSString stringWithFormat:@"%@%0.6X", startChar, color.rgbHex];
+    }
+}
+
+- (NSString *)bm_hexString
+{
+    return [self bm_hexStringWithStartChar:@"" haveAlpha:NO];
+}
+
+- (NSString *)bm_hexStringWithStartChar:(NSString *)startChar
+{
+    return [self bm_hexStringWithStartChar:startChar haveAlpha:NO];
+}
+
+- (NSString *)bm_hexStringWithStartChar:(NSString *)startChar haveAlpha:(BOOL)haveAlpha
+{
+    return [UIColor bm_hexStringFromColor:self withStartChar:startChar haveAlpha:haveAlpha];
 }
 
 + (UIColor *)bm_randomColor
@@ -451,6 +502,24 @@
     | (((int)roundf(b * 255)));
 }
 
+- (UInt32)bm_argbHex
+{
+    NSAssert(self.canProvideRGBComponents, @"Must be a RGB color to use rgbHex");
+    
+    CGFloat r,g,b,a;
+    if (![self red:&r green:&g blue:&b alpha:&a]) return 0;
+    
+    a = MIN(MAX(a, 0.0f), 1.0f);
+    r = MIN(MAX(r, 0.0f), 1.0f);
+    g = MIN(MAX(g, 0.0f), 1.0f);
+    b = MIN(MAX(b, 0.0f), 1.0f);
+    
+    return (((int)roundf(a * 255)) << 24)
+    | (((int)roundf(r * 255)) << 16)
+    | (((int)roundf(g * 255)) << 8)
+    | (((int)roundf(b * 255)));
+}
+
 - (UIColor *)changeAlpha:(CGFloat)alpha
 {
     return [UIColor colorWithRed:self.red
@@ -660,6 +729,36 @@
     return [UIColor colorWithRed:(r + .4) green:(g + .4) blue:(b + .4) alpha:1];
 }
 
+- (UIColor *)bm_inverseColor
+{
+    CGColorRef oldCGColor = self.CGColor;
+    
+    size_t numberOfComponents = CGColorGetNumberOfComponents(oldCGColor);
+    
+    // can not invert - the only component is the alpha
+    // e.g. self == [UIColor groupTableViewBackgroundColor]
+    if (numberOfComponents == 1)
+    {
+        return [UIColor colorWithCGColor:oldCGColor];
+    }
+    
+    const CGFloat *oldComponentColors = CGColorGetComponents(oldCGColor);
+    CGFloat newComponentColors[numberOfComponents];
+    
+    NSInteger i = numberOfComponents - 1;
+    newComponentColors[i] = oldComponentColors[i]; // alpha
+    while (--i >= 0)
+    {
+        newComponentColors[i] = 1 - oldComponentColors[i];
+    }
+    
+    CGColorRef newCGColor = CGColorCreate(CGColorGetColorSpace(oldCGColor), newComponentColors);
+    UIColor *newColor = [UIColor colorWithCGColor:newCGColor];
+    CGColorRelease(newCGColor);
+    
+    return newColor;
+}
+
 // Pick two colors more colors such that all three are equidistant on the color wheel
 // (120 degrees and 240 degress difference in hue from self)
 - (NSArray*) triadicColors
@@ -714,10 +813,6 @@
     return result;
 }
 
-- (NSString *) hexStringFromColor
-{
-    return [NSString stringWithFormat:@"#%0.6X", (unsigned int)self.rgbHex];
-}
 
 #pragma mark Color Space Conversions
 

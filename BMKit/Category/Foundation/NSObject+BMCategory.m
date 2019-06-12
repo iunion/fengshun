@@ -192,17 +192,28 @@
                  && [(NSArray *)self count] == 0));
 }
 
+- (BOOL)bm_isNotEmptyExceptNSNull
+{
+    return !(self == nil
+             || ([self respondsToSelector:@selector(length)]
+                 && [(NSData *)self length] == 0)
+             || ([self respondsToSelector:@selector(count)]
+                 && [(NSArray *)self count] == 0));
+}
 
 - (BOOL)bm_isNotEmptyDictionary
 {
     if ([self bm_isNotEmpty])
     {
-        return [self isKindOfClass:[NSDictionary class]];
+        if ([self isKindOfClass:[NSDictionary class]])
+        {
+            NSDictionary *dict = (NSDictionary *)self;
+            return (dict.allKeys.count > 0);
+        }
     }
     
     return NO;
 }
-
 
 @end
 

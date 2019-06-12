@@ -53,6 +53,8 @@
 
 - (CGSize)bm_attribSizeToFit:(CGSize)maxSize
 {
+    CGSize textSize = CGSizeZero;
+
     NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading;
     if (self.lineBreakMode ==  NSLineBreakByTruncatingHead ||
         self.lineBreakMode ==  NSLineBreakByTruncatingTail ||
@@ -65,8 +67,9 @@
     
     CGRect textRect  = [self.attributedText boundingRectWithSize:maxSize options:options context:NULL];
     //self.lineBreakMode = mode;
-    
-    return textRect.size;
+    textSize = CGSizeMake(ceil(textRect.size.width), ceil(textRect.size.height));
+
+    return textSize;
 }
 
 - (CGSize)bm_labelSizeToFitWidth:(CGFloat)width

@@ -51,6 +51,7 @@
 - (BOOL)bm_isValided;
 - (BOOL)bm_isNotNSNull;
 - (BOOL)bm_isNotEmpty;
+- (BOOL)bm_isNotEmptyExceptNSNull;
 - (BOOL)bm_isNotEmptyDictionary;
 
 + (nonnull NSString *)bm_className;

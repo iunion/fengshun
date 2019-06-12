@@ -59,6 +59,10 @@
 
 - (NSString *)bm_toJsonString;
 
+// json转NSArray、NSDictionary
++ (id)bm_jsonToObject:(NSString *)jsonStr;
+- (id)bm_jsonToObject;
+
 - (NSString *)bm_escapeHTML;
 
 - (NSURL *)bm_toURL;

@@ -85,6 +85,39 @@
     return imageView;
 }
 
+- (void)bm_animationWithImageArray:(NSArray *)imageArray duration:(NSTimeInterval)duration repeatCount:(NSUInteger)repeatCount
+{
+    [self bm_animationWithImageArray:imageArray duration:duration repeatCount:repeatCount imageWithIndex:0];
+}
+
+- (void)bm_animationWithImageArray:(NSArray *)imageArray duration:(NSTimeInterval)duration repeatCount:(NSUInteger)repeatCount imageWithIndex:(NSUInteger)index
+{
+    NSMutableArray *images = [NSMutableArray array];
+    
+    for (NSUInteger i = 0; i < imageArray.count; i++)
+    {
+        UIImage *image = [UIImage imageNamed:[imageArray objectAtIndex:i]];
+        if ([image bm_isNotEmpty])
+        {
+            [images addObject:image];
+        }
+    }
+    
+    if (images.count > 1)
+    {
+        UIImage *image = [images bm_safeObjectAtIndex:index];
+        if (image)
+        {
+            [self setImage:image];
+        }
+        
+        [self setAnimationImages:images];
+        [self setAnimationDuration:duration];
+        [self setAnimationRepeatCount:repeatCount];
+    }
+    
+    [self stopAnimating];
+}
 
 // 画水印
 - (void)bm_setImage:(UIImage *)image withWaterMark:(UIImage *)mark inRect:(CGRect)rect

@@ -27,7 +27,7 @@
         return;
     }
     if (attributed) {
-        NSMutableAttributedString *aString = [NSMutableAttributedString bm_attributedStringReplaceHTMLString:text fontSize:fontSize contentColor:textColor.hexStringFromColor tagColor:UI_COLOR_R1.hexStringFromColor starTag:@"<em>" endTag:@"</em>"];
+        NSMutableAttributedString *aString = [NSMutableAttributedString bm_attributedStringReplaceHTMLString:text fontSize:fontSize contentColor:[textColor bm_hexStringWithStartChar:@"#"] tagColor:[UI_COLOR_R1 bm_hexStringWithStartChar:@"#"] starTag:@"<em>" endTag:@"</em>"];
         label.attributedText = aString;
         
     }

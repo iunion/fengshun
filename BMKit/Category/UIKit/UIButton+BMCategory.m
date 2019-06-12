@@ -195,4 +195,22 @@
     [self setTitleColor:selectedColor forState:UIControlStateSelected];
 }
 
+- (void)bm_setBackgroundImageWithColor:(nonnull UIColor *)color
+{
+    [self setBackgroundImage:[UIImage imageWithColor:color] forState:UIControlStateNormal];
+}
+
+- (void)bm_setBackgroundImageWithColor:(nonnull UIColor *)color highlightedColor:(nonnull UIColor *)highlightedColor
+{
+    [self setBackgroundImage:[UIImage imageWithColor:color] forState:UIControlStateNormal];
+    [self setBackgroundImage:[UIImage imageWithColor:highlightedColor] forState:UIControlStateHighlighted];
+}
+
+- (void)bm_setBackgroundImageWithColor:(nonnull UIColor *)color highlightedColor:(nonnull UIColor *)highlightedColor selectedColor:(nonnull UIColor *)selectedColor
+{
+    [self setBackgroundImage:[UIImage imageWithColor:color] forState:UIControlStateNormal];
+    [self setBackgroundImage:[UIImage imageWithColor:highlightedColor] forState:UIControlStateHighlighted];
+    [self setBackgroundImage:[UIImage imageWithColor:selectedColor] forState:UIControlStateDisabled];
+}
+
 @end

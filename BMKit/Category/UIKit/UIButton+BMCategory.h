@@ -49,5 +49,8 @@
 - (void)bm_setTitleColor:(nonnull UIColor *)color highlightedColor:(nonnull UIColor *)highlightedColor;
 - (void)bm_setTitleColor:(nonnull UIColor *)color highlightedColor:(nonnull UIColor *)highlightedColor selectedColor:(nonnull UIColor *)selectedColor;
 
+- (void)bm_setBackgroundImageWithColor:(nonnull UIColor *)color;
+- (void)bm_setBackgroundImageWithColor:(nonnull UIColor *)color highlightedColor:(nonnull UIColor *)highlightedColor;
+- (void)bm_setBackgroundImageWithColor:(nonnull UIColor *)color highlightedColor:(nonnull UIColor *)highlightedColor selectedColor:(nonnull UIColor *)selectedColor;
 
 @end

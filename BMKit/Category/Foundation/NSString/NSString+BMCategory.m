@@ -398,6 +398,27 @@
             ];
 }
 
+// json转NSArray、NSDictionary
++ (id)bm_jsonToObject:(NSString *)jsonStr
+{
+    return [jsonStr bm_jsonToObject];
+}
+
+- (id)bm_jsonToObject
+{
+    // string转data
+    NSData *jsonData = [self dataUsingEncoding:NSUTF8StringEncoding];
+    
+    // json解析
+    if (jsonData)
+    {
+        id obj = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
+        return obj;
+    }
+    
+    return nil;
+}
+    
 - (NSString *)bm_escapeHTML
 {
     NSMutableString *result = [[NSMutableString alloc] initWithString:self];
@@ -525,8 +546,8 @@
         font = [UIFont systemFontOfSize:12.0f];
     }
     
-    CGSize result;
-    
+    CGSize textSize = CGSizeZero;
+
     if ([self respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)])
     {
         NSMutableDictionary *attr = [NSMutableDictionary new];
@@ -541,16 +562,16 @@
         CGRect rect = [self boundingRectWithSize:maxSize
                                          options:options
                                       attributes:attr context:nil];
-        result = rect.size;
+        textSize = CGSizeMake(ceil(rect.size.width), ceil(rect.size.height));
     }
     else
     {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        result = [self sizeWithFont:font constrainedToSize:maxSize lineBreakMode:lineBreakMode];
+        textSize = [self sizeWithFont:font constrainedToSize:maxSize lineBreakMode:lineBreakMode];
 #pragma clang diagnostic pop
     }
-    return result;
+    return textSize;
 #endif
 }
 

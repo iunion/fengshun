@@ -21,6 +21,12 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIColor *)bm_colorWithHex:(UInt32)hex;
 + (UIColor *)bm_colorWithHex:(UInt32)hex alpha:(CGFloat)alpha;
 
++ (NSString *)bm_hexStringFromColor:(UIColor *)color;
++ (NSString *)bm_hexStringFromColor:(UIColor *)color withStartChar:(NSString *)startChar haveAlpha:(BOOL)haveAlpha;
+- (NSString *)bm_hexString;
+- (NSString *)bm_hexStringWithStartChar:(NSString *)startChar;
+- (NSString *)bm_hexStringWithStartChar:(NSString *)startChar haveAlpha:(BOOL)haveAlpha;
+
 + (UIColor *)bm_randomColor;
 + (UIColor *)bm_randomColorWithAlpha:(CGFloat)alpha;
 
@@ -53,6 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) CGFloat alpha;
 @property (nonatomic, readonly) CGFloat luminance;
 @property (nonatomic, readonly) UInt32 rgbHex;
+@property (nonatomic, readonly) UInt32 bm_argbHex;
 
 - (UIColor *)changeAlpha:(CGFloat)alpha;
 
@@ -91,12 +98,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIColor *) contrastingColor; // A good contrasting color: will be either black or white
 - (nullable UIColor *) complementaryColor; // A complementary color that should look good with this color
 - (nullable UIColor *)bm_disableColor;
+- (UIColor *)bm_inverseColor;
 - (nullable NSArray*) triadicColors; // Two colors that should look good with this color
 - (nullable NSArray*) analogousColorsWithStepAngle:(CGFloat)stepAngle pairCount:(int)pairs; // Multiple pairs of colors
 
 // String representations of the color
 - (nullable NSString *) stringFromColor;
-- (NSString *) hexStringFromColor;
 
 // Low level conversions between RGB and HSL spaces
 + (void) hue:(CGFloat)h saturation:(CGFloat)s brightness:(CGFloat)v toRed:(CGFloat *)r green:(CGFloat *)g blue:(CGFloat *)b;
