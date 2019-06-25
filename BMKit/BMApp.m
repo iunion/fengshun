@@ -17,7 +17,7 @@ static NSString * const BMAppLastBuildVersionKey    = @"BMApp.lastBuildVersion";
 
 + (void)onFirstStartApp:(firstStartAppHandler)block
 {
-    [self onFirstStartApp:block withKey:nil];
+    [self onFirstStartApp:block withKey:BMAPP_NAME];
 }
 
 + (void)onFirstStartApp:(firstStartAppHandler)block withKey:(NSString *)key;
@@ -42,7 +42,7 @@ static NSString * const BMAppLastBuildVersionKey    = @"BMApp.lastBuildVersion";
 + (void)onFirstStartForVersion:(NSString *)version
                          block:(firstStartHandler)block
 {
-    [self onFirstStartForVersion:version block:block withKey:nil];
+    [self onFirstStartForVersion:version block:block withKey:BMAPP_NAME];
 }
 
 + (void)onFirstStartForVersion:(NSString *)version
@@ -70,7 +70,7 @@ static NSString * const BMAppLastBuildVersionKey    = @"BMApp.lastBuildVersion";
 + (void)onFirstStartForBuildVersion:(NSString *)buildVersion
                               block:(firstStartHandler)block
 {
-    [self onFirstStartForBuildVersion:buildVersion block:block withKey:nil];
+    [self onFirstStartForBuildVersion:buildVersion block:block withKey:BMAPP_NAME];
 }
 
 + (void)onFirstStartForBuildVersion:(NSString *)buildVersion
@@ -97,7 +97,7 @@ static NSString * const BMAppLastBuildVersionKey    = @"BMApp.lastBuildVersion";
 
 + (void)onFirstStartForCurrentVersion:(firstStartHandler)block
 {
-    [self onFirstStartForCurrentVersion:block withKey:nil];
+    [self onFirstStartForCurrentVersion:block withKey:BMAPP_NAME];
 }
 
 + (void)onFirstStartForCurrentVersion:(firstStartHandler)block withKey:(NSString *)key
@@ -116,7 +116,7 @@ static NSString * const BMAppLastBuildVersionKey    = @"BMApp.lastBuildVersion";
 
 + (void)onFirstStartForCurrentBuildVersion:(firstStartHandler)block
 {
-    [self onFirstStartForCurrentBuildVersion:block withKey:nil];
+    [self onFirstStartForCurrentBuildVersion:block withKey:BMAPP_NAME];
 }
 
 + (void)onFirstStartForCurrentBuildVersion:(nonnull firstStartHandler)block withKey:(nullable NSString *)key
@@ -138,7 +138,7 @@ static NSString * const BMAppLastBuildVersionKey    = @"BMApp.lastBuildVersion";
 
 + (void)reset
 {
-    [self resetWithKey:nil];
+    [self resetWithKey:BMAPP_NAME];
 }
 
 + (void)resetWithKey:(NSString *)key

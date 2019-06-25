@@ -19,11 +19,14 @@ typedef void (^firstStartHandler)(BOOL isFirstStart);
 
 @interface BMApp : NSObject
 
+// 第一次启动app
 + (void)onFirstStartApp:(nonnull firstStartAppHandler)block;
 
 // 注意version最好比currentVersion低，否则如果两个版本相等时会每次都调用block
+// version > lastVersion && version <= appVersion
 + (void)onFirstStartForVersion:(nonnull NSString *)version
                          block:(nonnull firstStartHandler)block;
+// buildVersion > lastBuildVersion && buildVersion <= appBuildVersion
 + (void)onFirstStartForBuildVersion:(nonnull NSString *)buildVersion
                               block:(nonnull firstStartHandler)block;
 
@@ -32,9 +35,10 @@ typedef void (^firstStartHandler)(BOOL isFirstStart);
 
 + (void)reset;
 
-+ (void)onFirstStartApp:(nonnull firstStartAppHandler)block withKey:(nullable NSString *)key;
 
 // 用户不同应用设置key
++ (void)onFirstStartApp:(nonnull firstStartAppHandler)block withKey:(nullable NSString *)key;
+
 + (void)onFirstStartForVersion:(nonnull NSString *)version
                          block:(nonnull firstStartHandler)block
                        withKey:(nullable NSString *)key;
