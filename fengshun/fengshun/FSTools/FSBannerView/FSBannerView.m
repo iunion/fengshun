@@ -335,6 +335,10 @@
 // 从视觉index转换为存储index
 - (NSInteger)getPageIndex:(NSInteger)index
 {
+    if (totalPage == 0)
+    {
+        return 0;
+    }
     if (totalPage == 1)
     {
         return startPageIndex;
