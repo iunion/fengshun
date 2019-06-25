@@ -159,14 +159,14 @@
 {
     NSString *fullPath = [self filePathAtIndexPath:indexPath];
     NSDictionary<NSString *, id> *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:fullPath error:NULL];
-    BOOL isDirectory = [[attributes fileType] isEqual:NSFileTypeDirectory];
+    BOOL isDirectory = [attributes.fileType isEqual:NSFileTypeDirectory];
     NSString *subtitle = nil;
     if (isDirectory) {
         NSUInteger count = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:fullPath error:NULL] count];
-        subtitle = [NSString stringWithFormat:@"%lu file%@", (unsigned long)count, (count == 1 ? @"" : @"s")];
+        subtitle = [NSString stringWithFormat:@"%lu item%@", (unsigned long)count, (count == 1 ? @"" : @"s")];
     } else {
-        NSString *sizeString = [NSByteCountFormatter stringFromByteCount:[attributes fileSize] countStyle:NSByteCountFormatterCountStyleFile];
-        subtitle = [NSString stringWithFormat:@"%@ - %@", sizeString, [attributes fileModificationDate]];
+        NSString *sizeString = [NSByteCountFormatter stringFromByteCount:attributes.fileSize countStyle:NSByteCountFormatterCountStyleFile];
+        subtitle = [NSString stringWithFormat:@"%@ - %@", sizeString, attributes.fileModificationDate ?: @"Never modified"];
     }
 
     static NSString *textCellIdentifier = @"textCell";
@@ -295,25 +295,22 @@
 
 - (BOOL)tableView:(UITableView *)tableView shouldShowMenuForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIMenuItem *renameMenuItem = [[UIMenuItem alloc] initWithTitle:@"Rename" action:@selector(fileBrowserRename:)];
-    UIMenuItem *deleteMenuItem = [[UIMenuItem alloc] initWithTitle:@"Delete" action:@selector(fileBrowserDelete:)];
-    NSMutableArray *menus = [NSMutableArray arrayWithObjects:renameMenuItem, deleteMenuItem, nil];
+    UIMenuItem *rename = [[UIMenuItem alloc] initWithTitle:@"Rename" action:@selector(fileBrowserRename:)];
+    UIMenuItem *delete = [[UIMenuItem alloc] initWithTitle:@"Delete" action:@selector(fileBrowserDelete:)];
+    UIMenuItem *copyPath = [[UIMenuItem alloc] initWithTitle:@"Copy Path" action:@selector(fileBrowserCopyPath:)];
+    UIMenuItem *share = [[UIMenuItem alloc] initWithTitle:@"Share" action:@selector(fileBrowserShare:)];
 
-    NSString *fullPath = [self filePathAtIndexPath:indexPath];
-    NSError *error = nil;
-    NSDictionary *attributes = [NSFileManager.defaultManager attributesOfItemAtPath:fullPath error:&error];
-    if (error == nil && [attributes fileType] != NSFileTypeDirectory) {
-        UIMenuItem *shareMenuItem = [[UIMenuItem alloc] initWithTitle:@"Share" action:@selector(fileBrowserShare:)];
-        [menus addObject:shareMenuItem];
-    }
-    [UIMenuController sharedMenuController].menuItems = menus;
+    [UIMenuController sharedMenuController].menuItems = @[rename, delete, copyPath, share];
 
     return YES;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canPerformAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender
 {
-    return action == @selector(fileBrowserDelete:) || action == @selector(fileBrowserRename:) || action == @selector(fileBrowserShare:);
+    return action == @selector(fileBrowserDelete:)
+        || action == @selector(fileBrowserRename:)
+        || action == @selector(fileBrowserCopyPath:)
+        || action == @selector(fileBrowserShare:);
 }
 
 - (void)tableView:(UITableView *)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender
@@ -333,7 +330,7 @@
 - (void)openFileController:(NSString *)fullPath
 {
     UIDocumentInteractionController *controller = [UIDocumentInteractionController new];
-    controller.URL = [[NSURL alloc] initFileURLWithPath:fullPath];
+    controller.URL = [NSURL fileURLWithPath:fullPath];
 
     [controller presentOptionsMenuFromRect:self.view.bounds inView:self.view animated:YES];
     self.documentController = controller;
@@ -359,14 +356,29 @@
     [self.fileOperationController show];
 }
 
-- (void)fileBrowserShare:(UITableViewCell *)sender
+- (void)fileBrowserCopyPath:(UITableViewCell *)sender
 {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
     NSString *fullPath = [self filePathAtIndexPath:indexPath];
+    [UIPasteboard generalPasteboard].string = fullPath;
+}
 
-    if (fullPath != nil) {
-        UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[fullPath] applicationActivities:nil];
-        [self presentViewController:activityViewController animated:true completion:nil];
+- (void)fileBrowserShare:(UITableViewCell *)sender
+{
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+    NSString *pathString = [self filePathAtIndexPath:indexPath];
+    NSURL *filePath = [NSURL fileURLWithPath:pathString];
+
+    BOOL isDirectory = NO;
+    [[NSFileManager defaultManager] fileExistsAtPath:pathString isDirectory:&isDirectory];
+
+    if (isDirectory) {
+        // UIDocumentInteractionController for folders
+        [self openFileController:pathString];
+    } else {
+        // Share sheet for files
+        UIActivityViewController *shareSheet = [[UIActivityViewController alloc] initWithActivityItems:@[filePath] applicationActivities:nil];
+        [self presentViewController:shareSheet animated:true completion:nil];
     }
 }
 
@@ -412,22 +424,29 @@
 
 @implementation FLEXFileBrowserTableViewCell
 
+- (void)forwardAction:(SEL)action withSender:(id)sender {
+    id target = [self.nextResponder targetForAction:action withSender:sender];
+    [[UIApplication sharedApplication] sendAction:action to:target from:self forEvent:nil];
+}
+
 - (void)fileBrowserRename:(UIMenuController *)sender
 {
-    id target = [self.nextResponder targetForAction:_cmd withSender:sender];
-    [[UIApplication sharedApplication] sendAction:_cmd to:target from:self forEvent:nil];
+    [self forwardAction:_cmd withSender:sender];
 }
 
 - (void)fileBrowserDelete:(UIMenuController *)sender
 {
-    id target = [self.nextResponder targetForAction:_cmd withSender:sender];
-    [[UIApplication sharedApplication] sendAction:_cmd to:target from:self forEvent:nil];
+    [self forwardAction:_cmd withSender:sender];
+}
+
+- (void)fileBrowserCopyPath:(UIMenuController *)sender
+{
+    [self forwardAction:_cmd withSender:sender];
 }
 
 - (void)fileBrowserShare:(UIMenuController *)sender
 {
-    id target = [self.nextResponder targetForAction:_cmd withSender:sender];
-    [[UIApplication sharedApplication] sendAction:_cmd to:target from:self forEvent:nil];
+    [self forwardAction:_cmd withSender:sender];
 }
 
 @end

@@ -267,6 +267,10 @@
 		8730E3622289468900A76592 /* BMScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730E35A2289468900A76592 /* BMScrollPageView.m */; };
 		8730E3632289468900A76592 /* segmentmore@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730E35C2289468900A76592 /* segmentmore@2x.png */; };
 		8730E3642289468900A76592 /* segmentmore@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730E35C2289468900A76592 /* segmentmore@2x.png */; };
+		8738367622C1BE0000FDEF96 /* FLEXColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8738367522C1BE0000FDEF96 /* FLEXColor.m */; };
+		8738367722C1BE0000FDEF96 /* FLEXColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8738367522C1BE0000FDEF96 /* FLEXColor.m */; };
+		8738367A22C1BE2400FDEF96 /* FLEXBundleExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8738367822C1BE2400FDEF96 /* FLEXBundleExplorerViewController.m */; };
+		8738367B22C1BE2400FDEF96 /* FLEXBundleExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8738367822C1BE2400FDEF96 /* FLEXBundleExplorerViewController.m */; };
 		87426892212E7E36003C52F6 /* steppersinput_plusicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87426795212E7E35003C52F6 /* steppersinput_plusicon@3x.png */; };
 		87426893212E7E36003C52F6 /* steppersinput_plusicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87426796212E7E35003C52F6 /* steppersinput_plusicon@2x.png */; };
 		87426894212E7E36003C52F6 /* increase_eleme@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87426797212E7E35003C52F6 /* increase_eleme@3x.png */; };
@@ -2931,6 +2935,10 @@
 		8730E35C2289468900A76592 /* segmentmore@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segmentmore@2x.png"; sourceTree = "<group>"; };
 		8730E35D2289468900A76592 /* BMScrollPageSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMScrollPageSegment.h; sourceTree = "<group>"; };
 		8730E35E2289468900A76592 /* BMScrollPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMScrollPageView.h; sourceTree = "<group>"; };
+		8738367422C1BE0000FDEF96 /* FLEXColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXColor.h; sourceTree = "<group>"; };
+		8738367522C1BE0000FDEF96 /* FLEXColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXColor.m; sourceTree = "<group>"; };
+		8738367822C1BE2400FDEF96 /* FLEXBundleExplorerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXBundleExplorerViewController.m; sourceTree = "<group>"; };
+		8738367922C1BE2400FDEF96 /* FLEXBundleExplorerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXBundleExplorerViewController.h; sourceTree = "<group>"; };
 		87426790212E7B2C003C52F6 /* fengshun-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "fengshun-Prefix.pch"; sourceTree = "<group>"; };
 		87426795212E7E35003C52F6 /* steppersinput_plusicon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "steppersinput_plusicon@3x.png"; sourceTree = "<group>"; };
 		87426796212E7E35003C52F6 /* steppersinput_plusicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "steppersinput_plusicon@2x.png"; sourceTree = "<group>"; };
@@ -6794,6 +6802,8 @@
 			children = (
 				8776E7402272B20700493422 /* FLEXArrayExplorerViewController.h */,
 				8776E7302272B20700493422 /* FLEXArrayExplorerViewController.m */,
+				8738367922C1BE2400FDEF96 /* FLEXBundleExplorerViewController.h */,
+				8738367822C1BE2400FDEF96 /* FLEXBundleExplorerViewController.m */,
 				8776E7412272B20700493422 /* FLEXClassExplorerViewController.h */,
 				8776E7362272B20700493422 /* FLEXClassExplorerViewController.m */,
 				8776E7472272B20700493422 /* FLEXColorExplorerViewController.h */,
@@ -7043,6 +7053,8 @@
 		8776E7DB2272B20700493422 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				8738367422C1BE0000FDEF96 /* FLEXColor.h */,
+				8738367522C1BE0000FDEF96 /* FLEXColor.m */,
 				8776E7E32272B20700493422 /* FLEXHeapEnumerator.h */,
 				8776E7DD2272B20700493422 /* FLEXHeapEnumerator.m */,
 				8776E7DF2272B20700493422 /* FLEXKeyboardHelpViewController.h */,
@@ -9669,6 +9681,7 @@
 				AD2244E2213D1FF900F2DC47 /* FSCommunityHeaderView.m in Sources */,
 				87426A9C21314996003C52F6 /* FSSearchViewController.m in Sources */,
 				8776E87F2272B20800493422 /* FLEXGlobalsTableViewController.m in Sources */,
+				8738367A22C1BE2400FDEF96 /* FLEXBundleExplorerViewController.m in Sources */,
 				87A0C16121CC814800B2BF1A /* FSComTopicListVC.m in Sources */,
 				874268E2212E7E36003C52F6 /* BMImageTextView.m in Sources */,
 				87742007214C9C9800F72427 /* FSMessageListVC.m in Sources */,
@@ -10032,6 +10045,7 @@
 				87EE6CC521C09E24002BD296 /* BMTestNSURLProtocol.m in Sources */,
 				874268C1212E7E36003C52F6 /* BMBoolItem.m in Sources */,
 				8730B07F2140FFA3004331A9 /* DTActionSheet.m in Sources */,
+				8738367622C1BE0000FDEF96 /* FLEXColor.m in Sources */,
 				8776E9742272E0AF00493422 /* SDWebImageCacheKeyFilter.m in Sources */,
 				ADE8689C21393469005359B5 /* FSForumListCell.m in Sources */,
 				DBC650462224F85E001B2186 /* FSCameraGridView.m in Sources */,
@@ -10435,6 +10449,7 @@
 				87E7C2EF21509AB000F7AB14 /* DTSidePanelControllerSegue.m in Sources */,
 				8776E9152272E0AF00493422 /* SDAnimatedImageView+WebCache.m in Sources */,
 				87E7C2F221509AB000F7AB14 /* DTStripedLayer.m in Sources */,
+				8738367722C1BE0000FDEF96 /* FLEXColor.m in Sources */,
 				87EE6CD921C204E4002BD296 /* BMTestNetFlowCell.m in Sources */,
 				AFBF3183224E134F002BE1E3 /* FSSpecialColumnCell.m in Sources */,
 				87E7C2F321509AB000F7AB14 /* BMTableViewCell.m in Sources */,
@@ -10559,6 +10574,7 @@
 				87E7C35C21509AB000F7AB14 /* FSSearchResultModel.m in Sources */,
 				87E7C35D21509AB000F7AB14 /* XMEngine.m in Sources */,
 				87A0C17221CCD39300B2BF1A /* TZImageRequestOperation.m in Sources */,
+				8738367B22C1BE2400FDEF96 /* FLEXBundleExplorerViewController.m in Sources */,
 				87E7C35E21509AB000F7AB14 /* FSCaseSearchResultView.m in Sources */,
 				87E7C35F21509AB000F7AB14 /* CAAnimation+Animation.m in Sources */,
 				8776E7F02272B20800493422 /* FLEXGlobalsTableViewControllerEntry.m in Sources */,

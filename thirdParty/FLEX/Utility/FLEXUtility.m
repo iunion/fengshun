@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Flipboard. All rights reserved.
 //
 
+#import "FLEXColor.h"
 #import "FLEXUtility.h"
 #import "FLEXResources.h"
 #import <ImageIO/ImageIO.h>
@@ -88,11 +89,6 @@
     return circularImage;
 }
 
-+ (UIColor *)scrollViewGrayColor
-{
-    return [UIColor colorWithRed:239.0/255.0 green:239.0/255.0 blue:244.0/255.0 alpha:1.0];
-}
-
 + (UIColor *)hierarchyIndentPatternColor
 {
     static UIColor *patternColor = nil;
@@ -100,7 +96,26 @@
     dispatch_once(&onceToken, ^{
         UIImage *indentationPatternImage = [FLEXResources hierarchyIndentPattern];
         patternColor = [UIColor colorWithPatternImage:indentationPatternImage];
+
+#if FLEX_AT_LEAST_IOS13_SDK
+        if (@available(iOS 13.0, *)) {
+            // Create a dark mode version
+            UIGraphicsBeginImageContextWithOptions(indentationPatternImage.size, NO, indentationPatternImage.scale);
+            [[FLEXColor iconColor] set];
+            [indentationPatternImage drawInRect:CGRectMake(0, 0, indentationPatternImage.size.width, indentationPatternImage.size.height)];
+            UIImage *darkModePatternImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+
+            // Create dynamic color provider
+            patternColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+                return (traitCollection.userInterfaceStyle == UIUserInterfaceStyleLight
+                        ? [UIColor colorWithPatternImage:indentationPatternImage]
+                        : [UIColor colorWithPatternImage:darkModePatternImage]);
+            }];
+        }
+#endif
     });
+
     return patternColor;
 }
 
@@ -124,6 +139,21 @@
     } else if ([object respondsToSelector:@selector(description)]) {
         description = [object description];
     }
+    return description;
+}
+
++ (NSString *)safeDebugDescriptionForObject:(id)object
+{
+    NSString *description = [self safeDescriptionForObject:object];
+    if (!description) {
+        NSString *cls = NSStringFromClass(object_getClass(object));
+        if (object_isClass(object)) {
+            description = [cls stringByAppendingString:@" class (no description)"];
+       } else {
+           description = [cls stringByAppendingString:@" instance (no description)"];
+       }
+    }
+
     return description;
 }
 
