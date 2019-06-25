@@ -102,6 +102,7 @@
     NSString *phoneVersion = [UIDevice bm_OSVersion];
     [section1 addItem:[self makeItemWithTitle:@"系统版本" content:phoneVersion last:NO]];
 
+#if USE_TEST_HELP
     // 获取设备颜色
     NSString *deviceColor = [UIDevice bm_deviceColor];
     [section1 addItem:[self makeItemWithTitle:@"设备颜色" content:deviceColor last:NO]];
@@ -109,6 +110,7 @@
     // 获取设备外壳颜色
     NSString *deviceEnclosureColor = [UIDevice bm_deviceEnclosureColor];
     [section1 addItem:[self makeItemWithTitle:@"外壳颜色" content:deviceEnclosureColor last:YES]];
+#endif
 
     BMTableViewSection *section2 = [BMTableViewSection section];
     section2.headerTitle = @"APP信息";
@@ -132,10 +134,11 @@
     section3.headerHeight = 30.0f;
     section3.footerHeight = 0;
 
+#if USE_TEST_HELP
     // 地理位置权限
     NSString *locationAuthority = [UIDevice bm_locationAuthority];
     [section3 addItem:[self makePrefsItemWithTitle:@"地理位置权限" content:locationAuthority last:NO]];
-
+#endif
     // 网络权限
     if (@available(iOS 9.0, *))
     {
@@ -144,6 +147,7 @@
         [section3 addItem:[self makePrefsItemWithTitle:@"网络权限" content:self.netAuthority last:NO]];
     }
 
+#if USE_TEST_HELP
     // push权限
     NSString *pushAuthority = [UIDevice bm_pushAuthority];
     [section3 addItem:[self makePrefsItemWithTitle:@"push权限" content:pushAuthority last:NO]];
@@ -175,7 +179,8 @@
     // 蓝牙权限
     NSString *bluetoothAuthority = [UIDevice bm_bluetoothAuthority];
     [section3 addItem:[self makePrefsItemWithTitle:@"蓝牙权限" content:bluetoothAuthority last:YES]];
-
+#endif
+    
     BMTableViewSection *section4 = [BMTableViewSection section];
     section4.headerTitle = @"运行数据";
     section4.headerHeight = 30.0f;

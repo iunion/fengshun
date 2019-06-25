@@ -30,6 +30,7 @@
 
 - (void)show
 {
+#if USE_TEST_HELP
     if (!self.colorPickerView)
     {
         self.colorPickerView = [[BMTestColorPickerView alloc] init];
@@ -44,6 +45,7 @@
     }
     
     [self.colorPickerView bm_bringToFront];
+#endif
 }
 
 - (void)close

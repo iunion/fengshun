@@ -6,6 +6,8 @@
 //  Copyright © 2018 FS. All rights reserved.
 //
 
+#if USE_TEST_HELP
+
 #import "BMConsole.h"
 #include <asl.h>
 #import "NSString+BMURLEncode.h"
@@ -1847,3 +1849,5 @@ static void exceptionHandler(NSException *exception)
 }
 
 @end
+
+#endif

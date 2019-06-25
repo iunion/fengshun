@@ -165,5 +165,4 @@ static const CGFloat kImageIconSize = 32.0f;
     return NO;
 }
 
-
 @end

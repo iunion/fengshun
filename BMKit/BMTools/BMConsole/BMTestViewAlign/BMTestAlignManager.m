@@ -30,6 +30,7 @@
 
 - (void)show
 {
+#if USE_TEST_HELP
     if (!self.alignView)
     {
         self.alignView = [[BMTestAlignView alloc] init];
@@ -41,6 +42,7 @@
     }
     
     [self.alignView bm_bringToFront];
+#endif
 }
 
 - (void)close
