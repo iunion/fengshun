@@ -61,10 +61,9 @@
 #define Sina_AppId              @"4252476878"
 #define Sina_AppSecret          @"962744c41629dee8a6034b66c667e813"
 
-// GrowingIO
-#define GrowingIO_AccountID     @"9a7f59a4f5c02c79"
-
-
+// 百度统计
+#define Baidu_AppKey            @"cd2c84044e"
+#define Baidu_Schema            @"mtjcd2c84044e"
 
 #ifdef FSVIDEO_ON
 //开发环境配置

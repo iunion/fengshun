@@ -59,10 +59,6 @@
 		8704B39A219D1CC100DBBC53 /* FSCountDownManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8704B398219D1CC100DBBC53 /* FSCountDownManager.m */; };
 		8704B39D219D57AF00DBBC53 /* UIView+FSCountDownManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8704B39C219D57AF00DBBC53 /* UIView+FSCountDownManager.m */; };
 		8704B39E219D57AF00DBBC53 /* UIView+FSCountDownManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8704B39C219D57AF00DBBC53 /* UIView+FSCountDownManager.m */; };
-		871D64D621C8D38300698AC1 /* GrowingCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 871D64D321C8D38300698AC1 /* GrowingCoreKit.framework */; };
-		871D64D721C8D38300698AC1 /* GrowingCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 871D64D321C8D38300698AC1 /* GrowingCoreKit.framework */; };
-		871D64D821C8D38300698AC1 /* GrowingAutoTrackKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 871D64D521C8D38300698AC1 /* GrowingAutoTrackKit.framework */; };
-		871D64D921C8D38300698AC1 /* GrowingAutoTrackKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 871D64D521C8D38300698AC1 /* GrowingAutoTrackKit.framework */; };
 		8730AD352140B9BD004331A9 /* FSSetupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8730AD332140B9BC004331A9 /* FSSetupVC.m */; };
 		8730AD422140CC28004331A9 /* user_commenticon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730AD362140CC26004331A9 /* user_commenticon@2x.png */; };
 		8730AD432140CC28004331A9 /* user_serviceicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8730AD372140CC27004331A9 /* user_serviceicon@3x.png */; };
@@ -499,6 +495,9 @@
 		874C23C0215B5DF2001C8BE9 /* user_praiseicon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 874C23BC215B5DF1001C8BE9 /* user_praiseicon@3x.png */; };
 		874C23C7215E216A001C8BE9 /* UMAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45C34DC215E158A00805EB8 /* UMAnalytics.framework */; };
 		874C23C8215E21BD001C8BE9 /* UMAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45C34DC215E158A00805EB8 /* UMAnalytics.framework */; };
+		87582BCA22F13D80007CA6F8 /* libBaiduMobStat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87582BC822F13D80007CA6F8 /* libBaiduMobStat.a */; };
+		87582BCB22F13D80007CA6F8 /* libBaiduMobStat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87582BC822F13D80007CA6F8 /* libBaiduMobStat.a */; };
+		87582BCD22F14076007CA6F8 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87582BCC22F14076007CA6F8 /* WebKit.framework */; };
 		876A1957216DF0B4008A04F4 /* FSMyCourseCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 876A1955216DF0B4008A04F4 /* FSMyCourseCollectionCell.m */; };
 		876A1958216DF0B4008A04F4 /* FSMyCourseCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 876A1956216DF0B4008A04F4 /* FSMyCourseCollectionCell.xib */; };
 		876A1959216DFFC6008A04F4 /* FSMyCourseCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 876A1955216DF0B4008A04F4 /* FSMyCourseCollectionCell.m */; };
@@ -2585,9 +2584,6 @@
 		8704B398219D1CC100DBBC53 /* FSCountDownManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCountDownManager.m; sourceTree = "<group>"; };
 		8704B39B219D57AF00DBBC53 /* UIView+FSCountDownManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+FSCountDownManager.h"; sourceTree = "<group>"; };
 		8704B39C219D57AF00DBBC53 /* UIView+FSCountDownManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+FSCountDownManager.m"; sourceTree = "<group>"; };
-		871D64D321C8D38300698AC1 /* GrowingCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GrowingCoreKit.framework; sourceTree = "<group>"; };
-		871D64D421C8D38300698AC1 /* Growing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Growing.h; sourceTree = "<group>"; };
-		871D64D521C8D38300698AC1 /* GrowingAutoTrackKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GrowingAutoTrackKit.framework; sourceTree = "<group>"; };
 		8730AD332140B9BC004331A9 /* FSSetupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSetupVC.m; sourceTree = "<group>"; };
 		8730AD342140B9BC004331A9 /* FSSetupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSetupVC.h; sourceTree = "<group>"; };
 		8730AD362140CC26004331A9 /* user_commenticon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_commenticon@2x.png"; sourceTree = "<group>"; };
@@ -3333,6 +3329,9 @@
 		874C23B4215B4FF9001C8BE9 /* FSMyTopicCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSMyTopicCell.xib; sourceTree = "<group>"; };
 		874C23BB215B5DF1001C8BE9 /* user_praiseicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_praiseicon@2x.png"; sourceTree = "<group>"; };
 		874C23BC215B5DF1001C8BE9 /* user_praiseicon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_praiseicon@3x.png"; sourceTree = "<group>"; };
+		87582BC822F13D80007CA6F8 /* libBaiduMobStat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBaiduMobStat.a; sourceTree = "<group>"; };
+		87582BC922F13D80007CA6F8 /* BaiduMobStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduMobStat.h; sourceTree = "<group>"; };
+		87582BCC22F14076007CA6F8 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		876A1954216DF0B4008A04F4 /* FSMyCourseCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSMyCourseCollectionCell.h; sourceTree = "<group>"; };
 		876A1955216DF0B4008A04F4 /* FSMyCourseCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSMyCourseCollectionCell.m; sourceTree = "<group>"; };
 		876A1956216DF0B4008A04F4 /* FSMyCourseCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FSMyCourseCollectionCell.xib; sourceTree = "<group>"; };
@@ -4379,7 +4378,6 @@
 				ADEF1F6F214F9B7500FFE0C3 /* ImageIO.framework in Frameworks */,
 				ADEF1F6D214F9B6300FFE0C3 /* CoreTelephony.framework in Frameworks */,
 				ADEF1F32214F546800FFE0C3 /* libsqlite3.tbd in Frameworks */,
-				871D64D821C8D38300698AC1 /* GrowingAutoTrackKit.framework in Frameworks */,
 				ADEF1F6B214F9B4700FFE0C3 /* libz.tbd in Frameworks */,
 				ADEF1F69214F9B3C00FFE0C3 /* libc++.tbd in Frameworks */,
 				ADA4DB5E21C9E6DD002AEEFE /* CoreGraphics.framework in Frameworks */,
@@ -4398,6 +4396,7 @@
 				4534449E214D0DFA00EA7BFA /* libresolv.tbd in Frameworks */,
 				453444A2214D0DFA00EA7BFA /* libicucore.tbd in Frameworks */,
 				453444A4214D0DFA00EA7BFA /* libiconv.tbd in Frameworks */,
+				87582BCA22F13D80007CA6F8 /* libBaiduMobStat.a in Frameworks */,
 				453444A8214D0DFA00EA7BFA /* libbz2.tbd in Frameworks */,
 				453444AA214D0DFA00EA7BFA /* VideoToolbox.framework in Frameworks */,
 				453444AE214D0DFA00EA7BFA /* QuartzCore.framework in Frameworks */,
@@ -4408,7 +4407,6 @@
 				453444BC214D0DFA00EA7BFA /* CoreMedia.framework in Frameworks */,
 				453444BE214D0DFA00EA7BFA /* AVFoundation.framework in Frameworks */,
 				453444C0214D0DFA00EA7BFA /* AssetsLibrary.framework in Frameworks */,
-				871D64D621C8D38300698AC1 /* GrowingCoreKit.framework in Frameworks */,
 				453444C2214D0DFA00EA7BFA /* Accelerate.framework in Frameworks */,
 				87D1867921353C9000037DDF /* libFSEncodeAPI.a in Frameworks */,
 			);
@@ -4432,6 +4430,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87582BCD22F14076007CA6F8 /* WebKit.framework in Frameworks */,
+				87E7C4E521509AB000F7AB14 /* libicucore.tbd in Frameworks */,
 				DB16489621C8D37B00F9FB9D /* Foundation.framework in Frameworks */,
 				DB16489421C8D34500F9FB9D /* CoreFoundation.framework in Frameworks */,
 				DB16489221C8D32400F9FB9D /* CFNetwork.framework in Frameworks */,
@@ -4439,6 +4439,7 @@
 				874C23C8215E21BD001C8BE9 /* UMAnalytics.framework in Frameworks */,
 				87E7C4C921509AB000F7AB14 /* ImageIO.framework in Frameworks */,
 				87E7C4CB21509AB000F7AB14 /* libsqlite3.tbd in Frameworks */,
+				87582BCB22F13D80007CA6F8 /* libBaiduMobStat.a in Frameworks */,
 				87E7C4CC21509AB000F7AB14 /* libz.tbd in Frameworks */,
 				87E7C4CD21509AB000F7AB14 /* libc++.tbd in Frameworks */,
 				ADA4DB5F21C9E6DD002AEEFE /* CoreGraphics.framework in Frameworks */,
@@ -4452,7 +4453,6 @@
 				DB16488B21C8CEE800F9FB9D /* jpush-extension-ios-1.1.1.a in Frameworks */,
 				87E7C4D621509AB000F7AB14 /* libSocialSina.a in Frameworks */,
 				87E7C4D721509AB000F7AB14 /* CoreText.framework in Frameworks */,
-				871D64D921C8D38300698AC1 /* GrowingAutoTrackKit.framework in Frameworks */,
 				87E7C4D821509AB000F7AB14 /* TILLiveSDK.framework in Frameworks */,
 				87E7C4DA21509AB000F7AB14 /* ILiveLogReport.framework in Frameworks */,
 				AFC74A6122715D480013C318 /* QAVSDKInternal.framework in Frameworks */,
@@ -4463,7 +4463,6 @@
 				87E7C4E021509AB000F7AB14 /* IMCore.framework in Frameworks */,
 				87E7C4E221509AB000F7AB14 /* libresolv.tbd in Frameworks */,
 				87E7C4E321509AB000F7AB14 /* IMSDKBugly.framework in Frameworks */,
-				87E7C4E521509AB000F7AB14 /* libicucore.tbd in Frameworks */,
 				87E7C4E621509AB000F7AB14 /* libiconv.tbd in Frameworks */,
 				87E7C4E821509AB000F7AB14 /* libbz2.tbd in Frameworks */,
 				87E7C4E921509AB000F7AB14 /* VideoToolbox.framework in Frameworks */,
@@ -4473,7 +4472,6 @@
 				87E7C4EF21509AB000F7AB14 /* OpenAL.framework in Frameworks */,
 				87E7C4F021509AB000F7AB14 /* JavaScriptCore.framework in Frameworks */,
 				87E7C4F221509AB000F7AB14 /* CoreVideo.framework in Frameworks */,
-				871D64D721C8D38300698AC1 /* GrowingCoreKit.framework in Frameworks */,
 				87E7C4F421509AB000F7AB14 /* CoreMedia.framework in Frameworks */,
 				87E7C4F521509AB000F7AB14 /* libQCloudAAIClient.a in Frameworks */,
 				87E7C4F621509AB000F7AB14 /* QAVSDK.framework in Frameworks */,
@@ -5012,16 +5010,6 @@
 				8704B39C219D57AF00DBBC53 /* UIView+FSCountDownManager.m */,
 			);
 			path = FSCountDownManager;
-			sourceTree = "<group>";
-		};
-		871D64D221C8D38300698AC1 /* GrowingIO */ = {
-			isa = PBXGroup;
-			children = (
-				871D64D421C8D38300698AC1 /* Growing.h */,
-				871D64D321C8D38300698AC1 /* GrowingCoreKit.framework */,
-				871D64D521C8D38300698AC1 /* GrowingAutoTrackKit.framework */,
-			);
-			path = GrowingIO;
 			sourceTree = "<group>";
 		};
 		8730AEFB2140FFA1004331A9 /* DTCoreText */ = {
@@ -6039,8 +6027,8 @@
 		87426910212E8254003C52F6 /* thirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				87582BC722F13D80007CA6F8 /* BaiduMobStat */,
 				DB16488221C8CE1900F9FB9D /* JPush */,
-				871D64D221C8D38300698AC1 /* GrowingIO */,
 				87426A6F2131461F003C52F6 /* AFNetworking */,
 				8730AEFB2140FFA1004331A9 /* DTCoreText */,
 				87F6396C21533ADB0035E730 /* PListNavigatorLibs */,
@@ -6587,6 +6575,15 @@
 				874C23BC215B5DF1001C8BE9 /* user_praiseicon@3x.png */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		87582BC722F13D80007CA6F8 /* BaiduMobStat */ = {
+			isa = PBXGroup;
+			children = (
+				87582BC922F13D80007CA6F8 /* BaiduMobStat.h */,
+				87582BC822F13D80007CA6F8 /* libBaiduMobStat.a */,
+			);
+			path = BaiduMobStat;
 			sourceTree = "<group>";
 		};
 		876BB7AC21AE34E700FC205D /* BMConsole */ = {
@@ -7391,6 +7388,7 @@
 		87D18659213539EE00037DDF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				87582BCC22F14076007CA6F8 /* WebKit.framework */,
 				DB16489521C8D37B00F9FB9D /* Foundation.framework */,
 				DB16489321C8D34500F9FB9D /* CoreFoundation.framework */,
 				DB16489021C8D1B600F9FB9D /* CFNetwork.framework */,
@@ -11235,7 +11233,6 @@
 					"$(PROJECT_DIR)",
 					"$(SRCROOT)/../thirdParty/UMShare/**",
 					"$(SRCROOT)/../thirdParty/JPush",
-					"$(SRCROOT)/../thirdParty/GrowingIO",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fengshun/fengshun-Prefix.pch";
@@ -11254,6 +11251,7 @@
 					"\"$(SRCROOT)/../thirdParty/UMShare/SocialLibraries/Sina/\"",
 					"\"$(SRCROOT)/../thirdParty/UMShare/SocialLibraries/WeChat/\"",
 					"\"$(SRCROOT)/../thirdParty/UMShare/SocialLibraries/QQ/\"",
+					"\"$(SRCROOT)/../thirdParty/BaiduMobStat/\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -11301,7 +11299,6 @@
 					"$(PROJECT_DIR)",
 					"$(SRCROOT)/../thirdParty/UMShare/**",
 					"$(SRCROOT)/../thirdParty/JPush",
-					"$(SRCROOT)/../thirdParty/GrowingIO",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fengshun/fengshun-Prefix.pch";
@@ -11320,6 +11317,7 @@
 					"\"$(SRCROOT)/../thirdParty/UMShare/SocialLibraries/Sina/\"",
 					"\"$(SRCROOT)/../thirdParty/UMShare/SocialLibraries/WeChat/\"",
 					"\"$(SRCROOT)/../thirdParty/UMShare/SocialLibraries/QQ/\"",
+					"\"$(SRCROOT)/../thirdParty/BaiduMobStat/\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -11428,7 +11426,6 @@
 					"$(PROJECT_DIR)/ILiveSDKT/ILiveSDK",
 					"$(SRCROOT)/../thirdParty/UMShare/**",
 					"$(SRCROOT)/../thirdParty/JPush",
-					"$(SRCROOT)/../thirdParty/GrowingIO",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fengshun/fengshun-Prefix.pch";
@@ -11452,6 +11449,7 @@
 					"\"$(SRCROOT)/../thirdParty/UMShare/SocialLibraries/Sina/\"",
 					"\"$(SRCROOT)/../thirdParty/UMShare/SocialLibraries/WeChat/\"",
 					"\"$(SRCROOT)/../thirdParty/UMShare/SocialLibraries/QQ/\"",
+					"\"$(SRCROOT)/../thirdParty/BaiduMobStat/\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -11500,7 +11498,6 @@
 					"$(PROJECT_DIR)/ILiveSDKT/ILiveSDK",
 					"$(SRCROOT)/../thirdParty/UMShare/**",
 					"$(SRCROOT)/../thirdParty/JPush",
-					"$(SRCROOT)/../thirdParty/GrowingIO",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "fengshun/fengshun-Prefix.pch";
@@ -11521,6 +11518,7 @@
 					"\"$(SRCROOT)/../thirdParty/UMShare/SocialLibraries/Sina/\"",
 					"\"$(SRCROOT)/../thirdParty/UMShare/SocialLibraries/WeChat/\"",
 					"\"$(SRCROOT)/../thirdParty/UMShare/SocialLibraries/QQ/\"",
+					"\"$(SRCROOT)/../thirdParty/BaiduMobStat/\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",

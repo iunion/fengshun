@@ -40,7 +40,7 @@
 #import <UMShare/UMShare.h>
 #import "FSShareManager.h"
 
-#import "Growing.h"
+#import "BaiduMobStat.h"
 
 //#import "SDWebImageCodersManager.h"
 //#import "SDWebImageGIFCoder.h"
@@ -116,10 +116,15 @@
 }
 
 
-// 启动GrowingIO
-- (void)setupGrowingIO
+// 启动百度移动统计
+- (void)startBaiduMobileStat
 {
-    [Growing startWithAccountId:GrowingIO_AccountID];
+    BaiduMobStat* statTracker = [BaiduMobStat defaultStat];
+#ifdef DEBUG
+    statTracker.enableDebugOn = YES;
+#endif
+    
+    [statTracker startWithAppId:Baidu_AppKey];
 }
 
 - (void)setupThirdPartyWithOptions:(NSDictionary *)launchOptions
@@ -134,8 +139,8 @@
     // 极光推送
     [self setupJPushWithOptions:launchOptions];
     
-    // 启动GrowingIO
-    [self setupGrowingIO];
+    // 启动百度移动统计
+    [self startBaiduMobileStat];
 }
 
 - (void)setUpApp
@@ -312,14 +317,10 @@
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options
 {
-    //6.3的新的API调用，是为了兼容国外平台(例如:新版facebookSDK,VK等)的调用[如果用6.2的api调用会没有回调],对国内平台没有影响
+    // 6.3的新的API调用，是为了兼容国外平台(例如:新版facebookSDK,VK等)的调用[如果用6.2的api调用会没有回调],对国内平台没有影响
     BOOL result = [[UMSocialManager defaultManager]  handleOpenURL:url options:options];
     if (!result) {
         // 其他如支付等SDK的回调
-        if ([Growing handleUrl:url]) // 请务必确保该函数被调用
-        {
-            return YES;
-        }
         if ([self.m_TabBarController topVCJumpWithUrl:url])
         {
             return YES;
@@ -330,14 +331,10 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    //6.3的新的API调用，是为了兼容国外平台(例如:新版facebookSDK,VK等)的调用[如果用6.2的api调用会没有回调],对国内平台没有影响
+    // 6.3的新的API调用，是为了兼容国外平台(例如:新版facebookSDK,VK等)的调用[如果用6.2的api调用会没有回调],对国内平台没有影响
     BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
     if (!result) {
         // 其他如支付等SDK的回调
-        if ([Growing handleUrl:url]) // 请务必确保该函数被调用
-        {
-            return YES;
-        }
         if ([self.m_TabBarController topVCJumpWithUrl:url])
         {
             return YES;
