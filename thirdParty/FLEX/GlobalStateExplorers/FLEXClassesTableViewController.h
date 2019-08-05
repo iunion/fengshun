@@ -6,9 +6,10 @@
 //  Copyright (c) 2014 Flipboard. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "FLEXTableViewController.h"
+#import "FLEXGlobalsTableViewControllerEntry.h"
 
-@interface FLEXClassesTableViewController : UITableViewController
+@interface FLEXClassesTableViewController : FLEXTableViewController <FLEXGlobalsTableViewControllerEntry>
 
 @property (nonatomic, copy) NSString *binaryImageName;
 

@@ -6,8 +6,9 @@
 //  Copyright (c) 2015 f. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "FLEXTableViewController.h"
+#import "FLEXGlobalsTableViewControllerEntry.h"
 
-@interface FLEXSystemLogTableViewController : UITableViewController
+@interface FLEXSystemLogTableViewController : FLEXTableViewController <FLEXGlobalsTableViewControllerEntry>
 
 @end

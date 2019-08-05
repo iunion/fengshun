@@ -9,68 +9,93 @@
 #import "FLEXColor.h"
 #import "FLEXUtility.h"
 
-@implementation FLEXColor
-
-static UIColor *colorWithDynamicProvider(UIColor *lightColor, UIColor *darkColor) {
 #if FLEX_AT_LEAST_IOS13_SDK
-    if (@available(iOS 13.0, *)) {
-        return [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
-            return (traitCollection.userInterfaceStyle == UIUserInterfaceStyleLight
-                    ? lightColor
-                    : darkColor);
-        }];
-    }
+#define FLEXDynamicColor(dynamic, static) ({ \
+    UIColor *c; \
+    if (@available(iOS 13, *)) { \
+        c = [UIColor dynamic]; \
+    } else { \
+        c = [UIColor static]; \
+    } \
+    c; \
+});
+#else
+#define FLEXDynamicColor(dynamic, static) [UIColor static]
 #endif
-    return lightColor;
-}
+
+@implementation FLEXColor
 
 #pragma mark - Background Colors
 
-+ (UIColor *)systemBackgroundColor {
-    return [self systemBackgroundColorWithAlpha:1.0];
++ (UIColor *)primaryBackgroundColor {
+    return FLEXDynamicColor(systemBackgroundColor, whiteColor);
 }
 
-+ (UIColor *)systemBackgroundColorWithAlpha:(CGFloat)alpha {
-    return colorWithDynamicProvider([UIColor colorWithWhite:1.0 alpha:alpha],
-                                    [UIColor colorWithWhite:0.0 alpha:alpha]);
++ (UIColor *)primaryBackgroundColorWithAlpha:(CGFloat)alpha {
+    return [[self primaryBackgroundColor] colorWithAlphaComponent:alpha];
 }
 
 + (UIColor *)secondaryBackgroundColor {
-    return [self secondaryBackgroundColorWithAlpha:1.0];
+    return FLEXDynamicColor(
+        secondarySystemBackgroundColor,
+        colorWithHue:2.0/3.0 saturation:0.02 brightness:0.95 alpha:1
+    );
 }
 
 + (UIColor *)secondaryBackgroundColorWithAlpha:(CGFloat)alpha {
-    return colorWithDynamicProvider([UIColor colorWithWhite:0.9 alpha:alpha],
-                                    [UIColor colorWithWhite:0.1 alpha:alpha]);
+    return [[self secondaryBackgroundColor] colorWithAlphaComponent:alpha];
+}
+
++ (UIColor *)tertiaryBackgroundColor {
+    // All the background/fill colors are varying shades
+    // of white and black with really low alpha levels.
+    // We use systemGray4Color instead to avoid alpha issues.
+    return FLEXDynamicColor(systemGray4Color, lightGrayColor);
+}
+
++ (UIColor *)tertiaryBackgroundColorWithAlpha:(CGFloat)alpha {
+    return [[self tertiaryBackgroundColor] colorWithAlphaComponent:alpha];
 }
 
 #pragma mark - Text colors
 
 + (UIColor *)primaryTextColor {
-    return colorWithDynamicProvider([UIColor blackColor],
-                                    [UIColor whiteColor]);
+    return FLEXDynamicColor(labelColor, blackColor);
 }
 
 + (UIColor *)deemphasizedTextColor {
-    return colorWithDynamicProvider([UIColor lightGrayColor],
-                                    [UIColor darkGrayColor]);
+    return FLEXDynamicColor(tertiaryLabelColor, lightGrayColor);
 }
 
 #pragma mark - UI Element Colors
 
 + (UIColor *)scrollViewBackgroundColor {
-    return colorWithDynamicProvider([UIColor colorWithRed:239.0/255.0 green:239.0/255.0 blue:244.0/255.0 alpha:1.0],
-                                    [UIColor colorWithRed:16.0/255.0 green:16.0/255.0 blue:11.0/255.0 alpha:1.0]);
+    return FLEXDynamicColor(
+        systemGroupedBackgroundColor,
+        colorWithHue:2.0/3.0 saturation:0.02 brightness:0.95 alpha:1
+    );
 }
 
 + (UIColor *)iconColor {
-    return colorWithDynamicProvider([UIColor darkGrayColor],
-                                    [UIColor lightGrayColor]);
+    return FLEXDynamicColor(labelColor, blackColor);
 }
 
 + (UIColor *)borderColor {
-    return colorWithDynamicProvider([UIColor blackColor],
-                                    [UIColor whiteColor]);
+    return [self primaryBackgroundColor];
+}
+
++ (UIColor *)toolbarItemHighlightedColor {
+    return FLEXDynamicColor(
+        quaternaryLabelColor,
+        colorWithHue:2.0/3.0 saturation:0.1 brightness:0.25 alpha:0.6
+    );
+}
+
++ (UIColor *)toolbarItemSelectedColor {
+    return FLEXDynamicColor(
+        secondaryLabelColor,
+        colorWithHue:2.0/3.0 saturation:0.1 brightness:0.25 alpha:0.68
+    );
 }
 
 @end

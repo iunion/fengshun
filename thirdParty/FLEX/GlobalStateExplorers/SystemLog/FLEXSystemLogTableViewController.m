@@ -8,13 +8,13 @@
 
 #import "FLEXSystemLogTableViewController.h"
 #import "FLEXUtility.h"
+#import "FLEXColor.h"
 #import "FLEXASLLogController.h"
 #import "FLEXOSLogController.h"
 #import "FLEXSystemLogTableViewCell.h"
 
-@interface FLEXSystemLogTableViewController () <UISearchResultsUpdating, UISearchControllerDelegate>
+@interface FLEXSystemLogTableViewController ()
 
-@property (nonatomic, strong) UISearchController *searchController;
 @property (nonatomic, readonly) id<FLEXLogController> logController;
 @property (nonatomic, readonly) NSMutableArray<FLEXSystemLogMessage *> *logMessages;
 @property (nonatomic, copy) NSArray<FLEXSystemLogMessage *> *filteredLogMessages;
@@ -23,20 +23,27 @@
 
 @implementation FLEXSystemLogTableViewController
 
+- (id)init {
+    return [super initWithStyle:UITableViewStylePlain];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.showsSearchBar = YES;
 
-    __weak typeof(self) weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
     id logHandler = ^(NSArray<FLEXSystemLogMessage *> *newMessages) {
-        [weakSelf handleUpdateWithNewMessages:newMessages];
+        __strong __typeof(weakSelf) self = weakSelf;
+        [self handleUpdateWithNewMessages:newMessages];
     };
 
     _logMessages = [NSMutableArray array];
-    if ([NSProcessInfo processInfo].operatingSystemVersion.majorVersion <= 9) {
-        _logController = [FLEXASLLogController withUpdateHandler:logHandler];
-    } else {
+    if (FLEXOSLogAvailable()) {
         _logController = [FLEXOSLogController withUpdateHandler:logHandler];
+    } else {
+        _logController = [FLEXASLLogController withUpdateHandler:logHandler];
     }
 
     [self.tableView registerClass:[FLEXSystemLogTableViewCell class] forCellReuseIdentifier:kFLEXSystemLogTableViewCellIdentifier];
@@ -56,12 +63,6 @@
     } else {
         self.navigationItem.rightBarButtonItem = scrollDown;
     }
-    
-    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
-    self.searchController.delegate = self;
-    self.searchController.searchResultsUpdater = self;
-    self.searchController.dimsBackgroundDuringPresentation = NO;
-    self.tableView.tableHeaderView = self.searchController.searchBar;
 }
 
 - (void)handleUpdateWithNewMessages:(NSArray<FLEXSystemLogMessage *> *)newMessages
@@ -115,6 +116,16 @@
     [self presentViewController:settings animated:YES completion:nil];
 }
 
+#pragma mark - FLEXGlobalsTableViewControllerEntry
+
++ (NSString *)globalsEntryTitle {
+    return @"⚠️  System Log";
+}
+
++ (instancetype)globalsEntryViewController {
+    return [self new];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -131,12 +142,12 @@
 {
     FLEXSystemLogTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kFLEXSystemLogTableViewCellIdentifier forIndexPath:indexPath];
     cell.logMessage = [self logMessageAtIndexPath:indexPath];
-    cell.highlightedText = self.searchController.searchBar.text;
+    cell.highlightedText = self.searchText;
     
     if (indexPath.row % 2 == 0) {
-        cell.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0];
+        cell.backgroundColor = [FLEXColor primaryBackgroundColor];
     } else {
-        cell.backgroundColor = [UIColor whiteColor];
+        cell.backgroundColor = [FLEXColor secondaryBackgroundColor];
     }
     
     return cell;
@@ -173,23 +184,21 @@
     return self.searchController.isActive ? self.filteredLogMessages[indexPath.row] : self.logMessages[indexPath.row];
 }
 
-#pragma mark - UISearchResultsUpdating
+#pragma mark - Search bar
 
-- (void)updateSearchResultsForSearchController:(UISearchController *)searchController
+- (void)updateSearchResults:(NSString *)searchString
 {
-    NSString *searchString = searchController.searchBar.text;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSArray<FLEXSystemLogMessage *> *filteredLogMessages = [self.logMessages filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(FLEXSystemLogMessage *logMessage, NSDictionary<NSString *, id> *bindings) {
+    [self onBackgroundQueue:^NSArray *{
+        return [self.logMessages filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(FLEXSystemLogMessage *logMessage, NSDictionary<NSString *, id> *bindings) {
             NSString *displayedText = [FLEXSystemLogTableViewCell displayedTextForLogMessage:logMessage];
             return [displayedText rangeOfString:searchString options:NSCaseInsensitiveSearch].length > 0;
         }]];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if ([searchController.searchBar.text isEqual:searchString]) {
-                self.filteredLogMessages = filteredLogMessages;
-                [self.tableView reloadData];
-            }
-        });
-    });
+    } thenOnMainQueue:^(NSArray *filteredLogMessages) {
+        if ([self.searchText isEqual:searchString]) {
+            self.filteredLogMessages = filteredLogMessages;
+            [self.tableView reloadData];
+        }
+    }];
 }
 
 @end
