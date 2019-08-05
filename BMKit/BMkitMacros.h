@@ -191,15 +191,15 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 
 // 弱引用/强引用 weakSelf
-#define BMWeakSelf __weak typeof(self) weakSelf = self;
-#define BMStrongSelf __strong typeof(weakSelf) strongSelf = weakSelf;
+#define BMWeakSelf                  __weak __typeof(self) weakSelf = self;
+#define BMStrongSelf                __strong __typeof(weakSelf) strongSelf = weakSelf;
 
 // 弱引用/强引用 weakType
-#define BMWeakType(type)     __weak typeof(type) weak##type = type;
-#define BMStrongType(type)   __strong typeof(weak##type) strong##type = weak##type;
+#define BMWeakType(type)            __weak __typeof(type) weak##type = type;
+#define BMStrongType(type)          __strong __typeof(weak##type) strong##type = weak##type;
 
 // 过期提醒
-#define BM_DEPRECATED(instead)       NS_DEPRECATED(2_0, 2_0, 2_0, 2_0, instead)
-#define BM_DEPRECATED_IOS(instead)   NS_DEPRECATED_IOS(2_0, 2_0, instead)
+#define BM_DEPRECATED(instead)      NS_DEPRECATED(2_0, 2_0, 2_0, 2_0, instead)
+#define BM_DEPRECATED_IOS(instead)  NS_DEPRECATED_IOS(2_0, 2_0, instead)
 
 #endif

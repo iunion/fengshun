@@ -10,7 +10,7 @@
 
 #if SD_UIKIT || SD_MAC
 
-#import <objc/runtime.h>
+#import "objc/runtime.h"
 #import "UIView+WebCacheOperation.h"
 #import "UIView+WebCache.h"
 #import "SDInternalMacros.h"
