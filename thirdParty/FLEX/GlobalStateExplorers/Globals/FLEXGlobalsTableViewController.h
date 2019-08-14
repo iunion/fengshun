@@ -7,8 +7,21 @@
 //
 
 #import "FLEXTableViewController.h"
-
 @protocol FLEXGlobalsTableViewControllerDelegate;
+
+typedef NS_ENUM(NSUInteger, FLEXGlobalsSection) {
+    /// NSProcessInfo, Network history, system log,
+    /// heap, address explorer, libraries, app classes
+    FLEXGlobalsSectionProcessAndEvents,
+    /// Browse container, browse bundle, NSBundle.main,
+    /// NSUserDefaults.standard, UIApplication,
+    /// app delegate, key window, root VC, cookies
+    FLEXGlobalsSectionAppShortcuts,
+    /// UIPasteBoard.general, UIScreen, UIDevice
+    FLEXGlobalsSectionMisc,
+    FLEXGlobalsSectionCustom,
+    FLEXGlobalsSectionCount
+};
 
 @interface FLEXGlobalsTableViewController : FLEXTableViewController
 

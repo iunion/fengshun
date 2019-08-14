@@ -116,13 +116,13 @@
     [self presentViewController:settings animated:YES completion:nil];
 }
 
-#pragma mark - FLEXGlobalsTableViewControllerEntry
+#pragma mark - FLEXGlobalsEntry
 
-+ (NSString *)globalsEntryTitle {
++ (NSString *)globalsEntryTitle:(FLEXGlobalsRow)row {
     return @"⚠️  System Log";
 }
 
-+ (instancetype)globalsEntryViewController {
++ (UIViewController *)globalsEntryViewController:(FLEXGlobalsRow)row {
     return [self new];
 }
 

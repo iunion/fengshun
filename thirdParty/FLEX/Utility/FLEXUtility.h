@@ -14,12 +14,6 @@
 
 #define FLEXFloor(x) (floor([[UIScreen mainScreen] scale] * (x)) / [[UIScreen mainScreen] scale])
 
-#if defined(__IPHONE_11_0)
-#define FLEX_AT_LEAST_IOS11_SDK (__IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_11_0)
-#else
-#define FLEX_AT_LEAST_IOS11_SDK NO
-#endif
-
 #if defined(__IPHONE_13_0)
 #define FLEX_AT_LEAST_IOS13_SDK (__IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_13_0)
 #else
@@ -53,6 +47,10 @@
 + (NSString *)prettyJSONStringFromData:(NSData *)data;
 + (BOOL)isValidJSONData:(NSData *)data;
 + (NSData *)inflatedDataFromCompressedData:(NSData *)compressedData;
+
+/// Actually more like flatmap, but it seems like the objc way to allow returning nil to omit objects.
+/// So, return nil from the block to omit objects, and return an object to include it in the new array.
++ (NSArray *)map:(NSArray *)array block:(id(^)(id obj, NSUInteger idx))mapFunc;
 
 + (NSArray<UIWindow *> *)allWindows;
 

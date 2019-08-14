@@ -7,6 +7,9 @@
 //
 
 #import "FLEXTableViewController.h"
+#import "FLEXScopeCarousel.h"
+#import "FLEXTableView.h"
+#import <objc/runtime.h>
 
 @interface Block : NSObject
 - (void)invoke;
@@ -19,6 +22,7 @@ CGFloat const kFLEXDebounceForExpensiveIO = 0.5;
 
 @interface FLEXTableViewController ()
 @property (nonatomic) NSTimer *debounceTimer;
+
 @end
 
 @implementation FLEXTableViewController
@@ -59,6 +63,8 @@ CGFloat const kFLEXDebounceForExpensiveIO = 0.5;
     self.searchController.delegate = (id)self;
     self.searchController.dimsBackgroundDuringPresentation = NO;
     self.searchController.hidesNavigationBarDuringPresentation = NO;
+    /// Not necessary in iOS 13; remove this when iOS 13 is the deployment target
+    self.searchController.searchBar.delegate = self;
     
     if (@available(iOS 11.0, *)) {
         self.navigationItem.searchController = self.searchController;
@@ -67,8 +73,40 @@ CGFloat const kFLEXDebounceForExpensiveIO = 0.5;
     }
 }
 
+- (void)setShowsCarousel:(BOOL)showsCarousel {
+    if (_showsCarousel == showsCarousel) return;
+    _showsCarousel = showsCarousel;
+
+    _carousel = ({
+        __weak __typeof(self) weakSelf = self;
+
+        FLEXScopeCarousel *carousel = [FLEXScopeCarousel new];
+        carousel.selectedIndexChangedAction = ^(NSInteger idx) {
+            __typeof(self) self = weakSelf;
+            [self updateSearchResults:self.searchText];
+        };
+
+        self.tableView.tableHeaderView = carousel;
+        [self.tableView layoutIfNeeded];
+        // UITableView won't update the header size unless you reset the header view
+        [carousel registerBlockForDynamicTypeChanges:^(FLEXScopeCarousel *carousel) {
+            __typeof(self) self = weakSelf;
+            self.tableView.tableHeaderView = carousel;
+            [self.tableView layoutIfNeeded];
+        }];
+
+        carousel;
+    });
+}
+
 - (NSInteger)selectedScope {
-    return self.searchController.searchBar.selectedScopeButtonIndex;
+    if (self.searchController.searchBar.showsScopeBar) {
+        return self.searchController.searchBar.selectedScopeButtonIndex;
+    } else if (self.showsCarousel) {
+        return self.carousel.selectedIndex;
+    } else {
+        return NSNotFound;
+    }
 }
 
 - (NSString *)searchText {
@@ -77,7 +115,7 @@ CGFloat const kFLEXDebounceForExpensiveIO = 0.5;
 
 - (void)setAutomaticallyShowsSearchBarCancelButton:(BOOL)autoShowCancel {
 #if FLEX_AT_LEAST_IOS13_SDK
-    if (@available(iOS 13, *)) {
+    if (@available(iOS 13.0, *)) {
         self.searchController.automaticallyShowsCancelButton = autoShowCancel;
     } else {
         _automaticallyShowsSearchBarCancelButton = autoShowCancel;
@@ -110,7 +148,7 @@ CGFloat const kFLEXDebounceForExpensiveIO = 0.5;
     [super viewWillAppear:animated];
     
     // Make the search bar re-appear instead of hiding
-    if (@available(iOS 11.0, *)) {
+    if (@available(iOS 11.0, *)) if (!self.hideSearchBarInitially) {
         self.navigationItem.hidesSearchBarWhenScrolling = NO;
     }
 }
@@ -120,7 +158,7 @@ CGFloat const kFLEXDebounceForExpensiveIO = 0.5;
     
     // Allow scrolling to collapse the search bar,
     // only if we don't want it pinned
-    if (@available(iOS 11.0, *)) {
+    if (@available(iOS 11.0, *)) if (!self.hideSearchBarInitially) {
         self.navigationItem.hidesSearchBarWhenScrolling = !self.pinSearchBar;
     }
 }
@@ -171,6 +209,13 @@ CGFloat const kFLEXDebounceForExpensiveIO = 0.5;
     if (self.automaticallyShowsSearchBarCancelButton) {
         [searchController.searchBar setShowsCancelButton:NO animated:YES];
     }
+}
+
+#pragma mark UISearchBarDelegate
+
+/// Not necessary in iOS 13; remove this when iOS 13 is the deployment target
+- (void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope {
+    [self updateSearchResultsForSearchController:self.searchController];
 }
 
 @end

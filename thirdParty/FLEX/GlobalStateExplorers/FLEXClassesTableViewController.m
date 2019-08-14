@@ -68,13 +68,13 @@
 }
 
 
-#pragma mark - FLEXGlobalsTableViewControllerEntry
+#pragma mark - FLEXGlobalsEntry
 
-+ (NSString *)globalsEntryTitle {
++ (NSString *)globalsEntryTitle:(FLEXGlobalsRow)row {
     return [NSString stringWithFormat:@"📕  %@ Classes", [FLEXUtility applicationName]];
 }
 
-+ (instancetype)globalsEntryViewController {
++ (UIViewController *)globalsEntryViewController:(FLEXGlobalsRow)row {
     FLEXClassesTableViewController *classesViewController = [self new];
     classesViewController.binaryImageName = [FLEXUtility applicationImageName];
 
