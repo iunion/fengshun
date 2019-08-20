@@ -283,7 +283,7 @@
             }
             else
             {
-                [JPUSHService deleteAlias:nil seq:0];
+                //[JPUSHService deleteAlias:nil seq:0];
                 [statTracker setUserId:nil];
             }
         }
