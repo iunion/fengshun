@@ -271,11 +271,20 @@
         
         //if (![oldUserInfo bm_isValided])
         {
+            BaiduMobStat *statTracker = [BaiduMobStat defaultStat];
+
             // 用户数据变更，包括登录注册，退出登录
             [[NSNotificationCenter defaultCenter] postNotificationName:userInfoChangedNotification object:nil userInfo:nil];
             NSString *phoneNum = _m_UserInfo.m_UserBaseInfo.m_PhoneNum;
             if ([phoneNum bm_isNotEmpty]) {
                 [JPUSHService setAlias:phoneNum completion:nil seq:0];
+                
+                [statTracker setUserId:phoneNum];
+            }
+            else
+            {
+                [JPUSHService deleteAlias:nil seq:0];
+                [statTracker setUserId:nil];
             }
         }
     }
