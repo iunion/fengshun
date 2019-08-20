@@ -115,11 +115,10 @@
     [FSShareManager configSharePlateform];
 }
 
-
 // 启动百度移动统计
 - (void)startBaiduMobileStat
 {
-    BaiduMobStat* statTracker = [BaiduMobStat defaultStat];
+    BaiduMobStat *statTracker = [BaiduMobStat defaultStat];
 #ifdef DEBUG
     statTracker.enableDebugOn = YES;
 #endif
@@ -342,6 +341,8 @@
     }
     return result;
 }
+
+
 #pragma mark -
 #pragma mark 外部跳转信息
 // 根据外部跳转信息进行跳转(远程推送,Safari进入等)
@@ -359,6 +360,8 @@
             break;
     }
 }
+
+
 #pragma mark -
 #pragma mark 远程推送
 
@@ -379,6 +382,7 @@
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 }
+
 //  关于宏命令NSFoundationVersionNumber_iOS_9_x_Max，由于在iOS9(XCode7)中Apple已经提前支持了宏命令__IPHONE_10_0，所以这儿添加了NSFoundationVersionNumber_iOS_9_x_Max做判断
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #pragma mark- 通知到达/进入的不同iOS版本的回调
@@ -434,10 +438,13 @@
     // 注册 DeviceToken
     [JPUSHService registerDeviceToken:deviceToken];
 }
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
     //Optional
     BMLog(@"[JPush]+++++++APNs注册失败")
 }
+
 // 配置&注册极光推送
 - (void)setupJPushWithOptions:(NSDictionary *)launchOptions
 {
@@ -486,6 +493,7 @@
         }
     }];
 }
+
 
 #pragma mark -
 #pragma mark CLAuthorizationStatus
@@ -620,7 +628,6 @@
 
 #pragma mark -
 #pragma mark logOut
-
 
 // 踢出登录, 同logOut
 - (void)kickOut

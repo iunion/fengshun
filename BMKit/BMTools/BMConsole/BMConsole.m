@@ -28,6 +28,7 @@
 #import "BMTestNetFlowManager.h"
 #import "BMTestNetFlowSummaryVC.h"
 
+#import "BaiduMobStat.h"
 
 #define TOOLBAR_GAP 5.0f
 
@@ -1717,6 +1718,12 @@ static void exceptionHandler(NSException *exception)
 
 - (void)sendEvent:(UIEvent *)event
 {
+    BaiduMobStat *statTracker = [BaiduMobStat defaultStat];
+    if ([[statTracker getDeviceCuid] bm_isNotEmpty])
+    {
+        return [super sendEvent:event];
+    }
+
     if ([BMConsole sharedConsole].enabled && event.type == UIEventTypeTouches)
     {
         NSSet *touches = [event allTouches];
