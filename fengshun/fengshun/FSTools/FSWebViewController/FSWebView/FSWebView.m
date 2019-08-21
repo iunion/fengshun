@@ -19,6 +19,8 @@
 #import "WKWebViewJavascriptBridge.h"
 #endif
 
+#import "BaiduMobStat.h"
+
 @interface FSWebView ()
 <
     UIWebViewDelegate,
@@ -339,6 +341,8 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
+    [[BaiduMobStat defaultStat] webviewStartLoadWithRequest:request];
+
     if (![self.webViewProgress webView:webView shouldStartLoadWithRequest:request navigationType:navigationType])
     {
         return NO;
@@ -396,6 +400,12 @@
     [self callback_webViewDidFailLoadWithError:error];
 }
 
+#pragma mark - WKScriptMessageHandler
+
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
+{
+    [[BaiduMobStat defaultStat] didReceiveScriptMessage:message.name body:message.body];
+}
 
 #pragma mark - WKUIDelegate
 ///--  还没用到
