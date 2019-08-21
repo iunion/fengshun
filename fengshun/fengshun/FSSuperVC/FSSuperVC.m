@@ -14,6 +14,8 @@
 #import "FSAppInfo.h"
 #import "FSAlertView.h"
 
+#import "BaiduMobStat.h"
+
 @interface FSSuperVC ()
 <
     FSAuthenticationDelegate,
@@ -56,6 +58,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setTitle:(NSString *)title
+{
+    [super setTitle:title];
+    
+    self.titleForBaiduMobStat = title;
 }
 
 #pragma mark -
