@@ -293,7 +293,9 @@
         }
     };
 
+#if USE_WEBVIEWJAVASCRIPTBRIDGE
     [self registerJSHandler];
+#endif
 
     [self loadpage];
     
@@ -670,6 +672,8 @@
 #pragma mark -
 #pragma mark JS
 
+#if USE_WEBVIEWJAVASCRIPTBRIDGE
+
 // 调用js函数
 - (void)callJsHandler:(NSString *)jsFunc withData:(id)data
 {
@@ -766,6 +770,7 @@
         [FSPushVCManager showAuth:weakSelf type:[resultDic bm_intForKey:@"type"]];
     }];
 }
+#endif
 
 // 添加更多按钮
 - (void)addRightBtn

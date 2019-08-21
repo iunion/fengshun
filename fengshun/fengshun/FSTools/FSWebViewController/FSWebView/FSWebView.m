@@ -26,6 +26,7 @@
     UIWebViewDelegate,
     WKNavigationDelegate,
     WKUIDelegate,
+    WKScriptMessageHandler,
     FSWebViewProgressDelegate
 >
 
@@ -151,6 +152,13 @@
     // 不通过用户交互，是否可以打开窗口
     preferences.javaScriptCanOpenWindowsAutomatically = YES;
     configuration.preferences = preferences;
+    
+    // web内容处理池
+    configuration.processPool = [[WKProcessPool alloc] init];
+    // 注入JS对象名称AppModel，当JS通过AppModel来调用时，
+    // 我们可以在WKScriptMessageHandler代理中接收到
+    [configuration.userContentController addScriptMessageHandler:self name:@"bmtj"];
+
     
     WKWebView *webView = [[NSClassFromString(@"WKWebView") alloc] initWithFrame:self.bounds configuration:configuration];
     webView.UIDelegate = self;
@@ -380,6 +388,22 @@
     }
 }
 
+- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *_Nullable))completionHandler
+{
+    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust])
+    {
+        if (challenge.previousFailureCount == 0)
+        {
+            NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+            completionHandler(NSURLSessionAuthChallengeUseCredential, credential);
+        }
+        else
+        {
+            completionHandler(NSURLSessionAuthChallengeCancelAuthenticationChallenge, nil);
+        }
+    }
+}
+
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation
 {
     [self callback_webViewDidStartLoad];
@@ -427,6 +451,11 @@
     {
         [[UIApplication sharedApplication] openURL:url];
         retValue = YES;
+    }
+    // 本地html
+    else if (url.scheme && [url.scheme hasPrefix:@"file"])
+    {
+        retValue = NO;
     }
     // Protocol/URL-Scheme without http(s)
     else if (url.scheme && ![url.scheme hasPrefix:@"http"])
@@ -497,6 +526,20 @@
     {
         return [(WKWebView *)self.realWebView loadHTMLString:string baseURL:baseURL];
     }
+}
+
+- (WKNavigation *)loadFileURL:(NSURL *)URL allowingReadAccessToURL:(NSURL *)readAccessURL;
+{
+    if (!_usingUIWebView)
+    {
+        if (@available(iOS 9.0, *)) {
+            return [(WKWebView *)self.realWebView loadFileURL:URL allowingReadAccessToURL:readAccessURL];
+        } else {
+            // Fallback on earlier versions
+        }
+    }
+    
+    return nil;
 }
 
 - (NSURLRequest *)currentRequest

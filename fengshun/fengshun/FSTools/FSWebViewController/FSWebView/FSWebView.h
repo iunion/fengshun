@@ -62,6 +62,8 @@ typedef void (^FSWebViewUpdateTitleBlock)(FSWebView *webView, NSString *title);
 - (WKNavigation *)loadRequest:(NSURLRequest *)request;
 - (WKNavigation *)loadHTMLString:(NSString *)string baseURL:(NSURL *)baseURL;
 
+- (WKNavigation *)loadFileURL:(NSURL *)URL allowingReadAccessToURL:(NSURL *)readAccessURL;
+
 - (WKNavigation *)goBack;
 - (WKNavigation *)goForward;
 - (WKNavigation *)reload;
