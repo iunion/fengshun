@@ -37,7 +37,7 @@ typedef void (^FSWebViewUpdateTitleBlock)(FSWebView *webView, NSString *title);
 @property (nonatomic, readonly) NSURLRequest *originRequest;
 @property (nonatomic, readonly) NSURLRequest *currentRequest;
 
-@property (nonatomic, readonly, copy) NSString* title;
+@property (nonatomic, readonly, copy) NSString *title;
 
 // 预估网页加载进度
 @property (nonatomic, readonly) CGFloat estimatedProgress;

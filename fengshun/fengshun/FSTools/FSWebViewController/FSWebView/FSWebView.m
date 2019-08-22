@@ -33,7 +33,7 @@
 @property (nonatomic, strong) NSURLRequest *originRequest;
 @property (nonatomic, strong) NSURLRequest *currentRequest;
 
-@property (nonatomic, copy) NSString* title;
+@property (nonatomic, copy) NSString *title;
 @property (nonatomic, assign) CGFloat estimatedProgress;
 
 @property (nonatomic, strong) FSWebViewProgress *webViewProgress;

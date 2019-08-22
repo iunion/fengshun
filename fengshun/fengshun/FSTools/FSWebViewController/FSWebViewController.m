@@ -457,6 +457,19 @@
 
 - (void)backAction:(id)sender
 {
+    // 百度统计网页 onPageEnd
+    NSString *message = [NSString stringWithFormat:@"%@ + %@", self.m_WebView.currentRequest.URL.path, self.m_WebView.title];
+    //[self callJsHandler:@"BaiduMobStat.onPageEnd" withData:message];
+    
+    NSString *js = [NSString stringWithFormat:@"BaiduMobStat.onPageEnd('%@')", message];
+    
+    [self.m_WebView evaluateJavaScript:js completionHandler:^(id obj, NSError *error) {
+        if (error)
+        {
+            NSLog(@"onPageEnd %@ %@", error.localizedDescription, message);
+        }
+    }];
+    
     if (self.m_IsPresent && [self respondsToSelector:@selector(dismissViewControllerAnimated:completion:)])
     {
         [self dismissViewControllerAnimated:YES completion:nil];
