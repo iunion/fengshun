@@ -48,6 +48,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)sharedInstance;
 
++ (BOOL)usingUIWebView;
+
 @end
 
 NS_ASSUME_NONNULL_END

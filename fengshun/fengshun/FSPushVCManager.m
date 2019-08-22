@@ -238,7 +238,7 @@
     FSWebViewController *vc = [[FSWebViewController alloc] initWithTitle:lawTopic url:url showLoadingBar:YES loadingBarColor:FS_LOADINGBAR_COLOR delegate:nil];
     vc.hidesBottomBarWhenPushed = YES;
     vc.m_ShowPageTitles = NO;
-    vc.m_UsingUIWebView = YES;
+    //vc.m_UsingUIWebView = YES;
     [pushVC.navigationController pushViewController:vc animated:YES];
 }
 

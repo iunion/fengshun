@@ -22,7 +22,6 @@
 
 - (void)viewDidLoad
 {
-    self.m_UsingUIWebView = NO;
     self.m_ShowNavBack = NO;
 
     [super viewDidLoad];

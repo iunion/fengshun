@@ -25,8 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, weak) id<FSWebViewControllerDelegate> delegate;
 
-// 使用UIWebView，默认: YES
-@property (nonatomic, assign) BOOL m_UsingUIWebView;
+// 使用UIWebView，默认: NO
+@property (nonatomic, assign, readonly) BOOL m_UsingUIWebView;
 
 // 是否是post请求
 @property (nonatomic, assign) BOOL m_IsPost;

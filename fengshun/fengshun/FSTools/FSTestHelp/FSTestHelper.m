@@ -23,6 +23,9 @@
 
 #import "BMAlertView.h"
 
+#define FS_USINGUIWEBVIEW_KEY   (@"fs_using_uiwebview")
+
+
 @implementation FSTestHelper
 
 - (void)dealloc
@@ -56,6 +59,19 @@
     }
     
     return self;
+}
+
++ (BOOL)usingUIWebView
+{
+    BOOL usingUIWebView = [[NSUserDefaults standardUserDefaults] boolForKey:FS_USINGUIWEBVIEW_KEY];
+    
+    return usingUIWebView;
+}
+
++ (void)setUsingUIWebView:(BOOL)usingUIWebView
+{
+    [[NSUserDefaults standardUserDefaults] setBool:usingUIWebView forKey:FS_USINGUIWEBVIEW_KEY];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)setDebugServer
@@ -234,6 +250,33 @@
             [BMConsole log:@"当前api运行环境为'测试'"];
         }
     }
+    else if ([command isEqualToString:@"w"] || [command isEqualToString:@"web"])
+    {
+        ret = YES;
+        
+        if ([FSTestHelper usingUIWebView])
+        {
+            [BMConsole log:@"WebView控件 UIWebView"];
+        }
+        else
+        {
+            [BMConsole log:@"WebView控件 WKWebView"];
+        }
+    }
+    else if ([command isEqualToString:@"w ui"] || [command isEqualToString:@"web ui"])
+    {
+        ret = YES;
+        
+        [FSTestHelper setUsingUIWebView:YES];
+        [BMConsole log:@"WebView控件切换为UIWebView"];
+    }
+    else if ([command isEqualToString:@"w wk"] || [command isEqualToString:@"web wk"])
+    {
+        ret = YES;
+        
+        [FSTestHelper setUsingUIWebView:NO];
+        [BMConsole log:@"WebView控件切换为WKWebView"];
+    }
     else if ([command isEqualToString:@"h"] || [command isEqualToString:@"help"]) // help命令
     {
         ret = YES;
@@ -253,6 +296,7 @@
         [helpStr appendString:@"(13) 'gps' 模拟GPS定位数据\n"];
         [helpStr appendString:@"(14) 'mn' 网络监控开关\n"];
         [helpStr appendString:@"(15) 'nf' 网络监控表\n"];
+        [helpStr appendString:@"(16) 'web' WebView控件切换 ui wk\n"];
 
         [BMConsole log:@"%@", helpStr];
     }

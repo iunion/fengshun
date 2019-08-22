@@ -23,6 +23,10 @@
 #import "FSAuthVC.h"
 #import <WebKit/WebKit.h>
 
+#if USE_TEST_HELP
+#import "FSTestHelper.h"
+#endif
+
 #define SHOW_CLOSEBTN_CANGOEBACK    1
 
 /* Hieght of the loading progress bar view */
@@ -49,6 +53,9 @@
     NSString *s_PhtoUrlStr;
     
 }
+// 使用UIWebView，默认: NO
+@property (nonatomic, assign) BOOL m_UsingUIWebView;
+
 // 分享的json
 @property (nonatomic , strong) NSString *s_ShareJsonSting;
 // 收藏json
@@ -115,7 +122,11 @@
         _m_RequestParam = requestParam;
         _m_ShowLoadingBar = showLoadingBar;
         _m_LoadingBarTintColor = color;
+#if USE_TEST_HELP
+        _m_UsingUIWebView = [FSTestHelper usingUIWebView];
+#else
         _m_UsingUIWebView = NO;
+#endif
         _m_ShowNavBack = YES;
         _m_ShowPageTitles = YES;
         _delegate = delegate;
