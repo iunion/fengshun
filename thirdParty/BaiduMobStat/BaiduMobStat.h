@@ -60,7 +60,7 @@ typedef enum _BaiduMobStatFeedTrackStrategy {
 
 /**
  百度移动应用统计接口
- 当前版本 5.0.2_17
+ 当前版本 5.0.5_17
  */
 @interface BaiduMobStat : NSObject
 /**
@@ -198,6 +198,16 @@ typedef enum _BaiduMobStatFeedTrackStrategy {
  @return 一个统计对象实例
  */
 + (BaiduMobStat *)defaultStat;
+
+/**
+ 设置用户自定义的用户属性信息，在startWithAppId之前调用
+ 设置一次UserPorperty后，属性与该设备绑定。传入新的UserPorperty将替换老的UserPorperty内容。
+ 传入nil，可清空标记。
+ key值为用户提前在网站创建的“属性名称”，若没有提前创建，则无统计效果。最多传入100个key值，超出部分无效
+ 每个value长度限制256字节
+ 调用例子见demo工程
+ */
+- (void)setUserProperty:(NSDictionary *)userProperty;
 
 /**
  设置应用的appkey，启动统计SDK。
@@ -472,13 +482,13 @@ UITableViewInternalDefine
 @interface UIApplication (BaiduMobStatApplication)
 @end
 
-void import_BaiduMobStatViewController ();
-void import_BaiduMobStatWindow ();
-void import_BaiduMobStatView ();
-void import_BaiduMobStatWebView ();
-void import_BaiduMobStatWKWebView ();
-void import_BaiduMobStatNSInvocation ();
-void import_BaiduMobStatScrollView ();
-void import_BaiduMobStatTableView ();
-void import_BaiduMobStatTableViewCell ();
-void import_BaiduMobStatApplication ();
+void import_BaiduMobStatViewController (void);
+void import_BaiduMobStatWindow (void);
+void import_BaiduMobStatView (void);
+void import_BaiduMobStatWebView (void);
+void import_BaiduMobStatWKWebView (void);
+void import_BaiduMobStatNSInvocation (void);
+void import_BaiduMobStatScrollView (void);
+void import_BaiduMobStatTableView (void);
+void import_BaiduMobStatTableViewCell (void);
+void import_BaiduMobStatApplication (void);
